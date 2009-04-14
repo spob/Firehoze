@@ -10,3 +10,4 @@ log/*
 private/images/*
 public/cache/*
 .DS_Store
+.idea
