@@ -1,11 +1,16 @@
 <p>
   <b>Login:</b>
-  <%=h @user.login %>
+  <%=h @user.email %>
 </p>
 
 <p>
   <b>Login count:</b>
   <%=h @user.login_count %>
+</p>
+
+<p>
+  <b>Failed login count:</b>
+  <%=h @user.failed_login_count %>
 </p>
 
 <p>
