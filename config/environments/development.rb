@@ -13,5 +13,14 @@ config.action_controller.consider_all_requests_local = true
 config.action_view.debug_rjs                         = true
 config.action_controller.perform_caching             = false
 
-# Don't care if the mailer can't send
-config.action_mailer.raise_delivery_errors = false
+# Yes, raise errors if can't send email
+config.action_mailer.raise_delivery_errors = true
+
+config.action_mailer.smtp_settings = {
+  :address        => "smtp.gmail.com",
+  :port           => 587,
+  :domain         => "mindmeld@sturim.org",
+  :authentication => :plain,
+  :user_name      => "mindmeld@sturim.org",
+  :password       => "mindmeld"
+}
