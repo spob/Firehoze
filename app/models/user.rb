@@ -4,8 +4,14 @@ class User < ActiveRecord::Base
   end
 
   # Reset the password token and then send the user an email
+
   def deliver_password_reset_instructions!
-    reset_perishable_token!    
+    reset_perishable_token!
     Notifier.deliver_password_reset_instructions(self)
+  end
+
+  def self.list(page)
+    paginate :page => page, :order => 'email',
+            :per_page => 25
   end
 end

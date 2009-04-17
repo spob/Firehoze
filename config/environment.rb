@@ -27,6 +27,10 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "authlogic"
 
+  # Gem for pagination functionality
+  config.gem 'mislav-will_paginate', :version => '~> 2.3.8', :lib => 'will_paginate',
+      :source => 'http://gems.github.com'
+
   # The following gem is required to support gmail as the smtp server. We can comment this
   # out if we don't use gmail
   # See http://www.iterasi.net/openviewer.aspx?sqrlitid=3aldcskoqekerxaw4xbz7g
