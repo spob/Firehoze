@@ -1,8 +1,29 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+
+  context "given an existing record" do
+    setup do
+      Factory.create(:user)
+    end
+
+    should_validate_uniqueness_of    :email
+    should_validate_presence_of      :email
+    should_validate_numericality_of  :login_count, :failed_login_count
+#    should_not_allow_values_for      :email, "blahhhh", "bbbb lah"
+    should_allow_values_for          :email, "apple@b.com", "asdf@asdf.com"
+    should_ensure_length_in_range    :email, (6..100)
+
+    context "and a couple more records" do
+      setup do
+        # and let's create a couple more
+        Factory.create(:user)
+        Factory.create(:user)
+      end
+
+      should "return user records" do
+        assert_equal 3, User.list(1).size
+      end
+    end
   end
 end
