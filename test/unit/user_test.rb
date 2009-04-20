@@ -13,10 +13,17 @@ class UserTest < ActiveSupport::TestCase
 #    should_not_allow_values_for      :email, "blahhhh", "bbbb lah"
     should_allow_values_for          :email, "apple@b.com", "asdf@asdf.com"
     should_ensure_length_in_range    :email, (6..100)
-  end
 
-  # Replace this with your real tests.
-  test "the truth" do
-#    assert_not_nil  Factory(:user).nil?
+    context "and a couple more records" do
+      setup do
+        # and let's create a couple more
+        Factory.create(:user)
+        Factory.create(:user)
+      end
+
+      should "return user records" do
+        assert_equal 3, User.list(1).size
+      end
+    end
   end
 end
