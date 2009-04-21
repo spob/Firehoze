@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   end
 
   validates_presence_of :email, :crypted_password, :password_salt, :persistence_token,
-          :perishable_token, :login_count, :failed_login_count
+          :login_count, :failed_login_count
   validates_uniqueness_of   :email, :case_sensitive => false
   validates_numericality_of :login_count, :failed_login_count
   validates_length_of       :email, :maximum => 100, :allow_nil => true
