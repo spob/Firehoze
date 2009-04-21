@@ -1,10 +1,11 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+  CHARSET = "utf-8"
 
   context "given an existing record" do
     setup do
-      Factory.create(:user)
+      @user = Factory.create(:user)
     end
 
     should_validate_uniqueness_of    :email
@@ -23,6 +24,26 @@ class UserTest < ActiveSupport::TestCase
 
       should "return user records" do
         assert_equal 3, User.list(1).size
+      end
+    end
+
+    context "and password reset requests" do
+      setup do
+        ActionMailer::Base.delivery_method = :test
+        ActionMailer::Base.perform_deliveries = true
+        ActionMailer::Base.deliveries = []
+
+        @expected = TMail::Mail.new
+        @expected.set_content_type "text", "plain", { "charset" => CHARSET }
+      end
+
+      should "generate email" do
+        response = @user.deliver_password_reset_instructions!
+
+        assert_equal 'Your password has been reset', response.subject
+        assert_match /A request to reset your password has been made/, response.body
+#        assert_match /Dear #{user.full_name},/, response.body
+        assert_equal @user.email, response.to[0]
       end
     end
   end
