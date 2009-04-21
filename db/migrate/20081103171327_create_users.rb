@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string   :perishable_token,   :null => false, :default => ""
       t.integer  :login_count,        :null => false, :default => 0
       t.integer  :failed_login_count, :null => false, :default => 0
+      t.boolean  :active,             :null => false, :default => 1
       t.datetime :last_request_at
       t.datetime :last_login_at
       t.datetime :current_login_at
