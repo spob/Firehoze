@@ -29,7 +29,7 @@ Rails::Initializer.run do |config|
 
   # Gem for pagination functionality
   config.gem 'mislav-will_paginate', :version => '~> 2.3.8', :lib => 'will_paginate',
-      :source => 'http://gems.github.com'
+          :source => 'http://gems.github.com'
 
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
@@ -50,14 +50,25 @@ Rails::Initializer.run do |config|
   # Run "rake -D time" for a list of tasks for finding time zone names. Comment line to use default local time.
   config.time_zone = 'UTC'
 
-  # Your secret key for verifying cookie session data integrity.
-  # If you change this key, all old sessions will become invalid!
-  # Make sure the secret is at least 30 characters and all random, 
-  # no regular words or you'll be exposed to dictionary attacks.
-  #config.action_controller.session = {
-  #  :session_key => '_authgasm_example_session',
-  #  :secret      => '94b9c594695e69bdef6b1d4be037af5853be976b39a52a02f260fca0d0a36a8f913572bfdb631f55971a3b10b8dd9a875f9776ca61371741544e6ccc064dd41e'
-  #}
+  #  Your secret key
+  #  for verifying cookie session data integrity.
+  #  If you change this key, all old sessions will become invalid!
+  #  Make sure the secret is at least 30 characters and all random,
+  #  no regular words or you'll be exposed to dictionary attacks.
+  config.action_controller.session = {
+          :session_key => '_firehoze_session',
+          :secret      => 'j23jh4lkjhl536h3l45jhfdgh34563h6345h6l345jh63l45jhljkhlgdsfglwjrhl'
+  }
+
+  path = "#{RAILS_ROOT}/config/environment.yml"
+  APP_CONFIG = YAML.load_file(path)
+
+  # load and merge in the environment-specific application config info if present,
+  # overriding base config parameters as specified
+  path = "#{RAILS_ROOT}/config/environments/#{ENV['RAILS_ENV']}.yml"
+  if File.exists?(path) && (env_config = YAML.load_file(path))
+    APP_CONFIG.merge!(env_config)
+  end
 
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
