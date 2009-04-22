@@ -14,7 +14,9 @@ class UsersControllerTest < ActionController::TestCase
     end
 
     context "on POST to :create" do
-      setup { post :create, :user => Factory.attributes_for(:user) }
+      setup do
+        post :create, :user => Factory.attributes_for(:user)
+      end
 
       should_assign_to :user
       should_respond_with :redirect
