@@ -21,7 +21,7 @@ class UsersControllerTest < ActionController::TestCase
       should_assign_to :user
       should_respond_with :redirect
       should_set_the_flash_to "Account registered!"
-      should_redirect_to("account page") { account_url }
+      should_redirect_to("user page") { user_url(assigns(:user)) }
     end
   end
 
@@ -32,7 +32,7 @@ class UsersControllerTest < ActionController::TestCase
     end
 
     context "on GET to :show" do
-      setup { get :show, :user => Factory(:user) }
+      setup { get :show, :id => Factory(:user).id }
 
       should_assign_to :user
       should_respond_with :success
@@ -41,7 +41,7 @@ class UsersControllerTest < ActionController::TestCase
     end
 
     context "on GET to :edit" do
-      setup { get :edit, :user => Factory(:user) }
+      setup { get :edit, :id => Factory(:user).id }
 
       should_assign_to :user
       should_respond_with :success
@@ -55,7 +55,7 @@ class UsersControllerTest < ActionController::TestCase
       should_assign_to :user
       should_respond_with :redirect
       should_set_the_flash_to "Account updated!"
-      should_redirect_to("account page") { account_url }
+      should_redirect_to("user page") { user_url(assigns(:user)) }
     end
   end
 end
