@@ -3,11 +3,13 @@ class User < ActiveRecord::Base
     c.logged_in_timeout = 30.minutes # log out after 30 minutes of inactivity   
   end
 
-  validates_presence_of :email, :crypted_password, :password_salt, :persistence_token,
-          :login_count, :failed_login_count
+  validates_presence_of :email, 
+          :login_count, :failed_login_count, :last_name
   validates_uniqueness_of   :email, :case_sensitive => false
   validates_numericality_of :login_count, :failed_login_count
   validates_length_of       :email, :maximum => 100, :allow_nil => true
+  validates_length_of       :last_name, :maximum => 40, :allow_nil => true
+  validates_length_of       :first_name, :maximum => 40
 
   # Reset the password token and then send the user an email
   def deliver_password_reset_instructions!

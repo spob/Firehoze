@@ -13,6 +13,8 @@ end
 Factory.define :user, :default_strategy => :create do |f|
   f.password "xxxxx"
   f.password_confirmation "xxxxx"
+  f.first_name "Bob"
+  f.last_name "Smith"
   f.password_salt 'SodiumChloride'
   f.crypted_password { |a| Authlogic::CryptoProviders::Sha512.encrypt("xxxxx" + a.password_salt) }
   f.persistence_token { Factory.next(:ptoken) }

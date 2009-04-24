@@ -1,4 +1,5 @@
 <tr>
  <td><%= user.email %></td>
+ <td><%= "#{user.first_name} " unless user.first_name.nil? %><%= user.last_name %></td>
  <td><%= user.active %></td>
 </tr>
