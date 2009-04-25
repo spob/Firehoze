@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
     c.logged_in_timeout = 30.minutes # log out after 30 minutes of inactivity   
   end
 
+  # Used to verify current password during password changes
+  attr_accessor :current_password
+
   validates_presence_of :email, 
           :login_count, :failed_login_count, :last_name
   validates_uniqueness_of   :email, :case_sensitive => false

@@ -42,7 +42,6 @@ class UsersControllerTest < ActionController::TestCase
 
     context "on GET to :edit" do
       setup { get :edit, :id => Factory(:user).id }
-
       should_assign_to :user
       should_respond_with :success
       should_not_set_the_flash
