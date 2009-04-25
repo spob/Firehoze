@@ -43,5 +43,15 @@ class ProfilesControllerTest < ActionController::TestCase
       should_not_set_the_flash
       should_render_template "edit_password"
     end
+
+    context "on PUT to :update_password" do
+      setup { put :update_password, :id => Factory(:user).id,
+              :user => {:password => "xxxxx", :password_confirmation => "xxxxx" } }
+
+      should_assign_to :user
+      should_respond_with :redirect
+      should_set_the_flash_to "Password updated!"
+      should_redirect_to("profile page") { profile_url(assigns(:user)) }
+    end
   end
 end

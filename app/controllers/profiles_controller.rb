@@ -29,6 +29,7 @@ class ProfilesController < ApplicationController
 
   def update_password
     @user = @current_user
+#    throw exception
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.save
