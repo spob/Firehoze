@@ -13,4 +13,5 @@
   <%=h @user.last_name %>
 </p>
 
-<%= link_to 'Edit', edit_profile_path(@user) %>
+<%= link_to 'Edit', edit_profile_path(@user) %> |
+<%= link_to 'Change Password', edit_password_profile_path(@user) %>

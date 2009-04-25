@@ -24,4 +24,12 @@ class User < ActiveRecord::Base
     paginate :page => page, :order => 'email',
             :per_page => 25
   end
+
+  def valid_current_password?
+    unless valid_password?(current_password.try(:strip))
+      errors.add(:current_password, "is incorrect")
+      return false
+    end
+    true
+  end
 end
