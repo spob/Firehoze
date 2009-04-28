@@ -2,6 +2,14 @@ class PasswordResetsController < ApplicationController
   before_filter :load_user_using_perishable_token, :only => [:edit, :update]
   before_filter :require_no_user
 
+# TODO: Add these checks to all controllers...after we have a home page
+#  verify :method => :post, :only => [:create ],
+#    :redirect_to => { :action => :index }
+#  verify :method => :put, :only => [ :update ],
+#    :redirect_to => { :action => :index }
+#  verify :method => :delete, :only => [ :destroy ],
+#    :redirect_to => { :action => :index }
+
   def new
     render
   end
