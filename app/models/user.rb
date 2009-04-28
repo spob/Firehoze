@@ -3,8 +3,6 @@ class User < ActiveRecord::Base
     c.logged_in_timeout = 30.minutes # log out after 30 minutes of inactivity   
   end
 
-  before_save :persist_logon_history
-
   has_many :user_logons, :order => "created_at DESC", :dependent => :destroy
 
   # Used to verify current password during password changes
@@ -38,13 +36,5 @@ class User < ActiveRecord::Base
       return false
     end
     true
-  end
-
-  private
-
-  def persist_logon_history
-    if last_login_at_changed?
-      user_logons << UserLogon.new
-    end
   end
 end

@@ -1,6 +1,6 @@
 class UserSession < Authlogic::Session::Base
 
-  before_save  :persist_user_logon
+  after_create    :persist_user_logon
   # Turn on the option to log the user out after inactivity
   logout_on_timeout true
 
