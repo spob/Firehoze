@@ -11,7 +11,7 @@ class PasswordsController < ApplicationController
     unless @user.valid_current_password?
       # user typed a bad value for current password
       @user.password = params[:user][:password]
-      render :action => :edit_password
+      render :action => :edit
       return
     end
     @user.password = params[:user][:password]
@@ -20,7 +20,7 @@ class PasswordsController < ApplicationController
       flash[:notice] = "Password updated!"
       redirect_to profile_url(@user)
     else
-      render :action => :edit_password
+      render :action => :edit
     end
   end
 end
