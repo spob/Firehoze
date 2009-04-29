@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def set_timezone
     # current_user.time_zone #=> 'London'
-    Time.zone = current_user.time_zone
+    Time.zone = current_user ? current_user.time_zone : APP_CONFIG['default_user_timezone']
   end
 
   def current_user_session
