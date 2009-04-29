@@ -16,6 +16,7 @@ Factory.define :user, :default_strategy => :create do |f|
   f.first_name "Bob"
   f.last_name "Smith"
   f.password_salt 'SodiumChloride'
+  f.time_zone { Time.zone.name }
   f.crypted_password { |a| Authlogic::CryptoProviders::Sha512.encrypt("xxxxx" + a.password_salt) }
   f.persistence_token { Factory.next(:ptoken) }
   f.perishable_token "xxxx"

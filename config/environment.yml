@@ -13,3 +13,8 @@ port: 3000
 # The email address of the administrator. This email will be used as the "from"
 # address in emails sent by the application.
 admin_email: admin@braindump.com
+
+# The default timezone for new users. Hint: execute the command:
+#     rake time:zones:local
+# to get a list of timezones local to your location
+default_user_timezone: Eastern Time (US & Canada)

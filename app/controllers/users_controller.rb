@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    @user = User.new(:time_zone => APP_CONFIG['default_user_timezone'])
   end
 
   def create
