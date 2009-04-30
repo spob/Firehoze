@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :user_logons
+
   map.resource  :account, :controller => "profiles"
   map.resources :users
   map.resources :profiles

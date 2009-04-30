@@ -1,0 +1,9 @@
+<table>
+    <tr>
+        <th>User</th>
+        <th>Login IP</th>
+        <th>Logged In At</th>
+    </tr>
+    <%= render @user_logons %>
+</table>
+<%= will_paginate @user_logons %>

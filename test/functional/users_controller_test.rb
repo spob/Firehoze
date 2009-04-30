@@ -31,6 +31,15 @@ class UsersControllerTest < ActionController::TestCase
       UserSession.create Factory(:user)
     end
 
+    context "on GET to :index" do
+      setup { get :index }
+
+      should_assign_to :users
+      should_respond_with :success
+      should_not_set_the_flash
+      should_render_template "index"
+    end
+
     context "on GET to :show" do
       setup { get :show, :id => Factory(:user).id }
 
