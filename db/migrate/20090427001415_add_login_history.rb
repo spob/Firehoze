@@ -5,8 +5,9 @@ class AddLoginHistory < ActiveRecord::Migration
     
   def self.up
     create_table :user_logons do |t|
-      t.references :user, :null => false
-      t.column :lock_version, :integer, :default => 0
+      t.references :user,         :null => false
+      t.string     :login_ip,     :limit => 20
+      t.column     :lock_version, :integer, :default => 0
       t.timestamps
     end
 

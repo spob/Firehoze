@@ -1,10 +1,6 @@
 class UserSession < Authlogic::Session::Base
   after_create    :persist_user_logon
 
-  # Use this member variable to prevent infinite recursion, which for some
-  # reason only occurs while testing
-  @user_session_persisted = false
-
   # Turn on the option to log the user out after inactivity
   logout_on_timeout true
 
@@ -17,8 +13,12 @@ class UserSession < Authlogic::Session::Base
 
   def persist_user_logon
     UserLogon.transaction do
-      @user_session_persisted = true
-      UserLogon.create(:user => attempted_record) unless @user_session_persisted
+      # for some reason when running in test mode, this causes infinite recursion...
+      # so, at least for now, disable this in test mode
+      unless ENV['RAILS_ENV'] == 'test'
+        UserLogon.create(:user => attempted_record,
+                :login_ip => attempted_record.current_login_ip)
+      end
     end
   end
 end
