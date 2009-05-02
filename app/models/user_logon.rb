@@ -10,6 +10,8 @@
 #
 
 class UserLogon < ActiveRecord::Base
+  acts_as_authorizable
+  
   belongs_to :user
     
   def self.list(page)

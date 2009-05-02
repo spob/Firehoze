@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  # Authorization plugin
+  acts_as_authorized_user
+  acts_as_authorizable
+  
   acts_as_authentic  do |c|
     c.logged_in_timeout = 30.minutes # log out after 30 minutes of inactivity   
   end
