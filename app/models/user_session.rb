@@ -12,13 +12,13 @@ class UserSession < Authlogic::Session::Base
   private
 
   def persist_user_logon
-    UserLogon.transaction do
-      # for some reason when running in test mode, this causes infinite recursion...
-      # so, at least for now, disable this in test mode
-      unless ENV['RAILS_ENV'] == 'test'
-        UserLogon.create(:user => attempted_record,
-                :login_ip => attempted_record.current_login_ip)
-      end
-    end
+#    UserLogon.transaction do
+#      # for some reason when running in test mode, this causes infinite recursion...
+#      # so, at least for now, disable this in test mode
+#      unless ENV['RAILS_ENV'] == 'test'
+#        UserLogon.create(:user => attempted_record,
+#                :login_ip => attempted_record.current_login_ip)
+#      end
+#    end
   end
 end

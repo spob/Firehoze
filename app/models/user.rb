@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   validates_numericality_of :login_count, :failed_login_count
   validates_length_of       :email, :maximum => 100, :allow_nil => true
   validates_length_of       :last_name, :maximum => 40, :allow_nil => true
-  validates_length_of       :first_name, :maximum => 40
+  validates_length_of       :first_name, :maximum => 40, :allow_nil => true
 
   # Reset the password token and then send the user an email
 

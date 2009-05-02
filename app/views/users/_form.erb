@@ -10,7 +10,7 @@
 <%= form.label :time_zone %>:
 <%= form.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
 <br/>
-<% if form.object.nil? %>
+<% unless form.object.nil? %>
     <%= form.label :active %>:
     <%= form.check_box :active %><br />
     <br/>

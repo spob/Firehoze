@@ -23,7 +23,7 @@ class UserSessionsControllerTest < ActionController::TestCase
       should "should create user session" do
         assert_equal @user, UserSession.find.user
       end
-      should_redirect_to("user page")  { users_path }
+      should_redirect_to("home page")  { homes_path }
       should_respond_with :redirect
       should_set_the_flash_to "Login successful!"
     end
