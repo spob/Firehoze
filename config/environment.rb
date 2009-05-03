@@ -45,6 +45,9 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "authlogic"
 
+  # For periodic job processing
+  config.gem 'daemons', :lib => 'daemons'
+
   # Gem for pagination functionality
   config.gem 'mislav-will_paginate', :version => '~> 2.3.8', :lib => 'will_paginate',
           :source => 'http://gems.github.com'
