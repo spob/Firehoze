@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
 
   def self.list(page)
     paginate :page => page, :order => 'email',
-            :per_page => 25
+            :per_page => Constants::ROWS_PER_PAGE
   end
 
   # used to verify whether the user typed their correct password when, for example,

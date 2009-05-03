@@ -1,5 +1,5 @@
 class PopulateRoles < ActiveRecord::Migration
-  require 'role_definition'
+  require 'constants'
 
   def self.up
     admin = User.create :email => 'admin@firehoze.com', :password => "changeme", :password_confirmation => "changeme",
@@ -8,13 +8,13 @@ class PopulateRoles < ActiveRecord::Migration
 #  f.crypted_password { |a| Authlogic::CryptoProviders::Sha512.encrypt("xxxxx" + a.password_salt) }
     #  f.persistence_token { Factory.next(:ptoken) }
     #  f.perishable_token "xxxx"
-    Role.create :name => RoleDefinition::SYSADMIN
+    Role.create :name => Constants::ROLE_SYSADMIN
 
-    admin.has_role RoleDefinition::SYSADMIN
+    admin.has_role Constants::ROLE_SYSADMIN
   end
 
   def self.down
-    Role.find_by_name(RoleDefinition::SYSADMIN).destroy
+    Role.find_by_name(Constants::ROLE_SYSADMIN).destroy
 
     User.find_by_email('admin@firehoze.com').destroy
   end

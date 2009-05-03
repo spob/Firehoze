@@ -1,5 +1,5 @@
 class UserSession < Authlogic::Session::Base
-  after_create    :persist_user_logon
+  after_persisting    :persist_user_logon
 
   # Turn on the option to log the user out after inactivity
   logout_on_timeout true
@@ -12,13 +12,13 @@ class UserSession < Authlogic::Session::Base
   private
 
   def persist_user_logon
-#    UserLogon.transaction do
-#      # for some reason when running in test mode, this causes infinite recursion...
-#      # so, at least for now, disable this in test mode
-#      unless ENV['RAILS_ENV'] == 'test'
-#        UserLogon.create(:user => attempted_record,
-#                :login_ip => attempted_record.current_login_ip)
+    # for some reason when running in test mode, this causes infinite recursion...
+    # so, at least for now, disable this in test mode
+    unless ENV['RAILS_ENV'] == 'test'
+#      if record
+#        UserLogon.create(:user => record,
+#                :login_ip => record.current_login_ip)
 #      end
-#    end
+    end
   end
 end
