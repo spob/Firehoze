@@ -1,8 +1,18 @@
 <h1>Edit User</h1>
-            
+
 <% form_for(:user, :url => user_path(@user), :html => { :method => :put }) do |f| %>
     <%= f.error_messages %>
     <%= render :partial => "form", :object => f %>
+    <br/>
+    <%= f.label "Roles" %>:
+    <br/>
+    <% for role in Role.by_name %>
+        <%= check_box_tag "user[role_ids][]", role.id, @user.has_role?(role.name) %>
+        <%= h role.name %>
+    <% end %>
+    <br/>
+    <br/>
+
     <%= f.submit "Update" %>
     <%= link_to "Cancel", user_path(@user) %>
 <% end %>

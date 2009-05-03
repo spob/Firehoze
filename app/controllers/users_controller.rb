@@ -32,8 +32,14 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
   end
 
-  def update            
+  def update
+    params[:user][:role_ids] ||= []
     @user = User.find params[:id]
+
+    for role_id in params[:user][:role_ids]
+      role = Role.find(role_id)
+      @user.has_role role.name
+    end
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
       redirect_to user_url(@user)

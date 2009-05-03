@@ -1,61 +1,67 @@
 <p>
-  <b>Login:</b>
-  <%=h @user.email %>
+    <b>Login:</b>
+    <%= h @user.email %>
 </p>
 
 <p>
-  <b>First Name:</b>
-  <%=h @user.first_name %>
+    <b>First Name:</b>
+    <%= h @user.first_name %>
 </p>
 
 <p>
-  <b>Last Name:</b>
-  <%=h @user.last_name %>
+    <b>Last Name:</b>
+    <%= h @user.last_name %>
 </p>
 
 <p>
-  <b>User Time Zone:</b>
-  <%=h @user.time_zone %>
+    <b>User Time Zone:</b>
+    <%= h @user.time_zone %>
 </p>
 
 <p>
-  <b>Active:</b>
-  <%=h @user.active %>
+    <b>Active:</b>
+    <%= h @user.active %>
 </p>
 
 <p>
-  <b>Login count:</b>
-  <%=h @user.login_count %>
+    <b>Login count:</b>
+    <%= h @user.login_count %>
 </p>
 
 <p>
-  <b>Failed login count:</b>
-  <%=h @user.failed_login_count %>
+    <b>Failed login count:</b>
+    <%= h @user.failed_login_count %>
 </p>
 
 <p>
-  <b>Last request at:</b>
-  <%=h @user.last_request_at %>
+    <b>Last request at:</b>
+    <%= h @user.last_request_at %>
 </p>
 
 <p>
-  <b>Last login at:</b>
-  <%=h @user.last_login_at %>
+    <b>Last login at:</b>
+    <%= h @user.last_login_at %>
 </p>
 
 <p>
-  <b>Current login at:</b>
-  <%=h @user.current_login_at %>
+    <b>Current login at:</b>
+    <%= h @user.current_login_at %>
 </p>
 
 <p>
-  <b>Last login ip:</b>
-  <%=h @user.last_login_ip %>
+    <b>Last login ip:</b>
+    <%= h @user.last_login_ip %>
 </p>
 
 <p>
-  <b>Current login ip:</b>
-  <%=h @user.current_login_ip %>
+    <b>Current login ip:</b>
+    <%= h @user.current_login_ip %>
+</p>
+<p>
+    <b>Roles:</b> <br/>
+    <% for role in @user.roles %>
+        <%= role.name %> <br/>
+    <% end %>
 </p>
 
 
