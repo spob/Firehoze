@@ -17,6 +17,7 @@ class UserSessionsControllerTest < ActionController::TestCase
     end
 
     context "on POST to :create with valid credentials" do
+      logons = UserLogon.count
       setup { post :create, :user_session => { :email => @user.email, :password => "xxxxx" } }
 
       should_assign_to :user_session
@@ -26,6 +27,9 @@ class UserSessionsControllerTest < ActionController::TestCase
       should_redirect_to("home page")  { homes_path }
       should_respond_with :redirect
       should_set_the_flash_to "Login successful!"
+      should "persist a new user logon audit trail record" do
+        assert_equal logons + 1, UserLogon.count
+      end
     end
 
     context "on POST to :create with invalid credentials" do

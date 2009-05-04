@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   acts_as_authorized_user
   acts_as_authorizable
 
+  before_save :persist_user_logon
+
   acts_as_authentic  do |c|
     c.logged_in_timeout = 30.minutes # log out after 30 minutes of inactivity   
   end
@@ -32,16 +34,6 @@ class User < ActiveRecord::Base
             :per_page => Constants::ROWS_PER_PAGE
   end
 
-  #  def roles
-  #    _roles = []
-  #    puts "here==============================="
-  #    for r in Role.by_name
-  #      puts ":::::::::::::#{r.name}"
-  #      _roles << r if self.has_role?(r.name)
-  #    end
-  #    _roles
-  #  end
-
   # used to verify whether the user typed their correct password when, for example,
   # the user updates their password
 
@@ -51,5 +43,14 @@ class User < ActiveRecord::Base
       return false
     end
     true
+  end
+
+  private
+
+  def persist_user_logon
+    # Surprisingly AuthLogic doesn't provide a clean callback for detecting when a login occurs...so instead,
+    # watch for when the login count is incremented (which is done by AuthLogic).
+    UserLogon.create(:user => self,
+            :login_ip => self.current_login_ip) if login_count > login_count_was
   end
 end
