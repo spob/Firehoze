@@ -18,3 +18,8 @@ admin_email: admin@braindump.com
 #     rake time:zones:local
 # to get a list of timezones local to your location
 default_user_timezone: Eastern Time (US & Canada)
+
+# The number of minutes to wait for a periodic job to complete. If the job does
+# not complete in this timeframe, OpenMind will assume it is dead and initiate
+# a recovery
+periodic_job_timeout: 30
