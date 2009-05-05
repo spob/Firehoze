@@ -17,40 +17,35 @@
 class RunAtPeriodicJob < PeriodicJob
   before_create :set_next_run
   validates_presence_of :run_at_minutes
-  
+  @@now = nil
+
   def calc_next_run
-    RunAtPeriodicJob.new(:job => self.job,
-      :run_at_minutes => self.run_at_minutes)
+    RunAtPeriodicJob.new(:job => self.job, :run_at_minutes => self.run_at_minutes)
   end
-  
+
   def set_next_run
-    begin
-      self.next_run_at = calc_next_run_at_date
-    
-    rescue NoMethodError
-      # Won't work if run during migration -  - column is added later, so swallow it
-      raise unless ActiveRecord::Migrator.current_version.to_i < 68
-    end
+    self.next_run_at = calc_next_run_at_date
   end
-  
+
+  # Allow us to set the current timestamp for testing purposes
+  def set_now(the_date)
+    @@now = the_date
+  end
+
   private
-  
+
   def calc_next_run_at_date
-    begin
-      # has it run at the appointed time for today
-      hours = self.run_at_minutes/60
-      minutes = self.run_at_minutes - hours * 60
-        
-      if Time.zone.now.hour * 60 + Time.zone.now.min < run_at_minutes
-        self.next_run_at = Time.local(Time.zone.now.year, Time.zone.now.month, Time.zone.now.day, hours, minutes, 0)
-      else
-        self.next_run_at = Time.local(Time.zone.now.year, Time.zone.now.month, Time.zone.now.day, hours, minutes, 0) + 
-          1.day
-      end
-    
-    rescue NoMethodError
-      # Won't work if run during migration -- column is added later, so swallow it
-      raise unless ActiveRecord::Migrator.current_version.to_i < 68
+    # has it run at the appointed time for today
+    hours = self.run_at_minutes/60
+    minutes = self.run_at_minutes - hours * 60
+
+    @right_now = Time.zone.now
+    @right_now = @@now unless @@now.nil?
+
+    if @right_now.hour * 60 + @right_now.min < run_at_minutes
+      self.next_run_at = Time.local(@right_now.year, @right_now.month, @right_now.day, hours, minutes, 0)
+    else
+      self.next_run_at = Time.local(@right_now.year, @right_now.month, @right_now.day, hours, minutes, 0) + 1.day
     end
   end
 end
