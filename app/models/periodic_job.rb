@@ -104,7 +104,7 @@ class PeriodicJob < ActiveRecord::Base
     rescue Exception
       err_string = "'#{self.job}' could not run: #{$!.message}\n#{$!.backtrace}"
       TaskServerLogger.instance.error err_string
-      puts err_string
+      puts err_string unless ENV['RAILS_ENV'] == "test"
       self.last_run_result = err_string.slice(1..500)
     end
     self.save
