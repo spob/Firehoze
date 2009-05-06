@@ -8,6 +8,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource  :user_session
   map.resources :passwords
   map.resources :password_resets
+  map.resources :periodic_jobs, :member => { :rerun => :post }
            
   map.root :controller => "user_sessions", :action => "new"
 end

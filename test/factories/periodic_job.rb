@@ -1,5 +1,6 @@
 Factory.define :periodic_job, :default_strategy => :create do |f|
-  f.add_attribute :type, 'PeriodicJob'  
+  f.add_attribute :type, 'PeriodicJob'
+  f.name 'test job'
   f.job "puts 'hello'"
 end
 

@@ -13,6 +13,5 @@ class AddPeriodicJobs < ActiveRecord::Migration
     |job_batch|
       job_batch.each { |job| job.destroy}
     end
-#    "SessionCleaner").destroy
   end
 end

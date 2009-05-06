@@ -17,17 +17,20 @@
 class PeriodicJob < ActiveRecord::Base
   before_create :set_initial_next_run
 
+  validates_presence_of :name, :job
+
   named_scope :zombies,
           :conditions => ["last_run_at < :last_run_at and next_run_at is null and last_run_result = 'Running'",
                   { :last_run_at => Time.zone.now - APP_CONFIG['periodic_job_timeout'].to_i.minutes }]
   named_scope :ready_to_run,
-          :conditions => ['next_run_at < ? and last_run_result is null', 
-      Time.zone.now.to_s(:db)],
-      :order => "next_run_at ASC",
-      # only grab one in case another task # only grab one in case another task
-      # server is running -- to load balance
-      :limit => 1,
-      :lock => true
+          lambda{|now|{
+                  :conditions => ['next_run_at < ? and last_run_result is null',
+                          now],
+                  :order => "next_run_at ASC",
+                  # only grab one in case another task # only grab one in case another task
+          # server is running -- to load balance
+          :limit => 1,
+                  :lock => true}}
 
   def self.list(page, per_page)
     paginate :page => page,
@@ -52,7 +55,7 @@ class PeriodicJob < ActiveRecord::Base
     # the same jobs
     jobs = []
     PeriodicJob.transaction do
-      jobs = PeriodicJob.ready_to_run
+      jobs = PeriodicJob.ready_to_run(Time.zone.now)
       for job in jobs
         job.update_attributes(:last_run_result => 'Running')
       end

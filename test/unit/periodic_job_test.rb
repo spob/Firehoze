@@ -38,7 +38,7 @@ class PeriodicJobTest < ActiveSupport::TestCase
       @job.update_attribute(:next_run_at, 1.days.ago)
     end
 
-    jobs = PeriodicJob.ready_to_run
+    jobs = PeriodicJob.ready_to_run(Time.zone.now)
     should "find a job ready to run" do
       assert !jobs.empty?
     end
@@ -110,8 +110,9 @@ class PeriodicJobTest < ActiveSupport::TestCase
     end
 
     should "set next run date to now" do
-      job = RunOncePeriodicJob.create
+      job = RunOncePeriodicJob.create(:name => 'test', :job => 'dummy')
       assert_not_nil job
+      assert_not_nil job.next_run_at
       assert job.next_run_at < Time.zone.now + 10.seconds
       assert job.next_run_at > Time.zone.now - 10.seconds
     end
