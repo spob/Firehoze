@@ -20,7 +20,7 @@ class RunAtPeriodicJob < PeriodicJob
   @@now = nil
 
   def calc_next_run
-    RunAtPeriodicJob.new(:job => self.job, :run_at_minutes => self.run_at_minutes)
+    RunAtPeriodicJob.new(:name => self.name, :job => self.job, :run_at_minutes => self.run_at_minutes)
   end
 
   def set_next_run

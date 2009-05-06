@@ -19,7 +19,7 @@ class RunIntervalPeriodicJob < PeriodicJob
 
   def calc_next_run
     # puts "Calc next run #{Time.zone.now}, #{self.interval} #{(Time.zone.now + self.interval)}"
-    return RunIntervalPeriodicJob.new(:job => self.job,
+    return RunIntervalPeriodicJob.new(:name => self.name, :job => self.job,
             :interval => self.interval)
   end
 
