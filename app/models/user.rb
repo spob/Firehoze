@@ -15,12 +15,14 @@ class User < ActiveRecord::Base
   attr_accessor :current_password
 
   validates_presence_of :email,
-          :login_count, :failed_login_count, :last_name
+          :login_count, :failed_login_count, :last_name, :nickname
   validates_uniqueness_of   :email, :case_sensitive => false
+  validates_uniqueness_of   :nickname, :case_sensitive => false
   validates_numericality_of :login_count, :failed_login_count
   validates_length_of       :email, :maximum => 100, :allow_nil => true
   validates_length_of       :last_name, :maximum => 40, :allow_nil => true
   validates_length_of       :first_name, :maximum => 40, :allow_nil => true
+  validates_length_of       :nickname, :maximum => 25, :allow_nil => true
 
   # Reset the password token and then send the user an email
 

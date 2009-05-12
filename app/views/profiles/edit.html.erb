@@ -11,6 +11,9 @@
     <br/>
     <%= f.label :last_name %>:
     <%= f.text_field :last_name %><br />
+    <br/>
+    <%= f.label :nickname %>:
+    <%= f.text_field :nickname %><br />
 
     <%= f.submit "Update" %>
     <%= link_to "Cancel", profile_path(@user) %>

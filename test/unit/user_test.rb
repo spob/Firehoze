@@ -9,13 +9,16 @@ class UserTest < ActiveSupport::TestCase
     end
 
     should_validate_uniqueness_of    :email
-    should_validate_presence_of      :email, :last_name
+    should_validate_uniqueness_of    :nickname
+    should_validate_presence_of      :email, :last_name, :nickname
     should_validate_numericality_of  :login_count, :failed_login_count
 #    should_not_allow_values_for      :email, "blahhhh", "bbbb lah"
     should_allow_values_for          :email, "apple@b.com", "asdf@asdf.com"
+    should_allow_values_for          :nickname, "spob", "big boy", "  test "
     should_ensure_length_in_range    :email, (6..100)    
     should_ensure_length_in_range    :last_name, (0..40)
     should_ensure_length_in_range    :first_name, (0..40)
+    should_ensure_length_in_range    :nickname, (0..25)
 
     context "and a couple more records" do
       setup do
