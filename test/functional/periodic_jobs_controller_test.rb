@@ -39,7 +39,7 @@ class PeriodicJobsControllerTest < ActionController::TestCase
         should_not_assign_to :user_logons
         should_respond_with :redirect
         should_set_the_flash_to /denied/
-        should_redirect_to("home page") { homes_url }
+        should_redirect_to("home page") { home_url }
       end
     end
   end

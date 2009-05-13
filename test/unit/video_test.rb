@@ -9,7 +9,7 @@ class VideoTest < ActiveSupport::TestCase
 
     should_validate_presence_of      :title, :author
     should_allow_values_for          :title, "blah blah blah"
-    should_ensure_length_in_range    :title, (0..150)
+    should_ensure_length_in_range    :title, (0..50)
 
     context "and a couple more records" do
       setup do

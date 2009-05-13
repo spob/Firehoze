@@ -1,0 +1,22 @@
+<p>
+    <b>Title:</b>
+    <%= h @video.title %>
+</p>
+
+<p>
+    <b>Description:</b>
+    <%= h @video.description %>
+</p>
+
+<p>
+    <b>Author:</b>
+    <%= h @video.author.nickname %>
+</p>
+
+<p>
+    <b>Created:</b>
+    <%= format_date_time @video.created_at %>
+</p>
+
+<%= link_to 'Edit', edit_video_path(@video) %>
+<%= link_to 'Home', home_path %>

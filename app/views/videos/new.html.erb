@@ -1,0 +1,13 @@
+<h1>Upload Video</h1>
+
+<% form_for(:video, :url => videos_path) do |f| %>
+    <%= f.error_messages %>
+    
+    <%= f.label :title %>:
+    <%= f.text_field :title %><br />
+    <br/>
+    <%= f.label :description %>:
+    <%= f.text_area :description %><br />
+    <br/>
+    <%= f.submit "Upload Video" %>
+<% end %>
