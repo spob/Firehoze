@@ -12,6 +12,24 @@ class VideosControllerTest < ActionController::TestCase
       should_not_set_the_flash
       should_render_template "index"
     end
+
+    context "on GET to :show" do
+      setup { get :show, :id => Factory(:video).id }
+
+      should_assign_to :video
+      should_respond_with :success
+      should_not_set_the_flash
+      should_render_template "show"
+    end
+
+    context "on GET to :new" do
+      setup { get :new }
+
+      should_not_assign_to :video
+      should_respond_with :redirect
+      should_set_the_flash_to /You must be logged in/
+      should_redirect_to("login page") { new_user_session_url }
+    end
   end
 
   context "when logged on" do
@@ -29,32 +47,44 @@ class VideosControllerTest < ActionController::TestCase
       should_not_set_the_flash
       should_render_template "index"
     end
-#
-    #      context "on GET to :show" do
-    #        setup { get :show, :id => Factory(:user).id }
-    #
-    #        should_assign_to :user
-    #        should_respond_with :success
-    #        should_not_set_the_flash
-    #        should_render_template "show"
-    #      end
-    #
-    #      context "on GET to :edit" do
-    #        setup { get :edit, :id => Factory(:user).id }
-    #        should_assign_to :user
-    #        should_respond_with :success
-    #        should_not_set_the_flash
-    #        should_render_template "edit"
-    #      end
-    #
-    #      context "on PUT to :update" do
-    #        setup { put :update, :id => Factory(:user).id, :user => Factory.attributes_for(:user) }
-    #
-    #        should_assign_to :user
-    #        should_respond_with :redirect
-    #        should_set_the_flash_to "Account updated!"
-    #        should_redirect_to("user page") { user_url(assigns(:user)) }
-    #      end
-    #    end
+
+    context "on GET to :new" do
+      setup { get :new }
+
+      should_assign_to :video
+      should_respond_with :success
+      should_not_set_the_flash
+      should_render_template "new"
+    end
+
+    context "on POST to :create" do
+      setup do
+        post :create, :video => Factory.attributes_for(:video)
+      end
+
+      should_assign_to :video
+      should_respond_with :redirect
+      should_set_the_flash_to "Video uploaded"
+      should_redirect_to("videos index page") { video_url(assigns(:video)) }
+    end
   end
+#
+  #
+  #      context "on GET to :edit" do
+  #        setup { get :edit, :id => Factory(:user).id }
+  #        should_assign_to :user
+  #        should_respond_with :success
+  #        should_not_set_the_flash
+  #        should_render_template "edit"
+  #      end
+  #
+  #      context "on PUT to :update" do
+  #        setup { put :update, :id => Factory(:user).id, :user => Factory.attributes_for(:user) }
+  #
+  #        should_assign_to :user
+  #        should_respond_with :redirect
+  #        should_set_the_flash_to "Account updated!"
+  #        should_redirect_to("user page") { user_url(assigns(:user)) }
+  #      end
+  #    end
 end
