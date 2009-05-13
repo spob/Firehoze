@@ -1,6 +1,8 @@
 class ProfilesController < ApplicationController
   before_filter :require_user
 
+  verify :method => :put, :only => [ :update ], :redirect_to => :home_path
+
   def show
     @user = @current_user
   end

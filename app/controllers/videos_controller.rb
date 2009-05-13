@@ -1,5 +1,7 @@
 class VideosController < ApplicationController
-  before_filter :require_user, :only => [:new, :create] 
+  before_filter :require_user, :only => [:new, :create]
+
+  verify :method => :post, :only => [:create ], :redirect_to => :home_path
 
   def index
     @videos = Video.list params[:page]

@@ -1,5 +1,7 @@
 class PasswordsController < ApplicationController
   before_filter :require_user
+  
+  verify :method => :put, :only => [ :update ], :redirect_to => :home_path
 
   def edit
     @user = @current_user

@@ -4,6 +4,9 @@ class UsersController < ApplicationController
 
   permit Constants::ROLE_SYSADMIN, :except => [:new, :create, :show]
 
+  verify :method => :post, :only => [:create ], :redirect_to => :home_path
+  verify :method => :put, :only => [ :update ], :redirect_to => :home_path
+
   def index
     @users = User.list params[:page]
   end
