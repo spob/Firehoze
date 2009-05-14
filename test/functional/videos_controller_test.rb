@@ -2,7 +2,7 @@ require 'test_helper'
 
 class VideosControllerTest < ActionController::TestCase
 
-  context "while not logged on" do
+  context "while not logged in" do
 
     context "on GET to :index" do
       setup { get :index }
@@ -32,7 +32,7 @@ class VideosControllerTest < ActionController::TestCase
     end
   end
 
-  context "when logged on" do
+  context "when logged in" do
     setup do
       activate_authlogic
       @user = Factory(:user)
@@ -67,24 +67,30 @@ class VideosControllerTest < ActionController::TestCase
       should_set_the_flash_to "Video uploaded"
       should_redirect_to("videos index page") { video_url(assigns(:video)) }
     end
+
+    context "with at least one existing video" do
+
+      setup do
+        Factory.create(:user)
+        @video = Factory.create(:video)
+      end
+
+      context "on GET to :edit" do
+        setup { get :edit, :id => @video }
+        should_assign_to :video
+        should_respond_with :success
+        should_not_set_the_flash
+        should_render_template "edit"
+      end
+
+      context "on PUT to :update" do
+        setup { put :update, :id => @video.id, :video => Factory.attributes_for(:video) }
+
+        should_set_the_flash_to "Video updated!"
+        should_assign_to :video
+        should_respond_with :redirect
+        should_redirect_to("video page") { video_path(@video) }
+      end
+    end
   end
-#
-  #
-  #      context "on GET to :edit" do
-  #        setup { get :edit, :id => Factory(:user).id }
-  #        should_assign_to :user
-  #        should_respond_with :success
-  #        should_not_set_the_flash
-  #        should_render_template "edit"
-  #      end
-  #
-  #      context "on PUT to :update" do
-  #        setup { put :update, :id => Factory(:user).id, :user => Factory.attributes_for(:user) }
-  #
-  #        should_assign_to :user
-  #        should_respond_with :redirect
-  #        should_set_the_flash_to "Account updated!"
-  #        should_redirect_to("user page") { user_url(assigns(:user)) }
-  #      end
-  #    end
 end

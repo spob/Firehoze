@@ -1,7 +1,8 @@
 class VideosController < ApplicationController
-  before_filter :require_user, :only => [:new, :create]
+  before_filter :require_user, :only => [:new, :create, :edit, :update]
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
+  verify :method => :put, :only => [:update ], :redirect_to => :home_path
 
   def index
     @videos = Video.list params[:page]
@@ -24,5 +25,19 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.find params[:id]
+  end
+
+  def edit
+    @video = Video.find params[:id]
+  end
+
+  def update
+    @video = Video.find params[:id]
+    if @video.update_attributes(params[:video])
+      flash[:notice] = "Video updated!"
+      redirect_to video_path(@video)
+    else
+      render :action => :edit
+    end
   end
 end

@@ -1,0 +1,15 @@
+<h1>Edit Video</h1>
+
+<% form_for(:video, :url => video_path(@video), :html => { :method => :put }) do |f| %>
+    <%= f.error_messages %>  
+
+    <%= f.label :title %>:
+    <%= f.text_field :title %><br />
+    <br/>
+    <%= f.label :description %>:
+    <%= f.text_area :description %><br />
+    <br/>
+
+    <%= f.submit "Update" %>
+    <%= link_to "Cancel", video_path(@video) %>
+<% end %>
