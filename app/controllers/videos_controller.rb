@@ -29,15 +29,24 @@ class VideosController < ApplicationController
 
   def edit
     @video = Video.find params[:id]
+    unless @video.can_edit? current_user
+      flash[:error] = "You do not have access to edit this video"
+      redirect_to video_path(@video)
+    end
   end
 
   def update
     @video = Video.find params[:id]
-    if @video.update_attributes(params[:video])
-      flash[:notice] = "Video updated!"
-      redirect_to video_path(@video)
+    if @video.can_edit? current_user
+      if @video.update_attributes(params[:video])
+        flash[:notice] = "Video updated!"
+        redirect_to video_path(@video)
+      else
+        render :action => :edit
+      end
     else
-      render :action => :edit
+      flash[:error] = "You do not have access to edit this video"
+      redirect_to video_path(@video)
     end
   end
 end

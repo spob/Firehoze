@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   # Authorization plugin
   acts_as_authorized_user
-  acts_as_authorizable
 
   before_save :persist_user_logon
 
