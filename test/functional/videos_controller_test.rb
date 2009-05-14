@@ -73,6 +73,8 @@ class VideosControllerTest < ActionController::TestCase
       setup do
         Factory.create(:user)
         @video = Factory.create(:video)
+        @video.author = @user
+        @video.save!
       end
 
       context "on GET to :edit" do
@@ -90,6 +92,27 @@ class VideosControllerTest < ActionController::TestCase
         should_assign_to :video
         should_respond_with :redirect
         should_redirect_to("video page") { video_path(@video) }
+      end
+
+      context "which was authored by a different user" do
+        setup do
+          @video.author = Factory.create(:user, :email => 'some@other.com')
+          @video.save!
+        end
+
+        context "on GET to :edit" do
+          setup { get :edit, :id => @video }
+          should_assign_to :video
+          should_redirect_to("video page") { video_path(@video) }
+          should_set_the_flash_to /do not have access/
+        end
+
+        context "on PUT to :update" do
+          setup { put :update, :id => @video.id, :video => Factory.attributes_for(:video) }
+          should_assign_to :video
+          should_redirect_to("video page") { video_path(@video) }
+          should_set_the_flash_to /do not have access/
+        end
       end
     end
   end

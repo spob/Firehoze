@@ -9,7 +9,6 @@ class Video < ActiveRecord::Base
             :per_page => Constants::ROWS_PER_PAGE
   end
 
-  # TODO: Add unit tests for this
   def can_edit? user
     user.is_admin? or author == user
   end

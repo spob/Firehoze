@@ -4,9 +4,7 @@ class UserTest < ActiveSupport::TestCase
   CHARSET = "utf-8"
 
   context "given an existing record" do
-    setup do
-      @user = Factory.create(:user)
-    end
+    setup { @user = Factory.create(:user) }
 
     should_validate_uniqueness_of    :email
     should_validate_uniqueness_of    :nickname

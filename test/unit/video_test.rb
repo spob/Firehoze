@@ -22,5 +22,28 @@ class VideoTest < ActiveSupport::TestCase
         assert_equal 3, Video.list(1).size
       end
     end
+
+    context "and videos by two different authors" do
+      setup do
+        @user1 = Factory.create(:user)
+        @user2 = Factory.create(:user)
+        @user3 = Factory.create(:user)
+        @user3.is_admin
+        @video1 =  Factory.create(:video, :author => @user1)
+        @video2 =  Factory.create(:video, :author => @user2)
+      end
+
+      should "allow author to edit" do
+        # author can edit their videos
+        assert @video1.can_edit?(@user1)
+        assert !@video1.can_edit?(@user2)
+        assert @video2.can_edit?(@user2)
+        assert !@video2.can_edit?(@user1)
+        
+        # Admin should be able to edit both
+        assert @video2.can_edit?(@user3)
+        assert @video2.can_edit?(@user3)
+      end
+    end
   end
 end
