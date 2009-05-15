@@ -1,4 +1,5 @@
 class CreateRoles < ActiveRecord::Migration
+    extend MigrationHelpers
 
   def self.up
     create_table :roles_users, :id => false, :force => true  do |t|
@@ -11,9 +12,15 @@ class CreateRoles < ActiveRecord::Migration
       t.integer :authorizable_id
       t.timestamps
     end
+
+    add_foreign_key(:roles_users, :user_id, :users)
+    add_foreign_key(:roles_users, :role_id, :roles)
   end
 
   def self.down
+    remove_foreign_key :roles_users, :user_id
+    remove_foreign_key :roles_users, :role_id
+
     drop_table :roles
     drop_table :roles_users
   end
