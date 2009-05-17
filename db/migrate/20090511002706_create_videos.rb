@@ -6,11 +6,11 @@ class CreateVideos < ActiveRecord::Migration
   def self.up
     create_table :videos do |t|
       t.string     :title,        :null => false, :limit => 150
-      t.references :user,         :null => false
+      t.integer    :author_id,    :null => false
       t.text       :description,  :null => true
       t.timestamps
     end
-    add_foreign_key(:videos, :user_id, :users)
+    add_foreign_key(:videos, :author_id, :users)
   end
 
   def self.down
