@@ -1,6 +1,6 @@
 <tr>
  <td><%= video.title %></td>
- <td><%= video.author.nickname %></td>
+ <td><%= video.author.login %></td>
  <td><%= format_date_time video.created_at %></td>
  <td><%= link_to "View", video_path(video) %>&nbsp;<%= link_to "Edit", edit_video_path(video) %></td>
 </tr>

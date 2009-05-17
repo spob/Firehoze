@@ -17,7 +17,7 @@ class ProfilesController < ApplicationController
     @user.email = params[:user][:email].try(:strip)
     @user.first_name = params[:user][:first_name].try(:strip)
     @user.last_name = params[:user][:last_name].try(:strip)
-    @user.nickname = params[:user][:nickname].try(:strip)
+    @user.login = params[:user][:login].try(:strip)
     if @user.save
       flash[:notice] = "Profile updated!"
       redirect_to profile_url(@user)

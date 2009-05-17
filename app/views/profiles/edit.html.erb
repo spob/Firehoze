@@ -3,6 +3,9 @@
 <% form_for(:user, :url => profile_path(@user), :html => { :method => :put }) do |f| %>
     <%= f.error_messages %>
 
+    <%= f.label :login %>:
+    <%= f.text_field :login %><br />
+    <br/>
     <%= f.label :email %>:
     <%= f.text_field :email %><br />
     <br/>
@@ -11,9 +14,6 @@
     <br/>
     <%= f.label :last_name %>:
     <%= f.text_field :last_name %><br />
-    <br/>
-    <%= f.label :nickname %>:
-    <%= f.text_field :nickname %><br />
 
     <%= f.submit "Update" %>
     <%= link_to "Cancel", profile_path(@user) %>

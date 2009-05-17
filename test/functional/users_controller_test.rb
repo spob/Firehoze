@@ -30,8 +30,7 @@ class UsersControllerTest < ActionController::TestCase
       activate_authlogic
       @user = Factory(:user)
       UserSession.create @user
-    end
-
+    end   
 
     context "with sysadmin access" do
       setup do

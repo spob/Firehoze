@@ -22,7 +22,7 @@
 <% if !current_user %>
   <%= link_to "Log In", login_path %> |
 <% else %>
-  Current User: <%= current_user.email %> |
+  Current User: <%= current_user.login %> |
   <%= link_to "My Profile", account_path %> |
   <%= link_to "Jobs", periodic_jobs_path %> |
   <%= link_to "Users", users_path %> |

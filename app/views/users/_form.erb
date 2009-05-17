@@ -1,3 +1,6 @@
+<%= form.label :login %>:
+<%= form.text_field :login %><br />
+<br/>
 <%= form.label :email %>:
 <%= form.text_field :email %><br />
 <br/>
@@ -6,9 +9,6 @@
 <br/>
 <%= form.label :last_name %>:
 <%= form.text_field :last_name %><br />
-<br/>
-<%= form.label :nickname %>:
-<%= form.text_field :nickname %><br />
 <br/>
 <%= form.label :time_zone %>:
 <%= form.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>

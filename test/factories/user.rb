@@ -5,8 +5,8 @@ Factory.sequence :email do |n|
   "somebody#{n}@example.com"
 end
 
-Factory.sequence :nickname do |n|
-  "Nickname#{n}"
+Factory.sequence :login do |n|
+  "login#{n}"
 end
 
 Factory.sequence :ptoken do |n|
@@ -19,11 +19,11 @@ Factory.define :user, :default_strategy => :create do |f|
   f.password_confirmation "xxxxx"
   f.first_name "Bob"
   f.last_name "Smith"
-  f.nickname { Factory.next(:nickname) }
+  f.login { Factory.next(:login) }
   f.password_salt 'SodiumChloride'
   f.time_zone { Time.zone.name }
   f.crypted_password { |a| Authlogic::CryptoProviders::Sha512.encrypt("xxxxx" + a.password_salt) }
   f.persistence_token { Factory.next(:ptoken) }
   f.perishable_token "xxxx"
   f.email  { Factory.next(:email) }
-end
+end                             

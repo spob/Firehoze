@@ -3,7 +3,7 @@ class PopulateRoles < ActiveRecord::Migration
 
   def self.up
     admin = User.create! :email => 'admin@firehoze.com', :password => "changeme", :password_confirmation => "changeme",
-            :first_name => "sys", :last_name => "admin", :nickname => "admin", :password_salt => 'as;fdaslkjasdfn',
+            :first_name => "sys", :last_name => "admin", :login => "admin", :password_salt => 'as;fdaslkjasdfn',
             :time_zone =>Time.zone.name
     Role.create! :name => Constants::ROLE_SYSADMIN
 

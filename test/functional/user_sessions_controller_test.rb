@@ -18,7 +18,7 @@ class UserSessionsControllerTest < ActionController::TestCase
 
     context "on POST to :create with valid credentials" do
       logons = UserLogon.count
-      setup { post :create, :user_session => { :email => @user.email, :password => "xxxxx" } }
+      setup { post :create, :user_session => { :login => @user.login, :password => "xxxxx" } }
 
       should_assign_to :user_session
       should "should create user session" do
