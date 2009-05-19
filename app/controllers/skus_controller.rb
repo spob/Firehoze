@@ -1,0 +1,2 @@
+class SkusController < ApplicationController
+end
