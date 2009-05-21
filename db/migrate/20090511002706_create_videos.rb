@@ -14,6 +14,8 @@ class CreateVideos < ActiveRecord::Migration
   end
 
   def self.down
+    remove_foreign_key(:videos, :author_id)
+
     drop_table :videos
   end
 end

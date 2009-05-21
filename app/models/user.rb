@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   end
 
   has_many :user_logons, :order => "created_at DESC", :dependent => :destroy
+  has_many :credits, :dependent => :destroy
 
   # Used to verify current password during password changes
   attr_accessor :current_password

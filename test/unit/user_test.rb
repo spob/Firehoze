@@ -17,6 +17,7 @@ class UserTest < ActiveSupport::TestCase
     should_ensure_length_in_range    :last_name, (0..40)
     should_ensure_length_in_range    :first_name, (0..40)
     should_ensure_length_in_range    :login, (0..25)
+    should_have_many                 :credits
 
     context "and a couple more records" do
       setup do
