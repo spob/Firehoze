@@ -8,7 +8,6 @@ class Credits < ActiveRecord::Migration
       t.references   :user,        :null => false
       t.references   :sku,         :null => false
       t.datetime     :acquired_at, :null => false
-      t.datetime     :expires_at,  :null => false
       t.float        :price,       :null => false
       t.references   :video,       :null => true
       t.datetime     :redeemed_at, :null => true

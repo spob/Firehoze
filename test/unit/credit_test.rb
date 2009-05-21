@@ -6,7 +6,7 @@ class CreditTest < ActiveSupport::TestCase
       @credit = Factory.create(:credit)
     end
 
-    should_validate_presence_of      :price, :sku, :acquired_at, :expires_at, :price
+    should_validate_presence_of      :price, :sku, :acquired_at, :price
     should_allow_values_for          :price, 0, 1, 22.23
     should_not_allow_values_for      :price, "a", :message => I18n.translate('activerecord.errors.messages.not_a_number')
     should_not_allow_values_for      :price, -1,
