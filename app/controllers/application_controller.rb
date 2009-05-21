@@ -13,6 +13,19 @@ class ApplicationController < ActionController::Base
     @current_user = current_user_session && current_user_session.record
   end
 
+  # Allow you to use text helper (pluralize) from within controllers.
+  # See http://snippets.dzone.com/posts/show/1799
+  def help
+    Helper.instance
+  end
+
+  class Helper
+    include Singleton
+    include ActionView::Helpers::TextHelper
+    include ActionView::Helpers::NumberHelper
+  end
+
+
   private
 
   def set_timezone

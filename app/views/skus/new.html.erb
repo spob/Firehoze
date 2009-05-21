@@ -1,0 +1,16 @@
+<h1>Create Sku</h1>
+
+<% form_for(:sku, :url => skus_path) do |f| %>
+    <%= f.error_messages %>
+    
+    <%= f.label :sku %>:
+    <%= f.text_field :sku %><br />
+    <br/>
+    <%= f.label :num_credits %>:
+    <%= f.text_field :num_credits %><br />
+    <br/>
+    <%= f.label :price %>:
+    <%= f.text_field :price %><br />
+    <br/>
+    <%= f.submit "Save" %>
+<% end %>

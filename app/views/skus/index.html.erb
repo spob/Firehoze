@@ -1,0 +1,12 @@
+<%= link_to "New SKU", new_sku_path %>
+<table>
+    <tr>
+      <th>SKU</th>
+      <th>Description</th>
+      <th>Action</th>
+    </tr>
+    
+    <%= render :partial => 'sku_item', :collection => @skus %>
+    
+  </table>
+<%= will_paginate @skus %>
