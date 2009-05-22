@@ -16,5 +16,16 @@ class SkuTest < ActiveSupport::TestCase
             "123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890x",
             :message => I18n.translate('activerecord.errors.messages.too_long', :count => 150)
     should_allow_values_for          :sku, "a", "sku123"
+
+    context "and a couple more records" do
+      setup do
+        Factory.create(:credit_sku)
+        Factory.create(:credit_sku)
+      end
+
+      should "return rows" do
+        assert_equal 3, Sku.list(1).size
+      end
+    end
   end
 end

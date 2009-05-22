@@ -6,9 +6,9 @@ class Credit < ActiveRecord::Base
   belongs_to :user
   belongs_to :video
 
-  before_save :set_dates
-
-  def set_dates
-    acquired_at = Time.zone.now
-  end
+#  before_validation_on_create :set_dates
+#
+#  def set_dates
+#    acquired_at = Time.zone.now
+#  end
 end

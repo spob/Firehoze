@@ -12,7 +12,7 @@ class CreditSku < Sku
 
   def execute_order user
     num_credits.times do
-      user.credits  <<  CreateSku.new(:sku => self, :price => price/num_credits)
+      Credit.create!(:sku => self, :price => price/num_credits, :user => user, :acquired_at => Time.zone.now)
     end
   end
-end
+end                                                      
