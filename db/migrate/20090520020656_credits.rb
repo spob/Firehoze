@@ -6,9 +6,9 @@ class Credits < ActiveRecord::Migration
   def self.up
     create_table :credits do |t|
       t.references   :user,        :null => false
-      t.references   :sku,         :null => false
       t.datetime     :acquired_at, :null => false
       t.float        :price,       :null => false
+      t.references   :sku,         :null => true
       t.references   :video,       :null => true
       t.datetime     :redeemed_at, :null => true
       t.timestamps
