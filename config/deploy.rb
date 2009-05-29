@@ -54,16 +54,16 @@ end
 namespace :task_server do
   desc "Start Task Server"
   task :start, :roles => :app do
-    run "ruby script/task_server_control.rb start -- -e production"
+    run "ruby #{current_path}/script/task_server_control.rb start -- -e production"
   end
 
   desc "Restart Task Server"
   task :restart, :roles => :app do
-    run "ruby script/task_server_control.rb restart -- -e production"
+    run "ruby #{current_path}/script/task_server_control.rb restart -- -e production"
   end
 
   desc "Stop Task Server"
   task :restart, :roles => :app do
-    run "ruby script/task_server_control.rb stop -- -e production"
+    run "ruby #{current_path}/script/task_server_control.rb stop -- -e production"
   end
 end
