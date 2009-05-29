@@ -46,7 +46,7 @@ namespace :mongrel do
   end
 
   desc "Stop Mongrel"
-  task :restart, :roles => :app do
+  task :stop, :roles => :app do
     run "mongrel_rails stop"
   end
 end
@@ -63,7 +63,7 @@ namespace :task_server do
   end
 
   desc "Stop Task Server"
-  task :restart, :roles => :app do
+  task :stop, :roles => :app do
     run "ruby #{current_path}/script/task_server_control.rb stop -- -e production"
   end
 end
