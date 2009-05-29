@@ -48,7 +48,7 @@ namespace :mongrel do
   desc "Stop Mongrel"
   task :stop, :roles => :app do
     run "mongrel_rails stop"
-  end
+  end                                                                                           
 end
 
 namespace :task_server do
