@@ -25,12 +25,16 @@ set :git_enable_submodules, 1
 set :use_sudo, false
 set :deploy_to, "/home/#{user}/#{application}"
 
-after 'deploy:symlink', 'deploy:finishing_touches', 'mongrel:restart', 'task_server:restart'
+after 'deploy:symlink', 'deploy:finishing_touches', 'desploy:restart', 'mongrel:restart', 'task_server:restart'
 
 namespace :deploy do
-   task :finishing_touches, :roles => :app do
+  task :finishing_touches, :roles => :app do
     run "cp -pf #{deploy_to}/to_copy/production.rb #{current_path}/config/environments/production.rb"
     run "cp -pf #{deploy_to}/to_copy/database.yml #{current_path}/config/database.yml"
+  end
+
+  deploy.task :restart, :roles => :app do
+    run "mongrel_rails restart"
   end
 end
 
@@ -43,12 +47,13 @@ namespace :mongrel do
   desc "Restart Mongrel"
   task :restart, :roles => :app do
     run "mongrel_rails restart"
+    run "ruby #{current_path}/script/task_server_control.rb restart -- -e production"
   end
 
   desc "Stop Mongrel"
   task :stop, :roles => :app do
     run "mongrel_rails stop"
-  end                                                                                           
+  end
 end
 
 namespace :task_server do
