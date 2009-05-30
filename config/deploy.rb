@@ -34,7 +34,7 @@ namespace :deploy do
   end
 
   deploy.task :restart, :roles => :app do
-    run "mongrel_rails restart"
+    run "mongrel_rails mongrel::restart"
   end
 end
 
