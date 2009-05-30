@@ -25,7 +25,7 @@ set :git_enable_submodules, 1
 set :use_sudo, false
 set :deploy_to, "/home/#{user}/#{application}"
 
-after 'deploy:symlink', 'deploy:finishing_touches', 'desploy:restart', 'mongrel:restart', 'task_server:restart'
+after 'deploy:symlink', 'deploy:finishing_touches', 'deploy:restart', 'mongrel:restart', 'task_server:restart'
 
 namespace :deploy do
   task :finishing_touches, :roles => :app do
