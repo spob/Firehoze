@@ -1,9 +1,10 @@
 <tr>
-    <td><%= h sku_item.sku %></td>
-    <td><%= h sku_item.description %></td>
-    <td>
-        <%= link_to 'edit', edit_sku_path(sku_item) %>
-        <%= link_to 'delete', sku_path(sku_item),
-                html_options = {:confirm => 'Are you sure?', :method => :delete}  if sku_item.can_delete? current_user %>
-    </td>
+  <td><%= h sku_item.sku %></td>
+  <td><%= h sku_item.description %></td>
+  <td>
+    <%= link_to 'edit', edit_sku_path(sku_item) if sku_item.can_edit? current_user %>
+    <%= link_to 'delete', sku_path(sku_item),
+            html_options = {:confirm => 'Are you sure?', :method => :delete}  if sku_item.can_delete? current_user %>
+    <%= link_to "Add to Cart", line_items_path(:sku_id => sku_item), :method => :post %>
+  </td>
 </tr>

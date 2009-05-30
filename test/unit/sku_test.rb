@@ -27,5 +27,23 @@ class SkuTest < ActiveSupport::TestCase
         assert_equal 3, Sku.list(1).size
       end
     end
+
+    context "and a non-sysadmin user" do
+      setup { @user = Factory(:user) }
+
+      should "not be able to delete or edit" do
+        assert !@sku.can_edit?(@user)
+        assert !@sku.can_delete?(@user)
+      end
+
+      context "with sysadmin access" do
+        setup { @user.has_role 'sysadmin' }
+
+        should "be able to delete or edit" do
+          assert @sku.can_edit?(@user)
+          assert @sku.can_delete?(@user)
+        end
+      end
+    end
   end
 end

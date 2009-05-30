@@ -14,4 +14,8 @@ class Sku < ActiveRecord::Base
   def can_delete? user
     user.is_sysadmin?
   end
+
+  def can_edit? user
+    user.is_sysadmin?
+  end
 end
