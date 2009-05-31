@@ -6,6 +6,7 @@ class LineItem < ActiveRecord::Migration
   def self.up
     create_table :line_items do |t|
       t.decimal :unit_price, :null => false, :precision => 8, :scale => 2
+      t.decimal :discounted_unit_price, :null => false, :precision => 8, :scale => 2
       t.references :sku    , :null => false
       t.references :cart   , :null => false
       t.integer :quantity  , :null => false

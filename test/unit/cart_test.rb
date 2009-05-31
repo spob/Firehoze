@@ -8,7 +8,8 @@ class CartTest < ActiveSupport::TestCase
 
     context "with multiple lines" do
       setup do
-        @cart.line_items << LineItem.new(:quantity => 11, :unit_price => 1.25, :sku => Factory.create(:credit_sku))
+        @cart.line_items << LineItem.new(:quantity => 11, :unit_price => 1.25, :sku => Factory.create(:credit_sku),
+                :discounted_unit_price => 1.15)
         @cart.save!
       end
 

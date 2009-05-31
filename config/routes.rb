@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :discounts
+
   map.home 'home', :controller => 'videos', :action => 'index'
   map.resource  :account, :controller => "profiles"
   map.resources :carts

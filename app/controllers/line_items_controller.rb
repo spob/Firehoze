@@ -1,7 +1,6 @@
 class LineItemsController < ApplicationController
   before_filter :require_user
 
-  # TODO: consolidate line items
   # TODO: Add delete
 
   def create
@@ -16,7 +15,9 @@ class LineItemsController < ApplicationController
       @line_item.save!
     else
       # else create a new line item for that sku
-      @line_item = LineItem.create!(:cart => current_cart, :sku => @sku, :quantity => quantity, :unit_price => @sku.price)
+      # TODO: pass in the real discounted price
+      @line_item = LineItem.create!(:cart => current_cart, :sku => @sku, :quantity => quantity,
+              :unit_price => @sku.price, :discounted_unit_price => @sku.price)
     end
     current_cart.save!
     flash[:notice] = "Added #{@sku.description} to cart."
