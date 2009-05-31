@@ -5,9 +5,9 @@
         <text>Firehoze%0Ahttp%3A//www.firehoze.com</text>
       </controlProperties>
     </control>
-    <control controlID="2" controlTypeID="com.balsamiq.mockups::LinkBar" x="720" y="90" w="-1" h="-1" measuredW="257" measuredH="25" zOrder="1" locked="false" isInGroup="-1">
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::LinkBar" x="595" y="88" w="-1" h="-1" measuredW="374" measuredH="25" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Sign%20In%2C%20Explore%2C%20Support%2C%20About</text>
+        <text>Member%20sign%20in%2C%20Sign%20up%2C%20Explore%2C%20Support%2C%20About</text>
       </controlProperties>
     </control>
     <control controlID="3" controlTypeID="com.balsamiq.mockups::SearchBox" x="984" y="89" w="115" h="-1" measuredW="94" measuredH="25" zOrder="2" locked="false" isInGroup="-1">
@@ -215,9 +215,9 @@
         <text>Art%20History%2C%0A%20%0ABiology%2C%0A%20%0ACalculus%20AB%2C%0A%20%0ACalculus%20BC%2C%0A%20%0AChemistry%2C%0A%20%0AChinese%20Language%20and%20Culture%2C%0A%20%0AComputer%20Science%20A%2C%0A%20%0AComputer%20Science%20AB%2C%0A%20%0AMacroeconomics%2C%0A%20%0AMicroeconomics%2C%0A%20%0AEnglish%20Language%2C%0A%20%0AEnglish%20Literature%2C%0A%20%0AEnvironmental%20Science%2C%0A%20%0AEuropean%20History%2C%0A%20%0AFrench%20Language%2C%0A%20%0AFrench%20Literature%2C%0A%20%0AGerman%20Language%2C%0A%20%0AComp%20Government%20%26%20Politics%2C%0A%20%0AU.S.%20Government%20%26%20Politics%2C%0A%20%0AHuman%20Geography%2C%0A%20%0AItalian%20Language%20and%20Culture%2C%0A%20%0AJapanese%20Language%20and%20Culture%2C%0A%20%0ALatin%20Literature%2C%0A%20%0ALatin%3A%20Vergil%2C%0A%20%0AMusic%20Theory%2C%0A%20%0APhysics%20B%2C%0A%20%0APhysics%20C%2C%0A%20%0APsychology%2C%0A%20%0ASpanish%20Language%2C%0A%20%0ASpanish%20Literature%2C%0A%20%0AStatistics%2C%0A%20%0AStudio%20Art%2C%0A%20%0AU.S.%20History%2C%0A%20%0AWorld%20History%0A%20</text>
       </controlProperties>
     </control>
-    <control controlID="124" controlTypeID="__group__" x="332" y="955" w="-1" h="-1" measuredW="613" measuredH="54" zOrder="19" locked="false" isInGroup="-1">
+    <control controlID="124" controlTypeID="__group__" x="332" y="955" w="-1" h="-1" measuredW="610" measuredH="54" zOrder="19" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
-        <control controlID="120" controlTypeID="com.balsamiq.mockups::LinkBar" x="0" y="0" w="-1" h="-1" measuredW="613" measuredH="25" zOrder="0" locked="false" isInGroup="124">
+        <control controlID="120" controlTypeID="com.balsamiq.mockups::LinkBar" x="0" y="0" w="-1" h="-1" measuredW="610" measuredH="25" zOrder="0" locked="false" isInGroup="124">
           <controlProperties>
             <text>About%2C%20Community%20Guidelines%2C%20Blog%2C%20Terms%20%26%20Conditions%2C%20Privacy%2C%20Support%2C%20Partners</text>
           </controlProperties>

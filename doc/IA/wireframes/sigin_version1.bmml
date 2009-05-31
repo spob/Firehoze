@@ -237,7 +237,7 @@
     </control>
     <control controlID="118" controlTypeID="com.balsamiq.mockups::StickyNote" x="8" y="68" w="155" h="123" measuredW="109" measuredH="123" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Sign-in%20form</text>
+        <text>Sign-in%20form%0AVersion%201</text>
       </controlProperties>
     </control>
     <control controlID="122" controlTypeID="com.balsamiq.mockups::TagCloud" x="223" y="783" w="874" h="141" measuredW="350" measuredH="250" zOrder="14" locked="false" isInGroup="-1">
