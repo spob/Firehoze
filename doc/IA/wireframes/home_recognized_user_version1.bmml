@@ -522,6 +522,7 @@
     <control controlID="223" controlTypeID="com.balsamiq.mockups::SearchBox" x="874" y="230" w="221" h="-1" measuredW="94" measuredH="25" zOrder="10" locked="false" isInGroup="-1">
       <controlProperties>
         <text>search</text>
+        <href>search_results.bmml</href>
       </controlProperties>
     </control>
     <control controlID="224" controlTypeID="com.balsamiq.mockups::Canvas" x="872" y="578" w="221" h="332" measuredW="100" measuredH="70" zOrder="11" locked="false" isInGroup="-1"/>
