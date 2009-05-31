@@ -6,6 +6,8 @@ class CreditSku < Sku
   # These credits were purchased based upon this sku
   has_many :credits, :foreign_key => 'sku_id'
 
+  named_scope :biggest_credits_first, :order => "num_credits desc"
+
   def can_delete? user
     user.is_sysadmin? and credits.empty?
   end
@@ -14,5 +16,9 @@ class CreditSku < Sku
     num_credits.times do
       Credit.create!(:sku => self, :price => price/num_credits, :user => user, :acquired_at => Time.zone.now)
     end
+  end
+
+  def to_s
+    "num_credits: #{num_credits}, price: #{price}, desc: #{description}"
   end
 end                                                      

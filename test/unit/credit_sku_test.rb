@@ -33,5 +33,22 @@ class CreditSkuTest < ActiveSupport::TestCase
     should_not_allow_values_for      :num_credits, -1, 0,
             :message => I18n.translate('activerecord.errors.messages.greater_than', :count => 0)
     should_have_many :credits
+
+    context "and a couple more sku's" do
+      setup do
+        Factory.create(:credit_sku, :num_credits => 5)
+        Factory.create(:credit_sku, :num_credits => 10)
+        Factory.create(:credit_sku, :num_credits => 3)
+      end
+
+      should "return rows in reverse order by number of credits" do
+        skus = CreditSku.biggest_credits_first
+        assert_equal 4, skus.count
+        assert_equal 10, skus[0].num_credits
+        assert_equal 5, skus[1].num_credits
+        assert_equal 3, skus[2].num_credits
+        assert_equal 1, skus[3].num_credits
+      end
+    end
   end
 end

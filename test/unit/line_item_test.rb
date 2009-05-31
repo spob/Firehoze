@@ -17,5 +17,9 @@ class LineItemTest < ActiveSupport::TestCase
     should "calculate total price" do
       assert_equal 0.99, @line_item.full_price
     end
+
+    should "find by cart and sku" do
+      assert_equal @line_item, LineItem.by_cart(@line_item.cart.id).by_sku(@line_item.sku.id).first
+    end
   end
 end

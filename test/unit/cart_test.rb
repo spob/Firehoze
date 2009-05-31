@@ -12,12 +12,16 @@ class CartTest < ActiveSupport::TestCase
         @cart.save!
       end
 
-      should "calculation the total price" do
+      should "calculate the total price" do
         #        for li in @cart.line_items do
         #          puts "#{li.quantity} x $#{li.unit_price}"
         #        end
         assert_equal 2, @cart.line_items.count
         assert_equal ((1 * 0.99) + (11 * 1.25)), @cart.total_price
+      end
+
+      should "calculate the total credits" do
+        assert_equal 12, @cart.total_credits
       end
     end
   end
