@@ -1,0 +1,17 @@
+<% title "Discounts" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for discount in @discounts %>
+    <tr>
+      <td><%=h discount.name %></td>
+      <td><%= link_to "Show", discount %></td>
+      <td><%= link_to "Edit", edit_discount_path(discount) %></td>
+      <td><%= link_to "Destroy", discount, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Discount", new_discount_path %></p>

@@ -6,12 +6,18 @@ class Sku < ActiveRecord::Base
   validates_length_of       :type,        :maximum => 50
   validates_length_of       :description, :maximum => 150, :allow_nil => true
 
+  has_many :line_items
+  
   def self.list(page)
     paginate :page => page, :order => 'sku',
             :per_page => Constants::ROWS_PER_PAGE
   end
 
   def can_delete? user
+    user.is_sysadmin?
+  end
+
+  def can_edit? user
     user.is_sysadmin?
   end
 end
