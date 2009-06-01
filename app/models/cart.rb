@@ -4,7 +4,7 @@ class Cart < ActiveRecord::Base
 
   def total_price
     # convert to array so it doesn't try to do sum on database directly
-    line_items.to_a.sum(&:full_price)
+    line_items.to_a.sum(&:total_full_price)
   end
 
   def total_credits

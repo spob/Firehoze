@@ -6,6 +6,8 @@ class CreditSkuTest < ActiveSupport::TestCase
       @sku = Factory.create(:credit_sku, :price => 9, :num_credits => 10)
     end
 
+    should_have_many :credits
+
     context "when executing an order for the sku" do
       setup { @user = Factory.create(:user) }
 

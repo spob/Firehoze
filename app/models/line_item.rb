@@ -1,6 +1,8 @@
 class LineItem < ActiveRecord::Base
+  before_save :assign_discount
   belongs_to :cart
   belongs_to :sku
+  belongs_to :discount
 
   validates_presence_of     :unit_price, :discounted_unit_price, :sku, :cart, :quantity
   validates_numericality_of :unit_price, :greater_than => 0, :allow_nil => true
@@ -14,7 +16,19 @@ class LineItem < ActiveRecord::Base
           lambda{|sku_id|{:conditions => { :sku_id => sku_id }}
           }
 
-  def full_price
+  def total_full_price
     unit_price * quantity
+  end
+
+  def total_discounted_price
+    discounted_unit_price * quantity
+  end
+
+  private
+
+  def assign_discount
+    self.discounted_unit_price = self.unit_price
+    self.discount = self.sku.discounts.max_discount_by_volume(self.quantity).first
+    self.discounted_unit_price = self.unit_price *  (1 - self.discount.percent_discount) if self.discount
   end
 end
