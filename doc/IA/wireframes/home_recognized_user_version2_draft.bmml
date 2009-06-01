@@ -142,9 +142,9 @@
         <bold>true</bold>
       </controlProperties>
     </control>
-    <control controlID="80" controlTypeID="__group__" x="377" y="133" w="-1" h="-1" measuredW="348" measuredH="25" zOrder="33" locked="false" isInGroup="-1">
+    <control controlID="80" controlTypeID="__group__" x="377" y="133" w="-1" h="-1" measuredW="350" measuredH="25" zOrder="33" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
-        <control controlID="12" controlTypeID="com.balsamiq.mockups::LinkBar" x="66" y="0" w="-1" h="-1" measuredW="282" measuredH="25" zOrder="0" locked="false" isInGroup="80">
+        <control controlID="12" controlTypeID="com.balsamiq.mockups::LinkBar" x="66" y="0" w="-1" h="-1" measuredW="284" measuredH="25" zOrder="0" locked="false" isInGroup="80">
           <controlProperties>
             <text>sherpa99%2C%20Profile%2C%20Account%2C%20Sign%20Out</text>
           </controlProperties>
@@ -179,7 +179,7 @@
         <icon>VideoCameraIcon%7Csmall</icon>
       </controlProperties>
     </control>
-    <control controlID="27" controlTypeID="com.balsamiq.mockups::SearchBox" x="576" y="167" w="141" h="-1" measuredW="94" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::SearchBox" x="553" y="196" w="141" h="-1" measuredW="94" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
         <text>search</text>
       </controlProperties>
