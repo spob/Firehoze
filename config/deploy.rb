@@ -41,7 +41,7 @@ end
 namespace :mongrel do
   desc "Start Mongrel"
   task :start, :roles => :app do
-    run "mongrel_rails start -e production -p 4098 -d -P #{current_path}/tmp/pids/mongrel.pid -l #{current_path}/log/mongrel.log"
+    run "mongrel_rails start -e production -p 4098 -d -P #{current_path}/tmp/pids/mongrel.pid -l #{current_path}/log/mongrel.log -c #{current_path}"
   end
 
   desc "Restart Mongrel"
