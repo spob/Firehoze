@@ -7,9 +7,10 @@ class VideoTest < ActiveSupport::TestCase
       @video = Factory.create(:video)
     end
 
-    should_validate_presence_of      :title, :author, :video_file_name
+    should_validate_presence_of      :title, :author
     should_allow_values_for          :title, "blah blah blah"
     should_ensure_length_in_range    :title, (0..50)
+    should_have_attached_file        :video
 
     context "and a couple more records" do
       setup do

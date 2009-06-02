@@ -49,7 +49,7 @@ Rails::Initializer.run do |config|
   config.gem 'daemons', :lib => 'daemons'
 
   # For periodic job processing
-  config.gem 'paperclip'
+  config.gem 'paperclip', :version => '~> 2.1.2'
 
   # Gem for pagination functionality
   config.gem 'mislav-will_paginate', :version => '~> 2.3.8', :lib => 'will_paginate',
