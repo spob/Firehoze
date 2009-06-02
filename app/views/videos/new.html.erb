@@ -1,6 +1,6 @@
 <h1>Upload Video</h1>
 
-<% form_for(:video, :url => videos_path) do |f| %>
+<% form_for(:video, :url => videos_path, :html => { :multipart => true}) do |f| %>
     <%= f.error_messages %>
     
     <%= f.label :title %>:
@@ -8,6 +8,9 @@
     <br/>
     <%= f.label :description %>:
     <%= f.text_area :description %><br />
+    <br/>
+    <%= f.label :video %>
+    <%= f.file_field :video %>
     <br/>
     <%= f.submit "Upload Video" %>
 <% end %>

@@ -48,6 +48,9 @@ Rails::Initializer.run do |config|
   # For periodic job processing
   config.gem 'daemons', :lib => 'daemons'
 
+  # For periodic job processing
+  config.gem 'paperclip'
+
   # Gem for pagination functionality
   config.gem 'mislav-will_paginate', :version => '~> 2.3.8', :lib => 'will_paginate',
           :source => 'http://gems.github.com'

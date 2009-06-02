@@ -10,3 +10,4 @@ public/cache/*
 .DS_Store
 .idea
 .project
+public/assets
