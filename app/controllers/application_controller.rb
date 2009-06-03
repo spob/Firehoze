@@ -5,16 +5,29 @@ class ApplicationController < ActionController::Base
   helper :all
   helper_method :current_user_session, :current_user
   filter_parameter_logging :password, :password_confirmation
+  filter_parameter_logging :card_number, :card_verification
   before_filter :set_timezone
-
 
   def current_user
     return @current_user if defined?(@current_user)
     @current_user = current_user_session && current_user_session.record
   end
 
+  def current_cart
+    if session[:cart_id]
+      @current_cart ||= Cart.find(session[:cart_id])
+      session[:cart_id] = nil if @current_cart.purchased_at
+    end
+    if session[:cart_id].nil?
+      @current_cart = Cart.create!
+      session[:cart_id] = @current_cart.id
+    end
+    @current_cart
+  end
+
   # Allow you to use text helper (pluralize) from within controllers.
   # See http://snippets.dzone.com/posts/show/1799
+
   def help
     Helper.instance
   end
