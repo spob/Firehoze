@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" measuredW="1138" measuredH="1686">
+<mockup version="1.0" skin="sketch" measuredW="1433" measuredH="1686">
   <controls>
     <control controlID="385" controlTypeID="com.balsamiq.mockups::Label" x="314" y="231" w="247" h="23" measuredW="208" measuredH="23" zOrder="49" locked="false" isInGroup="-1">
       <controlProperties>
@@ -29,20 +29,16 @@
         <color>1644825</color>
       </controlProperties>
     </control>
-    <control controlID="374" controlTypeID="com.balsamiq.mockups::VRule" x="653" y="166" w="-1" h="223" measuredW="5" measuredH="100" zOrder="43" locked="false" isInGroup="-1"/>
-    <control controlID="119" controlTypeID="__group__" x="746" y="95" w="-1" h="-1" measuredW="350" measuredH="25" zOrder="5" locked="false" isInGroup="-1">
-      <groupChildrenDescriptors>
-        <control controlID="12" controlTypeID="com.balsamiq.mockups::LinkBar" x="66" y="0" w="-1" h="-1" measuredW="284" measuredH="25" zOrder="0" locked="false" isInGroup="80">
-          <controlProperties>
-            <text>sherpa99%2C%20Profile%2C%20Account%2C%20Sign%20Out</text>
-          </controlProperties>
-        </control>
-        <control controlID="79" controlTypeID="com.balsamiq.mockups::Label" x="0" y="0" w="76" h="25" measuredW="76" measuredH="25" zOrder="1" locked="false" isInGroup="80">
-          <controlProperties>
-            <text>Greetings%2C%20</text>
-          </controlProperties>
-        </control>
-      </groupChildrenDescriptors>
+    <control controlID="118" controlTypeID="com.balsamiq.mockups::StickyNote" x="15" y="15" w="155" h="123" measuredW="109" measuredH="123" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Recognized%20User%0AHome%20Page</text>
+      </controlProperties>
+    </control>
+    <control controlID="375" controlTypeID="com.balsamiq.mockups::Paragraph" x="209" y="285" w="428" h="104" measuredW="200" measuredH="140" zOrder="44" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Bio%3A%20Lorem%20ipsum%20dolor%20sit%20amet%2C%20consectetur%20adipiscing%20elit.%20Nam%20venenatis%20dolor%20erat.%20Nam%20lobortis%20tellus%20ac%20ipsum%20posuere%20cursus.%20Cras%20non%20enim%20et%20justo%20viverra%20dignissim.%20Curabitur%20ac%20eros%20vel%20elit%20sodales%20fermentum.%20Cras%20posuere%20aliquet%20turpis%20at%20congue.%20Praesent%20sed%20sem%20quis%20nibh%20egestas%20venenatis.%20Curabitur%20laoreet%2C%20est%20ac%20posuere%20dignissim%2C%20felis%20dui%20facilisis%20nisl%2C%20id%20porta%20</text>
+        <size>10</size>
+      </controlProperties>
     </control>
     <control controlID="395" controlTypeID="com.balsamiq.mockups::Button" x="578" y="366" w="-1" h="-1" measuredW="60" measuredH="28" zOrder="51" locked="false" isInGroup="-1">
       <controlProperties>
@@ -182,6 +178,7 @@
         </control>
       </groupChildrenDescriptors>
     </control>
+    <control controlID="422" controlTypeID="com.balsamiq.mockups::Image" x="677" y="196" w="412" h="210" measuredW="141" measuredH="144" zOrder="59" locked="false" isInGroup="-1"/>
     <control controlID="423" controlTypeID="com.balsamiq.mockups::Label" x="677" y="167" w="-1" h="-1" measuredW="124" measuredH="25" zOrder="60" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Credits%20Remaing%3A%209</text>
@@ -205,7 +202,18 @@
         <size>10</size>
       </controlProperties>
     </control>
-    <control controlID="422" controlTypeID="com.balsamiq.mockups::Image" x="683" y="192" w="406" h="210" measuredW="141" measuredH="144" zOrder="59" locked="false" isInGroup="-1"/>
+    <control controlID="428" controlTypeID="com.balsamiq.mockups::Arrow" x="1044" y="264" w="-1" h="-1" measuredW="150" measuredH="100" zOrder="64" locked="false" isInGroup="-1">
+      <controlProperties>
+        <leftArrow>true</leftArrow>
+        <rightArrow>false</rightArrow>
+      </controlProperties>
+    </control>
+    <control controlID="429" controlTypeID="com.balsamiq.mockups::Label" x="1143" y="365" w="-1" h="-1" measuredW="280" measuredH="29" zOrder="65" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Gotta%20figure%20what%20data%20to%20put%20here</text>
+        <size>16</size>
+      </controlProperties>
+    </control>
     <control controlID="313" controlTypeID="__group__" x="359" y="1520" w="339" h="32" measuredW="339" measuredH="32" zOrder="7" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="0" controlTypeID="com.balsamiq.mockups::TextInput" x="58" y="0" w="30" h="-1" measuredW="27" measuredH="29" zOrder="0" locked="false" isInGroup="9">
@@ -760,16 +768,20 @@
         <bold>true</bold>
       </controlProperties>
     </control>
-    <control controlID="118" controlTypeID="com.balsamiq.mockups::StickyNote" x="15" y="15" w="155" h="123" measuredW="109" measuredH="123" zOrder="4" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Recognized%20User%0AHome%20Page</text>
-      </controlProperties>
-    </control>
-    <control controlID="375" controlTypeID="com.balsamiq.mockups::Paragraph" x="209" y="285" w="428" h="104" measuredW="200" measuredH="140" zOrder="44" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Bio%3A%20Lorem%20ipsum%20dolor%20sit%20amet%2C%20consectetur%20adipiscing%20elit.%20Nam%20venenatis%20dolor%20erat.%20Nam%20lobortis%20tellus%20ac%20ipsum%20posuere%20cursus.%20Cras%20non%20enim%20et%20justo%20viverra%20dignissim.%20Curabitur%20ac%20eros%20vel%20elit%20sodales%20fermentum.%20Cras%20posuere%20aliquet%20turpis%20at%20congue.%20Praesent%20sed%20sem%20quis%20nibh%20egestas%20venenatis.%20Curabitur%20laoreet%2C%20est%20ac%20posuere%20dignissim%2C%20felis%20dui%20facilisis%20nisl%2C%20id%20porta%20</text>
-        <size>10</size>
-      </controlProperties>
+    <control controlID="374" controlTypeID="com.balsamiq.mockups::VRule" x="653" y="166" w="-1" h="223" measuredW="5" measuredH="100" zOrder="43" locked="false" isInGroup="-1"/>
+    <control controlID="119" controlTypeID="__group__" x="746" y="95" w="-1" h="-1" measuredW="350" measuredH="25" zOrder="5" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="12" controlTypeID="com.balsamiq.mockups::LinkBar" x="66" y="0" w="-1" h="-1" measuredW="284" measuredH="25" zOrder="0" locked="false" isInGroup="80">
+          <controlProperties>
+            <text>sherpa99%2C%20Profile%2C%20Account%2C%20Sign%20Out</text>
+          </controlProperties>
+        </control>
+        <control controlID="79" controlTypeID="com.balsamiq.mockups::Label" x="0" y="0" w="76" h="25" measuredW="76" measuredH="25" zOrder="1" locked="false" isInGroup="80">
+          <controlProperties>
+            <text>Greetings%2C%20</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
     </control>
     <control controlID="121" controlTypeID="com.balsamiq.mockups::Webcam" x="209" y="166" w="89" h="113" measuredW="177" measuredH="145" zOrder="6" locked="false" isInGroup="-1"/>
     <control controlID="380" controlTypeID="com.balsamiq.mockups::Link" x="760" y="455" w="-1" h="-1" measuredW="97" measuredH="22" zOrder="55" locked="false" isInGroup="-1">
