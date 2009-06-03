@@ -1,0 +1,9 @@
+<tr>
+  <td><%= discount.minimum_quantity %></td>
+  <td><%= number_to_percentage(100 * discount.percent_discount, :precision => 1) %></td>
+  <td><%= discount.active %></td>
+  <td>
+    <%= link_to "Edit", edit_sku_discount_path(@sku, discount) %>
+    <%= link_to "Delete", sku_discount_path(@sku, discount), :method => :delete, :confirm => "Are you sure?" if discount.can_delete? %>
+  </td>
+</tr>

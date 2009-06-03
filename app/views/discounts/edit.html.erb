@@ -1,8 +1,21 @@
-<% title "Edit Discount" %>
+Edit Discount for SKU <%= @sku.sku %>
 
-<%= render :partial => 'form' %>
+<% form_for :discount, :url => sku_discount_path(@sku), :html => { :method => :put } do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :minimum_quantity %><br />
+    <%= f.text_field :minimum_quantity %>
+  </p>
+  <p>
+    <%= f.label :percent_discount %> <br />
+    <%= f.text_field :percent_discount %> (enter 0.05 for 5%)
+  </p>
+  <p>
+    <%= f.label :active %> <br />
+    <%= f.check_box :active %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
 
-<p>
-  <%= link_to "Show", @discount %> |
-  <%= link_to "View All", discounts_path %>
-</p>
+
+<p><%= link_to "Cancel", sku_discounts_path(@sku) %></p>

@@ -1,17 +1,15 @@
-<% title "Discounts" %>
+Discounts for SKU <%= @sku.sku %>
 
 <table>
   <tr>
-    <th>Name</th>
+    <th>Minimum Quantity</th>
+    <th>Percent Discount</th>
+    <th>Active</th>
+    <th>Action</th>
   </tr>
-  <% for discount in @discounts %>
-    <tr>
-      <td><%=h discount.name %></td>
-      <td><%= link_to "Show", discount %></td>
-      <td><%= link_to "Edit", edit_discount_path(discount) %></td>
-      <td><%= link_to "Destroy", discount, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
+  <%= render :partial => 'discount', :collection => @discounts %>
 </table>
 
-<p><%= link_to "New Discount", new_discount_path %></p>
+<p><%= link_to "New Discount", new_sku_discount_path(@sku) %> | <%= link_to "Back to SKUs", skus_path %></p>
+
+<%= will_paginate @discounts %>

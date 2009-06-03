@@ -4,7 +4,7 @@ class DiscountByVolume < Discount
   validates_numericality_of :minimum_quantity, :greater_than => 0, :only_integer => true, :allow_nil => true
 
   named_scope :max_discount_by_volume,
-          lambda{|qty| {:conditions => ["minimum_quantity <= ?", qty],
+          lambda{|qty| {:conditions => ["minimum_quantity <= ? and active = ?", qty, true],
                   :order => "minimum_quantity desc", :limit => 1}
           }
 end
