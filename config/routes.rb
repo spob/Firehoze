@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.home 'home', :controller => 'videos', :action => 'index'
   map.resource  :account, :controller => "profiles"
-  map.resources :carts
+  map.resources :carts, :only => [ :show ]
   map.resources :credits
   map.resources :line_items
   map.resources :orders
