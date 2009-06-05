@@ -1,4 +1,8 @@
 class OrdersController < ApplicationController
+  before_filter :require_user
+  
+  verify :method => :post, :only => [:create ], :redirect_to => :home_path
+
   def new
     @order = Order.new
   end

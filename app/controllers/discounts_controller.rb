@@ -1,3 +1,4 @@
+# This controller is a nested resource. It will always be invoked from the sku controller
 class DiscountsController < ApplicationController
   before_filter :retrieve_sku
   before_filter :require_user

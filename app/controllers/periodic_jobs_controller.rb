@@ -2,15 +2,9 @@ class PeriodicJobsController < ApplicationController
   before_filter :require_user
   permit Constants::ROLE_SYSADMIN
 
-  verify :method => :post, :only => [:rerun ], :redirect_to => :home_path
-
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [:rerun ],
           :redirect_to => :periodic_jobs_path
-  #  verify :method => :put, :only => [ :update ],
-  #    :redirect_to => periodic_jobs_path
-  #  verify :method => :delete, :only => [ :destroy ],
-  #    :redirect_to => periodic_jobs_path
 
   def index
     @jobs = PeriodicJob.list params[:page], Constants::ROWS_PER_PAGE
