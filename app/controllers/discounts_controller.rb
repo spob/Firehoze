@@ -1,6 +1,6 @@
 # This controller is a nested resource. It will always be invoked from the sku controller
 class DiscountsController < ApplicationController
-  before_filter :retrieve_sku
+  before_filter :retrieve_sku, :except => [ :edit, :update, :destroy ]
   before_filter :require_user
 
   # Sys admins only
@@ -38,14 +38,14 @@ class DiscountsController < ApplicationController
   end
   
   def edit
-    @discount = @sku.discounts.find(params[:id])
+    @discount = Discount.find(params[:id])
   end
   
   def update
-    @discount = @sku.discounts.find(params[:id])
+    @discount = Discount.find(params[:id])
     if @discount.update_attributes(params[:discount])
       flash[:notice] = "Successfully updated discount."
-      redirect_to sku_discounts_url(@sku)
+      redirect_to sku_discounts_url(@discount.sku)
     else
       render :action => 'edit'
     end
@@ -55,7 +55,7 @@ class DiscountsController < ApplicationController
     @discount = Discount.find(params[:id])
     @discount.destroy
     flash[:notice] = "Successfully destroyed discount."
-      redirect_to sku_discounts_path(@sku)
+      redirect_to sku_discounts_path(@discount.sku)
   end
 
   private
