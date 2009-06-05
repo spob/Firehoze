@@ -14,7 +14,7 @@ class Order < ActiveRecord::Base
   end
 
   def price_in_cents
-    (cart.total_price*100).round
+    (cart.total_discounted_price*100).round
   end
 
   private

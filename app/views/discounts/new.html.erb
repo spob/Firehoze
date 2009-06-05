@@ -1,16 +1,20 @@
 New Discount for SKU <%= @sku.sku %>
 
 <% form_for :discount, :url => sku_discounts_url(@sku) do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :minimum_quantity %><br />
-    <%= f.text_field :minimum_quantity %>
-  </p>
-  <p>
-    <%= f.label :percent_discount %> <br />
-    <%= f.text_field :percent_discount %> (enter 0.05 for 5%)   
-  </p>
-  <p><%= f.submit "Submit" %></p>
+    <%= f.error_messages %>
+    <p>
+      <%= f.label :type %> <br/>
+      <%= f.select :type, @sku.discount_types %>
+    </p>
+    <p>
+      <%= f.label :minimum_quantity %><br/>
+      <%= f.text_field :minimum_quantity %>
+    </p>
+    <p>
+      <%= f.label :percent_discount %> <br/>
+      <%= f.text_field :percent_discount %> (enter 0.05 for 5%)
+    </p>
+    <p><%= f.submit "Submit" %></p>
 <% end %>
 
 

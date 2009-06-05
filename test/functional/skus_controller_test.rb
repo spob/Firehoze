@@ -46,7 +46,10 @@ class SkusControllerTest < ActionController::TestCase
       end
 
       context "on POST to :create" do
-        setup { post :create, :sku => Factory.attributes_for(:credit_sku) }
+        setup do
+          sku_attrs = Factory.attributes_for(:credit_sku).merge!({:type => 'CreditSku'})
+            post :create, :sku => sku_attrs
+        end
 
         should_assign_to :sku
         should_respond_with :redirect

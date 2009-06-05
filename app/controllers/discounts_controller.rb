@@ -23,8 +23,13 @@ class DiscountsController < ApplicationController
   end
   
   def create
-    @discount = @sku.discounts.build(params[:discount])
-    if @discount.save
+    # dynamically execute the new command based upon the type of sku selected
+    command = "#{params[:discount][:type]}.new(params[:discount])"
+    #    print command
+    @discount = eval command
+    @sku.discounts << @discount 
+#    @discount = @sku.discounts.build(params[:discount])
+    if @sku.save
       flash[:notice] = "Successfully created discount."
       redirect_to sku_discounts_path(@sku)
     else

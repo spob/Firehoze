@@ -22,7 +22,7 @@ class LineItemsController < ApplicationController
         # This should never fail. If it does, something is seriously wrong so go ahead
         # and throw an exception
         @line_item = LineItem.create!(:cart => current_cart, :sku => @sku, :quantity => quantity,
-                :unit_price => @sku.price, :discounted_unit_price => @sku.price)
+                :unit_price => @sku.price)
       end
       # This should never fail. If it does, something is seriously wrong so go ahead
       # and throw an exception

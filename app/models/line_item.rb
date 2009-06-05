@@ -1,5 +1,5 @@
 class LineItem < ActiveRecord::Base
-  before_save :assign_discount
+  before_validation :assign_discount
   belongs_to :cart
   belongs_to :sku
   belongs_to :discount
@@ -28,7 +28,9 @@ class LineItem < ActiveRecord::Base
 
   def assign_discount
     self.discounted_unit_price = self.unit_price
-    self.discount = self.sku.discounts.max_discount_by_volume(self.quantity).first
-    self.discounted_unit_price = self.unit_price *  (1 - self.discount.percent_discount) if self.discount
+    unless sku.nil? # sku can only be null if the user entered a bad value
+      self.discount = self.sku.discounts.max_discount_by_volume(self.quantity).first unless self.sku.discounts.nil?
+      self.discounted_unit_price = self.unit_price *  (1 - self.discount.percent_discount) if self.discount
+    end
   end
 end

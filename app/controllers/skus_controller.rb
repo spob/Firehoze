@@ -8,6 +8,12 @@ class SkusController < ApplicationController
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
   verify :method => :destroy, :only => [:delete ], :redirect_to => :home_path
 
+  @@sku_types = [ [ 'Credit', 'CreditSku'] ]
+
+  def self.types
+    @@sku_types
+  end
+
   def index
     @skus = Sku.list params[:page]
   end
@@ -17,7 +23,10 @@ class SkusController < ApplicationController
   end
 
   def create
-    @sku = CreditSku.new(params[:sku])
+    # dynamically execute the new command based upon the type of sku selected
+    command = "#{params[:sku][:type]}.new(params[:sku])"
+    #    print command
+    @sku = eval command
     set_description @sku
     if @sku.save
       flash[:notice] = "SKU saved"

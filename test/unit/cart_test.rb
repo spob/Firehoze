@@ -18,7 +18,8 @@ class CartTest < ActiveSupport::TestCase
         #          puts "#{li.quantity} x $#{li.unit_price}"
         #        end
         assert_equal 2, @cart.line_items.count
-        assert_equal ((1 * 0.99) + (11 * 1.25)), @cart.total_price
+        assert_equal ((1 * 0.99) + (11 * 1.25)), @cart.total_full_price
+        assert_equal ((1 * 0.99) + (11 * 1.25)), @cart.total_discounted_price
       end
 
       should "calculate the total credits" do

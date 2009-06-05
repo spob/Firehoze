@@ -7,8 +7,16 @@ class CreditSku < Sku
   has_many :credits, :foreign_key => 'sku_id'
   has_many :discounts, :class_name => 'DiscountByVolume', :foreign_key => 'sku_id'
 
-  named_scope :biggest_credits_first, :order => "num_credits desc"  
+  named_scope :biggest_credits_first, :order => "num_credits desc"
 
+  @@_discount_types = [
+          ["By Volume", 'DiscountByVolume']
+  ]
+
+  def discount_types
+    @@_discount_types
+  end
+  
   def can_delete? user
     user.is_sysadmin? and credits.empty?
   end

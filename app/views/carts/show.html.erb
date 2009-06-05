@@ -3,21 +3,34 @@ Shopping Cart
 <table id="line_items">
   <tr>
     <th>SKU</th>
-    <th>Qty</th>
     <th class="price">Unit Price</th>
-    <th class="price">Full Price</th>
+    <th>Qty</th>
+    <th class="price">Extended Price</th>
+    <th>Discount</th>
+    <th class="price">Price</th>
   </tr>
   <% for line_item in @cart.line_items %>
     <tr class="<%= cycle :odd, :even %>">
       <td><%=h line_item.sku.description %></td>
-      <td class="qty"><%= line_item.quantity %></td>
       <td class="price"><%= number_to_currency(line_item.unit_price) %></td>
+      <td class="qty"><%= line_item.quantity %></td>
       <td class="price"><%= number_to_currency(line_item.total_full_price) %></td>
+      <td><%= number_to_percentage(100 * line_item.discount.percent_discount, :precision => 1) unless line_item.discount.nil? %></td>
+      <td class="price"><%= number_to_currency(line_item.total_discounted_price) %></td>
     </tr>
   <% end %>
   <tr>
-    <td class="total price" colspan="4">
-      Total: <%= number_to_currency @cart.total_price %>
+    <td align="right"><strong>Total</strong></td>
+    <td/>
+    <td/>
+    <td class="total price">
+      <%= number_to_currency @cart.total_full_price %>
+    </td>
+    <td class="total price">
+     <%= number_to_currency @cart.total_full_price - @cart.total_discounted_price %>
+    </td>
+    <td class="total price">
+      <%= number_to_currency @cart.total_discounted_price %>
     </td>
   </tr>
 </table>
