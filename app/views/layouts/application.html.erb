@@ -12,7 +12,9 @@
 
 <h1>Firehoze</h1>
 <%= pluralize User.logged_in.count, "user" %> currently logged
-in<br/> <!-- This based on last_request_at, if they were active < 10 minutes they are logged in -->
+<% if show_cart? %>
+| <%= link_to "Shopping Cart", cart_path(@current_cart) %>
+<% end %>
 <br/>
 <br/>
 

@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
   # Allow you to use text helper (pluralize) from within controllers.
   # See http://snippets.dzone.com/posts/show/1799
 
