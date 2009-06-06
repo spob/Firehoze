@@ -4,41 +4,41 @@
 
 <p>
   <b>Title:</b>
-  <%= h @video.title %>
+  <%= h @lesson.title %>
 </p>
 
 <p>
   <b>Description:</b>
-  <%= h @video.description %>
+  <%= h @lesson.description %>
 </p>
 
 <p>
   <b>Author:</b>
-  <%= h @video.author.login %>
+  <%= h @lesson.author.login %>
 </p>
 
 <p>
   <b>Created:</b>
-  <%= format_date_time @video.created_at %>
+  <%= format_date_time @lesson.created_at %>
 </p>
 <div id="player">
   You need to
   have <%= link_to 'Flash Player', 'http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash' %>
-  installed to display this video
+  installed to display this lesson
 </div>
 
 <!--
-See http://jimneath.org/2008/06/03/converting-videos-with-rails-converting-the-video/ RBS
+See http://jimneath.org/2008/06/03/converting-lessons-with-rails-converting-the-lesson/ RBS
 <script type="text/javascript">
     var so = new SWFObject('/flash/mediaplayer.swf', 'mpl', '480', '360', '8');
     so.addParam('allowscriptaccess', 'always');
     so.addParam('allowfullscreen', 'true');
     so.addVariable('height', '360');
     so.addVariable('width', '480');
-    so.addVariable('file', '<%= @video.video.url %>');
+    so.addVariable('file', '<%= @lesson.video.url %>');
     so.write('player');
 </script>
 -->
 
-<%= link_to 'Edit', edit_video_path(@video) %>
+<%= link_to 'Edit', edit_lesson_path(@lesson) %>
 <%= link_to 'Home', home_path %>

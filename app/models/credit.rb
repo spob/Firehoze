@@ -4,7 +4,7 @@ class Credit < ActiveRecord::Base
 
   belongs_to :sku, :class_name => "CreditSku"
   belongs_to :user
-  belongs_to :video
+  belongs_to :lesson
 
 #  before_validation_on_create :set_dates
 #

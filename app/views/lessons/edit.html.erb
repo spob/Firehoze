@@ -1,6 +1,6 @@
-<h1>Edit Video</h1>
+<h1>Edit Lesson</h1>
 
-<% form_for(:video, :url => video_path(@video), :html => { :method => :put }) do |f| %>
+<% form_for(:lesson, :url => lesson_path(@lesson), :html => { :method => :put }) do |f| %>
     <%= f.error_messages %>  
 
     <%= f.label :title %>:
@@ -11,5 +11,5 @@
     <br/>
 
     <%= f.submit "Update" %>
-    <%= link_to "Cancel", video_path(@video) %>
+    <%= link_to "Cancel", lesson_path(@lesson) %>
 <% end %>

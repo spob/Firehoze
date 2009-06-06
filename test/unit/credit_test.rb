@@ -11,7 +11,7 @@ class CreditTest < ActiveSupport::TestCase
     should_not_allow_values_for      :price, "a", :message => I18n.translate('activerecord.errors.messages.not_a_number')
     should_not_allow_values_for      :price, -1,
             :message => I18n.translate('activerecord.errors.messages.greater_than_or_equal_to', :count => 0)
-    should_belong_to :user, :video
+    should_belong_to :user, :lesson
     should_belong_to :sku
   end
 end
