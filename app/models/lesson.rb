@@ -9,7 +9,7 @@ class Lesson < ActiveRecord::Base
           :path => ":rails_root/public/assets/videos/:id/:basename.:extension"
 
   validates_attachment_presence :video
-  validates_attachment_size :video, :less_than => 500.megabytes
+  validates_attachment_size :video, :less_than => APP_CONFIG['max_video_size'].megabytes
   validates_attachment_content_type :video, :content_type => ["application/x-shockwave-flash"]
   
   def self.list(page)

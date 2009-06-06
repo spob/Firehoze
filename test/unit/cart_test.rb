@@ -2,14 +2,15 @@ require 'test_helper'
 
 class CartTest < ActiveSupport::TestCase
   context "given an existing record" do
-    setup do
-      @cart = Factory.create(:line_item).cart
-    end
+    setup { @cart = Factory.create(:line_item).cart }
+
+    should_belong_to :user
+    should_validate_presence_of      :user
 
     context "with multiple lines" do
       setup do
         @cart.line_items << LineItem.new(:quantity => 11, :unit_price => 1.25, :sku => Factory.create(:credit_sku),
-                :discounted_unit_price => 1.15)
+                                         :discounted_unit_price => 1.15)
         @cart.save!
       end
 

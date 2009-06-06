@@ -19,12 +19,12 @@ class LessonTest < ActiveSupport::TestCase
         Factory.create(:lesson)
       end
 
-      should "return video records" do
+      should "return less records" do
         assert_equal 3, Lesson.list(1).size
       end
     end
 
-    context "and videos by two different authors" do
+    context "and lessons by two different authors" do
       setup do
         @user1 = Factory.create(:user)
         @user2 = Factory.create(:user)
@@ -35,7 +35,7 @@ class LessonTest < ActiveSupport::TestCase
       end
 
       should "allow author to edit" do
-        # author can edit their videos
+        # author can edit their lessons
         assert @lesson1.can_edit?(@user1)
         assert !@lesson1.can_edit?(@user2)
         assert @lesson2.can_edit?(@user2)

@@ -14,15 +14,17 @@ class ApplicationController < ActionController::Base
   end
 
   def current_cart
-    if session[:cart_id]
-      @current_cart ||= Cart.find(session[:cart_id])
-      session[:cart_id] = nil if @current_cart.purchased_at
+    if current_user
+      if session[:cart_id]
+        @current_cart ||= Cart.find(session[:cart_id])
+        session[:cart_id] = nil if @current_cart.purchased_at or @current_cart.user != current_user
+      end
+      if session[:cart_id].nil?
+        @current_cart = Cart.create!(:user => current_user)
+        session[:cart_id] = @current_cart.id
+      end
+      @current_cart
     end
-    if session[:cart_id].nil?
-      @current_cart = Cart.create!
-      session[:cart_id] = @current_cart.id
-    end
-    @current_cart
   end
 
   # Allow you to use text helper (pluralize) from within controllers.

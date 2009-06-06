@@ -23,3 +23,6 @@ default_user_timezone: Eastern Time (US & Canada)
 # not complete in this timeframe, OpenMind will assume it is dead and initiate
 # a recovery
 periodic_job_timeout: 30
+
+# The maximum video file upload size (in MB)
+max_video_size: 500

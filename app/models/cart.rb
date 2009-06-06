@@ -1,6 +1,8 @@
 class Cart < ActiveRecord::Base
   has_many :line_items, :dependent => :destroy
+  belongs_to :user
   has_one :order
+  validates_presence_of :user
 
   def total_full_price
     # convert to array so it doesn't try to do sum on database directly
