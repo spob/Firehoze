@@ -35,7 +35,6 @@ class SkusControllerTest < ActionController::TestCase
         should_render_template "index"
       end
 
-
       context "on GET to :new" do
         setup { get :new }
 

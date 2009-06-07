@@ -2,7 +2,7 @@ class LineItemsController < ApplicationController
   before_filter :require_user
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
-  # TODO: Add delete
+  verify :method => :destroy, :only => [:delete ], :redirect_to => :home_path
 
   def create
     @sku = Sku.find(params[:sku_id])
@@ -17,7 +17,6 @@ class LineItemsController < ApplicationController
         @line_item.save!
       else
         # else create a new line item for that sku
-        # TODO: pass in the real discounted price
 
         # This should never fail. If it does, something is seriously wrong so go ahead
         # and throw an exception
@@ -29,6 +28,14 @@ class LineItemsController < ApplicationController
       current_cart.save!
     end
     flash[:notice] = "Added #{@sku.description} to cart."
+    redirect_to current_cart_url
+  end
+
+  def destroy
+    line_item = LineItem.find params[:id]
+    sku = line_item.sku.sku
+    line_item.destroy
+    flash[:notice] = "SKU #{sku} was successfully removed from the cart."
     redirect_to current_cart_url
   end
 end

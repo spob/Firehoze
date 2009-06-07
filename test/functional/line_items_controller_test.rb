@@ -4,7 +4,10 @@ class LineItemsControllerTest < ActionController::TestCase
 
   context "when not logged on" do
     context "on GET to :new" do
-      setup { get :new }
+      setup do
+        @sku = Factory.create(:credit_sku)
+        post :create, :sku_id => @sku, :quantity => 1
+      end
 
       should_not_assign_to :sku
       should_respond_with :redirect
@@ -62,6 +65,19 @@ class LineItemsControllerTest < ActionController::TestCase
             assert_equal 1, @sku2.line_items.first.quantity
           end
         end
+      end
+    end
+
+    context "with at least one LineItem" do
+      setup { @line_item = Factory.create(:line_item) }
+      
+      context "on DELETE to :destroy" do
+        setup { delete :destroy, :id => @line_item }
+        
+        should_change "LineItem.count", :from => 1, :to => 0
+        should_respond_with :redirect
+        should_set_the_flash_to /removed/
+        should_redirect_to("cart page") { '/cart' }
       end
     end
   end
