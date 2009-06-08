@@ -14,8 +14,13 @@
     <br/>
     <%= f.label :last_name %>:
     <%= f.text_field :last_name %><br />
+    <br/>
     <%= f.label :time_zone %>:
     <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %><br/>
+    <br/>
+    <%= f.label :language %>:
+    <%= f.select :language, User.supported_languages %><br/>
+    <br/>
 
     <%= f.submit "Update" %>
     <%= link_to "Cancel", profile_path(@user) %>

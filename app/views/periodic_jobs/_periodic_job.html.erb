@@ -3,12 +3,12 @@
   <td><%= h periodic_job.class.to_s %></td>
   <td><%= h periodic_job.name %></td>
   <td><%= h periodic_job.job %></td>
-  <td><%= h format_date_time(periodic_job.last_run_at) %></td>
+  <td><%= l(periodic_job.last_run_at) if periodic_job.last_run_at %></td>
   <td style="width: 200px;">
     <%= h periodic_job.last_run_result %>
   </td>
   <td>
-    <%= h format_date_time(periodic_job.next_run_at) %>
+    <%= l(periodic_job.next_run_at) if periodic_job.next_run_at %>
   </td>
   <td>
     <%= link_to(

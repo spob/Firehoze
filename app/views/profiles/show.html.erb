@@ -22,6 +22,10 @@
   <b>Time Zone:</b>
   <%=h @user.time_zone %>
 </p>
+<p>
+  <b>Language:</b>
+  <%= select_tag :language,  options_for_select(User.supported_languages, @user.language), :disabled => true %>
+</p>
 
 <%= link_to 'Edit', edit_profile_path(@user) %> |
 <%= link_to 'Change Password', edit_password_path(@user) %>

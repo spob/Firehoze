@@ -26,4 +26,5 @@ Factory.define :user, :default_strategy => :create do |f|
   f.persistence_token { Factory.next(:ptoken) }
   f.perishable_token "xxxx"
   f.email  { Factory.next(:email) }
+  f.language 'en'
 end                             

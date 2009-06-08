@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
   # Used to verify current password during password changes
   attr_accessor :current_password
 
-  validates_presence_of :email,
-          :login_count, :failed_login_count, :last_name, :login
+  validates_presence_of :email, :language,
+                        :login_count, :failed_login_count, :last_name, :login
   validates_uniqueness_of   :email, :case_sensitive => false
   validates_uniqueness_of   :login, :case_sensitive => false
   validates_numericality_of :login_count, :failed_login_count
@@ -23,6 +23,15 @@ class User < ActiveRecord::Base
   validates_length_of       :last_name, :maximum => 40, :allow_nil => true
   validates_length_of       :first_name, :maximum => 40, :allow_nil => true
   validates_length_of       :login, :maximum => 25, :allow_nil => true
+
+  @@languages = [
+          ['English', 'en'],
+          ['Wookie', 'wk']
+  ]
+
+  def self.supported_languages
+    @@languages
+  end
 
   # Reset the password token and then send the user an email
   def deliver_password_reset_instructions!
@@ -32,7 +41,7 @@ class User < ActiveRecord::Base
 
   def self.list(page)
     paginate :page => page, :order => 'email',
-            :per_page => Constants::ROWS_PER_PAGE
+             :per_page => Constants::ROWS_PER_PAGE
   end
 
   # used to verify whether the user typed their correct password when, for example,
@@ -52,6 +61,6 @@ class User < ActiveRecord::Base
     # Surprisingly AuthLogic doesn't provide a clean callback for detecting when a login occurs...so instead,
     # watch for when the login count is incremented (which is done by AuthLogic).
     UserLogon.create(:user => self,
-            :login_ip => self.current_login_ip) if login_count > login_count_was
+                     :login_ip => self.current_login_ip) if login_count > login_count_was
   end
 end

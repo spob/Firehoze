@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   filter_parameter_logging :card_number, :card_verification
   before_filter :set_timezone
+  before_filter :set_user_language
 
   def current_user
     return @current_user if defined?(@current_user)
@@ -79,5 +80,11 @@ class ApplicationController < ActionController::Base
   def redirect_back_or_default(default)
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
+  end
+
+  private
+
+  def set_user_language
+    I18n.locale = current_user.try(:language) || 'en'
   end
 end
