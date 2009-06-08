@@ -1,0 +1,19 @@
+<tr>
+  <td><%= periodic_job.id %></td>
+  <td><%= h periodic_job.class.to_s %></td>
+  <td><%= h periodic_job.name %></td>
+  <td><%= h periodic_job.job %></td>
+  <td><%= h format_date_time(periodic_job.last_run_at) %></td>
+  <td style="width: 200px;">
+    <%= h periodic_job.last_run_result %>
+  </td>
+  <td>
+    <%= h format_date_time(periodic_job.next_run_at) %>
+  </td>
+  <td>
+    <%= link_to(
+      "Rerun",
+      rerun_periodic_job_path(periodic_job),
+      html_options = {:method => :post,} ) if periodic_job.next_run_at.nil? and periodic_job.last_run_result != 'Running' %>
+  </td>
+</tr>

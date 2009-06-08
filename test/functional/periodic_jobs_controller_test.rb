@@ -17,7 +17,7 @@ class PeriodicJobsControllerTest < ActionController::TestCase
       context "on GET to :index" do
         setup { get :index }
 
-        should_assign_to :jobs
+        should_assign_to :periodic_jobs
         should_respond_with :success
         should_not_set_the_flash
         should_render_template "index"

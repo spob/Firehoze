@@ -7,7 +7,7 @@ class PeriodicJobsController < ApplicationController
           :redirect_to => :periodic_jobs_path
 
   def index
-    @jobs = PeriodicJob.list params[:page], Constants::ROWS_PER_PAGE
+    @periodic_jobs = PeriodicJob.list params[:page], Constants::ROWS_PER_PAGE
   end
 
   def rerun
