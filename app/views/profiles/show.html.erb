@@ -18,5 +18,10 @@
   <%=h @user.last_name %>
 </p>
 
+<p>
+  <b>Time Zone:</b>
+  <%=h @user.time_zone %>
+</p>
+
 <%= link_to 'Edit', edit_profile_path(@user) %> |
 <%= link_to 'Change Password', edit_password_path(@user) %>
