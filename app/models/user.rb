@@ -25,7 +25,6 @@ class User < ActiveRecord::Base
   validates_length_of       :login, :maximum => 25, :allow_nil => true
 
   # Reset the password token and then send the user an email
-
   def deliver_password_reset_instructions!
     reset_perishable_token!
     Notifier.deliver_password_reset_instructions(self)

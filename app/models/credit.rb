@@ -5,6 +5,8 @@ class Credit < ActiveRecord::Base
   belongs_to :sku, :class_name => "CreditSku"
   belongs_to :user
   belongs_to :lesson
+  
+  named_scope :available, :conditions => "redeemed_at is null"
 
 #  before_validation_on_create :set_dates
 #

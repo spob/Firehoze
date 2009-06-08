@@ -2,6 +2,7 @@ class LineItemsController < ApplicationController
   before_filter :require_user
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
+  verify :method => :put, :only => [:update ], :redirect_to => :home_path
   verify :method => :destroy, :only => [:delete ], :redirect_to => :home_path
 
   def create
@@ -21,7 +22,7 @@ class LineItemsController < ApplicationController
         # This should never fail. If it does, something is seriously wrong so go ahead
         # and throw an exception
         @line_item = LineItem.create!(:cart => current_cart, :sku => @sku, :quantity => quantity,
-                :unit_price => @sku.price)
+                                      :unit_price => @sku.price)
       end
       # This should never fail. If it does, something is seriously wrong so go ahead
       # and throw an exception
@@ -30,6 +31,18 @@ class LineItemsController < ApplicationController
     flash[:notice] = "Added #{@sku.description} to cart."
     redirect_to current_cart_url
   end
+
+  #def update
+  #  @line_item = LineItem.find(params[:id])
+  #  if params[:line_item][:quantity].to_i == 0
+  #    destroy
+  #  else
+  #    if @line_item.update_attribute(:quantity, params[:discount][:quantity])
+  #      flash[:notice] = "Updated line item."
+  #    end
+  #    redirect_to current_cart_url
+  #  end
+  #end
 
   def destroy
     line_item = LineItem.find params[:id]

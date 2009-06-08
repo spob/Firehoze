@@ -13,7 +13,10 @@
 <h1>Firehoze</h1>
 <%= pluralize User.logged_in.count, "user" %> currently logged
 <% if show_cart? %>
-| <%= link_to "Shopping Cart", cart_path(@current_cart) %>
+    | <%= link_to "Shopping Cart", cart_path(@current_cart) %>
+<% end %>
+<% if current_user %>
+    | Available Credits: <%= current_user.credits.available.count %>
 <% end %>
 <br/>
 <br/>

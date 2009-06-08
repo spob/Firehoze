@@ -2,7 +2,7 @@ class Discount < ActiveRecord::Base
   belongs_to :sku
   has_many   :line_items
   validates_presence_of :sku
-
+  
 #  TODO: restrict multiple active discounts with same minimum qty 
 
   def self.list(sku, page)
