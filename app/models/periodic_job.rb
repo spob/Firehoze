@@ -73,7 +73,7 @@ class PeriodicJob < ActiveRecord::Base
     jobs.each do |job|
       job.run!
     end
-    !jobs.empty?
+    jobs.present?
   end
 
   def calc_next_run

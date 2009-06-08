@@ -15,7 +15,7 @@ class PeriodicJobTest < ActiveSupport::TestCase
 
       jobs = PeriodicJob.zombies
       should "find a zombie job" do
-        assert !jobs.empty?
+        assert jobs.present?
       end
     end
 
@@ -40,7 +40,7 @@ class PeriodicJobTest < ActiveSupport::TestCase
 
     jobs = PeriodicJob.ready_to_run(Time.zone.now)
     should "find a job ready to run" do
-      assert !jobs.empty?
+      assert jobs.present?
     end
   end
 
@@ -58,23 +58,23 @@ class PeriodicJobTest < ActiveSupport::TestCase
 
     should "run successfully" do
       jobs = PeriodicJob.find_jobs_to_run
-      assert !jobs.empty?
+      assert jobs.present?
       assert_equal 1, jobs.size
       assert !jobs.include?(@run_once_job_null_next_run)
       assert !jobs.include?(@run_once_job_future_next_run)
       assert jobs.include?(@run_once_job_past_next_run)
 
-      assert_nothing_raised {
+      assert_nothing_raised do
         @run_once_job_past_next_run.run!
         PeriodicJob.run_jobs
-      }
+      end
 
       PeriodicJob.cleanup
     end
 
     context "when executing list method" do
       should "return rows" do
-        assert !PeriodicJob.list(1, 10).empty?
+        assert PeriodicJob.list(1, 10).present?
       end
     end
 
@@ -92,13 +92,13 @@ class PeriodicJobTest < ActiveSupport::TestCase
     end
 
     should "fail gracefully" do
-      assert_nothing_raised {
+      assert_nothing_raised do
         assert_nil @job.last_run_result
         @job.run!
         assert_not_equal "Pending", @job.last_run_result
         assert_not_equal "OK", @job.last_run_result
         assert_not_nil @job.last_run_result =~ /could not run/
-      }
+      end
     end
   end
 

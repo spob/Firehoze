@@ -17,6 +17,6 @@ module ApplicationHelper
         @current_cart ||= Cart.find(session[:cart_id])
       end
     end
-    @current_cart and !@current_cart.line_items.empty?
+    @current_cart and @current_cart.present?
   end
 end
