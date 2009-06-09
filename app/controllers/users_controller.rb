@@ -17,6 +17,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
+    @user.password = params[:user][:password]
+    @user.password_confirmation = params[:user][:password_confirmation]
+    @user.time_zone = params[:user][:time_zone]
     if @user.save
       flash[:notice] = "Account registered!"
       redirect_back_or_default user_path(@user)
