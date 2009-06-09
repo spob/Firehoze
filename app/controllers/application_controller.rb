@@ -17,8 +17,14 @@ class ApplicationController < ActionController::Base
   def current_cart
     if current_user
       if session[:cart_id]
-        @current_cart ||= Cart.find(session[:cart_id])
-        session[:cart_id] = nil if @current_cart.purchased_at or @current_cart.user != current_user
+        begin
+          @current_cart ||= Cart.find(session[:cart_id])
+          session[:cart_id] = nil if @current_cart.purchased_at or @current_cart.user != current_user
+        rescue ActiveRecord::RecordNotFound
+          # This can happen if the surrounding transaction (i.e, creating a line item in the cart)
+          # fails and rolls back
+          session[:cart_id] = nil
+        end
       end
       if session[:cart_id].nil?
         @current_cart = Cart.create!(:user => current_user)
@@ -29,8 +35,8 @@ class ApplicationController < ActionController::Base
   end
 
 
-  # Allow you to use text helper (pluralize) from within controllers.
-  # See http://snippets.dzone.com/posts/show/1799
+# Allow you to use text helper (pluralize) from within controllers.
+# See http://snippets.dzone.com/posts/show/1799
 
   def help
     Helper.instance
@@ -87,4 +93,5 @@ class ApplicationController < ActionController::Base
   def set_user_language
     I18n.locale = current_user.try(:language) || 'en'
   end
+
 end

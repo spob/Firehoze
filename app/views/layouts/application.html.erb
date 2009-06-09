@@ -11,7 +11,7 @@
 <body>
 
 <h1>Firehoze</h1>
-<%= pluralize User.logged_in.count, "user" %> currently logged
+<%= pluralize User.logged_in.count, "user" %> currently logged in
 <% if show_cart? %>
     | <%= link_to "Shopping Cart", cart_path(@current_cart) %>
 <% end %>
@@ -43,5 +43,9 @@
 
 <%= yield %>
 
+<% if current_user %>
+    <br/><br/>
+    Logged In As: <%= current_user.login %>
+<% end %>
 </body>
 </html>

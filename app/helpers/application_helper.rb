@@ -4,9 +4,14 @@ module ApplicationHelper
   def show_cart?
     if current_user
       if session[:cart_id]
-        @current_cart ||= Cart.find(session[:cart_id])
+        begin
+          @current_cart ||= Cart.find(session[:cart_id])
+        rescue ActiveRecord::RecordNotFound
+          @current_cart = nil
+          session[:cart_id] = nil
+        end
       end
+      @current_cart and @current_cart.line_items.present?
     end
-    @current_cart and @current_cart.present?
   end
 end

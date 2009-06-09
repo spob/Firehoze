@@ -40,17 +40,17 @@
 
 <p>
     <b>Last request at:</b>
-    <%= h @user.last_request_at %>
+    <%= l @user.last_request_at if @user.last_request_at %>
 </p>
 
 <p>
     <b>Last login at:</b>
-    <%= h @user.last_login_at %>
+    <%= l @user.last_login_at if  @user.last_login_at %>
 </p>
 
 <p>
     <b>Current login at:</b>
-    <%= h @user.current_login_at %>
+    <%= l @user.current_login_at if @user.current_login_at %>
 </p>
 
 <p>
