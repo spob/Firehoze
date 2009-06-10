@@ -20,7 +20,7 @@ class RegistrationsControllerTest < ActionController::TestCase
 
       #should_assign_to :user
       should_respond_with :redirect
-      should_set_the_flash_to "Account registered!"
+      should_set_the_flash_to /Please check your email/
       should_redirect_to("root  page") { root_path }
     end
   end
