@@ -1,7 +1,38 @@
-<h1>Register</h1>
+<% form_for [ @registration, @user ] do |form| %>
+    <%= form.error_messages %>
 
-<% form_for(:user, :url => users_path) do |f| %>
-  <%= f.error_messages %>
-  <%= render :partial => "form", :object => f %>
-  <%= f.submit "Register" %>
+    Please confirm the following details to create your account:
+    <br/><br/>
+    <p>
+      <b>Login:</b>
+      <%= h @user.login %>
+    </p>
+
+    <p>
+      <b>Email:</b>
+      <%= h @user.email %>
+    </p>
+
+    <p>
+      <b>First Name:</b>
+      <%= h @user.first_name %>
+    </p>
+
+    <p>
+      <b>Last Name:</b>
+      <%= h @user.last_name %>
+    </p>
+
+    <p>
+      <b>User Time Zone:</b>
+      <%= h @user.time_zone %>
+    </p>
+
+    <p>
+      <b>Language:</b>
+      <%= select_tag :language,  options_for_select(User.supported_languages, @user.language), :disabled => true %>
+    </p>
+
+    <br/>
+    <%= form.submit "Confirm" %>
 <% end %>

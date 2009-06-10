@@ -12,4 +12,13 @@ class Notifier < ActionMailer::Base
     sent_on     Time.zone.now
     body        :edit_password_reset_url => edit_password_reset_url(user.perishable_token)
   end
+  
+  def registration(registration)
+    subject    "Registration successful"
+    recipients registration.email
+    from       "admin@website.com"
+
+    body       :registration => registration,
+               :url => new_registration_user_url(registration)
+  end
 end

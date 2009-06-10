@@ -1,0 +1,454 @@
+h1. ActiveUrl
+
+Like many Rails websites, my first production "Rails site":http://things.toswap.com.au needed user sign-ups. I wanted to have this work in a way that allowed a user to register only after confirming their email address.
+
+The way to do this is with _secret URLs_.These are URLs that contain an encrypted string and are effectively impossible to guess. By sending a secret URL to an email address, if the URL is subsequently accessed, that's pretty much a guarantee that the email was received, since there's no other way that URL could have been obtained. (Check out the ??Rails Recipes?? book, which has a good chapter explaining secret URLs.)
+
+h2. Introducing the ActiveUrl Gem
+
+As a first attempt at contributing to the Rails community, I've extracted my site's secret URL functionality into a gem. Since it's used in a similar fashion to <code:ruy>ActiveRecord</code>, I've called it <code>ActiveUrl</code>.
+
+How is my implementation distinctive? Basically, it's database-free. You don't need any new database tables or fields to use it, since all the relevant information is persisted in the URL itself. All you need to do to hide a page behind a secret URL is to nest its route beneath an ActiveUrl object that the library provides. Neat!
+
+h2. Installation & Usage
+
+First, install the gem:
+
+<pre>
+gem sources -a http://gems.github.com
+sudo gem install mholling-active_url
+</pre>
+
+In your Rails app, make sure to specify the gem dependency in environment.rb:
+
+<pre>
+config.gem "mholling-active_url", :lib => "active_url", :source => "http://gems.github.com"
+</pre>
+
+Specify a secret passphrase for the library to perform its encryption. You can set this by adding an initializer (say active_url.rb) in your config/initializers directory. This will just set the secret passphrase for your app (you might not want to check this into your source control):
+
+<pre>
+ActiveUrl::Config.secret = "my-app-encryption-secret"
+</pre>
+
+To generate secret URLs in your Rails application, simply inherit a model from <code>ActiveUrl::Base</code>, in the same way you would normally inherit from <code>ActiveRecord::Base</code>. These objects won't be stored in your database; instead they will be persisted as an encrypted ID and placed in an URL given only to that user (typically by email).
+
+<pre>
+class Secret < ActiveUrl::Base
+  ...
+end
+</pre>
+
+The following class methods are available for your model:
+
+* <code>attribute(*attribute_names)</code> [sets attributes on your model];
+* <code>belongs_to(model_name)</code> [sets a "foreign key" attribute and an association method];
+* <code>attr_accessible(*attribute_names)</code> [allows mass-assignment of attributes]
+* validations: most of the ActiveRecord validations are available on the attributes you set;
+* <code>after_save(callback_name)</code> [sets a callback to be run after the object is persisted];
+* <code>find(id)</code> [finds an object from the specified ID, which will be extracted from an URL].
+
+Save your object by using the <code>ActiveUrl::Base#save</code> method--this will run any validations and generate the encrypted ID if the validations pass. (You will usually use this method in your model's controller.)
+
+In your controllers which deal with ActiveUrl models, you'll want to deal with the case of an invalid URL; usually just to render a 404. This is easily done using <code>rescue_from</code> in your application controller:
+
+<pre>
+rescue_from ActiveUrl::RecordNotFound do
+  render :file => "#{Rails.root}/public/404.html", :status => 404
+end
+</pre>
+
+h2. Example: Confirming an Email Address
+
+The typical use case for this example is the verification of an email address provided by a someone signing up to your website. You want to check that the address is valid by sending an email to that address; the user must follow a secret URL in the email to confirm they received the email.
+
+h3. Registration Model
+
+We don't want to create a User model until the email is confirmed, so instead we'll use a <code>ActiveUrl::Base</code> model. This is what will be created when a user registers:
+
+<pre>
+class Registration < ActiveUrl::Base  
+  attribute :email, :accessible => true
+  validates_format_of :email, :with => /^[\w\.=-]+@[\w\.-]+\.[a-zA-Z]{2,4}$/ix
+  validate :email_not_taken
+  
+  after_save :send_registration_email
+  
+  protected
+  
+  def email_not_taken
+    if User.find_by_email(email)
+      errors.add(:email, "is already in use")
+    end
+  end
+  
+  def send_registration_email
+    Mailer.deliver_registration(self)
+  end
+end
+</pre>
+
+Going through this step-by-step:
+
+# First, we set our email attribute using <code>attribute :email</code>, which generates setter and getter methods for the attribute.
+# Next, validate the email address so it at least looks right (<code>validates_format_of :email</code>).
+# We also want to check that a user has not already signed up with that email address, so we add a custom validation (<code>email_not_taken</code>) which adds an error if a User with that email address is found.
+# Finally, we set an <code>after_save</code> callback to actually send the registration email when the model is saved. In the mailer method, we pass in the object so that we know what email address to send to and what secret URL to use.
+
+h3. Routes
+
+Next, let's set up our routes to allow user creation only via an email confirmation. In routes.rb the relevant routes would be:
+
+<pre>
+map.resources :registrations, :only => [ :new, :create ] do |registration|
+  registration.resources :users, :only => [ :new, :create ]
+end
+</pre>
+
+h3. Registrations Controller
+
+To allow a user to register, create a registrations controller with just two REST actions, <code>new</code> and <code>create</code>. The controller is entirely generic, as it should be:
+
+<pre>
+class RegistrationsController < ApplicationController
+  def new
+    @registration = Registration.new
+  end
+
+  def create
+    @registration = Registration.new(params[:registration])
+    if @registration.save
+      flash[:notice] = "Please check your email to complete the registration."
+      redirect_to root_path # or wherever...
+    else
+      flash.now[:error] = "There were problems with that email address."
+      render :action => "new"
+    end
+  end
+end
+</pre>
+
+When the <code>create</code> action succeeds, the registration object is saved and the registration email sent automatically by its <code>after_save</code> callback.
+
+h3. Registration View
+
+In the new.html.erb view, the registration form would look something like:
+
+<pre>
+<% form_for @registration do |form| %>
+  <div>
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+  <div>
+    <%= form.submit "Register" %>
+  </div>
+<% end %>
+</pre>
+
+h3. Mailer
+
+Finally, we set the mailer to deliver a registration email to the supplied email address:
+
+<pre>
+class Mailer < ActionMailer::Base
+  def registration(registration)
+    subject    "Registration successful"
+    recipients registration.email
+    from       "admin@website.com"
+    
+    body       :registration => registration
+  end
+end
+</pre>
+
+The registration object is passed through to the email template, where we use it to get the email address and also to generate the new user URL. Since the URL is secret, if it is subsequently accessed then we know that whoever is accessing it was able to read that email. Thus we have confirmed the email address as a real one, which is what we wanted.
+
+The email template might look something like:
+
+<pre>
+Hi <%= @registration.email %>,
+
+Thanks for registering! Please follow this link to complete your
+registration process:
+
+<%= new_registration_user_url(@registration, :host => "website.com") %>
+
+Thanks!
+website.com
+</pre>
+
+The secret URL generated in the email would look something like:
+
+<pre>
+http://website.com/registrations/yAfxbJIeUFKX9YiY6Pqv0UAwufcacnYabEYS7TxTgZY/users/new
+</pre>
+
+h3. User Model
+
+In our <code>User</code> model, we want to make sure the email address cannot be mass-assigned, so be sure to use <code>attr_protected</code> (or even better, <code>attr_accessible</code>) to prevent this:
+
+<pre>
+class User < ActiveRecord::Base
+  ...
+  attr_protected :email
+  ...
+end
+</pre>
+
+h3. Users Controller
+
+Now let's turn our attention to the users controller. We access the <code>new</code> and <code>create</code> actions only via the nested routes, so that we can load our <code>Registration</code> object from the controller parameters. We'll use the <code>ActiveUrl::Base.find</code> method to retrieve the registration object, and then set the user's email address from it:
+
+<pre>
+class UsersController < ApplicationController
+  def new
+    @registration = Registration.find(params[:registration_id])
+    @user = User.new
+    @user.email = @registration.email
+  end
+
+  def create
+    @registration = Registration.find(params[:registration_id])
+    @user = User.new(params[:user])
+    @user.email = @registration.email
+    if @user.save
+      flash[:notice] = "Thanks for registering!"
+      redirect_to @user # or wherever...
+    else
+      flash.now[:error] = "There were problems with your information."
+      render :action => "new"
+    end
+  end
+end
+</pre>
+
+h3. New User View
+
+The exact contents of the user creation form will depend on our User model, among other things. Notably however,it will *not* include a field for the email address, since we've already obtained the email address from the registration object and we don't want the user to be able to subsequently change it. (It's probably advisable to include the email address in the form's text though, for the sake of clarity.)
+
+The new user form might look something like this:
+
+<pre>
+<% form_for [ @registration, @user ] do |form| %>
+  <div>
+    Please enter new user details for <% @user.email %>.
+  </div>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <!-- ... other user fields here ... -->
+  <div>
+    <%= form.submit "OK" %>
+  </div>
+<% end %>
+</pre>
+
+h2. Example: Resetting a Lost Password
+
+Let's take a look at another application of the library - implementing a "reset password" function. Basically, we want to allow an user to change his/her password without logging in. We'll achieve this by sending the secret URL to the user when they submit a "forgot your password?" form.
+
+Again, the basic idea is to hide the password-editing page behind the secret URL. The password-editing page will not be protected by the usual authentication requirements; instead, the knowledge of the secret URL is what authenticates the user. 
+
+h3. Model
+
+Let's first take a look at an ActiveUrl model for the secret URL. We want to create an instance from an email address, which is what the user will still know once the password is forgotten. We could declare an email attribute as in the previous article, but the only thing our model really needs is a reference to a user, which we can derive from the email.
+
+For this purpose, we'll use the <code>belongs_to</code> feature of ActiveUrl. This is a quick-and-dirty mirror of the corresponding ActiveRecord feature. (Its only purpose though is to relate a secret URL to an existing database record, so it's only got the bare minimum of functionality.) Let's use it:
+
+<pre>
+class Secret < ActiveUrl::Base
+  belongs_to :user
+  validates_presence_of :user
+  
+  attr_reader :email
+  attr_accessible :email
+  
+  def email=(email)
+    @email = email
+    self.user = User.find_by_email(email)
+  end
+
+  after_save :send_email
+  
+  protected
+  
+  def send_email
+    Mailer.deliver_secret(self)
+  end
+end
+</pre>
+
+h4. Attributes
+
+We've set the email as a _virtual attribute_, just as we might for a normal ActiveRecord object. In addition to setting an instance variable, the email setter method also sets the user. The <code>Secret#user=</code> method is generated by the <code>belongs_to</code> association. (<code>user_id=</code>, <code>user</code> and <code>user_id</code> methods are also generated.)
+
+We can see what attributes are stored in the model, and what can be written by mass-assignment:
+
+<pre>
+Secret.attribute_names
+# => #<Set: {:user_id}>
+
+Secret.accessible_attributes
+# => #<Set: {:email}>
+</pre>
+
+In other words, the only attribute stored in the model is the user id, but that id can only be set by setting the email.
+
+<pre>
+User.first
+# => #<User id: 1, email: "name@example.com", ... >
+
+secret = Secret.new(:user_id => 1)
+secret.user_id
+# => nil
+
+secret = Secret.new(:email => "name@example.com")
+secret.user_id
+# => 1
+</pre>
+
+h4. Validations
+
+A validation, <code>validates_presence_of :user</code>, ensures that an existing user is found for the given email address. The object won't save (and the email won't get sent) if there's no user with that email address.
+
+(n.b. If you want to use the Rails error markup in your form, you might want to set an error on <code>email</code> instead.)
+
+h4. Callbacks
+
+Finally, note the <code>after_save</code> callback. It's a method which sends the secret URL to the user in an email, and it will get called when the controller successfully saves the object.
+
+h3. Routes
+
+Our routes are pretty simple. We only want to be able to create secrets, so we'll just have <code>new</code> and <code>create</code> routes. Nested under a secret, we want some routes for changing the user's password. This could be arranged in a few different ways, but let's put the password-changing actions in their own controller:
+
+<pre>
+map.resources :secrets, :only => [ :new, :create ] do |secret|
+  secret.resources :passwords, :only => [ :new, :create ]
+end
+</pre>
+
+h3. Controller
+
+As always, we strive for generic controllers, and we pretty much get one here:
+
+<pre>
+class SecretsController < ApplicationController
+  def new
+    @secret = Secret.new
+  end
+  
+  def create
+    @secret = Secret.new(params[:secret])
+    if @secret.save
+      flash[:notice] = "Please check your email for a link to change your password."
+      redirect_to root_path # or wherever...
+    else
+      flash.now[:error] = "Unrecognised email address" # if you want to disclose this...
+      render :action => "new"
+    end
+  end
+end
+</pre>
+
+Of course, there's also a <code>PasswordController</code>, which will contain the actions for changing the user's password. (The user to edit will be obtained from the secret, which in turn will be found from <code>params[:secret_id]</code>.) Its implementation will depend on the <code>User</code> model. Since these actions are hidden behind the secret URL, we'd want to skip the normal user authentication filters for the actions.
+
+h3. View
+
+How does the user actually request a password reset? By submitting his/her email address in a form. Link to this form on the login page:
+
+<pre>
+<%= link_to "I forgot my password", new_secret_path %>
+</pre>
+
+The form itself just asks for an email address:
+
+<pre>
+<% form_for @secret do |form| %>
+  <p>
+    OK, so you forgot your password.
+    No problems! Just enter your email address.
+    We'll send you a link to change your password.
+  </p>
+  <div>
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+  <div>
+    <%= form.submit "OK" %>
+  </div>
+<% end %>
+</pre>
+
+h3. Mailer
+
+In our mailer we want to send an email containing the secret URL for the password edit action. The ActiveUrl object obtained from the URL contains all we need to know, so we just pass it through to the email template. We send the email to the secret's associated user:
+
+<pre>
+class Mailer < ActionMailer::Base
+  def secret(secret)
+    subject    "Change password requested"
+    recipients secret.user.email
+    from       "admin@website.com"
+    
+    body       :secret => secret
+  end
+end
+</pre>
+
+The email template might look something like:
+
+<pre>
+Hi <%= @secret.user.first_name %>,
+
+To change your password, please visit the following link:
+
+<%= new_secret_password_url(@secret, :host => "website.com") %>
+
+(If you did not request a password change, just ignore this email.)
+
+Thanks!
+website.com
+</pre>
+
+h3. Expiring the URL
+
+There's a potential problem with the above implementation though. As it stands, the secret URL is static - the password reset URL for any given user will always be the same. This may or may not be a problem, depending on your security requirements.
+
+It would be nice to have the URL expire once the password has been changed - in effect, to have a single-use URL. This is easily done. We add an attribute to the model containing the current password hash (or the cleartext password, if you store your user passwords in the clear - you shouldn't):
+
+<pre>
+attribute :password_hash
+
+def email=(email)
+  @email = email
+  self.user = User.find_by_email(email)
+  self.password_hash = user.password_hash if user
+end
+</pre>
+
+Then, simply validate the password hash to ensure it's the same as the user's: 
+
+<pre>
+validate :password_hash_is_current, :if => :user
+
+def password_hash_is_current
+  errors.add(:password_hash) unless user.password_hash == password_hash
+end
+</pre>
+
+Since <code>ActiveUrl::Base.find</code> only finds valid objects, once the password has been changed, the secret URL won't validate and an <code>ActiveUrl::RecordNotFound</code> error will be raised. The controller will then drop through to a 404. Easy!
+
+h2. Benefits of ActiveUrl
+
+In other email confirmation schemes, whenever a registration process is initiated, a new user object is created, even before the email address is confirmed. This causes a couple of problems:
+
+* The user model will need some form of state (to distinguish between confirmed and unconfirmed users).
+* If a registration is initiated but not completed, the unconfirmed record will remain in the database, and will need to be manually removed at a later date.
+
+The ActiveUrl gem overcomes both these problems by persisting all the relevant data to the URL itself, in encrypted form. No database table is needed.
+
+One potential problem with this approach? The URL may become quite long if you store much data in the model. Keep the number of attributes and the length of their names to a minimum to avoid this. Typically, a single attribute or a <code>belongs_to</code> reference is all that's needed, and produces URLs of modest length.
+
+Copyright (c) 2009 Matthew Hollingworth. See LICENSE for details.

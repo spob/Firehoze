@@ -55,6 +55,10 @@ Rails::Initializer.run do |config|
   config.gem 'mislav-will_paginate', :version => '~> 2.3.8', :lib => 'will_paginate',
           :source => 'http://gems.github.com'
 
+  # Gem for secret url (for user signup requests)
+  config.gem "mholling-active_url", :lib => "active_url", :source => "http://gems.github.com"
+  
+
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
   # :all can be used as a placeholder for all plugins not explicitly named

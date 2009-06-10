@@ -1,0 +1,83 @@
+--- !ruby/object:Gem::Specification 
+name: mholling-active_url
+version: !ruby/object:Gem::Version 
+  version: 0.1.3
+platform: ruby
+authors: 
+- Matthew Hollingworth
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2009-06-09 00:00:00 -04:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: activerecord
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: "0"
+    version: 
+description: ActiveUrl enables the storing of a model in an encrypted URL. It facilitates implementation of secret URLs for user (e.g. feed URLs) that can be accessed without logging in, and URLs for confirming the email address of a new user.
+email: mdholling@gmail.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- LICENSE
+- README.textile
+files: 
+- LICENSE
+- README.textile
+- Rakefile
+- VERSION.yml
+- lib/active_url.rb
+- lib/active_url/base.rb
+- lib/active_url/belongs_to.rb
+- lib/active_url/callbacks.rb
+- lib/active_url/configuration.rb
+- lib/active_url/crypto.rb
+- lib/active_url/errors.rb
+- lib/active_url/validations.rb
+- spec/belongs_to_spec.rb
+- spec/crypto_spec.rb
+- spec/instance_spec.rb
+- spec/spec_helper.rb
+- spec/validations_spec.rb
+has_rdoc: false
+homepage: http://github.com/mholling/active_url
+post_install_message: 
+rdoc_options: 
+- --charset=UTF-8
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.3.1
+signing_key: 
+specification_version: 2
+summary: A Rails library for generating secret URLs.
+test_files: 
+- spec/belongs_to_spec.rb
+- spec/crypto_spec.rb
+- spec/instance_spec.rb
+- spec/spec_helper.rb
+- spec/validations_spec.rb

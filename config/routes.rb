@@ -18,6 +18,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
   map.resources :user_logons
   map.resources :lessons
+  map.resources :registrations, :only => [ :new, :create ] do |registration|
+    registration.resources :users, :only => [ :new, :create ]
+  end
+
 
   map.current_cart 'cart', :controller => 'carts', :action => 'show', :id => 'current'
   map.root :controller => "lessons", :action => "index"

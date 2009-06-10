@@ -24,6 +24,11 @@
 </p>
 
 <p>
+  <b>Language:</b>
+  <%= select_tag :language,  options_for_select(User.supported_languages, @user.language), :disabled => true %>
+</p>
+
+<p>
     <b>Active:</b>
     <%= h @user.active %>
 </p>

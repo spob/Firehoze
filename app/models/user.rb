@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   validates_length_of       :first_name, :maximum => 40, :allow_nil => true
   validates_length_of       :login, :maximum => 25, :allow_nil => true
 
-  attr_accessible :email, :login, :last_name, :first_name, :time_zone, :language
+  attr_accessible :email, :login
 
   @@languages = [
           ['English', 'en'],
