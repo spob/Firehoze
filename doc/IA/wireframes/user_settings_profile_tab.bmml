@@ -1,11 +1,11 @@
 <mockup version="1.0" skin="sketch" measuredW="1155" measuredH="1172">
   <controls>
-    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="185" y="4" w="960" h="1158" measuredW="450" measuredH="400" zOrder="0" locked="true" isInGroup="-1">
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="185" y="4" w="960" h="1158" measuredW="450" measuredH="400" zOrder="1" locked="true" isInGroup="-1">
       <controlProperties>
         <text>Firehoze%20-%20Settings%0Ahttp%3A//www.firehoze.com/users/spob/edit</text>
       </controlProperties>
     </control>
-    <control controlID="673" controlTypeID="__group__" x="262" y="517" w="-1" h="-1" measuredW="409" measuredH="25" zOrder="10" locked="false" isInGroup="-1">
+    <control controlID="673" controlTypeID="__group__" x="262" y="517" w="-1" h="-1" measuredW="409" measuredH="25" zOrder="11" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="660" controlTypeID="com.balsamiq.mockups::Label" x="0" y="0" w="69" h="25" measuredW="69" measuredH="25" zOrder="0" locked="false" isInGroup="673">
           <controlProperties>
@@ -21,7 +21,7 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="674" controlTypeID="__group__" x="230" y="561" w="-1" h="-1" measuredW="441" measuredH="52" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="674" controlTypeID="__group__" x="230" y="561" w="-1" h="-1" measuredW="441" measuredH="52" zOrder="0" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="662" controlTypeID="com.balsamiq.mockups::Label" x="0" y="2" w="101" h="25" measuredW="101" measuredH="25" zOrder="0" locked="false" isInGroup="674">
           <controlProperties>
@@ -95,7 +95,7 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="614" controlTypeID="__group__" x="214" y="84" w="900" h="108" measuredW="900" measuredH="108" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="614" controlTypeID="__group__" x="214" y="84" w="900" h="108" measuredW="900" measuredH="108" zOrder="5" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="609" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="900" h="108" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="614">
           <controlProperties>
@@ -121,7 +121,7 @@
         <control controlID="651" controlTypeID="com.balsamiq.mockups::DateChooser" x="73" y="0" w="106" h="-1" measuredW="106" measuredH="29" zOrder="1" locked="false" isInGroup="679"/>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="672" controlTypeID="__group__" x="287" y="461" w="-1" h="-1" measuredW="384" measuredH="29" zOrder="9" locked="false" isInGroup="-1">
+    <control controlID="672" controlTypeID="__group__" x="287" y="461" w="-1" h="-1" measuredW="384" measuredH="29" zOrder="10" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="665" controlTypeID="com.balsamiq.mockups::Label" x="0" y="2" w="44" h="25" measuredW="44" measuredH="25" zOrder="0" locked="false" isInGroup="672">
           <controlProperties>
@@ -136,14 +136,14 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="621" controlTypeID="com.balsamiq.mockups::Label" x="224" y="207" w="-1" h="-1" measuredW="269" measuredH="51" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="621" controlTypeID="com.balsamiq.mockups::Label" x="224" y="207" w="-1" h="-1" measuredW="269" measuredH="51" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Account%20Settings</text>
         <size>32</size>
         <bold>true</bold>
       </controlProperties>
     </control>
-    <control controlID="622" controlTypeID="com.balsamiq.mockups::TabBar" x="214" y="280" w="900" h="778" measuredW="330" measuredH="100" zOrder="6" locked="true" isInGroup="-1">
+    <control controlID="622" controlTypeID="com.balsamiq.mockups::TabBar" x="214" y="280" w="900" h="778" measuredW="330" measuredH="100" zOrder="7" locked="true" isInGroup="-1">
       <controlProperties>
         <text>Profile%2C%20Password%2C%20Notices%2C%20Avatar</text>
         <hrefs>%2Cuser_settings_password_tab.bmml%2Cuser_settings_notices_tab.bmml%2Cuser_settings_avatar_tab.bmml</hrefs>
@@ -196,20 +196,20 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="118" controlTypeID="com.balsamiq.mockups::StickyNote" x="8" y="68" w="177" h="96" measuredW="109" measuredH="123" zOrder="1" locked="false" isInGroup="-1">
+    <control controlID="118" controlTypeID="com.balsamiq.mockups::StickyNote" x="8" y="68" w="177" h="96" measuredW="109" measuredH="123" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
         <text>User%20Settings%0AProfile%20Tab</text>
         <size>12</size>
       </controlProperties>
     </control>
-    <control controlID="440" controlTypeID="com.balsamiq.mockups::HRule" x="214" y="254" w="900" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="-1"/>
+    <control controlID="440" controlTypeID="com.balsamiq.mockups::HRule" x="214" y="254" w="900" h="-1" measuredW="100" measuredH="5" zOrder="3" locked="false" isInGroup="-1"/>
     <control controlID="680" controlTypeID="com.balsamiq.mockups::Label" x="341" y="967" w="-1" h="-1" measuredW="353" measuredH="22" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Your%20secret%20is%20safe%20with%20us%2C%20but%20sometimes%20we%20like%20to%20send%20gifts%21</text>
         <size>11</size>
       </controlProperties>
     </control>
-    <control controlID="671" controlTypeID="__group__" x="259" y="396" w="-1" h="-1" measuredW="412" measuredH="50" zOrder="8" locked="false" isInGroup="-1">
+    <control controlID="671" controlTypeID="__group__" x="259" y="396" w="-1" h="-1" measuredW="412" measuredH="50" zOrder="9" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="667" controlTypeID="com.balsamiq.mockups::Label" x="0" y="2" w="72" h="25" measuredW="72" measuredH="25" zOrder="0" locked="false" isInGroup="671">
           <controlProperties>
@@ -230,7 +230,7 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="670" controlTypeID="__group__" x="285" y="342" w="-1" h="-1" measuredW="394" measuredH="50" zOrder="7" locked="false" isInGroup="-1">
+    <control controlID="670" controlTypeID="__group__" x="285" y="342" w="-1" h="-1" measuredW="394" measuredH="50" zOrder="8" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="653" controlTypeID="com.balsamiq.mockups::Label" x="0" y="2" w="46" h="25" measuredW="46" measuredH="25" zOrder="0" locked="false" isInGroup="670">
           <controlProperties>
@@ -251,6 +251,6 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="607" controlTypeID="com.balsamiq.mockups::HRule" x="214" y="203" w="900" h="-1" measuredW="100" measuredH="5" zOrder="3" locked="false" isInGroup="-1"/>
+    <control controlID="607" controlTypeID="com.balsamiq.mockups::HRule" x="214" y="203" w="900" h="-1" measuredW="100" measuredH="5" zOrder="4" locked="false" isInGroup="-1"/>
   </controls>
 </mockup>
