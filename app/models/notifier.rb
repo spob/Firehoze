@@ -14,6 +14,7 @@ class Notifier < ActionMailer::Base
   end
   
   def registration(registration)
+    #asf
     subject    "Registration successful"
     recipients registration.email
     from       "admin@website.com"

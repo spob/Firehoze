@@ -1,7 +1,7 @@
 <% form_for [ @registration, @user ] do |form| %>
     <%= form.error_messages %>
 
-    Please confirm the following details to create your account:
+    Your email address has been confirmed. Please provide the following information to create your account:
     <br/><br/>
     <p>
       <b>Login:</b>
@@ -13,26 +13,26 @@
       <%= h @user.email %>
     </p>
 
-    <p>
-      <b>First Name:</b>
-      <%= h @user.first_name %>
-    </p>
 
-    <p>
-      <b>Last Name:</b>
-      <%= h @user.last_name %>
-    </p>
-
-    <p>
-      <b>User Time Zone:</b>
-      <%= h @user.time_zone %>
-    </p>
-
-    <p>
-      <b>Language:</b>
-      <%= select_tag :language,  options_for_select(User.supported_languages, @user.language), :disabled => true %>
-    </p>
-
+    <%= form.label :first_name %>:
+    <%= form.text_field :first_name %><br />
     <br/>
-    <%= form.submit "Confirm" %>
+    <%= form.label :last_name %>:
+    <%= form.text_field :last_name %><br />
+    <br/>
+    <%= form.label :time_zone %>:
+    <%= form.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
+    <br/>
+    <%= form.label :language %>:
+    <%= form.select :language, User.supported_languages %>
+    <br/>
+
+
+    <%= form.label :password, form.object.nil? ? nil : "Change password" %>:
+    <%= form.password_field :password %><br />
+    <br/>
+    <%= form.label :password_confirmation %>:
+    <%= form.password_field :password_confirmation %><br />
+    <br/>
+    <%= form.submit "Register" %>
 <% end %>

@@ -5,6 +5,7 @@ class RegistrationsController < ApplicationController
 
   def create
     @registration = Registration.new(params[:registration])
+    @registration.send_email = true
     if @registration.save
       flash[:notice] = "Please check your email to complete the registration."
       redirect_to root_path 

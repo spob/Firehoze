@@ -14,8 +14,8 @@ class UsersController < ApplicationController
   def new
     begin
       @registration = Registration.find(params[:registration_id])
-      @user = User.new
-      populate_from_registration
+      @user = populate_user_from_registration
+      @user.time_zone = APP_CONFIG['default_user_timezone']
     rescue ActiveUrl::RecordNotFound
       flash[:notice] = "Registration no longer valid"
       redirect_back_or_default home_path
@@ -24,9 +24,7 @@ class UsersController < ApplicationController
 
   def create
     @registration = Registration.find(params[:registration_id])
-
-    @user = User.new(params[:user])
-    populate_from_registration
+    @user = populate_user_from_registration
     if @user.save
       flash[:notice] = "Account registered!"
       redirect_back_or_default user_path(@user)
@@ -62,13 +60,9 @@ end
 
 private
 
-def populate_from_registration()
-  @user.email = @registration.email
-  @user.login = @registration.login
-  @user.password = @registration.password
-  @user.password_confirmation = @registration.password_confirmation
-  @user.time_zone = @registration.time_zone
-  @user.language = @registration.language
-  @user.first_name = @registration.first_name
-  @user.last_name = @registration.last_name
+def populate_user_from_registration
+  user = User.new(params[:user])
+  user.email = @registration.email
+  user.login = @registration.login
+  user
 end
