@@ -65,7 +65,7 @@
     </control>
     <control controlID="118" controlTypeID="com.balsamiq.mockups::StickyNote" x="8" y="68" w="155" h="123" measuredW="109" measuredH="123" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>User%20Account%20Edit</text>
+        <text>User%20Settings</text>
       </controlProperties>
     </control>
     <control controlID="2" controlTypeID="com.balsamiq.mockups::LinkBar" x="720" y="90" w="-1" h="-1" measuredW="255" measuredH="25" zOrder="1" locked="false" isInGroup="-1">
@@ -101,9 +101,9 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="149" controlTypeID="com.balsamiq.mockups::TabBar" x="221" y="264" w="878" h="329" measuredW="256" measuredH="100" zOrder="9" locked="false" isInGroup="-1">
+    <control controlID="149" controlTypeID="com.balsamiq.mockups::TabBar" x="221" y="264" w="878" h="329" measuredW="339" measuredH="100" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>One%2C%20Two%2C%20Three%2C%20Four</text>
+        <text>Account%2C%20Password%2C%20Notices%2C%20Picture</text>
       </controlProperties>
     </control>
   </controls>
