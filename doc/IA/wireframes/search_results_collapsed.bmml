@@ -5,9 +5,10 @@
         <text>Firehoze%0Ahttp%3A//www.firehoze.com/search/results%3Fquery%3Dlorem+ipsum</text>
       </controlProperties>
     </control>
-    <control controlID="610" controlTypeID="com.balsamiq.mockups::Canvas" x="214" y="565" w="904" h="50" measuredW="100" measuredH="70" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="604" controlTypeID="com.balsamiq.mockups::Icon" x="224" y="350" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
-        <color>15132390</color>
+        <href>search_results_expanded.bmml</href>
+        <icon>CircledPlusIcon%7Csmall</icon>
       </controlProperties>
     </control>
     <control controlID="421" controlTypeID="com.balsamiq.mockups::Label" x="218" y="203" w="130" h="36" measuredW="113" measuredH="51" zOrder="2" locked="false" isInGroup="-1">
@@ -17,7 +18,7 @@
         <bold>true</bold>
       </controlProperties>
     </control>
-    <control controlID="614" controlTypeID="__group__" x="214" y="84" w="-1" h="-1" measuredW="904" measuredH="108" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="614" controlTypeID="__group__" x="214" y="84" w="-1" h="-1" measuredW="904" measuredH="108" zOrder="12" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="609" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="904" h="108" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="614">
           <controlProperties>
@@ -32,9 +33,43 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="615" controlTypeID="com.balsamiq.mockups::Label" x="644" y="577" w="-1" h="-1" measuredW="44" measuredH="25" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="616" controlTypeID="com.balsamiq.mockups::Icon" x="224" y="424" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Footer</text>
+        <icon>CircledPlusIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="617" controlTypeID="com.balsamiq.mockups::Label" x="257" y="423" w="187" h="25" measuredW="161" measuredH="25" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Instructors%3A%20101%20Results</text>
+      </controlProperties>
+    </control>
+    <control controlID="618" controlTypeID="com.balsamiq.mockups::Icon" x="224" y="461" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>CircledPlusIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="619" controlTypeID="com.balsamiq.mockups::Label" x="257" y="460" w="157" h="25" measuredW="151" measuredH="25" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Universities%3A12%20Results</text>
+      </controlProperties>
+    </control>
+    <control controlID="620" controlTypeID="__group__" x="214" y="565" w="-1" h="-1" measuredW="904" measuredH="50" zOrder="17" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="610" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="904" h="50" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="620">
+          <controlProperties>
+            <color>15132390</color>
+          </controlProperties>
+        </control>
+        <control controlID="615" controlTypeID="com.balsamiq.mockups::Label" x="430" y="13" w="-1" h="-1" measuredW="44" measuredH="25" zOrder="1" locked="false" isInGroup="620">
+          <controlProperties>
+            <text>Footer</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="118" controlTypeID="com.balsamiq.mockups::StickyNote" x="8" y="68" w="177" h="144" measuredW="109" measuredH="123" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Sitewide%20Search%20Results%0AQuerying%20multiple%20models%20and%20segregated%0A%3E%3E%20Veiw%20collapsed</text>
       </controlProperties>
     </control>
     <control controlID="439" controlTypeID="com.balsamiq.mockups::Label" x="342" y="220" w="-1" h="-1" measuredW="204" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
@@ -43,37 +78,6 @@
       </controlProperties>
     </control>
     <control controlID="440" controlTypeID="com.balsamiq.mockups::HRule" x="218" y="254" w="900" h="-1" measuredW="100" measuredH="5" zOrder="4" locked="false" isInGroup="-1"/>
-    <control controlID="618" controlTypeID="com.balsamiq.mockups::Icon" x="224" y="461" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="17" locked="false" isInGroup="-1">
-      <controlProperties>
-        <icon>CircledPlusIcon%7Csmall</icon>
-      </controlProperties>
-    </control>
-    <control controlID="604" controlTypeID="com.balsamiq.mockups::Icon" x="224" y="350" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="8" locked="false" isInGroup="-1">
-      <controlProperties>
-        <href>search_results_expanded.bmml</href>
-        <icon>CircledPlusIcon%7Csmall</icon>
-      </controlProperties>
-    </control>
-    <control controlID="616" controlTypeID="com.balsamiq.mockups::Icon" x="224" y="424" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="15" locked="false" isInGroup="-1">
-      <controlProperties>
-        <icon>CircledPlusIcon%7Csmall</icon>
-      </controlProperties>
-    </control>
-    <control controlID="617" controlTypeID="com.balsamiq.mockups::Label" x="257" y="423" w="187" h="25" measuredW="161" measuredH="25" zOrder="16" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Instructors%3A%20101%20Results</text>
-      </controlProperties>
-    </control>
-    <control controlID="619" controlTypeID="com.balsamiq.mockups::Label" x="257" y="460" w="157" h="25" measuredW="151" measuredH="25" zOrder="18" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Universities%3A12%20Results</text>
-      </controlProperties>
-    </control>
-    <control controlID="118" controlTypeID="com.balsamiq.mockups::StickyNote" x="8" y="68" w="177" h="144" measuredW="109" measuredH="123" zOrder="1" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Sitewide%20Search%20Results%0AQuerying%20multiple%20models%20and%20segregated%0A%3E%3E%20Veiw%20collapsed</text>
-      </controlProperties>
-    </control>
     <control controlID="441" controlTypeID="com.balsamiq.mockups::Label" x="218" y="268" w="-1" h="-1" measuredW="271" measuredH="25" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <text>There%20are%20162%20results%20in%20these%20categories</text>
