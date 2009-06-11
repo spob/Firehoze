@@ -21,7 +21,7 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="674" controlTypeID="__group__" x="230" y="557" w="-1" h="-1" measuredW="441" measuredH="52" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="674" controlTypeID="__group__" x="230" y="561" w="-1" h="-1" measuredW="441" measuredH="52" zOrder="11" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="662" controlTypeID="com.balsamiq.mockups::Label" x="0" y="2" w="101" h="25" measuredW="101" measuredH="25" zOrder="0" locked="false" isInGroup="674">
           <controlProperties>
