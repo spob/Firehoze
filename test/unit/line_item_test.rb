@@ -23,11 +23,11 @@ class LineItemTest < ActiveSupport::TestCase
     should_not_allow_values_for      :quantity,  2.12, "a", :message => I18n.translate('activerecord.errors.messages.not_a_number')
 
     should "calculate total price" do
-      assert_equal 0.99, @line_item.total_full_price
+      assert_equal 0.99*5, @line_item.total_full_price
     end
 
     should "calculate discounted price" do
-      assert_equal 0.99, @line_item.discounted_unit_price
+      assert_equal 0.99*5, @line_item.total_discounted_price
     end
 
     should "find by cart and sku" do

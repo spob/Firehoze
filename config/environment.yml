@@ -26,3 +26,7 @@ periodic_job_timeout: 30
 
 # The maximum video file upload size (in MB)
 max_video_size: 500
+
+# Minimum credit purchase represents the fewest number of video credits that a user
+# can purchase in one transaction
+min_credit_purchase: 5

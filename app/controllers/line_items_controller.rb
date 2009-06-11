@@ -22,7 +22,7 @@ class LineItemsController < ApplicationController
         # This should never fail. If it does, something is seriously wrong so go ahead
         # and throw an exception
         @line_item = LineItem.new(:cart => current_cart, :sku => @sku, :quantity => quantity,
-                                      :unit_price => @sku.price)
+                                  :unit_price => @sku.price)
         @line_item.sku = @sku
         @line_item.cart = current_cart
         @line_item.unit_price = @sku.price
@@ -36,17 +36,20 @@ class LineItemsController < ApplicationController
     redirect_to current_cart_url
   end
 
-  #def update
-  #  @line_item = LineItem.find(params[:id])
-  #  if params[:line_item][:quantity].to_i == 0
-  #    destroy
-  #  else
-  #    if @line_item.update_attribute(:quantity, params[:discount][:quantity])
-  #      flash[:notice] = "Updated line item."
-  #    end
-  #    redirect_to current_cart_url
-  #  end
-  #end
+  def update
+    @line_item = LineItem.find(params[:id])
+    delta = params[:qty_change].to_i
+    @line_item.quantity = @line_item.quantity + delta
+
+    if @line_item.quantity < APP_CONFIG['min_credit_purchase']
+      flash[:error] = "You must buy at least #{APP_CONFIG['min_credit_purchase']} credits"
+    elsif @line_item.save
+      flash[:notice] = "Updated line item."
+    else
+      flash[:error] = "Line update failed"
+    end
+    redirect_to current_cart_url
+  end
 
   def destroy
     line_item = LineItem.find params[:id]

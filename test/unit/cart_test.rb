@@ -17,16 +17,18 @@ class CartTest < ActiveSupport::TestCase
       end
 
       should "calculate the total price" do
-        #for li in @cart.line_items do
-        #  puts "#{li.quantity} x $#{li.unit_price}"
-        #end
+        for li in @cart.line_items do
+          #puts "#{li.quantity} x $#{li.unit_price}, #{li.total_full_price}, #{li.total_discounted_price}"
+        end
         assert_equal 2, @cart.line_items.count
-        assert_equal(((1 * 0.99) + (11 * 1.25)), @cart.total_full_price)
-        assert_equal(((1 * 0.99) + (11 * 1.25)), @cart.total_discounted_price)
+        calculated_price = 5*0.99 + 11*1.25
+        #puts "==========#{@cart.total_full_price}, #{@cart.total_discounted_price}, #{calculated_price}"
+        assert_equal calculated_price, @cart.total_full_price
+        assert_equal @cart.total_full_price, @cart.total_discounted_price
       end
 
       should "calculate the total credits" do
-        assert_equal 12, @cart.total_credits
+        assert_equal 16, @cart.total_credits
       end
     end
   end

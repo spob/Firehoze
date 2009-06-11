@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource  :account, :controller => "profiles"
   map.resources :carts, :only => [ :show ]
   map.resources :credits
-  map.resources :line_items, :only => [ :create, :destroy ]
+  map.resources :line_items, :only => [ :create, :destroy, :update ]
   map.resources :orders
   map.login 'login',   :controller => 'user_sessions', :action => 'new'
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'

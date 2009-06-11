@@ -5,7 +5,7 @@
     <%= link_to 'edit', edit_sku_path(sku) if sku.can_edit? current_user %>
     <%= link_to 'delete', sku_path(sku),
             html_options = {:confirm => 'Are you sure?', :method => :delete}  if sku.can_delete? current_user %>
-    <%= link_to "Add to Cart", line_items_path(:sku_id => sku, :quantity => 1), :method => :post %>
+    <%= link_to "Add to Cart", line_items_path(:sku_id => sku, :quantity => APP_CONFIG['min_credit_purchase']), :method => :post %>
     <%= link_to "Discounts", sku_discounts_path(sku) %>
   </td>
 </tr>

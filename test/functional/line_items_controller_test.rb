@@ -70,14 +70,42 @@ class LineItemsControllerTest < ActionController::TestCase
 
     context "with at least one LineItem" do
       setup { @line_item = Factory.create(:line_item) }
-      
+
       context "on DELETE to :destroy" do
         setup { delete :destroy, :id => @line_item }
-        
+
         should_change "LineItem.count", :from => 1, :to => 0
         should_respond_with :redirect
         should_set_the_flash_to /removed/
         should_redirect_to("cart page") { '/cart' }
+      end
+
+      context "on PUT to :update to increment" do
+        setup { put :update, :id => @line_item, :qty_change => 1 }
+
+        should_change "LineItem.find(@line_item).quantity", :from => 5, :to => 6
+        should_set_the_flash_to /Updated line item/
+
+        context "and another PUT to :update to increment" do
+          setup { put :update, :id => @line_item, :qty_change => 1 }
+
+          should_change "LineItem.find(@line_item).quantity", :from => 6, :to => 7
+          should_set_the_flash_to /Updated line item/
+        end
+
+        context "and another PUT to :update to decrement" do
+          setup { put :update, :id => @line_item, :qty_change => -1 }
+
+          should_change "LineItem.find(@line_item).quantity", :from => 6, :to => 5
+          should_set_the_flash_to /Updated line item/
+
+          context "and another PUT to :update to decrement" do
+            setup { put :update, :id => @line_item, :qty_change => -1 }
+
+            should_not_change "LineItem.find(@line_item).quantity"
+            should_set_the_flash_to /You must buy at least/
+          end
+        end
       end
     end
   end
