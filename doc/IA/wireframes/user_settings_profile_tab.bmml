@@ -136,9 +136,9 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="621" controlTypeID="com.balsamiq.mockups::Label" x="224" y="207" w="-1" h="-1" measuredW="134" measuredH="51" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="621" controlTypeID="com.balsamiq.mockups::Label" x="224" y="207" w="-1" h="-1" measuredW="269" measuredH="51" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Settings</text>
+        <text>Account%20Settings</text>
         <size>32</size>
         <bold>true</bold>
       </controlProperties>
