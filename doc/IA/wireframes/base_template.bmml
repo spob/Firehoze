@@ -5,13 +5,28 @@
         <text>Firehoze%20-%20Lorem%20Ipsum%0Ahttp%3A//www.firehoze.com</text>
       </controlProperties>
     </control>
+    <control controlID="624" controlTypeID="__group__" x="215" y="84" w="-1" h="-1" measuredW="900" measuredH="108" zOrder="6" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="622" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="900" h="108" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="624">
+          <controlProperties>
+            <color>15132390</color>
+          </controlProperties>
+        </control>
+        <control controlID="623" controlTypeID="com.balsamiq.mockups::Title" x="413" y="37" w="-1" h="-1" measuredW="75" measuredH="34" zOrder="1" locked="false" isInGroup="624">
+          <controlProperties>
+            <text>Header</text>
+            <size>20</size>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
     <control controlID="118" controlTypeID="com.balsamiq.mockups::StickyNote" x="8" y="68" w="177" h="73" measuredW="109" measuredH="123" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
         <text/>
       </controlProperties>
     </control>
     <control controlID="440" controlTypeID="com.balsamiq.mockups::HRule" x="214" y="238" w="900" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="-1"/>
-    <control controlID="620" controlTypeID="__group__" x="213" y="622" w="-1" h="-1" measuredW="904" measuredH="50" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="620" controlTypeID="__group__" x="213" y="622" w="-1" h="-1" measuredW="904" measuredH="50" zOrder="4" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="610" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="904" h="50" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="620">
           <controlProperties>
@@ -25,27 +40,12 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="621" controlTypeID="com.balsamiq.mockups::Label" x="220" y="207" w="-1" h="-1" measuredW="126" measuredH="34" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="621" controlTypeID="com.balsamiq.mockups::Label" x="220" y="207" w="-1" h="-1" measuredW="126" measuredH="34" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Lorem%20Ipsum</text>
         <size>20</size>
         <bold>true</bold>
       </controlProperties>
-    </control>
-    <control controlID="614" controlTypeID="__group__" x="215" y="84" w="900" h="108" measuredW="900" measuredH="108" zOrder="4" locked="false" isInGroup="-1">
-      <groupChildrenDescriptors>
-        <control controlID="609" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="900" h="108" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="614">
-          <controlProperties>
-            <color>15132390</color>
-          </controlProperties>
-        </control>
-        <control controlID="613" controlTypeID="com.balsamiq.mockups::Title" x="385" y="37" w="129" h="-1" measuredW="130" measuredH="34" zOrder="1" locked="false" isInGroup="614">
-          <controlProperties>
-            <text>Header%20Area</text>
-            <size>20</size>
-          </controlProperties>
-        </control>
-      </groupChildrenDescriptors>
     </control>
     <control controlID="607" controlTypeID="com.balsamiq.mockups::HRule" x="214" y="203" w="900" h="-1" measuredW="100" measuredH="5" zOrder="3" locked="false" isInGroup="-1"/>
   </controls>
