@@ -101,5 +101,10 @@
         </control>
       </groupChildrenDescriptors>
     </control>
+    <control controlID="148" controlTypeID="com.balsamiq.mockups::Paragraph" x="480" y="291" w="-1" h="-1" measuredW="200" measuredH="140" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Title%2C%20text%0ADescription%2C%20text%0APosting%20Date%202%20date%20fields%0AAuthor%20text%0ANumber%20of%20Views%20%28ddl%29%0ARating%20%28at%20least%20c/%20radio%20button%29%0ALanguage%20%28ddl%29</text>
+      </controlProperties>
+    </control>
   </controls>
 </mockup>

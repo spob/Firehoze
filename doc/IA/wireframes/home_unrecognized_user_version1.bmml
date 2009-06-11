@@ -5,9 +5,9 @@
         <text>Firehoze%0Ahttp%3A//www.firehoze.com</text>
       </controlProperties>
     </control>
-    <control controlID="2" controlTypeID="com.balsamiq.mockups::LinkBar" x="595" y="88" w="-1" h="-1" measuredW="373" measuredH="25" zOrder="1" locked="false" isInGroup="-1">
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::LinkBar" x="595" y="88" w="-1" h="-1" measuredW="358" measuredH="25" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Member%20sign%20in%2C%20Sign%20up%2C%20Explore%2C%20Support%2C%20About</text>
+        <text>My%20Firehoze%2C%20Sign%20up%2C%20Explore%2C%20Support%2C%20About</text>
       </controlProperties>
     </control>
     <control controlID="3" controlTypeID="com.balsamiq.mockups::SearchBox" x="984" y="89" w="115" h="-1" measuredW="94" measuredH="25" zOrder="2" locked="false" isInGroup="-1">

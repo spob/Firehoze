@@ -101,5 +101,10 @@
         </control>
       </groupChildrenDescriptors>
     </control>
+    <control controlID="149" controlTypeID="com.balsamiq.mockups::TabBar" x="221" y="264" w="878" h="329" measuredW="256" measuredH="100" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>One%2C%20Two%2C%20Three%2C%20Four</text>
+      </controlProperties>
+    </control>
   </controls>
 </mockup>
