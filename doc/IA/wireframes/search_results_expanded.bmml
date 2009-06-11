@@ -399,7 +399,7 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="27" controlTypeID="com.balsamiq.mockups::Label" x="217" y="203" w="130" h="36" measuredW="113" measuredH="51" zOrder="26" locked="false" isInGroup="-1">
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::Label" x="217" y="203" w="-1" h="-1" measuredW="113" measuredH="51" zOrder="26" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Search</text>
         <size>32</size>
