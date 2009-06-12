@@ -27,7 +27,7 @@
     <%= link_to "Log In", login_path %> |
 <% else %>
     Current User: <%= current_user.login %> |
-    <%= link_to "My Profile", account_path %> |
+    <%= link_to "My Account", account_path %> |
     <% if current_user.is_sysadmin? %>
         <%= link_to "Jobs", periodic_jobs_path %> |
         <%= link_to "Users", users_path %> |
