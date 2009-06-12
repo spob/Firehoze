@@ -17,6 +17,5 @@ module MigrationHelpers
   
   def constraint_name from_table, from_column
     "fk_#{from_table}_#{from_column}"
-  end
-  
+  end   
 end

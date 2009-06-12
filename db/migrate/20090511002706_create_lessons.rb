@@ -5,16 +5,16 @@ class CreateLessons < ActiveRecord::Migration
     
   def self.up
     create_table :lessons do |t|
-      t.string     :title,        :null => false, :limit => 150
-      t.integer    :author_id,    :null => false
-      t.text       :description,  :null => true
+      t.string     :title,         :null => false, :limit => 150
+      t.integer    :instructor_id, :null => false
+      t.text       :description,   :null => true
       t.timestamps
     end
-    add_foreign_key(:lessons, :author_id, :users)
+    add_foreign_key(:lessons, :instructor_id, :users)
   end
 
   def self.down
-    remove_foreign_key(:lessons, :author_id)
+    remove_foreign_key(:lessons, :instructor_id)
 
     drop_table :lessons
   end

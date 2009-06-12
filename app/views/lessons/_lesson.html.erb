@@ -1,6 +1,6 @@
 <tr>
  <td><%= lesson.title %></td>
- <td><%= lesson.author.login %></td>
+ <td><%= lesson.instructor.login %></td>
  <td><%= l lesson.created_at %></td>
  <td><%= link_to "View", lesson_path(lesson) %>&nbsp;<%= link_to "Edit", edit_lesson_path(lesson) %></td>
 </tr>
