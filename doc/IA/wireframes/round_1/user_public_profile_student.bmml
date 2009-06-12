@@ -1,8 +1,8 @@
 <mockup version="1.0" skin="sketch" measuredW="1155" measuredH="768">
   <controls>
-    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="185" y="4" w="960" h="754" measuredW="450" measuredH="400" zOrder="0" locked="true" isInGroup="-1">
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="185" y="4" w="960" h="754" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Firehoze%20-%20Spob%0Ahttp%3A//www.firehoze.com/user/spob/public</text>
+        <text>Firehoze%20-%20Sherpa%0Ahttp%3A//www.firehoze.com/user/sherpa/public</text>
       </controlProperties>
     </control>
     <control controlID="614" controlTypeID="__group__" x="215" y="88" w="900" h="108" measuredW="900" measuredH="108" zOrder="4" locked="false" isInGroup="-1">
@@ -39,7 +39,7 @@
         <size>11</size>
       </controlProperties>
     </control>
-    <control controlID="688" controlTypeID="com.balsamiq.mockups::Label" x="841" y="275" w="-1" h="-1" measuredW="186" measuredH="25" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="688" controlTypeID="com.balsamiq.mockups::Label" x="841" y="275" w="-1" h="-1" measuredW="187" measuredH="25" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Following%3A%205%20/%20Followers%3A%20127</text>
       </controlProperties>
@@ -53,9 +53,9 @@
         <bold>true</bold>
       </controlProperties>
     </control>
-    <control controlID="621" controlTypeID="com.balsamiq.mockups::Label" x="225" y="221" w="-1" h="-1" measuredW="288" measuredH="32" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="621" controlTypeID="com.balsamiq.mockups::Label" x="225" y="221" w="-1" h="-1" measuredW="289" measuredH="32" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Sherpa%20%28David%20Wilson%29%20Brooklynn</text>
+        <text>David%20Wilson%20%28Sherpa%29%20Brooklynn</text>
         <size>18</size>
         <bold>true</bold>
       </controlProperties>
