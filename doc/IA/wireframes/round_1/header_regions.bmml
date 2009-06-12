@@ -1,0 +1,176 @@
+<mockup version="1.0" skin="sketch" measuredW="1167" measuredH="877">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="197" y="7" w="960" h="418" measuredW="450" measuredH="400" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Firehoze%0Ahttp%3A//www.firehoze.com</text>
+        <verticalScrollbar>false</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="321" controlTypeID="com.balsamiq.mockups::Icon" x="447" y="590" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="21" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>DownFillTriangleIcon%7Cxsmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="305" controlTypeID="com.balsamiq.mockups::StickyNote" x="7" y="7" w="159" h="92" measuredW="109" measuredH="123" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Un-recognized%20Users</text>
+      </controlProperties>
+    </control>
+    <control controlID="309" controlTypeID="com.balsamiq.mockups::IconLabel" x="216" y="586" w="36" h="-1" measuredW="36" measuredH="24" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%20</text>
+        <size>8</size>
+        <labelPosition>right</labelPosition>
+        <icon>UsersIcon%7Csmall</icon>
+        <color>1644825</color>
+      </controlProperties>
+    </control>
+    <control controlID="150" controlTypeID="com.balsamiq.mockups::ButtonBar" x="374" y="131" w="-1" h="-1" measuredW="301" measuredH="32" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Subjects%2C%20Instructors%2C%20Universities</text>
+        <size>14</size>
+      </controlProperties>
+    </control>
+    <control controlID="310" controlTypeID="com.balsamiq.mockups::Title" x="243" y="582" w="79" h="-1" measuredW="79" measuredH="32" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Firehoze</text>
+        <size>18</size>
+      </controlProperties>
+    </control>
+    <control controlID="297" controlTypeID="__group__" x="1054" y="532" w="-1" h="-1" measuredW="84" measuredH="34" zOrder="8" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="296" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="84" h="34" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="297"/>
+        <control controlID="288" controlTypeID="__group__" x="9" y="4" w="66" h="24" measuredW="66" measuredH="24" zOrder="1" locked="false" isInGroup="297">
+          <groupChildrenDescriptors>
+            <control controlID="285" controlTypeID="com.balsamiq.mockups::Icon" x="0" y="0" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="0" locked="false" isInGroup="288">
+              <controlProperties>
+                <icon>CartIcon%7Csmall</icon>
+              </controlProperties>
+            </control>
+            <control controlID="286" controlTypeID="com.balsamiq.mockups::Link" x="27" y="4" w="-1" h="-1" measuredW="26" measuredH="20" zOrder="1" locked="false" isInGroup="288">
+              <controlProperties>
+                <text>cart</text>
+                <size>10</size>
+              </controlProperties>
+            </control>
+            <control controlID="287" controlTypeID="com.balsamiq.mockups::Label" x="50" y="6" w="16" h="18" measuredW="16" measuredH="18" zOrder="2" locked="false" isInGroup="288">
+              <controlProperties>
+                <text>%282%29</text>
+                <size>8</size>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="250" controlTypeID="__group__" x="896" y="132" w="-1" h="-1" measuredW="231" measuredH="28" zOrder="7" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="248" controlTypeID="com.balsamiq.mockups::SearchBox" x="0" y="1" w="188" h="-1" measuredW="94" measuredH="25" zOrder="0" locked="false" isInGroup="250">
+          <controlProperties>
+            <text>search</text>
+          </controlProperties>
+        </control>
+        <control controlID="249" controlTypeID="com.balsamiq.mockups::Button" x="195" y="0" w="36" h="-1" measuredW="36" measuredH="28" zOrder="1" locked="false" isInGroup="250">
+          <controlProperties>
+            <text>Go</text>
+            <size>10</size>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="268" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="193" y="453" w="960" h="414" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Firehoze%0Ahttp%3A//www.firehoze.com</text>
+        <verticalScrollbar>false</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="319" controlTypeID="com.balsamiq.mockups::Label" x="1026" y="537" w="19" h="20" measuredW="19" measuredH="20" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%285%29</text>
+        <size>10</size>
+      </controlProperties>
+    </control>
+    <control controlID="241" controlTypeID="com.balsamiq.mockups::LinkBar" x="925" y="90" w="-1" h="-1" measuredW="217" measuredH="20" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Sign%20In%2C%20Register%2C%20Advanced%20Search</text>
+        <size>10</size>
+      </controlProperties>
+    </control>
+    <control controlID="306" controlTypeID="com.balsamiq.mockups::StickyNote" x="7" y="453" w="159" h="92" measuredW="109" measuredH="123" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Recognized%20Users</text>
+      </controlProperties>
+    </control>
+    <control controlID="308" controlTypeID="com.balsamiq.mockups::Canvas" x="204" y="571" w="934" h="54" measuredW="100" measuredH="70" zOrder="11" locked="false" isInGroup="-1"/>
+    <control controlID="245" controlTypeID="com.balsamiq.mockups::Canvas" x="208" y="119" w="934" h="54" measuredW="100" measuredH="70" zOrder="3" locked="false" isInGroup="-1"/>
+    <control controlID="246" controlTypeID="com.balsamiq.mockups::IconLabel" x="220" y="134" w="-1" h="-1" measuredW="36" measuredH="24" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%20</text>
+        <size>8</size>
+        <labelPosition>right</labelPosition>
+        <icon>UsersIcon%7Csmall</icon>
+        <color>1644825</color>
+      </controlProperties>
+    </control>
+    <control controlID="247" controlTypeID="com.balsamiq.mockups::Title" x="247" y="130" w="-1" h="-1" measuredW="79" measuredH="32" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Firehoze</text>
+        <size>18</size>
+      </controlProperties>
+    </control>
+    <control controlID="312" controlTypeID="__group__" x="892" y="584" w="231" h="28" measuredW="231" measuredH="28" zOrder="15" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="248" controlTypeID="com.balsamiq.mockups::SearchBox" x="0" y="1" w="188" h="-1" measuredW="94" measuredH="25" zOrder="0" locked="false" isInGroup="250">
+          <controlProperties>
+            <text>search</text>
+          </controlProperties>
+        </control>
+        <control controlID="249" controlTypeID="com.balsamiq.mockups::Button" x="195" y="0" w="36" h="-1" measuredW="36" measuredH="28" zOrder="1" locked="false" isInGroup="250">
+          <controlProperties>
+            <text>Go</text>
+            <size>10</size>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="313" controlTypeID="com.balsamiq.mockups::Canvas" x="210" y="180" w="934" h="206" measuredW="100" measuredH="70" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>15132390</color>
+      </controlProperties>
+    </control>
+    <control controlID="314" controlTypeID="com.balsamiq.mockups::Canvas" x="206" y="635" w="934" h="198" measuredW="100" measuredH="70" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>15132390</color>
+      </controlProperties>
+    </control>
+    <control controlID="320" controlTypeID="__group__" x="568" y="537" w="-1" h="-1" measuredW="159" measuredH="20" zOrder="20" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="316" controlTypeID="com.balsamiq.mockups::Label" x="95" y="2" w="64" h="18" measuredW="64" measuredH="18" zOrder="0" locked="false" isInGroup="320">
+          <controlProperties>
+            <text>%28Not%20%5BSherpa%5D%3F%29</text>
+            <size>8</size>
+          </controlProperties>
+        </control>
+        <control controlID="318" controlTypeID="com.balsamiq.mockups::Label" x="0" y="0" w="95" h="20" measuredW="95" measuredH="20" zOrder="1" locked="false" isInGroup="320">
+          <controlProperties>
+            <text>Greetings%2C%20Sherpa</text>
+            <size>10</size>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="317" controlTypeID="com.balsamiq.mockups::LinkBar" x="733" y="537" w="-1" h="-1" measuredW="295" measuredH="20" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Sign%20out%2C%20Settings%2C%20Advanced%20Search%2C%20Wish%20List</text>
+        <size>10</size>
+      </controlProperties>
+    </control>
+    <control controlID="311" controlTypeID="com.balsamiq.mockups::ButtonBar" x="370" y="583" w="-1" h="-1" measuredW="314" measuredH="32" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Subjects%20%20%2C%20Instructors%2C%20Universities</text>
+        <size>14</size>
+        <selectedIndex>-1</selectedIndex>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
