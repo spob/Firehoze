@@ -80,7 +80,11 @@ end
 namespace :database do
   desc "Reset the database"
   task :reset do
-    run "rake db:migrate:reset"
+    run "rake db:migrate:reset RAILS_ENV=production -f #{current_path}/Rakefile"
+    run "rm -rf  #{shared_path}/assets"
+  end
+  task :down do
+    run "rake db:migrate RAILS_ENV=production VERSION=20081103171327 -f #{current_path}/Rakefile"
     run "rm -rf  #{shared_path}/assets"
   end
 end
