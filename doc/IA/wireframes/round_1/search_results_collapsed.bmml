@@ -69,7 +69,7 @@
     </control>
     <control controlID="118" controlTypeID="com.balsamiq.mockups::StickyNote" x="8" y="68" w="177" h="144" measuredW="109" measuredH="123" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Sitewide%20Search%20Results%0AQuerying%20multiple%20models%20and%20segregated%0A%3E%3E%20Veiw%20collapsed</text>
+        <text>Sitewide%20Search%20Results%0AQuerying%20multiple%20models%20and%20segregated.%0A%3E%3E%20collapsed</text>
       </controlProperties>
     </control>
     <control controlID="439" controlTypeID="com.balsamiq.mockups::Label" x="342" y="220" w="-1" h="-1" measuredW="204" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
@@ -88,7 +88,7 @@
         <text>Channels%3A%204%20results</text>
       </controlProperties>
     </control>
-    <control controlID="508" controlTypeID="com.balsamiq.mockups::LinkBar" x="218" y="295" w="-1" h="-1" measuredW="446" measuredH="25" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="508" controlTypeID="com.balsamiq.mockups::LinkBar" x="218" y="295" w="-1" h="-1" measuredW="451" measuredH="25" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Channels%20%284%29%2C%20Lessons%20%2845%29%2C%20Instructors%20%28101%29%2C%20Universities%20%2812%29</text>
       </controlProperties>
