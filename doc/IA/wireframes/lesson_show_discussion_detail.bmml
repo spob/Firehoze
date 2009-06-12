@@ -1,0 +1,174 @@
+<mockup version="1.0" skin="sketch" measuredW="1187" measuredH="630">
+  <controls>
+    <control controlID="64" controlTypeID="com.balsamiq.mockups::Label" x="349" y="257" w="20" h="25" measuredW="19" measuredH="25" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>2.</text>
+      </controlProperties>
+    </control>
+    <control controlID="65" controlTypeID="com.balsamiq.mockups::Label" x="450" y="257" w="182" h="25" measuredW="148" measuredH="25" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Jun%2008%2C%202009%20at%2004%3A25%20</text>
+        <bold>false</bold>
+      </controlProperties>
+    </control>
+    <control controlID="66" controlTypeID="com.balsamiq.mockups::Link" x="370" y="257" w="-1" h="-1" measuredW="75" measuredH="25" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Sally%20West</text>
+      </controlProperties>
+    </control>
+    <control controlID="67" controlTypeID="com.balsamiq.mockups::HRule" x="286" y="537" w="592" h="-1" measuredW="100" measuredH="5" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <backgroundAlpha>0.5</backgroundAlpha>
+      </controlProperties>
+    </control>
+    <control controlID="68" controlTypeID="com.balsamiq.mockups::Webcam" x="286" y="410" w="48" h="39" measuredW="177" measuredH="145" zOrder="15" locked="false" isInGroup="-1"/>
+    <control controlID="69" controlTypeID="com.balsamiq.mockups::Paragraph" x="350" y="437" w="528" h="86" measuredW="200" measuredH="140" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Lorem%20ipsum%20dolor%20sit%20amet%2C%20consectetur%20adipisicing%20elit%2C%20sed%20do%20eiusmod%20tempor%20incididunt%20ut%20labore%20et%20dolore%20magna%20aliqua.%20Ut%20enim%20ad%20minim%20veniam%2C%20quis%20nostrud%20exercitation%20ullamco%20laboris%20nisi%20ut%20aliquip%20ex%20ea%20commodo%20consequat.%20Duis%20aute%20irure%20dolor%20in%20reprehenderit%20in%20voluptate%20velit%20esse%20cillum%20dolore%20eu%20fugiat%20nulla%20pariatur.%20Excepteur%20sint%20occaecat%20cupidatat%20non%20proident%2C%20sunt%20in%20culpa%20qui%20officia%20deserunt%20mollit%20anim%20id%20est%20laborum.</text>
+        <size>10</size>
+      </controlProperties>
+    </control>
+    <control controlID="70" controlTypeID="com.balsamiq.mockups::IconLabel" x="781" y="511" w="77" h="-1" measuredW="77" measuredH="20" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>report%20this</text>
+        <underline>false</underline>
+        <size>10</size>
+        <icon>FlagIcon%7Cxsmall</icon>
+        <labelPosition>right</labelPosition>
+      </controlProperties>
+    </control>
+    <control controlID="71" controlTypeID="com.balsamiq.mockups::Label" x="349" y="410" w="20" h="25" measuredW="19" measuredH="25" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>3.</text>
+      </controlProperties>
+    </control>
+    <control controlID="72" controlTypeID="com.balsamiq.mockups::Label" x="458" y="410" w="182" h="25" measuredW="145" measuredH="25" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Jun%2009%2C%202009%20at%2009%3A14%20</text>
+        <bold>false</bold>
+      </controlProperties>
+    </control>
+    <control controlID="73" controlTypeID="com.balsamiq.mockups::Link" x="370" y="410" w="-1" h="-1" measuredW="82" measuredH="25" zOrder="20" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Jane%20Wilson</text>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::StickyNote" x="55" y="40" w="161" h="70" measuredW="109" measuredH="123" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Discussion%20detail</text>
+      </controlProperties>
+    </control>
+    <control controlID="77" controlTypeID="__group__" x="799" y="563" w="-1" h="-1" measuredW="62" measuredH="25" zOrder="21" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="75" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="34" measuredH="25" zOrder="0" locked="false" isInGroup="77">
+          <controlProperties>
+            <text>more</text>
+          </controlProperties>
+        </control>
+        <control controlID="76" controlTypeID="com.balsamiq.mockups::Icon" x="38" y="0" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="1" locked="false" isInGroup="77">
+          <controlProperties>
+            <icon>RightArrowIcon%7Csmall</icon>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="79" controlTypeID="com.balsamiq.mockups::IconLabel" x="735" y="410" w="-1" h="-1" measuredW="64" measuredH="25" zOrder="22" locked="false" isInGroup="-1">
+      <controlProperties>
+        <labelPosition>right</labelPosition>
+        <text>delete</text>
+        <icon>CircledXIcon%7Cxsmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="80" controlTypeID="com.balsamiq.mockups::IconLabel" x="815" y="410" w="-1" h="-1" measuredW="49" measuredH="25" zOrder="23" locked="false" isInGroup="-1">
+      <controlProperties>
+        <labelPosition>right</labelPosition>
+        <text>edit</text>
+        <icon>WriteIcon%7Cxsmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="82" controlTypeID="com.balsamiq.mockups::Arrow" x="873" y="421" w="93" h="59" measuredW="150" measuredH="100" zOrder="24" locked="false" isInGroup="-1">
+      <controlProperties>
+        <direction>top</direction>
+        <rightArrow>false</rightArrow>
+        <curvature>1</curvature>
+        <backgroundAlpha>1</backgroundAlpha>
+        <color>3355443</color>
+      </controlProperties>
+    </control>
+    <control controlID="83" controlTypeID="com.balsamiq.mockups::Paragraph" x="936" y="480" w="241" h="140" measuredW="200" measuredH="140" zOrder="25" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>If%20signed-in%20as%20%27Jane%20Wilson%27%20-%20allow%20edit%20and%20delete%20only%20if%20no%20subsequent%20entries%20as%20present%2C%20or%20make%20only%20present%20within%20a%20certain%20time-frame.</text>
+      </controlProperties>
+    </control>
+    <control controlID="24" controlTypeID="com.balsamiq.mockups::TabBar" x="267" y="40" w="626" h="566" measuredW="318" measuredH="100" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Reviews%2C%20Disussion%2C%20Lesson%20Notes</text>
+        <italic>true</italic>
+        <hrefs>lesson_show.bmml%2Clesson_show_discussion_detail.bmml%2Clesson_show_lesson_notes_detail.bmml</hrefs>
+        <selectedIndex>1</selectedIndex>
+      </controlProperties>
+    </control>
+    <control controlID="47" controlTypeID="com.balsamiq.mockups::HRule" x="286" y="384" w="592" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <backgroundAlpha>0.5</backgroundAlpha>
+      </controlProperties>
+    </control>
+    <control controlID="48" controlTypeID="com.balsamiq.mockups::Webcam" x="286" y="257" w="48" h="39" measuredW="177" measuredH="145" zOrder="3" locked="false" isInGroup="-1"/>
+    <control controlID="49" controlTypeID="com.balsamiq.mockups::Paragraph" x="350" y="284" w="528" h="86" measuredW="200" measuredH="140" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Lorem%20ipsum%20dolor%20sit%20amet%2C%20consectetur%20adipisicing%20elit%2C%20sed%20do%20eiusmod%20tempor%20incididunt%20ut%20labore%20et%20dolore%20magna%20aliqua.%20Ut%20enim%20ad%20minim%20veniam%2C%20quis%20nostrud%20exercitation%20ullamco%20laboris%20nisi%20ut%20aliquip%20ex%20ea%20commodo%20consequat.%20Duis%20aute%20irure%20dolor%20in%20reprehenderit%20in%20voluptate%20velit%20esse%20cillum%20dolore%20eu%20fugiat%20nulla%20pariatur.%20Excepteur%20sint%20occaecat%20cupidatat%20non%20proident%2C%20sunt%20in%20culpa%20qui%20officia%20deserunt%20mollit%20anim%20id%20est%20laborum.</text>
+        <size>10</size>
+      </controlProperties>
+    </control>
+    <control controlID="51" controlTypeID="com.balsamiq.mockups::IconLabel" x="781" y="358" w="77" h="-1" measuredW="77" measuredH="20" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>report%20this</text>
+        <underline>false</underline>
+        <size>10</size>
+        <icon>FlagIcon%7Cxsmall</icon>
+        <labelPosition>right</labelPosition>
+      </controlProperties>
+    </control>
+    <control controlID="54" controlTypeID="com.balsamiq.mockups::HRule" x="286" y="230" w="592" h="-1" measuredW="100" measuredH="5" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <backgroundAlpha>0.5</backgroundAlpha>
+      </controlProperties>
+    </control>
+    <control controlID="55" controlTypeID="com.balsamiq.mockups::Webcam" x="286" y="103" w="48" h="39" measuredW="177" measuredH="145" zOrder="7" locked="false" isInGroup="-1"/>
+    <control controlID="56" controlTypeID="com.balsamiq.mockups::Paragraph" x="349" y="130" w="528" h="86" measuredW="200" measuredH="140" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Lorem%20ipsum%20dolor%20sit%20amet%2C%20consectetur%20adipisicing%20elit%2C%20sed%20do%20eiusmod%20tempor%20incididunt%20ut%20labore%20et%20dolore%20magna%20aliqua.%20Ut%20enim%20ad%20minim%20veniam%2C%20quis%20nostrud%20exercitation%20ullamco%20laboris%20nisi%20ut%20aliquip%20ex%20ea%20commodo%20consequat.%20Duis%20aute%20irure%20dolor%20in%20reprehenderit%20in%20voluptate%20velit%20esse%20cillum%20dolore%20eu%20fugiat%20nulla%20pariatur.%20Excepteur%20sint%20occaecat%20cupidatat%20non%20proident%2C%20sunt%20in%20culpa%20qui%20officia%20deserunt%20mollit%20anim%20id%20est%20laborum.</text>
+        <size>10</size>
+      </controlProperties>
+    </control>
+    <control controlID="58" controlTypeID="com.balsamiq.mockups::IconLabel" x="781" y="204" w="77" h="-1" measuredW="77" measuredH="20" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>report%20this</text>
+        <underline>false</underline>
+        <size>10</size>
+        <icon>FlagIcon%7Cxsmall</icon>
+        <labelPosition>right</labelPosition>
+      </controlProperties>
+    </control>
+    <control controlID="62" controlTypeID="__group__" x="349" y="103" w="-1" h="-1" measuredW="269" measuredH="25" zOrder="10" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="59" controlTypeID="com.balsamiq.mockups::Label" x="0" y="0" w="-1" h="-1" measuredW="20" measuredH="25" zOrder="0" locked="false" isInGroup="62">
+          <controlProperties>
+            <text>1.</text>
+          </controlProperties>
+        </control>
+        <control controlID="60" controlTypeID="com.balsamiq.mockups::Label" x="87" y="0" w="182" h="25" measuredW="146" measuredH="25" zOrder="1" locked="false" isInGroup="62">
+          <controlProperties>
+            <text>Jun%2008%2C%202009%20at%2001%3A05%20</text>
+            <bold>false</bold>
+          </controlProperties>
+        </control>
+        <control controlID="61" controlTypeID="com.balsamiq.mockups::Link" x="21" y="0" w="-1" h="-1" measuredW="62" measuredH="25" zOrder="2" locked="false" isInGroup="62">
+          <controlProperties>
+            <text>John%20Doe</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+  </controls>
+</mockup>
