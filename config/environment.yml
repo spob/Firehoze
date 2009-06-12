@@ -12,7 +12,7 @@ port: 3000
 
 # The email address of the administrator. This email will be used as the "from"
 # address in emails sent by the application.
-admin_email: admin@braindump.com
+admin_email: admin@firehoze.com
 
 # The default timezone for new users. Hint: execute the command:
 #     rake time:zones:local

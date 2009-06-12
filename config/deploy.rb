@@ -33,6 +33,7 @@ namespace :deploy do
   task :finishing_touches, :roles => :app do
     run "cp -pf #{deploy_to}/to_copy/production.rb #{current_path}/config/environments/production.rb"
     run "cp -pf #{deploy_to}/to_copy/database.yml #{current_path}/config/database.yml"
+    run "cp -pf #{deploy_to}/to_copy/production.yml #{current_path}/config/environments/production.yml"
     # preserve the assets directory which resides under shared
     run "ln -s #{shared_path}/assets #{release_path}/public/assets" 
   end
@@ -81,11 +82,18 @@ namespace :database do
   desc "Reset the database"
   task :reset do
     run "rake db:migrate:reset RAILS_ENV=production -f #{current_path}/Rakefile"
-    run "rm -rf  #{shared_path}/assets"
+    run "rm -rf  #{shared_path}/assets/videos"
   end
   task :down do
     run "rake db:migrate RAILS_ENV=production VERSION=20081103171327 -f #{current_path}/Rakefile"
-    run "rm -rf  #{shared_path}/assets"
+    run "rm -rf  #{shared_path}/assets/videos"
+  end
+end
+
+namespace :log do
+  desc "Tail the log"
+  task :tail do
+    stream "tail -500 #{current_path}/log/production.log"
   end
 end
 
