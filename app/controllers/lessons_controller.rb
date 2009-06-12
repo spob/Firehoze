@@ -14,7 +14,7 @@ class LessonsController < ApplicationController
 
   def create
     @lesson = Lesson.new(params[:lesson])
-    @lesson.author = current_user
+    @lesson.instructor = current_user
     if @lesson.save
       flash[:notice] = "Lesson created"
       redirect_to lesson_path(@lesson)

@@ -1,6 +1,6 @@
 class Lesson < ActiveRecord::Base
-  belongs_to :author, :class_name => "User", :foreign_key => "author_id"
-  validates_presence_of :author, :title
+  belongs_to :instructor, :class_name => "User", :foreign_key => "instructor_id"
+  validates_presence_of :instructor, :title
   validates_length_of :title, :maximum => 50, :allow_nil => true
   validates_numericality_of :video_file_size, :greater_than => 0, :allow_nil => true
   has_attached_file :video,
@@ -19,6 +19,6 @@ class Lesson < ActiveRecord::Base
   end
 
   def can_edit? user
-    user.is_admin? or author == user
+    user.is_admin? or instructor == user
   end
 end

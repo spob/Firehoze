@@ -73,7 +73,7 @@ class LessonsControllerTest < ActionController::TestCase
       setup do
         Factory.create(:user)
         @lesson = Factory.create(:lesson)
-        @lesson.author = @user
+        @lesson.instructor = @user
         @lesson.save!
       end
 
@@ -96,7 +96,7 @@ class LessonsControllerTest < ActionController::TestCase
 
       context "which was authored by a different user" do
         setup do
-          @lesson.author = Factory.create(:user, :email => 'some@other.com')
+          @lesson.instructor = Factory.create(:user, :email => 'some@other.com')
           @lesson.save!
         end
 

@@ -7,7 +7,7 @@ class LessonTest < ActiveSupport::TestCase
       @lesson = Factory.create(:lesson)
     end
 
-    should_validate_presence_of      :title, :author
+    should_validate_presence_of      :title, :instructor
     should_allow_values_for          :title, "blah blah blah"
     should_ensure_length_in_range    :title, (0..50)
     should_have_attached_file        :video
@@ -30,8 +30,8 @@ class LessonTest < ActiveSupport::TestCase
         @user2 = Factory.create(:user)
         @user3 = Factory.create(:user)
         @user3.is_admin
-        @lesson1 =  Factory.create(:lesson, :author => @user1)
-        @lesson2 =  Factory.create(:lesson, :author => @user2)
+        @lesson1 =  Factory.create(:lesson, :instructor => @user1)
+        @lesson2 =  Factory.create(:lesson, :instructor => @user2)
       end
 
       should "allow author to edit" do
