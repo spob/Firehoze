@@ -26,10 +26,6 @@ class CartTest < ActiveSupport::TestCase
         assert_equal calculated_price, @cart.total_full_price
         assert_equal @cart.total_full_price, @cart.total_discounted_price
       end
-
-      should "calculate the total credits" do
-        assert_equal 16, @cart.total_credits
-      end
     end
   end
 end

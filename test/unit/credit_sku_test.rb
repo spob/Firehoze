@@ -43,14 +43,14 @@ class CreditSkuTest < ActiveSupport::TestCase
         Factory.create(:credit_sku, :num_credits => 3)
       end
 
-      should "return rows in reverse order by number of credits" do
-        skus = CreditSku.biggest_credits_first
-        assert_equal 4, skus.count
-        assert_equal 10, skus[0].num_credits
-        assert_equal 5, skus[1].num_credits
-        assert_equal 3, skus[2].num_credits
-        assert_equal 1, skus[3].num_credits
-      end
+      #should "return rows in reverse order by number of credits" do
+      #  skus = CreditSku.biggest_credits_first
+      #  assert_equal 4, skus.count
+      #  assert_equal 10, skus[0].num_credits
+      #  assert_equal 5, skus[1].num_credits
+      #  assert_equal 3, skus[2].num_credits
+      #  assert_equal 1, skus[3].num_credits
+      #end
     end
   end
 end

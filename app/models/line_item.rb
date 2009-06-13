@@ -1,7 +1,10 @@
+# A line item is an order line -- it's associated to a shopping cart, and represents the purchase of a
+# specific product (e.g,, SKU)'
 class LineItem < ActiveRecord::Base
   before_validation :assign_discount
   belongs_to :cart
   belongs_to :sku
+  # The discount if a discount was provided when purchasing
   belongs_to :discount
 
   attr_accessible :unit_price, :quantity
@@ -28,6 +31,8 @@ class LineItem < ActiveRecord::Base
 
   private
 
+  # Calculate which discount to apply -- the disount with the greatest minimum order quantity for which
+  # the minimum order quantity is less than the order quantity
   def assign_discount
     self.discounted_unit_price = self.unit_price
     unless sku.nil? # sku can only be null if the user entered a bad value

@@ -1,3 +1,4 @@
+# A lesson includes a video, descriptive information and other meta data
 class Lesson < ActiveRecord::Base
   belongs_to :instructor, :class_name => "User", :foreign_key => "instructor_id"
   validates_presence_of :instructor, :title
@@ -18,6 +19,7 @@ class Lesson < ActiveRecord::Base
             :per_page => Constants::ROWS_PER_PAGE
   end
 
+  # The lesson can be added by an admin or the instructor who created it
   def can_edit? user
     user.is_admin? or instructor == user
   end
