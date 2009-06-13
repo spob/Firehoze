@@ -21,7 +21,7 @@ class CreditSku < Sku
     user.is_sysadmin? and credits.empty?
   end
 
-  def execute_order user
+  def execute_order user, quantity
     num_credits.times do
       Credit.create!(:sku => self, :price => price/num_credits, :user => user, :acquired_at => Time.zone.now)
     end

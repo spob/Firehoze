@@ -45,6 +45,7 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "authlogic"
 
+  config.gem "activemerchant", :lib => "active_merchant", :version => "1.4.2"
   # For periodic job processing
   config.gem 'daemons', :lib => 'daemons'
 

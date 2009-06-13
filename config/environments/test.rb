@@ -27,4 +27,8 @@ config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http:/
 # Should testing gem
 config.gem 'thoughtbot-shoulda', :lib => 'shoulda/rails', :source => "http://gems.github.com"
 
-
+# ActiveMerchant configuration
+config.after_initialize do
+  ActiveMerchant::Billing::Base.mode = :test
+  ::GATEWAY = ActiveMerchant::Billing::BogusGateway.new
+end

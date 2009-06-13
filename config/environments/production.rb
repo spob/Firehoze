@@ -26,3 +26,13 @@ config.action_mailer.delivery_method = :sendmail
 config.action_mailer.perform_deliveries = true
 config.action_mailer.default_charset = "utf-8"
 config.action_mailer.default_content_type = "text/html"
+
+# ActiveMerchant configuration
+config.after_initialize do
+  ActiveMerchant::Billing::Base.mode = :test
+  ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+          :login => "bob_1243217692_biz_api1.firehoze.com",
+          :password => "1243217698",
+          :signature => "Agi-HK.rb-scYwSYy-8VbRMj2r0nAqYV1i-0cMgeKQmcf0zzvJHh8TGZ"
+  )
+end
