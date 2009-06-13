@@ -37,7 +37,7 @@ New Order
     </p>
     <p>
       <%= f.label :country %><br/>
-      <%= f.text_field :country %>
+      <%= localized_country_select(:order, :country, []) %>
     </p>
     <p>
       <%= f.label :card_type %><br/>

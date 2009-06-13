@@ -7,8 +7,8 @@ class Order < ActiveRecord::Base
 
   # Most attributes (first/last name, card number, expiration date) are validated
   # in the logic to validate the credit card
-  validates_presence_of :cart, :ip_address, :user, :billing_name, :address1,
-                        :city, :state, :country, :zip
+  validates_presence_of :cart, :ip_address, :user, :address1,
+                        :city, :state, :country, :zip, :billing_name
   validates_length_of       :first_name, :maximum => 50, :allow_nil => true
   validates_length_of       :last_name, :maximum => 50, :allow_nil => true
   validates_length_of       :billing_name, :maximum => 100, :allow_nil => true
@@ -26,7 +26,7 @@ class Order < ActiveRecord::Base
                                 credit_card,
                                 :ip => ip_address,
                                 :billing_address => {
-                                        :name => self.billing_name,
+                                        :name => billing_name,
                                         :address1 => address1,
                                         :address2 => address2,
                                         :city => city,
@@ -38,19 +38,11 @@ class Order < ActiveRecord::Base
     response.success?
   end
 
+  private
+
   def price_in_cents
     (cart.total_discounted_price*100).round
   end
-
-  private
-
-  #      :city => "New York",
-  #      :state => "NY",
-  #      :country => "US",
-  #      :zip => "10001"
-  #    }
-  #  }
-  #end
 
   def validate_card
     unless credit_card.valid?
