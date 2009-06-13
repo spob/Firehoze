@@ -10,9 +10,9 @@ Factory.define :order do |order|
   order.last_name { |u| u.user.last_name }
   order.billing_name "Jim Smith"
   order.address1 "123 Main St."
-  order.city  "New York"
-  order.state  "NY"
-  order.country  "US"
-  order.zip  "10001"
+  order.city "New York"
+  order.state "NY"
+  order.country "US"
+  order.zip "10001"
 end
 

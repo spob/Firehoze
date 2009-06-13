@@ -24,7 +24,7 @@ class Order < ActiveRecord::Base
   def purchase
     response = GATEWAY.purchase(price_in_cents,
                                 credit_card,
-                                :ip_address => ip_address,
+                                :ip => ip_address,
                                 :billing_address => {
                                         :name => self.billing_name,
                                         :address1 => address1,

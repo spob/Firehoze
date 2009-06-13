@@ -10,6 +10,35 @@ New Order
       <%= f.label :last_name %><br/>
       <%= f.text_field :last_name %>
     </p>
+    <P>Billing Address</P>
+    <p>
+      <%= f.label :billing_name %><br/>
+      <%= f.text_field :billing_name %>
+    </p>
+    <p>
+      <%= f.label :address1 %><br/>
+      <%= f.text_field :address1 %>
+    </p>
+    <p>
+      <%= f.label :address2 %><br/>
+      <%= f.text_field :address2 %>
+    </p>
+    <p>
+      <%= f.label :city %><br/>
+      <%= f.text_field :city %>
+    </p>
+    <p>
+      <%= f.label :state %><br/>
+      <%= f.text_field :state %>
+    </p>
+    <p>
+      <%= f.label :zip %><br/>
+      <%= f.text_field :zip %>
+    </p>
+    <p>
+      <%= f.label :country %><br/>
+      <%= f.text_field :country %>
+    </p>
     <p>
       <%= f.label :card_type %><br/>
       <%= f.select :card_type, [['Visa', 'visa'], ['Mastercard', 'master'],

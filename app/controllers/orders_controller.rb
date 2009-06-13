@@ -4,7 +4,9 @@ class OrdersController < ApplicationController
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
 
   def new
-    @order = Order.new(:first_name => current_user.first_name, :last_name => current_user.last_name)
+    @order = Order.new(:first_name => current_user.first_name,
+                       :last_name => current_user.last_name,
+                       :billing_name => current_user.full_name)
   end
 
   def create

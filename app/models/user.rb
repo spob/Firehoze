@@ -57,6 +57,11 @@ class User < ActiveRecord::Base
     true
   end
 
+  def full_name
+    return last_name if first_name.empty?
+    "#{first_name} #{last_name}"
+  end
+
   private
 
   def persist_user_logon
