@@ -9,15 +9,18 @@ class ApplicationController < ActionController::Base
   before_filter :set_timezone
   before_filter :set_user_language
 
+  # The currently logged on user, or nil if no user is logged on
   def current_user
     return @current_user if defined?(@current_user)
     @current_user = current_user_session && current_user_session.record
   end
 
+  # Retrieve the current shopping cart, instantiating a new one if one does not already exist
   def current_cart
     if current_user
       if session[:cart_id]
         begin
+          # retrieve the current shopping cart based upon the id stored in the session
           @current_cart ||= Cart.find(session[:cart_id])
           session[:cart_id] = nil if @current_cart.purchased_at or @current_cart.user != current_user
         rescue ActiveRecord::RecordNotFound
@@ -26,6 +29,7 @@ class ApplicationController < ActionController::Base
           session[:cart_id] = nil
         end
       end
+      # A cart doesn't already exist...create one
       if session[:cart_id].nil?
         @current_cart = Cart.create!(:user => current_user)
         session[:cart_id] = @current_cart.id
@@ -37,7 +41,6 @@ class ApplicationController < ActionController::Base
 
 # Allow you to use text helper (pluralize) from within controllers.
 # See http://snippets.dzone.com/posts/show/1799
-
   def help
     Helper.instance
   end
@@ -51,6 +54,8 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # Set the timezone for a given user based upon their preference...if not logged on, use the system
+  # default time time
   def set_timezone
     # current_user.time_zone #=> 'London'
     Time.zone = current_user ? current_user.time_zone : APP_CONFIG['default_user_timezone']
@@ -61,6 +66,7 @@ class ApplicationController < ActionController::Base
     @current_user_session = UserSession.find
   end
 
+  # helper method to require that a user is logged on...used within controllers
   def require_user
     unless current_user
       store_location
@@ -70,6 +76,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # helper method to require that a user is NOT logged on...used within controllers
   def require_no_user
     if current_user
       store_location
@@ -79,10 +86,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # store the location that the user navigated to...used so that, if we need to redirect to
+  # the login page, we can continue on to this location after the user authenticates
   def store_location
     session[:return_to] = request.request_uri
   end
 
+  # redirect back to where the user was trying to get to if, for example, we needed to first redirect
+  # him/her to authenticate
   def redirect_back_or_default(default)
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
