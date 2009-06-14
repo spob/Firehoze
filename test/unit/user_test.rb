@@ -14,7 +14,7 @@ class UserTest < ActiveSupport::TestCase
     # Apparently should not allow values for only works if you pass the error message you expect
     # to see...though this is not clear in the shoulda documentation.
     should_not_allow_values_for      :email, "blahhhh", "bbbb lah",
-                                     :message => " email should look like an email address"
+                                     :message => /should look like an email address/
     should_allow_values_for          :email, "apple@b.com", "asdf@asdf.com"
     should_allow_values_for          :login, "spob", "big boy", "  test "
     

@@ -139,7 +139,7 @@ class PeriodicJob < ActiveRecord::Base
 
   # Cleans up all jobs older than a week.
   def self.cleanup
-    self.destroy_all ['last_run_at < ?', APP_CONFIG('keep_periodic_job_days').to_i.day.ago]
+    self.destroy_all ['last_run_at < ?', APP_CONFIG['keep_periodic_job_days'].to_i.day.ago]
   end
 
   def to_s
