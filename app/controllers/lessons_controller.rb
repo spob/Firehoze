@@ -14,6 +14,7 @@ class LessonsController < ApplicationController
 
   def create
     @lesson = Lesson.new(params[:lesson])
+    # the instructor is assumed to be the current user when creating a new lesson
     @lesson.instructor = current_user
     if @lesson.save
       flash[:notice] = "Lesson created"

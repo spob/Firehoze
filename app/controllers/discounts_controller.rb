@@ -1,7 +1,9 @@
 # This controller is a nested resource. It will always be invoked from the sku controller
 class DiscountsController < ApplicationController
-  before_filter :retrieve_sku, :except => [ :edit, :update, :destroy ]
   before_filter :require_user
+  # Since this controller is nested, in most cases we'll need to retrieve the sku first, so I made it a
+  # before filter
+  before_filter :retrieve_sku, :except => [ :edit, :update, :destroy ]
 
   # Sys admins only
   permit Constants::ROLE_SYSADMIN
@@ -23,7 +25,8 @@ class DiscountsController < ApplicationController
   end
   
   def create
-    # dynamically execute the new command based upon the type of sku selected
+    # dynamically execute the new command based upon the type of sku selected...since eventually the user
+    # will be able to create multiple different kinds of skus via the UI
     command = "#{params[:discount][:type]}.new(params[:discount])"
     #    print command
     @discount = eval command

@@ -5,7 +5,9 @@ class LineItemsController < ApplicationController
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
   verify :method => :destroy, :only => [:delete ], :redirect_to => :home_path
 
+  # Add an item to the shopping cart
   def create
+    # When adding an item to the cart, the onl items passed in are the sku_id and the quantity
     @sku = Sku.find(params[:sku_id])
     quantity = params[:quantity].to_i
 
@@ -37,6 +39,8 @@ class LineItemsController < ApplicationController
   end
 
   def update
+    # When adding an item to the cart, the onl items passed in are the sku_id and the quantity to increment or
+    # decrement the line quantity (e.g., -1 to reduce the quantity by one
     @line_item = LineItem.find(params[:id])
     delta = params[:qty_change].to_i
     @line_item.quantity = @line_item.quantity + delta
