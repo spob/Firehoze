@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :credits, :dependent => :destroy
 
   # Used to verify current password during password changes
-  attr_accessor :current_password
+  attr_accessor :current_password, :first_name, :first_name
 
   validates_presence_of :email, :language,
                         :login_count, :failed_login_count, :last_name, :login

@@ -37,6 +37,20 @@ class UserTest < ActiveSupport::TestCase
       should "return user records" do
         assert_equal 3, User.list(1).size
       end
+       
+      should "find 3 records" do
+        user_list = User.find(:all)
+        assert_equal 3, user_list.size
+      end
+      
+      should "delete all records" do
+        user_list = User.find(:all)
+        user_list.each do |usr|
+            usr.destroy
+        end
+        user_list = User.find(:all)
+        assert_equal 0, user_list.size
+      end
     end
 
     context "and password reset requests" do
@@ -58,5 +72,25 @@ class UserTest < ActiveSupport::TestCase
         assert_equal @user.email, response.to[0]
       end
     end
+  end
+  
+  context "More user testing" do
+    setup do 
+      @user = Factory.create(:user) 
+      @expectedLang =  [['English', 'en'], ['Wookie', 'wk'] ]
+      
+    end
+    
+    should "support English and Wookie" do
+      l = User.supported_languages
+      assert_equal @expectedLang, l
+    end
+    
+    should "return fullname as first plus last" do
+      fn = @user.first_name
+      ln = @user.last_name
+      assert_equal @user.full_name, "#{fn} #{ln}"
+    end
+    
   end
 end
