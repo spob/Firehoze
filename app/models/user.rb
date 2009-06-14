@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :credits, :dependent => :destroy
 
   # Used to verify current password during password changes
+  # todo: I don't think the first and last name accessors are necessary because they are persist fields. Joel? --RBS
   attr_accessor :current_password, :first_name, :first_name
 
   validates_presence_of :email, :language,
