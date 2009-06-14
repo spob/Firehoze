@@ -66,4 +66,24 @@ class UserTest < ActiveSupport::TestCase
       end
     end
   end
+  
+  context "More user testing" do
+    setup do 
+      @user = Factory.create(:user) 
+      @expectedLang =  [['English', 'en'], ['Wookie', 'wk'] ]
+      
+    end
+    
+    should "support English and Wookie" do
+      l = User.supported_languages
+      assert_equal @expectedLang, l
+    end
+    
+    should "return fullname as first plus last" do
+      fn = @user.first_name
+      ln = @user.last_name
+      assert_equal @user.full_name, "#{fn} #{ln}"
+    end
+    
+  end
 end
