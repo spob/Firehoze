@@ -50,9 +50,11 @@ Rails::Initializer.run do |config|
   # authologic provides authenticaiton
   config.gem "authlogic"
 
+  # active merchant used for credit card processing
   config.gem "activemerchant", :lib => "active_merchant", :version => "1.4.2"
+
   # For periodic job processing
-  config.gem 'daemons', :lib => 'daemons'
+  config.gem 'daemons'
 
   # For periodic job processing
   config.gem 'paperclip', :version => '~> 2.1.2'
