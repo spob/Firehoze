@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   # Used to verify current password during password changes
   # todo: I don't think the first and last name accessors are necessary because they are persist fields. Joel? --RBS
-  attr_accessor :current_password, :first_name, :first_name
+  attr_accessor :current_password #, :first_name, :first_name
 
   validates_presence_of :email, :language,
                         :login_count, :failed_login_count, :last_name, :login
@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
   # Utility method to return either the last_name if no first name is specified, or the first and last
   # name with a space betwen them
   def full_name
-    return last_name if first_name.empty?
+    return last_name if first_name.nil? or first_name.empty?
     "#{first_name} #{last_name}"
   end
 

@@ -77,8 +77,7 @@ class UserTest < ActiveSupport::TestCase
   context "More user testing" do
     setup do 
       @user = Factory.create(:user) 
-      @expectedLang =  [['English', 'en'], ['Wookie', 'wk'] ]
-      
+      @expectedLang =  [['English', 'en'], ['Wookie', 'wk'] ]      
     end
     
     should "support English and Wookie" do
@@ -91,6 +90,16 @@ class UserTest < ActiveSupport::TestCase
       ln = @user.last_name
       assert_equal @user.full_name, "#{fn} #{ln}"
     end
-    
+
+
+    should "return fullname as just last" do
+      @user.first_name = nil
+      ln = @user.last_name
+      
+      assert_equal @user.full_name, "#{ln}"
+
+      @user.first_name =""
+      assert_equal @user.full_name, "#{ln}"
+    end
   end
 end
