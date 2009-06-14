@@ -1,7 +1,7 @@
 # A lesson includes a video, descriptive information and other meta data
 class Lesson < ActiveRecord::Base
   belongs_to :instructor, :class_name => "User", :foreign_key => "instructor_id"
-  validates_presence_of :instructor, :title
+  validates_presence_of :instructor, :title, :video_file_name
   validates_length_of :title, :maximum => 50, :allow_nil => true
   validates_numericality_of :video_file_size, :greater_than => 0, :allow_nil => true
   has_attached_file :video,

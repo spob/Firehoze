@@ -24,7 +24,7 @@ class LessonsController < ApplicationController
     end
   rescue Exception => e
     logger.error("There was a problem in create, backtrace:\n #{e.backtrace}")
-    flash[:error] = "The server encountered an unexpected error:<br> #{e}" 
+    flash[:error] = "The server encountered an unexpected error:<br> #{e}"
     render :action => :new
   end
 
