@@ -10,6 +10,8 @@ class DiscountByVolumeTest < ActiveSupport::TestCase
     should_allow_values_for          :percent_discount, 0.99, 0.05, 1
     should_allow_values_for          :minimum_quantity, 1, 5
 
+    # Apparently should not allow values for only works if you pass the error message you expect
+    # to see...though this is not clear in the shoulda documentation.
     should_not_allow_values_for      :percent_discount, -2.12, 0, :message => I18n.translate('activerecord.errors.messages.greater_than', :count => 0)
     should_not_allow_values_for      :percent_discount, 1.1, 2, :message => I18n.translate('activerecord.errors.messages.less_than_or_equal_to', :count => 1)
     should_not_allow_values_for      :percent_discount, "a", :message => I18n.translate('activerecord.errors.messages.not_a_number')

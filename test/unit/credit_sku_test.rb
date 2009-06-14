@@ -26,6 +26,9 @@ class CreditSkuTest < ActiveSupport::TestCase
     should_validate_presence_of      :price, :num_credits
     should_allow_values_for          :price, 0, 1, 22.23
     should_allow_values_for          :num_credits, 1, 2, 3
+
+    # Apparently should not allow values for only works if you pass the error message you expect
+    # to see...though this is not clear in the shoulda documentation.
     should_not_allow_values_for      :price, "a",
             :message => I18n.translate('activerecord.errors.messages.not_a_number')
     should_not_allow_values_for      :price, -1,

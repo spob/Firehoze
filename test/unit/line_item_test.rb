@@ -12,6 +12,9 @@ class LineItemTest < ActiveSupport::TestCase
     should_allow_values_for          :unit_price, 0.99, 1, 1.23, 1000.2
     should_allow_values_for          :discounted_unit_price, 0.99, 1, 1.23, 1000.2
     should_allow_values_for          :quantity, 1, 5
+
+    # Apparently should not allow values for only works if you pass the error message you expect
+    # to see...though this is not clear in the shoulda documentation.
     should_not_allow_values_for      :unit_price, -2.12, 0, :message => I18n.translate('activerecord.errors.messages.greater_than', :count => 0)
     should_not_allow_values_for      :unit_price, "a", :message => I18n.translate('activerecord.errors.messages.not_a_number')
 

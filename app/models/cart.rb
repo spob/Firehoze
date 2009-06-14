@@ -17,4 +17,19 @@ class Cart < ActiveRecord::Base
     # convert to array so it doesn't try to do sum on database directly
     line_items.to_a.sum(&:total_discounted_price)
   end
+
+
+  # Trigger the execution of the order (e.g., actually grant the user
+  # credits when the order purchase transaction has completed
+  def execute_order user  
+    # Update the cart to indicate that its actually been purchased
+    purchased_at = Time.zone.now
+
+    # Cart must have just been purchased
+    if purchased_at_was == nil and !purchased_at.nil?
+      for line in line_items
+        line.sku.execute_order user, line.quantity
+      end
+    end
+  end
 end

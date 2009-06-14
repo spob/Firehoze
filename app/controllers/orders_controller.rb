@@ -16,9 +16,7 @@ class OrdersController < ApplicationController
     @order.user = current_user
     if @order.save
       if @order.purchase
-        for line_item in @order.cart.line_items do
-          line_item.sku.execute_order(current_user, line_item.quantity)
-        end
+        # todo: map this to an order show screen
         render :action => 'success'
       else
         render :action => 'failure'

@@ -11,8 +11,10 @@ class SkuTest < ActiveSupport::TestCase
     should_validate_presence_of      :sku, :type, :description
     should_allow_values_for          :sku, "123456789012345678901234567890"
     should_allow_values_for          :description, "123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
-    should_not_allow_values_for      :sku, "1234567890123456789012345678901", :message => I18n.translate('activerecord.errors.messages.too_long', :count => 30)
 
+    # Apparently should not allow values for only works if you pass the error message you expect
+    # to see...though this is not clear in the shoulda documentation.
+    should_not_allow_values_for      :sku, "1234567890123456789012345678901", :message => I18n.translate('activerecord.errors.messages.too_long', :count => 30)
     should_not_allow_values_for      :description,
             "123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890x",
             :message => I18n.translate('activerecord.errors.messages.too_long', :count => 150)

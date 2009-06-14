@@ -10,9 +10,16 @@ class UserTest < ActiveSupport::TestCase
     should_validate_uniqueness_of    :login
     should_validate_presence_of      :email, :last_name, :login, :language
     should_validate_numericality_of  :login_count, :failed_login_count
-#    should_not_allow_values_for      :email, "blahhhh", "bbbb lah"
+    
+    # Apparently should not allow values for only works if you pass the error message you expect
+    # to see...though this is not clear in the shoulda documentation.
+    should_not_allow_values_for      :email, "blahhhh", "bbbb lah",
+                                     :message => " email should look like an email address"
     should_allow_values_for          :email, "apple@b.com", "asdf@asdf.com"
     should_allow_values_for          :login, "spob", "big boy", "  test "
+    
+    # Apparently should not allow values for only works if you pass the error message you expect
+    # to see...though this is not clear in the shoulda documentation.
     should_not_allow_values_for      :login, "1234567890123456789012345678", :message => I18n.translate('activerecord.errors.messages.too_long', :count => 25)
     should_ensure_length_in_range    :email, (6..100)    
     should_ensure_length_in_range    :last_name, (0..40)

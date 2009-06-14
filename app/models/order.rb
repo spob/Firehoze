@@ -1,8 +1,14 @@
+# An order, as its name implies, represents a purchase of a product by a user.
 class Order < ActiveRecord::Base
   belongs_to :cart
   belongs_to :user
+
+  # Order tranactions provide detailed information about the interactions with the credit card gateway,
+  # including the specific parameters passed and the return results and authorization codes. 
   has_many :transactions, :class_name => "OrderTransaction"
 
+  # These non-persisted attributes are passed to ActiveMechant. They're not persisted because we won't
+  # want to store these bad boys in firehoze and risk security issues
   attr_accessor :card_number, :card_verification
 
   # Most attributes (first/last name, card number, expiration date) are validated
@@ -21,6 +27,7 @@ class Order < ActiveRecord::Base
 
   validate_on_create :validate_card
 
+  # Execute the purchase transaction to the credit card gateway using the ActiveMerchant api
   def purchase
     response = GATEWAY.purchase(price_in_cents,
                                 credit_card,
@@ -33,17 +40,27 @@ class Order < ActiveRecord::Base
                                         :state => state,
                                         :country => country,
                                         :zip => zip })
+
+    # log the result
     transactions.create!(:action => "purchase", :amount => price_in_cents, :response => response)
-    cart.update_attribute(:purchased_at, Time.now) if response.success?
+
+    cart.execute_order user if response.success?
+    cart.save!
+    
+    # Return true iff the credit card was processed successfully
     response.success?
   end
 
   private
 
+  # The credit card gateway expects monetary amounts expressed in cents
   def price_in_cents
     (cart.total_discounted_price*100).round
   end
 
+  # The credit card gateway will validate the card. This method will put the errors in the
+  # errors structure for this record so they will appear as would any other ActiveRecord validation
+  # failure
   def validate_card
     unless credit_card.valid?
       credit_card.errors.full_messages.each do |message|
@@ -52,6 +69,8 @@ class Order < ActiveRecord::Base
     end
   end
 
+  # The credit card is the object expected by the ActiveMerchant credit card gateway. This method
+  # builds it from the attributes on the order record.
   def credit_card
     @credit_card ||= ActiveMerchant::Billing::CreditCard.new(
             :type => card_type,
