@@ -8,7 +8,7 @@ config.cache_classes = true
 # config.logger = SyslogLogger.new
 
 # Full error reports are disabled and caching is turned on
-config.action_controller.consider_all_requests_local = false
+config.action_controller.consider_all_requests_local = true # Enable full error reports (for now)
 config.action_controller.perform_caching             = true
 config.action_view.debug_rjs                         = true # Enable full error reports (for now)
 
