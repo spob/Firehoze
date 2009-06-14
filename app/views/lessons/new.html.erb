@@ -1,5 +1,9 @@
 <h1>Create Lesson</h1>
 
+<% if flash[:notice] -%>
+  <div id="notice"><%= flash[:notice] %></div>
+<% end -%>
+
 <% form_for(:lesson, :url => lessons_path, :html => { :multipart => true}) do |f| %>
     <%= f.error_messages %>
     
