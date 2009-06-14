@@ -30,6 +30,20 @@ class UserTest < ActiveSupport::TestCase
       should "return user records" do
         assert_equal 3, User.list(1).size
       end
+       
+      should "find 3 records" do
+        user_list = User.find(:all)
+        assert_equal 3, user_list.size
+      end
+      
+      should "delete all records" do
+        user_list = User.find(:all)
+        user_list.each do |usr|
+            usr.destroy
+        end
+        user_list = User.find(:all)
+        assert_equal 0, user_list.size
+      end
     end
 
     context "and password reset requests" do
