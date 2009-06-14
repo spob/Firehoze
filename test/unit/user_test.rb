@@ -13,6 +13,7 @@ class UserTest < ActiveSupport::TestCase
 #    should_not_allow_values_for      :email, "blahhhh", "bbbb lah"
     should_allow_values_for          :email, "apple@b.com", "asdf@asdf.com"
     should_allow_values_for          :login, "spob", "big boy", "  test "
+    should_not_allow_values_for      :login, "1234567890123456789012345678", :message => I18n.translate('activerecord.errors.messages.too_long', :count => 25)
     should_ensure_length_in_range    :email, (6..100)    
     should_ensure_length_in_range    :last_name, (0..40)
     should_ensure_length_in_range    :first_name, (0..40)
