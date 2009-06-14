@@ -1,19 +1,11 @@
-# == Schema Information
-# Schema version: 20081021172636
-#
-# Table name: user_logons
-#
-#  id           :integer(4)      not null, primary key
-#  user_id      :integer(4)      not null
-#  lock_version :integer(4)      default(0)
-#  created_at   :datetime        not null
-#
-
+# A UserLogon records an instance of a user logging on to the system.
 class UserLogon < ActiveRecord::Base
+  # todo: not sure this is necessary...Bob to investigate
   acts_as_authorizable
   
   belongs_to :user
-    
+
+   # Basic paginated listing finder
   def self.list(page)
     paginate :page => page, 
       :conditions => ['created_at > ?', (Time.zone.now - 60*60*24*90).to_s(:db)],

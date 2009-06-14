@@ -1,4 +1,11 @@
-class Registration < ActiveUrl::Base  
+# A registration is a request by a user for an account. This value is not persisted in the database. Rather,
+# the information is encrypted into a URL using the ActiveUrl plugin, which is sent to the user in the form
+# of an email. The user then clicks on the URL to confirm their information, thereby verifying that the user's
+# email is a valid email.
+#
+# To read more about the ActiveUrl plugin, and the address confirmation logic, read:
+# http://github.com/mholling/active_url/tree/master
+class Registration < ActiveUrl::Base
   attribute :email, :accessible => true
   attribute :login,  :accessible => true
   attr_accessor :send_email
@@ -13,6 +20,7 @@ class Registration < ActiveUrl::Base
 
   protected
 
+  # Verify that this email and logic have not been taken before
   def account_not_taken
     if User.find_by_email(email)
       errors.add(:email, "is already in use")

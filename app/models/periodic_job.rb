@@ -36,7 +36,7 @@ class PeriodicJob < ActiveRecord::Base
                       :limit => 1,
                       :lock => true}}
 
-  # Basically paginated listing finder
+  # Basic paginated listing finder
   def self.list(page, per_page)
     paginate :page => page,
              :order => 'next_run_at DESC, last_run_at DESC',
