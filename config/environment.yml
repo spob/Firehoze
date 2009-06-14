@@ -30,3 +30,6 @@ max_video_size: 500
 # Minimum credit purchase represents the fewest number of video credits that a user
 # can purchase in one transaction
 min_credit_purchase: 5
+
+# The number of days to keep periodic jobs which have executed before purging them
+keep_periodic_job_days: 7
