@@ -46,6 +46,8 @@ class LineItemsController < ApplicationController
     @line_item.quantity = @line_item.quantity + delta
 
     if @line_item.quantity < APP_CONFIG['min_credit_purchase']
+      # there's a minimum number of credits you can purchase at any one time. We don't want to get
+      # nickeled and dimed with purchases of 1 credti at a time
       flash[:error] = "You must buy at least #{APP_CONFIG['min_credit_purchase']} credits"
     elsif @line_item.save
       flash[:notice] = "Updated line item."

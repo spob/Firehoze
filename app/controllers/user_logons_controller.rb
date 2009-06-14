@@ -1,6 +1,8 @@
+# Allow a sysadmin to see a history of user logons
 class UserLogonsController < ApplicationController
   before_filter :require_user
 
+  # sysadmins only
   permit Constants::ROLE_SYSADMIN
 
   def index

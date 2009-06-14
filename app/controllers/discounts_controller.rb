@@ -63,6 +63,8 @@ class DiscountsController < ApplicationController
 
   private
 
+  # Called by thebefore filter to retrieve the sku based on the sku_id that
+  # was passed in as a parameter
   def retrieve_sku
     @sku = Sku.find(params[:sku_id])
   end

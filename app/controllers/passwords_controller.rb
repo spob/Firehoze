@@ -1,3 +1,4 @@
+# Controller to allow a user to change their password when they are logged in
 class PasswordsController < ApplicationController
   before_filter :require_user
   

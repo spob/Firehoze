@@ -10,8 +10,10 @@ class PeriodicJobsController < ApplicationController
     @periodic_jobs = PeriodicJob.list params[:page], Constants::ROWS_PER_PAGE
   end
 
+  # Clicking rerun on a job that has completed will cause they job to run one time
   def rerun
     job = PeriodicJob.find(params[:id])
+    # todo: probably to verify that the job has infact run before allowing them to request that it be rerun
     RunOncePeriodicJob.create(
             :name => job.name,
                     :job => job.job)

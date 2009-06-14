@@ -13,8 +13,13 @@ class UsersController < ApplicationController
 
   def new
     begin
+      # The registration record is unmarshalled based upon the URL that was created by ActiveURL
+      # when the user requested the account in the first placed. If we get here, it means the user
+      # clicked on the link in their registration email, in which case we can be sure that the email
+      # address they entered is in fact valid.
       @registration = Registration.find(params[:registration_id])
-      @user = populate_user_from_registration
+      # retrieve various fields for the @user record based upon the values stored in the registration
+      @user = populate_user_from_registration_and_params
       @user.time_zone = APP_CONFIG['default_user_timezone']
     rescue ActiveUrl::RecordNotFound
       flash[:notice] = "Registration no longer valid"
@@ -24,7 +29,9 @@ class UsersController < ApplicationController
 
   def create
     @registration = Registration.find(params[:registration_id])
-    @user = populate_user_from_registration
+    # Populate the user record based upon the values in the registration record and passed in via params,
+    # as appropriate
+    @user = populate_user_from_registration_and_params
     if @user.save
       flash[:notice] = "Account registered!"
       redirect_back_or_default user_path(@user)
@@ -42,9 +49,12 @@ class UsersController < ApplicationController
   end
 
   def update
+    # Required for supporting checkboxes
     params[:user][:role_ids] ||= []
+    
     @user = User.find params[:id]
 
+    # Figure out which role value checkboxes were checked and update accordingly
     for role_id in params[:user][:role_ids]
       role = Role.find(role_id)
       @user.has_role role.name
@@ -60,7 +70,7 @@ end
 
 private
 
-def populate_user_from_registration
+def populate_user_from_registration_and_params
   user = User.new(params[:user])
   user.email = @registration.email
   user.login = @registration.login

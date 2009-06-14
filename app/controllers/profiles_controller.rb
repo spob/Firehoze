@@ -1,3 +1,4 @@
+# The profiles controller allows the user to update personal information on their account
 class ProfilesController < ApplicationController
   before_filter :require_user
 

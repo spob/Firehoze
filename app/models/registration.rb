@@ -31,6 +31,9 @@ class Registration < ActiveUrl::Base
   end
 
   def send_registration_email
+    # ActiveURL has a callback mechanism, but it doesn't differentiate between creation and update. So, the
+    # controller will set the send_mail flag explicitly on creation so that the user will receive the email
+    # in that case, but not on any other subsequent updates (which don't set the flag)
     Notifier.deliver_registration(self) if send_email
   end
 end

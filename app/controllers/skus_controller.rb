@@ -8,6 +8,8 @@ class SkusController < ApplicationController
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
   verify :method => :destroy, :only => [:delete ], :redirect_to => :home_path
 
+  # These are the values displayed in the html select in the UI to define which type of SKU to create. For  now,
+  # there is only one type
   @@sku_types = [ [ 'Credit', 'CreditSku'] ]
 
   def self.types
@@ -19,6 +21,8 @@ class SkusController < ApplicationController
   end
 
   def new
+    # by default we're creating a CreditSku. May need to revisit this if and when we allow different types of
+    # skus to be created.
     @sku = CreditSku.new
   end
 
@@ -62,6 +66,8 @@ class SkusController < ApplicationController
 
   private
 
+  # Calculate the description automatically...todo: I'm going to undo this and allow them to specify it
+  # explicitly
   def set_description sku
     sku.description = "#{help.pluralize sku.num_credits, 'credit'} for #{help.number_to_currency sku.price}"
   end
