@@ -13,23 +13,25 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = current_cart.build_order(params[:order])
-    @order.ip_address = request.remote_ip
-    @order.user = current_user
-    # Saving the order will charge the credit card itself using the ActiveMerchant plugin. If this succeeds,
-    # the credit card was charged.
-    if @order.save
-      if @order.purchase
-        redirect_to order_path(@order)
+    Order.transaction do
+      @order = current_cart.build_order(params[:order])
+      @order.ip_address = request.remote_ip
+      @order.user = current_user
+      # Saving the order will charge the credit card itself using the ActiveMerchant plugin. If this succeeds,
+      # the credit card was charged.
+      if @order.save
+        if @order.purchase
+          redirect_to order_path(@order)
+        else
+          # todo: create a better screen to tell the user something failed
+          render :action => 'failure'
+        end
       else
-        # todo: create a better screen to tell the user something failed
-        render :action => 'failure'
+        render :action => 'edit'
       end
-    else
-      render :action => 'edit'
     end
   end
-  
+
   def show
     @order = Order.find(params[:id])
   end

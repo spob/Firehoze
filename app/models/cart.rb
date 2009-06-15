@@ -25,7 +25,8 @@ class Cart < ActiveRecord::Base
     # Update the cart to indicate that its actually been purchased
     self.purchased_at = Time.zone.now
 
-    # Cart must have just been purchased
+    # Cart must have just been purchased...so ahead and execute the order. For example,
+    # in the case of a credit sku, this would mean granting the user credits
     if self.purchased_at_was == nil and !self.purchased_at.nil?
       for line in self.line_items
         line.sku.execute_order user, line.quantity

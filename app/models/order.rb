@@ -37,6 +37,7 @@ class Order < ActiveRecord::Base
     @@card_types
   end
 
+  # Allow a reverse look up...find the user friendly name for the credit card based upon its code
   def self.user_friend_card_type type
     for card_type in @@card_types
       return card_type[0] if type == card_type[1]
@@ -62,6 +63,9 @@ class Order < ActiveRecord::Base
     transactions.create!(:action => "purchase", :amount => price_in_cents, :response => response)
     if response.success?
       cart.execute_order user
+
+      # If we can't save the cart at this point, it's a serious problem that we can't recover from...so go ahead
+      # and throw the exception
       cart.save!
     end
 
