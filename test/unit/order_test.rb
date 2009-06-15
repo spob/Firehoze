@@ -24,5 +24,36 @@ class OrderTest < ActiveSupport::TestCase
       # real validation
       assert @order.valid?
     end
+
+    should "format the billing address" do
+      assert_equal "123 Main St.\nNew York, NY 10001\nUS", @order.formatted_billing_address
+      assert_equal "123 Main St.<br/>New York, NY 10001<br/>US", @order.formatted_billing_address("<br/>")
+    end
+
+    context "with a billing address with address 2 populated" do
+      setup { @order.address2 = "Apartment 2A" }
+
+      should "format the billing address" do
+        assert_equal "123 Main St.\nApartment 2A\nNew York, NY 10001\nUS", @order.formatted_billing_address
+        assert_equal "123 Main St.<br/>Apartment 2A<br/>New York, NY 10001<br/>US", @order.formatted_billing_address("<br/>")
+      end
+    end
+
+    context "with a valid credit card number" do
+      setup do
+        # a value of 1 in the credit_card signals to the bogus gateway to successfully process the transaction
+        @order.card_number = "1"
+      end
+
+      should "create a transaction record" do
+        assert @order.purchase
+        assert !@order.transactions.empty?
+      end
+    end
+  end
+
+  should "retrieve user friendly card type" do
+    assert_equal "American Express", Order.user_friend_card_type("american_express")
+    assert_nil Order.user_friend_card_type("xxx")
   end
 end

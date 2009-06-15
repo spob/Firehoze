@@ -27,6 +27,23 @@ class Order < ActiveRecord::Base
 
   validate_on_create :validate_card
 
+  @@card_types = [['Visa', 'visa'],
+                  ['Mastercard', 'master'],
+                  ['Discover', 'discover'],
+                  ['American Express', 'american_express']]
+
+  # The credit card types...this method is used to populate the html select list
+  def self.card_types
+    @@card_types
+  end
+
+  def self.user_friend_card_type type
+    for card_type in @@card_types
+      return card_type[0] if type == card_type[1]
+    end
+    nil
+  end
+
   # Execute the purchase transaction to the credit card gateway using the ActiveMerchant api
   def purchase
     response = GATEWAY.purchase(price_in_cents,
@@ -43,12 +60,17 @@ class Order < ActiveRecord::Base
 
     # log the result
     transactions.create!(:action => "purchase", :amount => price_in_cents, :response => response)
+    if response.success?
+      cart.execute_order user
+      cart.save!
+    end
 
-    cart.execute_order user if response.success?
-    cart.save!
-    
     # Return true iff the credit card was processed successfully
     response.success?
+  end
+
+  def formatted_billing_address newline_character = "\n"
+    "#{address1}#{newline_character}#{address2 + newline_character unless (address2.nil? or address2.empty?)}#{city}, #{state} #{zip}#{newline_character}#{country}"
   end
 
   private
@@ -72,9 +94,9 @@ class Order < ActiveRecord::Base
   # The credit card is the object expected by the ActiveMerchant credit card gateway. This method
   # builds it from the attributes on the order record.
   def credit_card
-    @credit_card ||= ActiveMerchant::Billing::CreditCard.new(
+    @credit_card = ActiveMerchant::Billing::CreditCard.new(
             :type => card_type,
-            :number => card_number,
+            :number => card_number.gsub("-", ""),  # strip dashes from the credit card number
             :verification_value => card_verification,
             :month => card_expires_on.month,
             :year => card_expires_on.year,

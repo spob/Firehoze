@@ -1,0 +1,20 @@
+<tr class="<%= cycle :odd, :even %>">
+    <td><%=h line_item.sku.description %></td>
+    <td class="price"><%= number_to_currency(line_item.unit_price) %></td>
+    <td class="qty"><%= line_item.quantity %></td>
+    <td class="price"><%= number_to_currency(line_item.total_full_price) %></td>
+    <td><%= number_to_percentage(100 * line_item.discount.percent_discount, :precision => 1) unless
+        line_item.discount.nil? %>
+    </td>
+    <td class="price"><%= number_to_currency(line_item.total_discounted_price) %></td>
+    <% if line_item.cart.purchased_at.nil? %>
+    <td>
+        <%= link_to "Increment Qty", line_item_path(line_item, :qty_change => 1), :method => :put %>
+        <%= link_to "Decrement Qty",
+        line_item_path(line_item, :qty_change => -1),
+        :method => :put if line_item.quantity > APP_CONFIG['min_credit_purchase'].to_i %>
+        <%= link_to "Remove from Cart", line_item_path(line_item),
+        html_options = {:confirm => 'Are you sure?', :method => :delete} %>
+    </td>
+    <% end %>
+</tr>

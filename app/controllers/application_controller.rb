@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
   private
 
   # Set the timezone for a given user based upon their preference...if not logged on, use the system
-  # default time time
+  # default time time...this is called by the before_filter
   def set_timezone
     # current_user.time_zone #=> 'London'
     Time.zone = current_user ? current_user.time_zone : APP_CONFIG['default_user_timezone']
@@ -99,8 +99,8 @@ class ApplicationController < ActionController::Base
     session[:return_to] = nil
   end
 
-  private
-
+  # Set the local based on the user's language (or english if the user isn't logged in)
+  # Called by the before filter
   def set_user_language
     I18n.locale = current_user.try(:language) || 'en'
   end
