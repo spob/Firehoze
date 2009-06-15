@@ -31,8 +31,8 @@ config.action_mailer.default_content_type = "text/html"
 config.after_initialize do
   ActiveMerchant::Billing::Base.mode = :test
   ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
-          :login => "bob_1243217692_biz_api1.firehoze.com",
-          :password => "1243217698",
-          :signature => "Agi-HK.rb-scYwSYy-8VbRMj2r0nAqYV1i-0cMgeKQmcf0zzvJHh8TGZ"
+          :login => "seller_1245091905_biz_api1.firehoze.com",
+          :password => "1245091911",
+          :signature => "ANWT4eqvfe9CDpkyiOnsmpFaGBiSALD1SnzflEmQNt7ccAFqMc9Pj0.K"
   )
 end
