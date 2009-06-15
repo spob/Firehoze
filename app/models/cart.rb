@@ -21,7 +21,7 @@ class Cart < ActiveRecord::Base
 
   # Trigger the execution of the order (e.g., actually grant the user
   # credits when the order purchase transaction has completed
-  def execute_order user  
+  def execute_order_on_cart user  
     # Update the cart to indicate that its actually been purchased
     self.purchased_at = Time.zone.now
 
@@ -29,7 +29,7 @@ class Cart < ActiveRecord::Base
     # in the case of a credit sku, this would mean granting the user credits
     if self.purchased_at_was == nil and !self.purchased_at.nil?
       for line in self.line_items
-        line.sku.execute_order user, line.quantity
+        line.sku.execute_order_on_cart user, line.quantity
       end
     end
   end

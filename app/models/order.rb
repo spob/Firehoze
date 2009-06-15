@@ -62,7 +62,7 @@ class Order < ActiveRecord::Base
     # log the result
     transactions.create!(:action => "purchase", :amount => price_in_cents, :response => response)
     if response.success?
-      cart.execute_order user
+      cart.execute_order_on_cart user
 
       # If we can't save the cart at this point, it's a serious problem that we can't recover from...so go ahead
       # and throw the exception
