@@ -9,7 +9,8 @@ class OrderTest < ActiveSupport::TestCase
     should_have_many :transactions
     should_have_many :last_transaction
     should_validate_presence_of :user, :cart, :ip_address, :user, :address1,
-                                :city, :state, :country, :zip, :billing_name
+                                :city, :state, :country, :zip, :billing_name,
+                                :card_type, :card_expires_on
     should_ensure_length_in_range    :last_name, (0..50)
     should_ensure_length_in_range    :first_name, (0..50)
     should_ensure_length_in_range    :billing_name, (0..100)

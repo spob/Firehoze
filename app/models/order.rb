@@ -16,7 +16,10 @@ class Order < ActiveRecord::Base
   # Most attributes (first/last name, card number, expiration date) are validated
   # in the logic to validate the credit card
   validates_presence_of :cart, :ip_address, :user, :address1,
-                        :city, :state, :country, :zip, :billing_name
+                        :city, :state, :country, :zip, :billing_name, :card_type,
+                        :card_expires_on
+  validates_presence_of :card_number, :card_verification, :on => :create
+  validates_presence_of
   validates_length_of       :first_name, :maximum => 50, :allow_nil => true
   validates_length_of       :last_name, :maximum => 50, :allow_nil => true
   validates_length_of       :billing_name, :maximum => 100, :allow_nil => true
