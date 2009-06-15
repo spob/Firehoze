@@ -34,7 +34,8 @@ class LineItemsController < ApplicationController
       # and throw an exception
       current_cart.save!
     end
-    flash[:notice] = t(:line_item_created_added_sku, :sku_desc => @sku.description)
+    flash[:notice] = t(:line_item_created_added_sku,
+                       :sku_desc => help.pluralize(quantity, @sku.description))
     redirect_to current_cart_url
   end
 

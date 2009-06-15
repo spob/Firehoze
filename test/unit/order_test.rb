@@ -7,6 +7,7 @@ class OrderTest < ActiveSupport::TestCase
     should_belong_to :user
     should_belong_to :cart
     should_have_many :transactions
+    should_have_many :last_transaction
     should_validate_presence_of :user, :cart, :ip_address, :user, :address1,
                                 :city, :state, :country, :zip, :billing_name
     should_ensure_length_in_range    :last_name, (0..50)

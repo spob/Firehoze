@@ -7,6 +7,8 @@ class Order < ActiveRecord::Base
   # including the specific parameters passed and the return results and authorization codes. 
   has_many :transactions, :class_name => "OrderTransaction"
 
+  has_many :last_transaction, :class_name => "OrderTransaction", :limit => 1, :order => "id desc"
+
   # These non-persisted attributes are passed to ActiveMechant. They're not persisted because we won't
   # want to store these bad boys in firehoze and risk security issues
   attr_accessor :card_number, :card_verification
@@ -62,11 +64,8 @@ class Order < ActiveRecord::Base
     # log the result
     transactions.create!(:action => "purchase", :amount => price_in_cents, :response => response)
     if response.success?
+      # Now update the database to give the user whatever they purchased...for example, add credits to their account
       cart.execute_order_on_cart user
-
-      # If we can't save the cart at this point, it's a serious problem that we can't recover from...so go ahead
-      # and throw the exception
-      cart.save!
     end
 
     # Return true iff the credit card was processed successfully

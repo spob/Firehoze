@@ -13,7 +13,7 @@ class CreditSkuTest < ActiveSupport::TestCase
 
       should "generates credits for the user" do
         assert_equal 0, @user.credits.size
-        @sku.execute_order(@user, 1)
+        @sku.execute_order_line(@user, 1)
         @user = User.find(@user.id)
         assert_equal 10, @user.credits.size
       end

@@ -21,16 +21,18 @@ class Cart < ActiveRecord::Base
 
   # Trigger the execution of the order (e.g., actually grant the user
   # credits when the order purchase transaction has completed
-  def execute_order_on_cart user  
-    # Update the cart to indicate that its actually been purchased
-    self.purchased_at = Time.zone.now
+  def execute_order_on_cart user
+    # Purchased at should always be nil when we get here...otherwise raise an exception so we can
+    # track it and fix it
+    raise Exceptions::AssertionFailed unless self.purchased_at.nil?
 
-    # Cart must have just been purchased...so ahead and execute the order. For example,
-    # in the case of a credit sku, this would mean granting the user credits
-    if self.purchased_at_was == nil and !self.purchased_at.nil?
-      for line in self.line_items
-        line.sku.execute_order_on_cart user, line.quantity
-      end
+    # Update the cart to indicate that its actually been purchased
+    self.update_attribute(:purchased_at, Time.zone.now)
+
+    # Go ahead and execute the order. For example, in the case of a credit sku, this would mean
+    # granting the user credits
+    for line in self.line_items
+      line.sku.execute_order_line user, line.quantity
     end
   end
 end
