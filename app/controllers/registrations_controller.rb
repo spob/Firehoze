@@ -14,7 +14,7 @@ class RegistrationsController < ApplicationController
     # registration record
     @registration.send_email = true
     if @registration.save
-      flash[:notice] = "Please check your email to complete the registration."
+      flash[:notice] = t(:check_email_for_registration)
       redirect_to root_path 
     else
       #@registration.errors.each { |attr,msg| puts "#{attr} - #{msg}" }

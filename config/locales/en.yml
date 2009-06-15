@@ -24,7 +24,38 @@ en:
   updated_line_item_success: Updated line item
   updated_line_item_failure: Line update failed
   line_item_remove_sku_success: SKU {{sku}} was successfully removed from the cart
-  line_item_created_added_sku: Added {{sku_desc}} to cart."
+  line_item_created_added_sku: Added {{sku_desc}} to cart.
+  
+  # password_resets_controller
+  reset_email_msg: Instructions to reset your password have been emailed to you. Please check your email
+  no_user_found_with_email_addr: No user was found with that email address
+  pwd_update_success: Password successfully updated
+  could_not_locate_account: We're sorry, but we could not locate your account. If you are having issues try copying and pasting the URL from your email into your browser or restarting the reset password process.
+  
+  # passwords_controller
+  pwd_update_success: Password updated
+  
+  # periodic_jobs_controller
+  one_time_job_scheduled: Job has been scheduled to run one time
+  
+  # profiles_controller
+  profile_update_success: Profile updated
+  
+  # registrations_controller
+  check_email_for_registration: Please check your email to complete the registration
+  
+  # skus_controller
+  sku_update_success: SKU updated
+  sku_delete_success: SKU {{name}} was successfully deleted
+  
+  # user_sessions_controller
+  login_success: Login successful
+  logout_success: Logout successful
+  
+  # users_controller
+  registration_no_longer_valid: Registration no longer valid
+  account_reg_success: Account registered
+  account_update_success: Account updated
   
   # Date/Time formatting
   date:

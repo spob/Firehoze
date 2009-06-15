@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       @user = populate_user_from_registration_and_params
       @user.time_zone = APP_CONFIG['default_user_timezone']
     rescue ActiveUrl::RecordNotFound
-      flash[:notice] = "Registration no longer valid"
+      flash[:notice] = t(:registration_no_longer_valid)
       redirect_back_or_default home_path
     end
   end
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     # as appropriate
     @user = populate_user_from_registration_and_params
     if @user.save
-      flash[:notice] = "Account registered!"
+      flash[:notice] = t(:account_reg_success)
       redirect_back_or_default user_path(@user)
     else
       render :action => :new
@@ -60,7 +60,7 @@ class UsersController < ApplicationController
       @user.has_role role.name
     end
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Account updated!"
+      flash[:notice] = t(:account_update_success)
       redirect_to user_url(@user)
     else
       render :action => :edit

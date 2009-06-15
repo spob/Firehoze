@@ -72,7 +72,7 @@ class SkusControllerTest < ActionController::TestCase
         context "on PUT to :update" do
           setup { put :update, :id => @sku.id, :sku => Factory.attributes_for(:credit_sku) }
 
-          should_set_the_flash_to "SKU updated!"
+          should_set_the_flash_to :sku_update_success
           should_assign_to :sku
           should_respond_with :redirect
           should_redirect_to("sku page") { skus_path }

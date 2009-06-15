@@ -31,7 +31,7 @@ class ProfilesControllerTest < ActionController::TestCase
 
       should_assign_to :user
       should_respond_with :redirect
-      should_set_the_flash_to "Profile updated!"
+      should_set_the_flash_to :profile_update_success
       should_redirect_to("profile page") { profile_url(assigns(:user)) }
     end
   end

@@ -72,7 +72,7 @@ class UsersControllerTest < ActionController::TestCase
 
         should_assign_to :user
         should_respond_with :redirect
-        should_set_the_flash_to "Account updated!"
+        should_set_the_flash_to :account_update_success
         should_redirect_to("user page") { user_url(assigns(:user)) }
       end
     end

@@ -22,7 +22,7 @@ class ProfilesController < ApplicationController
     @user.time_zone = params[:user][:time_zone]
     @user.language = params[:user][:language]
     if @user.save
-      flash[:notice] = "Profile updated!"
+      flash[:notice] = t(:profile_update_success)
       redirect_to profile_url(@user)
     else
       render :action => :edit

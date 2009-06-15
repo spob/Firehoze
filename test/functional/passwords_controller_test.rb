@@ -26,7 +26,7 @@ class PasswordsControllerTest < ActionController::TestCase
 
       should_assign_to :user
       should_respond_with :redirect
-      should_set_the_flash_to "Password updated!"
+      should_set_the_flash_to :pwd_update_success
       should_redirect_to("profile page") { profile_url(assigns(:user)) }
     end
 
