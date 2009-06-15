@@ -1,9 +1,32 @@
 en:
-  # Lesson Controller messages
-  flash_lesson_created: Lesson created
-  flash_lesson_access_message: You do not have access to edit this lesson
-  flash_lesson_updated): Lesson updated
+
+  # variables work as follows:
+  # In the controller
+  #   vars = "substitution"
+  #   flash[:notice] = t(:test_msg, :arg => vars)
+  # In the yml file:
+  #   test_msg: Passing args: {{arg}}
   
+  # application_controller messages
+  you_must_be_logged_in: You must be logged in to access this page
+  
+  # discounts_controller
+  discount_create_sucess: Successfully created discount
+  discount_update_sucess: Successfully updated discount
+  discount_destroyed_success: Successfully destroyed discount
+  
+  # Lesson Controller messages
+  lesson_created: Lesson created
+  lesson_access_message: You do not have access to edit this lesson
+  lesson_updated: Lesson updated
+  
+  # line_items_controller
+  updated_line_item_success: Updated line item
+  updated_line_item_failure: Line update failed
+  line_item_remove_sku_success: SKU {{sku}} was successfully removed from the cart
+  line_item_created_added_sku: Added {{sku_desc}} to cart."
+  
+  # Date/Time formatting
   date:
     formats:
       default: "%b %d, %Y"

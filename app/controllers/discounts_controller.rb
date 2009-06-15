@@ -33,7 +33,7 @@ class DiscountsController < ApplicationController
     @sku.discounts << @discount 
 #    @discount = @sku.discounts.build(params[:discount])
     if @sku.save
-      flash[:notice] = "Successfully created discount."
+      flash[:notice] = t(:discount_create_sucess)
       redirect_to sku_discounts_path(@sku)
     else
       render :action => 'new'
@@ -47,7 +47,7 @@ class DiscountsController < ApplicationController
   def update
     @discount = Discount.find(params[:id])
     if @discount.update_attributes(params[:discount])
-      flash[:notice] = "Successfully updated discount."
+      flash[:notice] = t(:discount_update_sucess)
       redirect_to sku_discounts_url(@discount.sku)
     else
       render :action => 'edit'
@@ -57,7 +57,7 @@ class DiscountsController < ApplicationController
   def destroy
     @discount = Discount.find(params[:id])
     @discount.destroy
-    flash[:notice] = "Successfully destroyed discount."
+    flash[:notice] = t(:discount_destroyed_success)
       redirect_to sku_discounts_path(@discount.sku)
   end
 

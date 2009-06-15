@@ -34,7 +34,7 @@ class LineItemsController < ApplicationController
       # and throw an exception
       current_cart.save!
     end
-    flash[:notice] = "Added #{@sku.description} to cart."
+    flash[:notice] = t(:line_item_created_added_sku, :sku_desc => @sku.description)
     redirect_to current_cart_url
   end
 
@@ -50,9 +50,9 @@ class LineItemsController < ApplicationController
       # nickeled and dimed with purchases of 1 credti at a time
       flash[:error] = "You must buy at least #{APP_CONFIG['min_credit_purchase']} credits"
     elsif @line_item.save
-      flash[:notice] = "Updated line item."
+      flash[:notice] = t(:updated_line_item_success)
     else
-      flash[:error] = "Line update failed"
+      flash[:error] = t(:updated_line_item_failure)
     end
     redirect_to current_cart_url
   end
@@ -61,7 +61,7 @@ class LineItemsController < ApplicationController
     line_item = LineItem.find params[:id]
     sku = line_item.sku.sku
     line_item.destroy
-    flash[:notice] = "SKU #{sku} was successfully removed from the cart."
+    flash[:notice] = t(:line_item_remove_sku_success, :sku => sku)
     redirect_to current_cart_url
   end
 end
