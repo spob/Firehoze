@@ -64,7 +64,7 @@ class LessonsControllerTest < ActionController::TestCase
 
       should_assign_to :lesson
       should_respond_with :redirect
-      should_set_the_flash_to "Lesson created"
+      should_set_the_flash_to :flash_lesson_updated
       should_redirect_to("lessons index page") { lesson_url(assigns(:lesson)) }
     end
 
@@ -88,7 +88,7 @@ class LessonsControllerTest < ActionController::TestCase
       context "on PUT to :update" do
         setup { put :update, :id => @lesson.id, :lesson => Factory.attributes_for(:lesson) }
 
-        should_set_the_flash_to "Lesson updated!"
+        should_set_the_flash_to :flash_lesson_updated
         should_assign_to :lesson
         should_respond_with :redirect
         should_redirect_to("lesson page") { lesson_path(@lesson) }

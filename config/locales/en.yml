@@ -1,4 +1,9 @@
 en:
+  # Lesson Controller messages
+  flash_lesson_created: Lesson created
+  flash_lesson_access_message: You do not have access to edit this lesson
+  flash_lesson_updated): Lesson updated
+  
   date:
     formats:
       default: "%b %d, %Y"
