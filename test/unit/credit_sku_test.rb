@@ -15,7 +15,7 @@ class CreditSkuTest < ActiveSupport::TestCase
         assert_equal 0, @user.credits.size
         @sku.execute_order_line(@user, 1)
         @user = User.find(@user.id)
-        assert_equal 10, @user.credits.size
+        assert_equal 1, @user.credits.size
       end
     end
   end
