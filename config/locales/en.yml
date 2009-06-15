@@ -25,6 +25,9 @@ en:
   updated_line_item_failure: Line update failed
   line_item_remove_sku_success: SKU {{sku}} was successfully removed from the cart
   line_item_created_added_sku: Added {{sku_desc}} to cart.
+
+  # orders controller
+  order_placed: Your order has been placed
   
   # password_resets_controller
   reset_email_msg: Instructions to reset your password have been emailed to you. Please check your email
