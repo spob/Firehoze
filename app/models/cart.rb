@@ -23,11 +23,11 @@ class Cart < ActiveRecord::Base
   # credits when the order purchase transaction has completed
   def execute_order user  
     # Update the cart to indicate that its actually been purchased
-    purchased_at = Time.zone.now
+    self.purchased_at = Time.zone.now
 
     # Cart must have just been purchased
-    if purchased_at_was == nil and !purchased_at.nil?
-      for line in line_items
+    if self.purchased_at_was == nil and !self.purchased_at.nil?
+      for line in self.line_items
         line.sku.execute_order user, line.quantity
       end
     end

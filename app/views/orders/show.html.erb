@@ -1,0 +1,49 @@
+<h1>Your order has been placed</h1>
+<p>
+  Order #: <%= @order.id %>
+</p>
+<p>
+  Order Date: <%= l @order.cart.purchased_at %>
+</p>
+<p>
+  Ordered By: <%= h(@order.user.full_name) %>
+</p>
+<b>Billing Information:</b>
+<p>
+  Name: <%= h @order.first_name %> <%= h @order.last_name %>
+</p>
+<p>
+  Address:<br/>
+  <%= @order.formatted_billing_address("<br/>") %>
+</p>
+<p>
+  Credit Card Type: <%= Order.user_friend_card_type(@order.card_type) %>
+</p>
+Items
+<table>
+  <tr>
+    <th>SKU</th>
+    <th class="price">Unit Price</th>
+    <th>Qty</th>
+    <th class="price">Extended Price</th>
+    <th>Discount</th>
+    <th class="price">Price</th>
+  </tr>
+
+  <%= render :partial => 'carts/line_item', :collection => @order.cart.line_items %>
+
+  <tr>
+    <td align="right"><strong>Total</strong></td>
+    <td/>
+    <td/>
+    <td class="total price">
+      <%= number_to_currency @order.cart.total_full_price %>
+    </td>
+    <td class="total price">
+      <%= number_to_currency @order.cart.total_full_price - @order.cart.total_discounted_price %>
+    </td>
+    <td class="total price">
+      <%= number_to_currency @order.cart.total_discounted_price %>
+    </td>
+  </tr>
+</table>

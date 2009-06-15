@@ -41,8 +41,7 @@ New Order
     </p>
     <p>
       <%= f.label :card_type %><br/>
-      <%= f.select :card_type, [['Visa', 'visa'], ['Mastercard', 'master'],
-                                ['Discover', 'discover'], ['American Express', 'american_express']],
+      <%= f.select :card_type, Order.card_types,
                    :prompt => 'Please select...' %>
     </p>
     <p>
