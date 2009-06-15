@@ -31,7 +31,7 @@ class SkusController < ApplicationController
     command = "#{params[:sku][:type]}.new(params[:sku])"
     #    print command
     @sku = eval command
-    set_description @sku
+ 
     if @sku.save
       flash[:notice] = "SKU saved"
       redirect_to skus_path
@@ -47,7 +47,6 @@ class SkusController < ApplicationController
   def update
     @sku = Sku.find params[:id]
     @sku.attributes = params[:sku]
-    set_description @sku
     if @sku.save
       flash[:notice] = "SKU updated!"
       redirect_to skus_path
@@ -62,13 +61,5 @@ class SkusController < ApplicationController
     sku.destroy
     flash[:notice] = "SKU #{name} was successfully deleted."
     redirect_to skus_url
-  end
-
-  private
-
-  # Calculate the description automatically...todo: I'm going to undo this and allow them to specify it
-  # explicitly
-  def set_description sku
-    sku.description = "#{help.pluralize sku.num_credits, 'credit'} for #{help.number_to_currency sku.price}"
   end
 end
