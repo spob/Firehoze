@@ -90,8 +90,8 @@
       <controlProperties>
         <direction>top</direction>
         <rightArrow>false</rightArrow>
-        <curvature>1</curvature>
         <backgroundAlpha>1</backgroundAlpha>
+        <curvature>1</curvature>
         <color>3355443</color>
       </controlProperties>
     </control>
@@ -108,10 +108,10 @@
     </control>
     <control controlID="24" controlTypeID="com.balsamiq.mockups::TabBar" x="267" y="40" w="626" h="566" measuredW="318" measuredH="100" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Reviews%2C%20Disussion%2C%20Lesson%20Notes</text>
+        <text>Lesson%20Notes%2C%20Reviews%2C%20Disussion</text>
         <italic>true</italic>
-        <hrefs>lesson_detail.bmml%2C%2Clesson_detail_lesson_notes_detail.bmml</hrefs>
-        <selectedIndex>1</selectedIndex>
+        <hrefs>lesson_detail_lesson_notes_detail.bmml%2Clesson_detail_review_detail.bmml%2C</hrefs>
+        <selectedIndex>2</selectedIndex>
       </controlProperties>
     </control>
     <control controlID="47" controlTypeID="com.balsamiq.mockups::HRule" x="286" y="384" w="592" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="-1">

@@ -2,8 +2,8 @@
   <controls>
     <control controlID="96" controlTypeID="com.balsamiq.mockups::HRule" x="290" y="154" w="582" h="-1" measuredW="100" measuredH="5" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
-        <color>0</color>
         <backgroundAlpha>0.5</backgroundAlpha>
+        <color>0</color>
       </controlProperties>
     </control>
     <control controlID="129" controlTypeID="com.balsamiq.mockups::Link" x="88" y="126" w="-1" h="-1" measuredW="93" measuredH="25" zOrder="11" locked="false" isInGroup="-1">
@@ -14,8 +14,8 @@
     </control>
     <control controlID="94" controlTypeID="com.balsamiq.mockups::HRule" x="290" y="118" w="582" h="-1" measuredW="100" measuredH="5" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
-        <color>0</color>
         <backgroundAlpha>0.5</backgroundAlpha>
+        <color>0</color>
       </controlProperties>
     </control>
     <control controlID="128" controlTypeID="__group__" x="290" y="129" w="-1" h="-1" measuredW="229" measuredH="20" zOrder="10" locked="false" isInGroup="-1">
@@ -43,10 +43,10 @@
     </control>
     <control controlID="24" controlTypeID="com.balsamiq.mockups::TabBar" x="267" y="40" w="626" h="703" measuredW="318" measuredH="100" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Reviews%2C%20Disussion%2C%20Lesson%20Notes</text>
+        <text>Lesson%20Notes%2CReviews%2C%20Disussion</text>
         <italic>true</italic>
-        <hrefs>lesson_detail.bmml%2Clesson_detail_discussion_detail.bmml%2C</hrefs>
-        <selectedIndex>2</selectedIndex>
+        <hrefs>%2Clesson_detail_review_detail.bmml%2Clesson_detail_discussion_detail.bmml</hrefs>
+        <selectedIndex>0</selectedIndex>
       </controlProperties>
     </control>
     <control controlID="11" controlTypeID="com.balsamiq.mockups::StickyNote" x="55" y="40" w="161" h="70" measuredW="109" measuredH="123" zOrder="0" locked="false" isInGroup="-1">
