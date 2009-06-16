@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" measuredW="1187" measuredH="630">
+<mockup version="1.0" skin="sketch" measuredW="1223" measuredH="616">
   <controls>
     <control controlID="64" controlTypeID="com.balsamiq.mockups::Label" x="349" y="257" w="20" h="25" measuredW="19" measuredH="25" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
@@ -91,13 +91,13 @@
         <direction>top</direction>
         <rightArrow>false</rightArrow>
         <backgroundAlpha>1</backgroundAlpha>
-        <curvature>1</curvature>
+        <curvature>0</curvature>
         <color>3355443</color>
       </controlProperties>
     </control>
-    <control controlID="83" controlTypeID="com.balsamiq.mockups::Paragraph" x="936" y="480" w="241" h="140" measuredW="200" measuredH="140" zOrder="25" locked="false" isInGroup="-1">
+    <control controlID="83" controlTypeID="com.balsamiq.mockups::Paragraph" x="972" y="421" w="241" h="140" measuredW="200" measuredH="140" zOrder="25" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>If%20signed-in%20as%20%27Jane%20Wilson%27%20-%20allow%20edit%20and%20delete%20only%20if%20no%20subsequent%20entries%20as%20present%2C%20or%20make%20only%20present%20within%20a%20certain%20time-frame.</text>
+        <text>If%20signed-in%20as%20%27Jane%20Wilson%27%20-%20allow%20edit%20and%20delete%20only%20if%20no%20subsequent%20entries%20are%20present%20%28or%20restrict%20editing%20within%20a%20certain%20time-frame%29.%20Admins%20%26%20moderators%20are%20allowed%20to%20edit/delete%20indefinitely%20on%20all%20entries.</text>
       </controlProperties>
     </control>
     <control controlID="84" controlTypeID="com.balsamiq.mockups::Link" x="88" y="130" w="-1" h="-1" measuredW="93" measuredH="25" zOrder="26" locked="false" isInGroup="-1">
