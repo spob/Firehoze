@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   has_many :user_logons, :order => "created_at DESC", :dependent => :destroy
   has_many :credits, :dependent => :destroy
 
+
+  # Active users
+  named_scope :active, :conditions => {:active => true}
+
   # Used to verify current password during password changes
   # todo: I don't think the first and last name accessors are necessary because they are persist fields. Joel? --RBS
   attr_accessor :current_password #, :first_name, :first_name
@@ -76,5 +80,11 @@ class User < ActiveRecord::Base
     # watch for when the login count is incremented (which is done by AuthLogic).
     UserLogon.create(:user => self,
                      :login_ip => self.current_login_ip) if login_count > login_count_was
+
+    # Also touch the available credit records for this user...used for calculating which credits should
+    # expire due to lack of activity on the account
+    self.credits.available.each {|credit|
+      credit.update_attributes(:will_expire_at => APP_CONFIG['expire_credits_after_days'].days.since,
+                               :expiration_warning_issued_at => nil ) }
   end
 end

@@ -16,6 +16,37 @@ class Credit < ActiveRecord::Base
   belongs_to :sku, :class_name => "CreditSku"
   belongs_to :user
   belongs_to :lesson
-  
-  named_scope :available, :conditions => "redeemed_at is null"
+
+  # Credits which have not yet been redeemed
+  named_scope :available, :conditions => {:redeemed_at => nil}
+
+  # Credits which have not yet been warned to be about to expire
+  named_scope :unwarned, :conditions => {:expiration_warning_issued_at => nil}
+
+  # Find credits which haven't been used in a long time and are about to expire. Specifically, look for credits
+  # for which the associated user hasn't logged in to the system for a long time (e.g., a year) where the credits
+  # are at least that old.
+  # This named_scope will likely be chained with the available named scope
+  named_scope :to_expire,
+              lambda{ |expire_at| {:conditions => ["credits.will_expire_at < ?", expire_at ]}
+              }
+
+  # Expire credits that are older than a specified period of time for which the user who owns the credit hasn't logged
+  # in to the account for that period of time as well.
+  def self.expire_unused_credits
+    # Expire the credits that are about to expire
+    Credit.available.to_expire(Time.zone.now).unwarned do |old_credit|
+      Credit.transaction { old_credit.update_attribute(:expired_at, Time.zone.now) }
+    end
+
+    warn_before_credit_expiration_days = APP_CONFIG['warn_before_credit_expiration_days'].to_i
+    # Send a warning for those that are coming close
+    # The inner query finds all credits about to expire and builds an array of user_ids from it, to pass to the second
+    # one which searches for users.
+    for user in User.active.find(:all,
+                                 :conditions => ["id in (?)",
+                                                 Credit.available.to_expire(warn_before_credit_expiration_days.days.since).scoped(:select => "DISTINCT user_id").collect(&:user_id)])
+      # TODO: Add warning logic
+    end
+  end
 end

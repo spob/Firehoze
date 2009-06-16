@@ -33,3 +33,10 @@ min_credit_purchase: 5
 
 # The number of days to keep periodic jobs which have executed before purging them
 keep_periodic_job_days: 7
+
+# The number of days an unused credit will be good for without account activity before
+# that credit expires
+expire_credits_after_days: 365
+
+# The number of days before expiration to warn the user that their credit is about to expire
+warn_before_credit_expiration_days: 10
