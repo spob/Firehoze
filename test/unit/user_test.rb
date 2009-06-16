@@ -39,7 +39,7 @@ class UserTest < ActiveSupport::TestCase
       end
        
       should "find 3 records" do
-        user_list = User.find(:all)
+        user_list = User.active
         assert_equal 3, user_list.size
       end
       

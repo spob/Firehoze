@@ -12,7 +12,7 @@ Factory.define :order do |order|
   order.card_number '4024007148673576'
   order.card_verification '888'
   order.card_expires_on { 5.years.since }
-  order.first_name { |u| u.user.first_name }
-  order.last_name { |u| u.user.last_name }
+  order.first_name "Jim"
+  order.last_name "Smith"
 end
 
