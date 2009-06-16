@@ -17,10 +17,10 @@ class Credit < ActiveRecord::Base
   belongs_to :user
   belongs_to :lesson
 
-  before_save :set_will_expire_at
+  before_create :set_will_expire_at
 
   # Credits which have not yet been redeemed
-  named_scope :available, :conditions => {:redeemed_at => nil}
+  named_scope :available, :conditions => {:redeemed_at => nil, :expired_at => nil}
 
   # Credits which have not yet been warned to be about to expire
   named_scope :unwarned, :conditions => {:expiration_warning_issued_at => nil}
@@ -37,7 +37,7 @@ class Credit < ActiveRecord::Base
   # in to the account for that period of time as well.
   def self.expire_unused_credits
     # Expire the credits that are about to expire
-    Credit.available.to_expire(Time.zone.now).unwarned do |old_credit|
+    Credit.available.to_expire(Time.zone.now).unwarned.each do |old_credit|
       Credit.transaction { old_credit.update_attribute(:expired_at, Time.zone.now) }
     end
 

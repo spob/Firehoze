@@ -3,6 +3,7 @@ class AddActivityColumnsToCredits < ActiveRecord::Migration
     change_table :credits do |t|
       t.column :will_expire_at, :datetime, :null => false, :default => 1.years.since
       t.column :expiration_warning_issued_at, :datetime, :null => true
+      t.column :expired_at, :datetime, :null => true
     end
 
     change_table :credits do |t|
@@ -13,5 +14,6 @@ class AddActivityColumnsToCredits < ActiveRecord::Migration
   def self.down
     remove_column :credits, :will_expire_at
     remove_column :credits, :expiration_warning_issued_at
+    remove_column :credits, :expired_at
   end
 end
