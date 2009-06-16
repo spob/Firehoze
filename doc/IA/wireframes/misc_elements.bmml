@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" measuredW="927" measuredH="556">
+<mockup version="1.0" skin="sketch" measuredW="1363" measuredH="754">
   <controls>
     <control controlID="304" controlTypeID="__group__" x="60" y="71" w="-1" h="-1" measuredW="308" measuredH="239" zOrder="0" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
@@ -223,6 +223,104 @@
           <controlProperties>
             <text>more</text>
           </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="336" controlTypeID="__group__" x="453" y="588" w="-1" h="-1" measuredW="900" measuredH="156" zOrder="10" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="658" controlTypeID="com.balsamiq.mockups::FieldSet" x="0" y="0" w="900" h="156" measuredW="200" measuredH="170" zOrder="0" locked="false" isInGroup="678">
+          <controlProperties>
+            <text>Include%20the%20following%20universities</text>
+          </controlProperties>
+        </control>
+        <control controlID="677" controlTypeID="__group__" x="30" y="32" w="852" h="93" measuredW="852" measuredH="93" zOrder="1" locked="false" isInGroup="678">
+          <groupChildrenDescriptors>
+            <control controlID="660" controlTypeID="com.balsamiq.mockups::CheckBox" x="483" y="25" w="108" h="18" measuredW="108" measuredH="18" zOrder="0" locked="false" isInGroup="677">
+              <controlProperties>
+                <text>Northeastern</text>
+              </controlProperties>
+            </control>
+            <control controlID="661" controlTypeID="com.balsamiq.mockups::CheckBox" x="483" y="0" w="52" h="18" measuredW="52" measuredH="18" zOrder="1" locked="false" isInGroup="677">
+              <controlProperties>
+                <text>MIT</text>
+              </controlProperties>
+            </control>
+            <control controlID="662" controlTypeID="com.balsamiq.mockups::CheckBox" x="0" y="75" w="135" h="18" measuredW="135" measuredH="18" zOrder="2" locked="false" isInGroup="677">
+              <controlProperties>
+                <text>Boston%20University</text>
+              </controlProperties>
+            </control>
+            <control controlID="663" controlTypeID="com.balsamiq.mockups::CheckBox" x="0" y="25" w="68" h="18" measuredW="68" measuredH="18" zOrder="3" locked="false" isInGroup="677">
+              <controlProperties>
+                <text>Babson</text>
+              </controlProperties>
+            </control>
+            <control controlID="664" controlTypeID="com.balsamiq.mockups::CheckBox" x="723" y="0" w="60" h="18" measuredW="60" measuredH="18" zOrder="4" locked="false" isInGroup="677">
+              <controlProperties>
+                <text>Smith</text>
+              </controlProperties>
+            </control>
+            <control controlID="665" controlTypeID="com.balsamiq.mockups::CheckBox" x="203" y="75" w="118" h="18" measuredW="118" measuredH="18" zOrder="5" locked="false" isInGroup="677">
+              <controlProperties>
+                <text>Mount%20Holyoke</text>
+              </controlProperties>
+            </control>
+            <control controlID="667" controlTypeID="com.balsamiq.mockups::CheckBox" x="483" y="75" w="140" h="18" measuredW="140" measuredH="18" zOrder="6" locked="false" isInGroup="677">
+              <controlProperties>
+                <text>Providence%20College</text>
+              </controlProperties>
+            </control>
+            <control controlID="668" controlTypeID="com.balsamiq.mockups::CheckBox" x="723" y="25" w="122" h="18" measuredW="122" measuredH="18" zOrder="7" locked="false" isInGroup="677">
+              <controlProperties>
+                <text>UMass%20%28Boston%29</text>
+              </controlProperties>
+            </control>
+            <control controlID="669" controlTypeID="com.balsamiq.mockups::CheckBox" x="0" y="50" w="113" h="18" measuredW="113" measuredH="18" zOrder="8" locked="false" isInGroup="677">
+              <controlProperties>
+                <text>Boston%20College</text>
+              </controlProperties>
+            </control>
+            <control controlID="670" controlTypeID="com.balsamiq.mockups::CheckBox" x="203" y="0" w="148" h="18" measuredW="148" measuredH="18" zOrder="9" locked="false" isInGroup="677">
+              <controlProperties>
+                <text>Brandeis%20University</text>
+              </controlProperties>
+            </control>
+            <control controlID="671" controlTypeID="com.balsamiq.mockups::CheckBox" x="203" y="25" w="124" h="18" measuredW="124" measuredH="18" zOrder="10" locked="false" isInGroup="677">
+              <controlProperties>
+                <text>Emerson%20College</text>
+              </controlProperties>
+            </control>
+            <control controlID="672" controlTypeID="com.balsamiq.mockups::CheckBox" x="203" y="50" w="138" h="18" measuredW="138" measuredH="18" zOrder="11" locked="false" isInGroup="677">
+              <controlProperties>
+                <text>Merrimack%20College</text>
+              </controlProperties>
+            </control>
+            <control controlID="673" controlTypeID="com.balsamiq.mockups::CheckBox" x="723" y="50" w="129" h="18" measuredW="129" measuredH="18" zOrder="12" locked="false" isInGroup="677">
+              <controlProperties>
+                <text>Wheaton%20College</text>
+              </controlProperties>
+            </control>
+            <control controlID="674" controlTypeID="com.balsamiq.mockups::CheckBox" x="483" y="50" w="130" h="18" measuredW="130" measuredH="18" zOrder="13" locked="false" isInGroup="677">
+              <controlProperties>
+                <text>Newbury%20College</text>
+              </controlProperties>
+            </control>
+            <control controlID="676" controlTypeID="__group__" x="0" y="0" w="808" h="93" measuredW="808" measuredH="93" zOrder="14" locked="false" isInGroup="677">
+              <groupChildrenDescriptors>
+                <control controlID="659" controlTypeID="com.balsamiq.mockups::CheckBox" x="0" y="0" w="43" h="18" measuredW="43" measuredH="18" zOrder="0" locked="false" isInGroup="676">
+                  <controlProperties>
+                    <text>All</text>
+                    <state>selected</state>
+                  </controlProperties>
+                </control>
+                <control controlID="666" controlTypeID="com.balsamiq.mockups::CheckBox" x="723" y="75" w="85" h="18" measuredW="85" measuredH="18" zOrder="1" locked="false" isInGroup="676">
+                  <controlProperties>
+                    <text>Wellesley</text>
+                  </controlProperties>
+                </control>
+              </groupChildrenDescriptors>
+            </control>
+          </groupChildrenDescriptors>
         </control>
       </groupChildrenDescriptors>
     </control>
