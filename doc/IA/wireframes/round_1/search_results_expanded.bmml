@@ -25,191 +25,246 @@
         <icon>CircledMinusIcon%7Csmall</icon>
       </controlProperties>
     </control>
-    <control controlID="6" controlTypeID="com.balsamiq.mockups::Paragraph" x="258" y="1087" w="831" h="76" measuredW="200" measuredH="140" zOrder="5" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Lorem%20ipsum%20dolor%20sit%20amet%2C%20consectetur%20adipiscing%20elit.%20Donec%20euismod%20fermentum%20leo%2C%20in%20elementum%20nunc%20faucibus%20ut.%20Quisque%20ut%20diam%20neque.%20Duis%20a%20blandit%20quam.%20Donec%20rhoncus%20egestas%20orci%20non%20sollicitudin.%20Cras%20imperdiet%20neque%20ligula%2C%20ac%20adipiscing%20velit.%20Maecenas%20condimentum%20interdum%20nundapibus.%20Suspendisse%20at%20mi%20sed%20justo%20congue%20rhoncus.%20</text>
-        <size>11</size>
-      </controlProperties>
-    </control>
-    <control controlID="7" controlTypeID="com.balsamiq.mockups::Link" x="995" y="1124" w="-1" h="-1" measuredW="64" measuredH="22" zOrder="6" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>view%20lesson</text>
-        <size>11</size>
-      </controlProperties>
-    </control>
-    <control controlID="8" controlTypeID="com.balsamiq.mockups::Icon" x="1061" y="1127" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="7" locked="false" isInGroup="-1">
-      <controlProperties>
-        <icon>RightArrowIcon%7Cxsmall</icon>
-      </controlProperties>
-    </control>
-    <control controlID="11" controlTypeID="__group__" x="258" y="706" w="261" h="24" measuredW="261" measuredH="24" zOrder="8" locked="false" isInGroup="-1">
+    <control controlID="71" controlTypeID="__group__" x="259" y="587" w="-1" h="-1" measuredW="836" measuredH="100" zOrder="27" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
-        <control controlID="466" controlTypeID="com.balsamiq.mockups::Label" x="130" y="1" w="62" h="23" measuredW="62" measuredH="23" zOrder="0" locked="false" isInGroup="489">
-          <controlProperties>
-            <text>taught%20by</text>
-            <size>12</size>
-          </controlProperties>
-        </control>
-        <control controlID="487" controlTypeID="com.balsamiq.mockups::Link" x="192" y="0" w="-1" h="-1" measuredW="69" measuredH="23" zOrder="1" locked="false" isInGroup="489">
-          <controlProperties>
-            <text>Sally%20West</text>
-            <size>12</size>
-          </controlProperties>
-        </control>
-        <control controlID="488" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="131" measuredH="23" zOrder="2" locked="false" isInGroup="489">
-          <controlProperties>
-            <text>Discrete%20Mathematics</text>
-            <size>12</size>
-          </controlProperties>
-        </control>
-      </groupChildrenDescriptors>
-    </control>
-    <control controlID="12" controlTypeID="__group__" x="258" y="730" w="836" h="76" measuredW="836" measuredH="76" zOrder="9" locked="false" isInGroup="-1">
-      <groupChildrenDescriptors>
-        <control controlID="467" controlTypeID="com.balsamiq.mockups::Paragraph" x="0" y="0" w="831" h="76" measuredW="200" measuredH="140" zOrder="0" locked="false" isInGroup="493">
+        <control controlID="48" controlTypeID="com.balsamiq.mockups::HRule" x="0" y="95" w="836" h="-1" measuredW="100" measuredH="5" zOrder="0" locked="false" isInGroup="65"/>
+        <control controlID="60" controlTypeID="com.balsamiq.mockups::Paragraph" x="104" y="24" w="727" h="76" measuredW="200" measuredH="140" zOrder="1" locked="false" isInGroup="65">
           <controlProperties>
             <text>Lorem%20ipsum%20dolor%20sit%20amet%2C%20consectetur%20adipiscing%20elit.%20Donec%20euismod%20fermentum%20leo%2C%20in%20elementum%20nunc%20faucibus%20ut.%20Quisque%20ut%20diam%20neque.%20Duis%20a%20blandit%20quam.%20Donec%20rhoncus%20egestas%20orci%20non%20sollicitudin.%20Cras%20imperdiet%20neque%20ligula%2C%20ac%20adipiscing%20velit.%20Maecenas%20condimentum%20interdum%20nundapibus.%20Suspendisse%20at%20mi%20sed%20justo%20congue%20rhoncus.%20</text>
             <size>11</size>
           </controlProperties>
         </control>
-        <control controlID="468" controlTypeID="com.balsamiq.mockups::HRule" x="0" y="71" w="836" h="-1" measuredW="100" measuredH="5" zOrder="1" locked="false" isInGroup="493"/>
-        <control controlID="477" controlTypeID="__group__" x="737" y="37" w="82" h="22" measuredW="82" measuredH="22" zOrder="2" locked="false" isInGroup="493">
+        <control controlID="61" controlTypeID="com.balsamiq.mockups::Link" x="737" y="61" w="-1" h="-1" measuredW="64" measuredH="22" zOrder="2" locked="false" isInGroup="65">
+          <controlProperties>
+            <text>view%20lesson</text>
+            <size>11</size>
+            <href>lesson_detail.bmml</href>
+          </controlProperties>
+        </control>
+        <control controlID="62" controlTypeID="com.balsamiq.mockups::Icon" x="803" y="64" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="3" locked="false" isInGroup="65">
+          <controlProperties>
+            <icon>RightArrowIcon%7Cxsmall</icon>
+          </controlProperties>
+        </control>
+        <control controlID="63" controlTypeID="__group__" x="0" y="0" w="261" h="24" measuredW="261" measuredH="24" zOrder="4" locked="false" isInGroup="65">
           <groupChildrenDescriptors>
-            <control controlID="168" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="64" measuredH="22" zOrder="0" locked="false" isInGroup="170">
+            <control controlID="44" controlTypeID="com.balsamiq.mockups::Label" x="130" y="1" w="62" h="23" measuredW="62" measuredH="23" zOrder="0" locked="false" isInGroup="52">
               <controlProperties>
-                <text>view%20lesson</text>
-                <size>11</size>
+                <text>taught%20by</text>
+                <size>12</size>
               </controlProperties>
             </control>
-            <control controlID="169" controlTypeID="com.balsamiq.mockups::Icon" x="66" y="3" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="1" locked="false" isInGroup="170">
+            <control controlID="45" controlTypeID="com.balsamiq.mockups::Link" x="192" y="0" w="-1" h="-1" measuredW="69" measuredH="23" zOrder="1" locked="false" isInGroup="52">
               <controlProperties>
-                <icon>RightArrowIcon%7Cxsmall</icon>
+                <text>Sally%20West</text>
+                <size>12</size>
+              </controlProperties>
+            </control>
+            <control controlID="46" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="131" measuredH="23" zOrder="2" locked="false" isInGroup="52">
+              <controlProperties>
+                <text>Discrete%20Mathematics</text>
+                <size>12</size>
+                <href>lesson_detail.bmml</href>
               </controlProperties>
             </control>
           </groupChildrenDescriptors>
         </control>
+        <control controlID="64" controlTypeID="com.balsamiq.mockups::Image" x="3" y="26" w="91" h="55" measuredW="141" measuredH="144" zOrder="5" locked="false" isInGroup="65"/>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="13" controlTypeID="__group__" x="258" y="944" w="261" h="24" measuredW="261" measuredH="24" zOrder="10" locked="false" isInGroup="-1">
+    <control controlID="72" controlTypeID="__group__" x="259" y="702" w="-1" h="-1" measuredW="836" measuredH="100" zOrder="28" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
-        <control controlID="466" controlTypeID="com.balsamiq.mockups::Label" x="130" y="1" w="62" h="23" measuredW="62" measuredH="23" zOrder="0" locked="false" isInGroup="489">
-          <controlProperties>
-            <text>taught%20by</text>
-            <size>12</size>
-          </controlProperties>
-        </control>
-        <control controlID="487" controlTypeID="com.balsamiq.mockups::Link" x="192" y="0" w="-1" h="-1" measuredW="69" measuredH="23" zOrder="1" locked="false" isInGroup="489">
-          <controlProperties>
-            <text>Sally%20West</text>
-            <size>12</size>
-          </controlProperties>
-        </control>
-        <control controlID="488" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="131" measuredH="23" zOrder="2" locked="false" isInGroup="489">
-          <controlProperties>
-            <text>Discrete%20Mathematics</text>
-            <size>12</size>
-          </controlProperties>
-        </control>
-      </groupChildrenDescriptors>
-    </control>
-    <control controlID="14" controlTypeID="__group__" x="258" y="968" w="836" h="76" measuredW="836" measuredH="76" zOrder="11" locked="false" isInGroup="-1">
-      <groupChildrenDescriptors>
-        <control controlID="467" controlTypeID="com.balsamiq.mockups::Paragraph" x="0" y="0" w="831" h="76" measuredW="200" measuredH="140" zOrder="0" locked="false" isInGroup="493">
+        <control controlID="48" controlTypeID="com.balsamiq.mockups::HRule" x="0" y="95" w="836" h="-1" measuredW="100" measuredH="5" zOrder="0" locked="false" isInGroup="65"/>
+        <control controlID="60" controlTypeID="com.balsamiq.mockups::Paragraph" x="104" y="24" w="727" h="76" measuredW="200" measuredH="140" zOrder="1" locked="false" isInGroup="65">
           <controlProperties>
             <text>Lorem%20ipsum%20dolor%20sit%20amet%2C%20consectetur%20adipiscing%20elit.%20Donec%20euismod%20fermentum%20leo%2C%20in%20elementum%20nunc%20faucibus%20ut.%20Quisque%20ut%20diam%20neque.%20Duis%20a%20blandit%20quam.%20Donec%20rhoncus%20egestas%20orci%20non%20sollicitudin.%20Cras%20imperdiet%20neque%20ligula%2C%20ac%20adipiscing%20velit.%20Maecenas%20condimentum%20interdum%20nundapibus.%20Suspendisse%20at%20mi%20sed%20justo%20congue%20rhoncus.%20</text>
             <size>11</size>
           </controlProperties>
         </control>
-        <control controlID="468" controlTypeID="com.balsamiq.mockups::HRule" x="0" y="71" w="836" h="-1" measuredW="100" measuredH="5" zOrder="1" locked="false" isInGroup="493"/>
-        <control controlID="477" controlTypeID="__group__" x="737" y="37" w="82" h="22" measuredW="82" measuredH="22" zOrder="2" locked="false" isInGroup="493">
+        <control controlID="61" controlTypeID="com.balsamiq.mockups::Link" x="737" y="61" w="-1" h="-1" measuredW="64" measuredH="22" zOrder="2" locked="false" isInGroup="65">
+          <controlProperties>
+            <text>view%20lesson</text>
+            <size>11</size>
+            <href>lesson_detail.bmml</href>
+          </controlProperties>
+        </control>
+        <control controlID="62" controlTypeID="com.balsamiq.mockups::Icon" x="803" y="64" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="3" locked="false" isInGroup="65">
+          <controlProperties>
+            <icon>RightArrowIcon%7Cxsmall</icon>
+          </controlProperties>
+        </control>
+        <control controlID="63" controlTypeID="__group__" x="0" y="0" w="261" h="24" measuredW="261" measuredH="24" zOrder="4" locked="false" isInGroup="65">
           <groupChildrenDescriptors>
-            <control controlID="168" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="64" measuredH="22" zOrder="0" locked="false" isInGroup="170">
+            <control controlID="44" controlTypeID="com.balsamiq.mockups::Label" x="130" y="1" w="62" h="23" measuredW="62" measuredH="23" zOrder="0" locked="false" isInGroup="52">
               <controlProperties>
-                <text>view%20lesson</text>
-                <size>11</size>
+                <text>taught%20by</text>
+                <size>12</size>
               </controlProperties>
             </control>
-            <control controlID="169" controlTypeID="com.balsamiq.mockups::Icon" x="66" y="3" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="1" locked="false" isInGroup="170">
+            <control controlID="45" controlTypeID="com.balsamiq.mockups::Link" x="192" y="0" w="-1" h="-1" measuredW="69" measuredH="23" zOrder="1" locked="false" isInGroup="52">
               <controlProperties>
-                <icon>RightArrowIcon%7Cxsmall</icon>
+                <text>Sally%20West</text>
+                <size>12</size>
+              </controlProperties>
+            </control>
+            <control controlID="46" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="131" measuredH="23" zOrder="2" locked="false" isInGroup="52">
+              <controlProperties>
+                <text>Discrete%20Mathematics</text>
+                <size>12</size>
+                <href>lesson_detail.bmml</href>
               </controlProperties>
             </control>
           </groupChildrenDescriptors>
         </control>
+        <control controlID="64" controlTypeID="com.balsamiq.mockups::Image" x="3" y="26" w="91" h="55" measuredW="141" measuredH="144" zOrder="5" locked="false" isInGroup="65"/>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="15" controlTypeID="__group__" x="258" y="825" w="261" h="24" measuredW="261" measuredH="24" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="73" controlTypeID="__group__" x="259" y="817" w="-1" h="-1" measuredW="836" measuredH="100" zOrder="29" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
-        <control controlID="466" controlTypeID="com.balsamiq.mockups::Label" x="130" y="1" w="62" h="23" measuredW="62" measuredH="23" zOrder="0" locked="false" isInGroup="489">
-          <controlProperties>
-            <text>taught%20by</text>
-            <size>12</size>
-          </controlProperties>
-        </control>
-        <control controlID="487" controlTypeID="com.balsamiq.mockups::Link" x="192" y="0" w="-1" h="-1" measuredW="69" measuredH="23" zOrder="1" locked="false" isInGroup="489">
-          <controlProperties>
-            <text>Sally%20West</text>
-            <size>12</size>
-          </controlProperties>
-        </control>
-        <control controlID="488" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="131" measuredH="23" zOrder="2" locked="false" isInGroup="489">
-          <controlProperties>
-            <text>Discrete%20Mathematics</text>
-            <size>12</size>
-          </controlProperties>
-        </control>
-      </groupChildrenDescriptors>
-    </control>
-    <control controlID="16" controlTypeID="__group__" x="258" y="849" w="836" h="76" measuredW="836" measuredH="76" zOrder="13" locked="false" isInGroup="-1">
-      <groupChildrenDescriptors>
-        <control controlID="467" controlTypeID="com.balsamiq.mockups::Paragraph" x="0" y="0" w="831" h="76" measuredW="200" measuredH="140" zOrder="0" locked="false" isInGroup="493">
+        <control controlID="48" controlTypeID="com.balsamiq.mockups::HRule" x="0" y="95" w="836" h="-1" measuredW="100" measuredH="5" zOrder="0" locked="false" isInGroup="65"/>
+        <control controlID="60" controlTypeID="com.balsamiq.mockups::Paragraph" x="104" y="24" w="727" h="76" measuredW="200" measuredH="140" zOrder="1" locked="false" isInGroup="65">
           <controlProperties>
             <text>Lorem%20ipsum%20dolor%20sit%20amet%2C%20consectetur%20adipiscing%20elit.%20Donec%20euismod%20fermentum%20leo%2C%20in%20elementum%20nunc%20faucibus%20ut.%20Quisque%20ut%20diam%20neque.%20Duis%20a%20blandit%20quam.%20Donec%20rhoncus%20egestas%20orci%20non%20sollicitudin.%20Cras%20imperdiet%20neque%20ligula%2C%20ac%20adipiscing%20velit.%20Maecenas%20condimentum%20interdum%20nundapibus.%20Suspendisse%20at%20mi%20sed%20justo%20congue%20rhoncus.%20</text>
             <size>11</size>
           </controlProperties>
         </control>
-        <control controlID="468" controlTypeID="com.balsamiq.mockups::HRule" x="0" y="71" w="836" h="-1" measuredW="100" measuredH="5" zOrder="1" locked="false" isInGroup="493"/>
-        <control controlID="477" controlTypeID="__group__" x="737" y="37" w="82" h="22" measuredW="82" measuredH="22" zOrder="2" locked="false" isInGroup="493">
+        <control controlID="61" controlTypeID="com.balsamiq.mockups::Link" x="737" y="61" w="-1" h="-1" measuredW="64" measuredH="22" zOrder="2" locked="false" isInGroup="65">
+          <controlProperties>
+            <text>view%20lesson</text>
+            <size>11</size>
+            <href>lesson_detail.bmml</href>
+          </controlProperties>
+        </control>
+        <control controlID="62" controlTypeID="com.balsamiq.mockups::Icon" x="803" y="64" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="3" locked="false" isInGroup="65">
+          <controlProperties>
+            <icon>RightArrowIcon%7Cxsmall</icon>
+          </controlProperties>
+        </control>
+        <control controlID="63" controlTypeID="__group__" x="0" y="0" w="261" h="24" measuredW="261" measuredH="24" zOrder="4" locked="false" isInGroup="65">
           <groupChildrenDescriptors>
-            <control controlID="168" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="64" measuredH="22" zOrder="0" locked="false" isInGroup="170">
+            <control controlID="44" controlTypeID="com.balsamiq.mockups::Label" x="130" y="1" w="62" h="23" measuredW="62" measuredH="23" zOrder="0" locked="false" isInGroup="52">
               <controlProperties>
-                <text>view%20lesson</text>
-                <size>11</size>
+                <text>taught%20by</text>
+                <size>12</size>
               </controlProperties>
             </control>
-            <control controlID="169" controlTypeID="com.balsamiq.mockups::Icon" x="66" y="3" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="1" locked="false" isInGroup="170">
+            <control controlID="45" controlTypeID="com.balsamiq.mockups::Link" x="192" y="0" w="-1" h="-1" measuredW="69" measuredH="23" zOrder="1" locked="false" isInGroup="52">
               <controlProperties>
-                <icon>RightArrowIcon%7Cxsmall</icon>
+                <text>Sally%20West</text>
+                <size>12</size>
+              </controlProperties>
+            </control>
+            <control controlID="46" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="131" measuredH="23" zOrder="2" locked="false" isInGroup="52">
+              <controlProperties>
+                <text>Discrete%20Mathematics</text>
+                <size>12</size>
+                <href>lesson_detail.bmml</href>
               </controlProperties>
             </control>
           </groupChildrenDescriptors>
         </control>
+        <control controlID="64" controlTypeID="com.balsamiq.mockups::Image" x="3" y="26" w="91" h="55" measuredW="141" measuredH="144" zOrder="5" locked="false" isInGroup="65"/>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="17" controlTypeID="com.balsamiq.mockups::Label" x="388" y="1064" w="62" h="23" measuredW="62" measuredH="23" zOrder="14" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>taught%20by</text>
-        <size>12</size>
-      </controlProperties>
+    <control controlID="74" controlTypeID="__group__" x="259" y="931" w="-1" h="-1" measuredW="836" measuredH="100" zOrder="30" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="48" controlTypeID="com.balsamiq.mockups::HRule" x="0" y="95" w="836" h="-1" measuredW="100" measuredH="5" zOrder="0" locked="false" isInGroup="65"/>
+        <control controlID="60" controlTypeID="com.balsamiq.mockups::Paragraph" x="104" y="24" w="727" h="76" measuredW="200" measuredH="140" zOrder="1" locked="false" isInGroup="65">
+          <controlProperties>
+            <text>Lorem%20ipsum%20dolor%20sit%20amet%2C%20consectetur%20adipiscing%20elit.%20Donec%20euismod%20fermentum%20leo%2C%20in%20elementum%20nunc%20faucibus%20ut.%20Quisque%20ut%20diam%20neque.%20Duis%20a%20blandit%20quam.%20Donec%20rhoncus%20egestas%20orci%20non%20sollicitudin.%20Cras%20imperdiet%20neque%20ligula%2C%20ac%20adipiscing%20velit.%20Maecenas%20condimentum%20interdum%20nundapibus.%20Suspendisse%20at%20mi%20sed%20justo%20congue%20rhoncus.%20</text>
+            <size>11</size>
+          </controlProperties>
+        </control>
+        <control controlID="61" controlTypeID="com.balsamiq.mockups::Link" x="737" y="61" w="-1" h="-1" measuredW="64" measuredH="22" zOrder="2" locked="false" isInGroup="65">
+          <controlProperties>
+            <text>view%20lesson</text>
+            <size>11</size>
+            <href>lesson_detail.bmml</href>
+          </controlProperties>
+        </control>
+        <control controlID="62" controlTypeID="com.balsamiq.mockups::Icon" x="803" y="64" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="3" locked="false" isInGroup="65">
+          <controlProperties>
+            <icon>RightArrowIcon%7Cxsmall</icon>
+          </controlProperties>
+        </control>
+        <control controlID="63" controlTypeID="__group__" x="0" y="0" w="261" h="24" measuredW="261" measuredH="24" zOrder="4" locked="false" isInGroup="65">
+          <groupChildrenDescriptors>
+            <control controlID="44" controlTypeID="com.balsamiq.mockups::Label" x="130" y="1" w="62" h="23" measuredW="62" measuredH="23" zOrder="0" locked="false" isInGroup="52">
+              <controlProperties>
+                <text>taught%20by</text>
+                <size>12</size>
+              </controlProperties>
+            </control>
+            <control controlID="45" controlTypeID="com.balsamiq.mockups::Link" x="192" y="0" w="-1" h="-1" measuredW="69" measuredH="23" zOrder="1" locked="false" isInGroup="52">
+              <controlProperties>
+                <text>Sally%20West</text>
+                <size>12</size>
+              </controlProperties>
+            </control>
+            <control controlID="46" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="131" measuredH="23" zOrder="2" locked="false" isInGroup="52">
+              <controlProperties>
+                <text>Discrete%20Mathematics</text>
+                <size>12</size>
+                <href>lesson_detail.bmml</href>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="64" controlTypeID="com.balsamiq.mockups::Image" x="3" y="26" w="91" h="55" measuredW="141" measuredH="144" zOrder="5" locked="false" isInGroup="65"/>
+      </groupChildrenDescriptors>
     </control>
-    <control controlID="18" controlTypeID="com.balsamiq.mockups::Link" x="450" y="1063" w="-1" h="-1" measuredW="69" measuredH="23" zOrder="15" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Sally%20West</text>
-        <size>12</size>
-      </controlProperties>
+    <control controlID="82" controlTypeID="__group__" x="259" y="1046" w="-1" h="-1" measuredW="831" measuredH="100" zOrder="31" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="77" controlTypeID="com.balsamiq.mockups::Paragraph" x="104" y="24" w="727" h="76" measuredW="200" measuredH="140" zOrder="0" locked="false" isInGroup="82">
+          <controlProperties>
+            <text>Lorem%20ipsum%20dolor%20sit%20amet%2C%20consectetur%20adipiscing%20elit.%20Donec%20euismod%20fermentum%20leo%2C%20in%20elementum%20nunc%20faucibus%20ut.%20Quisque%20ut%20diam%20neque.%20Duis%20a%20blandit%20quam.%20Donec%20rhoncus%20egestas%20orci%20non%20sollicitudin.%20Cras%20imperdiet%20neque%20ligula%2C%20ac%20adipiscing%20velit.%20Maecenas%20condimentum%20interdum%20nundapibus.%20Suspendisse%20at%20mi%20sed%20justo%20congue%20rhoncus.%20</text>
+            <size>11</size>
+          </controlProperties>
+        </control>
+        <control controlID="78" controlTypeID="com.balsamiq.mockups::Link" x="737" y="61" w="-1" h="-1" measuredW="64" measuredH="22" zOrder="1" locked="false" isInGroup="82">
+          <controlProperties>
+            <text>view%20lesson</text>
+            <size>11</size>
+            <href>lesson_detail.bmml</href>
+          </controlProperties>
+        </control>
+        <control controlID="79" controlTypeID="com.balsamiq.mockups::Icon" x="803" y="64" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="2" locked="false" isInGroup="82">
+          <controlProperties>
+            <icon>RightArrowIcon%7Cxsmall</icon>
+          </controlProperties>
+        </control>
+        <control controlID="80" controlTypeID="__group__" x="0" y="0" w="261" h="24" measuredW="261" measuredH="24" zOrder="3" locked="false" isInGroup="82">
+          <groupChildrenDescriptors>
+            <control controlID="44" controlTypeID="com.balsamiq.mockups::Label" x="130" y="1" w="62" h="23" measuredW="62" measuredH="23" zOrder="0" locked="false" isInGroup="52">
+              <controlProperties>
+                <text>taught%20by</text>
+                <size>12</size>
+              </controlProperties>
+            </control>
+            <control controlID="45" controlTypeID="com.balsamiq.mockups::Link" x="192" y="0" w="-1" h="-1" measuredW="69" measuredH="23" zOrder="1" locked="false" isInGroup="52">
+              <controlProperties>
+                <text>Sally%20West</text>
+                <size>12</size>
+              </controlProperties>
+            </control>
+            <control controlID="46" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="131" measuredH="23" zOrder="2" locked="false" isInGroup="52">
+              <controlProperties>
+                <text>Discrete%20Mathematics</text>
+                <size>12</size>
+                <href>lesson_detail.bmml</href>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="81" controlTypeID="com.balsamiq.mockups::Image" x="3" y="26" w="91" h="55" measuredW="141" measuredH="144" zOrder="4" locked="false" isInGroup="82"/>
+      </groupChildrenDescriptors>
     </control>
-    <control controlID="19" controlTypeID="com.balsamiq.mockups::Link" x="258" y="1063" w="-1" h="-1" measuredW="131" measuredH="23" zOrder="16" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Discrete%20Mathematics</text>
-        <size>12</size>
-      </controlProperties>
-    </control>
-    <control controlID="20" controlTypeID="com.balsamiq.mockups::Icon" x="226" y="341" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="17" locked="false" isInGroup="-1">
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::Icon" x="226" y="341" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <icon>CircledMinusIcon%7Csmall</icon>
       </controlProperties>
     </control>
-    <control controlID="21" controlTypeID="__group__" x="257" y="474" w="-1" h="-1" measuredW="415" measuredH="23" zOrder="18" locked="false" isInGroup="-1">
+    <control controlID="21" controlTypeID="__group__" x="257" y="474" w="-1" h="-1" measuredW="415" measuredH="23" zOrder="6" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="574" controlTypeID="com.balsamiq.mockups::Label" x="336" y="0" w="79" h="23" measuredW="79" measuredH="23" zOrder="0" locked="false" isInGroup="581">
           <controlProperties>
@@ -237,7 +292,7 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="22" controlTypeID="__group__" x="257" y="438" w="-1" h="-1" measuredW="318" measuredH="23" zOrder="19" locked="false" isInGroup="-1">
+    <control controlID="22" controlTypeID="__group__" x="257" y="438" w="-1" h="-1" measuredW="318" measuredH="23" zOrder="7" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="569" controlTypeID="com.balsamiq.mockups::Label" x="105" y="0" w="77" h="23" measuredW="77" measuredH="23" zOrder="0" locked="false" isInGroup="582">
           <controlProperties>
@@ -265,7 +320,7 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="23" controlTypeID="__group__" x="257" y="404" w="-1" h="-1" measuredW="352" measuredH="23" zOrder="20" locked="false" isInGroup="-1">
+    <control controlID="23" controlTypeID="__group__" x="257" y="404" w="-1" h="-1" measuredW="352" measuredH="23" zOrder="8" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="566" controlTypeID="com.balsamiq.mockups::Label" x="120" y="0" w="77" h="23" measuredW="77" measuredH="23" zOrder="0" locked="false" isInGroup="583">
           <controlProperties>
@@ -293,7 +348,7 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="25" controlTypeID="__group__" x="277" y="508" w="-1" h="-1" measuredW="165" measuredH="22" zOrder="21" locked="false" isInGroup="-1">
+    <control controlID="25" controlTypeID="__group__" x="277" y="508" w="-1" h="-1" measuredW="165" measuredH="22" zOrder="9" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="590" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="149" measuredH="22" zOrder="0" locked="false" isInGroup="592">
           <controlProperties>
@@ -308,7 +363,7 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="26" controlTypeID="__group__" x="277" y="1153" w="-1" h="-1" measuredW="161" measuredH="22" zOrder="22" locked="false" isInGroup="-1">
+    <control controlID="26" controlTypeID="__group__" x="277" y="1159" w="-1" h="-1" measuredW="161" measuredH="22" zOrder="10" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="594" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="143" measuredH="22" zOrder="0" locked="false" isInGroup="596">
           <controlProperties>
@@ -323,31 +378,31 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="27" controlTypeID="com.balsamiq.mockups::Label" x="217" y="203" w="-1" h="-1" measuredW="113" measuredH="51" zOrder="23" locked="false" isInGroup="-1">
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::Label" x="217" y="203" w="-1" h="-1" measuredW="113" measuredH="51" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Search</text>
         <size>32</size>
         <bold>true</bold>
       </controlProperties>
     </control>
-    <control controlID="28" controlTypeID="com.balsamiq.mockups::Label" x="341" y="220" w="204" h="25" measuredW="204" measuredH="25" zOrder="24" locked="false" isInGroup="-1">
+    <control controlID="28" controlTypeID="com.balsamiq.mockups::Label" x="341" y="220" w="204" h="25" measuredW="204" measuredH="25" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <text>You%20searched%20for%20%22Lorem%20ipsum%22</text>
       </controlProperties>
     </control>
-    <control controlID="29" controlTypeID="com.balsamiq.mockups::HRule" x="217" y="254" w="900" h="-1" measuredW="100" measuredH="5" zOrder="25" locked="false" isInGroup="-1"/>
-    <control controlID="30" controlTypeID="com.balsamiq.mockups::Label" x="217" y="268" w="271" h="25" measuredW="271" measuredH="25" zOrder="26" locked="false" isInGroup="-1">
+    <control controlID="29" controlTypeID="com.balsamiq.mockups::HRule" x="217" y="254" w="900" h="-1" measuredW="100" measuredH="5" zOrder="13" locked="false" isInGroup="-1"/>
+    <control controlID="30" controlTypeID="com.balsamiq.mockups::Label" x="217" y="268" w="271" h="25" measuredW="271" measuredH="25" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
         <text>There%20are%20162%20results%20in%20these%20categories</text>
       </controlProperties>
     </control>
-    <control controlID="31" controlTypeID="com.balsamiq.mockups::LinkBar" x="217" y="295" w="-1" h="-1" measuredW="451" measuredH="25" zOrder="27" locked="false" isInGroup="-1">
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::LinkBar" x="217" y="295" w="-1" h="-1" measuredW="451" measuredH="25" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Channels%20%284%29%2C%20Lessons%20%2845%29%2C%20Instructors%20%28101%29%2C%20Universities%20%2812%29</text>
       </controlProperties>
     </control>
-    <control controlID="32" controlTypeID="com.balsamiq.mockups::HRule" x="217" y="203" w="900" h="-1" measuredW="100" measuredH="5" zOrder="28" locked="false" isInGroup="-1"/>
-    <control controlID="33" controlTypeID="__group__" x="213" y="84" w="904" h="108" measuredW="904" measuredH="108" zOrder="29" locked="false" isInGroup="-1">
+    <control controlID="32" controlTypeID="com.balsamiq.mockups::HRule" x="217" y="203" w="900" h="-1" measuredW="100" measuredH="5" zOrder="16" locked="false" isInGroup="-1"/>
+    <control controlID="33" controlTypeID="__group__" x="213" y="84" w="904" h="108" measuredW="904" measuredH="108" zOrder="17" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="609" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="904" h="108" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="614">
           <controlProperties>
@@ -362,27 +417,27 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="34" controlTypeID="com.balsamiq.mockups::Icon" x="226" y="1204" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="30" locked="false" isInGroup="-1">
+    <control controlID="34" controlTypeID="com.balsamiq.mockups::Icon" x="226" y="1204" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="18" locked="false" isInGroup="-1">
       <controlProperties>
         <icon>CircledPlusIcon%7Csmall</icon>
       </controlProperties>
     </control>
-    <control controlID="35" controlTypeID="com.balsamiq.mockups::Label" x="259" y="1203" w="187" h="25" measuredW="161" measuredH="25" zOrder="31" locked="false" isInGroup="-1">
+    <control controlID="35" controlTypeID="com.balsamiq.mockups::Label" x="259" y="1203" w="187" h="25" measuredW="161" measuredH="25" zOrder="19" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Instructors%3A%20101%20Results</text>
       </controlProperties>
     </control>
-    <control controlID="36" controlTypeID="com.balsamiq.mockups::Icon" x="226" y="1241" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="32" locked="false" isInGroup="-1">
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::Icon" x="226" y="1241" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="20" locked="false" isInGroup="-1">
       <controlProperties>
         <icon>CircledPlusIcon%7Csmall</icon>
       </controlProperties>
     </control>
-    <control controlID="37" controlTypeID="com.balsamiq.mockups::Label" x="259" y="1240" w="157" h="25" measuredW="151" measuredH="25" zOrder="33" locked="false" isInGroup="-1">
+    <control controlID="37" controlTypeID="com.balsamiq.mockups::Label" x="259" y="1240" w="157" h="25" measuredW="151" measuredH="25" zOrder="21" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Universities%3A12%20Results</text>
       </controlProperties>
     </control>
-    <control controlID="39" controlTypeID="__group__" x="217" y="1326" w="-1" h="-1" measuredW="904" measuredH="50" zOrder="34" locked="false" isInGroup="-1">
+    <control controlID="39" controlTypeID="__group__" x="217" y="1326" w="-1" h="-1" measuredW="904" measuredH="50" zOrder="22" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="610" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="904" h="50" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="620">
           <controlProperties>
@@ -396,76 +451,30 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="40" controlTypeID="com.balsamiq.mockups::Label" x="581" y="371" w="79" h="23" measuredW="79" measuredH="23" zOrder="35" locked="false" isInGroup="-1">
+    <control controlID="40" controlTypeID="com.balsamiq.mockups::Label" x="581" y="371" w="79" h="23" measuredW="79" measuredH="23" zOrder="23" locked="false" isInGroup="-1">
       <controlProperties>
         <text>%28lessons%3A%2012%29</text>
         <size>12</size>
       </controlProperties>
     </control>
-    <control controlID="41" controlTypeID="com.balsamiq.mockups::Label" x="428" y="372" w="77" h="23" measuredW="77" measuredH="23" zOrder="36" locked="false" isInGroup="-1">
+    <control controlID="41" controlTypeID="com.balsamiq.mockups::Label" x="428" y="372" w="77" h="23" measuredW="77" measuredH="23" zOrder="24" locked="false" isInGroup="-1">
       <controlProperties>
         <text>featured%20by</text>
         <size>12</size>
       </controlProperties>
     </control>
-    <control controlID="42" controlTypeID="com.balsamiq.mockups::Link" x="512" y="372" w="-1" h="-1" measuredW="69" measuredH="23" zOrder="37" locked="false" isInGroup="-1">
+    <control controlID="42" controlTypeID="com.balsamiq.mockups::Link" x="512" y="372" w="-1" h="-1" measuredW="69" measuredH="23" zOrder="25" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Sally%20West</text>
         <size>12</size>
       </controlProperties>
     </control>
-    <control controlID="43" controlTypeID="com.balsamiq.mockups::Link" x="257" y="372" w="-1" h="-1" measuredW="169" measuredH="23" zOrder="38" locked="false" isInGroup="-1">
+    <control controlID="43" controlTypeID="com.balsamiq.mockups::Link" x="257" y="372" w="-1" h="-1" measuredW="169" measuredH="23" zOrder="26" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Learning%20Essential%20Geomerty</text>
         <size>12</size>
         <href>lesson_detail.bmml</href>
       </controlProperties>
-    </control>
-    <control controlID="48" controlTypeID="com.balsamiq.mockups::HRule" x="258" y="682" w="836" h="-1" measuredW="100" measuredH="5" zOrder="39" locked="false" isInGroup="-1"/>
-    <control controlID="53" controlTypeID="__group__" x="258" y="587" w="-1" h="-1" measuredW="831" measuredH="100" zOrder="40" locked="false" isInGroup="-1">
-      <groupChildrenDescriptors>
-        <control controlID="47" controlTypeID="com.balsamiq.mockups::Paragraph" x="0" y="24" w="831" h="76" measuredW="200" measuredH="140" zOrder="0" locked="false" isInGroup="53">
-          <controlProperties>
-            <text>Lorem%20ipsum%20dolor%20sit%20amet%2C%20consectetur%20adipiscing%20elit.%20Donec%20euismod%20fermentum%20leo%2C%20in%20elementum%20nunc%20faucibus%20ut.%20Quisque%20ut%20diam%20neque.%20Duis%20a%20blandit%20quam.%20Donec%20rhoncus%20egestas%20orci%20non%20sollicitudin.%20Cras%20imperdiet%20neque%20ligula%2C%20ac%20adipiscing%20velit.%20Maecenas%20condimentum%20interdum%20nundapibus.%20Suspendisse%20at%20mi%20sed%20justo%20congue%20rhoncus.%20</text>
-            <size>11</size>
-          </controlProperties>
-        </control>
-        <control controlID="50" controlTypeID="com.balsamiq.mockups::Link" x="737" y="61" w="-1" h="-1" measuredW="64" measuredH="22" zOrder="1" locked="false" isInGroup="53">
-          <controlProperties>
-            <text>view%20lesson</text>
-            <size>11</size>
-            <href>lesson_detail.bmml</href>
-          </controlProperties>
-        </control>
-        <control controlID="51" controlTypeID="com.balsamiq.mockups::Icon" x="803" y="64" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="2" locked="false" isInGroup="53">
-          <controlProperties>
-            <icon>RightArrowIcon%7Cxsmall</icon>
-          </controlProperties>
-        </control>
-        <control controlID="52" controlTypeID="__group__" x="0" y="0" w="-1" h="-1" measuredW="261" measuredH="24" zOrder="3" locked="false" isInGroup="53">
-          <groupChildrenDescriptors>
-            <control controlID="44" controlTypeID="com.balsamiq.mockups::Label" x="130" y="1" w="62" h="23" measuredW="62" measuredH="23" zOrder="0" locked="false" isInGroup="52">
-              <controlProperties>
-                <text>taught%20by</text>
-                <size>12</size>
-              </controlProperties>
-            </control>
-            <control controlID="45" controlTypeID="com.balsamiq.mockups::Link" x="192" y="0" w="-1" h="-1" measuredW="69" measuredH="23" zOrder="1" locked="false" isInGroup="52">
-              <controlProperties>
-                <text>Sally%20West</text>
-                <size>12</size>
-              </controlProperties>
-            </control>
-            <control controlID="46" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="131" measuredH="23" zOrder="2" locked="false" isInGroup="52">
-              <controlProperties>
-                <text>Discrete%20Mathematics</text>
-                <size>12</size>
-                <href>lesson_detail.bmml</href>
-              </controlProperties>
-            </control>
-          </groupChildrenDescriptors>
-        </control>
-      </groupChildrenDescriptors>
     </control>
   </controls>
 </mockup>
