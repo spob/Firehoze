@@ -1,0 +1,88 @@
+<mockup version="1.0" skin="sketch" measuredW="1155" measuredH="729">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="185" y="4" w="960" h="715" measuredW="450" measuredH="400" zOrder="0" locked="true" isInGroup="-1">
+      <controlProperties>
+        <text>Firehoze%20-%20Settings%0Ahttp%3A//www.firehoze.com/users/spob/edit</text>
+        <verticalScrollbar>false</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="614" controlTypeID="__group__" x="214" y="84" w="900" h="108" measuredW="900" measuredH="108" zOrder="4" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="609" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="900" h="108" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="614">
+          <controlProperties>
+            <color>15132390</color>
+          </controlProperties>
+        </control>
+        <control controlID="613" controlTypeID="com.balsamiq.mockups::Title" x="385" y="37" w="129" h="-1" measuredW="130" measuredH="34" zOrder="1" locked="false" isInGroup="614">
+          <controlProperties>
+            <text>Header%20Area</text>
+            <size>20</size>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="713" controlTypeID="com.balsamiq.mockups::CheckBox" x="244" y="337" w="-1" h="-1" measuredW="424" measuredH="18" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>I%20do%20not%20want%20other%20users%20to%20see%20what%20items%20I%20have%20purchased.</text>
+      </controlProperties>
+    </control>
+    <control controlID="714" controlTypeID="com.balsamiq.mockups::CheckBox" x="244" y="371" w="-1" h="-1" measuredW="319" measuredH="18" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>I%20do%20not%20want%20other%20users%20to%20see%20my%20wish%20list.</text>
+      </controlProperties>
+    </control>
+    <control controlID="715" controlTypeID="com.balsamiq.mockups::VCurly" x="30" y="322" w="154" h="185" measuredW="180" measuredH="140" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <direction>right</direction>
+        <text>This%20is%20just%20a%20beginning.%20What%20do%20people%20think%20about%20this%3F%20Legally%20I%20think%20we%20have%20to%20offer%20this.%20Privacy%20can%20get%20very%2Cvery%20complicated%20fast%20--%20I%27d%20like%20to%20keep%20this%20as%20simple%20as%20possible.</text>
+        <size>11</size>
+      </controlProperties>
+    </control>
+    <control controlID="716" controlTypeID="com.balsamiq.mockups::CheckBox" x="244" y="381" w="550" h="65" measuredW="1136" measuredH="18" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>I%27m%20a%20freaking%20coward%20and%20I%20don%27t%20want%20anyone%20to%20have%20access%20to%20my%20profile%20page%20%28when%20selected%20you%20will%20not%20be%20allowed%20to%20submit%20reviews%2C%20or%20participate%20in%20lesson%20discussions%29.</text>
+      </controlProperties>
+    </control>
+    <control controlID="621" controlTypeID="com.balsamiq.mockups::Label" x="224" y="207" w="-1" h="-1" measuredW="269" measuredH="51" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Account%20Settings</text>
+        <size>32</size>
+        <bold>true</bold>
+      </controlProperties>
+    </control>
+    <control controlID="622" controlTypeID="com.balsamiq.mockups::TabBar" x="214" y="280" w="900" h="320" measuredW="387" measuredH="100" zOrder="6" locked="true" isInGroup="-1">
+      <controlProperties>
+        <text>Profile%2C%20Password%2C%20Notices%2C%20Avatar%2C%20Privacy</text>
+        <hrefs>user_settings_profile_tab.bmml%2Cuser_settings_password_tab.bmml%2Cuser_settings_notices_tab.bmml%2Cuser_settings_avatar_tab.bmml%2C</hrefs>
+        <selectedIndex>4</selectedIndex>
+      </controlProperties>
+    </control>
+    <control controlID="696" controlTypeID="com.balsamiq.mockups::Button" x="436" y="557" w="108" h="-1" measuredW="54" measuredH="28" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Save</text>
+      </controlProperties>
+    </control>
+    <control controlID="118" controlTypeID="com.balsamiq.mockups::StickyNote" x="8" y="68" w="167" h="101" measuredW="109" measuredH="123" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>User%20Settings%0APrivacy</text>
+        <size>12</size>
+      </controlProperties>
+    </control>
+    <control controlID="440" controlTypeID="com.balsamiq.mockups::HRule" x="214" y="254" w="900" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="-1"/>
+    <control controlID="701" controlTypeID="__group__" x="214" y="622" w="900" h="56" measuredW="900" measuredH="56" zOrder="8" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="681" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="900" h="56" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="701">
+          <controlProperties>
+            <color>15132390</color>
+          </controlProperties>
+        </control>
+        <control controlID="682" controlTypeID="com.balsamiq.mockups::Label" x="428" y="13" w="44" h="29" measuredW="44" measuredH="25" zOrder="1" locked="false" isInGroup="701">
+          <controlProperties>
+            <text>Footer</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="607" controlTypeID="com.balsamiq.mockups::HRule" x="214" y="203" w="900" h="-1" measuredW="100" measuredH="5" zOrder="3" locked="false" isInGroup="-1"/>
+  </controls>
+</mockup>
