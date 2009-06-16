@@ -17,6 +17,8 @@ class Credit < ActiveRecord::Base
   belongs_to :user
   belongs_to :lesson
 
+  before_save :set_will_expire_at
+
   # Credits which have not yet been redeemed
   named_scope :available, :conditions => {:redeemed_at => nil}
 
@@ -48,5 +50,11 @@ class Credit < ActiveRecord::Base
                                                  Credit.available.to_expire(warn_before_credit_expiration_days.days.since).scoped(:select => "DISTINCT user_id").collect(&:user_id)])
       # TODO: Add warning logic
     end
+  end
+
+  private
+
+  def set_will_expire_at
+    self.will_expire_at = APP_CONFIG['expire_credits_after_days'].to_i.days.since
   end
 end
