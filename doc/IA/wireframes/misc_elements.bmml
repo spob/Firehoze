@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" measuredW="927" measuredH="510">
+<mockup version="1.0" skin="sketch" measuredW="927" measuredH="556">
   <controls>
     <control controlID="304" controlTypeID="__group__" x="60" y="71" w="-1" h="-1" measuredW="308" measuredH="239" zOrder="0" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
@@ -299,6 +299,15 @@
           </controlProperties>
         </control>
       </groupChildrenDescriptors>
+    </control>
+    <control controlID="335" controlTypeID="com.balsamiq.mockups::IconLabel" x="460" y="526" w="77" h="-1" measuredW="77" measuredH="20" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>report%20this</text>
+        <underline>false</underline>
+        <size>10</size>
+        <icon>FlagIcon%7Cxsmall</icon>
+        <labelPosition>right</labelPosition>
+      </controlProperties>
     </control>
   </controls>
 </mockup>
