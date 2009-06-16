@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" measuredW="1187" measuredH="630">
+<mockup version="1.0" skin="sketch" measuredW="1223" measuredH="616">
   <controls>
     <control controlID="64" controlTypeID="com.balsamiq.mockups::Label" x="349" y="257" w="20" h="25" measuredW="19" measuredH="25" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
@@ -90,14 +90,14 @@
       <controlProperties>
         <direction>top</direction>
         <rightArrow>false</rightArrow>
-        <curvature>1</curvature>
         <backgroundAlpha>1</backgroundAlpha>
+        <curvature>0</curvature>
         <color>3355443</color>
       </controlProperties>
     </control>
-    <control controlID="83" controlTypeID="com.balsamiq.mockups::Paragraph" x="936" y="480" w="241" h="140" measuredW="200" measuredH="140" zOrder="25" locked="false" isInGroup="-1">
+    <control controlID="83" controlTypeID="com.balsamiq.mockups::Paragraph" x="972" y="421" w="241" h="140" measuredW="200" measuredH="140" zOrder="25" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>If%20signed-in%20as%20%27Jane%20Wilson%27%20-%20allow%20edit%20and%20delete%20only%20if%20no%20subsequent%20entries%20as%20present%2C%20or%20make%20only%20present%20within%20a%20certain%20time-frame.</text>
+        <text>If%20signed-in%20as%20%27Jane%20Wilson%27%20-%20allow%20edit%20and%20delete%20only%20if%20no%20subsequent%20entries%20are%20present%20%28or%20restrict%20editing%20within%20a%20certain%20time-frame%29.%20Admins%20%26%20moderators%20are%20allowed%20to%20edit/delete%20indefinitely%20on%20all%20entries.</text>
       </controlProperties>
     </control>
     <control controlID="84" controlTypeID="com.balsamiq.mockups::Link" x="88" y="130" w="-1" h="-1" measuredW="93" measuredH="25" zOrder="26" locked="false" isInGroup="-1">
@@ -108,10 +108,10 @@
     </control>
     <control controlID="24" controlTypeID="com.balsamiq.mockups::TabBar" x="267" y="40" w="626" h="566" measuredW="318" measuredH="100" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Reviews%2C%20Disussion%2C%20Lesson%20Notes</text>
+        <text>Lesson%20Notes%2C%20Reviews%2C%20Disussion</text>
         <italic>true</italic>
-        <hrefs>lesson_detail.bmml%2C%2Clesson_detail_lesson_notes_detail.bmml</hrefs>
-        <selectedIndex>1</selectedIndex>
+        <hrefs>lesson_detail_lesson_notes_detail.bmml%2Clesson_detail_review_detail.bmml%2C</hrefs>
+        <selectedIndex>2</selectedIndex>
       </controlProperties>
     </control>
     <control controlID="47" controlTypeID="com.balsamiq.mockups::HRule" x="286" y="384" w="592" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="-1">
