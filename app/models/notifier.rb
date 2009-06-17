@@ -22,9 +22,19 @@ class Notifier < ActionMailer::Base
     #asf
     subject    "Registration successful"
     recipients registration.email
-    from       "admin@website.com"
+    from       APP_CONFIG['admin_email']
 
     body       :registration => registration,
                :url => new_registration_user_url(registration)
+  end
+
+  # Notify a user that they have credits about to expire
+  def credits_about_to_expire(user)
+    subject    "You have expirations about to expire"
+    recipients user.email
+    from         APP_CONFIG['admin_email']
+
+    body       :user => user,
+               :url => login_url
   end
 end

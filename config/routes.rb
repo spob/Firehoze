@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :password_resets
   map.resources :periodic_jobs, :member => { :rerun => :post }
   map.resources :skus, :has_many => :discounts, :shallow => true
-  map.resource  :user_session
+  map.resource  :user_session, :only => [ :create, :destroy, :new ]
   map.resources :users
   map.resources :user_logons
   map.resources :lessons
