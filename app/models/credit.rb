@@ -25,6 +25,9 @@ class Credit < ActiveRecord::Base
   # Credits which have not yet been warned to be about to expire
   named_scope :unwarned, :conditions => {:expiration_warning_issued_at => nil}
 
+  # Credits which have been warned to be about to expire
+  named_scope :warned, :conditions => "expiration_warning_issued_at is not null"
+
   # Find credits which haven't been used in a long time and are about to expire. Specifically, look for credits
   # for which the associated user hasn't logged in to the system for a long time (e.g., a year) where the credits
   # are at least that old.
@@ -37,9 +40,7 @@ class Credit < ActiveRecord::Base
   # in to the account for that period of time as well.
   def self.expire_unused_credits
     # Expire the credits that are about to expire
-    Credit.available.to_expire(Time.zone.now).unwarned.each do |old_credit|
-      Credit.transaction { old_credit.update_attribute(:expired_at, Time.zone.now) }
-    end
+    Credit.available.to_expire(Time.zone.now).warned.update_all(:expired_at => Time.zone.now)
 
     warn_before_credit_expiration_days = APP_CONFIG['warn_before_credit_expiration_days'].to_i
 

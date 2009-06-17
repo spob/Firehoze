@@ -35,6 +35,6 @@ class Notifier < ActionMailer::Base
     from         APP_CONFIG['admin_email']
 
     body       :user => user,
-               :url => login_path
+               :url => login_url
   end
 end
