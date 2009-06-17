@@ -42,13 +42,22 @@ class Credit < ActiveRecord::Base
     end
 
     warn_before_credit_expiration_days = APP_CONFIG['warn_before_credit_expiration_days'].to_i
+
     # Send a warning for those that are coming close
     # The inner query finds all credits about to expire and builds an array of user_ids from it, to pass to the second
     # one which searches for users.
     for user in User.active.find(:all,
                                  :conditions => ["id in (?)",
-                                                 Credit.available.to_expire(warn_before_credit_expiration_days.days.since).scoped(:select => "DISTINCT user_id").collect(&:user_id)])
-      # TODO: Add warning logic
+                                                 Credit.available.unwarned.to_expire(
+                                                         warn_before_credit_expiration_days.days.since).scoped(
+                                                         :select => "DISTINCT user_id").collect(&:user_id)])
+
+      TaskServerLogger.instance.info("Expiration warning issued for user: #{user.login}")
+      Credit.transaction do
+        Notifier.deliver_credits_about_to_expire user
+        user.credits.available.unwarned.to_expire(warn_before_credit_expiration_days.days.since).update_all(
+                :expiration_warning_issued_at => Time.zone.now)
+      end
     end
   end
 

@@ -1,0 +1,10 @@
+<p>
+  Hi <%= @user.full_name %>,
+</p>
+<p>
+  You have download credits about to expire. Keeping your credits is easy. Just logon to your Firehoze account once in
+  the next <%= pluralize(APP_CONFIG['warn_before_credit_expiration_days'].to_i, 'day') %>
+</p>
+<p>
+  <%= link_to 'logon', @url %>
+</p>
