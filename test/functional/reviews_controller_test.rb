@@ -41,6 +41,55 @@ class ReviewsControllerTest < ActionController::TestCase
         should_set_the_flash_to :review_create_sucess
         should_redirect_to("Reviews index page") { lesson_reviews_url(@lesson) }
       end
+
+      context "with moderator access" do
+        setup do
+          @user.has_role 'moderator'
+        end
+        context "on GET to :edit" do
+          setup { get :edit, :id => Factory.create(:review) }
+
+          should_assign_to :review
+          should_respond_with :success
+          should_not_set_the_flash
+          should_render_template "edit"
+        end
+
+        context "on PUT to :update" do
+          setup do
+            @review = Factory.create(:review)
+            put :update, :id => @review, :lesson => @review.lesson
+          end
+
+          should_set_the_flash_to :review_update_sucess
+          should_assign_to :review
+          should_respond_with :redirect
+          should_redirect_to("Reviews index page") { lesson_reviews_url(@review.lesson) }
+        end
+      end
+
+      context "without moderator access" do
+        context "on GET to :edit" do
+          setup { get :edit, :id => Factory.create(:review) }
+
+          should_not_assign_to :review
+          should_respond_with :redirect
+          should_set_the_flash_to /Permission denied/
+          should_redirect_to("home") { home_path }
+        end
+
+        context "on PUT to :update" do
+          setup do
+            @review = Factory.create(:review)
+            put :update, :id => @review, :lesson => @review.lesson
+          end
+
+          should_set_the_flash_to /Permission denied/
+          should_not_assign_to :review
+          should_respond_with :redirect
+          should_redirect_to("home") { home_path }
+        end
+      end
     end
   end
 end
