@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<h1>Firehoze</h1>
+<%= image_tag "firehoze_logo.jpg", :size => "240x100", :alt => 'Firehoze' %>
 <%= pluralize User.logged_in.count, "user" %> currently logged in
 <% if show_cart? %>
     | <%= link_to "Shopping Cart", cart_path(@current_cart) %>
