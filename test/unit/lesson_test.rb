@@ -11,6 +11,7 @@ class LessonTest < ActiveSupport::TestCase
     should_allow_values_for          :title, "blah blah blah"
     should_ensure_length_in_range    :title, (0..50)
     should_have_attached_file        :video
+    should_have_many                 :reviews
 
     context "and a couple more records" do
       setup do

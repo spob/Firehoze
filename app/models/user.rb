@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :user_logons, :order => "created_at DESC", :dependent => :destroy
   has_many :credits, :dependent => :destroy
   has_many :available_credits, :class_name => 'Credit', :conditions => { :redeemed_at => nil }, :order => "id"
+  has_many :reviews, :dependent => :destroy
 
 
   # Active users
