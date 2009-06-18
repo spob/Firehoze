@@ -51,6 +51,7 @@ en:
   review_create_sucess: Review created
   cannot_edit_review: You do not have permissions required to edit this review
   review_update_sucess: Review updated
+  review_already_reviewed: You can only write a review for a lesson once.
   
   # skus_controller
   sku_update_success: SKU updated

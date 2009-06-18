@@ -32,8 +32,9 @@ class ReviewsControllerTest < ActionController::TestCase
 
       context "on POST to :create" do
         setup do
-          post :create, :review => Factory.attributes_for(:review), :lesson_id => @lesson
-        end 
+          @new_review_attrs = Factory.attributes_for(:review)
+          post :create, :review => @new_review_attrs, :lesson_id => @lesson
+        end
 
         should_assign_to :review
         should_respond_with :redirect
