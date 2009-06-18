@@ -2,7 +2,7 @@ class AddExpireCreditsJob < ActiveRecord::Migration
   def self.up
     RunIntervalPeriodicJob.create(:name => 'CreditExpiration',
             :job => 'Credit.expire_unused_credits',
-            :interval => 3600 * 24 * 7) #once a week
+            :interval => 3600 * 24) #once a day
   end
 
   def self.down

@@ -39,7 +39,7 @@ class CreditTest < ActiveSupport::TestCase
       setup do
         @credit.update_attribute(:redeemed_at, nil)
         # Credit2 should be ready to expire
-        @credit2 = Factory.create(:credit, :redeemed_at => nil, :expiration_warning_issued_at => 10.days.ago)
+        @credit2 = Factory.create(:credit, :redeemed_at => nil, :expiration_warning_issued_at => 11.days.ago)
         @credit2.update_attribute(:will_expire_at, 1.days.ago)
 
         # credit 3 hasn't been warned yet so shouldn't expire
@@ -53,7 +53,7 @@ class CreditTest < ActiveSupport::TestCase
       end
 
       should "have one credit about to expire" do
-        assert_equal 1, Credit.available.to_expire(Time.zone.now).warned.count
+        assert_equal 1, Credit.available.to_expire(Time.zone.now).warned(5.days.ago).count
       end
 
       context "after invoking expire_unused_credits" do
@@ -65,7 +65,6 @@ class CreditTest < ActiveSupport::TestCase
         end
 
         should "have one credit about to expire" do
-          assert_equal 1, Credit.available.to_expire(Time.zone.now).warned.count
           assert_nil @credit.expired_at
           assert_not_nil @credit2.expired_at
           assert_nil @credit3.expired_at
