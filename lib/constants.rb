@@ -3,4 +3,5 @@ module Constants
 
   # Roles
   ROLE_SYSADMIN = 'sysadmin'
+  ROLE_MODERATOR = 'moderator'
 end

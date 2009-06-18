@@ -1,6 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :discounts
-
   map.home 'home', :controller => 'lessons', :action => 'index'
   map.resource  :account, :controller => "profiles"
   map.resources :carts, :only => [ :show ]
@@ -17,12 +15,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resource  :user_session, :only => [ :create, :destroy, :new ]
   map.resources :users
   map.resources :user_logons
-  map.resources :lessons
+  map.resources :lessons, :has_many => :reviews, :shallow => true
   map.resources :registrations, :only => [ :new, :create ] do |registration|
     registration.resources :users, :only => [ :new, :create ]
   end
-
-
   map.current_cart 'cart', :controller => 'carts', :action => 'show', :id => 'current'
   map.root :controller => "lessons", :action => "index"
 end

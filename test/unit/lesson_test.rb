@@ -20,6 +20,10 @@ class LessonTest < ActiveSupport::TestCase
         Factory.create(:lesson)
       end
 
+      should "not show that it has been reviewed" do
+        assert !@lesson.reviewed_by?(Factory.create(:user))
+      end
+
       should "return less records" do
         assert_equal 3, Lesson.list(1).size
       end

@@ -1,0 +1,6 @@
+<h3>Reviews for Lesson "<%= h @lesson.title%>"</h3>
+
+<%= render @reviews %>
+
+<%= link_to "Back to Lesson", lesson_path(@lesson) %>
+| <%= link_to "Write a Review", new_lesson_review_path(@lesson)  unless @lesson.reviewed_by? current_user %>

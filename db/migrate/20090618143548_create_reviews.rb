@@ -11,12 +11,17 @@ class CreateReviews < ActiveRecord::Migration
       t.references :lesson, :null => false
       t.timestamps
     end
+
+    add_column :lessons, :reviews_count, :integer, :default => 0, :null => false
+
     add_foreign_key(:reviews, :user_id, :users)
     add_foreign_key(:reviews, :lesson_id, :lessons)
     add_index :reviews, [:lesson_id, :user_id], :unique => true
   end
 
   def self.down
+    remove_column :lessons, :reviews_count
+    
     remove_foreign_key(:reviews, :user_id)
     remove_foreign_key(:reviews, :lesson_id)
 

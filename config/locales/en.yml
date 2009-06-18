@@ -46,6 +46,11 @@ en:
   
   # registrations_controller
   check_email_for_registration: Please check your email to complete the registration
+
+  # reviews_controller
+  review_create_sucess: Review created
+  cannot_edit_review: You do not have permissions required to edit this review
+  review_update_sucess: Review updated
   
   # skus_controller
   sku_update_success: SKU updated

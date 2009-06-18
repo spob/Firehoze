@@ -8,8 +8,13 @@ class DiscountTest < ActiveSupport::TestCase
 
     should_have_many                 :line_items
     should_validate_presence_of      :sku
+
     should "default active to true" do
       assert @discount.active
+    end
+
+    should "return records" do
+      assert_equal 1, Discount.list(@discount.sku, 1).size
     end
 
     context "not referenced by line items" do

@@ -1,0 +1,17 @@
+New Review for Lesson <%= @review.lesson.title %>
+
+<% form_for :review, :url => review_path(@review), :html => { :method => :put } do |f| %>
+    <%= f.error_messages %>
+    <p>
+      <%= f.label :title %><br/>
+      <%= f.text_field :title %>
+    </p>
+    <p>
+      <%= f.label :body %> <br/>
+      <%= f.text_area :body %>
+    </p>
+    <p><%= f.submit "Submit" %></p>
+<% end %>
+
+
+<p><%= link_to "Cancel", lesson_reviews_path(@review.lesson) %></p>

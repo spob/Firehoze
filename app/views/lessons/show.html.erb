@@ -1,5 +1,5 @@
 <% content_for :head do -%>
-    <%= javascript_include_tag 'swfobject'  %>
+    <%= javascript_include_tag 'swfobject' %>
 <% end %>
 
 <p>
@@ -39,6 +39,7 @@ See http://jimneath.org/2008/06/03/converting-lessons-with-rails-converting-the-
     so.write('player');
 </script>
 -->
+<%= link_to pluralize(@lesson.reviews.size, 'Review'), lesson_reviews_path(@lesson) %>
 
 <%= link_to 'Edit', edit_lesson_path(@lesson) %>
 <%= link_to 'Home', home_path %>

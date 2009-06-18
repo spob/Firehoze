@@ -19,8 +19,13 @@ class Lesson < ActiveRecord::Base
              :per_page => Constants::ROWS_PER_PAGE
   end
 
-  # The lesson can be added by an admin or the instructor who created it
+  # The lesson can be edited by an admin or the instructor who created it
   def can_edit? user
-    user.is_admin? or instructor == user
+    user.is_admin? or user.is_moderator? or instructor == user
+  end
+
+  # Has this user reviewed this lesson already?
+  def reviewed_by? user
+    !Review.scoped_by_user_id(user).scoped_by_lesson_id(self).empty?
   end
 end

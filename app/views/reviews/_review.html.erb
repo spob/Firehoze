@@ -1,0 +1,12 @@
+<p>
+  <b><%= h review.title %> by <%= h review.user.login %> written on <%= l review.created_at %></b>
+</p>
+<p>
+  <%= simple_format review.body %>
+</p>
+<% if review.can_edit? current_user %>
+<p>
+  <%= link_to "Edit", edit_review_path(review) if review.can_edit? current_user %>
+</p>
+<% end %>
+<hr/>
