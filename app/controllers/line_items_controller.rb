@@ -8,7 +8,7 @@ class LineItemsController < ApplicationController
   # Add an item to the shopping cart
   def create
     # When adding an item to the cart, the onl items passed in are the sku_id and the quantity
-    @sku = Sku.find(params[:sku_id])
+    @sku = Sku.find_by_sku!(params[:sku])
     quantity = params[:quantity].to_i
 
     LineItem.transaction do

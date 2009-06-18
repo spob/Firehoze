@@ -6,7 +6,7 @@ class LineItemsControllerTest < ActionController::TestCase
     context "on GET to :new" do
       setup do
         @sku = Factory.create(:credit_sku)
-        post :create, :sku_id => @sku, :quantity => 1
+        post :create, :sku => @sku.sku, :quantity => 1
       end
 
       should_not_assign_to :sku
@@ -26,7 +26,7 @@ class LineItemsControllerTest < ActionController::TestCase
     context "on POST to :create" do
       setup do
         @sku = Factory.create(:credit_sku)
-        post :create, :sku_id => @sku, :quantity => 1
+        post :create, :sku => @sku.sku, :quantity => 1
       end
 
       should_assign_to :line_item
@@ -39,7 +39,7 @@ class LineItemsControllerTest < ActionController::TestCase
       end
 
       context "and on another POST to :create for same SKU" do
-        setup { post :create, :sku_id => @sku, :quantity => 3 }
+        setup { post :create, :sku => @sku.sku, :quantity => 3 }
         should_assign_to :line_item
         should_respond_with :redirect
         should_set_the_flash_to /Added.*cart/
@@ -52,7 +52,7 @@ class LineItemsControllerTest < ActionController::TestCase
         context "and yet one more POST to :create with a different SKU" do
           setup do
             @sku2 = Factory.create(:credit_sku)
-            post :create, :sku_id => @sku2, :quantity => 1
+            post :create, :sku => @sku2.sku, :quantity => 1
           end
           should_assign_to :line_item
           should_respond_with :redirect

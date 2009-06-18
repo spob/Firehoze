@@ -76,14 +76,16 @@ class User < ActiveRecord::Base
   private
 
   def persist_user_logon
-    # Surprisingly AuthLogic doesn't provide a clean callback for detecting when a login occurs...so instead,
-    # watch for when the login count is incremented (which is done by AuthLogic).
-    UserLogon.create(:user => self,
-                     :login_ip => self.current_login_ip) if login_count > login_count_was
+    if login_count > login_count_was
+      # Surprisingly AuthLogic doesn't provide a clean callback for detecting when a login occurs...so instead,
+      # watch for when the login count is incremented (which is done by AuthLogic).
+      UserLogon.create(:user => self,
+                       :login_ip => self.current_login_ip)
 
-    # Also touch the available credit records for this user...used for calculating which credits should
-    # expire due to lack of activity on the account
-    self.credits.available.update_all(:will_expire_at => APP_CONFIG['expire_credits_after_days'].days.since,
-                               :expiration_warning_issued_at => nil )
+      # Also touch the available credit records for this user...used for calculating which credits should
+      # expire due to lack of activity on the account
+      self.credits.available.update_all(:will_expire_at => APP_CONFIG['expire_credits_after_days'].days.since,
+                                        :expiration_warning_issued_at => nil )
+    end
   end
 end
