@@ -22,11 +22,11 @@ class User < ActiveRecord::Base
   named_scope :active, :conditions => {:active => true}
 
   # Used to verify current password during password changes
-  # todo: I don't think the first and last name accessors are necessary because they are persist fields. Joel? --RBS
-  attr_accessor :current_password #, :first_name, :first_name
+  attr_accessor :current_password
 
   validates_presence_of :email, :language,
-                        :login_count, :failed_login_count, :last_name, :login
+                        :login_count, :failed_login_count, :last_name
+  validates_presence_of :login
   validates_uniqueness_of   :email, :case_sensitive => false
   validates_uniqueness_of   :login, :case_sensitive => false
   validates_numericality_of :login_count, :failed_login_count

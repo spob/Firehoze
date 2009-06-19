@@ -6,6 +6,9 @@ en:
   #   flash[:notice] = t(:test_msg, :arg => vars)
   # In the yml file:
   #   test_msg: Passing args: {{arg}}
+
+  # User
+  login: Username
   
   # application_controller messages
   you_must_be_logged_in: You must be logged in to access this page
