@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   before_save :persist_user_logon
 
   acts_as_authentic  do |c|
-    c.logged_in_timeout = 30.minutes # log out after 30 minutes of inactivity   
+    c.logged_in_timeout = 30.minutes # log out after 30 minutes of inactivity
   end
 
   has_many :user_logons, :order => "created_at DESC", :dependent => :destroy
@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of     :email, :language,
                             :login_count, :failed_login_count, :last_name
-  validates_presence_of     :login#, :message => 'authlogic.attributes.user_session.login'
+  validates_presence_of     :login#, :message => :login_required
   validates_uniqueness_of   :email, :case_sensitive => false
   validates_uniqueness_of   :login, :case_sensitive => false
   validates_numericality_of :login_count, :failed_login_count
