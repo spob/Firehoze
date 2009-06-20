@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
            :conditions => { :redeemed_at => nil },
            :order => "id"
   has_many :reviews, :dependent => :destroy
+  has_many :helpfuls, :dependent => :destroy
 
 
   # Active users

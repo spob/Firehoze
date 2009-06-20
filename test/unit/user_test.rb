@@ -28,6 +28,7 @@ class UserTest < ActiveSupport::TestCase
     should_have_many                 :credits
     should_have_many                 :reviews
     should_have_many                 :user_logons
+    should_have_many                 :helpfuls
 
     context "and a couple more records" do
       setup do
