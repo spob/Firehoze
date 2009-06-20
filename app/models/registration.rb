@@ -23,10 +23,10 @@ class Registration < ActiveUrl::Base
   # Verify that this email and logic have not been taken before
   def account_not_taken
     if User.find_by_email(email)
-      errors.add(:email, "is already in use")
+      errors.add(:email, I18n.t('registration.already_used'))
     end
     if User.find_by_login(username)
-      errors.add(:username, "is already in use")
+      errors.add(:username,  I18n.t('registration.already_used'))
     end
   end
 

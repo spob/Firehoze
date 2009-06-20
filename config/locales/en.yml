@@ -75,6 +75,7 @@ en:
   
   registration:
     check_email_for_registration: Please check your email to complete the registration
+    already_used: is already in use
 
   review:
     create_sucess: Review created
