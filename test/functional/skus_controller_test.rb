@@ -52,7 +52,7 @@ class SkusControllerTest < ActionController::TestCase
 
         should_assign_to :sku
         should_respond_with :redirect
-        should_set_the_flash_to "SKU saved"
+        should_set_the_flash_to "SKU created"
         should_redirect_to("SKU index page") { skus_url }
       end
 

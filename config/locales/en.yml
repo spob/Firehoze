@@ -46,7 +46,7 @@ en:
     updated_failure: Line update failed
     remove_sku_success: SKU {{sku}} was successfully removed from the cart
     created_added_sku: Added {{sku_desc}} to cart
-    minimum_credit_purchase: You must buy at least #{APP_CONFIG['min_credit_purchase']} credits
+    minimum_credit_purchase: You must buy at least {{min}}
 
   order:
     order_placed: Your order has been placed

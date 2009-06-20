@@ -49,7 +49,10 @@ class LineItemsController < ApplicationController
     if @line_item.quantity < APP_CONFIG['min_credit_purchase']
       # there's a minimum number of credits you can purchase at any one time. We don't want to get
       # nickeled and dimed with purchases of 1 credti at a time
-      flash[:error] = "You must buy at least #{APP_CONFIG['min_credit_purchase']} credits"
+      # TODO: Make credit i18n below
+      flash[:error] = t('line_item.minimum_credit_purchase',
+                        :min => help.pluralize(APP_CONFIG['min_credit_purchase'].to_i,
+                                               'credit'))
     elsif @line_item.save
       flash[:notice] = t 'line_item.updated_success'
     else
