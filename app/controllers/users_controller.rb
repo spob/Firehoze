@@ -73,6 +73,6 @@ private
 def populate_user_from_registration_and_params
   user = User.new(params[:user])
   user.email = @registration.email
-  user.login = @registration.login
+  user.login = @registration.username
   user
 end

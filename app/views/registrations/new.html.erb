@@ -4,7 +4,7 @@ In order to request an account, you first must verify your email information:
 <% form_for(:registration, :url => registrations_path) do |f| %>
     <%= f.error_messages %>
     Username:
-    <%= f.text_field :login %><br />
+    <%= f.text_field :username %><br />
     <br/>
     <%= f.label :email %>:
     <%= f.text_field :email %>

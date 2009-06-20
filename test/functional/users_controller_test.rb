@@ -64,7 +64,7 @@ class UsersControllerTest < ActionController::TestCase
         should_assign_to :user
         should_respond_with :success
         should_not_set_the_flash
-        should_render_template "edit"
+        should_render_template "edi`t"
       end
 
       context "on PUT to :update" do

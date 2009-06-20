@@ -15,10 +15,9 @@ class RegistrationsControllerTest < ActionController::TestCase
 
     context "on POST to :create" do
       setup do
-        post :create, :registration => Factory.attributes_for(:user)
+        post :create, :registration => Factory.attributes_for(:registration)
       end
 
-      #should_assign_to :user
       should_respond_with :redirect
       should_set_the_flash_to /Please check your email/
       should_redirect_to("root  page") { root_path }
