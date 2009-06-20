@@ -17,7 +17,7 @@ class PeriodicJobsController < ApplicationController
     RunOncePeriodicJob.create(
             :name => job.name,
                     :job => job.job)
-    flash[:notice] = t(:one_time_job_scheduled)
+    flash[:notice] = t 'periodic_jobs.one_time_job_scheduled'
     redirect_to periodic_jobs_path
   end
 end

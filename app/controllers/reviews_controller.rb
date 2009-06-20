@@ -20,7 +20,7 @@ class ReviewsController < ApplicationController
     @review = @lesson.reviews.build
     # A user can only write a review for a lesson once
     if @lesson.reviewed_by? current_user
-      flash[:error] = t(:review_already_reviewed)
+      flash[:error] = t 'review.already_reviewed'
       redirect_to lesson_reviews_path(@lesson)
     end
   end
@@ -29,7 +29,7 @@ class ReviewsController < ApplicationController
     @review = @lesson.reviews.build(params[:review])
     @review.user = current_user
     if @review.save
-      flash[:notice] = t(:review_create_sucess)
+      flash[:notice] = t 'review.create_sucess'
       redirect_to lesson_reviews_path(@lesson)
     else
       render :action => 'new'
@@ -39,7 +39,7 @@ class ReviewsController < ApplicationController
   def edit
     @review = Review.find(params[:id])
     unless @review.can_edit? current_user
-      flash[:error] = t(:cannot_edit_review)
+      flash[:error] = t 'review.cannot_edit'
       redirect_to lesson_reviews_path(@lesson)
     end
   end
@@ -47,7 +47,7 @@ class ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
     if @review.update_attributes(params[:review])
-      flash[:notice] = t(:review_update_sucess)
+      flash[:notice] = t 'review.update_sucess'
       redirect_to lesson_reviews_url(@review.lesson)
     else
       render :action => 'edit'

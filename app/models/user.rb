@@ -24,9 +24,9 @@ class User < ActiveRecord::Base
   # Used to verify current password during password changes
   attr_accessor :current_password
 
-  validates_presence_of :email, :language,
-                        :login_count, :failed_login_count, :last_name
-  validates_presence_of :login
+  validates_presence_of     :email, :language,
+                            :login_count, :failed_login_count, :last_name
+  validates_presence_of     :login#, :message => 'authlogic.attributes.user_session.login'
   validates_uniqueness_of   :email, :case_sensitive => false
   validates_uniqueness_of   :login, :case_sensitive => false
   validates_numericality_of :login_count, :failed_login_count

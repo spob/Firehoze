@@ -17,7 +17,7 @@ class LessonsController < ApplicationController
     # the instructor is assumed to be the current user when creating a new lesson
     @lesson.instructor = current_user
     if @lesson.save
-      flash[:notice] = t(:lesson_created)
+      flash[:notice] = t 'lesson.created)'
       redirect_to lesson_path(@lesson)
     else
       render :action => :new
@@ -31,7 +31,7 @@ class LessonsController < ApplicationController
   def edit
     @lesson = Lesson.find params[:id]
     unless @lesson.can_edit? current_user
-      flash[:error] = t(:lesson_access_message)
+      flash[:error] = t 'lesson.access_message'
       redirect_to lesson_path(@lesson)
     end
   end
@@ -40,13 +40,13 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find params[:id]
     if @lesson.can_edit? current_user
       if @lesson.update_attributes(params[:lesson])
-        flash[:notice] = t(:lesson_updated)
+        flash[:notice] = t 'lesson.updated'
         redirect_to lesson_path(@lesson)
       else
         render :action => :edit
       end
     else
-      flash[:error] = t(:lesson_access_message)
+      flash[:error] = t 'lesson.access_message'
       redirect_to lesson_path(@lesson)
     end
   end

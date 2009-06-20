@@ -19,10 +19,10 @@ class PasswordResetsController < ApplicationController
       # user clicks the URL...that way, one user cannot maliciously or accidently mess up another user's password
       # by requesting a new password.
       @user.deliver_password_reset_instructions!
-      flash[:notice] = t(:reset_email_msg)
+      flash[:notice] = t 'password_reset.reset_email_msg'
       redirect_to root_url
     else
-      flash[:notice] = t(:no_user_found_with_email_addr)
+      flash[:notice] = t 'password_reset.no_user_found_with_email_addr'
       render :action => :new
     end
   end
@@ -38,7 +38,7 @@ class PasswordResetsController < ApplicationController
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.save
-      flash[:notice] = t(:pwd_update_success)
+      flash[:notice] = t 'password_reset.pwd_update_success'
       redirect_to account_url
     else
       render :action => :edit
@@ -53,7 +53,7 @@ class PasswordResetsController < ApplicationController
   def load_user_using_perishable_token
     @user = User.find_using_perishable_token(params[:id])
     unless @user
-      flash[:notice] = t(:could_not_locate_account)
+      flash[:notice] = t 'password_reset.could_not_locate_account'
       redirect_to root_url
     end
   end

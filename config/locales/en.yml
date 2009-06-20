@@ -1,5 +1,4 @@
 en:
-
   # variables work as follows:
   # In the controller
   #   vars = "substitution"
@@ -7,67 +6,88 @@ en:
   # In the yml file:
   #   test_msg: Passing args: {{arg}}
 
-  # User
-  login: Username
-  
-  # application_controller messages
-  you_must_be_logged_in: You must be logged in to access this page
-  
-  # discounts_controller
-  discount_create_sucess: Successfully created discount
-  discount_update_sucess: Successfully updated discount
-  discount_destroyed_success: Successfully destroyed discount
-  
-  # Lesson Controller messages
-  lesson_created: Lesson created
-  lesson_access_message: You do not have access to edit this lesson
-  lesson_updated: Lesson updated
-  
-  # line_items_controller
-  updated_line_item_success: Updated line item
-  updated_line_item_failure: Line update failed
-  line_item_remove_sku_success: SKU {{sku}} was successfully removed from the cart
-  line_item_created_added_sku: Added {{sku_desc}} to cart.
+  authlogic:
+#  error_messages:
+#    login_blank: can not be blank
+#    login_not_found: is not valid
+#    login_invalid: should use only letters, numbers, spaces, and .-_@ please.
+#    consecutive_failed_logins_limit_exceeded: Consecutive failed logins limit exceeded, account is disabled.
+#    email_invalid: should look like an email address.
+#    password_blank: can not be blank
+#    password_invalid: is not valid
+#    not_active: Your account is not active
+#    not_confirmed: Your account is not confirmed
+#    not_approved: Your account is not approved
+#    no_authentication_details: You did not provide any details for authentication.
+#  models:
+#    user_session: UserSession
+    attributes:
+      user_session:
+        login: username
+#      email: email
+#      password: password
+#      remember_me: remember me
 
-  # orders controller
-  order_placed: Your order has been placed
+  security:
+    you_must_be_logged_in: You must be logged in to access this page
   
-  # password_resets_controller
-  reset_email_msg: Instructions to reset your password have been emailed to you. Please check your email
-  no_user_found_with_email_addr: No user was found with that email address
-  pwd_update_success: Password successfully updated
-  could_not_locate_account: We're sorry, but we could not locate your account. If you are having issues try copying and pasting the URL from your email into your browser or restarting the reset password process.
-  
-  # passwords_controller
-  pwd_update_success: Password updated
-  
-  # periodic_jobs_controller
-  one_time_job_scheduled: Job has been scheduled to run one time
-  
-  # profiles_controller
-  profile_update_success: Profile updated
-  
-  # registrations_controller
-  check_email_for_registration: Please check your email to complete the registration
+  discount:
+    create_sucess: Successfully created discount
+    update_sucess: Successfully updated discount
+    destroyed_success: Successfully destroyed discount
 
-  # reviews_controller
-  review_create_sucess: Review created
-  cannot_edit_review: You do not have permissions required to edit this review
-  review_update_sucess: Review updated
-  review_already_reviewed: You can only write a review for a lesson once.
+  lesson:
+    created: Lesson created
+    access_message: You do not have access to edit this lesson
+    updated: Lesson updated
+
+  line_item:
+    updated_success: Updated line item
+    updated_failure: Line update failed
+    remove_sku_success: SKU {{sku}} was successfully removed from the cart
+    created_added_sku: Added {{sku_desc}} to cart
+    minimum_credit_purchase: You must buy at least #{APP_CONFIG['min_credit_purchase']} credits
+
+  order:
+    order_placed: Your order has been placed
   
-  # skus_controller
-  sku_update_success: SKU updated
-  sku_delete_success: SKU {{name}} was successfully deleted
+  password_reset:
+    reset_email_msg: Instructions to reset your password have been emailed to you. Please check your email
+    no_user_found_with_email_addr: No user was found with that email address
+    pwd_update_success: Password successfully updated
+    could_not_locate_account: We're sorry, but we could not locate your account. If you are having issues try copying and pasting the URL from your email into your browser or restarting the reset password process.
+
+  password:
+    pwd_update_success: Password updated
   
-  # user_sessions_controller
-  login_success: Login successful
-  logout_success: Logout successful
+  periodic_jobs:
+    one_time_job_scheduled: Job has been scheduled to run one time
   
-  # users_controller
-  registration_no_longer_valid: Registration no longer valid
-  account_reg_success: Account registered
-  account_update_success: Account updated
+  profile:
+    update_success: Profile updated
+  
+  registration:
+    check_email_for_registration: Please check your email to complete the registration
+
+  review:
+    create_sucess: Review created
+    cannot_edit: You do not have permissions required to edit this review
+    update_sucess: Review updated
+    already_reviewed: You can only write a review for a lesson once.
+  
+  sku:
+    create_success: SKU created
+    update_success: SKU updated
+    delete_success: SKU {{name}} was successfully deleted
+  
+  login:
+    login_success: Login successful
+    logout_success: Logout successful
+
+  user:
+    registration_no_longer_valid: Registration no longer valid
+    account_reg_success: Account registered
+    account_update_success: Account updated
   
   # Date/Time formatting
   date:

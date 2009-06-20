@@ -17,13 +17,13 @@
 <% end %>
 <% if current_user %>
     | Available Credits: <%= current_user.credits.available.count %>
+    | <%= link_to "Buy #{pluralize(APP_CONFIG['min_credit_purchase'].to_i, 'Credit')}",
+                  line_items_path(:sku => CreditSku.find(:first).try(:sku),
+                                  :quantity => APP_CONFIG['min_credit_purchase']), :method => :post %>
+    | <%= link_to "Buy #{pluralize(APP_CONFIG['min_credit_purchase'].to_i * 2, 'Credit')}",
+                  line_items_path(:sku => CreditSku.find(:first).try(:sku),
+                                  :quantity => APP_CONFIG['min_credit_purchase'].to_i * 2), :method => :post %>
 <% end %>
-| <%= link_to "Buy #{pluralize(APP_CONFIG['min_credit_purchase'].to_i, 'Credit')}",
-              line_items_path(:sku => CreditSku.find(:first).try(:sku),
-                              :quantity => APP_CONFIG['min_credit_purchase']), :method => :post %>
-| <%= link_to "Buy #{pluralize(APP_CONFIG['min_credit_purchase'].to_i * 2, 'Credit')}",
-              line_items_path(:sku => CreditSku.find(:first).try(:sku),
-                              :quantity => APP_CONFIG['min_credit_purchase'].to_i * 2), :method => :post %>
 <br/>
 <br/>
 

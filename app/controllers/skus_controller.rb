@@ -33,7 +33,7 @@ class SkusController < ApplicationController
     @sku = eval command
  
     if @sku.save
-      flash[:notice] = "SKU saved"
+      flash[:notice] = t 'sku.create_success'
       redirect_to skus_path
     else
       render :action => :new
@@ -48,7 +48,7 @@ class SkusController < ApplicationController
     @sku = Sku.find params[:id]
     @sku.attributes = params[:sku]
     if @sku.save
-      flash[:notice] = t(:sku_update_success)
+      flash[:notice] = t 'sku.update_success'
       redirect_to skus_path
     else
       render :action => :edit
@@ -59,7 +59,7 @@ class SkusController < ApplicationController
     sku = Sku.find params[:id]
     name = sku.sku
     sku.destroy
-    flash[:notice] = t(:sku_delete_success, :name => name)
+    flash[:notice] = t 'sku.delete_success', :name => name
     redirect_to skus_url
   end
 end

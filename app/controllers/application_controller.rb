@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   before_filter :set_timezone
   before_filter :set_user_language
 
+  def available_locales; AVAILABLE_LOCALES; end
+
   # The currently logged on user, or nil if no user is logged on
   def current_user
     return @current_user if defined?(@current_user)
@@ -70,7 +72,8 @@ class ApplicationController < ActionController::Base
   def require_user
     unless current_user
       store_location
-      flash[:notice] = t(:you_must_be_logged_in)
+      #flash[:notice] = t 'test.abc'
+      flash[:notice] = t 'security.you_must_be_logged_in'
       redirect_to new_user_session_url
       return false
     end
@@ -80,7 +83,7 @@ class ApplicationController < ActionController::Base
   def require_no_user
     if current_user
       store_location
-      flash[:notice] = t(:you_must_be_logged_in)
+      flash[:notice] = t :you_must_be_logged_in
       redirect_to account_url
       return false
     end
