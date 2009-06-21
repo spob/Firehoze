@@ -33,7 +33,7 @@ class DiscountsController < ApplicationController
     @sku.discounts << @discount 
 #    @discount = @sku.discounts.build(params[:discount])
     if @sku.save
-      flash[:notice] = t 'discount.create_sucess'
+      flash[:notice] = t 'discount.create_success'
       redirect_to sku_discounts_path(@sku)
     else
       render :action => 'new'
@@ -47,7 +47,7 @@ class DiscountsController < ApplicationController
   def update
     @discount = Discount.find(params[:id])
     if @discount.update_attributes(params[:discount])
-      flash[:notice] = t 'discount.update_sucess'
+      flash[:notice] = t 'discount.update_success'
       redirect_to sku_discounts_url(@discount.sku)
     else
       render :action => 'edit'

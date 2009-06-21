@@ -14,6 +14,12 @@ class Review < ActiveRecord::Base
 
   # The review can be edited by a moderator
   def can_edit? user
-    user.is_moderator?
+    user and user.is_moderator?
+  end
+
+  # Was this review marked as helpful by this user. Will return true if it was helpful, false if it wasn't,
+  # and nil if it hasn't received this users feedback
+  def helpful? user
+    self.helpfuls.scoped_by_user_id(user).first.try(:helpful)
   end
 end

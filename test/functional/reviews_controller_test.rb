@@ -38,7 +38,7 @@ class ReviewsControllerTest < ActionController::TestCase
 
         should_assign_to :review
         should_respond_with :redirect
-        should_set_the_flash_to :review_create_sucess
+        should_set_the_flash_to :review_create_success
         should_redirect_to("Reviews index page") { lesson_reviews_url(@lesson) }
       end
 
@@ -61,7 +61,7 @@ class ReviewsControllerTest < ActionController::TestCase
             put :update, :id => @review, :lesson => @review.lesson
           end
 
-          should_set_the_flash_to :review_update_sucess
+          should_set_the_flash_to :review_update_success
           should_assign_to :review
           should_respond_with :redirect
           should_redirect_to("Reviews index page") { lesson_reviews_url(@review.lesson) }

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ReviewTest < ActiveSupport::TestCase
 
-  context "given an existing record" do
+  context "given an existing review" do
     setup do
       @review = Factory.create(:review)
     end
@@ -16,6 +16,32 @@ class ReviewTest < ActiveSupport::TestCase
 
     should "return records" do
       assert_equal 1, Review.list(@review.lesson, 1).size
+    end
+
+    should "not be reviewed" do
+      assert_nil @review.helpful?(Factory.create(:user))
+    end
+
+    context "that was marked as helpful by a user" do
+      setup do
+        @user = Factory.create(:user)
+        @review.helpfuls.create(:user => @user, :helpful => true)
+      end
+
+      should "be helpful" do
+        assert @review.helpful? @user
+      end
+
+      context "that was marked as not helpful by a user" do
+        setup do
+          @user = Factory.create(:user)
+          @review.helpfuls.create(:user => @user, :helpful => false)
+        end
+
+        should "be helpful" do
+          assert !@review.helpful?(@user)
+        end
+      end
     end
   end
 end

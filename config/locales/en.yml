@@ -33,15 +33,21 @@ en:
 #      email: email
 #      password: password
 #      remember_me: remember me
+  general:
+    _yes: 'yes'
+    _no: 'no'
 
   security:
     you_must_be_logged_in: You must be logged in to access this page
     you_must_be_logged_out: You must not be logged in to access this page
   
   discount:
-    create_sucess: Successfully created discount
-    update_sucess: Successfully updated discount
+    create_success: Successfully created discount
+    update_success: Successfully updated discount
     destroyed_success: Successfully destroyed discount
+
+  helpful:
+    create_success: Your feedback has been recorded
 
   lesson:
     created: Lesson created
@@ -78,9 +84,9 @@ en:
     already_used: is already in use
 
   review:
-    create_sucess: Review created
+    create_success: Review created
     cannot_edit: You do not have permissions required to edit this review
-    update_sucess: Review updated
+    update_success: Review updated
     already_reviewed: You can only write a review for a lesson once.
   
   sku:

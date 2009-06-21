@@ -17,11 +17,11 @@ class Sku < ActiveRecord::Base
 
   # Only admins can delete a SKU
   def can_delete? user
-    user.is_sysadmin?
+    user and user.is_sysadmin?
   end
 
   # Only admins can edit a SKU
   def can_edit? user
-    user.is_sysadmin?
+    user and user.is_sysadmin?
   end
 end

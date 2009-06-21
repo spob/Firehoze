@@ -5,5 +5,5 @@ class Helpful < ActiveRecord::Base
   belongs_to :user
   belongs_to :review
 
-  validates_presence_of :user, :review, :helpful
+  validates_presence_of :user, :review
 end

@@ -21,7 +21,7 @@ class Lesson < ActiveRecord::Base
 
   # The lesson can be edited by an admin or the instructor who created it
   def can_edit? user
-    user.is_admin? or user.is_moderator? or instructor == user
+    user and (user.is_admin? or user.is_moderator? or instructor == user)
   end
 
   # Has this user reviewed this lesson already?

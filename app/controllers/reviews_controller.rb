@@ -29,7 +29,7 @@ class ReviewsController < ApplicationController
     @review = @lesson.reviews.build(params[:review])
     @review.user = current_user
     if @review.save
-      flash[:notice] = t 'review.create_sucess'
+      flash[:notice] = t 'review.create_success'
       redirect_to lesson_reviews_path(@lesson)
     else
       render :action => 'new'
@@ -47,7 +47,7 @@ class ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
     if @review.update_attributes(params[:review])
-      flash[:notice] = t 'review.update_sucess'
+      flash[:notice] = t 'review.update_success'
       redirect_to lesson_reviews_url(@review.lesson)
     else
       render :action => 'edit'
