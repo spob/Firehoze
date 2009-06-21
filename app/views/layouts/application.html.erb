@@ -15,14 +15,10 @@
 <% if show_cart? %>
     | <%= link_to "Shopping Cart", cart_path(@current_cart) %>
 <% end %>
+    <!-- pass a dummy id to the following route since restful for show requires an id -->
+   | <%= link_to "Buy Credits", store_path(1)  %>
 <% if current_user %>
     | Available Credits: <%= current_user.credits.available.count %>
-    | <%= link_to "Buy #{pluralize(APP_CONFIG['min_credit_purchase'].to_i, 'Credit')}",
-                  line_items_path(:sku => CreditSku.find(:first).try(:sku),
-                                  :quantity => APP_CONFIG['min_credit_purchase']), :method => :post %>
-    | <%= link_to "Buy #{pluralize(APP_CONFIG['min_credit_purchase'].to_i * 2, 'Credit')}",
-                  line_items_path(:sku => CreditSku.find(:first).try(:sku),
-                                  :quantity => APP_CONFIG['min_credit_purchase'].to_i * 2), :method => :post %>
 <% end %>
 <br/>
 <br/>
