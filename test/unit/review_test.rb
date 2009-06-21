@@ -29,7 +29,7 @@ class ReviewTest < ActiveSupport::TestCase
       end
 
       should "be helpful" do
-        assert @review.helpful? @user
+        assert @review.helpful?(@user)
       end
 
       context "that was marked as not helpful by a user" do

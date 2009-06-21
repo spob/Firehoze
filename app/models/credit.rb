@@ -17,7 +17,7 @@ class Credit < ActiveRecord::Base
   belongs_to :user
   belongs_to :lesson
 
-  before_create :set_will_expire_at
+  before_create :set_acquired_at_and_will_expire_at
   before_update :set_redeemed_at
 
   # Credits which have not yet been redeemed
@@ -69,7 +69,8 @@ class Credit < ActiveRecord::Base
 
   private
 
-  def set_will_expire_at
+  def set_acquired_at_and_will_expire_at
+    self.acquired_at = Time.now
     self.will_expire_at = APP_CONFIG['expire_credits_after_days'].to_i.days.since
   end
 

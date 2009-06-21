@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :available_credits, :class_name => 'Credit',
            :conditions => { :redeemed_at => nil },
            :order => "id"
+  # Lessons represents lessons that this user has "bought"
+  has_many :lessons, :through => :credits
   has_many :reviews, :dependent => :destroy
   has_many :helpfuls, :dependent => :destroy
 
@@ -76,6 +78,11 @@ class User < ActiveRecord::Base
   def full_name
     return last_name if first_name.nil? or first_name.empty?
     "#{first_name} #{last_name}"
+  end
+
+  # Has this user purchased this lesson?
+  def owns_lesson? lesson
+    !self.lessons.scoped_by_id(lesson).first.nil?
   end
 
   private

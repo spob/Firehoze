@@ -50,4 +50,8 @@ class LessonsController < ApplicationController
       redirect_to lesson_path(@lesson)
     end
   end
+
+  def watch
+    @lesson = Lesson.find params[:id]
+  end
 end

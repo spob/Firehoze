@@ -10,18 +10,18 @@ class UserTest < ActiveSupport::TestCase
     should_validate_uniqueness_of    :login
     should_validate_presence_of      :email, :last_name, :login, :language
     should_validate_numericality_of  :login_count, :failed_login_count
-    
+
     # Apparently should not allow values for only works if you pass the error message you expect
     # to see...though this is not clear in the shoulda documentation.
     should_not_allow_values_for      :email, "blahhhh", "bbbb lah",
                                      :message => /should look like an email address/
     should_allow_values_for          :email, "apple@b.com", "asdf@asdf.com"
     should_allow_values_for          :login, "spob", "big boy", "  test "
-    
+
     # Apparently should not allow values for only works if you pass the error message you expect
     # to see...though this is not clear in the shoulda documentation.
     should_not_allow_values_for      :login, "1234567890123456789012345678", :message => I18n.translate('activerecord.errors.messages.too_long', :count => 25)
-    should_ensure_length_in_range    :email, (6..100)    
+    should_ensure_length_in_range    :email, (6..100)
     should_ensure_length_in_range    :last_name, (0..40)
     should_ensure_length_in_range    :first_name, (0..40)
     should_ensure_length_in_range    :login, (0..25)
@@ -40,16 +40,16 @@ class UserTest < ActiveSupport::TestCase
       should "return user records" do
         assert_equal 3, User.list(1).size
       end
-       
+
       should "find 3 records" do
         user_list = User.active
         assert_equal 3, user_list.size
       end
-      
+
       should "delete all records" do
         user_list = User.find(:all)
         user_list.each do |usr|
-            usr.destroy
+          usr.destroy
         end
         user_list = User.find(:all)
         assert_equal 0, user_list.size
@@ -75,34 +75,51 @@ class UserTest < ActiveSupport::TestCase
         assert_equal @user.email, response.to[0]
       end
     end
-  end
-  
-  context "More user testing" do
-    setup do 
-      @user = Factory.create(:user) 
-      @expectedLang =  [['English', 'en'], ['Wookie', 'wk'] ]      
-    end
-    
-    should "support English and Wookie" do
-      l = User.supported_languages
-      assert_equal @expectedLang, l
-    end
-    
+
     should "return fullname as first plus last" do
       fn = @user.first_name
       ln = @user.last_name
       assert_equal @user.full_name, "#{fn} #{ln}"
     end
 
-
     should "return fullname as just last" do
       @user.first_name = nil
       ln = @user.last_name
-      
+
       assert_equal @user.full_name, "#{ln}"
 
       @user.first_name =""
       assert_equal @user.full_name, "#{ln}"
+    end
+
+    context "and several expected languages" do
+      setup { @expected_lang =  [['English', 'en'], ['Wookie', 'wk'] ] }
+
+      should "support English and Wookie" do
+        l = User.supported_languages
+        assert_equal @expected_lang, l
+      end
+    end
+
+    context "and a lesson" do
+      setup { @lesson = Factory.create(:lesson) }
+
+      should "not have the user owning that lesson" do
+        assert !@user.owns_lesson?(@lesson)
+      end
+
+      context "which the user owns" do
+        setup do
+          @user.credits.create(:price => 0.99, :acquired_at => 2.days.ago)
+          @credit = @user.credits.first
+          @credit.lesson = @lesson
+          @credit.save!
+        end
+
+        should "have the user owning that lesson" do
+          assert @user.owns_lesson?(@lesson)
+        end
+      end
     end
   end
 end
