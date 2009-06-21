@@ -118,6 +118,8 @@ class UserTest < ActiveSupport::TestCase
 
         should "have the user owning that lesson" do
           assert @user.owns_lesson?(@lesson)
+          assert !@user.lessons.empty?
+          assert @user.lessons.include?(@lesson)
         end
       end
     end
