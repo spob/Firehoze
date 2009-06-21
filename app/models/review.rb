@@ -8,7 +8,8 @@ class Review < ActiveRecord::Base
 
 # Basic paginated listing finder
   def self.list(lesson, page)
-    paginate :page => page, :conditions => { :lesson_id => lesson }, :order => 'id desc',
+    paginate :page => page, 
+             :conditions => { :lesson_id => lesson }, :order => 'id desc',
              :per_page => Constants::ROWS_PER_PAGE
   end
 
