@@ -48,6 +48,7 @@ en:
 
   helpful:
     create_success: Your feedback has been recorded
+    cant_feedback_own: You cannot provide feedback on a review you have written
 
   lesson:
     created: Lesson created
