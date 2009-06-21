@@ -16,7 +16,12 @@ class CreditTest < ActiveSupport::TestCase
     should_belong_to :sku
 
     context "that has not yet been redeemed" do
-      setup { @credit.update_attribute(:redeemed_at, nil) }
+      setup do
+        @credit.update_attributes(:redeemed_at => nil, :lesson => nil)
+        @credit = Credit.find(@credit)
+        assert @credit.redeemed_at.nil?
+        assert @credit.lesson.nil?
+      end
 
       should "retrieve available rows" do
         assert_equal 1, Credit.available.count
@@ -37,14 +42,25 @@ class CreditTest < ActiveSupport::TestCase
 
     context "and a second record ready to be expired" do
       setup do
-        @credit.update_attribute(:redeemed_at, nil)
+        @credit.update_attributes(:redeemed_at => nil, :lesson => nil)
+        @credit = Credit.find(@credit)
+        assert @credit.redeemed_at.nil?
+        assert @credit.lesson.nil?
         # Credit2 should be ready to expire
-        @credit2 = Factory.create(:credit, :redeemed_at => nil, :expiration_warning_issued_at => 11.days.ago)
+        @credit2 = Factory.create(:credit, :redeemed_at => nil, :lesson => nil,
+                                  :expiration_warning_issued_at => 11.days.ago)
         @credit2.update_attribute(:will_expire_at, 1.days.ago)
+        @credit2 = Credit.find(@credit2)
+        assert @credit2.redeemed_at.nil?
+        assert @credit2.lesson.nil?
 
         # credit 3 hasn't been warned yet so shouldn't expire
-        @credit3 = Factory.create(:credit, :redeemed_at => nil)
+        @credit3 = Factory.create(:credit, :redeemed_at => nil, :lesson => nil)
         @credit3.update_attribute(:will_expire_at, 1.days.ago)
+        @credit3 = Credit.find(@credit3)
+        @credit3 = Credit.find(@credit3)
+        assert @credit3.redeemed_at.nil?
+        assert @credit3.lesson.nil?
         assert_nil @credit3.expiration_warning_issued_at
       end
 
@@ -84,9 +100,15 @@ class CreditTest < ActiveSupport::TestCase
       # should not get warning since it has not yet entered the warning period
       @credit3 = Factory.create(:credit, :redeemed_at => nil)
       # this should get warned
-      @credit4 = Factory.create(:credit, :redeemed_at => nil)
+      @credit4 = Factory.create(:credit, :redeemed_at => nil, :lesson => nil)
+      @credit4 = Credit.find(@credit4)
+      assert @credit4.redeemed_at.nil?
+      assert @credit4.lesson.nil?
       # this should get warned
-      @credit5 = Factory.create(:credit, :redeemed_at => nil)
+      @credit5 = Factory.create(:credit, :redeemed_at => nil, :lesson => nil)
+      @credit5 = Credit.find(@credit5)
+      assert @credit5.redeemed_at.nil?
+      assert @credit5.lesson.nil?
 
       # must set will_expire_at separately since it's set by a callback
       @credit1.update_attribute(:will_expire_at, 2.days.since)

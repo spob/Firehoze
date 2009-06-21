@@ -10,7 +10,8 @@ class StoreControllerTest < ActionController::TestCase
     end
 
     context "on GET to :show" do
-      setup { get :show }
+      # Pass a bogus id to show since RESTFUL routes requires an id for show
+      setup { get :show, :id => 1 }
 
       should_respond_with :success
       should_not_set_the_flash
