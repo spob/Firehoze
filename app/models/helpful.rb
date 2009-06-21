@@ -6,4 +6,7 @@ class Helpful < ActiveRecord::Base
   belongs_to :review
 
   validates_presence_of :user, :review
+
+  named_scope :helpful_yes, :conditions => { :helpful => true }
+  named_scope :helpful_no, :conditions => { :helpful => false }
 end

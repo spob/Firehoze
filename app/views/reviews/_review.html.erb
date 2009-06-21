@@ -1,22 +1,28 @@
 <p>
   <b><%= h review.title %> by <%= h review.user.login %> written on <%= l review.created_at %></b>
+  <% unless review.helpfuls.empty? %>
+      <%= pluralize(review.helpfuls.helpful_yes.size, 'user') %> found this review helpful,
+      <%= pluralize(review.helpfuls.helpful_no.size, 'user') %> did not
+  <% end %>
 </p>
 <p>
   <%= simple_format review.body %>
 </p>
-<p>
-  I found this review helpful:
-  <% if review.helpful?(current_user).nil? %>
-      <%= link_to t('general._yes'), helpfuls_path(:review_id => review, :helpful => 'yes'), :method => :post %>
-      &nbsp;
-      <%= link_to t('general._no'), helpfuls_path(:review_id => review, :helpful => 'no'), :method => :post %>
-  <% else %>
-      <%= review.helpful?(current_user) ? t('general._yes') : t('general._no') %>
-  <% end %>
-  <% if review.can_edit? current_user %>
-      <% if review.can_edit? current_user %>
-          | <%= link_to "Edit", edit_review_path(review) %>
+<% if current_user %>
+    <p>
+      I found this review helpful:
+      <% if review.helpful?(current_user).nil? %>
+          <%= link_to t('general._yes'), helpfuls_path(:review_id => review, :helpful => 'yes'), :method => :post %>
+          &nbsp;
+          <%= link_to t('general._no'), helpfuls_path(:review_id => review, :helpful => 'no'), :method => :post %>
+      <% else %>
+          <%= review.helpful?(current_user) ? t('general._yes') : t('general._no') %>
       <% end %>
-  <% end %>
-</p>
+      <% if review.can_edit? current_user %>
+          <% if review.can_edit? current_user %>
+              | <%= link_to "Edit", edit_review_path(review) %>
+          <% end %>
+      <% end %>
+    </p>
+<% end %>
 <hr/>
