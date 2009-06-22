@@ -4,7 +4,8 @@ class CreditTest < ActiveSupport::TestCase
   context "given an existing record" do
     setup { @credit = Factory.create(:credit) }
 
-    should_validate_presence_of      :price, :acquired_at, :price
+    # acquired_at is set in the callback so can't be tested to fail when nil'
+    should_validate_presence_of      :price, :price
     should_allow_values_for          :price, 0, 1, 22.23
 
     # Apparently should not allow values for only works if you pass the error message you expect

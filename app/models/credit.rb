@@ -18,7 +18,7 @@ class Credit < ActiveRecord::Base
   belongs_to :lesson
 
   before_create :set_acquired_at_and_will_expire_at
-  before_update :set_redeemed_at
+  before_validation :set_redeemed_at
 
   # Credits which have not yet been redeemed
   named_scope :available, :conditions => {:redeemed_at => nil, :expired_at => nil}
@@ -75,6 +75,7 @@ class Credit < ActiveRecord::Base
   end
 
   def set_redeemed_at
+    self.acquired_at = Time.now if self.acquired_at.nil?
     # Is the lesson set (indicating that the credit is being redeemed? If so, set the redeemed at date
     self.redeemed_at = Time.now if self.redeemed_at.nil? and !self.lesson.nil?
   end

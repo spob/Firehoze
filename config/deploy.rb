@@ -27,7 +27,7 @@ set :git_enable_submodules, 1
 set :use_sudo, false
 set :deploy_to, "/home/#{user}/#{application}"
 
-after 'deploy:update', 'deploy:finishing_touches', 'deploy:restart', 'mongrel:restart', 'task_server:restart'
+after 'deploy:update', 'deploy:finishing_touches', 'mongrel:restart', 'task_server:restart'
 
 namespace :deploy do
   task :finishing_touches, :roles => :app do
@@ -36,10 +36,6 @@ namespace :deploy do
     run "cp -pf #{deploy_to}/to_copy/production.yml #{current_path}/config/environments/production.yml"
     # preserve the assets directory which resides under shared
     run "ln -s #{shared_path}/assets #{release_path}/public/assets" 
-  end
-
-  deploy.task :restart, :roles => :app do
-    run "mongrel_rails mongrel::restart -P #{current_path}/tmp/pids/mongrel.pid"
   end
 end
 
@@ -52,7 +48,7 @@ namespace :mongrel do
   desc "Restart Mongrel"
   task :restart, :roles => :app do
     run "mongrel_rails restart -P #{current_path}/tmp/pids/mongrel.pid"
-    run "ruby #{current_path}/script/task_server_control.rb restart -- -e production"
+    #run "ruby #{current_path}/script/task_server_control.rb restart -- -e production"
   end
 
   desc "Stop Mongrel"
