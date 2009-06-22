@@ -11,4 +11,5 @@ public/cache/*
 .idea
 .project
 public/assets
+nbproject
 tmp
