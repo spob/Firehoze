@@ -54,7 +54,7 @@ en:
     created: Lesson created
     access_message: You do not have access to edit this lesson
     updated: Lesson updated
-    need_credits: You don't have any available credits to watch this lesson. Would you like to buy more?
+    need_credits: You have no available credits to watch this lesson. Would you like to buy more?
 
   line_item:
     updated_success: Updated line item

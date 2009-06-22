@@ -115,5 +115,42 @@ class LessonsControllerTest < ActionController::TestCase
         end
       end
     end
+
+    context "with a lesson" do
+      setup { @lesson = Factory.create(:lesson) }
+
+      context "which the user already owns" do
+        setup do
+          @user.credits.create!(:price => 0.99, :lesson => @lesson)
+          assert @user.owns_lesson?(@lesson)
+          get :watch, :id => @lesson
+        end
+
+        should_assign_to :lesson
+        should_respond_with :success
+        should_not_set_the_flash
+        should_render_template "watch"
+      end
+
+      context "with no available credits" do
+        setup { get :watch, :id => @lesson }
+        
+        should_set_the_flash_to I18n.t('lesson.need_credits')
+        should_redirect_to("online store") { store_path(1) }
+      end
+
+      context "with available credits" do
+        setup do
+          @user.credits.create!(:price => 0.99)
+          assert !@user.available_credits.empty?
+          assert !@user.owns_lesson?(@lesson)
+          get :watch, :id => @lesson
+        end
+
+        should_assign_to :lesson
+        should_not_set_the_flash
+        should_redirect_to("redeem credit confirmation screen") { acquire_lesson_path(@lesson) }
+      end
+    end
   end
 end

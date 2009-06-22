@@ -19,7 +19,7 @@ class AcquireLessonsController < ApplicationController
       redirect_to store_path(1)
     else
       @credit = current_user.available_credits.first
-      @credit.update_attribute(:lesson, @lesson)
+      @credit.update_attributes(:lesson => @lesson, :acquired_at => Time.now)
       redirect_to watch_lesson_path(@lesson)
     end
   end

@@ -53,7 +53,6 @@ class LessonsController < ApplicationController
 
   def watch
     @lesson = Lesson.find params[:id]
-    puts "................................#{current_user.available_credits.size}"
     if current_user.owns_lesson? @lesson
       # watch the video
     elsif current_user.available_credits.empty?
