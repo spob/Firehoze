@@ -22,6 +22,11 @@ class ReviewsController < ApplicationController
     if @lesson.reviewed_by? current_user
       flash[:error] = t 'review.already_reviewed'
       redirect_to lesson_reviews_path(@lesson)
+    elsif !current_user.owns_lesson? @lesson
+      flash[:error] = t 'review.must_view_to_review'
+    elsif @lesson.instructor == current_user
+      flash[:error] = t 'review.cannot_review_own_lesson'
+      redirect_to lesson_reviews_path(@lesson)
     end
   end
 

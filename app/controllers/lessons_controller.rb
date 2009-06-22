@@ -53,14 +53,14 @@ class LessonsController < ApplicationController
 
   def watch
     @lesson = Lesson.find params[:id]
-    if current_user.owns_lesson? @lesson
+    if current_user.owns_lesson? @lesson or current_user == @lesson.instructor
       # watch the video
     elsif current_user.available_credits.empty?
       # User doesn't have enough credits...redirect them to the online store
       flash[:error] = t('lesson.need_credits')
       redirect_to store_path(1)
     else
-      redirect_to acquire_lesson_path(@lesson)
+      redirect_to new_acquire_lesson_path(:id => @lesson)
     end
   end
 end

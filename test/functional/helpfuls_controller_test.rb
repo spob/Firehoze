@@ -10,8 +10,12 @@ class HelpfulsControllerTest < ActionController::TestCase
     end
 
     context "with a review" do
-      setup { @review = Factory.create(:review) }
-      
+      setup do
+        @lesson = Factory.create(:lesson)
+        @user.credits.create(:price => 0.99, :lesson => @lesson)
+        @review = Factory.create(:review, :user => @user, :lesson => @lesson)
+      end
+
       context "on POST to :create" do
         setup do
           post :create, :review_id => @review, :user_id => @user

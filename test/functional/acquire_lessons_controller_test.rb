@@ -12,13 +12,13 @@ class AcquireLessonsControllerTest < ActionController::TestCase
     context "with a lesson" do
       setup { @lesson = Factory.create(:lesson) }
 
-      context "on GET to :show" do
-        setup { get :show, :id => @lesson }
+      context "on GET to :new" do
+        setup { get :new, :id => @lesson }
 
         should_assign_to :lesson
         should_respond_with :success
         should_not_set_the_flash
-        should_render_template "show"
+        should_render_template "new"
       end
 
       context "and no available credits" do
