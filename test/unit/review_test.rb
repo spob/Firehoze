@@ -5,7 +5,10 @@ class ReviewTest < ActiveSupport::TestCase
   context "given an existing review" do
     setup do
       @user = Factory.create(:user)
-      @review = Factory.create(:review, :user => @user)
+      @lesson = Factory.create(:lesson)
+      @user.credits.create!(:price => 0.99, :lesson => @lesson, :acquired_at => Time.now)
+      @review = Factory.create(:review, :user => @user, :lesson => @lesson)
+      assert @user.owns_lesson?(@lesson)
     end
 
     should_belong_to :user
@@ -25,22 +28,22 @@ class ReviewTest < ActiveSupport::TestCase
 
     context "that was marked as helpful by a user" do
       setup do
-        @user = Factory.create(:user)
-        @review.helpfuls.create(:user => @user, :helpful => true)
+        @user2 = Factory.create(:user)
+        @review.helpfuls.create!(:user => @user2, :helpful => true)
       end
 
       should "be helpful" do
-        assert @review.helpful?(@user)
+        assert @review.helpful?(@user2)
       end
 
       context "that was marked as not helpful by a user" do
         setup do
-          @user = Factory.create(:user)
-          @review.helpfuls.create(:user => @user, :helpful => false)
+          @user2 = Factory.create(:user)
+          @review.helpfuls.create(:user => @user2, :helpful => false)
         end
 
         should "be helpful" do
-          assert !@review.helpful?(@user)
+          assert !@review.helpful?(@user2)
         end
       end
     end

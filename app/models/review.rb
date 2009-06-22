@@ -5,7 +5,7 @@ class Review < ActiveRecord::Base
   validates_presence_of :user, :title, :body, :lesson
   validates_uniqueness_of :user_id, :scope => :lesson_id
   validates_length_of :title, :maximum => 100, :allow_nil => true
-  validate :instructor_cannot_review
+  validate :validate_reviewer
 
 # Basic paginated listing finder
   def self.list(lesson, page)
@@ -27,9 +27,14 @@ class Review < ActiveRecord::Base
 
   private
 
-  def instructor_cannot_review
+  def validate_reviewer
+    # Instructor can't review their own video'
     if self.lesson and self.lesson.instructor == self.user
-      errors.add_to_base(I18n.t('registration.cannot_review_own_lesson'))
+      errors.add_to_base(I18n.t('review.cannot_review_own_lesson'))
+    end
+    # Must have viewed the video to review it
+    if self.user and !self.user.owns_lesson? self.lesson
+      errors.add_to_base(I18n.t('review.must_view_to_review'))
     end
   end
 end

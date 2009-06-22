@@ -10,7 +10,11 @@ class ReviewsControllerTest < ActionController::TestCase
     end
 
     context "with a lesson defined" do
-      setup { @lesson = Factory.create(:lesson) }
+      setup do
+        @lesson = Factory.create(:lesson)
+        @user.credits.create!(:price => 0.99, :lesson => @lesson, :acquired_at => Time.now)
+        assert @user.owns_lesson?(@lesson)
+      end
 
       context "on GET to :index" do
         setup { get :index, :lesson_id => @lesson }
@@ -47,7 +51,10 @@ class ReviewsControllerTest < ActionController::TestCase
           @user.has_role 'moderator'
         end
         context "on GET to :edit" do
-          setup { get :edit, :id => Factory.create(:review) }
+          setup do
+            @review = Factory.create(:review, :user => @user, :lesson => @lesson)
+            get :edit, :id => @review
+          end
 
           should_assign_to :review
           should_respond_with :success
@@ -57,7 +64,7 @@ class ReviewsControllerTest < ActionController::TestCase
 
         context "on PUT to :update" do
           setup do
-            @review = Factory.create(:review)
+            @review = Factory.create(:review, :user => @user, :lesson => @lesson)
             put :update, :id => @review, :lesson => @review.lesson
           end
 
@@ -70,7 +77,10 @@ class ReviewsControllerTest < ActionController::TestCase
 
       context "without moderator access" do
         context "on GET to :edit" do
-          setup { get :edit, :id => Factory.create(:review) }
+          setup do
+            @review = Factory.create(:review, :user => @user, :lesson => @lesson)
+            get :edit, :id => @review
+          end
 
           should_not_assign_to :review
           should_respond_with :redirect
@@ -80,7 +90,8 @@ class ReviewsControllerTest < ActionController::TestCase
 
         context "on PUT to :update" do
           setup do
-            @review = Factory.create(:review)
+            @review = Factory.create(:review, :user => @user, :lesson => @lesson)
+            assert @user.owns_lesson?(@lesson)
             put :update, :id => @review, :lesson => @review.lesson
           end
 

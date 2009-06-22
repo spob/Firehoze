@@ -91,6 +91,7 @@ en:
     update_success: Review updated
     already_reviewed: You can only write a review for a lesson once
     cannot_review_own_lesson: An author can't review their own work
+    must_view_to_review: You can only review videos which you have viewed
   
   sku:
     create_success: SKU created
