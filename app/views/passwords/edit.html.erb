@@ -1,17 +1,22 @@
 <h1>Edit Password</h1>
 
 <% form_for(:user, :url => password_path(@user), :html => { :method => :put }) do |f| %>
-    <%= f.error_messages %>
+  <%= f.error_messages %>
 
-    <%= f.label :current_password, "Current password" %>:
-    <%= f.password_field :current_password %><br />
-    
-    <%= f.label :password, "New password" %>:
-    <%= f.password_field :password %><br />
-    <br/>
-    <%= f.label :password_confirmation %>:
-    <%= f.password_field :password_confirmation %><br />
-
+  <p>
+    <div><%= f.label :current_password, "Current password" %></div>
+    <%= f.password_field :current_password %>
+  </p>
+  <p>
+    <div><%= f.label :password, "New password" %></div>
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <div><%= f.label :password_confirmation %></div>
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <p>
     <%= f.submit "Update" %>
     <%= link_to "Cancel", profile_path(@user) %>
+  </p>
 <% end %>
