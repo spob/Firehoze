@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.home 'home', :controller => 'lessons', :action => 'index'
   map.resource  :account, :controller => "profiles"
-  map.resources  :acquire_lessons
+  map.resources  :acquire_lessons, :only => [ :create, :new ]
   map.resources :carts, :only => [ :show ]
   map.resources :credits
   map.resources :helpfuls, :only => [ :create ]

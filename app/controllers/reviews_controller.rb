@@ -21,6 +21,13 @@ class ReviewsController < ApplicationController
     # A user can only write a review for a lesson once
     if @lesson.reviewed_by? current_user
       flash[:error] = t 'review.already_reviewed'
+
+
+
+
+
+
+
       redirect_to lesson_reviews_path(@lesson)
     end
   end

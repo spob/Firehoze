@@ -6,7 +6,7 @@ class AcquireLessonsController < ApplicationController
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
 
   # Show the user a confirmation screen asking them if they'd like to apply a credit to watch this video
-  def show
+  def new
     @lesson = Lesson.find params[:id]
   end
 

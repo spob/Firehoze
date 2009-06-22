@@ -132,6 +132,19 @@ class LessonsControllerTest < ActionController::TestCase
         should_render_template "watch"
       end
 
+      context "for which the user is the instructor" do
+        setup do
+          @lesson.update_attribute(:instructor, @user)
+          assert !@user.owns_lesson?(@lesson)
+          get :watch, :id => @lesson
+        end
+
+        should_assign_to :lesson
+        should_respond_with :success
+        should_not_set_the_flash
+        should_render_template "watch"
+      end
+
       context "with no available credits" do
         setup { get :watch, :id => @lesson }
         
@@ -149,7 +162,7 @@ class LessonsControllerTest < ActionController::TestCase
 
         should_assign_to :lesson
         should_not_set_the_flash
-        should_redirect_to("redeem credit confirmation screen") { acquire_lesson_path(@lesson) }
+        should_redirect_to("redeem credit confirmation screen") { new_acquire_lesson_path(:id => @lesson) }
       end
     end
   end
