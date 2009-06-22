@@ -1,0 +1,9 @@
+<ul id="top_nav_links">
+  <li><%= signin_or_signout_link %></li>
+  <% if current_user %>
+    <li><%= link_to "Account Settings", account_path %></li>
+    <li><%= link_to "Buy Credits", store_path(1) %></li><!-- pass a dummy id to the following route since restful for show requires an id -->
+    <li><%= "Available Credits: #{current_user.credits.available.count}" %></li>
+    <li><%= link_to "Shopping Cart", cart_path(@current_cart) if show_cart?%></li>
+  <% end %>
+</ul>
