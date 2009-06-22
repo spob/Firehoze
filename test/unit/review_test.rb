@@ -4,7 +4,8 @@ class ReviewTest < ActiveSupport::TestCase
 
   context "given an existing review" do
     setup do
-      @review = Factory.create(:review)
+      @user = Factory.create(:user)
+      @review = Factory.create(:review, :user => @user)
     end
 
     should_belong_to :user
@@ -42,6 +43,19 @@ class ReviewTest < ActiveSupport::TestCase
           assert !@review.helpful?(@user)
         end
       end
+    end
+  end
+
+  context "give a lesson and user" do
+    setup do
+      @user = Factory.create(:user)
+      @lesson = Factory.create(:lesson, :instructor => @user)
+      @review = Factory.build(:review, :lesson => @lesson, :user => @user)
+    end
+
+    should "review not be valid" do
+      # author can't write their own reviews'
+      assert !@review.valid?
     end
   end
 end

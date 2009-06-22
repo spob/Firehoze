@@ -4,11 +4,12 @@ class Review < ActiveRecord::Base
   has_many :helpfuls, :dependent => :destroy
   validates_presence_of :user, :title, :body, :lesson
   validates_uniqueness_of :user_id, :scope => :lesson_id
-  validates_length_of :title, :maximum => 100, :allow_nil => true     
+  validates_length_of :title, :maximum => 100, :allow_nil => true
+  validate :instructor_cannot_review
 
 # Basic paginated listing finder
   def self.list(lesson, page)
-    paginate :page => page, 
+    paginate :page => page,
              :conditions => { :lesson_id => lesson }, :order => 'id desc',
              :per_page => Constants::ROWS_PER_PAGE
   end
@@ -22,5 +23,13 @@ class Review < ActiveRecord::Base
   # and nil if it hasn't received this users feedback
   def helpful? user
     self.helpfuls.scoped_by_user_id(user).first.try(:helpful)
+  end
+
+  private
+
+  def instructor_cannot_review
+    if self.lesson and self.lesson.instructor == self.user
+      errors.add_to_base(I18n.t('registration.cannot_review_own_lesson'))
+    end
   end
 end
