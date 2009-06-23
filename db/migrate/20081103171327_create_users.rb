@@ -14,7 +14,7 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean  :active,             :null => false, :default => 1
       t.string   :last_name,          :null => false, :limit => 40
       t.string   :first_name,         :null => true,  :limit => 40
-      t.string   :language, :string,  :null => false, :default => 'en', :limit => 20
+      t.string   :language,           :null => false, :default => 'en', :limit => 20
       t.datetime :last_request_at
       t.datetime :last_login_at
       t.datetime :current_login_at
