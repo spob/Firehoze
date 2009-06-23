@@ -30,7 +30,7 @@ class Notifier < ActionMailer::Base
 
   # Notify a user that they have credits about to expire
   def credits_about_to_expire(user)
-    subject    "You have expirations about to expire"
+    subject    "You have credits about to expire"
     recipients user.email
     from         APP_CONFIG['admin_email']
 
