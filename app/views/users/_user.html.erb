@@ -7,7 +7,7 @@
  <td align="center"><%= user.login_count %>/<%= user.failed_login_count %></td>
  <td><%= l user.last_login_at if user.last_login_at %></td>
  <td><%= user.last_login_ip %></td>
- <td><%= l user.current_login_at %></td>
+ <td><%= l user.current_login_at if user.current_login_at %></td>
  <td><%= user.current_login_ip %></td>
  <td><%= link_to "View", user_path(user) %>&nbsp;<%= link_to "Edit", edit_user_path(user) %></td>
 </tr>
