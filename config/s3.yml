@@ -1,0 +1,9 @@
+development:
+  access_key_id: AKIAJHAN3EBVVY6W7MVA
+  secret_access_key: 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
+test:
+  access_key_id: xyz
+  secret_access_key: 123
+production:
+  access_key_id: AKIAJHAN3EBVVY6W7MVA
+  secret_access_key: 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

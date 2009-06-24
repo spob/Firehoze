@@ -59,6 +59,9 @@ Rails::Initializer.run do |config|
   # For periodic job processing
   config.gem 'paperclip', :version => '~> 2.1.2'
 
+  # For interacting with AWS
+  config.gem 'right_aws'
+
   # Gem for pagination functionality
   config.gem 'mislav-will_paginate', :version => '~> 2.3.8', :lib => 'will_paginate',
              :source => 'http://gems.github.com'

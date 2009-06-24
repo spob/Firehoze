@@ -17,7 +17,7 @@ class LessonsController < ApplicationController
     # the instructor is assumed to be the current user when creating a new lesson
     @lesson.instructor = current_user
     if @lesson.save
-      flash[:notice] = t 'lesson.created)'
+      flash[:notice] = t 'lesson.created'
       redirect_to lesson_path(@lesson)
     else
       render :action => :new

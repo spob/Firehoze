@@ -6,12 +6,23 @@ class Lesson < ActiveRecord::Base
   validates_length_of :title, :maximum => 50, :allow_nil => true
   validates_numericality_of :video_file_size, :greater_than => 0, :allow_nil => true
   has_attached_file :video,
-                    :url => "/assets/videos/:id/:basename.:extension",
-                    :path => ":rails_root/public/assets/videos/:id/:basename.:extension"
+                    :storage => :s3,
+                    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+                    :path => ":attachment/:id/:basename.:extension",
+                    :bucket => 'video.firehoze.com'
+  #:url => "/assets/videos/:id/:basename.:extension",
+  #:path => ":rails_root/public/assets/videos/:id/:basename.:extension"
 
   validates_attachment_presence :video
   validates_attachment_size :video, :less_than => APP_CONFIG['max_video_size'].megabytes
-  validates_attachment_content_type :video, :content_type => ["application/x-shockwave-flash"]
+  validates_attachment_content_type :video, :content_type => ["application/x-shockwave-flash",
+                                                              'video/x-msvideo',
+                                                              'video/avi',
+                                                              'video/quicktime',
+                                                              'video/3gpp',
+                                                              'video/x-ms-wmv',
+                                                              'video/mp4',
+                                                              'video/mpeg']
 
 # Basic paginated listing finder
   def self.list(page)
