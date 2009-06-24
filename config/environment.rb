@@ -42,33 +42,31 @@ Rails::Initializer.run do |config|
   # They can then be installed with "rake gems:install" on new installations.
   # config.gem "bj"
 
-  # Not sure why this is required...but rake is failing without it. Some gem
-  # must require it -- RBS
-  config.gem "hpricot", :source => "http://code.whytheluckystiff.net"
   # config.gem "aws-s3", :lib => "aws/s3"
-
-  # authologic provides authenticaiton
-  config.gem "authlogic"
 
   # active merchant used for credit card processing
   config.gem "activemerchant", :lib => "active_merchant", :version => "1.4.2"
 
+  # authologic provides authenticaiton
+  config.gem "authlogic"
+
   # For periodic job processing
   config.gem 'daemons'
+
+  # Not sure why this is required...but rake is failing without it. Some gems must require it -- RBS
+  config.gem "hpricot", :source => "http://code.whytheluckystiff.net"
+
+  # Gem for secret url (for user signup requests)
+  config.gem "mholling-active_url", :lib => "active_url", :source => "http://gems.github.com"
+
+  # Gem for pagination functionality
+  config.gem 'mislav-will_paginate', :version => '~> 2.3.8', :lib => 'will_paginate', :source => 'http://gems.github.com'
 
   # For periodic job processing
   config.gem 'paperclip', :version => '~> 2.1.2'
 
   # For interacting with AWS
   config.gem 'right_aws'
-
-  # Gem for pagination functionality
-  config.gem 'mislav-will_paginate', :version => '~> 2.3.8', :lib => 'will_paginate',
-             :source => 'http://gems.github.com'
-
-  # Gem for secret url (for user signup requests)
-  config.gem "mholling-active_url", :lib => "active_url", :source => "http://gems.github.com"
-
 
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
