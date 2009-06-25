@@ -8,6 +8,7 @@ class Lesson < ActiveRecord::Base
   has_attached_file :video,
                     :storage => :s3,
                     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+                    :s3_permissions => 'private',
                     :path => ":attachment/:id/:basename.:extension",
                     #:bucket => "input.firehoze.com"
                     :bucket => APP_CONFIG[Constants::CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]
