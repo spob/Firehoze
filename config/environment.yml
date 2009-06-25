@@ -1,3 +1,5 @@
+# Constants for these keys are found in the constants.rb file
+#
 # The protocol. This is used to construct the url for the link that appears in
 # email notifications
 protocol: http

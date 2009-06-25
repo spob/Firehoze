@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @registration = Registration.find(params[:registration_id])
     # retrieve various fields for the @user record based upon the values stored in the registration
     @user = populate_user_from_registration_and_params
-    @user.time_zone = APP_CONFIG['default_user_timezone']
+    @user.time_zone = APP_CONFIG[Constants::CONFIG_DEFAULT_USER_TIMEZONE]
   rescue ActiveUrl::RecordNotFound
     flash[:notice] = t 'user.registration_no_longer_valid'
     redirect_back_or_default home_path

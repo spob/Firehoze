@@ -96,7 +96,7 @@ class User < ActiveRecord::Base
 
       # Also touch the available credit records for this user...used for calculating which credits should
       # expire due to lack of activity on the account
-      self.credits.available.update_all(:will_expire_at => APP_CONFIG['expire_credits_after_days'].days.since,
+      self.credits.available.update_all(:will_expire_at => APP_CONFIG[Constants::CONFIG_EXPIRE_CREDITS_AFTER_DAYS].days.since,
                                         :expiration_warning_issued_at => nil )
     end
   end

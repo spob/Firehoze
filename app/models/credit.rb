@@ -43,7 +43,7 @@ class Credit < ActiveRecord::Base
   # Expire credits that are older than a specified period of time for which the user who owns the credit hasn't logged
   # in to the account for that period of time as well.
   def self.expire_unused_credits
-    warn_before_credit_expiration_days = APP_CONFIG['warn_before_credit_expiration_days'].to_i
+    warn_before_credit_expiration_days = APP_CONFIG[Constants::CONFIG_WARN_BEFORE_CREDIT_EXPIRATION_DAYS].to_i
 
     # Expire the credits that are about to expire
     Credit.available.to_expire(Time.zone.now).warned(
@@ -71,7 +71,7 @@ class Credit < ActiveRecord::Base
 
   def set_acquired_at_and_will_expire_at
     self.acquired_at = Time.now
-    self.will_expire_at = APP_CONFIG['expire_credits_after_days'].to_i.days.since
+    self.will_expire_at = APP_CONFIG[Constants::CONFIG_EXPIRE_CREDITS_AFTER_DAYS].to_i.days.since
   end
 
   def set_redeemed_at

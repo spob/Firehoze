@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
   # default time time...this is called by the before_filter
   def set_timezone
     # current_user.time_zone #=> 'London'
-    Time.zone = current_user ? current_user.time_zone : APP_CONFIG['default_user_timezone']
+    Time.zone = current_user ? current_user.time_zone : APP_CONFIG[Constants::CONFIG_DEFAULT_USER_TIMEZONE]
   end
 
   def current_user_session
