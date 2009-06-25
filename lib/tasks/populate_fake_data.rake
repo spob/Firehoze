@@ -61,6 +61,27 @@ namespace :db do
       end
     end
 
+    desc "Generate some lessons"
+    task :lessons => :environment do
+      raise "******** Stop! This is only for development or test environments." unless %w(development test).include?(RAILS_ENV)
+      require 'populator'
+      require 'faker'
+
+      (1..5).each do |i|
+        lesson = Lesson.new 
+        lesson.instructor = User.first(:order => 'RAND()')
+        lesson.title = Populator.words(1..4).titleize
+        lesson.state = "ready"
+        dummy_video_path = "/test/videos/#{i}.avi"
+        if !File.exist?(RAILS_ROOT + dummy_video_path)
+          puts "can not find file"
+        else
+          lesson.video = File.open(RAILS_ROOT + dummy_video_path)
+          lesson.save!
+          puts "done"
+        end
+      end
+    end
   end
 
   private
