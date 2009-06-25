@@ -71,8 +71,9 @@ namespace :db do
         lesson = Lesson.new 
         lesson.instructor = User.first(:order => 'RAND()')
         lesson.title = Populator.words(1..4).titleize
+        lesson.description = Populator.paragraphs(1..3)
         lesson.state = "ready"
-        dummy_video_path = "/test/videos/#{i}.avi"
+        dummy_video_path = "/test/videos/#{i}.swf"
         if !File.exist?(RAILS_ROOT + dummy_video_path)
           puts "can not find file"
         else
@@ -81,6 +82,7 @@ namespace :db do
           puts "done"
         end
       end
+
     end
   end
 
