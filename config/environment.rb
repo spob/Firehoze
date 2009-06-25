@@ -106,6 +106,9 @@ Rails::Initializer.run do |config|
   if File.exists?(path) && (env_config = YAML.load_file(path))
     APP_CONFIG.merge!(env_config)
   end
+  # parse in the Amazon s3 parameters
+  s3_path =  "#{RAILS_ROOT}/config/s3.yml"
+  APP_CONFIG.merge!(YAML.load_file(s3_path)[RAILS_ENV])
 
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
