@@ -42,3 +42,6 @@ expire_credits_after_days: 365
 
 # The number of days before expiration to warn the user that their credit is about to expire
 warn_before_credit_expiration_days: 10
+
+# The name of the Amazon S3 bucket where raw videos you be uploaded
+aws_s3_input_video_bucket: input.firehoze.com

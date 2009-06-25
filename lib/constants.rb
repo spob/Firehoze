@@ -17,4 +17,5 @@ module Constants
   CONFIG_KEEP_PERIODIC_JOB_DAYS = 'keep_periodic_job_days'
   CONFIG_EXPIRE_CREDITS_AFTER_DAYS = 'expire_credits_after_days'
   CONFIG_WARN_BEFORE_CREDIT_EXPIRATION_DAYS = 'warn_before_credit_expiration_days'
+  CONFIG_AWS_S3_INPUT_VIDEO_BUCKET = 'aws_s3_input_video_bucket'
 end

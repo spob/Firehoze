@@ -9,7 +9,8 @@ class Lesson < ActiveRecord::Base
                     :storage => :s3,
                     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                     :path => ":attachment/:id/:basename.:extension",
-                    :bucket => 'input.firehoze.com'
+                    #:bucket => "input.firehoze.com"
+                    :bucket => APP_CONFIG[Constants::CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]
   #:url => "/assets/videos/:id/:basename.:extension",
   #:path => ":rails_root/public/assets/videos/:id/:basename.:extension"
 
