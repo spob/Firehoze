@@ -1,3 +1,6 @@
 [submodule "vendor/plugins/localized_country_select"]
 	path = vendor/plugins/localized_country_select
 	url = git://github.com/karmi/localized_country_select.git
+[submodule "vendor/plugins/paperclip"]
+	path = vendor/plugins/paperclip
+	url = git://github.com/thoughtbot/paperclip.git

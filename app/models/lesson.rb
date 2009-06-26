@@ -8,7 +8,9 @@ class Lesson < ActiveRecord::Base
   has_attached_file :video,
                     :storage => :s3,
                     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
-                    :s3_permissions => 'private',
+                    :s3_permissions => 'public',
+                    # TODO: This should be private but I'm making it public until I can get the S3 permissions working'
+                    #:s3_permissions => 'private',
                     :path => ":attachment/:id/:basename.:extension",
                     #:bucket => "input.firehoze.com"
                     :bucket => APP_CONFIG[Constants::CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]
@@ -27,8 +29,32 @@ class Lesson < ActiveRecord::Base
                                                               'video/mp4',
                                                               'video/mpeg']
 
+  ############## Start of definition of the state machine ##################
   acts_as_state_machine :initial => :pending
   state :pending
+  state :updated_permissions
+  state :converting
+  state :ready
+  state :failed
+
+  event :set_permissions do
+    transitions :from => :pending, :to => :updated_permissions
+  end
+
+  event :start_conversion do
+    transitions :from => :updated_permissions, :to => :converting
+  end
+
+  event :finish_conversion do
+    transitions :from => :converting, :to => :ready
+  end
+
+  event :fail do
+    transitions :from => :pending, :to => :failed
+    transitions :from => :updated_permissions, :to => :failed
+    transitions :from => :converting, :to => :failed
+  end
+  ############## End of definition of the state machine ##################
 
 # Basic paginated listing finder
   def self.list(page)
@@ -46,12 +72,35 @@ class Lesson < ActiveRecord::Base
     !Review.scoped_by_user_id(user).scoped_by_lesson_id(self).empty?
   end
 
-  def grant_read_to_flix
+  def set_s3_permissions
     s3_connection = RightAws::S3.new(APP_CONFIG[Constants::CONFIG_AWS_ACCESS_KEY_ID],
-                          APP_CONFIG[Constants::CONFIG_AWS_SECRET_ACCESS_KEY])
+                                     APP_CONFIG[Constants::CONFIG_AWS_SECRET_ACCESS_KEY])
     bucket = s3_connection.bucket(APP_CONFIG[Constants::CONFIG_AWS_S3_INPUT_VIDEO_BUCKET])
     file = bucket.key(self.video.path, true)
     grantee = RightAws::S3::Grantee.new(bucket, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
     grantee = RightAws::S3::Grantee.new(file, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
+  end
+
+  def self.convert_video lesson_id
+    lesson = Lesson.find(lesson_id)
+
+    lesson.set_permissions!
+    lesson.set_s3_permissions
+
+    lesson.start_conversion!
+
+    #job = FlixCloud::Job.new(:api_key => 'your-api-key-here',
+    #                     :recipe_id => 1,
+    #                     :input_url => 'http://url/to/your/input/file',
+    #                     :output_url => 'ftp://url/to/your/output/file',
+    #                     :output_user => 'username-for-ftp-here',
+    #                     :output_password => 'password-for-ftp-here',
+    #                     :watermark_url => 's3://url/to/you
+  rescue Exception => e
+    Lesson.transaction do
+      lesson.fail!
+    end
+    # rethrow the exception so we see the error in the periodic jobs log
+    raise e
   end
 end

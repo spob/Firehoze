@@ -63,7 +63,9 @@ Rails::Initializer.run do |config|
   config.gem 'mislav-will_paginate', :version => '~> 2.3.8', :lib => 'will_paginate', :source => 'http://gems.github.com'
 
   # For attaching files
-  config.gem 'thoughtbot-paperclip', :lib => 'paperclip', :source => 'http://gems.github.com', :version => '2.2.9.2'
+  # TODO: According to the paperclip project page, gems are temporarily unavailable, so I've installed it
+  # as a plugin for now
+  #config.gem 'thoughtbot-paperclip', :lib => 'paperclip', :source => 'http://gems.github.com', :version => '2.2.9.2'
 
   # For interacting with AWS
   config.gem 'right_aws'
