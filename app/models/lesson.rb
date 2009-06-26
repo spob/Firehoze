@@ -8,9 +8,9 @@ class Lesson < ActiveRecord::Base
   has_attached_file :video,
                     :storage => :s3,
                     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
-                    :s3_permissions => 'public',
+                    #:s3_permissions => 'public',
                     # TODO: This should be private but I'm making it public until I can get the S3 permissions working'
-                    #:s3_permissions => 'private',
+                    :s3_permissions => 'private',
                     :path => ":attachment/:id/:basename.:extension",
                     #:bucket => "input.firehoze.com"
                     :bucket => APP_CONFIG[Constants::CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]
@@ -81,26 +81,55 @@ class Lesson < ActiveRecord::Base
     grantee = RightAws::S3::Grantee.new(file, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
   end
 
+  def convert
+    puts "input path: #{input_path}"
+    puts "output path: #{output_path}"
+    puts "watermark: #{Constants::WATERMARK_URL}"
+    job = FlixCloud::Job.create!(:api_key => Constants::FLIX_API_KEY,
+                                 :recipe_id => Constants::FLIX_RECIPE_ID,
+                                 :input_url => input_path,
+                                 :output_url => output_path,
+                                 :watermark_url => Constants::WATERMARK_URL)
+
+    self.flixcloud_job_id = job.id
+    self.conversion_started_at = job.initialized_at
+  end
+
   def self.convert_video lesson_id
     lesson = Lesson.find(lesson_id)
 
     lesson.set_permissions!
     lesson.set_s3_permissions
+    puts "setting permissions done"
 
     lesson.start_conversion!
+    if lesson.convert
+      puts "conversion started"
+      lesson.start_conversion!
+    else
+      puts "conversion start failed"
+      raise "Starting conversion failed"
+    end
 
-    #job = FlixCloud::Job.new(:api_key => 'your-api-key-here',
-    #                     :recipe_id => 1,
-    #                     :input_url => 'http://url/to/your/input/file',
-    #                     :output_url => 'ftp://url/to/your/output/file',
-    #                     :output_user => 'username-for-ftp-here',
-    #                     :output_password => 'password-for-ftp-here',
-    #                     :watermark_url => 's3://url/to/you
   rescue Exception => e
     Lesson.transaction do
       lesson.fail!
     end
     # rethrow the exception so we see the error in the periodic jobs log
     raise e
+  end
+
+  private
+
+  def output_path
+    's3://' + APP_CONFIG[Constants::CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET] + '/' + self.video.path
+  end
+
+  def input_path
+    's3://' + APP_CONFIG[Constants::CONFIG_AWS_S3_INPUT_VIDEO_BUCKET] + '/' + self.video.path
+  end
+
+  def thumbnail_path
+    's3://' + APP_CONFIG[Constants::CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET] + "/thumbs"
   end
 end
