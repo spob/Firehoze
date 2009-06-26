@@ -26,6 +26,9 @@ class Lesson < ActiveRecord::Base
                                                               'video/mp4',
                                                               'video/mpeg']
 
+  acts_as_state_machine :initial => :pending
+  state :pending
+
 # Basic paginated listing finder
   def self.list(page)
     paginate :page => page, :order => 'title',
