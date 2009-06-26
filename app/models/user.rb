@@ -40,6 +40,10 @@ class User < ActiveRecord::Base
 
   attr_protected :email, :login
 
+  def self.admins
+    Role.find_by_name('sysadmin').users
+  end
+
   # @@languages hold a list of languages that the user can choose from when setting up their account
   # information...it is used to populate the html select
   @@languages = [

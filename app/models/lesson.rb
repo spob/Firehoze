@@ -18,6 +18,7 @@ class Lesson < ActiveRecord::Base
   validates_attachment_presence :video
   validates_attachment_size :video, :less_than => APP_CONFIG[Constants::CONFIG_MAX_VIDEO_SIZE].megabytes
   validates_attachment_content_type :video, :content_type => ["application/x-shockwave-flash",
+                                                              'application/x-swf',
                                                               'video/x-msvideo',
                                                               'video/avi',
                                                               'video/quicktime',

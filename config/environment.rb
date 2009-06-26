@@ -62,8 +62,8 @@ Rails::Initializer.run do |config|
   # Gem for pagination functionality
   config.gem 'mislav-will_paginate', :version => '~> 2.3.8', :lib => 'will_paginate', :source => 'http://gems.github.com'
 
-  # For periodic job processing
-  config.gem 'paperclip', :version => '~> 2.1.2'
+  # For attaching files
+  config.gem 'thoughtbot-paperclip', :lib => 'paperclip', :source => 'http://gems.github.com', :version => '2.2.9.2'
 
   # For interacting with AWS
   config.gem 'right_aws'
