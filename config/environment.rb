@@ -68,6 +68,15 @@ Rails::Initializer.run do |config|
   # For interacting with AWS
   config.gem 'right_aws'
 
+  # The following gems are required for interacting with flix cloud. Yeah, Rich, I know you'd like
+  # all the gems to be alphabetically ordered, but at least for now I'd like to keep these grouped
+  # together
+  config.gem 'builder', :version => '~>2.1.2'
+  config.gem 'flixcloud-flix_cloud-gem', :lib => 'flix_cloud', :source => 'http://gems.github.com'
+  config.gem 'sevenwire-http_client', :lib => 'http_client', :source => 'http://gems.github.com'
+  config.gem 'crack'
+
+
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
   # :all can be used as a placeholder for all plugins not explicitly named
