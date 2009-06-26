@@ -22,4 +22,6 @@ module Constants
   # Configuration properties in the s3.yml file
   CONFIG_AWS_ACCESS_KEY_ID = 'access_key_id'
   CONFIG_AWS_SECRET_ACCESS_KEY = 'secret_access_key'
+
+  FLIX_CLOUD_AWS_ID = '99293b905e1e3610f938fccb8405c4d56e913c2f0acf7bf1b74af1fdc107294c'
 end

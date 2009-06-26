@@ -45,4 +45,13 @@ class Lesson < ActiveRecord::Base
   def reviewed_by? user
     !Review.scoped_by_user_id(user).scoped_by_lesson_id(self).empty?
   end
+
+  def grant_read_to_flix
+    s3_connection = RightAws::S3.new(APP_CONFIG[Constants::CONFIG_AWS_ACCESS_KEY_ID],
+                          APP_CONFIG[Constants::CONFIG_AWS_SECRET_ACCESS_KEY])
+    bucket = s3_connection.bucket(APP_CONFIG[Constants::CONFIG_AWS_S3_INPUT_VIDEO_BUCKET])
+    file = bucket.key(self.video.path, true)
+    grantee = RightAws::S3::Grantee.new(bucket, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
+    grantee = RightAws::S3::Grantee.new(file, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
+  end
 end
