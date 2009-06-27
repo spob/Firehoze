@@ -44,7 +44,7 @@ namespace :db do
       require 'populator'
       require 'faker'
 
-      count = ENV['count'] ? ENV['count'] : 10
+      count = ENV['count'] ? ENV['count'] : 25
 
       blow_away_lessons
 
@@ -118,7 +118,7 @@ namespace :db do
       puts "=== Generating Credits ==="
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
 
-      count = ENV['count'] ? ENV['count'] : 5
+      count = ENV['count'] ? ENV['count'] : 10
 
       User.all.each do |user|
         count.to_i.times { user.credits.create!(:price => 0.99) }
