@@ -1,0 +1,79 @@
+--- !ruby/object:Gem::Specification 
+name: sevenwire-http_client
+version: !ruby/object:Gem::Version 
+  version: 0.1.0
+platform: ruby
+authors: 
+- Adam Wiggins
+- Nate Sutton
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2009-04-16 00:00:00 -04:00
+default_executable: http_client
+dependencies: []
+
+description: 
+email: nate@sevenwire.com
+executables: 
+- http_client
+extensions: []
+
+extra_rdoc_files: 
+- README.rdoc
+files: 
+- README.rdoc
+- Rakefile
+- VERSION.yml
+- bin/http_client
+- lib/http_client.rb
+- lib/http_client/exceptions.rb
+- lib/http_client/mixin/response.rb
+- lib/http_client/raw_response.rb
+- lib/http_client/request.rb
+- lib/http_client/resource.rb
+- lib/http_client/response.rb
+- spec/base.rb
+- spec/exceptions_spec.rb
+- spec/http_client_spec.rb
+- spec/mixin/response_spec.rb
+- spec/raw_response_spec.rb
+- spec/request_spec.rb
+- spec/resource_spec.rb
+- spec/response_spec.rb
+has_rdoc: true
+homepage: http://github.com/sevenwire/http_client
+post_install_message: 
+rdoc_options: 
+- --charset=UTF-8
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.3.1
+signing_key: 
+specification_version: 2
+summary: Simple HTTP/REST client for Ruby, inspired by microframework syntax for specifying actions. Forked from RestClient http://rest-client.heroku.com see README for reasons
+test_files: 
+- spec/base.rb
+- spec/exceptions_spec.rb
+- spec/http_client_spec.rb
+- spec/mixin/response_spec.rb
+- spec/raw_response_spec.rb
+- spec/request_spec.rb
+- spec/resource_spec.rb
+- spec/response_spec.rb

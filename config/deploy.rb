@@ -98,4 +98,7 @@ namespace :gems do
   task :list do
     stream "gem list"
   end
+  task :install do
+    run "rake gems:install"
+  end
 end
