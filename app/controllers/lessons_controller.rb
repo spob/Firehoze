@@ -18,7 +18,7 @@ class LessonsController < ApplicationController
     @lesson.instructor = current_user
     if @lesson.save
       RunOncePeriodicJob.create(:name => 'ConvertVideo',
-            :job => 'Lesson.convert_video')
+            :job => "Lesson.convert_video #{@lesson.id}")
       flash[:notice] = t 'lesson.created'
       redirect_to lesson_path(@lesson)
     else

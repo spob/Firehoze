@@ -21,6 +21,26 @@
   <b>Created:</b>
   <%= l @lesson.created_at %>
 </p>
+
+<% if current_user.is_sysadmin? %>
+    <p>
+      <b>State:</b>
+      <%= h @lesson.state %>
+    </p>
+    <p>
+      <b>Conversion Job ID:</b>
+      <%= h @lesson.flixcloud_job_id %>
+    </p>
+    <p>
+      <b>Conversion Started At:</b>
+      <%= l @lesson.conversion_started_at if @lesson.conversion_started_at %>
+    </p>
+    <p>
+      <b>Conversion Completed At:</b>
+      <%= l @lesson.conversion_ended_at if @lesson.conversion_ended_at %>
+    </p>
+<% end %>
+
 <div id="player">
   You need to
   have <%= link_to 'Flash Player', 'http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash' %>

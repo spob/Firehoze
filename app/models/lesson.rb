@@ -91,11 +91,8 @@ class Lesson < ActiveRecord::Base
                              :output_url => output_path,
                              :watermark_url => Constants::WATERMARK_URL,
                              :thumbnails_url => thumbnail_path)
-    puts ">>>>#{thumbnail_path}"
-    puts job.to_xml
     if job.save
-      self.flixcloud_job_id = job.id
-      self.conversion_started_at = job.initialized_at
+      self.update_attributes(:flixcloud_job_id => job.id, :conversion_started_at => job.initialized_at)
     else
       msg = ""
       job.errors.each { |x| msg = (msg == "" ?  "" : ", ") + msg + x}

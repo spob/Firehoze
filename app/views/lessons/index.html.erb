@@ -1,10 +1,13 @@
 <table>
-    <tr>
-        <th>Title</th>
-        <th>Instructor</th>
-        <th>Created At</th>
-        <th>Action</th>
-    </tr>
-    <%= render @lessons %>
+  <tr>
+    <th>Title</th>
+    <th>Instructor</th>
+    <th>Created At</th>
+    <% if current_user.is_sysadmin? %>
+        <th>State</th>
+    <% end %>
+    <th>Action</th>
+  </tr>
+  <%= render @lessons %>
 </table>
 <%= will_paginate @lessons %>
