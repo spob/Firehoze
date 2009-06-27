@@ -3,6 +3,7 @@ class LessonsController < ApplicationController
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
+  before_filter :find_lesson, :only => [ :show, :edit, :update, :watch ]
 
   def index
     @lessons = Lesson.list params[:page]
@@ -27,11 +28,9 @@ class LessonsController < ApplicationController
   end
 
   def show
-    @lesson = Lesson.find params[:id]
   end
 
   def edit
-    @lesson = Lesson.find params[:id]
     unless @lesson.can_edit? current_user
       flash[:error] = t 'lesson.access_message'
       redirect_to lesson_path(@lesson)
@@ -39,7 +38,6 @@ class LessonsController < ApplicationController
   end
 
   def update
-    @lesson = Lesson.find params[:id]
     if @lesson.can_edit? current_user
       if @lesson.update_attributes(params[:lesson])
         flash[:notice] = t 'lesson.updated'
@@ -54,7 +52,6 @@ class LessonsController < ApplicationController
   end
 
   def watch
-    @lesson = Lesson.find params[:id]
     if current_user.owns_lesson? @lesson or current_user == @lesson.instructor
       # watch the video
     elsif current_user.available_credits.empty?
@@ -65,4 +62,11 @@ class LessonsController < ApplicationController
       redirect_to new_acquire_lesson_path(:id => @lesson)
     end
   end
+
+  private
+
+  def find_lesson
+    @lesson = Lesson.find(params[:lesson_id])
+  end
+
 end
