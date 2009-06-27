@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
   before_filter :require_user, :except => [:index]
   # Since this controller is nested, in most cases we'll need to retrieve the lesson first, so I made it a
   # before filter
-  before_filter :retrieve_lesson, :except => [ :edit, :update, :destroy ]
+  before_filter :find_lesson, :except => [ :edit, :update, :destroy ]
 
 
   permit Constants::ROLE_MODERATOR, :only => [:edit, :update]
@@ -63,7 +63,7 @@ class ReviewsController < ApplicationController
 
   # Called by thebefore filter to retrieve the lesson based on the lesson_id that
   # was passed in as a parameter
-  def retrieve_lesson
+  def find_lesson
     @lesson = Lesson.find(params[:lesson_id])
   end
 end
