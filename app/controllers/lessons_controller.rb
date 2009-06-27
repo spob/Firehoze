@@ -66,7 +66,7 @@ class LessonsController < ApplicationController
   private
 
   def find_lesson
-    @lesson = Lesson.find(params[:lesson_id])
+    @lesson = Lesson.find(params[:id])
   end
 
 end
