@@ -135,6 +135,6 @@ class Lesson < ActiveRecord::Base
   end
 
   def thumbnail_path
-    's3://' + APP_CONFIG[Constants::CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET] + "/thumbs"
+    's3://' + APP_CONFIG[Constants::CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET] + "/thumbs/" + self.id.to_s
   end
 end
