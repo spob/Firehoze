@@ -168,7 +168,7 @@ namespace :db do
           end
         end
       end
-      puts "- done -"      
+      puts "- done -"
     end
 
     desc "truncates tables"
