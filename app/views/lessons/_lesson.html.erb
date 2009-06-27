@@ -2,7 +2,7 @@
  <td><%= h lesson.title %></td>
  <td><%= h lesson.instructor.login %></td>
  <td><%= l lesson.created_at %></td>
-    <% if current_user.is_sysadmin? %>
+    <% if current_user.try("is_sysadmin?") %>
         <td><%= h lesson.state %></td>
     <% end %>
  <td><%= link_to "View", lesson_path(lesson) %>&nbsp;<%= link_to "Edit", edit_lesson_path(lesson) %></td>

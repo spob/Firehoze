@@ -22,7 +22,7 @@
   <%= l @lesson.created_at %>
 </p>
 
-<% if current_user.is_sysadmin? %>
+<% if current_user.try("is_sysadmin?") %>
     <p>
       <b>State:</b>
       <%= h @lesson.state %>
