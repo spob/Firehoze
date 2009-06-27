@@ -13,7 +13,7 @@ namespace :db do
     desc "Bootstraps the application"
     raise "******** Stop! This is only for development or test environments." unless %w(development test).include?(RAILS_ENV)
     task :all => [:truncate, :admins, :users, :lessons, :credits, :acquire_lessons, :reviews] do
-      puts "***** COMPLETE *****"
+      puts "***** ALL COMPLETE *****"
     end
 
     desc "Generate some admins"
@@ -35,6 +35,7 @@ namespace :db do
         admin.has_role Constants::ROLE_SYSADMIN
         puts "Admin created: #{admin.full_name}"
       end
+      puts "- done -"
     end
 
     desc "Generate some users"
@@ -70,6 +71,7 @@ namespace :db do
         user.active = true
         puts "User created: #{user.first_name} #{user.last_name}"
       end
+      puts "- done -"
     end
 
     desc "Generate some lessons"
@@ -96,6 +98,7 @@ namespace :db do
           puts "#{i}: #{lesson.video_file_name} uploaded [instructor: #{lesson.instructor.full_name} | file size:#{lesson.video_file_size}]"
         end
       end
+      puts "- done -"
     end
 
     #Not sure I neeed this any more
@@ -123,6 +126,7 @@ namespace :db do
       User.all.each do |user|
         count.to_i.times { user.credits.create!(:price => 0.99) }
       end
+      puts "- done -"
     end
 
     desc "Acquire some lessons"
@@ -140,6 +144,7 @@ namespace :db do
           end
         end
       end
+      puts "- done -"
     end
 
     desc "Generate some reviews"
@@ -163,6 +168,7 @@ namespace :db do
           end
         end
       end
+      puts "- done -"      
     end
 
     desc "truncates tables"
