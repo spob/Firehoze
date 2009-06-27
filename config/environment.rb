@@ -50,6 +50,9 @@ Rails::Initializer.run do |config|
   # authologic provides authenticaiton
   config.gem "authlogic"
 
+  # For generating XML
+  config.gem 'builder', :version => '~>2.1.2'
+
   # For periodic job processing
   config.gem 'daemons'
 
@@ -73,8 +76,7 @@ Rails::Initializer.run do |config|
   # The following gems are required for interacting with flix cloud. Yeah, Rich, I know you'd like
   # all the gems to be alphabetically ordered, but at least for now I'd like to keep these grouped
   # together
-  config.gem 'builder', :version => '~>2.1.2'
-  config.gem 'flixcloud-flix_cloud-gem', :lib => 'flix_cloud', :source => 'http://gems.github.com'
+  #config.gem 'flixcloud-flix_cloud-gem', :lib => 'flix_cloud', :source => 'http://gems.github.com'
   config.gem 'sevenwire-http_client', :lib => 'http_client', :source => 'http://gems.github.com'
   config.gem 'crack'
 

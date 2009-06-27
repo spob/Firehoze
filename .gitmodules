@@ -4,3 +4,6 @@
 [submodule "vendor/plugins/paperclip"]
 	path = vendor/plugins/paperclip
 	url = git://github.com/thoughtbot/paperclip.git
+[submodule "vendor/plugins/flix_cloud-gem"]
+	path = vendor/plugins/flix_cloud-gem
+	url = git://github.com/flixcloud/flix_cloud-gem.git
