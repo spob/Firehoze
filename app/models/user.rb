@@ -55,6 +55,12 @@ class User < ActiveRecord::Base
     @@languages
   end
 
+  def full_name
+    if first_name or last_name
+      "#{first_name} #{last_name}".strip
+    end
+  end
+
   # Reset the password token and then send the user an email
   def deliver_password_reset_instructions!
     reset_perishable_token!
