@@ -1,0 +1,111 @@
+--- !ruby/object:Gem::Specification 
+name: spob-flix_cloud-gem
+version: !ruby/object:Gem::Version 
+  version: 0.5.3
+platform: ruby
+authors: 
+- Bob Sturim
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2009-06-26 00:00:00 -04:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: builder
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 2.1.2
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: crack
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 0.1.1
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: sevenwire-http_client
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 0.1.0
+    version: 
+description: 
+email: bob@firehoze.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- LICENSE
+- README.markdown
+files: 
+- LICENSE
+- README.markdown
+- Rakefile
+- VERSION.yml
+- lib/flix_cloud.rb
+- lib/flix_cloud/exceptions.rb
+- lib/flix_cloud/extensions/hash.rb
+- lib/flix_cloud/file.rb
+- lib/flix_cloud/file_locations.rb
+- lib/flix_cloud/job.rb
+- lib/flix_cloud/notification.rb
+- lib/flix_cloud/parameters.rb
+- lib/flix_cloud/record.rb
+- lib/flix_cloud/response.rb
+- test/flix_cloud/file_locations_test.rb
+- test/flix_cloud/file_test.rb
+- test/flix_cloud/job_test.rb
+- test/flix_cloud/notification_test.rb
+- test/flix_cloud/parameters_test.rb
+- test/flix_cloud/record_test.rb
+- test/flix_cloud/response_test.rb
+- test/test_helper.rb
+has_rdoc: true
+homepage: http://github.com/spob/flix_cloud-gem
+post_install_message: 
+rdoc_options: 
+- --charset=UTF-8
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.3.1
+signing_key: 
+specification_version: 2
+summary: Gem for integrating with http://flixcloud.com, forked to allow thumbnails to be specified as well
+test_files: 
+- test/flix_cloud/file_locations_test.rb
+- test/flix_cloud/file_test.rb
+- test/flix_cloud/job_test.rb
+- test/flix_cloud/notification_test.rb
+- test/flix_cloud/parameters_test.rb
+- test/flix_cloud/record_test.rb
+- test/flix_cloud/response_test.rb
+- test/test_helper.rb
