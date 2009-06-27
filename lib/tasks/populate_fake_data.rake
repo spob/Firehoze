@@ -16,7 +16,7 @@ namespace :db do
       require 'faker'
 
       [RolesUser, UserLogon].each(&:delete_all)
-      ActiveRecord::Base.connection.execute("TRUNCATE TABLE users;")
+      # ActiveRecord::Base.connection.execute("TRUNCATE TABLE users;")
 
       params =  { :active => true, :language => 'en', :password => "changeme", :password_confirmation => "changeme", :password_salt => 'as;fdaslkjasdfn', :time_zone =>Time.zone.name }
       developers_personal_info.each do |dev|
