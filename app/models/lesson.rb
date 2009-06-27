@@ -39,6 +39,7 @@ class Lesson < ActiveRecord::Base
 
   event :set_permissions do
     transitions :from => :pending, :to => :updated_permissions
+    transitions :from => :failed, :to => :updated_permissions
   end
 
   event :start_conversion do
