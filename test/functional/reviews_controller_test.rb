@@ -49,7 +49,9 @@ class ReviewsControllerTest < ActionController::TestCase
       context "with moderator access" do
         setup do
           @user.has_role 'moderator'
+          assert @user.is_moderator?
         end
+
         context "on GET to :edit" do
           setup do
             @review = Factory.create(:review, :user => @user, :lesson => @lesson)
@@ -76,13 +78,19 @@ class ReviewsControllerTest < ActionController::TestCase
       end
 
       context "without moderator access" do
+        setup do
+          @user.has_no_role 'moderator'
+        end
+
         context "on GET to :edit" do
           setup do
+            assert !@user.is_moderator?
             @review = Factory.create(:review, :user => @user, :lesson => @lesson)
             get :edit, :id => @review
           end
 
-          should_not_assign_to :review
+          # Since assigning to @review was moved to a before filter, @review now gets assigned
+          #should_not_assign_to :review
           should_respond_with :redirect
           should_set_the_flash_to /Permission denied/
           should_redirect_to("home") { home_path }
@@ -96,7 +104,8 @@ class ReviewsControllerTest < ActionController::TestCase
           end
 
           should_set_the_flash_to /Permission denied/
-          should_not_assign_to :review
+          # Since assigning to @review was moved to a before filter, @review now gets assigned
+          #should_not_assign_to :review
           should_respond_with :redirect
           should_redirect_to("home") { home_path }
         end
