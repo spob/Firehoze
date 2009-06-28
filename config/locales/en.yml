@@ -132,7 +132,7 @@ en:
       default: "%b %d, %Y %I:%M%p"
       time: "%H:%M"
       short: "%d %b %H:%M"
-      long: "%B %d, %Y %H:%M"
+      long: "%b %d, %Y %I:%M:%S%p"
       only_second: "%S"
       
       datetime:

@@ -62,4 +62,16 @@ See http://jimneath.org/2008/06/03/converting-lessons-with-rails-converting-the-
 <%= link_to watch_text(@lesson), watch_lesson_path(@lesson) %> |
 <%= link_to 'Edit', edit_lesson_path(@lesson) %> |
 <%= link_to 'Home', home_path %> |
-<%= link_to pluralize(@lesson.reviews.size, 'Review'), lesson_reviews_path(@lesson) %> 
+<%= link_to pluralize(@lesson.reviews.size, 'Review'), lesson_reviews_path(@lesson) %>
+
+<% if current_user.try("is_sysadmin?") %>
+    <table>
+      <tr>
+        <th>Timestamp</th>
+        <th>From State</th>
+        <th>To State</th>
+        <th>Description</th>
+      </tr>
+      <%= render @lesson.lesson_state_changes %>
+    </table>
+<% end %>

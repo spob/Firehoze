@@ -43,7 +43,7 @@ class Lesson < ActiveRecord::Base
     conditions = { :state => Constants::LESSON_STATE_READY } unless view_all
     paginate :page => page,
              :conditions => conditions,
-             :order => 'title',
+             :order => 'id desc',
              :per_page => Constants::ROWS_PER_PAGE
   end
 
@@ -74,8 +74,13 @@ class Lesson < ActiveRecord::Base
     end
     job.successful?
   rescue Exception => e
-    change_state(Constants::LESSON_STATE_FAILED, e.message)
+    change_state(Constants::LESSON_STATE_FAILED, 'failed: ' + e.message)
     raise e
+  end
+
+  def change_state(new_state, msg = nil)
+    self.update_attributes(:state => new_state,
+                           :state_change_message => msg)
   end
 
   def self.convert_video lesson_id
@@ -88,10 +93,39 @@ class Lesson < ActiveRecord::Base
 
   rescue Exception => e
     Lesson.transaction do
-      change_state(Constants::LESSON_STATE_FAILED, e.message)
+      lesson.change_state(Constants::LESSON_STATE_FAILED, 'failed: ' + e.message)
     end
     # rethrow the exception so we see the error in the periodic jobs log
     raise e
+  end
+
+  def set_s3_permissions
+    change_state(Constants::LESSON_STATE_SET_S3_PERMISSIONS, I18n.t('lesson.S3_permissions_start'))
+    s3_connection = RightAws::S3.new(APP_CONFIG[Constants::CONFIG_AWS_ACCESS_KEY_ID],
+                                     APP_CONFIG[Constants::CONFIG_AWS_SECRET_ACCESS_KEY])
+    bucket = s3_connection.bucket(APP_CONFIG[Constants::CONFIG_AWS_S3_INPUT_VIDEO_BUCKET])
+    file = bucket.key(self.video.path, true)
+    grantee = RightAws::S3::Grantee.new(bucket, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
+    grantee = RightAws::S3::Grantee.new(file, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
+    change_state(Constants::LESSON_STATE_SET_S3_PERMISSIONS_SUCCESS, I18n.t('lesson.S3_permissions_end'))
+  end
+
+  def convert
+    change_state(Constants::LESSON_STATE_START_CONVERSION, I18n.t('lesson.conversion_start'))
+    job = FlixCloud::Job.new(:api_key => Constants::FLIX_API_KEY,
+                             :recipe_id => Constants::FLIX_RECIPE_ID,
+                             :input_url => input_path,
+                             :output_url => output_path,
+                             :watermark_url => Constants::WATERMARK_URL,
+                             :thumbnails_url => thumbnail_path)
+    if job.save
+      change_state(Constants::LESSON_STATE_START_CONVERSION_SUCCESS, I18n.t('lesson.conversion_end'))
+      self.update_attributes(:flixcloud_job_id => job.id, :conversion_started_at => job.initialized_at)
+    else
+      msg = ""
+      job.errors.each { |x| msg = (msg == "" ?  "" : ", ") + msg + x}
+      raise msg
+    end
   end
 
   private
@@ -123,39 +157,5 @@ class Lesson < ActiveRecord::Base
 
       self.state_change_message = nil
     end
-  end
-
-  def change_state(new_state, msg = nil)
-    lesson.update_attributes(:state => new_state,
-                             :state_change_message => msg)
-  end
-
-  def convert
-    change_state(Constants::LESSON_STATE_START_CONVERSION, I18n.t('lesson.conversion_start'))
-    job = FlixCloud::Job.new(:api_key => Constants::FLIX_API_KEY,
-                             :recipe_id => Constants::FLIX_RECIPE_ID,
-                             :input_url => input_path,
-                             :output_url => output_path,
-                             :watermark_url => Constants::WATERMARK_URL,
-                             :thumbnails_url => thumbnail_path)
-    if job.save
-      change_state(Constants::LESSON_STATE_START_CONVERSION_SUCCESS, I18n.t('lesson.conversion_end'))
-      self.update_attributes(:flixcloud_job_id => job.id, :conversion_started_at => job.initialized_at)
-    else
-      msg = ""
-      job.errors.each { |x| msg = (msg == "" ?  "" : ", ") + msg + x}
-      raise msg
-    end
-  end
-
-  def set_s3_permissions
-    change_state(Constants::LESSON_STATE_SET_S3_PERMISSIONS, I18n.t('lesson.S3_permissions_start'))
-    s3_connection = RightAws::S3.new(APP_CONFIG[Constants::CONFIG_AWS_ACCESS_KEY_ID],
-                                     APP_CONFIG[Constants::CONFIG_AWS_SECRET_ACCESS_KEY])
-    bucket = s3_connection.bucket(APP_CONFIG[Constants::CONFIG_AWS_S3_INPUT_VIDEO_BUCKET])
-    file = bucket.key(self.video.path, true)
-    grantee = RightAws::S3::Grantee.new(bucket, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
-    grantee = RightAws::S3::Grantee.new(file, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
-    change_state(Constants::LESSON_STATE_SET_S3_PERMISSIONS_SUCCESS, I18n.t('lesson.S3_permissions_end'))
   end
 end

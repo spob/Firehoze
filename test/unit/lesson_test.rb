@@ -21,7 +21,7 @@ class LessonTest < ActiveSupport::TestCase
     end
 
     context "that changed state" do
-      setup { @lesson.update_attributes(:state => 'done', :state_change_message => 'test msg') }
+      setup { @lesson.change_state('done', 'test msg') }
 
       should "have another state change record" do
         assert_equal 2, @lesson.lesson_state_changes.size
