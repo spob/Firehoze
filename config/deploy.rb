@@ -4,7 +4,10 @@ set :domain, '68.233.8.4'
 set :rails_env, 'production'
 set :mongrel_port, '4098'
 set :server_hostname, domain
-set :keep_releases, 4
+set :keep_releases, 8
+after "deploy:update", "deploy:cleanup"
+
+
 set :runner, user
 
 set :git_account, 'spob'
