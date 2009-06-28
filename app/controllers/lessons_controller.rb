@@ -2,7 +2,7 @@ class LessonsController < ApplicationController
   before_filter :require_user, :only => [:new, :create, :edit, :update, :watch]
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
-  verify :method => :put, :only => [:update ], :redirect_to => :home_path
+  verify :method => :put, :only => [:update, :conversion_notify ], :redirect_to => :home_path
   before_filter :find_lesson, :only => [ :show, :edit, :update, :watch ]
 
   def index
@@ -19,7 +19,7 @@ class LessonsController < ApplicationController
     @lesson.instructor = current_user
     if @lesson.save
       RunOncePeriodicJob.create(:name => 'ConvertVideo',
-            :job => "Lesson.convert_video #{@lesson.id}")
+                                :job => "Lesson.convert_video #{@lesson.id}")
       flash[:notice] = t 'lesson.created'
       redirect_to lesson_path(@lesson)
     else
@@ -60,6 +60,18 @@ class LessonsController < ApplicationController
       redirect_to store_path(1)
     else
       redirect_to new_acquire_lesson_path(:id => @lesson)
+    end
+  end
+
+  def conversion_notify
+    job = FlixCloud::Notification.new(params)
+    lesson = Lesson.find_by_flixcloud_job_id!(job.id)
+    if job.successful?
+      lesson.conversion_ended_at = finished_job_at  
+      lesson.finish_conversion!
+    else
+      logger.error "Job #{id} for lesson #{lesson.id} failed: #{job.error_message}"
+      lesson.fail!   
     end
   end
 
