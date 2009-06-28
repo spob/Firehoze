@@ -101,6 +101,23 @@ class Lesson < ActiveRecord::Base
     end
   end
 
+  def finish_conversion job
+    if job.successful?
+      job.update_attributes(
+              :conversion_ended_at => job.finished_job_at,
+              :finished_video_file_location => job.output_media_file.url,
+              :finished_video_width => job.output_media_file.width,
+              :finished_video_height => job.output_media_file.height,
+              :finished_video_file_size => job.output_media_file.size,
+              :finished_video_duration => job.output_media_file.duration,
+              :finished_video_cost => job.output_media_file.cost,
+              :input_video_cost => job.input_media_file.cost)
+    else
+      job.update_attribute(:finished_video_transcoding_error, job.error_message)
+    end
+    job.successful?
+  end
+
   def self.convert_video lesson_id
     lesson = Lesson.find(lesson_id)
 

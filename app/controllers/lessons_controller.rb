@@ -64,16 +64,16 @@ class LessonsController < ApplicationController
   end
 
   def conversion_notify
-    render :text => "OK" 
+    render :text => "OK"
     job = FlixCloud::Notification.new(params)
     logger.info "Received conversion completion notification for job #{job.id}: #{job.state}"
     lesson = Lesson.find_by_flixcloud_job_id!(job.id)
-    if job.successful?
-      lesson.conversion_ended_at = job.finished_job_at  
+
+    if lesson.finish_conversion job
       lesson.finish_conversion!
     else
       logger.error "Job #{id} for lesson #{lesson.id} failed: #{job.error_message}"
-      lesson.fail!   
+      lesson.fail!
     end
   end
 
