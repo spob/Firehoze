@@ -5,7 +5,7 @@ class CreateDiscounts < ActiveRecord::Migration
     
   def self.up
     create_table :discounts do |t|
-      t.references :sku
+      t.references :sku, :null => false
       t.string     :type,   :null => false, :limit => 25
       t.integer    :minimum_quantity
       t.float      :percent_discount
