@@ -84,7 +84,7 @@ class PeriodicJob < ActiveRecord::Base
     jobs.each do |job|
       job.run!
     end
-    jobs.present?
+    !jobs.empty?
   end
 
   # Default dehavior for calculating the next_run date, which will be generally overriden by the
