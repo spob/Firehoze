@@ -128,6 +128,11 @@ class Lesson < ActiveRecord::Base
     end
   end
 
+  def trigger_conversion
+    RunOncePeriodicJob.create!(:name => 'ConvertVideo',
+                               :job => "Lesson.convert_video #{self.id}")
+  end
+
   private
 
   def output_path

@@ -6,7 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :credits
   map.resources :helpfuls, :only => [ :create ]
   map.resources :lessons, :has_many => :reviews, :shallow => true,
-                :member => { :watch => :get },
+                :member => { :watch => :get, :convert => :post },
                 :collection => { :conversion_notify => :put }
   map.resources :line_items, :only => [ :create, :destroy, :update ]
   map.resources :orders

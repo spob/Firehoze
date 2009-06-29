@@ -1,9 +1,10 @@
 class LessonsController < ApplicationController
-  before_filter :require_user, :only => [:new, :create, :edit, :update, :watch]
+  before_filter :require_user, :only => [:new, :create, :edit, :update, :watch, :convert]
+  permit Constants::ROLE_SYSADMIN, :only => [:convert]
 
-  verify :method => :post, :only => [:create ], :redirect_to => :home_path
+  verify :method => :post, :only => [:create, :convert ], :redirect_to => :home_path
   verify :method => :put, :only => [:update, :conversion_notify ], :redirect_to => :home_path
-  before_filter :find_lesson, :only => [ :show, :edit, :update, :watch ]
+  before_filter :find_lesson, :only => [ :show, :edit, :update, :watch, :convert ]
 
   def index
     @lessons = Lesson.list(params[:page], (current_user and current_user.is_sysadmin?))
@@ -18,8 +19,7 @@ class LessonsController < ApplicationController
     # the instructor is assumed to be the current user when creating a new lesson
     @lesson.instructor = current_user
     if @lesson.save
-      RunOncePeriodicJob.create(:name => 'ConvertVideo',
-                                :job => "Lesson.convert_video #{@lesson.id}")
+      @lesson.trigger_conversion
       flash[:notice] = t 'lesson.created'
       redirect_to lesson_path(@lesson)
     else
@@ -61,6 +61,12 @@ class LessonsController < ApplicationController
     else
       redirect_to new_acquire_lesson_path(:id => @lesson)
     end
+  end
+
+  def convert
+    @lesson.trigger_conversion
+    flash[:notice] = t('lesson.conversion_triggered')
+    redirect_to lesson_path(@lesson)
   end
 
   def conversion_notify

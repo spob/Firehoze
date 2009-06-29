@@ -65,6 +65,9 @@ See http://jimneath.org/2008/06/03/converting-lessons-with-rails-converting-the-
 <%= link_to pluralize(@lesson.reviews.size, 'Review'), lesson_reviews_path(@lesson) %>
 
 <% if current_user.try("is_sysadmin?") %>
+    | <%= link_to "Convert", convert_lesson_path(@lesson), :method => :post %>
+
+    <br/>
     <table>
       <tr>
         <th>Timestamp</th>
