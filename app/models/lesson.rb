@@ -69,7 +69,7 @@ class Lesson < ActiveRecord::Base
               :finished_video_cost => job.output_media_file.cost,
               :input_video_cost => job.input_media_file.cost)
       change_state(Constants::LESSON_STATE_END_CONVERSION, I18n.t('lesson.conversion_end_success'))
-      self.set_thumbnail_url
+      set_thumbnail_url
       change_state(Constants::LESSON_STATE_READY, I18n.t('lesson.ready'))
     else
       change_state(Constants::LESSON_STATE_FAILED, job.error_message)
@@ -135,6 +135,19 @@ class Lesson < ActiveRecord::Base
                                :job => "Lesson.convert_video #{self.id}")
   end
 
+  def set_thumbnail_url
+    change_state(Constants::LESSON_STATE_GET_THUMBNAIL_URL, I18n.t('lesson.calc_thumb_url_start'))
+    s3_connection = s3_connect
+    bucket = s3_connection.bucket(APP_CONFIG[Constants::CONFIG_AWS_S3_INPUT_VIDEO_BUCKET])
+    file = bucket.key(thumbnail_path + "/thumb_0000.png", true)
+    url = "http://" + APP_CONFIG[Constants::CONFIG_AWS_S3_THUMBS_BUCKET] +
+            ".s3.amazonaws.com/" + id.to_s + "/thumb_0000.png"
+    self.update_attribute(:thumbnail_url, url)
+    #grantee = RightAws::S3::Grantee.new(bucket, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
+    #grantee = RightAws::S3::Grantee.new(file, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
+    change_state(Constants::LESSON_STATE_GET_THUMBNAIL_URL_SUCCESS, I18n.t('lesson.calc_thumb_url_end'))
+  end
+
   private
 
   def output_path
@@ -169,16 +182,5 @@ class Lesson < ActiveRecord::Base
   def s3_connect()
     RightAws::S3.new(APP_CONFIG[Constants::CONFIG_AWS_ACCESS_KEY_ID],
                      APP_CONFIG[Constants::CONFIG_AWS_SECRET_ACCESS_KEY])
-  end
-
-  def set_thumbnail_url
-    change_state(Constants::LESSON_STATE_GET_THUMBNAIL_URL, I18n.t('lesson.calc_thumb_url_start'))
-    s3_connection = s3_connect
-    bucket = s3_connection.bucket(APP_CONFIG[Constants::CONFIG_AWS_S3_INPUT_VIDEO_BUCKET])
-    file = bucket.key(self.thumbnail_path + "/thumb_0000.png", true)
-    self.update_attribute(:thumbnails_url, file.public_link)
-    #grantee = RightAws::S3::Grantee.new(bucket, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
-    #grantee = RightAws::S3::Grantee.new(file, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
-    change_state(Constants::LESSON_STATE_GET_THUMBNAIL_URL_SUCCESS, I18n.t('lesson.calc_thumb_url_end'))
   end
 end
