@@ -37,6 +37,7 @@ namespace :deploy do
     run "cp -pf #{deploy_to}/to_copy/production.rb #{current_path}/config/environments/production.rb"
     run "cp -pf #{deploy_to}/to_copy/database.yml #{current_path}/config/database.yml"
     run "cp -pf #{deploy_to}/to_copy/production.yml #{current_path}/config/environments/production.yml"
+    run "rm #{current_path}/lib/tasks/populate_fake_data.rake"
     # preserve the assets directory which resides under shared
     run "ln -s #{shared_path}/assets #{release_path}/public/assets" 
   end

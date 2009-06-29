@@ -59,7 +59,7 @@ class Lesson < ActiveRecord::Base
 
   def finish_conversion job
     if job.successful?
-      job.update_attributes(
+      self.update_attributes(
               :conversion_ended_at => job.finished_job_at,
               :finished_video_file_location => job.output_media_file.url,
               :finished_video_width => job.output_media_file.width,
