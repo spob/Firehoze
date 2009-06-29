@@ -68,6 +68,8 @@ class Lesson < ActiveRecord::Base
               :finished_video_duration => job.output_media_file.duration,
               :finished_video_cost => job.output_media_file.cost,
               :input_video_cost => job.input_media_file.cost)
+      change_state(Constants::LESSON_STATE_END_CONVERSION, I18n.t('lesson.conversion_end_success'))
+      set_thumbnail_url
       change_state(Constants::LESSON_STATE_READY, I18n.t('lesson.ready'))
     else
       change_state(Constants::LESSON_STATE_FAILED, job.error_message)
@@ -86,7 +88,7 @@ class Lesson < ActiveRecord::Base
   def self.convert_video lesson_id
     lesson = Lesson.find(lesson_id)
 
-    lesson.set_s3_permissions
+    lesson.grant_s3_permissions_to_flix
     unless lesson.convert
       raise "Starting conversion failed"
     end
@@ -99,7 +101,7 @@ class Lesson < ActiveRecord::Base
     raise e
   end
 
-  def set_s3_permissions
+  def grant_s3_permissions_to_flix
     change_state(Constants::LESSON_STATE_SET_S3_PERMISSIONS, I18n.t('lesson.S3_permissions_start'))
     s3_connection = RightAws::S3.new(APP_CONFIG[Constants::CONFIG_AWS_ACCESS_KEY_ID],
                                      APP_CONFIG[Constants::CONFIG_AWS_SECRET_ACCESS_KEY])
@@ -144,7 +146,7 @@ class Lesson < ActiveRecord::Base
   end
 
   def thumbnail_path
-    's3://' + APP_CONFIG[Constants::CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET] + "/thumbs/" + self.id.to_s
+    's3://' + APP_CONFIG[Constants::CONFIG_AWS_S3_THUMBS_BUCKET] + "/" + self.id.to_s
   end
 
   def record_state_change_create
@@ -162,5 +164,22 @@ class Lesson < ActiveRecord::Base
 
       self.state_change_message = nil
     end
+  end
+
+  def s3_connect()
+    s3_connection = RightAws::S3.new(APP_CONFIG[Constants::CONFIG_AWS_ACCESS_KEY_ID],
+                                     APP_CONFIG[Constants::CONFIG_AWS_SECRET_ACCESS_KEY])
+    return s3_connection
+  end
+
+  def set_thumbnail_url
+    change_state(Constants::LESSON_STATE_GET_THUMBNAIL_URL, I18n.t('lesson.calc_thumb_url_start'))
+    s3_connection = s3_connect
+    bucket = s3_connection.bucket(APP_CONFIG[Constants::CONFIG_AWS_S3_INPUT_VIDEO_BUCKET])
+    file = bucket.key(self.thumbnail_path + "/thumb_0000.png", true)
+    self.update_attribute(:thumbnails_url, file.public_link)
+    #grantee = RightAws::S3::Grantee.new(bucket, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
+    #grantee = RightAws::S3::Grantee.new(file, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
+    change_state(Constants::LESSON_STATE_GET_THUMBNAIL_URL_SUCCESS, I18n.t('lesson.calc_thumb_url_end'))
   end
 end

@@ -19,6 +19,7 @@ module Constants
   CONFIG_WARN_BEFORE_CREDIT_EXPIRATION_DAYS = 'warn_before_credit_expiration_days'
   CONFIG_AWS_S3_INPUT_VIDEO_BUCKET = 'aws_s3_input_video_bucket'
   CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET = 'aws_s3_output_video_bucket'
+  CONFIG_AWS_S3_THUMBS_BUCKET = 'aws_s3_thumbs_bucket'
 
   # Configuration properties in the s3.yml file
   CONFIG_AWS_ACCESS_KEY_ID = 'access_key_id'
@@ -36,5 +37,8 @@ module Constants
   LESSON_STATE_SET_S3_PERMISSIONS_SUCCESS = "S3_permissions_end"
   LESSON_STATE_START_CONVERSION = 'conversion_start'
   LESSON_STATE_START_CONVERSION_SUCCESS = 'conversion_end'
+  LESSON_STATE_END_CONVERSION = 'conversion_end_success'
+  LESSON_STATE_GET_THUMBNAIL_URL = "calc_thumb_url_start"
+  LESSON_STATE_GET_THUMBNAIL_URL_SUCCESS = "calc_thumb_url_end"
   LESSON_STATE_READY = 'ready'
 end

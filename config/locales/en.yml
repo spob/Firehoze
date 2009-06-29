@@ -60,6 +60,9 @@ en:
     S3_permissions_end: S3 permissions successful set
     conversion_start: Trigger start of video conversion
     conversion_end: Video conversion started successfully
+    conversion_end_success: Video conversion completed successfully
+    calc_thumb_url_start: Retrieving thumbnail URL
+    calc_thumb_url_end: Thumbnail URL successfully retrieved
     ready: Video conversion completed successfully and is ready for viewing
 
   line_item:
