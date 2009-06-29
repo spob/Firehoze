@@ -69,7 +69,7 @@ class Lesson < ActiveRecord::Base
               :finished_video_cost => job.output_media_file.cost,
               :input_video_cost => job.input_media_file.cost)
       change_state(Constants::LESSON_STATE_END_CONVERSION, I18n.t('lesson.conversion_end_success'))
-      set_thumbnail_url
+      self.set_thumbnail_url
       change_state(Constants::LESSON_STATE_READY, I18n.t('lesson.ready'))
     else
       change_state(Constants::LESSON_STATE_FAILED, job.error_message)
@@ -167,9 +167,8 @@ class Lesson < ActiveRecord::Base
   end
 
   def s3_connect()
-    s3_connection = RightAws::S3.new(APP_CONFIG[Constants::CONFIG_AWS_ACCESS_KEY_ID],
-                                     APP_CONFIG[Constants::CONFIG_AWS_SECRET_ACCESS_KEY])
-    return s3_connection
+    RightAws::S3.new(APP_CONFIG[Constants::CONFIG_AWS_ACCESS_KEY_ID],
+                     APP_CONFIG[Constants::CONFIG_AWS_SECRET_ACCESS_KEY])
   end
 
   def set_thumbnail_url
