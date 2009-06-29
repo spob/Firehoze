@@ -14,6 +14,8 @@ module ApplicationHelper
     end
   end
 
+  # Set field focus. For an explanation, see:
+  # http://neoarch.wordpress.com/2008/02/29/setting-focus-in-rails-with-prototype/
   def set_focus_to_id(id, othertxt=nil)
     javascript_tag("$('#{id}').focus()");
   end
