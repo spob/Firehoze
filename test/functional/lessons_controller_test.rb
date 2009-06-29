@@ -69,12 +69,33 @@ class LessonsControllerTest < ActionController::TestCase
     end
 
     context "with at least one existing lesson" do
-
       setup do
         Factory.create(:user)
         @lesson = Factory.create(:lesson)
         @lesson.instructor = @user
         @lesson.save!
+      end
+
+      context "and not a sysadmin" do
+        context "on POST to :convert" do
+          setup { post :convert, :id => @lesson }
+          should_not_assign_to :lesson
+          should_redirect_to("home page") { home_path }
+          should_set_the_flash_to /Permission denied/
+        end
+      end
+
+      context "with sysadmin access" do
+        setup do
+          @user.has_role 'sysadmin'
+        end
+
+        context "on POST to :convert" do
+          setup { post :convert, :id => @lesson }
+          should_assign_to :lesson
+          should_redirect_to("lesson page") { lesson_path(@lesson) }
+          should_set_the_flash_to /Video conversion started/
+        end
       end
 
       context "on GET to :edit" do
@@ -147,7 +168,7 @@ class LessonsControllerTest < ActionController::TestCase
 
       context "with no available credits" do
         setup { get :watch, :id => @lesson }
-        
+
         should_set_the_flash_to I18n.t('lesson.need_credits')
         should_redirect_to("online store") { store_path(1) }
       end

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class LessonTest < ActiveSupport::TestCase
 
-  context "given an existing record" do
+  context "given an existing lesson" do
     setup do
       @lesson = Factory.create(:lesson)
     end
@@ -18,6 +18,14 @@ class LessonTest < ActiveSupport::TestCase
       assert_nil @lesson.lesson_state_changes.first.from_state
       assert_equal "pending", @lesson.lesson_state_changes.first.to_state
       assert_equal "Lesson created", @lesson.lesson_state_changes.first.message
+    end
+
+    context "and trigger a conversion" do
+      setup { @job = @lesson.trigger_conversion }
+
+      should "create a job" do
+        assert_equal "ConvertVideo", @job.name
+      end
     end
 
     context "that changed state" do
