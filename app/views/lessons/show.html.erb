@@ -2,7 +2,9 @@
     <%= javascript_include_tag 'swfobject' %>
 <% end %>
 
-<IMG src="<%= @lesson.thumbnail_url %>"/>
+<% if @lesson.thumbnail_url %>
+    <IMG src="<%= @lesson.thumbnail_url %>"/>
+<% end %>
 <p>
   <b>Title:</b>
   <%= h @lesson.title %>
@@ -40,6 +42,9 @@
       <b>Conversion Completed At:</b>
       <%= l @lesson.conversion_ended_at if @lesson.conversion_ended_at %>
     </p>
+    <% if @lesson.finished_video_duration %>
+        <%= @lesson.finished_video_duration %>
+    <% end %>
 <% end %>
 
 <div id="player">
