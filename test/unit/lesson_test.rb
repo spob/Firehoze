@@ -44,9 +44,9 @@ class LessonTest < ActiveSupport::TestCase
         # and let's create a couple more
         @lesson2 = Factory.create(:lesson)
         @lesson3 = Factory.create(:lesson)
-        @lesson.update_attribute(:state, Constants::LESSON_STATE_PENDING)  
-        @lesson2.update_attribute(:state, Constants::LESSON_STATE_READY)
-        @lesson3.update_attribute(:state, Constants::LESSON_STATE_READY)
+        @lesson.update_attribute(:state, LESSON_STATE_PENDING)  
+        @lesson2.update_attribute(:state, LESSON_STATE_READY)
+        @lesson3.update_attribute(:state, LESSON_STATE_READY)
       end
 
       should "not show that it has been reviewed" do

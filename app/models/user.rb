@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
   # Basic paginated listing finder
   def self.list(page)
     paginate :page => page, :order => 'email',
-             :per_page => Constants::ROWS_PER_PAGE
+             :per_page => ROWS_PER_PAGE
   end
 
   # used to verify whether the user typed their correct password when, for example,
@@ -109,7 +109,7 @@ class User < ActiveRecord::Base
 
       # Also touch the available credit records for this user...used for calculating which credits should
       # expire due to lack of activity on the account
-      self.credits.available.update_all(:will_expire_at => APP_CONFIG[Constants::CONFIG_EXPIRE_CREDITS_AFTER_DAYS].days.since,
+      self.credits.available.update_all(:will_expire_at => APP_CONFIG[CONFIG_EXPIRE_CREDITS_AFTER_DAYS].days.since,
                                         :expiration_warning_issued_at => nil )
     end
   end

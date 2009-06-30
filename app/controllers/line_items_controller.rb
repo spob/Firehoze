@@ -46,12 +46,12 @@ class LineItemsController < ApplicationController
     delta = params[:qty_change].to_i
     @line_item.quantity = @line_item.quantity + delta
 
-    if @line_item.quantity < APP_CONFIG[Constants::CONFIG_MIN_CREDIT_PURCHASE]
+    if @line_item.quantity < APP_CONFIG[CONFIG_MIN_CREDIT_PURCHASE]
       # there's a minimum number of credits you can purchase at any one time. We don't want to get
       # nickeled and dimed with purchases of 1 credti at a time
       # TODO: Make credit i18n below
       flash[:error] = t('line_item.minimum_credit_purchase',
-                        :min => help.pluralize(APP_CONFIG[Constants::CONFIG_MIN_CREDIT_PURCHASE].to_i,
+                        :min => help.pluralize(APP_CONFIG[CONFIG_MIN_CREDIT_PURCHASE].to_i,
                                                'credit'))
     elsif @line_item.save
       flash[:notice] = t 'line_item.updated_success'

@@ -23,7 +23,7 @@ class PeriodicJob < ActiveRecord::Base
   named_scope :zombies,
               :conditions => ["last_run_at < :last_run_at and next_run_at is null and last_run_result = 'Running'",
                               { :last_run_at => Time.zone.now -
-                                      APP_CONFIG[Constants::CONFIG_PERIODIC_JOB_TIMEOUT].to_i.minutes }]
+                                      APP_CONFIG[CONFIG_PERIODIC_JOB_TIMEOUT].to_i.minutes }]
 
   # The task scheduler will look for jobs ready to run...specifically, those jobs for which the next_run_at
   # has already passed but have a nil last_run_result, implying that it's not yet started
@@ -140,7 +140,7 @@ class PeriodicJob < ActiveRecord::Base
 
   # Cleans up all jobs older than a week.
   def self.cleanup
-    self.destroy_all ['last_run_at < ?', APP_CONFIG[Constants::CONFIG_KEEP_PERIODIC_JOB_DAYS].to_i.day.ago]
+    self.destroy_all ['last_run_at < ?', APP_CONFIG[CONFIG_KEEP_PERIODIC_JOB_DAYS].to_i.day.ago]
   end
 
   def to_s

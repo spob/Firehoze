@@ -3,7 +3,7 @@ class UserLogonsController < ApplicationController
   before_filter :require_user
 
   # sysadmins only
-  permit Constants::ROLE_SYSADMIN
+  permit ROLE_SYSADMIN
 
   def index
     @user_logons = UserLogon.list params[:page]

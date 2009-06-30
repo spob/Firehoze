@@ -1,15 +1,15 @@
 # Email notifications
 class Notifier < ActionMailer::Base
-  default_url_options.update :protocol => APP_CONFIG[Constants::CONFIG_PROTOCOL]
-  default_url_options.update :host => APP_CONFIG[Constants::CONFIG_HOST]
-  default_url_options.update :port => APP_CONFIG[Constants::CONFIG_PORT]
+  default_url_options.update :protocol => APP_CONFIG[CONFIG_PROTOCOL]
+  default_url_options.update :host => APP_CONFIG[CONFIG_HOST]
+  default_url_options.update :port => APP_CONFIG[CONFIG_PORT]
 
 #  default_url_options[:host] = "www.braindump.com"
 
   # Sent when a user requests a new password
   def password_reset_instructions(user)
     subject     "Your password has been reset"
-    from         APP_CONFIG[Constants::CONFIG_ADMIN_EMAIL]
+    from         APP_CONFIG[CONFIG_ADMIN_EMAIL]
     recipients  user.email
     sent_on     Time.zone.now
     body        :edit_password_reset_url => edit_password_reset_url(user.perishable_token)
@@ -22,7 +22,7 @@ class Notifier < ActionMailer::Base
     #asf
     subject    "Registration successful"
     recipients registration.email
-    from       APP_CONFIG[Constants::CONFIG_ADMIN_EMAIL]
+    from       APP_CONFIG[CONFIG_ADMIN_EMAIL]
 
     body       :registration => registration,
                :url => new_registration_user_url(registration)
@@ -32,7 +32,7 @@ class Notifier < ActionMailer::Base
   def credits_about_to_expire(user)
     subject    "You have credits about to expire"
     recipients user.email
-    from         APP_CONFIG[Constants::CONFIG_ADMIN_EMAIL]
+    from         APP_CONFIG[CONFIG_ADMIN_EMAIL]
 
     body       :user => user,
                :url => login_url

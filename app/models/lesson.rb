@@ -30,12 +30,12 @@ class Lesson < ActiveRecord::Base
                     :s3_permissions => 'private',
                     :path => ":attachment/:id/:basename.:extension",
                     #:bucket => "input.firehoze.com"
-                    :bucket => APP_CONFIG[Constants::CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]
+                    :bucket => APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]
   #:url => "/assets/videos/:id/:basename.:extension",
   #:path => ":rails_root/public/assets/videos/:id/:basename.:extension"
 
   validates_attachment_presence :video
-  validates_attachment_size :video, :less_than => APP_CONFIG[Constants::CONFIG_MAX_VIDEO_SIZE].megabytes
+  validates_attachment_size :video, :less_than => APP_CONFIG[CONFIG_MAX_VIDEO_SIZE].megabytes
   validates_attachment_content_type :video, :content_type => ["application/x-shockwave-flash",
                                                               'application/x-swf',
                                                               'video/x-msvideo',
@@ -58,11 +58,11 @@ class Lesson < ActiveRecord::Base
 # if view_all is false, only videos in the ready state will be returned
   def self.list(page, view_all=false)
     conditions = {}
-    conditions = { :state => Constants::LESSON_STATE_READY } unless view_all
+    conditions = { :state => LESSON_STATE_READY } unless view_all
     paginate :page => page,
              :conditions => conditions,
              :order => 'id desc',
-             :per_page => Constants::ROWS_PER_PAGE
+             :per_page => ROWS_PER_PAGE
   end
 
   # The lesson can be edited by an admin or the instructor who created it
@@ -88,15 +88,15 @@ class Lesson < ActiveRecord::Base
               :finished_video_duration => job.output_media_file.duration,
               :finished_video_cost => job.output_media_file.cost,
               :input_video_cost => job.input_media_file.cost)
-      change_state(Constants::LESSON_STATE_END_CONVERSION, I18n.t('lesson.conversion_end_success'))
+      change_state(LESSON_STATE_END_CONVERSION, I18n.t('lesson.conversion_end_success'))
       set_thumbnail_url
-      change_state(Constants::LESSON_STATE_READY, I18n.t('lesson.ready'))
+      change_state(LESSON_STATE_READY, I18n.t('lesson.ready'))
     else
-      change_state(Constants::LESSON_STATE_FAILED, job.error_message)
+      change_state(LESSON_STATE_FAILED, job.error_message)
     end
     job.successful?
   rescue Exception => e
-    change_state(Constants::LESSON_STATE_FAILED, 'failed: ' + e.message)
+    change_state(LESSON_STATE_FAILED, 'failed: ' + e.message)
     raise e
   end
 
@@ -117,7 +117,7 @@ class Lesson < ActiveRecord::Base
 
   rescue Exception => e
     Lesson.transaction do
-      lesson.change_state(Constants::LESSON_STATE_FAILED, 'failed: ' + e.message)
+      lesson.change_state(LESSON_STATE_FAILED, 'failed: ' + e.message)
     end
     # rethrow the exception so we see the error in the periodic jobs log
     raise e
@@ -125,27 +125,27 @@ class Lesson < ActiveRecord::Base
 
   # Allow flixcloud to view the raw video
   def grant_s3_permissions_to_flix
-    change_state(Constants::LESSON_STATE_SET_S3_PERMISSIONS, I18n.t('lesson.S3_permissions_start'))
-    s3_connection = RightAws::S3.new(APP_CONFIG[Constants::CONFIG_AWS_ACCESS_KEY_ID],
-                                     APP_CONFIG[Constants::CONFIG_AWS_SECRET_ACCESS_KEY])
-    bucket = s3_connection.bucket(APP_CONFIG[Constants::CONFIG_AWS_S3_INPUT_VIDEO_BUCKET])
+    change_state(LESSON_STATE_SET_S3_PERMISSIONS, I18n.t('lesson.S3_permissions_start'))
+    s3_connection = RightAws::S3.new(APP_CONFIG[CONFIG_AWS_ACCESS_KEY_ID],
+                                     APP_CONFIG[CONFIG_AWS_SECRET_ACCESS_KEY])
+    bucket = s3_connection.bucket(APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET])
     file = bucket.key(self.video.path, true)
-    grantee = RightAws::S3::Grantee.new(bucket, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
-    grantee = RightAws::S3::Grantee.new(file, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
-    change_state(Constants::LESSON_STATE_SET_S3_PERMISSIONS_SUCCESS, I18n.t('lesson.S3_permissions_end'))
+    grantee = RightAws::S3::Grantee.new(bucket, FLIX_CLOUD_AWS_ID, 'READ', :apply)
+    grantee = RightAws::S3::Grantee.new(file, FLIX_CLOUD_AWS_ID, 'READ', :apply)
+    change_state(LESSON_STATE_SET_S3_PERMISSIONS_SUCCESS, I18n.t('lesson.S3_permissions_end'))
   end
 
   # Call out to flixcloud to trigger a conversion process
   def convert
-    change_state(Constants::LESSON_STATE_START_CONVERSION, I18n.t('lesson.conversion_start'))
-    job = FlixCloud::Job.new(:api_key => Constants::FLIX_API_KEY,
-                             :recipe_id => Constants::FLIX_RECIPE_ID,
+    change_state(LESSON_STATE_START_CONVERSION, I18n.t('lesson.conversion_start'))
+    job = FlixCloud::Job.new(:api_key => FLIX_API_KEY,
+                             :recipe_id => FLIX_RECIPE_ID,
                              :input_url => input_path,
                              :output_url => output_path,
-                             :watermark_url => Constants::WATERMARK_URL,
+                             :watermark_url => WATERMARK_URL,
                              :thumbnails_url => thumbnail_path)
     if job.save
-      change_state(Constants::LESSON_STATE_START_CONVERSION_SUCCESS, I18n.t('lesson.conversion_end') +
+      change_state(LESSON_STATE_START_CONVERSION_SUCCESS, I18n.t('lesson.conversion_end') +
               " (##{job.id})")
       self.update_attributes(:flixcloud_job_id => job.id, :conversion_started_at => job.initialized_at)
     else
@@ -162,35 +162,35 @@ class Lesson < ActiveRecord::Base
   end
 
   def set_thumbnail_url
-    change_state(Constants::LESSON_STATE_GET_THUMBNAIL_URL, I18n.t('lesson.calc_thumb_url_start'))
+    change_state(LESSON_STATE_GET_THUMBNAIL_URL, I18n.t('lesson.calc_thumb_url_start'))
     s3_connection = s3_connect
-    bucket = s3_connection.bucket(APP_CONFIG[Constants::CONFIG_AWS_S3_INPUT_VIDEO_BUCKET])
+    bucket = s3_connection.bucket(APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET])
     file = bucket.key(thumbnail_path + "/thumb_0000.png", true)
-    url = "http://" + APP_CONFIG[Constants::CONFIG_AWS_S3_THUMBS_BUCKET] +
+    url = "http://" + APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET] +
             ".s3.amazonaws.com/" + id.to_s + "/thumb_0000.png"
     self.update_attribute(:thumbnail_url, url)
-    #grantee = RightAws::S3::Grantee.new(bucket, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
-    #grantee = RightAws::S3::Grantee.new(file, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
-    change_state(Constants::LESSON_STATE_GET_THUMBNAIL_URL_SUCCESS, I18n.t('lesson.calc_thumb_url_end'))
+    #grantee = RightAws::S3::Grantee.new(bucket, FLIX_CLOUD_AWS_ID, 'READ', :apply)
+    #grantee = RightAws::S3::Grantee.new(file, FLIX_CLOUD_AWS_ID, 'READ', :apply)
+    change_state(LESSON_STATE_GET_THUMBNAIL_URL_SUCCESS, I18n.t('lesson.calc_thumb_url_end'))
   end
 
   private
 
   def output_path
-    's3://' + APP_CONFIG[Constants::CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET] + '/' + self.video.path
+    's3://' + APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET] + '/' + self.video.path
   end
 
   def input_path
-    's3://' + APP_CONFIG[Constants::CONFIG_AWS_S3_INPUT_VIDEO_BUCKET] + '/' + self.video.path
+    's3://' + APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET] + '/' + self.video.path
   end
 
   def thumbnail_path
-    's3://' + APP_CONFIG[Constants::CONFIG_AWS_S3_THUMBS_BUCKET] + "/" + self.id.to_s
+    's3://' + APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET] + "/" + self.id.to_s
   end
 
   def record_state_change_create
     self.state_change_message = nil
-    self.state = Constants::LESSON_STATE_PENDING
+    self.state = LESSON_STATE_PENDING
     self.lesson_state_changes.build(:to_state => self.state,
                                     :message =>  I18n.t('lesson.created'))
   end
@@ -206,7 +206,7 @@ class Lesson < ActiveRecord::Base
   end
 
   def s3_connect()
-    RightAws::S3.new(APP_CONFIG[Constants::CONFIG_AWS_ACCESS_KEY_ID],
-                     APP_CONFIG[Constants::CONFIG_AWS_SECRET_ACCESS_KEY])
+    RightAws::S3.new(APP_CONFIG[CONFIG_AWS_ACCESS_KEY_ID],
+                     APP_CONFIG[CONFIG_AWS_SECRET_ACCESS_KEY])
   end
 end
