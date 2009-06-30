@@ -1,4 +1,21 @@
 # A lesson includes a video, descriptive information and other meta data
+#
+# The state field tracks the current state of the video in its workflow. The
+# normal workflow is as follows:
+#   pending:                  raw video was just uploaded. A periodic job will be triggered to
+#           '                 start the conversion
+#   S3_permissions_start:     about to call out to Amazon S3 to set the permissions, granting
+#                             flixcloud access to the file
+#   S3_permissions_end:       granting Amazon S3 permissions completed successfully
+#   trigger_conversion_start: about to call out to flixcloud to start the conversion process
+#   trigger_conversion_end:   successfully triggered a conversion process to occur in flixcloud
+#   conversion_end_success:   received notification from flixcloud that conversion successfully
+#                             completed
+#   calc_thumb_url_start:     about to parse the information returned from flixcloud to calculate,
+#                             among other things, the thumbnail_url
+#   calc_thumb_url_end:       parsing of flixcloud information was successful
+#   ready:                    video ready for viewing
+#   failed:                   an error occurred at some point along the way'
 class Lesson < ActiveRecord::Base
   ajaxful_rateable :stars => 5
   belongs_to :instructor, :class_name => "User", :foreign_key => "instructor_id"
@@ -33,10 +50,12 @@ class Lesson < ActiveRecord::Base
   # Used to record a messgage for the state change
   attr_accessor :state_change_message
 
+
   before_create :record_state_change_create
   before_update :record_state_change_update
 
 # Basic paginated listing finder
+# if view_all is false, only videos in the ready state will be returned
   def self.list(page, view_all=false)
     conditions = {}
     conditions = { :state => Constants::LESSON_STATE_READY } unless view_all
@@ -56,6 +75,8 @@ class Lesson < ActiveRecord::Base
     !Review.scoped_by_user_id(user).scoped_by_lesson_id(self).empty?
   end
 
+  # This method takes a job record populated from the flixcloud gem, and will update the various attributes
+  # on the job accordingly.
   def finish_conversion job
     if job.successful?
       self.update_attributes(
@@ -84,6 +105,8 @@ class Lesson < ActiveRecord::Base
                            :state_change_message => msg)
   end
 
+  # First call out to Amazon S3 to grant permissions to flixcloud to view the raw video,
+  # then trigger a video conversion at flixcloud itself
   def self.convert_video lesson_id
     lesson = Lesson.find(lesson_id)
 
@@ -100,6 +123,7 @@ class Lesson < ActiveRecord::Base
     raise e
   end
 
+  # Allow flixcloud to view the raw video
   def grant_s3_permissions_to_flix
     change_state(Constants::LESSON_STATE_SET_S3_PERMISSIONS, I18n.t('lesson.S3_permissions_start'))
     s3_connection = RightAws::S3.new(APP_CONFIG[Constants::CONFIG_AWS_ACCESS_KEY_ID],
@@ -111,6 +135,7 @@ class Lesson < ActiveRecord::Base
     change_state(Constants::LESSON_STATE_SET_S3_PERMISSIONS_SUCCESS, I18n.t('lesson.S3_permissions_end'))
   end
 
+  # Call out to flixcloud to trigger a conversion process
   def convert
     change_state(Constants::LESSON_STATE_START_CONVERSION, I18n.t('lesson.conversion_start'))
     job = FlixCloud::Job.new(:api_key => Constants::FLIX_API_KEY,
@@ -129,6 +154,7 @@ class Lesson < ActiveRecord::Base
     end
   end
 
+  # Create a periodic job to trigger a conversion in the background
   def trigger_conversion
     RunOncePeriodicJob.create!(:name => 'ConvertVideo',
                                :job => "Lesson.convert_video #{self.id}")
