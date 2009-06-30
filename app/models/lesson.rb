@@ -9,8 +9,6 @@ class Lesson < ActiveRecord::Base
   has_attached_file :video,
                     :storage => :s3,
                     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
-                    #:s3_permissions => 'public',
-                    # TODO: This should be private but I'm making it public until I can get the S3 permissions working'
                     :s3_permissions => 'private',
                     :path => ":attachment/:id/:basename.:extension",
                     #:bucket => "input.firehoze.com"

@@ -75,9 +75,7 @@ class LessonsController < ApplicationController
     logger.info "Received conversion completion notification for job #{job.id}: #{job.state}"
     lesson = Lesson.find_by_flixcloud_job_id!(job.id)
 
-    if lesson.finish_conversion job
-      lesson.finish_conversion!
-    else
+    unless lesson.finish_conversion job
       logger.error "Job #{id} for lesson #{lesson.id} failed: #{job.error_message}"
       lesson.fail!
     end
