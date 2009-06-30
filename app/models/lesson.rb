@@ -145,7 +145,8 @@ class Lesson < ActiveRecord::Base
                              :watermark_url => Constants::WATERMARK_URL,
                              :thumbnails_url => thumbnail_path)
     if job.save
-      change_state(Constants::LESSON_STATE_START_CONVERSION_SUCCESS, I18n.t('lesson.conversion_end'))
+      change_state(Constants::LESSON_STATE_START_CONVERSION_SUCCESS, I18n.t('lesson.conversion_end') +
+              " (##{job.id})")
       self.update_attributes(:flixcloud_job_id => job.id, :conversion_started_at => job.initialized_at)
     else
       msg = ""
