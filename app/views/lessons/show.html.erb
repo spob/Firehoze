@@ -1,11 +1,15 @@
 <% content_for :head do -%>
     <%= javascript_include_tag 'swfobject' %>
-    <%= stylesheet_link_tag 'ajaxful_rating', :media => 'all' %>
 <% end %>
 
 <% if @lesson.thumbnail_url %>
     <IMG src="<%= @lesson.thumbnail_url %>"/>
 <% end %>
+
+<p>
+  <%= ratings_for @lesson %>
+</p>
+
 <p>
   <b>Title:</b>
   <%= h @lesson.title %>
@@ -80,11 +84,11 @@
     </p>
     <p>
       <b>Raw Video Cost:</b>
-      <%= number_to_currency @lesson.input_video_cost/1000.0 %>
+      <%#= number_to_currency @lesson.input_video_cost/1000.0 %>
     </p>
     <p>
       <b>Finished Video Cost:</b>
-      <%= number_to_currency @lesson.finished_video_cost/1000.0 %>
+      <%#= number_to_currency @lesson.finished_video_cost/1000.0 %>
     </p>
 <% end %>
 
