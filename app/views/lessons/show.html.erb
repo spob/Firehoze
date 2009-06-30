@@ -93,11 +93,13 @@
     </p>
     <p>
       <b>Raw Video Cost:</b>
-      <%= number_to_currency @lesson.input_video_cost/100000.0 unless @lesson.input_video_cost.blank? %>
+      <%= number_to_currency(@lesson.input_video_cost/100000.0,
+                             :precision => 3) unless @lesson.input_video_cost.blank? %>
     </p>
     <p>
       <b>Finished Video Cost:</b>
-      <%= number_to_currency @lesson.finished_video_cost/100000.0 unless @lesson.input_video_cost.blank? %>
+      <%= number_to_currency(@lesson.finished_video_cost/100000.0,
+                             :precision => 3) unless @lesson.input_video_cost.blank? %>
     </p>
 <% end %>
 
