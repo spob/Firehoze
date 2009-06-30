@@ -70,7 +70,21 @@ module AjaxfulRating # :nodoc:
       .#{options[:class]} { width: #{rateable.class.max_rate_value * 25}px; }
       .#{options[:small_star_class]} { width: #{rateable.class.max_rate_value * 10}px; }
       )
-      width = (rateable.rate_average(true, options[:dimension]) / rateable.class.max_rate_value.to_f) * 100
+
+      # width = (rateable.rate_average(true, options[:dimension]) / rateable.class.max_rate_value.to_f) * 100
+
+      # Fix via trak3r, added by rsturim
+      # http://github.com/trak3r/ajaxful-rating/tree/master
+
+      if user && rateable.rated_by?(user, options[:dimension])
+        rating = rateable.rate_by(user, options[:dimension]).stars
+      else
+        rating = rateable.rate_average(true, options[:dimension])
+      end
+
+      width = (rating / rateable.class.max_rate_value.to_f) * 100      
+      
+      
       ul = content_tag(:ul, options[:html]) do
         Range.new(1, rateable.class.max_rate_value).collect do |i|
           build_star rateable, user, i
@@ -139,7 +153,7 @@ module AjaxfulRating # :nodoc:
     # Returns the current average string.
     def current_average(rateable)
       I18n.t('ajaxful_rating.stars.current_average', :average => rateable.rate_average(true, options[:dimension]),
-        :max => rateable.class.max_rate_value, :default => "Current rating: {{average}}/{{max}}")
+        :max => rateable.class.max_rate_value, :default => "Current rating average: {{average}}/{{max}}")
     end
   
     # Temporary instance to hold dynamic styles.

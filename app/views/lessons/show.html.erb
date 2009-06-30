@@ -7,8 +7,12 @@
 <% end %>
 
 <p>
-  <%= ratings_for @lesson %>
+  <%= ratings_for(@lesson) %> 
 </p>
+
+<div id="<%= dom_id(@lesson) %>">
+  <%= current_average(@lesson) %>
+</div>
 
 <p>
   <b>Title:</b>
