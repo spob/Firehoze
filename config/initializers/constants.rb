@@ -35,8 +35,8 @@ module Constants
   LESSON_STATE_FAILED = "failed"
   LESSON_STATE_SET_S3_PERMISSIONS = "S3_permissions_start"
   LESSON_STATE_SET_S3_PERMISSIONS_SUCCESS = "S3_permissions_end"
-  LESSON_STATE_START_CONVERSION = 'conversion_start'
-  LESSON_STATE_START_CONVERSION_SUCCESS = 'conversion_end'
+  LESSON_STATE_START_CONVERSION = 'trigger_conversion_start'
+  LESSON_STATE_START_CONVERSION_SUCCESS = 'trigger_conversion_end'
   LESSON_STATE_END_CONVERSION = 'conversion_end_success'
   LESSON_STATE_GET_THUMBNAIL_URL = "calc_thumb_url_start"
   LESSON_STATE_GET_THUMBNAIL_URL_SUCCESS = "calc_thumb_url_end"

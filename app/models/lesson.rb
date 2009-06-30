@@ -1,4 +1,21 @@
 # A lesson includes a video, descriptive information and other meta data
+#
+# The state field tracks the current state of the video in its workflow. The
+# normal workflow is as follows:
+#   pending:                  raw video was just uploaded. A periodic job will be triggered to
+#           '                 start the conversion
+#   S3_permissions_start:     about to call out to Amazon S3 to set the permissions, granting
+#                             flixcloud access to the file
+#   S3_permissions_end:       granting Amazon S3 permissions completed successfully
+#   trigger_conversion_start: about to call out to flixcloud to start the conversion process
+#   trigger_conversion_end:   successfully triggered a conversion process to occur in flixcloud
+#   conversion_end_success:   received notification from flixcloud that conversion successfully
+#                             completed
+#   calc_thumb_url_start:     about to parse the information returned from flixcloud to calculate,
+#                             among other things, the thumbnail_url
+#   calc_thumb_url_end:       parsing of flixcloud information was successful
+#   ready:                    video ready for viewing
+#   failed:                   an error occurred at some point along the way'
 class Lesson < ActiveRecord::Base
   ajaxful_rateable :stars => 5
   belongs_to :instructor, :class_name => "User", :foreign_key => "instructor_id"
@@ -33,6 +50,7 @@ class Lesson < ActiveRecord::Base
   # Used to record a messgage for the state change
   attr_accessor :state_change_message
 
+  
   before_create :record_state_change_create
   before_update :record_state_change_update
 

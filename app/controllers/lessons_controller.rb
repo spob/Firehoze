@@ -63,12 +63,16 @@ class LessonsController < ApplicationController
     end
   end
 
+  # Trigger a conversion to occur at flixcloud. This will normally be triggered to occur
+  # automatically when a new file is uploaded...but the sysadmin can trigger it manually
   def convert
     @lesson.trigger_conversion
     flash[:notice] = t('lesson.conversion_triggered')
     redirect_to lesson_path(@lesson)
   end
 
+  # This method is the callback that flixcloud will invoke when the video has completed
+  # processing
   def conversion_notify
     render :text => "OK"
     job = FlixCloud::Notification.new(params)
