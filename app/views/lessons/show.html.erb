@@ -2,6 +2,7 @@
     <%= javascript_include_tag 'swfobject' %>
 <% end %>
 
+
 <% if @lesson.thumbnail_url %>
     <IMG src="<%= @lesson.thumbnail_url %>"/>
 <% end %>
@@ -10,8 +11,12 @@
   <%= ratings_for(@lesson) %> 
 </p>
 
-<div id="<%= dom_id(@lesson) %>">
-  <%= current_average(@lesson) %>
+<div id="<%= dom_id(@lesson) %>_average">
+  <%= current_average(@lesson) %> 
+</div>
+
+<div id="<%= dom_id(@lesson) %>_count">
+  (<%= pluralize(@lesson.total_rates, "person has", "people have") %> rated this lesson)
 </div>
 
 <p>

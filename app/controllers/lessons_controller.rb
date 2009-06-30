@@ -90,7 +90,8 @@ class LessonsController < ApplicationController
     id = "ajaxful-rating-lesson-#{@lesson.id}" 
     render :update do |page|
       page.replace_html id, ratings_for(@lesson, :wrap => false)
-      page.replace_html dom_id(@lesson), current_average(@lesson)
+      page.replace_html "#{dom_id(@lesson)}_average", current_average(@lesson)
+      page.replace_html "#{dom_id(@lesson)}_count", "(#{pluralize(@lesson.total_rates, "person has", "people have")} rated this lesson)"
       page.visual_effect :highlight, id
     end
   end
