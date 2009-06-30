@@ -75,16 +75,16 @@
       <%= @lesson.finished_video_height %>
     </p>
     <p>
-      <b>Raw Video File Size:</b>
-      <%= number_to_human_size @lesson.input_video_cost/1000.0 %>
+      <b>Finished Video File Size:</b>
+      <%= number_to_human_size @lesson.finished_video_file_size %>
+    </p>
+    <p>
+      <b>Raw Video Cost:</b>
+      <%= number_to_currency @lesson.input_video_cost/1000.0 %>
     </p>
     <p>
       <b>Finished Video Cost:</b>
       <%= number_to_currency @lesson.finished_video_cost/1000.0 %>
-    </p>
-    <p>
-      <b>Finished Video Cost:</b>
-      <%= number_to_currency @lesson.finished_video_cost %>
     </p>
 <% end %>
 
