@@ -32,9 +32,22 @@
 </p>
 
 <% if current_user.try("is_sysadmin?") %>
+    <p><b>System Information:</b></p>
     <p>
       <b>State:</b>
       <%= h @lesson.state %>
+    </p>
+    <p>
+      <b>Raw Video Filename:</b>
+      <%= h @lesson.video_file_name %>
+    </p>
+    <p>
+      <b>Raw Video File Type:</b>
+      <%= h @lesson.video_content_type %>
+    </p>
+    <p>
+      <b>Raw Video File Size:</b>
+      <%= number_to_human_size @lesson.video_file_size %>
     </p>
     <p>
       <b>Conversion Job ID:</b>
@@ -47,6 +60,30 @@
     <p>
       <b>Conversion Completed At:</b>
       <%= l @lesson.conversion_ended_at if @lesson.conversion_ended_at %>
+    </p>
+    <p>
+      <b>Finished Video Location:</b>
+      <%= @lesson.finished_video_file_location %>
+    </p>
+    <p>
+      <b>Finished Video Width:</b>
+      <%= @lesson.finished_video_width %>
+    </p>
+    <p>
+      <b>Finished Video Height:</b>
+      <%= @lesson.finished_video_height %>
+    </p>
+    <p>
+      <b>Raw Video File Size:</b>
+      <%= number_to_human_size @lesson.input_video_cost %>
+    </p>
+    <p>
+      <b>Finished Video Cost:</b>
+      <%= number_to_currency @lesson.finished_video_cost %>
+    </p>
+    <p>
+      <b>Finished Video Cost:</b>
+      <%= number_to_currency @lesson.finished_video_cost %>
     </p>
 <% end %>
 
