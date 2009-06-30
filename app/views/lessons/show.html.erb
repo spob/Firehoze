@@ -88,11 +88,11 @@
     </p>
     <p>
       <b>Raw Video Cost:</b>
-      <%#= number_to_currency @lesson.input_video_cost/1000.0 %>
+      <%= number_to_currency @lesson.input_video_cost/1000.0 unless @lesson.input_video_cost.blank? %>
     </p>
     <p>
       <b>Finished Video Cost:</b>
-      <%#= number_to_currency @lesson.finished_video_cost/1000.0 %>
+      <%= number_to_currency @lesson.finished_video_cost/1000.0 unless @lesson.input_video_cost.blank? %>
     </p>
 <% end %>
 
