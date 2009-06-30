@@ -76,11 +76,11 @@
     </p>
     <p>
       <b>Raw Video File Size:</b>
-      <%= number_to_human_size @lesson.input_video_cost %>
+      <%= number_to_human_size @lesson.input_video_cost/1000.0 %>
     </p>
     <p>
       <b>Finished Video Cost:</b>
-      <%= number_to_currency @lesson.finished_video_cost %>
+      <%= number_to_currency @lesson.finished_video_cost/1000.0 %>
     </p>
     <p>
       <b>Finished Video Cost:</b>
