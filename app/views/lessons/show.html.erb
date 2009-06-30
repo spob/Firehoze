@@ -20,6 +20,12 @@
   <%= h @lesson.instructor.login %>
 </p>
 
+<% if @lesson.finished_video_duration %>
+    <p>
+      <b>Duration:</b>
+      <%= ChronicDuration.output(@lesson.finished_video_duration/1000, :format => :long) %>
+    </p>
+<% end %>
 <p>
   <b>Created:</b>
   <%= l @lesson.created_at %>
@@ -42,9 +48,6 @@
       <b>Conversion Completed At:</b>
       <%= l @lesson.conversion_ended_at if @lesson.conversion_ended_at %>
     </p>
-    <% if @lesson.finished_video_duration %>
-        <%= @lesson.finished_video_duration %>
-    <% end %>
 <% end %>
 
 <div id="player">

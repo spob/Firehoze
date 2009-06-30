@@ -1,0 +1,60 @@
+--- !ruby/object:Gem::Specification 
+name: hpoydar-chronic_duration
+version: !ruby/object:Gem::Version 
+  version: 0.7.4
+platform: ruby
+authors: 
+- Henry Poydar
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2009-02-23 00:00:00 -05:00
+default_executable: 
+dependencies: []
+
+description: A simple Ruby natural language parser for elapsed time.  (For example, 4 hours and 30 minutes, 6 minutes 4 seconds, 3 days, etc.)  Returns all results in seconds. Will return an integer unless you get tricky and need a float.  (4 minutes and 13.47 seconds, for example.) The reverse can also be performed via the output method.
+email: henry@poydar.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- README.rdoc
+files: 
+- lib/chronic_duration.rb
+- lib/numerizer.rb
+- spec/chronic_duration_spec.rb
+- spec/spec_helper.rb
+- README.rdoc
+has_rdoc: true
+homepage: http://github.com/hpoydar/chronic_duration
+post_install_message: 
+rdoc_options: 
+- --line-numbers
+- --inline-source
+- --main
+- README.rdoc
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.3.1
+signing_key: 
+specification_version: 2
+summary: A Ruby natural language parser for elapsed time
+test_files: 
+- spec/chronic_duration_spec.rb

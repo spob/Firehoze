@@ -53,6 +53,9 @@ Rails::Initializer.run do |config|
   # For generating XML
   config.gem 'builder', :version => '~>2.1.2'
 
+  # For outputing time duration in human readable form
+  config.gem 'hpoydar-chronic_duration', :lib => 'chronic_duration'
+
   # For periodic job processing
   config.gem 'daemons'
 
