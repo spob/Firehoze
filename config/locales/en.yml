@@ -51,7 +51,7 @@ en:
     cant_feedback_own: You cannot provide feedback on a review you have written
 
   lesson:
-    created: Lesson created
+    created: Your lesson created and your video has been submitted for processing. You should receive notification in several minutes when your lesson video is ready for viewing.
     access_message: You do not have access to edit this lesson
     updated: Lesson updated
     conversion_triggered: Video conversion started
