@@ -4,7 +4,7 @@ class LessonsController < ApplicationController
 
   verify :method => :post, :only => [:create, :convert ], :redirect_to => :home_path
   verify :method => :put, :only => [:update, :conversion_notify ], :redirect_to => :home_path
-  before_filter :find_lesson, :only => [ :show, :edit, :update, :watch, :convert ]
+  before_filter :find_lesson, :only => [ :show, :edit, :update, :watch, :convert, :rate ]
 
   def index
     @lessons = Lesson.list(params[:page], (current_user and current_user.is_sysadmin?))
@@ -78,6 +78,15 @@ class LessonsController < ApplicationController
     unless lesson.finish_conversion job
       logger.error "Job #{id} for lesson #{lesson.id} failed: #{job.error_message}"
       lesson.fail!
+    end
+  end
+
+  def rate
+    @lesson.rate(params[:stars], current_user)
+    id = "ajaxful-rating-lesson-#{@lesson.id}" 
+    render :update do |page|
+      page.replace_html id, ratings_for(@lesson, :wrap => false)
+      page.visual_effect :highlight, id
     end
   end
 
