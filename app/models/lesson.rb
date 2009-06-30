@@ -1,5 +1,6 @@
 # A lesson includes a video, descriptive information and other meta data
 class Lesson < ActiveRecord::Base
+  ajaxful_rateable :stars => 5
   belongs_to :instructor, :class_name => "User", :foreign_key => "instructor_id"
   has_many :reviews
   has_many :lesson_state_changes, :order => "id"
