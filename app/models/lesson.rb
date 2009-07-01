@@ -128,8 +128,8 @@ class Lesson < ActiveRecord::Base
                                      APP_CONFIG[CONFIG_AWS_SECRET_ACCESS_KEY])
     bucket = s3_connection.bucket(APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET])
     file = bucket.key(self.video.path, true)
-    grantee = RightAws::S3::Grantee.new(bucket, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
-    grantee = RightAws::S3::Grantee.new(file, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
+    grantee = RightAws::S3::Grantee.new(bucket, FLIX_CLOUD_AWS_ID, 'READ', :apply)
+    grantee = RightAws::S3::Grantee.new(file, FLIX_CLOUD_AWS_ID, 'READ', :apply)
   end
 
   # Call out to flixcloud to trigger a conversion process
@@ -166,8 +166,8 @@ class Lesson < ActiveRecord::Base
     url = "http://" + APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET] +
             ".s3.amazonaws.com/" + id.to_s + "/thumb_0000.png"
     self.update_attribute(:thumbnail_url, url)
-    #grantee = RightAws::S3::Grantee.new(bucket, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
-    #grantee = RightAws::S3::Grantee.new(file, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
+    #grantee = RightAws::S3::Grantee.new(bucket, FLIX_CLOUD_AWS_ID, 'READ', :apply)
+    #grantee = RightAws::S3::Grantee.new(file, FLIX_CLOUD_AWS_ID, 'READ', :apply)
   end
 
   private
