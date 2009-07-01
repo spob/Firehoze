@@ -7,7 +7,7 @@ class LessonsController < ApplicationController
   before_filter :find_lesson, :only => [ :show, :edit, :update, :watch, :convert, :rate ]
 
   def index
-    @lessons = Lesson.list(params[:page], (current_user and current_user.is_sysadmin?))
+    @lessons = Lesson.list(params[:page], current_user)
   end
 
   def new

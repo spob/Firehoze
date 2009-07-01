@@ -54,9 +54,10 @@ class Lesson < ActiveRecord::Base
 
 # Basic paginated listing finder
 # if view_all is false, only videos in the ready state will be returned
-  def self.list(page, view_all=false)
+  def self.list(page, user=nil)
     conditions = {}
-    conditions = { :state => LESSON_STATE_READY } unless view_all
+    conditions = ["state = ? or instructor_id = ?",
+                  LESSON_STATE_READY, user]  unless (user and user.try(:is_sysadmin?))
     paginate :page => page,
              :conditions => conditions,
              :order => 'id desc',

@@ -44,7 +44,7 @@ class LessonTest < ActiveSupport::TestCase
         # and let's create a couple more
         @lesson2 = Factory.create(:lesson)
         @lesson3 = Factory.create(:lesson)
-        @lesson.update_attribute(:state, LESSON_STATE_PENDING)  
+        @lesson.update_attribute(:state, LESSON_STATE_PENDING)
         @lesson2.update_attribute(:state, LESSON_STATE_READY)
         @lesson3.update_attribute(:state, LESSON_STATE_READY)
       end
@@ -53,9 +53,22 @@ class LessonTest < ActiveSupport::TestCase
         assert !@lesson.reviewed_by?(Factory.create(:user))
       end
 
-      should "return less records" do
-        assert_equal 2, Lesson.list(1).size
-        assert_equal 3, Lesson.list(1, true).size
+      context "with a user defined" do
+        setup { @user = Factory.create(:user) }
+
+        should "return less records" do
+          assert_equal 2, Lesson.list(1).size
+          assert_equal 2, Lesson.list(1, @user).size
+          assert_equal 3, Lesson.list(1, @lesson.instructor).size
+        end
+
+        context "who is a sysadmin" do
+          setup { @user.has_role 'sysadmin' }
+
+          should "return less records" do
+            assert_equal 3, Lesson.list(1, @user).size
+          end
+        end
       end
     end
 
