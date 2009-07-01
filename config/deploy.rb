@@ -41,23 +41,28 @@ namespace :deploy do
     # preserve the assets directory which resides under shared
     run "ln -s #{shared_path}/assets #{release_path}/public/assets" 
   end
+
+  task :restart, :roles => :app do
+    mongrel:restart
+    task_server:restart
+  end
 end
 
 namespace :mongrel do
   desc "Start Mongrel"
   task :start, :roles => :app do
-    run "mongrel_rails start -e production -p 4098 -d -P #{current_path}/tmp/pids/mongrel.pid -l #{current_path}/log/mongrel.log -c #{current_path}"
+    run "mongrel_rails start -e production -p 4098 -d -P /home/firehoz/Firehoze/shared/pids/mongrel.pid -l #{current_path}/log/mongrel.log -c #{current_path}"
   end
 
   desc "Restart Mongrel"
   task :restart, :roles => :app do
-    run "mongrel_rails restart -P #{current_path}/tmp/pids/mongrel.pid"
+    run "mongrel_rails restart -P /home/firehoz/Firehoze/shared/pids/mongrel.pid"
     #run "ruby #{current_path}/script/task_server_control.rb restart -- -e production"
   end
 
   desc "Stop Mongrel"
   task :stop, :roles => :app do
-    run "mongrel_rails stop -P #{current_path}/tmp/pids/mongrel.pid"
+    run "mongrel_rails stop -P /home/firehoz/Firehoze/shared/pids/mongrel.pid"
   end
 end
 
