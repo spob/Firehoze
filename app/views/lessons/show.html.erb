@@ -4,7 +4,7 @@
 
 
 <% if @lesson.thumbnail_url %>
-    <IMG src="<%= @lesson.thumbnail_url %>"/>
+    <%= image_tag @lesson.thumbnail_url %>
 <% end %>
 
 <p>

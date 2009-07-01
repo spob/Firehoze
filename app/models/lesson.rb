@@ -132,7 +132,6 @@ class Lesson < ActiveRecord::Base
     file = bucket.key(self.video.path, true)
     grantee = RightAws::S3::Grantee.new(bucket, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
     grantee = RightAws::S3::Grantee.new(file, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
-    change_state(Constants::LESSON_STATE_SET_S3_PERMISSIONS_SUCCESS, I18n.t('lesson.S3_permissions_end'))
   end
 
   # Call out to flixcloud to trigger a conversion process
@@ -171,7 +170,6 @@ class Lesson < ActiveRecord::Base
     self.update_attribute(:thumbnail_url, url)
     #grantee = RightAws::S3::Grantee.new(bucket, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
     #grantee = RightAws::S3::Grantee.new(file, Constants::FLIX_CLOUD_AWS_ID, 'READ', :apply)
-    change_state(Constants::LESSON_STATE_GET_THUMBNAIL_URL_SUCCESS, I18n.t('lesson.calc_thumb_url_end'))
   end
 
   private
