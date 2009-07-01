@@ -8,11 +8,11 @@
 <% end %>
 
 <p>
-  <%= ratings_for(@lesson) %> 
+  <%= ratings_for(@lesson) %>
 </p>
 
 <div id="<%= dom_id(@lesson) %>_average">
-  <%= current_average(@lesson) %> 
+  <%= current_average(@lesson) %>
 </div>
 
 <div id="<%= dom_id(@lesson) %>_count">
@@ -101,7 +101,13 @@
       <%= number_to_currency(@lesson.finished_video_cost/100000.0,
                              :precision => 3) unless @lesson.input_video_cost.blank? %>
     </p>
+<% elsif current_user == @lesson.instructor %>
+    <p>
+      <b>State:</b>
+      <%= h @lesson.state %>
+    </p>
 <% end %>
+
 
 <div id="player">
   You need to

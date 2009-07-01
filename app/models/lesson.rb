@@ -91,6 +91,7 @@ class Lesson < ActiveRecord::Base
               " (##{job.id})")
       set_thumbnail_url
       change_state(LESSON_STATE_READY, I18n.t('lesson.ready'))
+      Notifier.deliver_lesson_ready self
     else
       change_state(LESSON_STATE_FAILED, job.error_message)
     end
