@@ -6,7 +6,7 @@ class RunOncePeriodicJob < PeriodicJob
 
   # It should run right away
   def set_next_run
-    self.next_run_at = Time.zone.now
+    self.next_run_at = Time.zone.now unless self.next_run_at
   end
 
   # Return nil for the next_run_at field, indicating that it should not run again

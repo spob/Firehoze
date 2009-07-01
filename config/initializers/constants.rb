@@ -19,6 +19,7 @@ CONFIG_WARN_BEFORE_CREDIT_EXPIRATION_DAYS = 'warn_before_credit_expiration_days'
 CONFIG_AWS_S3_INPUT_VIDEO_BUCKET = 'aws_s3_input_video_bucket'
 CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET = 'aws_s3_output_video_bucket'
 CONFIG_AWS_S3_THUMBS_BUCKET = 'aws_s3_thumbs_bucket'
+CONFIG_ZOMBIE_VIDEO_PROCESS_MINUTES = 'zombie_video_process_minutes'
 
 # Configuration properties in the s3.yml file
 CONFIG_AWS_ACCESS_KEY_ID = 'access_key_id'

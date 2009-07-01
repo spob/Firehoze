@@ -48,11 +48,21 @@ class Notifier < ActionMailer::Base
                :url => login_url
   end
 
-  # Notify a user that their video is ready for viewing
+  # Notify a user and sysadmins that a video failed to transcode
   def lesson_processing_failed(lesson)
     subject    "The video for your lesson failed to process"
     recipients lesson.instructor.email
     bcc         Role.sysadmins.collect(&:email)
+    from         APP_CONFIG[CONFIG_ADMIN_EMAIL]
+
+    body       :lesson => lesson,
+               :url => login_url
+  end
+
+  # Notify the sysadmin that a video never completed their transcoding
+  def lesson_processing_hung(lesson)
+    subject    "The video for lesson #{lesson.id} never completed processing"
+    recipients Role.sysadmins.collect(&:email)
     from         APP_CONFIG[CONFIG_ADMIN_EMAIL]
 
     body       :lesson => lesson,

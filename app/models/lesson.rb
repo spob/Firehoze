@@ -149,6 +149,9 @@ class Lesson < ActiveRecord::Base
       change_state(LESSON_STATE_START_CONVERSION_SUCCESS, I18n.t('lesson.conversion_end') +
               " (##{job.id})")
       self.update_attributes(:flixcloud_job_id => job.id, :conversion_started_at => job.initialized_at)
+      RunOncePeriodicJob.create!(:name => 'DetectZombieVideoProcess',
+                                 :job => "Lesson.detect_zombie_video #{self.id}, #{job.id}",
+                                 :next_run_at => (APP_CONFIG[CONFIG_ZOMBIE_VIDEO_PROCESS_MINUTES].to_i.minutes.from_now))
     else
       msg = ""
       job.errors.each { |x| msg = (msg == "" ?  "" : ", ") + msg + x}
@@ -172,6 +175,18 @@ class Lesson < ActiveRecord::Base
     self.update_attribute(:thumbnail_url, url)
     #grantee = RightAws::S3::Grantee.new(bucket, FLIX_CLOUD_AWS_ID, 'READ', :apply)
     #grantee = RightAws::S3::Grantee.new(file, FLIX_CLOUD_AWS_ID, 'READ', :apply)
+  end
+
+  # Check if a video was submitted for processing and never returned. If so, send an email alert
+  def self.detect_zombie_video lesson_id, job_id
+    lesson = Lesson.find(lesson_id)
+    if lesson.flixcloud_job_id == job_id
+      # id is the same, so a new job hasn't been submitted
+      if lesson.state == LESSON_STATE_START_CONVERSION_SUCCESS
+        # still in a processing state
+        Notifier.deliver_lesson_processing_hung lesson
+      end
+    end
   end
 
   private

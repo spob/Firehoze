@@ -42,3 +42,6 @@ expire_credits_after_days: 365
 
 # The number of days before expiration to warn the user that their credit is about to expire
 warn_before_credit_expiration_days: 10
+
+# The number of minutes to wait before warning the sysadmin that a video has failed processing
+zombie_video_process_minutes: 60
