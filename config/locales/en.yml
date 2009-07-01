@@ -57,9 +57,10 @@ en:
     conversion_triggered: Video conversion started
     need_credits: You have no available credits to watch this lesson. Would you like to buy more?
     S3_permissions_start: Setting S3 permissions
-    conversion_start: Trigger start of video conversion
-    conversion_end: Video conversion started
-    conversion_end_success: Video conversion completed successfully
+    pending: Lesson created and awaiting transcoding
+    conversion_start: Trigger start of video transcoding
+    conversion_end: Video transcoding started
+    conversion_end_success: Video transcoding completed successfully
     calc_thumb_url_start: Retrieving thumbnail URL
     ready: Video conversion completed successfully and is ready for viewing
 

@@ -17,7 +17,7 @@ class LessonTest < ActiveSupport::TestCase
       assert_equal 1, @lesson.lesson_state_changes.size
       assert_nil @lesson.lesson_state_changes.first.from_state
       assert_equal "pending", @lesson.lesson_state_changes.first.to_state
-      assert_match /esson created/, @lesson.lesson_state_changes.first.message
+      assert_match /Lesson created/, @lesson.lesson_state_changes.first.message
     end
 
     context "and trigger a conversion" do

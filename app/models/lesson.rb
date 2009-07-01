@@ -207,7 +207,7 @@ class Lesson < ActiveRecord::Base
     self.state_change_message = nil
     self.state = LESSON_STATE_PENDING
     self.lesson_state_changes.build(:to_state => self.state,
-                                    :message =>  I18n.t('lesson.created'))
+                                    :message =>  I18n.t('lesson.pending'))
   end
 
   def record_state_change_update
