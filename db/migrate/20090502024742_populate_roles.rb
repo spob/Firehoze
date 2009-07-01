@@ -8,14 +8,14 @@ class PopulateRoles < ActiveRecord::Migration
     admin.login = 'admin'
     admin.email = 'admin@firehoze.com'
     admin.save!
-    Role.create! :name => Constants::ROLE_SYSADMIN
+    Role.create! :name => ROLE_SYSADMIN
 
-    admin.has_role Constants::ROLE_SYSADMIN
+    admin.has_role ROLE_SYSADMIN
   end
 
   def self.down
     puts "Destroy role..."
-    Role.find_by_name(Constants::ROLE_SYSADMIN).destroy
+    Role.find_by_name(ROLE_SYSADMIN).destroy
     puts "done"
 
     puts "Destroy user..."

@@ -10,6 +10,6 @@ class UserLogon < ActiveRecord::Base
     paginate :page => page, 
       :conditions => ['created_at > ?', (Time.zone.now - 60*60*24*90).to_s(:db)],
       :order => 'created_at desc', 
-      :per_page => Constants::ROWS_PER_PAGE
+      :per_page => ROWS_PER_PAGE
   end
 end

@@ -11,7 +11,7 @@ class Review < ActiveRecord::Base
   def self.list(lesson, page)
     paginate :page => page,
              :conditions => { :lesson_id => lesson }, :order => 'id desc',
-             :per_page => Constants::ROWS_PER_PAGE
+             :per_page => ROWS_PER_PAGE
   end
 
   # The review can be edited by a moderator

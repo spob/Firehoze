@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
   before_filter :find_review, :only => [ :edit, :update ]
 
 
-  permit Constants::ROLE_MODERATOR, :only => [:edit, :update]
+  permit ROLE_MODERATOR, :only => [:edit, :update]
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path

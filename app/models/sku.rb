@@ -12,7 +12,7 @@ class Sku < ActiveRecord::Base
   # Basic paginated listing finder
   def self.list(page)
     paginate :page => page, :order => 'sku',
-            :per_page => Constants::ROWS_PER_PAGE
+            :per_page => ROWS_PER_PAGE
   end
 
   # Only admins can delete a SKU

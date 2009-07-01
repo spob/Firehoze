@@ -32,7 +32,7 @@ namespace :db do
         admin.first_name = dev[1]
         admin.last_name = dev[2]
         admin.save!
-        admin.has_role Constants::ROLE_SYSADMIN
+        admin.has_role ROLE_SYSADMIN
         puts "Admin created: #{admin.full_name}"
       end
       puts "- done -"

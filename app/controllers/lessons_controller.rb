@@ -1,6 +1,6 @@
 class LessonsController < ApplicationController
   before_filter :require_user, :only => [:new, :create, :edit, :update, :watch, :convert]
-  permit Constants::ROLE_SYSADMIN, :only => [:convert]
+  permit ROLE_SYSADMIN, :only => [:convert]
 
   verify :method => :post, :only => [:create, :convert ], :redirect_to => :home_path
   verify :method => :put, :only => [:update, :conversion_notify ], :redirect_to => :home_path
