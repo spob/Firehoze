@@ -86,7 +86,8 @@ class Lesson < ActiveRecord::Base
               :finished_video_duration => job.output_media_file.duration,
               :finished_video_cost => job.output_media_file.cost,
               :input_video_cost => job.input_media_file.cost)
-      change_state(LESSON_STATE_END_CONVERSION, I18n.t('lesson.conversion_end_success'))
+      change_state(LESSON_STATE_END_CONVERSION, I18n.t('lesson.conversion_end_success') +
+              " (##{job.id})")
       set_thumbnail_url
       change_state(LESSON_STATE_READY, I18n.t('lesson.ready'))
     else
