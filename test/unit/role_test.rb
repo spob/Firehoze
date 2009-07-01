@@ -1,10 +1,19 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
-class RoleTest < Test::Unit::TestCase
-#  fixtures :roles
+class RoleTest < ActiveSupport::TestCase
+  context "given a sysadmin" do
+    setup do
+      @user1 = Factory.create(:user)
+      @user2 = Factory.create(:user)
+      @user2.has_role 'sysadmin'
+    end
 
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+    context "when querying sysadmins" do
+      should "return user2" do
+        users = Role.sysadmins
+        assert_equal 1, users.size
+        assert_equal @user2, users.first
+      end
+    end
   end
 end

@@ -10,4 +10,7 @@ class Role < ActiveRecord::Base
   named_scope :by_name,
      :order => 'name asc'
 
+  def self.sysadmins
+    Role.find_by_name(ROLE_SYSADMIN).users
+  end
 end

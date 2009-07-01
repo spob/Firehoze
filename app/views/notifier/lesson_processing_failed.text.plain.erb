@@ -1,0 +1,7 @@
+Hi <%= @lesson.instructor.full_name %>,
+
+Your lesson "<%= @lesson.title %>" failed processing with the following error: <%= @lesson.state_change_message %>
+
+Firehoze system adminstrators have been notified of this issue and are looking into the problem.
+
+<%= @url %>
