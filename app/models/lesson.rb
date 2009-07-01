@@ -94,6 +94,7 @@ class Lesson < ActiveRecord::Base
       Notifier.deliver_lesson_ready self
     else
       change_state(LESSON_STATE_FAILED, job.error_message)
+      Notifier.deliver_lesson_processing_failed self
     end
     job.successful?
   rescue Exception => e
