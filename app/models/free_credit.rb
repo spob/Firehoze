@@ -4,6 +4,7 @@
 class FreeCredit < ActiveRecord::Base
   belongs_to :user
   belongs_to :lesson, :counter_cache => true
+  belongs_to :credit
   validates_presence_of     :lesson
 
   named_scope :available, :conditions => {:redeemed_at => nil}

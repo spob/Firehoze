@@ -5,6 +5,7 @@ class FreeCreditTest < ActiveSupport::TestCase
     setup { @credit = Factory.create(:free_credit) }
 
     should_belong_to :user
+    should_belong_to :credit
     should_belong_to :lesson
     should_validate_presence_of :lesson
 
