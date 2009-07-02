@@ -22,8 +22,8 @@ namespace :db do
 
   desc "Seed the database with skus"
   task :seed_skus => :environment do
-    create_sku CREDIT_SKU, 'Download Credit', 1, 0.99
-    create_sku FREE_CREDIT_SKU, 'Free Lesson', 1, 0.0
+    create_sku CreditSku, CREDIT_SKU, 'Download Credit', 1, 0.99
+    create_sku FreeCreditSku, FREE_CREDIT_SKU, 'Free Lesson', 1, 0.0
   end
 
   desc "Seed the database with roles"
@@ -56,12 +56,12 @@ def create_job job_class, name, job, internal
   end
 end
 
-def create_sku sku_name, description, credits, price
+def create_sku sku_class, sku_name, description, credits, price
   sku = Sku.find_by_sku(sku_name)
   if sku
     puts "Sku #{sku.sku} already exists"
   else
-    sku = CreditSku.create!(:sku => sku_name, :description => description,
+    sku = sku_class.create!(:sku => sku_name, :description => description,
                             :num_credits => credits, :price => price)
     puts "Sku #{sku.sku} created"
   end

@@ -6,6 +6,9 @@ class LessonsController < ApplicationController
   verify :method => :put, :only => [:update, :conversion_notify ], :redirect_to => :home_path
   before_filter :find_lesson, :only => [ :show, :edit, :update, :watch, :convert, :rate ]
 
+  # The number of free download counts to display on the create lesson page
+  @@free_download_counts = [ 0, 5, 10, 25 ]
+
   def index
     @lessons = Lesson.list(params[:page], current_user)
   end
@@ -87,13 +90,18 @@ class LessonsController < ApplicationController
 
   def rate
     @lesson.rate(params[:stars], current_user)
-    id = "ajaxful-rating-lesson-#{@lesson.id}" 
+    id = "ajaxful-rating-lesson-#{@lesson.id}"
     render :update do |page|
       page.replace_html id, ratings_for(@lesson, :wrap => false)
       page.replace_html "#{dom_id(@lesson)}_average", current_average(@lesson)
       page.replace_html "#{dom_id(@lesson)}_count", "(#{pluralize(@lesson.total_rates, "person has", "people have")} rated this lesson)"
       page.visual_effect :highlight, id
     end
+  end
+
+  # Used to populate the free download count drop down
+  def self.free_download_counts
+    @@free_download_counts
   end
 
   private

@@ -19,6 +19,7 @@ class Lesson < ActiveRecord::Base
   belongs_to :instructor, :class_name => "User", :foreign_key => "instructor_id"
   has_many :reviews
   has_many :lesson_state_changes, :order => "id"
+  has_many :credits
   validates_presence_of :instructor, :title, :video_file_name, :state
   validates_length_of :title, :maximum => 50, :allow_nil => true
   validates_numericality_of :video_file_size, :greater_than => 0, :allow_nil => true
@@ -47,9 +48,12 @@ class Lesson < ActiveRecord::Base
 
   # Used to record a messgage for the state change
   attr_accessor :state_change_message
+  # Used to seed the number of free downloads available
+  attr_accessor :initial_free_download_count
 
 
   before_create :record_state_change_create
+  before_validation_on_create  :create_free_credits
   before_update :record_state_change_update
 
 # Basic paginated listing finder
@@ -208,6 +212,18 @@ class Lesson < ActiveRecord::Base
     self.state = LESSON_STATE_PENDING
     self.lesson_state_changes.build(:to_state => self.state,
                                     :message =>  I18n.t('lesson.pending'))
+  end
+
+  def create_free_credits
+    if initial_free_download_count and initial_free_download_count > 0
+      sku = CreditSku.find_by_sku!(FREE_CREDIT_SKU)
+
+      initial_free_download_count.times do
+      end
+    end
+  rescue ActiveRecord::RecordNotFound => e
+    # test environment is not seeded with SKU's
+    raise e unless ENV['RAILS_ENV'] == 'test'
   end
 
   def record_state_change_update

@@ -1,5 +1,4 @@
 <h1>Create Lesson</h1>
-
 <% form_for(:lesson, :url => lessons_path, :html => { :multipart => true}) do |f| %>
     <%= f.error_messages %>
     
@@ -12,6 +11,10 @@
     <%= f.label :video %>
     <%= f.file_field :video %>
     <br/>
+    <%= f.label 'Free Downloads' %>
+    <%= select_tag :initial_free_download_count, options_for_select(LessonsController.free_download_counts) %>
+    <br/>
+    
     <%= f.submit "Create lesson" %>
     <%= link_to "Cancel", lessons_path %>
 <% end %>

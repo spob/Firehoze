@@ -2,6 +2,17 @@ require 'test_helper'
 
 class LessonTest < ActiveSupport::TestCase
 
+  context "given an existing lesson with initial_free_download_count" do
+    setup do
+      @sku = Factory.create(:credit_sku, :sku => FREE_CREDIT_SKU)
+      @lesson = Factory.create(:lesson, :initial_free_download_count => 5)
+    end
+
+    should 'have free credits' do
+      assert_nil @lesson.credits.size
+    end
+  end
+
   context "given an existing lesson" do
     setup do
       @lesson = Factory.create(:lesson)
@@ -11,7 +22,11 @@ class LessonTest < ActiveSupport::TestCase
     should_allow_values_for          :title, "blah blah blah"
     should_ensure_length_in_range    :title, (0..50)
     should_have_attached_file        :video
-    should_have_many                 :reviews, :lesson_state_changes
+    should_have_many                 :reviews, :lesson_state_changes, :credits
+
+    should "not have any credits" do
+      assert_nil @lesson.initial_free_download_count
+    end
 
     should "have a state change record" do
       assert_equal 1, @lesson.lesson_state_changes.size
