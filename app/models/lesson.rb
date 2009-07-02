@@ -69,6 +69,10 @@ class Lesson < ActiveRecord::Base
              :per_page => ROWS_PER_PAGE
   end
 
+  def ready?
+    self.state == LESSON_STATE_READY
+  end
+
   # The lesson can be edited by an admin or the instructor who created it
   def can_edit? user
     user and (user.is_admin? or user.is_moderator? or instructor == user)
@@ -180,6 +184,17 @@ class Lesson < ActiveRecord::Base
     self.update_attribute(:thumbnail_url, url)
     #grantee = RightAws::S3::Grantee.new(bucket, FLIX_CLOUD_AWS_ID, 'READ', :apply)
     #grantee = RightAws::S3::Grantee.new(file, FLIX_CLOUD_AWS_ID, 'READ', :apply)
+  end
+
+  def consume_free_credit user
+    free_credit = self.free_credits.available.first
+    sku = CreditSku.find_by_sku!(FREE_CREDIT_SKU)
+    if free_credit
+      credit = Credit.create!(:sku => sku, :price => sku.price, :user => user,
+                              :acquired_at => Time.zone.now, :lesson => self, :acquired_at => Time.now)
+      free_credit.update_attributes!(:credit => credit, :redeemed_at => Time.now, :user => user)
+    end
+    free_credit
   end
 
   # Check if a video was submitted for processing and never returned. If so, send an email alert

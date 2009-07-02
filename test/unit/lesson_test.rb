@@ -9,13 +9,16 @@ class LessonTest < ActiveSupport::TestCase
       @lesson = Lesson.find(@lesson)
     end
 
-    should 'have free credits' do
-      assert_equal 5, @lesson.free_credits.size
+    should 'consume a free credit' do
+      assert_equal 5, @lesson.free_credits.available.size
+      assert !@lesson.consume_free_credit(Factory.create(:user)).nil?
+      assert_equal 4, @lesson.free_credits.available.size
     end
   end
 
   context "given an existing lesson" do
     setup do
+      @sku = Factory.create(:credit_sku, :sku => FREE_CREDIT_SKU)
       @lesson = Factory.create(:lesson)
     end
 
@@ -25,8 +28,25 @@ class LessonTest < ActiveSupport::TestCase
     should_have_attached_file        :video
     should_have_many                 :reviews, :lesson_state_changes, :credits, :free_credits
 
+    should "not be ready" do
+      assert !@lesson.ready?
+    end
+
+    context "which is ready" do
+      setup { @lesson.update_attribute(:state, 'ready') }
+
+      should "not be ready" do
+        assert @lesson.ready?
+      end
+    end
+
     should "not have any credits" do
       assert_nil @lesson.initial_free_download_count
+    end
+
+    should "not consume free credits" do
+      assert @lesson.free_credits.empty?
+      assert !@lesson.consume_free_credit(Factory.create(:user))
     end
 
     should "have a state change record" do
