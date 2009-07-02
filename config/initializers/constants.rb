@@ -4,6 +4,10 @@ ROWS_PER_PAGE = 10
 ROLE_SYSADMIN = 'sysadmin'
 ROLE_MODERATOR = 'moderator'
 
+# Skus
+CREDIT_SKU = 'CREDIT'
+FREE_CREDIT_SKU = 'FREE_CREDIT'
+
 # Configuration properties in the environment.yml file
 CONFIG_PROTOCOL = 'protocol'
 CONFIG_HOST = 'host'

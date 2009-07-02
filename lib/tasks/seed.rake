@@ -1,6 +1,6 @@
 namespace :db do
   desc "Populate the database with seed data"
-  task :seed => [:seed_users, :seed_jobs, :roles]
+  task :seed => [:seed_users, :seed_jobs, :seed_roles, :seed_skus]
 
   desc "Seed the database with users"
   task :seed_users => :environment do
@@ -20,8 +20,14 @@ namespace :db do
     end
   end
 
+  desc "Seed the database with skus"
+  task :seed_skus => :environment do
+    create_sku CREDIT_SKU, 'Download Credit', 1, 0.99
+    create_sku FREE_CREDIT_SKU, 'Free Lesson', 1, 0.0
+  end
+
   desc "Seed the database with roles"
-  task :roles => :environment do
+  task :seed_roles => :environment do
     role = Role.find_by_name(ROLE_MODERATOR)
     if role
       puts "Role #{role.name} already exists"
@@ -32,30 +38,31 @@ namespace :db do
 
   desc "Seed the database with periodic jobs"
   task :seed_jobs => :environment do
-    job = PeriodicJob.find_by_name('SessionCleaner')
-    if job
-      puts "Periodic job #{job.name} already exists"
-    else
-      RunIntervalPeriodicJob.create(:name => 'SessionCleaner',
-                                    :job => 'SessionCleaner.clean',
-                                    :interval => 3600 * 24) #once a day
-    end
+    create_job RunIntervalPeriodicJob, 'SessionCleaner', 'SessionCleaner.clean', 3600 * 24  #once a day
+    create_job RunIntervalPeriodicJob, 'PeriodicJobCleanup', 'PeriodicJob.cleanup', 3600  #once an hour
+    create_job RunIntervalPeriodicJob, 'CreditExpiration', 'Credit.expire_unused_credits', 3600 * 24  #once a day
+  end
+end
 
-    job = PeriodicJob.find_by_name('PeriodicJobCleanup')
-    if job
-      puts "Periodic job #{job.name} already exists"
-    else
-      RunIntervalPeriodicJob.create(:name => 'PeriodicJobCleanup',
-                                    :job => 'PeriodicJob.cleanup', :interval => 3600) #once an hour
-    end
+def create_job job_class, name, job, internal
+  job = PeriodicJob.find_by_name(name)
+  if job
+    puts "Periodic job #{job.name} already exists"
+  else
+    job_class.create!(:name => name,
+                      :job => job,
+                      :interval => interval)
+    puts "Created job #{job.name}"
+  end
+end
 
-    job = PeriodicJob.find_by_name('CreditExpiration')
-    if job
-      puts "Periodic job #{job.name} already exists"
-    else
-      RunIntervalPeriodicJob.create(:name => 'CreditExpiration',
-                                    :job => 'Credit.expire_unused_credits',
-                                    :interval => 3600 * 24) #once a day
-    end
+def create_sku sku_name, description, credits, price
+  sku = Sku.find_by_sku(sku_name)
+  if sku
+    puts "Sku #{sku.sku} already exists"
+  else
+    sku = CreditSku.create!(:sku => sku_name, :description => description,
+                            :num_credits => credits, :price => price)
+    puts "Sku #{sku.sku} created"
   end
 end
