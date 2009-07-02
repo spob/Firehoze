@@ -6,6 +6,7 @@ class LessonTest < ActiveSupport::TestCase
     setup do
       @sku = Factory.create(:credit_sku, :sku => FREE_CREDIT_SKU)
       @lesson = Factory.create(:lesson, :initial_free_download_count => 5)
+      @lesson = Lesson.find(@lesson)
     end
 
     should 'have free credits' do

@@ -220,6 +220,7 @@ class Lesson < ActiveRecord::Base
       sku = CreditSku.find_by_sku!(FREE_CREDIT_SKU)
 
       initial_free_download_count.times do
+    puts "aaaaaaaaaaaa"
         self.free_credits.create!
       end
     end

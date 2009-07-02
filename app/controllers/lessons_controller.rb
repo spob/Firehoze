@@ -57,6 +57,8 @@ class LessonsController < ApplicationController
   def watch
     if current_user.owns_lesson? @lesson or current_user == @lesson.instructor
       # watch the video
+    elsif @lesson.free_credits.available.size > 0
+      # TODO: consume a free credit
     elsif current_user.available_credits.empty?
       # User doesn't have enough credits...redirect them to the online store
       flash[:error] = t('lesson.need_credits')
