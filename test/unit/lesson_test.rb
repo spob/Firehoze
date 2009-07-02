@@ -9,7 +9,7 @@ class LessonTest < ActiveSupport::TestCase
     end
 
     should 'have free credits' do
-      assert_nil @lesson.credits.size
+      assert_equal 5, @lesson.free_credits.size
     end
   end
 
@@ -22,7 +22,7 @@ class LessonTest < ActiveSupport::TestCase
     should_allow_values_for          :title, "blah blah blah"
     should_ensure_length_in_range    :title, (0..50)
     should_have_attached_file        :video
-    should_have_many                 :reviews, :lesson_state_changes, :credits
+    should_have_many                 :reviews, :lesson_state_changes, :credits, :free_credits
 
     should "not have any credits" do
       assert_nil @lesson.initial_free_download_count

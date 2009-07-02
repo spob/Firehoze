@@ -20,6 +20,7 @@ class Lesson < ActiveRecord::Base
   has_many :reviews
   has_many :lesson_state_changes, :order => "id"
   has_many :credits
+  has_many :free_credits, :order => "id"
   validates_presence_of :instructor, :title, :video_file_name, :state
   validates_length_of :title, :maximum => 50, :allow_nil => true
   validates_numericality_of :video_file_size, :greater_than => 0, :allow_nil => true
@@ -53,7 +54,7 @@ class Lesson < ActiveRecord::Base
 
 
   before_create :record_state_change_create
-  before_validation_on_create  :create_free_credits
+  after_create  :create_free_credits
   before_update :record_state_change_update
 
 # Basic paginated listing finder
@@ -219,6 +220,7 @@ class Lesson < ActiveRecord::Base
       sku = CreditSku.find_by_sku!(FREE_CREDIT_SKU)
 
       initial_free_download_count.times do
+        self.free_credits.create!
       end
     end
   rescue ActiveRecord::RecordNotFound => e
