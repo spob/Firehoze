@@ -1,8 +1,8 @@
-# lib/tasks/populate_fake_data.rb
-# generates test data, useful for testing and stress testing
+# lib/tasks/populate_fake_data.rake
+# Generates test data. Useful for testing and stress testing
 # http://railscasts.com/episodes/126
-# in order to user this task, you must first install these two gems
-# notet these should be part of the environment.rb
+# in order to use this task, you must first install these two gems
+# note these should not be part of the environment.rb
 # sudo gem install populator
 # sudo gem install faker
 
