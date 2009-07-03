@@ -15,7 +15,7 @@ class Credit < ActiveRecord::Base
 
   belongs_to :sku, :class_name => "CreditSku"
   belongs_to :user
-  belongs_to :lesson
+  belongs_to :lesson, :counter_cache => true
 
   before_create :set_acquired_at_and_will_expire_at
   before_validation :set_redeemed_at
