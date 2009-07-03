@@ -29,9 +29,9 @@ class PasswordResetsController < ApplicationController
 
   # This action will be shown when the user has clicked on the link in the URL. From this screen they can then
   # set a new password
-  def edit
-    render
-  end
+  #def edit
+  #  render
+  #end
 
   # Now, finally, the user has entered a new password...update their account accordingly.
   def update
