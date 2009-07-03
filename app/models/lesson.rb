@@ -56,9 +56,7 @@ class Lesson < ActiveRecord::Base
   before_update :record_state_change_update
 
   named_scope   :highest_rated, :order => :rating_average
-  # named_scope :active, :conditions => {:active => true}
-
-
+  named_scope   :pending, :conditions => {:state => 'pending' }
 
 # Basic paginated listing finder
 # if view_all is false, only videos in the ready state will be returned
