@@ -14,3 +14,5 @@ public/assets
 nbproject
 tmp
 script/s3.rb
+coverage
+coverage.data
