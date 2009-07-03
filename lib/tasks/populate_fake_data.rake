@@ -163,7 +163,9 @@ namespace :db do
               review = Review.new(:user => user, :title => Faker::Company.bs.titleize,:body => Populator.paragraphs(1..3))
               lesson.reviews << review
               review.save!
-              puts "Review created by #{user.full_name}: #{review.title}"
+              rating = rand(5) + 1
+              lesson.rate(rating, user)
+              puts "Review created by #{user.full_name}: #{review.title} | rating: #{rating}"
             end
           end
         end
