@@ -23,7 +23,7 @@ namespace :db do
   desc "Seed the database with skus"
   task :seed_skus => :environment do
     create_sku CreditSku, CREDIT_SKU, 'Download Credit', 1, 0.99
-    create_sku FreeCreditSku, FREE_CREDIT_SKU, 'Free Lesson', 1, 0.0
+    create_sku CreditSku, FREE_CREDIT_SKU, 'Free Lesson', 1, 0.0
   end
 
   desc "Seed the database with roles"

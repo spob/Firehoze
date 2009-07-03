@@ -65,10 +65,13 @@ class LessonTest < ActiveSupport::TestCase
     end
 
     context "that changed state" do
-      setup { @lesson.change_state('done', 'test msg') }
+      setup do
+        @lesson.change_state('done', 'test msg')
+        @lesson = Lesson.find(@lesson)
+      end
 
       should "have another state change record" do
-        assert_equal 2, @lesson.lesson_state_changes.size
+        assert_equal 2, @lesson.lesson_state_changes.count
         assert_equal "pending", @lesson.lesson_state_changes.last.from_state
         assert_equal "done", @lesson.lesson_state_changes.last.to_state
         assert_equal "test msg", @lesson.lesson_state_changes.last.message

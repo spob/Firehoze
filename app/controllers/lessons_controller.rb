@@ -19,6 +19,7 @@ class LessonsController < ApplicationController
 
   def create
     @lesson = Lesson.new(params[:lesson])
+    @lesson.initial_free_download_count = params[:initial_free_download_count].try('to_i')
     # the instructor is assumed to be the current user when creating a new lesson
     @lesson.instructor = current_user
     if @lesson.save

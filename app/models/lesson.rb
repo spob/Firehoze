@@ -52,7 +52,6 @@ class Lesson < ActiveRecord::Base
   # Used to seed the number of free downloads available
   attr_accessor :initial_free_download_count
 
-
   before_create :record_state_change_create
   after_create  :create_free_credits
   before_update :record_state_change_update
@@ -244,7 +243,7 @@ class Lesson < ActiveRecord::Base
   end
 
   def record_state_change_update
-    if self.state_changed? or self.new_record?
+    if self.state_changed?
       self.lesson_state_changes.build(:from_state => self.state_was,
                                       :to_state => self.state,
                                       :message =>  self.state_change_message)

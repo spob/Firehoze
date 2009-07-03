@@ -41,9 +41,15 @@
     </p>
 <% end %>
 <p>
-  <b>Created:</b>
+  <b>Published At:</b>
   <%= l @lesson.created_at %>
 </p>
+<% if @lesson.free_credits.available.size > 0 and (current_user.nil? or current_user.owns_lesson? @lesson) %>
+    <p>
+      <b>Free Views Remaining:</b>
+      <%= @lesson.free_credits.available.size %>
+    </p>
+<% end %>
 
 <% if current_user.try("is_sysadmin?") %>
     <p><b>System Information:</b></p>
