@@ -55,6 +55,11 @@ class Lesson < ActiveRecord::Base
   after_create  :create_free_credits
   before_update :record_state_change_update
 
+  named_scope   :highest_rated, :order => :rating_average
+  # named_scope :active, :conditions => {:active => true}
+
+
+
 # Basic paginated listing finder
 # if view_all is false, only videos in the ready state will be returned
   def self.list(page, user=nil)
