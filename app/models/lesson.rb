@@ -55,8 +55,12 @@ class Lesson < ActiveRecord::Base
   after_create  :create_free_credits
   before_update :record_state_change_update
 
-  named_scope   :highest_rated, :order => :rating_average
-  named_scope   :pending, :conditions => {:state => 'pending' }
+  named_scope   :most_popular, :order => "credits_count DESC"
+  named_scope   :highest_rated, :order => "rating_average DESC"
+  named_scope   :newest, :order => "created_at DESC"
+  named_scope   :pending, :conditions => {:state => LESSON_STATE_PENDING }
+  named_scope   :ready, :conditions => {:state => LESSON_STATE_READY }
+  named_scope   :failed, :conditions => {:state => LESSON_STATE_FAILED }
 
 # Basic paginated listing finder
 # if view_all is false, only videos in the ready state will be returned
