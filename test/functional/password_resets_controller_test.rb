@@ -43,9 +43,8 @@ class PasswordResetsControllerTest < ActionController::TestCase
         end
 
       should_assign_to :user
-      should_respond_with :redirect
-      should_set_the_flash_to /"Password successfully updated/
-      should_render_template :new
+      should_set_the_flash_to "Password successfully updated"
+      should_redirect_to("my account page") { account_url }
     end
   end
 end
