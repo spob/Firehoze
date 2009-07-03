@@ -28,7 +28,7 @@ namespace :db do
       developers_personal_info.each do |dev|
         admin = User.new params
         admin.email = dev[0]
-        admin.login = dev[1]
+        admin.login = dev[1].downcase
         admin.first_name = dev[1]
         admin.last_name = dev[2]
         admin.save!
@@ -177,7 +177,9 @@ namespace :db do
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE line_items;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE carts;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE helpfuls;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_state_changes;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE lessons;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE roles_users;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE user_logons;")
@@ -204,8 +206,11 @@ namespace :db do
   end
 
   def blow_away_lessons
-    ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE helpfuls;")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_state_changes;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE lessons;")
   end
 end
