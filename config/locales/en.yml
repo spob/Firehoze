@@ -63,6 +63,7 @@ en:
     conversion_end_success: Video transcoding completed successfully
     calc_thumb_url_start: Retrieving thumbnail URL
     ready: Video conversion completed successfully and is ready for viewing
+    not_ready: Conversion in process...lesson video not yet ready for viewing
 
   line_item:
     updated_success: Updated line item

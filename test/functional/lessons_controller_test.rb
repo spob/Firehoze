@@ -137,11 +137,32 @@ class LessonsControllerTest < ActionController::TestCase
       end
     end
 
+    context "with a lesson with free credits" do
+      setup do
+        @sku = Factory.create(:credit_sku, :sku => FREE_CREDIT_SKU)
+        @lesson = Factory.create(:lesson, :initial_free_download_count => 5)
+        @lesson.update_attribute(:state, LESSON_STATE_READY)
+        assert_equal 5, @lesson.free_credits.available.size
+        get :watch, :id => @lesson
+      end
+
+      should_assign_to :lesson
+      should_not_set_the_flash
+      should_redirect_to("watch screen") { watch_lesson_path(@lesson) }
+
+      should "have 4 free credits" do
+        assert_equal 4, @lesson.free_credits.available.size
+      end
+    end
+
     context "with a lesson" do
-      setup { @lesson = Factory.create(:lesson) }
+      setup do
+        @lesson = Factory.create(:lesson)
+      end
 
       context "which the user already owns" do
         setup do
+          @lesson.update_attribute(:state, LESSON_STATE_READY)
           @user.credits.create!(:price => 0.99, :lesson => @lesson)
           assert @user.owns_lesson?(@lesson)
           get :watch, :id => @lesson
@@ -155,6 +176,7 @@ class LessonsControllerTest < ActionController::TestCase
 
       context "for which the user is the instructor" do
         setup do
+          @lesson.update_attribute(:state, LESSON_STATE_READY)
           @lesson.update_attribute(:instructor, @user)
           assert !@user.owns_lesson?(@lesson)
           get :watch, :id => @lesson
@@ -167,7 +189,10 @@ class LessonsControllerTest < ActionController::TestCase
       end
 
       context "with no available credits" do
-        setup { get :watch, :id => @lesson }
+        setup do
+          @lesson.update_attribute(:state, LESSON_STATE_READY)
+          get :watch, :id => @lesson
+        end
 
         should_set_the_flash_to I18n.t('lesson.need_credits')
         should_redirect_to("online store") { store_path(1) }
@@ -178,12 +203,24 @@ class LessonsControllerTest < ActionController::TestCase
           @user.credits.create!(:price => 0.99)
           assert !@user.available_credits.empty?
           assert !@user.owns_lesson?(@lesson)
+          @lesson.update_attribute(:state, LESSON_STATE_READY)
           get :watch, :id => @lesson
+          assert @lesson.ready?
         end
 
         should_assign_to :lesson
         should_not_set_the_flash
         should_redirect_to("redeem credit confirmation screen") { new_acquire_lesson_path(:id => @lesson) }
+      end
+
+      context "and credit is not ready" do
+        setup do
+          get :watch, :id => @lesson
+        end
+
+        should_assign_to :lesson
+        should_set_the_flash_to /Conversion in process/
+        should_redirect_to("show lesson page") { lesson_path(:id => @lesson) }
       end
     end
   end
