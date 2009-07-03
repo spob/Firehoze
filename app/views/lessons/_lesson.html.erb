@@ -1,6 +1,6 @@
 <tr>
  <td><%= h lesson.title %></td>
- <td><%= h lesson.instructor.login %></td>
+ <td><%= link_to_profile(lesson.instructor) %></td>
  <td><%= l lesson.created_at %></td>
     <% if current_user.try("is_sysadmin?") %>
         <td><%= h lesson.state %></td>

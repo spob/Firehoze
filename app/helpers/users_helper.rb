@@ -10,4 +10,8 @@ module UsersHelper
   def signout_link(string)
     link_to "#{string}", logout_path, :method => :delete
   end
+
+  def link_to_profile(user)
+    link_to_unless_current user.handle_or_name, user_path(user)
+  end
 end
