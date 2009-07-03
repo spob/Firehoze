@@ -33,18 +33,35 @@ class PasswordResetsControllerTest < ActionController::TestCase
       should_redirect_to("login page") { root_url }
     end
 
-    context "on PUT to :update" do
+    context "and needing to reset the password" do
       setup do
-        url = edit_password_reset_url( Factory(:user).perishable_token)
-        id = url.split('/')[url.split('/').size - 2]
-        put :update, :id => id,
-                  :user => { :password => 'xxxxx',
-                             :password_confirmation => "xxxxx"}
+          url = edit_password_reset_url( Factory(:user).perishable_token)
+          @id = url.split('/')[url.split('/').size - 2]
+      end
+
+      context "on PUT to :update" do
+        setup do
+          put :update, :id => @id,
+              :user => { :password => 'xxxxx',
+                         :password_confirmation => "xxxxx"}
         end
 
-      should_assign_to :user
-      should_set_the_flash_to "Password successfully updated"
-      should_redirect_to("my account page") { account_url }
+        should_assign_to :user
+        should_set_the_flash_to "Password successfully updated"
+        should_redirect_to("my account page") { account_url }
+      end
+
+      context "on PUT to :update with bad password confirmation" do
+        setup do
+          put :update, :id => @id,
+              :user => { :password => 'xxxxx',
+                         :password_confirmation => "yyyyy"}
+        end
+
+        should_assign_to :user
+        should_not_set_the_flash
+        should_render_template "edit"
+      end
     end
   end
 end
