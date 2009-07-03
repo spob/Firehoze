@@ -28,7 +28,7 @@ namespace :db do
       developers_personal_info.each do |dev|
         admin = User.new params
         admin.email = dev[0]
-        admin.login = dev[1]
+        admin.login = dev[1].downcase
         admin.first_name = dev[1]
         admin.last_name = dev[2]
         admin.save!
@@ -163,7 +163,9 @@ namespace :db do
               review = Review.new(:user => user, :title => Faker::Company.bs.titleize,:body => Populator.paragraphs(1..3))
               lesson.reviews << review
               review.save!
-              puts "Review created by #{user.full_name}: #{review.title}"
+              rating = rand(5) + 1
+              lesson.rate(rating, user)
+              puts "Review created by #{user.full_name}: #{review.title} | rating: #{rating}"
             end
           end
         end
@@ -177,7 +179,9 @@ namespace :db do
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE line_items;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE carts;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE helpfuls;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_state_changes;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE lessons;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE roles_users;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE user_logons;")
@@ -204,8 +208,11 @@ namespace :db do
   end
 
   def blow_away_lessons
-    ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE helpfuls;")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_state_changes;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE lessons;")
   end
 end

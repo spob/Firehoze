@@ -6,6 +6,7 @@
     <% if current_user.try("is_sysadmin?") %>
         <th>State</th>
     <% end %>
+    <th>Average Rating</th>
     <th>Action</th>
   </tr>
   <%= render @lessons %>

@@ -29,7 +29,6 @@ class Lesson < ActiveRecord::Base
                     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                     :s3_permissions => 'private',
                     :path => ":attachment/:id/:basename.:extension",
-                    #:bucket => "input.firehoze.com"
                     :bucket => APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]
   #:url => "/assets/videos/:id/:basename.:extension",
   #:path => ":rails_root/public/assets/videos/:id/:basename.:extension"
@@ -55,6 +54,13 @@ class Lesson < ActiveRecord::Base
   before_create :record_state_change_create
   after_create  :create_free_credits
   before_update :record_state_change_update
+
+  named_scope   :most_popular, :order => "credits_count DESC"
+  named_scope   :highest_rated, :order => "rating_average DESC"
+  named_scope   :newest, :order => "created_at DESC"
+  named_scope   :pending, :conditions => {:state => LESSON_STATE_PENDING }
+  named_scope   :ready, :conditions => {:state => LESSON_STATE_READY }
+  named_scope   :failed, :conditions => {:state => LESSON_STATE_FAILED }
 
 # Basic paginated listing finder
 # if view_all is false, only videos in the ready state will be returned

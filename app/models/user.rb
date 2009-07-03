@@ -98,6 +98,19 @@ class User < ActiveRecord::Base
     !self.lessons.scoped_by_id(lesson).first.nil?
   end
 
+  def city_and_state
+    [ city, state ].reject { |e| e.blank? }.join(', ')
+  end
+  
+  def handle_or_name
+    return 'Firehoze member' if handle.blank? and name.blank?
+    handle || full_name
+  end
+
+  def handle 
+    login
+  end
+
   private
 
   def persist_user_logon
