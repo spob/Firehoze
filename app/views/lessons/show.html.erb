@@ -44,7 +44,7 @@
   <b>Published At:</b>
   <%= l @lesson.created_at %>
 </p>
-<% if @lesson.free_credits.available.size > 0 and (current_user.nil? or !current_user.owns_lesson? @lesson) %>
+<% if @lesson.free_credits.available.size > 0 %>
     <p>
       <b>Free Views Remaining:</b>
       <%= @lesson.free_credits.available.size %>
