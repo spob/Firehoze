@@ -16,9 +16,9 @@ class DiscountsController < ApplicationController
     @discounts = Discount.list @sku, params[:page]
   end
   
-  def show
-    @discount = sku.discounts.find(params[:id])
-  end
+  #def show
+  #  @discount = sku.discounts.find(params[:id])
+  #end
   
   def new
     @discount = @sku.discounts.build

@@ -65,6 +65,18 @@ class DiscountsControllerTest < ActionController::TestCase
             should_redirect_to("Discounts index page") { sku_discounts_url(@sku) }
           end
 
+          context "on POST to :create with bad value" do
+            setup do
+              discount_attrs = Factory.attributes_for(:discount_by_volume,
+                                                      :minimum_quantity => -1).merge!(:type => 'DiscountByVolume')
+              post :create, :discount => discount_attrs, :sku_id => @sku
+            end
+
+            should_assign_to :discount
+            should_render_template 'new'
+            should_not_set_the_flash
+          end
+
           context "on GET to :edit" do
             setup { get :edit, :id => @discount5 }
 
@@ -79,6 +91,25 @@ class DiscountsControllerTest < ActionController::TestCase
 
             should_set_the_flash_to /Successfully updated discount/
             should_assign_to :discount
+            should_respond_with :redirect
+            should_redirect_to("Discounts index page") { sku_discounts_url(@discount5.sku) }
+          end
+
+          context "on PUT to :update with bad value" do
+            setup do
+              @discount5.update_attribute(:minimum_quantity, -1)
+              put :update, :id => @discount5, :discount => @discount5.attributes
+            end
+
+            should_not_set_the_flash
+            should_assign_to :discount
+            should_render_template('edit')
+          end
+
+          context "on DELETE to :destroy" do
+            setup { delete :destroy, :id => @discount5 }
+
+            should_set_the_flash_to /Successfully updated discount/
             should_respond_with :redirect
             should_redirect_to("Discounts index page") { sku_discounts_url(@discount5.sku) }
           end
