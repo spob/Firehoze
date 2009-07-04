@@ -90,7 +90,7 @@ class Lesson < ActiveRecord::Base
 
   # This method takes a job record populated from the flixcloud gem, and will update the various attributes
   # on the job accordingly.
-  def finish_conversion job
+  def finish_conversion job, set_permissions=true
     if job.successful?
       self.update_attributes(
               :conversion_ended_at => job.finished_job_at,
@@ -181,9 +181,9 @@ class Lesson < ActiveRecord::Base
 
   def set_thumbnail_url
     change_state(LESSON_STATE_GET_THUMBNAIL_URL, I18n.t('lesson.calc_thumb_url_start'))
-    s3_connection = s3_connect
-    bucket = s3_connection.bucket(APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET])
-    file = bucket.key(thumbnail_path + "/thumb_0000.png", true)
+    #s3_connection = s3_connect
+    #bucket = s3_connection.bucket(APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET])
+    #file = bucket.key(thumbnail_path + "/thumb_0000.png", true)
     url = "http://" + APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET] +
             ".s3.amazonaws.com/" + id.to_s + "/thumb_0000.png"
     self.update_attribute(:thumbnail_url, url)
@@ -212,6 +212,45 @@ class Lesson < ActiveRecord::Base
         Notifier.deliver_lesson_processing_hung lesson
       end
     end
+  end
+
+  # This is a utility method to build a dummy XML response message from flix cloud
+  def build_flix_response
+    xml = Builder::XmlMarkup.new( :target => out_string = "",
+                                  :indent => 2 )
+
+    xml.instruct!(:xml, :encoding => "UTF-8")
+    xml.job do
+      xml.tag!("finished-job-at", Time.now.strftime("%Y-%m-%dT%H:%M:%SZ"), :type => "datetime")
+      xml.tag!("id", self.flixcloud_job_id.to_s, :type => "integer")
+      xml.tag!("initialized-job-at", self.conversion_started_at.strftime("%Y-%m-%dT%H:%M:%SZ"), :type => "datetime")
+      xml.tag!("recipe-name", "my-recipe")
+      xml.tag!("recipe-id", FLIX_RECIPE_ID, :type => "integer")
+      xml.tag!('state', 'successful_job')
+      xml.tag!('error-message')
+      xml.tag!('input-media-file') do
+        xml.tag!("url", input_path)
+        xml.tag!("width", 1280)
+        xml.tag!("height", 720)
+        xml.tag!("size", 9842956)
+        xml.tag!("duration", 10005)
+        xml.tag!("cost", 1638)
+      end
+      xml.tag!('output-media-file') do
+        xml.tag!("url", output_path)
+        xml.tag!("width", 1280)
+        xml.tag!("height", 720)
+        xml.tag!("size", 9842956)
+        xml.tag!("duration", 10005)
+        xml.tag!("cost", 1638)
+      end
+      xml.tag!('watermark-file') do
+        xml.tag!("url", "somepath to watermark")
+        xml.tag!("size", 1024)
+        xml.tag!("cost", 10)
+      end
+    end
+    out_string
   end
 
   private
