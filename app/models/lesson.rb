@@ -255,12 +255,13 @@ class Lesson < ActiveRecord::Base
 
   private
 
-  def output_path
-    's3://' + APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET] + '/' + self.video.path
-  end
 
   def input_path
     's3://' + APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET] + '/' + self.video.path
+  end
+
+  def output_path
+    's3://' + APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET] + '/' + self.video.path + ".flv"
   end
 
   def thumbnail_path
