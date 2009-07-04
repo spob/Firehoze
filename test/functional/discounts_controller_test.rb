@@ -109,7 +109,7 @@ class DiscountsControllerTest < ActionController::TestCase
           context "on DELETE to :destroy" do
             setup { delete :destroy, :id => @discount5 }
 
-            should_set_the_flash_to /Successfully updated discount/
+            should_set_the_flash_to /"Successfully destroyed discount/
             should_respond_with :redirect
             should_redirect_to("Discounts index page") { sku_discounts_url(@discount5.sku) }
           end
