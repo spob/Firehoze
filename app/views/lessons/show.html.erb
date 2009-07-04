@@ -8,7 +8,7 @@
 <% end %>
 
 <p>
-  <%= ratings_for(@lesson) %>
+  <%= ratings_for @lesson, current_user == @lesson.instructor ? :static : :active %>
 </p>
 
 <div id="<%= dom_id(@lesson) %>_average">
