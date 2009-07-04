@@ -78,6 +78,10 @@ class Lesson < ActiveRecord::Base
     self.state == LESSON_STATE_READY
   end
 
+  def owned_by?(user)
+    !self.credits.scoped_by_user_id(user).first.nil?
+  end
+
   # The lesson can be edited by an admin or the instructor who created it
   def can_edit? user
     user and (user.is_admin? or user.is_moderator? or instructor == user)

@@ -10,7 +10,7 @@ module LessonsHelper
   end
 
   def lesson_rating_for(lesson, user)
-    ratings_for(lesson, (user != @lesson.instructor and user.owns_lesson?(lesson)) ? :active : :static)
+    ratings_for(lesson, (user != @lesson.instructor and lesson.owned_by?(user)) ? :active : :static)
   end
 
 end
