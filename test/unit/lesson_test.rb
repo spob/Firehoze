@@ -64,6 +64,19 @@ class LessonTest < ActiveSupport::TestCase
       end
     end
 
+    context "and a response job" do
+      setup do
+        @lesson.update_attribute(:conversion_started_at, 1.minutes.ago)
+        @job = FlixCloud::Notification.new(@lesson.build_flix_response)
+        assert !@job.nil?
+        assert @lesson.finish_conversion(@job)
+      end
+
+      should "be succesfully converted" do
+        assert @lesson.ready?
+      end
+    end
+
     context "that changed state" do
       setup do
         @lesson.change_state('done', 'test msg')
