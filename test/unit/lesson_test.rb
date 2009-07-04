@@ -32,6 +32,22 @@ class LessonTest < ActiveSupport::TestCase
       assert !@lesson.ready?
     end
 
+    context "which is processing" do
+      setup do
+        # notifier needs at least one sys admin
+        @sysadmin = Factory.create(:user)
+        @sysadmin.has_role 'sysadmin'
+        @lesson.update_attributes(:state => LESSON_STATE_START_CONVERSION_SUCCESS,
+                                  :flixcloud_job_id => @lesson.id * 2)
+      end
+
+      should "check for zombies succesfully" do
+        assert_nothing_thrown do
+          Lesson.detect_zombie_video(@lesson.id, @lesson.id * 2)
+        end
+      end
+    end
+
     context "which is ready" do
       setup { @lesson.update_attribute(:state, 'ready') }
 

@@ -207,7 +207,7 @@ class Lesson < ActiveRecord::Base
   end
 
   # Check if a video was submitted for processing and never returned. If so, send an email alert
-  def self.detect_zombie_video lesson_id, job_id
+  def self.detect_zombie_video(lesson_id, job_id)
     lesson = Lesson.find(lesson_id)
     if lesson.flixcloud_job_id == job_id
       # id is the same, so a new job hasn't been submitted
