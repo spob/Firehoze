@@ -89,7 +89,7 @@ namespace :db do
         lesson.title = Faker::Company.catch_phrase.titleize
         lesson.description = Populator.paragraphs(1..3)
         lesson.state = "ready"
-        dummy_video_path = "/test/videos/#{rand(5)+1}.swf" #pick a random vid,
+        dummy_video_path = "/test/videos/#{rand(5)+1}.avi" #pick a random vid,
         if !File.exist?(RAILS_ROOT + dummy_video_path)
           puts "can not find file"
         else
