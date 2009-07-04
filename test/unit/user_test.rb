@@ -33,8 +33,15 @@ class UserTest < ActiveSupport::TestCase
     context "and a couple more records" do
       setup do
         # and let's create a couple more
-        Factory.create(:user)
-        Factory.create(:user)
+        @user2 = Factory.create(:user)
+        @user3 = Factory.create(:user)
+        @user3.has_role 'sysadmin'
+      end
+
+      should "return one sysadmin record" do
+        admins = User.admins
+        assert_equal 1, admins.size
+        assert_equal @user3, admins.first
       end
 
       should "return user records" do
