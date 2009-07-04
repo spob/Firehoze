@@ -1,7 +1,8 @@
 namespace :flix do
   desc "Simulate a flix cloud response to associate a video with it's S3 output file"
   task :repair => :environment do
-    for lesson in Lesson.find(:all, :conditions => ["state != ?", LESSON_STATE_READY])
+    for lesson in Lesson.find(:all, :conditions => ["state != ? and conversion_started_at is not null",
+                                                    LESSON_STATE_READY])
       puts "Found lesson ##{lesson.id}: #{lesson.title} (state: #{lesson.state})"
       s3_connection = RightAws::S3.new(APP_CONFIG[CONFIG_AWS_ACCESS_KEY_ID],
                                        APP_CONFIG[CONFIG_AWS_SECRET_ACCESS_KEY])
