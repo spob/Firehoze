@@ -24,6 +24,7 @@ namespace :db do
   task :seed_skus => :environment do
     create_sku CreditSku, CREDIT_SKU, 'Download Credit', 1, 0.99
     create_sku CreditSku, FREE_CREDIT_SKU, 'Free Lesson', 1, 0.0
+    create_sku GiftCertificateSku, GIFT_CERTIFICATE_SKU, 'Gift Certificate', 1, 0.99
   end
 
   desc "Seed the database with roles"

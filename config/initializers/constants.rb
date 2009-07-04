@@ -7,6 +7,7 @@ ROLE_MODERATOR = 'moderator'
 # Skus
 CREDIT_SKU = 'CREDIT'
 FREE_CREDIT_SKU = 'FREE_CREDIT'
+GIFT_CERTIFICATE_SKU = 'GIFT_CERTIFICATE_SKU'
 
 # Configuration properties in the environment.yml file
 CONFIG_PROTOCOL = 'protocol'
