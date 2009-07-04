@@ -12,7 +12,7 @@ test:
   # The name of the Amazon S3 bucket where raw videos you be uploaded
   aws_s3_input_video_bucket: xyz
   aws_s3_output_video_bucket: abc
-  aws_s3_thumbs_bucket: 123
+  aws_s3_thumbs_bucket: aaa123
   
 production:
   access_key_id: AKIAJHAN3EBVVY6W7MVA
