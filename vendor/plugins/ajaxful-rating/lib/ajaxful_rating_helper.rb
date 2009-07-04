@@ -152,8 +152,10 @@ module AjaxfulRating # :nodoc:
     
     # Returns the current average string.
     def current_average(rateable)
+      avg = format("%0.2f", (rateable.rate_average(true, options[:dimension])).to_f)
       I18n.t('ajaxful_rating.stars.current_average', :average => rateable.rate_average(true, options[:dimension]),
-        :max => rateable.class.max_rate_value, :default => "Current rating average: {{average}}/{{max}}")
+        :max => rateable.class.max_rate_value, :default => "Current rating average: #{avg}")
+        # :max => rateable.class.max_rate_value, :default => "Current rating average: {{average}}/{{max}}")
     end
   
     # Temporary instance to hold dynamic styles.
