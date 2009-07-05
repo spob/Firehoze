@@ -1,0 +1,7 @@
+<% lessons = object %>
+
+<% if controller.action_name == 'list' %>
+  <%= will_paginate lessons %>
+<% else %>
+  <%= link_to 'More &raquo;', list_lessons_path(:collection => collection) %>
+<% end %>

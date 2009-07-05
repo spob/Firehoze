@@ -1,15 +1,4 @@
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Instructor</th>
-    <th>Created At</th>
-    <% if current_user.try("is_sysadmin?") %>
-        <th>State</th>
-    <% end %>
-    <th>Average Rating</th>
-    <th>Owned?</th>
-    <th>Action</th>
-  </tr>
-  <%= render @lessons %>
-</table>
-<%= will_paginate @lessons %>
+<%= render :partial => "default" if current_user and current_user.is_sysadmin? %>
+<%= render :partial => "most_popular" %>
+<%= render :partial => "highest_rated" %>
+<%= render :partial => "newest" %>

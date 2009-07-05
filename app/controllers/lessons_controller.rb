@@ -2,15 +2,20 @@ class LessonsController < ApplicationController
   before_filter :require_user, :only => [:new, :create, :edit, :update, :watch, :convert]
   permit ROLE_SYSADMIN, :only => [:convert]
 
-  verify :method => :post, :only => [:create, :convert ], :redirect_to => :home_path
-  verify :method => :put, :only => [:update, :conversion_notify ], :redirect_to => :home_path
+  verify :method => :post, :only => [ :create, :convert ], :redirect_to => :home_path
+  verify :method => :put, :only => [ :update, :conversion_notify ], :redirect_to => :home_path
   before_filter :find_lesson, :only => [ :show, :edit, :update, :watch, :convert, :rate ]
+  before_filter :set_per_page, :only => [ :index, :list ]
 
   # The number of free download counts to display on the create lesson page
   @@free_download_counts = [ 0, 5, 10, 25 ]
 
   def index
     @lessons = Lesson.list(params[:page], current_user)
+  end
+
+  def list
+    @collection = params[:collection]
   end
 
   def new
@@ -123,6 +128,10 @@ class LessonsController < ApplicationController
 
   def find_lesson
     @lesson = Lesson.find(params[:id])
+  end
+
+  def set_per_page
+    @per_page = %w(index).include?(params[:action]) ? 3 : Lesson.per_page
   end
 
 end

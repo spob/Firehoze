@@ -7,7 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :helpfuls, :only => [ :create ]
   map.resources :lessons, :has_many => :reviews, :shallow => true,
                 :member => { :watch => :get, :convert => :post, :rate => :post },
-                :collection => { :conversion_notify => :put }
+                :collection => { :conversion_notify => :put, :list => :get }
   map.resources :line_items, :only => [ :create, :destroy, :update ]
   map.resources :orders
   map.login 'login',   :controller => 'user_sessions', :action => 'new'

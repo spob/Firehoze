@@ -16,6 +16,9 @@
 #   failed:                   an error occurred at some point along the way'
 class Lesson < ActiveRecord::Base
   ajaxful_rateable :stars => 5
+  cattr_reader :per_page
+  @@per_page = LESSONS_PER_PAGE
+
   belongs_to :instructor, :class_name => "User", :foreign_key => "instructor_id"
   has_many :reviews
   has_many :lesson_state_changes, :order => "id"
@@ -58,8 +61,8 @@ class Lesson < ActiveRecord::Base
   named_scope   :most_popular, :order => "credits_count DESC"
   named_scope   :highest_rated, :order => "rating_average DESC"
   named_scope   :newest, :order => "created_at DESC"
-  named_scope   :pending, :conditions => {:state => LESSON_STATE_PENDING }
   named_scope   :ready, :conditions => {:state => LESSON_STATE_READY }
+  named_scope   :pending, :conditions => {:state => LESSON_STATE_PENDING }
   named_scope   :failed, :conditions => {:state => LESSON_STATE_FAILED }
 
 # Basic paginated listing finder
@@ -71,7 +74,7 @@ class Lesson < ActiveRecord::Base
     paginate :page => page,
              :conditions => conditions,
              :order => 'id desc',
-             :per_page => ROWS_PER_PAGE
+             :per_page => per_page
   end
 
   def ready?
@@ -80,6 +83,10 @@ class Lesson < ActiveRecord::Base
 
   def owned_by?(user)
     !self.credits.scoped_by_user_id(user).first.nil?
+  end
+
+  def instructed_by?(user)
+    instructor == user
   end
 
   # The lesson can be edited by an admin or the instructor who created it

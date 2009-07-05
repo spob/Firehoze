@@ -1,0 +1,18 @@
+<% lesson = object %>
+<div style="margin-bottom:20px;">
+  <div><%= link_to lesson.title, lesson_path(lesson) %> <%= link_to_profile(lesson.instructor) %> <%= l lesson.created_at %></div>
+  <div><%= lesson.rating_average %></div>
+  <div>Owned?: <%= (current_user ? current_user.owns_lesson?(lesson) : false) %></div>
+  <div>Number of Viewers: <%= lesson.credits_count %></div>
+
+  <div>
+    <% if current_user.try("is_sysadmin?") or lesson.instructed_by?(current_user) %>
+      <%= h lesson.state %>
+      <%= link_to  'Edit', edit_lesson_path(lesson) %>
+    <% end %>
+  </div>
+</div>
+
+
+
+

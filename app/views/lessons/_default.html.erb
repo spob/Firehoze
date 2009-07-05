@@ -1,16 +1,17 @@
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Instructor</th>
-    <th>Created At</th>
-    <% if current_user.try("is_sysadmin?") %>
+<div class="lesson_container">
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Instructor</th>
+      <th>Created At</th>
+      <% if current_user.try("is_sysadmin?") %>
         <th>State</th>
-    <% end %>
-    <th>Average Rating</th>
-    <th>Owned?</th>
-    <th>Action</th>
-  </tr>
-  <%= render @lessons %>
-</table>
-
-<%= will_paginate @lessons %>
+      <% end %>
+      <th>Average Rating</th>
+      <th>Owned?</th>
+      <th>Action</th>
+    </tr>
+    <%= render @lessons %>
+  </table>
+  <%= will_paginate @lessons %>
+</div>

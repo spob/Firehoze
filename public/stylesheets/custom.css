@@ -37,9 +37,10 @@
     color: #fff;
 }
 
-/*
-div {
-border:solid 1px #999;
+div.lesson_container {
+	border:solid 1px #999;
+	margin:20px;
+	padding:20px;
 }
-*/
+
 

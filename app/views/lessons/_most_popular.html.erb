@@ -1,0 +1,8 @@
+<%
+most_popular = Lesson.ready.most_popular.paginate :page => params[:page], :per_page => @per_page
+%>
+<div class="lesson_container">
+  <h3>Most Popular</h3>
+  <%= render :partial => "lesson_extended", :collection => most_popular %>
+  <%= render :partial => "pagination", :object => most_popular, :locals => {:collection => :most_popular} %>
+</div>
