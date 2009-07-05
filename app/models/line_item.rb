@@ -6,6 +6,7 @@ class LineItem < ActiveRecord::Base
   belongs_to :sku
   # The discount if a discount was provided when purchasing
   belongs_to :discount
+  has_many :gift_certificates
 
   attr_accessible :unit_price, :quantity
 

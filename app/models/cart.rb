@@ -32,7 +32,7 @@ class Cart < ActiveRecord::Base
     # Go ahead and execute the order. For example, in the case of a credit sku, this would mean
     # granting the user credits
     for line in self.line_items
-      line.sku.execute_order_line user, line.quantity
+      line.sku.execute_order_line user, line
     end
   end
 end

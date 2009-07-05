@@ -13,7 +13,7 @@ class GiftCertificateSkuTest < ActiveSupport::TestCase
 
       should "create a gift certificate" do
         assert_equal 0, @user.gift_certificates.size
-        @sku.execute_order_line(@user, @sku.num_credits)
+        @sku.execute_order_line(@user, Factory.create(:line_item))
         @user = User.find(@user.id)
         assert_equal 1, @user.gift_certificates.size
       end

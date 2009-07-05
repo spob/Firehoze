@@ -63,9 +63,9 @@ class LineItemsController < ApplicationController
 
   def destroy
     line_item = LineItem.find params[:id]
-    sku = line_item.sku.sku
+    sku = line_item.sku
     line_item.destroy
-    flash[:notice] = t 'line_item.remove_sku_success', :sku => sku
+    flash[:notice] = t 'line_item.remove_sku_success', :sku_desc => sku.description
     redirect_to current_cart_url
   end
 end

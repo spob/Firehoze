@@ -1,8 +1,9 @@
 class GiftCertificate < ActiveRecord::Base
-  validates_presence_of :code, :credit_quantity, :user, :gift_certificate_sku
+  validates_presence_of :code, :credit_quantity, :user, :gift_certificate_sku, :line_item
   validates_length_of :code, :is=> 16, :allow_nil => true
   belongs_to :user
   belongs_to :gift_certificate_sku
+  belongs_to :line_item
   validates_numericality_of :credit_quantity, :greater_than => 0, :only_integer => true, :allow_nil => true
   
   before_validation_on_create :populate_code

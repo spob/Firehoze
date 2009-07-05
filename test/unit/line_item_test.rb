@@ -7,6 +7,7 @@ class LineItemTest < ActiveSupport::TestCase
     end
 
     should_belong_to                 :discount
+    should_have_many                 :gift_certificates
     should_validate_presence_of      :unit_price, :sku, :cart, :quantity
     # can't do should_validate_presence_of for discounted_unit_price because it's set implicitly'
     should_allow_values_for          :unit_price, 0.99, 1, 1.23, 1000.2

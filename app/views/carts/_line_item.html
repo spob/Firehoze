@@ -1,5 +1,11 @@
 <tr class="<%= cycle :odd, :even %>">
-    <td><%=h line_item.sku.description %></td>
+    <td>
+        <%= h line_item.sku.description %>
+        <% if line_item.sku.class == GiftCertificateSku and !line_item.gift_certificates.empty? %>
+        <br/>
+        <%= line_item.gift_certificates.first.formatted_code %>
+        <% end %>
+    </td>
     <td class="price"><%= number_to_currency(line_item.unit_price) %></td>
     <td class="qty"><%= line_item.quantity %></td>
     <td class="price"><%= number_to_currency(line_item.total_full_price) %></td>

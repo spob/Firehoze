@@ -5,7 +5,8 @@ class HelpfulTest < ActiveSupport::TestCase
     setup do
       @user = Factory.create(:user)
       @lesson = Factory.create(:lesson)
-      @user.credits.create!(:price => 0.99, :lesson => @lesson, :acquired_at => Time.now)
+      @user.credits.create!(:price => 0.99, :lesson => @lesson, :acquired_at => Time.now,
+                            :line_item => Factory.create(:line_item))
       @review = Factory.create(:review, :user => @user, :lesson => @lesson)
       assert @user.owns_lesson?(@lesson)
       @helpful = Factory.create(:helpful, :review => @review)
