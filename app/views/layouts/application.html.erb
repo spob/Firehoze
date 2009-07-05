@@ -30,8 +30,10 @@
       </div>
 
       <div class="clear span-24 last" id="main"> 
+        <% if flash[:notice] or flash[:error] -%>
         <p style="color: green"><%= flash[:notice] %></p>
         <p style="color: red"><%= flash[:error] %></p>
+        <% end %>
         <%= yield %>
       </div>
 
