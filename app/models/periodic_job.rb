@@ -50,7 +50,7 @@ class PeriodicJob < ActiveRecord::Base
     PeriodicJob.transaction do
       for job in PeriodicJob.zombies
         #        puts "Found...#{job.id}"
-        TaskServerLogger.instance.debug("Failed job #{job.id}")
+        TaskServerLogger.instance.error("Failed zombie periodic job #{job.id}")
         job.fail_job
       end
     end
