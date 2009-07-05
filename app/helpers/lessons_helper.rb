@@ -15,13 +15,13 @@ module LessonsHelper
 
   def lessons_header(collection)
     if controller.action_name == 'list'
-     header = case collection
-      when :highest_rated
-        "Highest Rated"
-      when :newest
-        "Newest"
+      header = case collection
       when :most_popular
-        "Most Popular"
+        t('lesson.most_popular')
+      when :highest_rated
+        t('lesson.highest_rated')
+      when :newest
+        t('lesson.newest')
       end
       "<h4>#{header}</h4>"
     end

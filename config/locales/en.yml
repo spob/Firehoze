@@ -64,6 +64,9 @@ en:
     calc_thumb_url_start: Retrieving thumbnail URL
     ready: Video conversion completed successfully and is ready for viewing
     not_ready: Conversion in process...lesson video not yet ready for viewing
+    highest_rated: Highest Rated
+    newest: Newest
+    most_popular: Most Popular
 
   line_item:
     updated_success: Updated line item
