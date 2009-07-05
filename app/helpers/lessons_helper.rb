@@ -13,4 +13,17 @@ module LessonsHelper
     ratings_for(lesson, (user != @lesson.instructor and lesson.owned_by?(user)) ? :active : :static)
   end
 
+  def lessons_header(collection)
+    if controller.action_name == 'list'
+     header = case collection
+      when :highest_rated
+        "Highest Rated"
+      when :newest
+        "Newest"
+      when :most_popular
+        "Most Popular"
+      end
+      "<h4>#{header}</h4>"
+    end
+  end
 end

@@ -1,5 +1,5 @@
 <% lesson = object %>
-<div style="margin-bottom:20px;">
+<div class="lesson">
   <div><%= link_to lesson.title, lesson_path(lesson) %> <%= link_to_profile(lesson.instructor) %> <%= l lesson.created_at %></div>
   <div><%= lesson.rating_average %></div>
   <div>Owned?: <%= (current_user ? current_user.owns_lesson?(lesson) : false) %></div>

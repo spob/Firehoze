@@ -1,4 +1,22 @@
+<% content_for :head do -%>
+  <%= javascript_include_tag 'jquery-ui-1.7.2.custom.min' %>
+  <%= stylesheet_link_tag 'jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" %>
+  <script type="text/javascript">
+    $(function() {
+      $("#tabs").tabs();
+    });
+  </script>
+<% end %>
+
 <%= render :partial => "default" if current_user and current_user.is_sysadmin? %>
-<%= render :partial => "most_popular" %>
-<%= render :partial => "highest_rated" %>
-<%= render :partial => "newest" %>
+
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Most Popular</a></li>
+    <li><a href="#tabs-2">Highest Rated</a></li>
+    <li><a href="#tabs-3">Newest</a></li>
+  </ul>
+  <div id="tabs-1"><%= render :partial => "most_popular" %></div>
+  <div id="tabs-2"><%= render :partial => "highest_rated" %></div>
+  <div id="tabs-3"><%= render :partial => "newest" %></div>
+</div>
