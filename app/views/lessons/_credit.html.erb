@@ -4,5 +4,5 @@
         <td><%= h credit.user.login %></td>
     <% end %>
     <td><%= number_to_currency(credit.price) %></td>
-    <td><%= credit.sku.description %></td>
+    <td><%= credit.sku.description unless credit.sku.nil? %></td>
 </tr>
