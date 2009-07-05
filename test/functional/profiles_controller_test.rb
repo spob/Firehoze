@@ -34,5 +34,14 @@ class ProfilesControllerTest < ActionController::TestCase
       should_set_the_flash_to :profile_update_success
       should_redirect_to("profile page") { profile_url(assigns(:user)) }
     end
+
+    context "on PUT to :update with bad value" do
+      setup { put :update, :user => Factory.attributes_for(:user, :last_name => "") }
+
+      should_assign_to :user
+      should_respond_with :success
+      should_not_set_the_flash
+      should_render_template :edit
+    end
   end
 end
