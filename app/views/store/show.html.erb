@@ -9,4 +9,9 @@
                             :quantity => APP_CONFIG['min_credit_purchase'].to_i * 2), :method => :post %>
 <br/>
 <br/>
+<%= link_to "Buy Gift Certificate",
+            line_items_path(:sku => GiftCertificateSku.find_by_sku(GIFT_CERTIFICATE_SKU).try(:sku),
+                            :quantity => APP_CONFIG['min_credit_purchase'].to_i), :method => :post %>
+<br/>
+<br/>
 This would be a place for some good marketing text to upsell the user

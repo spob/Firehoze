@@ -7,6 +7,7 @@ class GiftCertificateTest < ActiveSupport::TestCase
     end
 
     should_belong_to                 :user
+    should_belong_to                 :gift_certificate_sku
     should_validate_presence_of      :user, :code, :credit_quantity
     should_ensure_length_is          :code, 16
 

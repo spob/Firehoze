@@ -6,7 +6,6 @@ class CreateSkus < ActiveRecord::Migration
       t.string       :type,         :null => false, :limit => 50
       t.integer      :num_credits,  :null => true
       t.float        :price,        :null => true
-      t.float        :price,        :null => true
       t.timestamps
     end
 
