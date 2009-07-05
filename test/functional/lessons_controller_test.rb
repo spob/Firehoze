@@ -68,6 +68,16 @@ class LessonsControllerTest < ActionController::TestCase
       should_redirect_to("lessons index page") { lesson_url(assigns(:lesson)) }
     end
 
+    context "on POST to :create with bad values" do
+      setup do
+        post :create, :lesson => Factory.attributes_for(:lesson, :title => "")
+      end
+
+      should_assign_to :lesson
+      should_render_template :new
+      should_not_set_the_flash
+    end
+
     context "with at least one existing lesson" do
       setup do
         Factory.create(:user)
@@ -113,6 +123,15 @@ class LessonsControllerTest < ActionController::TestCase
         should_assign_to :lesson
         should_respond_with :redirect
         should_redirect_to("lesson page") { lesson_path(@lesson) }
+      end
+
+      context "on PUT to :update with bad values" do
+        setup { put :update, :id => @lesson.id, :lesson => Factory.attributes_for(:lesson, :title => "") }
+
+        should_not_set_the_flash
+        should_assign_to :lesson
+        should_respond_with :success
+        should_render_template :edit
       end
 
       context "which was authored by a different user" do

@@ -16,3 +16,7 @@ Factory.define :order do |order|
   order.last_name "Smith"
 end
 
+Factory.define :completed_order, :parent => :order do |order|
+  order.association :cart, :factory => :purchased_cart
+end
+

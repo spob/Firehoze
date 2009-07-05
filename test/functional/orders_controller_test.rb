@@ -17,6 +17,15 @@ class OrdersControllerTest < ActionController::TestCase
       should_render_template "new"
     end
 
+    context "on GET to :show" do
+      setup { get :show, :id => Factory.create(:completed_order) }
+
+      should_assign_to :order
+      should_respond_with :success
+      should_not_set_the_flash
+      should_render_template "show"
+    end
+
     context "on POST to :create" do
       setup do
         post :create, :order => Factory.attributes_for(:order, :card_number => "1")
