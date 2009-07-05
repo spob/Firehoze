@@ -1,10 +1,10 @@
 <% content_for :head do -%>
-    <%= javascript_include_tag 'swfobject' %>
+  <%= javascript_include_tag 'swfobject' %>
 <% end %>
 
 
 <% if @lesson.thumbnail_url %>
-    <img src="<%= @lesson.thumbnail_url %>"/>
+  <img src="<%= @lesson.thumbnail_url %>"/>
 <% end %>
 
 <p>
@@ -40,106 +40,106 @@
 </p>
 
 <% if @lesson.finished_video_duration %>
-    <p>
-      <b>Duration:</b>
-      <%= ChronicDuration.output(@lesson.finished_video_duration/1000, :format => :long) %>
-    </p>
+  <p>
+    <b>Duration:</b>
+    <%= ChronicDuration.output(@lesson.finished_video_duration/1000, :format => :long) %>
+  </p>
 <% end %>
 <p>
   <b>Published At:</b>
   <%= l @lesson.created_at %>
 </p>
 <% if @lesson.free_credits.available.size > 0 %>
-    <p>
-      <b>Free Views Remaining:</b>
-      <%= @lesson.free_credits.available.size %>
-    </p>
+  <p>
+    <b>Free Views Remaining:</b>
+    <%= @lesson.free_credits.available.size %>
+  </p>
 <% end %>
 
 <% if @lesson.credits.size > 0 and (current_user.try("is_sysadmin?") or @lesson.instructor == current_user) %>
-    <h2>Lesson Purchases</h2>
-    <table>
-      <tr>
-        <th>Timestamp</th>
-        <% if current_user.try("is_sysadmin?") %>
-            <th>User</th>
-        <% end %>
-        <th>Price Paid</th>
-        <th>Description</th>
-      </tr>
-      <%= render :partial => 'lessons/credit', :collection => @lesson.credits %>
-      <tr>
-        <td><b>TOTAL</b></td>
-        <% if current_user.try("is_sysadmin?") %>
-            <td/>
-        <% end %>
-        <td><%= number_to_currency(@lesson.credits.sum(:price)) %></td>
+  <h2>Lesson Purchases</h2>
+  <table>
+    <tr>
+      <th>Timestamp</th>
+      <% if current_user.try("is_sysadmin?") %>
+        <th>User</th>
+      <% end %>
+      <th>Price Paid</th>
+      <th>Description</th>
+    </tr>
+    <%= render :partial => 'lessons/credit', :collection => @lesson.credits %>
+    <tr>
+      <td><b>TOTAL</b></td>
+      <% if current_user.try("is_sysadmin?") %>
         <td/>
-      </tr>
-    </table>
+      <% end %>
+      <td><%= number_to_currency(@lesson.credits.sum(:price)) %></td>
+      <td/>
+    </tr>
+  </table>
 <% end %>
 
 <% if current_user.try("is_sysadmin?") %>
-    <h2>System Information:</h2>
-    <p>
-      <b>State:</b>
-      <%= h @lesson.state %>
-    </p>
-    <p>
-      <b>Raw Video Filename:</b>
-      <%= h @lesson.video_file_name %>
-    </p>
-    <p>
-      <b>Raw Video File Type:</b>
-      <%= h @lesson.video_content_type %>
-    </p>
-    <p>
-      <b>Raw Video File Size:</b>
-      <%= number_to_human_size @lesson.video_file_size %>
-    </p>
-    <p>
-      <b>Conversion Job ID:</b>
-      <%= h @lesson.flixcloud_job_id %>
-    </p>
-    <p>
-      <b>Conversion Started At:</b>
-      <%= l @lesson.conversion_started_at if @lesson.conversion_started_at %>
-    </p>
-    <p>
-      <b>Conversion Completed At:</b>
-      <%= l @lesson.conversion_ended_at if @lesson.conversion_ended_at %>
-    </p>
-    <p>
-      <b>Finished Video Location:</b>
-      <%= @lesson.finished_video_file_location %>
-    </p>
-    <p>
-      <b>Finished Video Width:</b>
-      <%= @lesson.finished_video_width %>
-    </p>
-    <p>
-      <b>Finished Video Height:</b>
-      <%= @lesson.finished_video_height %>
-    </p>
-    <p>
-      <b>Finished Video File Size:</b>
-      <%= number_to_human_size @lesson.finished_video_file_size %>
-    </p>
-    <p>
-      <b>Raw Video Cost:</b>
-      <%= number_to_currency(@lesson.input_video_cost/100000.0,
-                             :precision => 3) unless @lesson.input_video_cost.blank? %>
-    </p>
-    <p>
-      <b>Finished Video Cost:</b>
-      <%= number_to_currency(@lesson.finished_video_cost/100000.0,
-                             :precision => 3) unless @lesson.input_video_cost.blank? %>
-    </p>
+  <h2>System Information:</h2>
+  <p>
+    <b>State:</b>
+    <%= h @lesson.state %>
+  </p>
+  <p>
+    <b>Raw Video Filename:</b>
+    <%= h @lesson.video_file_name %>
+  </p>
+  <p>
+    <b>Raw Video File Type:</b>
+    <%= h @lesson.video_content_type %>
+  </p>
+  <p>
+    <b>Raw Video File Size:</b>
+    <%= number_to_human_size @lesson.video_file_size %>
+  </p>
+  <p>
+    <b>Conversion Job ID:</b>
+    <%= h @lesson.flixcloud_job_id %>
+  </p>
+  <p>
+    <b>Conversion Started At:</b>
+    <%= l @lesson.conversion_started_at if @lesson.conversion_started_at %>
+  </p>
+  <p>
+    <b>Conversion Completed At:</b>
+    <%= l @lesson.conversion_ended_at if @lesson.conversion_ended_at %>
+  </p>
+  <p>
+    <b>Finished Video Location:</b>
+    <%= @lesson.finished_video_file_location %>
+  </p>
+  <p>
+    <b>Finished Video Width:</b>
+    <%= @lesson.finished_video_width %>
+  </p>
+  <p>
+    <b>Finished Video Height:</b>
+    <%= @lesson.finished_video_height %>
+  </p>
+  <p>
+    <b>Finished Video File Size:</b>
+    <%= number_to_human_size @lesson.finished_video_file_size %>
+  </p>
+  <p>
+    <b>Raw Video Cost:</b>
+    <%= number_to_currency(@lesson.input_video_cost/100000.0,
+      :precision => 3) unless @lesson.input_video_cost.blank? %>
+  </p>
+  <p>
+    <b>Finished Video Cost:</b>
+    <%= number_to_currency(@lesson.finished_video_cost/100000.0,
+      :precision => 3) unless @lesson.input_video_cost.blank? %>
+  </p>
 <% elsif current_user == @lesson.instructor %>
-    <p>
-      <b>State:</b>
-      <%= h @lesson.state %>
-    </p>
+  <p>
+    <b>State:</b>
+    <%= h @lesson.state %>
+  </p>
 <% end %>
 
 
@@ -167,16 +167,16 @@ See http://jimneath.org/2008/06/03/converting-lessons-with-rails-converting-the-
 <%= link_to pluralize(@lesson.reviews.size, 'Review'), lesson_reviews_path(@lesson) %>
 
 <% if current_user.try("is_sysadmin?") %>
-    | <%= link_to "Convert", convert_lesson_path(@lesson), :method => :post %>
+  | <%= link_to "Convert", convert_lesson_path(@lesson), :method => :post %>
 
-    <br/>
-    <table>
-      <tr>
-        <th>Timestamp</th>
-        <th>From State</th>
-        <th>To State</th>
-        <th>Description</th>
-      </tr>
-      <%= render @lesson.lesson_state_changes %>
-    </table>
+  <br/>
+  <table>
+    <tr>
+      <th>Timestamp</th>
+      <th>From State</th>
+      <th>To State</th>
+      <th>Description</th>
+    </tr>
+    <%= render @lesson.lesson_state_changes %>
+  </table>
 <% end %>

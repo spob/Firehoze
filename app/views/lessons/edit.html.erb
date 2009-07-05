@@ -1,15 +1,15 @@
 <h1>Edit Lesson</h1>
 
 <% form_for(:lesson, :url => lesson_path(@lesson), :html => { :method => :put }) do |f| %>
-    <%= f.error_messages %>  
+  <%= f.error_messages %>
 
-    <%= f.label :title %>:
-    <%= f.text_field :title %><br />
-    <br/>
-    <%= f.label :description %>:
-    <%= f.text_area :description %><br />
-    <br/>
+  <%= f.label :title %>:
+  <%= f.text_field :title %><br />
+  <br/>
+  <%= f.label :description %>:
+  <%= f.text_area :description %><br />
+  <br/>
 
-    <%= f.submit "Update" %>
-    <%= link_to "Cancel", lesson_path(@lesson) %>
+  <%= f.submit "Update" %>
+  <%= link_to "Cancel", lesson_path(@lesson) %>
 <% end %>

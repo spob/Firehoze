@@ -1,8 +1,8 @@
 <tr>
- <td><%= l credit.redeemed_at %></td>
-    <% if current_user.try("is_sysadmin?") %>
-        <td><%= h credit.user.login %></td>
-    <% end %>
-    <td><%= number_to_currency(credit.price) %></td>
-    <td><%= credit.sku.description unless credit.sku.nil? %></td>
+  <td><%= l credit.redeemed_at %></td>
+  <% if current_user.try("is_sysadmin?") %>
+    <td><%= h credit.user.login %></td>
+  <% end %>
+  <td><%= number_to_currency(credit.price) %></td>
+  <td><%= credit.sku.description unless credit.sku.nil? %></td>
 </tr>
