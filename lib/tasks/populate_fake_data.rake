@@ -12,7 +12,7 @@ namespace :db do
 
     desc "Bootstraps the application"
     raise "******** Stop! This is only for development or test environments." unless %w(development test).include?(RAILS_ENV)
-    task :all => [:truncate, :admins, :users, :lessons, :credits, :acquire_lessons, :reviews] do
+    task :all => [ :truncate, :admins, :users, :lessons, :credits, :acquire_lessons, :reviews, :reset_passwords] do
       puts "***** ALL COMPLETE *****"
     end
 
@@ -24,7 +24,7 @@ namespace :db do
       require 'faker'
 
       [RolesUser, UserLogon].each(&:delete_all)
-      params =  { :active => true, :language => 'en', :password => "changeme", :password_confirmation => "changeme", :password_salt => 'as;fdaslkjasdfn', :time_zone =>Time.zone.name }
+      params =  { :active => true, :language => 'en', :password => "pa$$word", :password_confirmation => "pa$$word", :password_salt => 'as;fdaslkjasdfn', :time_zone =>Time.zone.name }
       developers_personal_info.each do |dev|
         admin = User.new params
         admin.email = dev[0]
@@ -81,20 +81,21 @@ namespace :db do
       require 'populator'
       require 'faker'
       blow_away_lessons
-      count = ENV['count'] ? ENV['count'] : 10
+      count = ENV['count'] ? ENV['count'] : 11
 
       (1..count.to_i).each do |i|
         lesson = Lesson.new
         lesson.instructor = User.first(:order => 'RAND()')
         lesson.title = Faker::Company.catch_phrase.titleize
         lesson.description = Populator.paragraphs(1..3)
-        lesson.state = "ready"
-        dummy_video_path = "/test/videos/#{rand(5)+1}.avi" #pick a random vid,
+        lesson.state = LESSON_STATE_PENDING
+        dummy_video_path = "/test/videos/#{rand(5)+1}.swf" #pick a random vid,
         if !File.exist?(RAILS_ROOT + dummy_video_path)
           puts "can not find file"
         else
           lesson.video = File.open(RAILS_ROOT + dummy_video_path)
           lesson.save!
+          lesson.trigger_conversion
           puts "#{i}: #{lesson.video_file_name} uploaded [instructor: #{lesson.instructor.full_name} | file size:#{lesson.video_file_size}]"
         end
       end
@@ -176,6 +177,7 @@ namespace :db do
     desc "truncates tables"
     raise "******** Stop! This is only for development or test environments." unless %w(development test).include?(RAILS_ENV)
     task :truncate => :environment do
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE periodic_jobs;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE line_items;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE carts;")
@@ -186,6 +188,16 @@ namespace :db do
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE roles_users;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE user_logons;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE users;")
+    end
+
+    desc "reset all passwords"
+    raise "******** Stop! This is only for development or test environments." unless %w(development test).include?(RAILS_ENV)
+    task :reset_passwords => :environment do
+
+      params =  { :active => true, :language => 'en', :password => "pa$$word", :password_confirmation => "pa$$word", :password_salt => 'as;fdaslkjasdfn', :time_zone =>Time.zone.name }
+      User.all.each do |user|
+        user.update_attributes(:password => "pa$$word", :password_confirmation => "pa$$word", :password_salt => 'as;fdaslkjasdfn')
+      end
     end
   end
 
