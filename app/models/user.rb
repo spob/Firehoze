@@ -99,6 +99,10 @@ class User < ActiveRecord::Base
     !self.lessons.scoped_by_id(lesson).first.nil?
   end
 
+  def instructor? lesson
+    self == lesson.instructor
+  end
+
   def city_and_state
     [ city, state ].reject { |e| e.blank? }.join(', ')
   end
