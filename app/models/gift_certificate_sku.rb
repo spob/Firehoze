@@ -6,6 +6,6 @@ class GiftCertificateSku < CreditSku
     user.gift_certificates.create!(:credit_quantity => line_item.quantity,
                                   :gift_certificate_sku => self,
                                   :line_item => line_item, 
-                                  :price => self.price)
+                                  :price =>  price/num_credits)
   end
 end
