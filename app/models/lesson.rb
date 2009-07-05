@@ -13,7 +13,45 @@
 #   calc_thumb_url_start:     about to parse the information returned from flixcloud to calculate,
 #                             among other things, the thumbnail_url
 #   ready:                    video ready for viewing
-#   failed:                   an error occurred at some point along the way'
+#   failed:                   an error occurred at some point along the way
+#
+#   1.  You upload a video when you create a lesson. That goes into the Amazon S3 input bucket, and the lesson is in a
+#       pending state. A periodic job is kicked off to convert the video.
+#   2. When the periodic job runs, it will invoke a conversion to start. The first thing the conversion does is change
+#      the state to S3_permissions_start, then it grants read permissions on the videos to flix cloud (they need to be
+#      able to see the videos in order to pull them and process them).
+#
+#      The convert method then updates the state to trigger_conversion_start. It then uses a web servcie call to tell
+#      flix cloud to start converting the video. If that call was successful, it will update the state to
+#      trigger_conversion_end.
+#   3. Flix cloud will then asynchronously process the video. This usually takes between 2 and 5 minutes. FlixCloud
+#      pulls the raw video down from the Amazon S3 location, transcodes it (converts it to flash, applies the
+#      watermark), and uploads the finished result back to an output bucket on Amazon S3. It will also upload a
+#      thumbnail image to a thumbnail bucket.
+#   4. Now flix cloud must tell us that the video is ready for viewing. It does this buy accessing a special URL that
+#      I've provided called conversion_notify. The URL for flixCloud to invoke is a configuration option defined in
+#      flixcloud. Conversion notify updates the lesson with information such as the url of the output location, the
+#      duration, the filesize, etc. It then sets the state to conversion_end_success.
+#   5. Conversion notify then sets the state to calc_thumb_url_start and calculates the thumbnail url (which you can
+#      use to display the thumbnail in an image tag). If that's successful, the lesson is ready for viewing and the
+#      status is set to ready.
+#
+#   A couple of notes.
+#
+#    * Since flixcloud doesn't know about  your local dev machine, #4 is never invoked in your dev environment, so
+#      the video will never be "ready". That's what the flix:repair rake task does. It says that the output video, if
+#      it was successfully processes, should reside at a particular location in the Amazon S3 bucket. Does it? If so,
+#      simulate the conversion_notify call. Not to do so, some of the info I populate (such as the duration) is bogus.
+#    * Normal users shouldn't see lessons which are not in a ready state.
+#    * Sysadmin's should see all lessons, their current state, and a complete history of all the states it's gone
+#      through and when.
+#    * The instructor should see lessons they've submitted regardless of state, but don't see the complete history.
+#    * When the video is done processing, the instructor should get an email
+#    * When a video conversion process fails at any point, it moves into a failed state. The instructor and the
+#      sysadmins get an email alerting them.
+#    * In Step #2 above, when we trigger the conversion to start, I also create a periodic job that fires after a
+#      set amount of time (an hour I think?). when that job wakes up, it checks to see if the video has completed
+#      processing. If it hasn't, it will alert the sysadmin via email that something may have gone wrong.
 class Lesson < ActiveRecord::Base
   ajaxful_rateable :stars => 5
   cattr_reader :per_page
