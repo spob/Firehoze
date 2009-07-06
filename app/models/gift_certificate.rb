@@ -15,6 +15,17 @@ class GiftCertificate < ActiveRecord::Base
     code[0, 4] + "-" + code[4, 4] + "-" + code[8, 4] + "-" + code[12, 4]
   end
 
+  def redeem the_user
+    self.credit_quantity.times do
+      Credit.create!(:sku => self.line_item.sku,
+                     :price => self.price,
+                     :user => the_user,
+                     :acquired_at => Time.zone.now,
+                     :line_item => self.line_item)
+    end
+    self.update_attributes(:redeemed_at => Time.now, :redeemed_by_user => the_user )
+  end
+
   private
 
   def populate_code

@@ -46,6 +46,10 @@ en:
     update_success: Successfully updated discount
     destroyed_success: Successfully destroyed discount
 
+  gift_certificate:
+    already_redeemed: The gift certificate {{code}} has already been redeemed
+    redeemed: Gift certificate {{code}} redeemed for {{num}} credits
+
   helpful:
     create_success: Your feedback has been recorded
     cant_feedback_own: You cannot provide feedback on a review you have written

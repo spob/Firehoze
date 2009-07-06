@@ -10,7 +10,7 @@ class GiftCertificateTest < ActiveSupport::TestCase
     should_belong_to                 :gift_certificate_sku
     should_belong_to                 :line_item
     should_belong_to                 :redeemed_by_user
-    should_validate_presence_of      :user, :code, :credit_quantity, :line_item, :gift_certificate_sku 
+    should_validate_presence_of      :user, :code, :credit_quantity, :line_item, :gift_certificate_sku
     should_ensure_length_is          :code, 16
 
     # can't do should_validate_presence_of for discounted_unit_price because it's set implicitly'
@@ -43,6 +43,17 @@ class GiftCertificateTest < ActiveSupport::TestCase
         assert certs.include?(@gift_certificate)
         assert certs.include?(@gift_certificate2)
         assert !certs.include?(@gift_certificate3)
+      end
+    end
+
+    context "on redeem" do
+      setup { assert @gift_certificate.user.credits.available.empty? }
+
+      should "redeem increase credits" do
+        @gift_certificate.redeem(@gift_certificate.user)
+        assert_equal 5, @gift_certificate.user.credits.available.size
+        assert !@gift_certificate.redeemed_at.nil?
+        assert_equal @gift_certificate.user, @gift_certificate.user.credits.first.user
       end
     end
   end

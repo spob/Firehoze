@@ -4,6 +4,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources  :acquire_lessons, :only => [ :create, :new ]
   map.resources :carts, :only => [ :show ]
   map.resources :credits
+  map.resources :gift_certificates,
+                :member => { :redeem => :post }
   map.resources :helpfuls, :only => [ :create ]
   map.resources :lessons, :has_many => :reviews, :shallow => true,
                 :member => { :watch => :get, :convert => :post, :rate => :post },

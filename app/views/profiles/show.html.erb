@@ -29,18 +29,3 @@
 
 <%= link_to 'Edit', edit_profile_path(@user) %> |
 <%= link_to 'Change Password', edit_password_path(@user) %>
-
-<% if !@user.gift_certificates.active.empty? %>
-    <br/>
-    <br/>
-    <h2>Gift Certificates</h2>
-    <p>You have the following gift certificates available:</p>
-    <table>
-      <tr>
-        <th>Code</th>
-        <th>Credits</th>
-        <th>Action</th>
-      </tr>
-      <%= render_partial :partial => 'gift_certificate', :collection => @user.gift_certificates.active %>
-    </table>
-<% end %>

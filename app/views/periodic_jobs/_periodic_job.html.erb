@@ -14,6 +14,6 @@
     <%= link_to(
       "Rerun",
       rerun_periodic_job_path(periodic_job),
-      html_options = {:method => :post,} ) if periodic_job.next_run_at.nil? and periodic_job.last_run_result != 'Running' %>
+      html_options = {:method => :post} ) if periodic_job.next_run_at.nil? and periodic_job.last_run_result != 'Running' %>
   </td>
 </tr>

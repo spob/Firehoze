@@ -1,0 +1,13 @@
+<tr>
+  <td>
+    <%= gift_certificate.formatted_code %>
+  </td>
+  <td>
+    <%= gift_certificate.credit_quantity %>
+  </td>
+  <td>
+    <%= link_to("Redeem",
+                redeem_gift_certificate_path(gift_certificate),
+                html_options = {:method => :post} ) %>
+  </td>
+</tr>
