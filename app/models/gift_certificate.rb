@@ -5,17 +5,21 @@ class GiftCertificate < ActiveRecord::Base
   belongs_to :gift_certificate_sku
   belongs_to :line_item
   validates_numericality_of :credit_quantity, :greater_than => 0, :only_integer => true, :allow_nil => true
-  
+
   before_validation_on_create :populate_code
 
   def formatted_code
-    code[0,4] + "-" + code[4,4] + "-" + code[8,4] + "-" + code[12,4]
+    code[0, 4] + "-" + code[4, 4] + "-" + code[8, 4] + "-" + code[12, 4]
   end
 
   private
 
   def populate_code
-    self.code = generate_activation_code
+    while true
+      # Loop to make sure the generated code is unique
+      self.code = generate_activation_code
+      break unless GiftCertificate.find_by_code(self.code)
+    end
   end
 
   def generate_activation_code(size = 16)
