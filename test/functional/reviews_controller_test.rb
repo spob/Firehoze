@@ -47,6 +47,35 @@ class ReviewsControllerTest < ActionController::TestCase
         should_redirect_to("Reviews index page") { lesson_reviews_url(@lesson) }
       end
 
+      context "on GET to :new when already reviewed" do
+        setup do
+          @credit = Factory.create(:credit, :user => @user)
+          @review = @credit.lesson.reviews.create!(:body => 'hello',
+                                                   :title => 'title',
+                                                   :user => @user)
+          assert @credit.lesson.reviewed_by?(@user)
+          get :new, :lesson_id => @review.lesson
+        end
+
+        should_assign_to :review
+        should_respond_with :redirect
+        should_set_the_flash_to /You can only write a review for a lesson once/
+        should_redirect_to("Reviews index page") { lesson_reviews_url(@credit.lesson) }
+      end
+
+      context "on GET to :new when not owned" do
+        setup do
+          @lesson2 = Factory.create(:lesson)
+          get :new, :lesson_id => @lesson2
+          assert !@lesson2.owned_by?(@user)  
+        end
+
+        should_assign_to :review
+        should_respond_with :redirect
+        should_set_the_flash_to /You can only review videos which you have viewed/
+        should_redirect_to("Reviews index page") { lesson_reviews_url(@lesson2) }
+      end
+
       context "with moderator access" do
         setup do
           @user.has_role 'moderator'

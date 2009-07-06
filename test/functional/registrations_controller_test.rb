@@ -22,5 +22,15 @@ class RegistrationsControllerTest < ActionController::TestCase
       should_set_the_flash_to /Please check your email/
       should_redirect_to("root  page") { root_path }
     end
+
+    context "on POST to :create with bad value" do
+      setup do
+        post :create, :registration => Factory.attributes_for(:registration, :email => "")
+      end
+
+      should_respond_with :success
+      should_not_set_the_flash
+      should_render_template :new
+    end
   end
 end
