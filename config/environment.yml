@@ -45,3 +45,6 @@ warn_before_credit_expiration_days: 10
 
 # The number of minutes to wait before warning the sysadmin that a video has failed processing
 zombie_video_process_minutes: 60
+
+# The number of days before an unused gift certificate expires
+gift_certificate_expires_days: 365

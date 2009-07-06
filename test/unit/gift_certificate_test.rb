@@ -35,6 +35,8 @@ class GiftCertificateTest < ActiveSupport::TestCase
       setup do
         @gift_certificate2 = Factory.create(:gift_certificate)
         @gift_certificate3 = Factory.create(:redeemed_gift_certificate)
+        @gift_certificate4 = Factory.create(:gift_certificate)
+        @gift_certificate4.update_attribute(:expires_at, 1.days.ago)
       end
 
       should "retrieve un-redeemed gift certificates" do
@@ -43,6 +45,7 @@ class GiftCertificateTest < ActiveSupport::TestCase
         assert certs.include?(@gift_certificate)
         assert certs.include?(@gift_certificate2)
         assert !certs.include?(@gift_certificate3)
+        assert !certs.include?(@gift_certificate4)
       end
     end
 

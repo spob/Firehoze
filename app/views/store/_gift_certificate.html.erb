@@ -6,6 +6,9 @@
     <%= gift_certificate.credit_quantity %>
   </td>
   <td>
+    <%= l gift_certificate.expires_at %>
+  </td>
+  <td>
     <%= link_to("Redeem",
                 redeem_gift_certificate_path(gift_certificate),
                 html_options = {:method => :post} ) %>

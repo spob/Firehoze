@@ -8,6 +8,7 @@ class AddIndexToGiftCertificate < ActiveRecord::Migration
 
     change_table :gift_certificates do |t|
       t.column :redeemed_at, :datetime
+      t.column :expires_at, :datetime, :null => false
       t.column :redeemed_by_user_id, :integer
     end
 
@@ -18,6 +19,7 @@ class AddIndexToGiftCertificate < ActiveRecord::Migration
     remove_foreign_key(:gift_certificates, :redeemed_by_user_id)
 
     remove_column :gift_certificates, :redeemed_at
+    remove_column :gift_certificates, :expires_at
     remove_column :gift_certificates, :redeemed_by_user_id
 
     remove_index(:gift_certificates, :code)

@@ -8,8 +8,9 @@ class GiftCertificate < ActiveRecord::Base
   validates_numericality_of :credit_quantity, :greater_than => 0, :only_integer => true, :allow_nil => true
 
   before_validation_on_create :populate_code
+  before_create :populate_expires_at
 
-  named_scope :active, :conditions => {:redeemed_at => nil}
+  named_scope :active, :conditions => [ "redeemed_at is null and expires_at > ?", Time.now ]
 
   def formatted_code
     code[0, 4] + "-" + code[4, 4] + "-" + code[8, 4] + "-" + code[12, 4]
@@ -28,6 +29,10 @@ class GiftCertificate < ActiveRecord::Base
 
   private
 
+  def populate_expires_at
+    self.expires_at = APP_CONFIG[CONFIG_GIFT_CERTIFICATE_EXPIRES_DAYS].to_i.days.since
+  end
+  
   def populate_code
     while true
       # Loop to make sure the generated code is unique
