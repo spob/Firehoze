@@ -1,26 +1,26 @@
 <p>
   <b>Username:</b>
-  <%=h @user.login %>
+  <%= h @user.login %>
 </p>
 
 <p>
   <b>Email:</b>
-  <%=h @user.email %>
+  <%= h @user.email %>
 </p>
 
 <p>
   <b>First Name:</b>
-  <%=h @user.first_name %>
+  <%= h @user.first_name %>
 </p>
 
 <p>
   <b>Last Name:</b>
-  <%=h @user.last_name %>
+  <%= h @user.last_name %>
 </p>
 
 <p>
   <b>Time Zone:</b>
-  <%=h @user.time_zone %>
+  <%= h @user.time_zone %>
 </p>
 <p>
   <b>Language:</b>
@@ -29,3 +29,18 @@
 
 <%= link_to 'Edit', edit_profile_path(@user) %> |
 <%= link_to 'Change Password', edit_password_path(@user) %>
+
+<% if !@user.gift_certificates.active.empty? %>
+    <br/>
+    <br/>
+    <h2>Gift Certificates</h2>
+    <p>You have the following gift certificates available:</p>
+    <table>
+      <tr>
+        <th>Code</th>
+        <th>Credits</th>
+        <th>Action</th>
+      </tr>
+      <%= render_partial :partial => 'gift_certificate', :collection => @user.gift_certificates.active %>
+    </table>
+<% end %>

@@ -4,9 +4,12 @@ class GiftCertificate < ActiveRecord::Base
   belongs_to :user
   belongs_to :gift_certificate_sku
   belongs_to :line_item
+  belongs_to :redeemed_by_user, :class_name => 'User', :foreign_key => "redeemed_by_user_id"
   validates_numericality_of :credit_quantity, :greater_than => 0, :only_integer => true, :allow_nil => true
 
   before_validation_on_create :populate_code
+
+  named_scope :active, :conditions => {:redeemed_at => nil}
 
   def formatted_code
     code[0, 4] + "-" + code[4, 4] + "-" + code[8, 4] + "-" + code[12, 4]
