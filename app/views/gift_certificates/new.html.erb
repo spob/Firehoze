@@ -1,0 +1,10 @@
+<h2>Redeem a Gift Certificate</h2>
+
+<% form_for(:gift_certificate, :url => gift_certificates_path) do |f| %>
+    <%= f.error_messages %>
+
+    Gift Certificate Code:
+    <%= f.text_field :code %>
+
+    <%= f.submit "Redeem" %>
+<% end %>
