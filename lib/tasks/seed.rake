@@ -46,15 +46,15 @@ namespace :db do
   end
 end
 
-def create_job(job_class, name, job, interval)
+def create_job(job_class, name, job_command, interval)
   job = PeriodicJob.find_by_name(name)
   if job
     puts "Periodic job #{job.name} already exists"
   else
     job_class.create!(:name => name,
-                      :job => job,
+                      :job => job_command,
                       :interval => interval)
-    puts "Created job #{job.name}"
+    puts "Created job #{name}"
   end
 end
 
