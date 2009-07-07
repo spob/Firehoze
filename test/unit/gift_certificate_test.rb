@@ -29,6 +29,22 @@ class GiftCertificateTest < ActiveSupport::TestCase
       should "format the formatted_code" do
         assert_equal "aaaa-bbbb-cccc-dddd", @gift_certificate.formatted_code
       end
+
+      context "and giving the gift certificate to another user" do
+        setup do
+          @old_user = @gift_certificate.user
+          @new_user = Factory.create(:user)
+          assert !(@old_user == @new_user)
+          @comments = "Given to user #{@new_user.login}"
+          assert !(@comments == @gift_certificate.comments)
+          @gift_certificate.give(@new_user, @comments)
+        end
+
+        should "have been given to new user" do
+          assert_equal @new_user, @gift_certificate.user
+          assert_equal @comments, @gift_certificate.comments
+        end
+      end
     end
 
     context "and a couple more, some redeemed" do

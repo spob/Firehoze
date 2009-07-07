@@ -39,6 +39,10 @@ class GiftCertificate < ActiveRecord::Base
     self.update_attributes(:redeemed_at => Time.now, :redeemed_by_user => the_user )
   end
 
+  def give to_user, comments
+    self.update_attributes!(:user => to_user, :comments => comments)
+  end
+
   private
 
   def populate_expires_at

@@ -1,7 +1,8 @@
 class GiftCertificatesController < ApplicationController
   before_filter :require_user
+  before_filter :find_gift_certificate, :only => [:redeem, :give, :pregive]
 
-  verify :method => :post, :only => [ :create, :redeem ], :redirect_to => :home_path
+  verify :method => :post, :only => [ :create, :redeem, :give ], :redirect_to => :home_path
 
   def index
     @gift_certificates = GiftCertificate.list(params[:page], current_user)
@@ -27,12 +28,39 @@ class GiftCertificatesController < ApplicationController
 
   # Redeem a gift certificate
   def redeem
-    @gift_certificate = GiftCertificate.find(params[:id])
     redeem_certificate(@gift_certificate)
     redirect_to account_path
   end
 
+  def pregive
+
+  end
+
+  # give a certificate to someone else
+  def give
+    @to_user = User.find_by_login(params[:to_user])
+    if @to_user.nil?
+      flash[:error] = t('gift_certificate.no_such_user', :user => params[:to_user])
+      render 'pregive'
+    else
+      @comments = params[:comments]
+      if @gift_certificate.user != current_user
+        flash[:error] = t('gift_certificate.must_own_to_give')
+        render 'pregive'
+      else
+        @gift_certificate.give(@to_user, @comments)
+        flash[:notice] = t('gift_certificate.given',
+                           :code => @gift_certificate.code, :user => @to_user.login)
+        redirect_to gift_certificates_path
+      end
+    end
+  end
+
   private
+
+  def find_gift_certificate
+    @gift_certificate = GiftCertificate.find(params[:id])
+  end
 
   def redeem_certificate gift_certificate
     if gift_certificate.redeemed_at

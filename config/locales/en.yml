@@ -50,6 +50,9 @@ en:
     already_redeemed: The gift certificate {{code}} has already been redeemed
     invalid_gift_certificate: No such gift certificate {{code}}
     redeemed: Gift certificate {{code}} redeemed for {{num}} credits
+    must_own_to_give: You can only give a certificate that you own
+    given: You have successfully give the certificate {{code}} to {{user}}
+    no_such_user: The user you entered ({{user}}) is not recognized
 
   helpful:
     create_success: Your feedback has been recorded

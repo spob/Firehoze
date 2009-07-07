@@ -9,8 +9,13 @@
     <%= l(gift_certificate.expires_at) if gift_certificate.expires_at %>
   </td>
   <td>
+    <%= h gift_certificate.comments %>
+  </td>
+  <td>
     <%= link_to("Redeem",
                 redeem_gift_certificate_path(gift_certificate),
-                html_options = {:method => :post} ) %>
+                html_options = {:method => :post} ) %> |
+    <%= link_to("Give",
+                pregive_gift_certificate_path(gift_certificate) ) %>
   </td>
 </tr>
