@@ -48,6 +48,7 @@ en:
 
   gift_certificate:
     already_redeemed: The gift certificate {{code}} has already been redeemed
+    invalid_gift_certificate: No such gift certificate {{code}}
     redeemed: Gift certificate {{code}} redeemed for {{num}} credits
 
   helpful:
