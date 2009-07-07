@@ -47,6 +47,25 @@ class GiftCertificateTest < ActiveSupport::TestCase
         assert !certs.include?(@gift_certificate3)
         assert !certs.include?(@gift_certificate4)
       end
+
+      context "invoking the list method" do
+        setup { @gifts = GiftCertificate.list(1, @gift_certificate2.user) }
+
+        should "return 1 lessons" do
+          assert_equal 1, @gifts.size
+        end
+
+        context "as a sysadmin user" do
+          setup do
+            @gift_certificate2.user.has_role 'sysadmin'
+            @gifts = GiftCertificate.list(1, @gift_certificate2.user)
+          end
+
+          should "return 3 lessons" do
+            assert_equal 3, @gifts.size
+          end
+        end
+      end
     end
 
     context "on redeem" do

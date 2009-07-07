@@ -12,6 +12,18 @@ class GiftCertificate < ActiveRecord::Base
 
   named_scope :active, :conditions => [ "redeemed_at is null and expires_at > ?", Time.now ]
 
+  # Basic paginated listing finder
+  # If the user is specified and is a sysadmin, then all active gift certificates will be retrieved.
+  # Otherwise, just those belonging to the user
+  def self.list(page, user)
+    conditions = { :redeemed_at => nil }
+    conditions = conditions.merge({ :user_id => user}) unless user.try(:is_sysadmin?)
+    paginate :page => page,
+             :conditions => conditions,
+             :order => 'id desc',
+             :per_page => per_page
+  end
+
   def formatted_code
     code[0, 4] + "-" + code[4, 4] + "-" + code[8, 4] + "-" + code[12, 4]
   end
@@ -32,7 +44,7 @@ class GiftCertificate < ActiveRecord::Base
   def populate_expires_at
     self.expires_at = APP_CONFIG[CONFIG_GIFT_CERTIFICATE_EXPIRES_DAYS].to_i.days.since
   end
-  
+
   def populate_code
     while true
       # Loop to make sure the generated code is unique

@@ -103,8 +103,9 @@ class Lesson < ActiveRecord::Base
   named_scope   :pending, :conditions => {:state => LESSON_STATE_PENDING }
   named_scope   :failed, :conditions => {:state => LESSON_STATE_FAILED }
 
-# Basic paginated listing finder
-# if view_all is false, only videos in the ready state will be returned
+  # Basic paginated listing finder
+  # if the user is specified and is a sysadmin, then lessons will be retrieved regardless of
+  # the state of the video. Otherwise, only READY videos will be retrieved
   def self.list(page, user=nil)
     conditions = {}
     conditions = ["state = ? or instructor_id = ?",

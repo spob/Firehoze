@@ -3,6 +3,10 @@ class GiftCertificatesController < ApplicationController
 
   verify :method => :post, :only => [:redeem ], :redirect_to => :home_path
 
+  def index
+    @gift_certificates = GiftCertificate.list(params[:page], current_user)
+  end
+
   # Redeem a gift certificate
   def redeem
     @gift_certificate = GiftCertificate.find(params[:id])

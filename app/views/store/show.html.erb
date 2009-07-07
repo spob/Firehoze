@@ -15,19 +15,3 @@
 <br/>
 <br/>
 This would be a place for some good marketing text to upsell the user
-
-<% if !current_user.gift_certificates.active.empty? %>
-    <br/>
-    <br/>
-    <h2>Gift Certificates</h2>
-    <p>You have the following gift certificates available:</p>
-    <table>
-      <tr>
-        <th>Code</th>
-        <th>Credits</th>
-        <th>Expires At</th>
-        <th>Action</th>
-      </tr>
-      <%= render_partial :partial => 'gift_certificate', :collection => current_user.gift_certificates.active %>
-    </table>
-<% end %>

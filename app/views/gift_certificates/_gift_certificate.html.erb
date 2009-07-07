@@ -6,7 +6,7 @@
     <%= gift_certificate.credit_quantity %>
   </td>
   <td>
-    <%= l gift_certificate.expires_at %>
+    <%= l(gift_certificate.expires_at) if gift_certificate.expires_at %>
   </td>
   <td>
     <%= link_to("Redeem",
