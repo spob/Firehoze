@@ -5,6 +5,7 @@ namespace :db do
   desc "Seed the database with users"
   task :seed_users => :environment do
     admin = User.find_by_login('admin')
+    admin ||= User.find_by_email('admin@firehoze.com')
     if admin
       puts "User #{admin.login} already exists"
     else
@@ -45,7 +46,7 @@ namespace :db do
   end
 end
 
-def create_job job_class, name, job, internal
+def create_job(job_class, name, job, interval)
   job = PeriodicJob.find_by_name(name)
   if job
     puts "Periodic job #{job.name} already exists"
