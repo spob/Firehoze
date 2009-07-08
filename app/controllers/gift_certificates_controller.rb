@@ -50,7 +50,7 @@ class GiftCertificatesController < ApplicationController
       else
         @gift_certificate.give(@to_user, @comments)
         flash[:notice] = t('gift_certificate.given',
-                           :code => @gift_certificate.code, :user => @to_user.login)
+                           :code => @gift_certificate.formatted_code, :user => @to_user.login)
         redirect_to gift_certificates_path
       end
     end
