@@ -39,20 +39,18 @@ class GiftCertificatesController < ApplicationController
   # give a certificate to someone else
   def give
     @to_user = User.find_by_login(params[:to_user])
+    UserSession.create @user
     if @to_user.nil?
       flash[:error] = t('gift_certificate.no_such_user', :user => params[:to_user])
       render 'pregive'
+    elsif @gift_certificate.user != current_user
+      flash[:error] = t('gift_certificate.must_own_to_give')
+      render 'pregive'
     else
-      @comments = params[:comments]
-      if @gift_certificate.user != current_user
-        flash[:error] = t('gift_certificate.must_own_to_give')
-        render 'pregive'
-      else
-        @gift_certificate.give(@to_user, @comments)
-        flash[:notice] = t('gift_certificate.given',
-                           :code => @gift_certificate.code, :user => @to_user.login)
-        redirect_to gift_certificates_path
-      end
+      @gift_certificate.give(@to_user, params[:comments])
+      flash[:notice] = t('gift_certificate.given',
+                         :code => @gift_certificate.formatted_code, :user => @to_user.login)
+      redirect_to gift_certificates_path
     end
   end
 
