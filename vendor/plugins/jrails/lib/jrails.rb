@@ -72,11 +72,21 @@ module ActionView
       class JavaScriptGenerator
         module GeneratorMethods
           
+          attr_accessor :error_handler
+          
           def insert_html(position, id, *options_for_render)
+            after_hook = nil
+            if options_for_render.first[:after]
+              after_hook = options_for_render.first[:after]
+              options_for_render.first.delete(:after)
+            end
             insertion = position.to_s.downcase
             insertion = 'append' if insertion == 'bottom'
             insertion = 'prepend' if insertion == 'top'
             call "#{JQUERY_VAR}(\"#{jquery_id(id)}\").#{insertion}", render(*options_for_render)
+            if after_hook 
+              self << "#{after_hook}(\"#{jquery_id(id)}\");"
+            end
           end
           
           def replace_html(id, *options_for_render)
@@ -84,7 +94,15 @@ module ActionView
           end
           
           def replace(id, *options_for_render)
+            after_hook = nil
+            if options_for_render.first[:after]
+              after_hook = options_for_render.first[:after]
+              options_for_render.first.delete(:after)
+            end
             call "#{JQUERY_VAR}(\"#{jquery_id(id)}\").replaceWith", render(*options_for_render)
+            if after_hook 
+              self << "#{after_hook}(\"#{jquery_id(id)}\");"
+            end
           end
           
           def remove(*ids)
@@ -109,6 +127,17 @@ module ActionView
           
           def jquery_ids(ids)
             Array(ids).map{|id| jquery_id(id)}.join(',')
+          end
+          
+          def show_errors(errors, container=nil)
+            container = '' if container = nil
+            clear_errors(container)
+            self << "showErrors(#{errors.to_json}, '#{jquery_id(container)}');"
+          end
+          
+          def clear_errors(container=nil)
+            container = '' if container = nil
+            self << "clearErrors('#{jquery_id(container)}');"
           end
           
         end
