@@ -1,10 +1,12 @@
-<h2>Give Gift Certificate '<%= @gift_certificate.code %>' to Another User</h2>
+<h2>Give Gift Certificate '<%= @gift_certificate.formatted_code %>' to Another User</h2>
 
 <% form_for(:gift_certificate, :url => give_gift_certificate_path) do |f| %>
     <%= f.error_messages %>
 
     Recipient Username:
-    <%= text_field_tag :to_user %>
+    <%= text_field_tag :to_user %> or
+    Recipient Email Address:
+    <%= text_field_tag :to_user_email %>
     <br/>
     Comments:
     <%= text_field_tag :comments %>

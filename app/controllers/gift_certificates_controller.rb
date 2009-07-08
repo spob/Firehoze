@@ -39,7 +39,7 @@ class GiftCertificatesController < ApplicationController
   # give a certificate to someone else
   def give
     @to_user = User.find_by_login(params[:to_user])
-    UserSession.create @user
+    @to_user ||= User.find_by_email(params[:to_user_email])
     if @to_user.nil?
       flash[:error] = t('gift_certificate.no_such_user', :user => params[:to_user])
       render 'pregive'
@@ -47,10 +47,15 @@ class GiftCertificatesController < ApplicationController
       flash[:error] = t('gift_certificate.must_own_to_give')
       render 'pregive'
     else
-      @gift_certificate.give(@to_user, params[:comments])
-      flash[:notice] = t('gift_certificate.given',
-                         :code => @gift_certificate.formatted_code, :user => @to_user.login)
-      redirect_to gift_certificates_path
+      GiftCertificate.transaction do
+        @gift_certificate.give(@to_user, params[:comments])
+    RunOncePeriodicJob.create(
+            :name => 'Deliver Gift Notification',
+                    :job => "GiftCertificate.notify_of_gift(#{@gift_certificate.id}, #{current_user.id})")
+        flash[:notice] = t('gift_certificate.given',
+                           :code => @gift_certificate.formatted_code, :user => @to_user.login)
+        redirect_to gift_certificates_path
+      end
     end
   end
 

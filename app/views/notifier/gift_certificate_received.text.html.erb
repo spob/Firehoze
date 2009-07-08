@@ -1,0 +1,14 @@
+<p>
+  Hi <%= @gift_certificate.user.full_name %>,
+</p>
+<p>
+ You've received a gift from <%= @from_user.full_name %>.
+</p>
+<p>
+ To redeem your gift certificate, click <a href="<%= @gift_certificates_url %>">here</a>. Or, go to
+ <a href="<%= @redeem_url %>"><%= @redeem_url %></a> and enter gift certificate code
+ '<%= @gift_certificate.formatted_code %>'.
+</p>
+<p>
+  <%= link_to 'logon', @url %>
+</p>

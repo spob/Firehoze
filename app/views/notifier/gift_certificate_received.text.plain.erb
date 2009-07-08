@@ -1,0 +1,7 @@
+Hi <%= @gift_certificate.user.full_name %>,
+
+You've received a gift from <%= @from_user.full_name %>.
+
+To redeem your gift certificate, click <%= @gift_certificates_url %>. Or, go to <%= @redeem_url %> and enter gift certificate code '<%= @gift_certificate.formatted_code %>'.
+
+Logon at <%= @url %>

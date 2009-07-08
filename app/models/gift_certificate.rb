@@ -43,6 +43,12 @@ class GiftCertificate < ActiveRecord::Base
     self.update_attributes!(:user => to_user, :comments => comments)
   end
 
+  def self.notify_of_gift(gift_certificate_id, from_user_id)  
+    gift_certificate = GiftCertificate.find(gift_certificate_id)
+    from_user = User.find(from_user_id)
+    Notifier.deliver_gift_certificate_received(gift_certificate, from_user)
+  end
+
   private
 
   def populate_expires_at

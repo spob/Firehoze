@@ -32,9 +32,22 @@ class Notifier < ActionMailer::Base
   def credits_about_to_expire(user)
     subject    "You have credits about to expire"
     recipients user.email
-    from         APP_CONFIG[CONFIG_ADMIN_EMAIL]
+    from        APP_CONFIG[CONFIG_ADMIN_EMAIL]
 
     body       :user => user,
+               :url => login_url
+  end
+
+  # You received a gift certificate
+  def gift_certificate_received(gift_certificate, from_user)
+    subject    "You have received a gift"
+    recipients gift_certificate.user.email
+    from       APP_CONFIG[CONFIG_ADMIN_EMAIL]
+
+    body       :gift_certificate => gift_certificate,
+               :from_user => from_user,
+               :gift_certificates_url => gift_certificates_url,
+               :redeem_url => new_gift_certificate_url,
                :url => login_url
   end
 
