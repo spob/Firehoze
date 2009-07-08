@@ -5,7 +5,9 @@ class HelpfulsController < ApplicationController
 
   def create
     @review = Review.find(params[:review_id])
-    if @review.helpfuls.create(:user => current_user, :helpful => (params[:helpful] == 'yes'))
+    if @review.lesson.instructor == current_user
+      flash[:error] = t 'helpful.cant_helpful_as_instructor'
+    elsif @review.helpfuls.create(:user => current_user, :helpful => (params[:helpful] == 'yes'))
       flash[:notice] = t 'helpful.create_success'
     end
     redirect_to lesson_reviews_path(@review.lesson)

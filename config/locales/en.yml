@@ -57,6 +57,7 @@ en:
   helpful:
     create_success: Your feedback has been recorded
     cant_feedback_own: You cannot provide feedback on a review you have written
+    cant_helpful_as_instructor: As an instructor, you cannot provide feedback on reviews for your lesson
 
   lesson:
     created: Your lesson created and your video has been submitted for processing. You should receive notification in several minutes when your lesson video is ready for viewing.
