@@ -11,7 +11,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string   :time_zone,          :null => false
       t.integer  :login_count,        :null => false, :default => 0
       t.integer  :failed_login_count, :null => false, :default => 0
-      t.boolean  :active,             :null => false, :default => 1
+      t.boolean  :active,             :null => false, :default => true
       t.string   :last_name,          :null => false, :limit => 40
       t.string   :first_name,         :null => true,  :limit => 40
       t.string   :language,           :null => false, :default => 'en', :limit => 20
