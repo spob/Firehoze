@@ -5,6 +5,7 @@ echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
 sudo gem install hpricot
 sudo gem install right_http_connection
 
+sudo rake gems:install RAILS_ENV=production
 
 # Assembles Rails database.yml based on information
 # provided from a ReadyStack redeploy
