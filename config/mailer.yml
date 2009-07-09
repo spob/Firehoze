@@ -1,0 +1,5 @@
+:address: smtp.gmail.com
+:port: 587
+:user_name: mailer@firehoze.com
+:password: F1reh0ze
+:authentication: :plain
