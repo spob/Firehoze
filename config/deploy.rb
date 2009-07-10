@@ -42,8 +42,9 @@ namespace :deploy do
   end
 
   task :restart, :roles => :app do
-    run "touch #{current_path}/tmp/restart.txt"
+    #run "touch #{current_path}/tmp/restart.txt"
     # mongrel:restart
+    passenger:restart
     task_server:restart
   end
 end
