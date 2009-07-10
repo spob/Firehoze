@@ -3,6 +3,7 @@ echo "gem: --no-ri --no-rdoc" >> ~/.gemrc
 
 # install required gems
 sudo gem install hpricot
+sudo gem install daemons
 sudo gem install right_http_connection
 
 sudo rake gems:install RAILS_ENV=production
