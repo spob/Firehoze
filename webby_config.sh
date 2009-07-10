@@ -7,8 +7,7 @@ sudo gem install right_http_connection
 
 sudo rake gems:install RAILS_ENV=production
 
-# Assembles Rails database.yml based on information
-# provided from a ReadyStack redeploy
+# Assembles Rails database.yml based on information provided from a ReadyStack redeploy
 #
 # WC_DB_ENGINE = [mysql|postgresql]
 # WC_APP_NAME = The name of you app, the GitHub repo name

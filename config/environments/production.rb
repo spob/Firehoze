@@ -30,13 +30,11 @@ config.action_mailer.perform_deliveries = true
 config.action_mailer.default_charset = "utf-8"
 config.action_mailer.default_content_type = "text/html"
 config.action_mailer.delivery_method = :smtp
-config.action_mailer.server_settings = {
-  :address  => "smtp.gmail.com",
-  :port  => 587,
-  :domain => 'firehoze.com',
-  :user_name  => "mailer@firehoze.com",
-  :password  => "F1reh0ze",
-  :authentication  => :plain
+ActionMailer::Base.smtp_settings = {
+        :address                => "smtp.mymailserver.com",
+        :authentication        => :login,
+        :user_name                => "me",
+        :password                => "password"
 }
 
 # ActiveMerchant configuration
