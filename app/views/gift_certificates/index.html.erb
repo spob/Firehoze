@@ -3,6 +3,9 @@
 <table>
   <tr>
     <th>Code</th>
+    <% if current_user.try('is_sysadmin?') %>
+        <th>Belongs To</th>
+    <% end %>
     <th>Credits</th>
     <th>Expires At</th>
     <th>Comments</th>
