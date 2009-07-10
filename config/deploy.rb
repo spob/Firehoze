@@ -1,8 +1,7 @@
 set :application, 'Firehoze'
-set :user, 'firehoz'
-set :domain, '68.233.8.4'
+set :user, 'root'
+set :domain, '208.64.71.172'
 set :rails_env, 'production'
-set :mongrel_port, '4098'
 set :server_hostname, domain
 set :keep_releases, 8
 after "deploy:update", "deploy:cleanup"
@@ -28,43 +27,44 @@ set :deploy_via, :remote_cache
 set :git_shallow_clone, 1
 set :git_enable_submodules, 1
 set :use_sudo, false
-set :deploy_to, "/home/#{user}/#{application}"
+set :deploy_to, "/var/rails/#{application}"
 
-after 'deploy:update', 'deploy:finishing_touches', 'deploy:migrate', 'mongrel:restart', 'task_server:restart'
+after 'deploy:update', 'deploy:finishing_touches', 'deploy:migrate', 'deploy:restart'
 
 namespace :deploy do
   task :finishing_touches, :roles => :app do
     run "cp -pf #{deploy_to}/to_copy/production.rb #{current_path}/config/environments/production.rb"
     run "cp -pf #{deploy_to}/to_copy/database.yml #{current_path}/config/database.yml"
     run "cp -pf #{deploy_to}/to_copy/production.yml #{current_path}/config/environments/production.yml"
-    run "rm #{current_path}/lib/tasks/populate_fake_data.rake"
+    # run "rm #{current_path}/lib/tasks/populate_fake_data.rake"
     # preserve the assets directory which resides under shared
-    run "ln -s #{shared_path}/assets #{release_path}/public/assets" 
+    # run "ln -s #{shared_path}/assets #{release_path}/public/assets" 
   end
 
   task :restart, :roles => :app do
-    mongrel:restart
+    run "touch #{current_path}/tmp/restart.txt"
+    # mongrel:restart
     task_server:restart
   end
 end
 
-namespace :mongrel do
-  desc "Start Mongrel"
-  task :start, :roles => :app do
-    run "mongrel_rails start -e production -p 4098 -d -P /home/firehoz/Firehoze/shared/pids/mongrel.pid -l #{current_path}/log/mongrel.log -c #{current_path}"
-  end
-
-  desc "Restart Mongrel"
-  task :restart, :roles => :app do
-    run "mongrel_rails restart -P /home/firehoz/Firehoze/shared/pids/mongrel.pid"
-    #run "ruby #{current_path}/script/task_server_control.rb restart -- -e production"
-  end
-
-  desc "Stop Mongrel"
-  task :stop, :roles => :app do
-    run "mongrel_rails stop -P /home/firehoz/Firehoze/shared/pids/mongrel.pid"
-  end
-end
+#namespace :mongrel do
+#  desc "Start Mongrel"
+#  task :start, :roles => :app do
+#    run "mongrel_rails start -e production -p 4098 -d -P /home/firehoz/Firehoze/shared/pids/mongrel.pid -l #{current_path}/log/mongrel.log -c #{current_path}"
+#  end
+#
+#  desc "Restart Mongrel"
+#  task :restart, :roles => :app do
+#    run "mongrel_rails restart -P /home/firehoz/Firehoze/shared/pids/mongrel.pid"
+#    #run "ruby #{current_path}/script/task_server_control.rb restart -- -e production"
+#  end
+#
+#  desc "Stop Mongrel"
+#  task :stop, :roles => :app do
+#    run "mongrel_rails stop -P /home/firehoz/Firehoze/shared/pids/mongrel.pid"
+#  end
+#end
 
 namespace :task_server do
   desc "Start Task Server"
@@ -89,10 +89,10 @@ namespace :database do
     run "rake db:migrate:reset RAILS_ENV=production -f #{current_path}/Rakefile"
     run "rm -rf  #{shared_path}/assets/videos"
   end
-  task :down do
-    run "rake db:migrate RAILS_ENV=production VERSION=20081103171327 -f #{current_path}/Rakefile"
-    run "rm -rf  #{shared_path}/assets/videos"
-  end
+#  task :down do
+#    run "rake db:migrate RAILS_ENV=production VERSION=20081103171327 -f #{current_path}/Rakefile"
+#    run "rm -rf  #{shared_path}/assets/videos"
+#  end
 end
 
 namespace :log do
