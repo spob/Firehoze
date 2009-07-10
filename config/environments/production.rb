@@ -1,5 +1,8 @@
 # Settings specified here will take precedence over those in config/environment.rb
 
+# Required for gmail
+require "smtp_tls"
+
 # The production environment is meant for finished, "live" apps.
 # Code is not reloaded between requests
 config.cache_classes = true
@@ -22,10 +25,19 @@ config.action_view.debug_rjs                         = true # Enable full error 
 # config.action_mailer.raise_delivery_errors = false
 
 config.action_mailer.raise_delivery_errors = true
-config.action_mailer.delivery_method = :sendmail
+#config.action_mailer.delivery_method = :sendmail
 config.action_mailer.perform_deliveries = true
 config.action_mailer.default_charset = "utf-8"
 config.action_mailer.default_content_type = "text/html"
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.server_settings = {
+  :address  => "smtp.gmail.com",
+  :port  => 587,
+  :domain => 'firehoze.com',
+  :user_name  => "mailer@firehoze.com",
+  :password  => "F1reh0ze",
+  :authentication  => :plain
+}
 
 # ActiveMerchant configuration
 config.after_initialize do
