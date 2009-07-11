@@ -179,7 +179,10 @@ namespace :db do
     task :truncate => :environment do
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE periodic_jobs;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE gift_certificates;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE line_items;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE order_transactions;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE orders;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE carts;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE helpfuls;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
