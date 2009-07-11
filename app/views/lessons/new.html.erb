@@ -14,6 +14,9 @@
   <%= f.label 'Free Downloads' %>
   <%= select_tag :initial_free_download_count, options_for_select(LessonsController.free_download_counts) %>
   <br/>
+    <%= f.label :language %>:
+    <%= f.select :language, User.supported_languages %><br/>
+    <br/>
 
   <%= f.submit "Create lesson" %>
   <%= link_to "Cancel", lessons_path %>
