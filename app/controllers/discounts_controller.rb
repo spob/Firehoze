@@ -5,8 +5,8 @@ class DiscountsController < ApplicationController
   # before filter
   before_filter :retrieve_sku, :except => [ :edit, :update, :destroy ]
 
-  # Sys admins only
-  permit ROLE_SYSADMIN
+  # Admins only
+  permit ROLE_ADMIN
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path

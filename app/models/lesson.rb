@@ -43,15 +43,15 @@
 #      it was successfully processes, should reside at a particular location in the Amazon S3 bucket. Does it? If so,
 #      simulate the conversion_notify call. Not to do so, some of the info I populate (such as the duration) is bogus.
 #    * Normal users shouldn't see lessons which are not in a ready state.
-#    * Sysadmin's should see all lessons, their current state, and a complete history of all the states it's gone
+#    * admin's should see all lessons, their current state, and a complete history of all the states it's gone
 #      through and when.
 #    * The instructor should see lessons they've submitted regardless of state, but don't see the complete history.
 #    * When the video is done processing, the instructor should get an email
 #    * When a video conversion process fails at any point, it moves into a failed state. The instructor and the
-#      sysadmins get an email alerting them.
+#      admins get an email alerting them.
 #    * In Step #2 above, when we trigger the conversion to start, I also create a periodic job that fires after a
 #      set amount of time (an hour I think?). when that job wakes up, it checks to see if the video has completed
-#      processing. If it hasn't, it will alert the sysadmin via email that something may have gone wrong.
+#      processing. If it hasn't, it will alert the admin via email that something may have gone wrong.
 class Lesson < ActiveRecord::Base
   acts_as_taggable
 
@@ -107,12 +107,12 @@ class Lesson < ActiveRecord::Base
   named_scope   :failed, :conditions => {:state => LESSON_STATE_FAILED }
 
   # Basic paginated listing finder
-  # if the user is specified and is a sysadmin, then lessons will be retrieved regardless of
+  # if the user is specified and is an admin, then lessons will be retrieved regardless of
   # the state of the video. Otherwise, only READY videos will be retrieved
   def self.list(page, user=nil)
     conditions = {}
     conditions = ["state = ? or instructor_id = ?",
-                  LESSON_STATE_READY, user]  unless (user and user.try(:is_sysadmin?))
+                  LESSON_STATE_READY, user]  unless (user and user.try(:is_admin?))
     paginate :page => page,
              :conditions => conditions,
              :order => 'id desc',

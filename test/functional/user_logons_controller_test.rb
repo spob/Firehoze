@@ -8,9 +8,9 @@ class UserLogonsControllerTest < ActionController::TestCase
       UserSession.create @user
     end
 
-    context "with sysadmin access" do
+    context "with admin access" do
       setup do
-        @user.has_role 'sysadmin'
+        @user.has_role 'admin'
       end
 
       context "on GET to :index" do
@@ -23,7 +23,7 @@ class UserLogonsControllerTest < ActionController::TestCase
       end
     end
 
-    context "without sysadmin access" do
+    context "without admin access" do
       context "on GET to :index" do
         setup { get :index }
 

@@ -13,11 +13,11 @@ class GiftCertificate < ActiveRecord::Base
   named_scope :active, :conditions => [ "redeemed_at is null and expires_at > ?", Time.now ]
 
   # Basic paginated listing finder
-  # If the user is specified and is a sysadmin, then all active gift certificates will be retrieved.
+  # If the user is specified and is an admin, then all active gift certificates will be retrieved.
   # Otherwise, just those belonging to the user
   def self.list(page, user)
     conditions = { :redeemed_at => nil }
-    conditions = conditions.merge({ :user_id => user}) unless user.try(:is_sysadmin?)
+    conditions = conditions.merge({ :user_id => user}) unless user.try(:is_admin?)
     paginate :page => page,
              :conditions => conditions,
              :order => 'id desc',

@@ -7,7 +7,7 @@ set :scm, :git # :git, :darcs, :subversion, :cvs
 set :repository, "git://github.com/you/fancy_app.git"
 
 # Server
-# set :gateway, "gate.host.com" # for the paranoid sysadmins who require a gateway server
+# set :gateway, "gate.host.com" # for the paranoid admins who require a gateway server
 set :user, "you" # The user you log in as
 set :runner, "#{user}" # The user you want to run things as (if different, set up your sudoers file)
 set :deploy_to, "/home/#{user}/#{application}/" # where you want the app deployed. Must be path from root.

@@ -27,7 +27,7 @@ class CreditSku < Sku
 
   # Only an admin can delete a credit sku, and only if the SKU hasn't been used to purchase credits
   def can_delete? user
-    user.is_sysadmin? and credits.empty?
+    user.is_admin? and credits.empty?
   end
 
   # When the order is completed, this method will be invoked to finish the transaction -- in this case,

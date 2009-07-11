@@ -2,7 +2,7 @@
   <td>
     <%= gift_certificate.formatted_code %>
   </td>
-    <% if current_user.try('is_sysadmin?') %>
+    <% if current_user.try('is_admin?') %>
         <td><%= gift_certificate.user.login %></td>
     <% end %>
   <td>

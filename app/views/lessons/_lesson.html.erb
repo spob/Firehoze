@@ -2,7 +2,7 @@
   <td><%= h lesson.title %></td>
   <td><%= link_to_profile(lesson.instructor) %></td>
   <td><%= l lesson.created_at %></td>
-  <% if current_user.try("is_sysadmin?") %>
+  <% if current_user.try("is_admin?") %>
     <td><%= h lesson.state %></td>
   <% end %>
   <td><%= lesson.rating_average %></td>

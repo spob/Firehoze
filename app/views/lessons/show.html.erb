@@ -67,12 +67,12 @@
     </p>
 <% end %>
 
-<% if @lesson.credits.size > 0 and (current_user.try("is_sysadmin?") or @lesson.instructor == current_user) %>
+<% if @lesson.credits.size > 0 and (current_user.try("is_admin?") or @lesson.instructor == current_user) %>
     <h2>Lesson Purchases</h2>
     <table>
       <tr>
         <th>Timestamp</th>
-        <% if current_user.try("is_sysadmin?") %>
+        <% if current_user.try("is_admin?") %>
             <th>User</th>
         <% end %>
         <th>Price Paid</th>
@@ -81,7 +81,7 @@
       <%= render :partial => 'lessons/credit', :collection => @lesson.credits %>
       <tr>
         <td><b>TOTAL</b></td>
-        <% if current_user.try("is_sysadmin?") %>
+        <% if current_user.try("is_admin?") %>
             <td/>
         <% end %>
         <td><%= number_to_currency(@lesson.credits.sum(:price)) %></td>
@@ -90,7 +90,7 @@
     </table>
 <% end %>
 
-<% if current_user.try("is_sysadmin?") %>
+<% if current_user.try("is_admin?") %>
     <h2>System Information:</h2>
     <p>
       <b>State:</b>
@@ -179,7 +179,7 @@ See http://jimneath.org/2008/06/03/converting-lessons-with-rails-converting-the-
 <%= link_to 'Home', home_path %> |
 <%= link_to pluralize(@lesson.reviews.size, 'Review'), lesson_reviews_path(@lesson) %>
 
-<% if current_user.try("is_sysadmin?") %>
+<% if current_user.try("is_admin?") %>
     | <%= link_to "Convert", convert_lesson_path(@lesson), :method => :post %>
 
     <br/>

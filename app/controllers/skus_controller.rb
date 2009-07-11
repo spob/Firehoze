@@ -1,8 +1,8 @@
 class SkusController < ApplicationController
   before_filter :require_user
 
-  # Sys admins only
-  permit ROLE_SYSADMIN
+  # Admins only
+  permit ROLE_ADMIN
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path

@@ -1,9 +1,9 @@
-# Allow a sysadmin to see a history of user logons
+# Allow an admin to see a history of user logons
 class UserLogonsController < ApplicationController
   before_filter :require_user
 
-  # sysadmins only
-  permit ROLE_SYSADMIN
+  # admins only
+  permit ROLE_ADMIN
 
   def index
     @user_logons = UserLogon.list params[:page]

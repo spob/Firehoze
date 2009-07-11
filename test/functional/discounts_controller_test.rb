@@ -19,7 +19,7 @@ class DiscountsControllerTest < ActionController::TestCase
           @discount20 = Factory.create(:discount_by_volume, :minimum_quantity => 20, :percent_discount => 0.20, :sku => @sku)
         end
 
-        context "without sysadmin access" do
+        context "without admin access" do
           context "on GET to :index" do
             setup { get :index, :sku_id => @sku }
 
@@ -29,9 +29,9 @@ class DiscountsControllerTest < ActionController::TestCase
           end
         end
 
-        context "with sysadmin access" do
+        context "with admin access" do
           setup do
-            @user.has_role 'sysadmin'
+            @user.has_role 'admin'
             @sku = Factory.create(:credit_sku)
           end
 

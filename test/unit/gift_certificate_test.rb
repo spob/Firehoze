@@ -71,9 +71,9 @@ class GiftCertificateTest < ActiveSupport::TestCase
           assert_equal 1, @gifts.size
         end
 
-        context "as a sysadmin user" do
+        context "as an admin user" do
           setup do
-            @gift_certificate2.user.has_role 'sysadmin'
+            @gift_certificate2.user.has_role 'admin'
             @gifts = GiftCertificate.list(1, @gift_certificate2.user)
           end
 

@@ -4,7 +4,7 @@
       <th>Title</th>
       <th>Instructor</th>
       <th>Created At</th>
-      <% if current_user.try("is_sysadmin?") %>
+      <% if current_user.try("is_admin?") %>
         <th>State</th>
       <% end %>
       <th>Average Rating</th>

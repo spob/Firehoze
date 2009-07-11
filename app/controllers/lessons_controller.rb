@@ -1,6 +1,6 @@
 class LessonsController < ApplicationController
   before_filter :require_user, :only => [:new, :create, :edit, :update, :watch, :convert]
-  permit ROLE_SYSADMIN, :only => [:convert]
+  permit ROLE_ADMIN, :only => [:convert]
 
   verify :method => :post, :only => [ :create, :convert ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update, :conversion_notify ], :redirect_to => :home_path
@@ -86,7 +86,7 @@ class LessonsController < ApplicationController
   end
 
   # Trigger a conversion to occur at flixcloud. This will normally be triggered to occur
-  # automatically when a new file is uploaded...but the sysadmin can trigger it manually
+  # automatically when a new file is uploaded...but the admin can trigger it manually
   def convert
     @lesson.trigger_conversion
     flash[:notice] = t('lesson.conversion_triggered')

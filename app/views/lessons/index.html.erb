@@ -8,7 +8,7 @@
   </script>
 <% end %>
 
-<%= render :partial => "default" if current_user and current_user.is_sysadmin? %>
+<%= render :partial => "default" if current_user and current_user.is_admin? %>
 
 <div id="tabs">
   <ul>

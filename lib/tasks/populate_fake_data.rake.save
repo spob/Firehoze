@@ -32,7 +32,7 @@ namespace :db do
         admin.first_name = dev[1]
         admin.last_name = dev[2]
         admin.save!
-        admin.has_role ROLE_SYSADMIN
+        admin.has_role ROLE_ADMIN
         puts "Admin created: #{admin.full_name}"
       end
       puts "- done -"
@@ -50,7 +50,7 @@ namespace :db do
       blow_away_lessons
 
       User.all.each do |user|
-        unless user.is_sysadmin?
+        unless user.is_admin?
           user.destroy
         end
       end

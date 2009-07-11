@@ -15,9 +15,9 @@ namespace :db do
       admin.login = 'admin'
       admin.email = 'admin@firehoze.com'
       admin.save!
-      Role.create! :name => ROLE_SYSADMIN
+      Role.create! :name => ROLE_ADMIN
 
-      admin.has_role ROLE_SYSADMIN
+      admin.has_role ROLE_ADMIN
     end
   end
 

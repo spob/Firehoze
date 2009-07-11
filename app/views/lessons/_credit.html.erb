@@ -1,6 +1,6 @@
 <tr>
   <td><%= l credit.redeemed_at %></td>
-  <% if current_user.try("is_sysadmin?") %>
+  <% if current_user.try("is_admin?") %>
     <td><%= h credit.user.login %></td>
   <% end %>
   <td><%= number_to_currency(credit.price) %></td>

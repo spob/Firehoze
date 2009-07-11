@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Code</th>
-    <% if current_user.try('is_sysadmin?') %>
+    <% if current_user.try('is_admin?') %>
         <th>Belongs To</th>
     <% end %>
     <th>Credits</th>

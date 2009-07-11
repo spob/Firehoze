@@ -31,7 +31,7 @@ class SkuTest < ActiveSupport::TestCase
       end
     end
 
-    context "and a non-sysadmin user" do
+    context "and a non-admin user" do
       setup { @user = Factory(:user) }
 
       should "not be able to delete or edit" do
@@ -39,8 +39,8 @@ class SkuTest < ActiveSupport::TestCase
         assert !@sku.can_delete?(@user)
       end
 
-      context "with sysadmin access" do
-        setup { @user.has_role 'sysadmin' }
+      context "with admin access" do
+        setup { @user.has_role 'admin' }
 
         should "be able to delete or edit" do
           assert @sku.can_edit?(@user)

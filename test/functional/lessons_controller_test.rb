@@ -86,7 +86,7 @@ class LessonsControllerTest < ActionController::TestCase
         @lesson.save!
       end
 
-      context "and not a sysadmin" do
+      context "and not an admin" do
         context "on POST to :convert" do
           setup { post :convert, :id => @lesson }
           should_not_assign_to :lesson
@@ -95,9 +95,9 @@ class LessonsControllerTest < ActionController::TestCase
         end
       end
 
-      context "with sysadmin access" do
+      context "with admin access" do
         setup do
-          @user.has_role 'sysadmin'
+          @user.has_role 'admin'
         end
 
         context "on POST to :convert" do

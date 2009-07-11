@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
   attr_protected :email, :login
 
   def self.admins
-    Role.find_by_name('sysadmin').users
+    Role.find_by_name('admin').users
   end
 
   def self.supported_languages

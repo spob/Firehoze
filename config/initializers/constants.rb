@@ -5,7 +5,7 @@ ROWS_PER_PAGE = 10
 LESSONS_PER_PAGE = 10
 
 # Roles
-ROLE_SYSADMIN = 'sysadmin'
+ROLE_ADMIN = 'admin'
 ROLE_MODERATOR = 'moderator'
 
 # Skus

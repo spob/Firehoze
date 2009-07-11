@@ -57,9 +57,9 @@ class LessonTest < ActiveSupport::TestCase
 
       context "which is processing" do
         setup do
-          # notifier needs at least one sys admin
-          @sysadmin = Factory.create(:user)
-          @sysadmin.has_role 'sysadmin'
+          # notifier needs at least one admin
+          @admin = Factory.create(:user)
+          @admin.has_role 'admin'
           @lesson.update_attributes(:state => LESSON_STATE_START_CONVERSION_SUCCESS,
             :flixcloud_job_id => @lesson.id * 2)
         end
@@ -153,8 +153,8 @@ class LessonTest < ActiveSupport::TestCase
             assert_equal 3, Lesson.list(1, @lesson.instructor).size
           end
 
-          context "who is a sysadmin" do
-            setup { @user.has_role 'sysadmin' }
+          context "who is an admin" do
+            setup { @user.has_role 'admin' }
 
             should "return less records" do
               assert_equal 3, Lesson.list(1, @user).size

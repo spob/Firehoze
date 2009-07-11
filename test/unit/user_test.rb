@@ -36,10 +36,10 @@ class UserTest < ActiveSupport::TestCase
         # and let's create a couple more
         @user2 = Factory.create(:user)
         @user3 = Factory.create(:user)
-        @user3.has_role 'sysadmin'
+        @user3.has_role 'admin'
       end
 
-      should "return one sysadmin record" do
+      should "return one admin record" do
         admins = User.admins
         assert_equal 1, admins.size
         assert_equal @user3, admins.first

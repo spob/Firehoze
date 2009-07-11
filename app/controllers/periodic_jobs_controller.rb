@@ -1,6 +1,6 @@
 class PeriodicJobsController < ApplicationController
   before_filter :require_user
-  permit ROLE_SYSADMIN
+  permit ROLE_ADMIN
 
   # GETs should be safe (see http://www.w3.org/2001/tag/doc/whenToUseGet.html)
   verify :method => :post, :only => [:rerun ],
