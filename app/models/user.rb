@@ -48,15 +48,8 @@ class User < ActiveRecord::Base
     Role.find_by_name('sysadmin').users
   end
 
-  # @@languages hold a list of languages that the user can choose from when setting up their account
-  # information...it is used to populate the html select
-  @@languages = [
-          ['English', 'en'],
-          ['Wookie', 'wk']
-  ]
-
   def self.supported_languages
-    @@languages
+    LANGUAGES
   end
 
   def full_name

@@ -1,3 +1,6 @@
+LANGUAGES = [['English', 'en'],['Wookie', 'wk']]
+
+
 ROWS_PER_PAGE = 10
 LESSONS_PER_PAGE = 10
 

@@ -21,4 +21,8 @@ module ApplicationHelper
   def set_focus_to_id(id, othertxt=nil)
     javascript_tag("$('#{id}').focus()");
   end
+
+  def language_value(key)
+    LANGUAGES.rassoc(key).first
+  end
 end

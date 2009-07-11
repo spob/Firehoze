@@ -47,7 +47,7 @@
 </p>
 <p>
   <b>Language:</b>
-  <%= select_tag :language,  options_for_select(User.supported_languages, @lesson.language), :disabled => true %>
+  <%= h language_value(@lesson.language) %>
 </p>
 
 <% if @lesson.finished_video_duration %>
