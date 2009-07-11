@@ -47,6 +47,9 @@ Rails::Initializer.run do |config|
   # active merchant used for credit card processing
   config.gem "activemerchant", :lib => "active_merchant", :version => "1.4.2"
 
+  # tagging
+  config.gem 'jviney-acts_as_taggable_on_steroids', :lib => 'acts_as_taggable', :source => 'http://gems.github.com', :version => '~>1.1'
+
   # authologic provides authenticaiton
   config.gem "authlogic"
 
