@@ -35,6 +35,13 @@
 </p>
 
 <p>
+  <b>Tags:</b>
+  <% @lesson.tag_counts.each do |tag| %>
+    <%= link_to tag.name, list_lessons_path(:collection => :tagged_with, :tag => tag.name) %>
+  <% end %>
+</p>
+
+<p>
   <b>Instructor:</b>
   <%= h @lesson.instructor.login %>
 </p>

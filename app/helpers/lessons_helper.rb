@@ -13,7 +13,7 @@ module LessonsHelper
     ratings_for(lesson, (user != @lesson.instructor and lesson.owned_by?(user)) ? :active : :static)
   end
 
-  def lessons_header(collection)
+  def lessons_header(collection, *args)
     if controller.action_name == 'list'
       header = case collection
       when :most_popular
@@ -22,6 +22,8 @@ module LessonsHelper
         t('lesson.highest_rated')
       when :newest
         t('lesson.newest')
+      when :tagged_with
+        "#{t('lesson.tagged_with')} &quot;#{args.first}&quot;"
       end
       "<h4>#{header}</h4>"
     end

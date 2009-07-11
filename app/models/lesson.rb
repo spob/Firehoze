@@ -53,6 +53,8 @@
 #      set amount of time (an hour I think?). when that job wakes up, it checks to see if the video has completed
 #      processing. If it hasn't, it will alert the sysadmin via email that something may have gone wrong.
 class Lesson < ActiveRecord::Base
+  acts_as_taggable
+
   ajaxful_rateable :stars => 5
   cattr_reader :per_page
   @@per_page = LESSONS_PER_PAGE
@@ -306,6 +308,7 @@ class Lesson < ActiveRecord::Base
 
   private
 
+  Tag.destroy_unused = true
 
   def input_path
     's3://' + APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET] + '/' + self.video.path

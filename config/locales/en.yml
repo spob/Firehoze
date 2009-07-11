@@ -76,6 +76,7 @@ en:
     highest_rated: Highest Rated
     newest: Newest
     most_popular: Most Popular
+    tagged_with: Lessons tagged with
 
   line_item:
     updated_success: Updated line item
