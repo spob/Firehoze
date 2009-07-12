@@ -11,14 +11,12 @@ namespace :db do
   namespace :populate do
 
     desc "Bootstraps the application"
-    raise "******** Stop! This is only for development or test environments." unless %w(development test).include?(RAILS_ENV)
     task :all => [ :truncate, :admins, :users, :lessons, :credits, :acquire_lessons, :reviews, :reset_passwords] do
       puts "***** ALL COMPLETE *****"
     end
 
     desc "Generate some admins"
     task :admins => :environment do
-      raise "******** Stop! This is only for development or test environments." unless %w(development test).include?(RAILS_ENV)
       puts "=== Generating Admins ==="
       require 'populator'
       require 'faker'
@@ -40,7 +38,6 @@ namespace :db do
 
     desc "Generate some users"
     task :users => :environment do
-      raise "******** Stop! This is only for development or test environments." unless %w(development test).include?(RAILS_ENV)
       puts "=== Generating Users ==="
       require 'populator'
       require 'faker'
@@ -76,7 +73,6 @@ namespace :db do
 
     desc "Generate some lessons"
     task :lessons => :environment do
-      raise "******** Stop! This is only for development or test environments." unless %w(development test).include?(RAILS_ENV)
       puts "=== Generating Lessons ==="
       require 'populator'
       require 'faker'
@@ -105,7 +101,6 @@ namespace :db do
     #Not sure I neeed this any more
     desc "Generate some line_items and carts"
     task :carts => :environment do
-      raise "******** Stop! This is only for development or test environments." unless %w(development test).include?(RAILS_ENV)
       sku = Sku.first
       User.all.each do |user|
         cart = Cart.new(:user => user)
@@ -118,7 +113,6 @@ namespace :db do
 
     desc "Generate some credits"
     task :credits => :environment do
-      raise "******** Stop! This is only for development or test environments." unless %w(development test).include?(RAILS_ENV)
       puts "=== Generating Credits ==="
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
 
@@ -132,7 +126,6 @@ namespace :db do
 
     desc "Acquire some lessons"
     task :acquire_lessons => :environment do
-      raise "******** Stop! This is only for development or test environments." unless %w(development test).include?(RAILS_ENV)
       puts "=== Acquiring Lessons ==="
 
       Lesson.all(:order => "RAND()").each do |lesson|
@@ -150,7 +143,6 @@ namespace :db do
 
     desc "Generate some reviews"
     task :reviews => :environment do
-      raise "******** Stop! This is only for development or test environments." unless %w(development test).include?(RAILS_ENV)
       puts "=== Generating Reviews ==="
       require 'populator'
       require 'faker'
@@ -175,7 +167,6 @@ namespace :db do
     end
 
     desc "truncates tables"
-    raise "******** Stop! This is only for development or test environments." unless %w(development test).include?(RAILS_ENV)
     task :truncate => :environment do
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE periodic_jobs;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
@@ -194,7 +185,6 @@ namespace :db do
     end
 
     desc "reset all passwords"
-    raise "******** Stop! This is only for development or test environments." unless %w(development test).include?(RAILS_ENV)
     task :reset_passwords => :environment do
 
       params =  { :active => true, :language => 'en', :password => "pa$$word", :password_confirmation => "pa$$word", :password_salt => 'as;fdaslkjasdfn', :time_zone =>Time.zone.name }
