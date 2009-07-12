@@ -11,7 +11,7 @@ namespace :db do
   namespace :populate do
 
     desc "Bootstraps the application"
-    task :all => [ :truncate, :admins, :users, :lessons, :credits, :acquire_lessons, :reviews, :reset_passwords] do
+    task :all => [ :truncate, :admins, :users, :lessons, :tags, :credits, :acquire_lessons, :reviews, :reset_passwords] do
       puts "***** ALL COMPLETE *****"
     end
 
@@ -85,7 +85,7 @@ namespace :db do
         lesson.title = Faker::Company.catch_phrase.titleize
         lesson.description = Populator.paragraphs(1..3)
         lesson.state = LESSON_STATE_PENDING
-        dummy_video_path = "/test/videos/#{rand(5)+1}.swf" #pick a random vid,
+        dummy_video_path = "/test/videos/#{rand(5)+1}.avi" #pick a random vid,
         if !File.exist?(RAILS_ROOT + dummy_video_path)
           puts "can not find file"
         else
@@ -96,6 +96,26 @@ namespace :db do
         end
       end
       puts "- done -"
+    end
+
+    desc "Generate some lesson tags"
+    task :tags => :environment do
+      puts "=== Generating Tags on Lessons ==="
+      require 'populator'
+      require 'faker'
+
+      Tag.populate 25 do |tag|
+        tag.name = Populator.words(1).titleize
+        puts "tag created: #{tag.name}"
+      end
+
+      Lesson.ready.each do |lesson|
+        tags = Tag.all(:order => "RAND()", :limit => rand(6)+1)
+        tag_names = tags.collect(&:name)
+        lesson.tag_list.add tag_names
+        lesson.save!
+        puts "#{lesson.id} tagged with #{tag_names.size} tags: #{tag_names.to_sentence}"
+      end
     end
 
     #Not sure I neeed this any more
@@ -179,6 +199,8 @@ namespace :db do
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_state_changes;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE lessons;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE taggings;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE tags;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE roles_users;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE user_logons;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE users;")
