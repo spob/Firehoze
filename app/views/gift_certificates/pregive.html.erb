@@ -1,6 +1,6 @@
 <h2>Give Gift Certificate '<%= @gift_certificate.formatted_code %>' to Another User</h2>
 
-<% form_for(:gift_certificate, :url => give_gift_certificate_path) do |f| %>
+<% form_for(:gift_certificate, :url => confirm_give_gift_certificate_path) do |f| %>
     <%= f.error_messages %>
 
     Recipient Username:

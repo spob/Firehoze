@@ -1,8 +1,8 @@
 class GiftCertificatesController < ApplicationController
   before_filter :require_user
-  before_filter :find_gift_certificate, :only => [:redeem, :give, :pregive]
+  before_filter :find_gift_certificate, :only => [:redeem, :give, :pregive, :confirm_give]
 
-  verify :method => :post, :only => [ :create, :redeem, :give ], :redirect_to => :home_path
+  verify :method => :post, :only => [ :create, :redeem, :give, :confirm_give ], :redirect_to => :home_path
 
   def index
     @gift_certificates = GiftCertificate.list(params[:page], current_user)
@@ -36,22 +36,29 @@ class GiftCertificatesController < ApplicationController
 
   end
 
-  # give a certificate to someone else
-  def give
+  def confirm_give
     @to_user = User.find_by_login(params[:to_user])
     @to_user ||= User.find_by_email(params[:to_user_email])
     if @to_user.nil?
       flash[:error] = t('gift_certificate.no_such_user', :user => params[:to_user])
       render 'pregive'
-    elsif @gift_certificate.user != current_user
+    end
+    @comments = params[:comments]
+  end
+
+  # give a certificate to someone else
+  def give
+    @to_user = User.find(params[:to_user_id])
+
+    if @gift_certificate.user != current_user
       flash[:error] = t('gift_certificate.must_own_to_give')
       render 'pregive'
     else
       GiftCertificate.transaction do
         @gift_certificate.give(@to_user, params[:comments])
-    RunOncePeriodicJob.create(
-            :name => 'Deliver Gift Notification',
-                    :job => "GiftCertificate.notify_of_gift(#{@gift_certificate.id}, #{current_user.id})")
+        RunOncePeriodicJob.create(
+                :name => 'Deliver Gift Notification',
+                :job => "GiftCertificate.notify_of_gift(#{@gift_certificate.id}, #{current_user.id})")
         flash[:notice] = t('gift_certificate.given',
                            :code => @gift_certificate.formatted_code, :user => @to_user.login)
         redirect_to gift_certificates_path

@@ -1,0 +1,11 @@
+<h2>Give Gift Certificate '<%= @gift_certificate.formatted_code %>' to Another User</h2>
+
+You are about to give this gift certificate to <%= @to_user.login %>. Please confirm.
+<% form_for(:gift_certificate, :url => give_gift_certificate_path) do |f| %>
+    <%= f.error_messages %>
+    <%= hidden_field_tag("to_user_id", @to_user.id) %>
+    <%= hidden_field_tag("comments", @comments) %>
+    <br/>
+    <%= f.submit "Yes" %>
+    <%= link_to "No", gift_certificates_path %>
+<% end %>
