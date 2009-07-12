@@ -61,7 +61,7 @@ class Credit < ActiveRecord::Base
 
       TaskServerLogger.instance.info("Expiration warning issued for user #{user.login} #{warn_before_credit_expiration_days} days before expiration")
       Credit.transaction do
-        Notifier.deliver_credits_about_to_expire user
+        Notifier.deliver_credits_about_to_expire(user)
         user.credits.available.unwarned.to_expire(warn_before_credit_expiration_days.days.since).update_all(
                 :expiration_warning_issued_at => Time.zone.now)
       end

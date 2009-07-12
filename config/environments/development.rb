@@ -20,14 +20,15 @@ config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.gith
 
 # Yes, raise errors if can't send email
 config.action_mailer.raise_delivery_errors = true
+config.action_mailer.default_content_type = "text/html"
 
 config.action_mailer.smtp_settings = {
         :address        => "smtp.gmail.com",
         :port           => 587,
-        :domain         => "mindmeld@sturim.org",
+        :domain         => "firehoze.com",
         :authentication => :plain,
-        :user_name      => "mindmeld@sturim.org",
-        :password       => "mindmeld"
+        :user_name      => "mailer@firehoze.com",
+        :password       => "F1reh0ze"
 }
 
 # ActiveMerchant configuration

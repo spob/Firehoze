@@ -40,9 +40,10 @@ class Notifier < ActionMailer::Base
 
   # You received a gift certificate
   def gift_certificate_received(gift_certificate, from_user)
-    subject    "You have received a gift"
-    recipients gift_certificate.user.email
-    from       APP_CONFIG[CONFIG_ADMIN_EMAIL]
+    subject      "You have received a gift"
+    recipients    gift_certificate.user.email
+    from          APP_CONFIG[CONFIG_ADMIN_EMAIL]
+    #content_type "multipart/alternative"
 
     body       :gift_certificate => gift_certificate,
                :from_user => from_user,
