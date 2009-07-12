@@ -24,7 +24,6 @@ class User < ActiveRecord::Base
   has_many :reviews, :dependent => :destroy
   has_many :helpfuls, :dependent => :destroy
 
-
   # Active users
   named_scope :active, :conditions => {:active => true}
 

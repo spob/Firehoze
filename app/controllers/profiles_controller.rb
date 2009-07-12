@@ -18,6 +18,7 @@ class ProfilesController < ApplicationController
     @user.email = params[:user][:email].try(:strip)
     @user.first_name = params[:user][:first_name].try(:strip)
     @user.last_name = params[:user][:last_name].try(:strip)
+    @user.bio = params[:user][:bio]
     @user.time_zone = params[:user][:time_zone]
     @user.language = params[:user][:language]
     if @user.save

@@ -19,6 +19,11 @@
 </p>
 
 <p>
+    <b>Bio:</b>
+    <%= textilize(@user.bio) unless @user.bio.blank? %>
+</p>
+
+<p>
     <b>User Time Zone:</b>
     <%= h @user.time_zone %>
 </p>

@@ -74,6 +74,9 @@ Rails::Initializer.run do |config|
   # For attaching files
   config.gem 'thoughtbot-paperclip', :lib => 'paperclip', :source => 'http://gems.github.com', :version => '2.2.9.2'
 
+  # For text formatting
+  config.gem 'RedCloth'
+
   # For interacting with AWS
   config.gem 'right_aws'
 

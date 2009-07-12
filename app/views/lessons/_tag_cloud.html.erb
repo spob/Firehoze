@@ -1,0 +1,13 @@
+<% tags = object %>
+
+<% if tags %>
+  <% content_for :head do -%>
+    <%= stylesheet_link_tag 'tag_cloud', :media => "screen, projection" %>
+  <% end %>
+
+  <div class="lesson_container">
+    <% tag_cloud tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
+      <%= link_to tag.name, list_lessons_path(:collection => :tagged_with, :tag => tag.name), :class => css_class %>
+    <% end %>
+  </div>
+<% end %>

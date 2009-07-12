@@ -20,6 +20,9 @@
     <%= form.label :last_name %>:
     <%= form.text_field :last_name %><br />
     <br/>
+    <%= form.label :bio %>:
+    <%= form.text_area :bio %><br />
+    <br/>
     <%= form.label :time_zone %>:
     <%= form.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
     <br/>
