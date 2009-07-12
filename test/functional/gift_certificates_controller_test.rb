@@ -59,7 +59,7 @@ class GiftCertificatesControllerTest < ActionController::TestCase
         end
 
         context "specifying the email" do
-          setup { post :confirm_give, :id => @gift_certificate, :to_user_id => @to_user.email, :comments => 'hello' }
+          setup { post :confirm_give, :id => @gift_certificate, :to_user_email => @to_user.email, :comments => 'hello' }
 
           should_assign_to :gift_certificate
           should_respond_with :success
