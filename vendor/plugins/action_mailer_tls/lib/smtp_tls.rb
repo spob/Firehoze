@@ -5,9 +5,9 @@ Net::SMTP.class_eval do
   private
   def do_start(helodomain, user, secret, authtype)
     raise IOError, 'SMTP session already started' if @started
-    # Fix error 3 for 2 arguments RBS
-    check_auth_args user, secret if user or secret
-#    check_auth_args user, secret, authtype if user or secret
+    # Fix error 3 for 2 arguments RBS...backed out this fix, but will need to re-add if we re-upgrade to 1.8.7
+    # check_auth_args user, secret if user or secret
+    check_auth_args user, secret, authtype if user or secret
 
     sock = timeout(@open_timeout) { TCPSocket.open(@address, @port) }
     @socket = Net::InternetMessageIO.new(sock)
