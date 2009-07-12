@@ -118,15 +118,16 @@ class LessonTest < ActiveSupport::TestCase
 
       context "that changed state" do
         setup do
-          @lesson.change_state('done', 'test msg')
+          @lesson.change_state('ready', 'test msg')
           @lesson = Lesson.find(@lesson)
         end
 
         should "have another state change record" do
           assert_equal 2, @lesson.lesson_state_changes.count
           assert_equal "pending", @lesson.lesson_state_changes.last.from_state
-          assert_equal "done", @lesson.lesson_state_changes.last.to_state
-          assert_equal "test msg", @lesson.lesson_state_changes.last.message
+          assert_equal "ready", @lesson.lesson_state_changes.last.to_state
+          assert_equal "Video conversion completed successfully and is ready for viewing: test msg",
+                       @lesson.lesson_state_changes.last.message
         end
       end
 

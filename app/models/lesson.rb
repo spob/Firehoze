@@ -154,10 +154,9 @@ class Lesson < ActiveRecord::Base
               :finished_video_duration => job.output_media_file.duration,
               :finished_video_cost => job.output_media_file.cost,
               :input_video_cost => job.input_media_file.cost)
-      change_state(LESSON_STATE_END_CONVERSION, I18n.t('lesson.conversion_end_success') +
-              " (##{job.id})")
+      change_state(LESSON_STATE_END_CONVERSION, "(##{job.id})")
       set_thumbnail_url
-      change_state(LESSON_STATE_READY, I18n.t('lesson.ready'))
+      change_state(LESSON_STATE_READY)
       Notifier.deliver_lesson_ready self
     else
       change_state(LESSON_STATE_FAILED, job.error_message)
@@ -169,9 +168,9 @@ class Lesson < ActiveRecord::Base
     raise e
   end
 
-  def change_state(new_state, msg = nil)
+  def change_state(new_state, msg=nil)
     self.update_attributes(:state => new_state,
-                           :state_change_message => msg)
+                           :state_change_message => I18n.t("lesson.#{new_state}") + (msg.nil? ? "" : ": #{msg}"))
   end
 
   # First call out to Amazon S3 to grant permissions to flixcloud to view the raw video,
@@ -194,7 +193,7 @@ class Lesson < ActiveRecord::Base
 
   # Allow flixcloud to view the raw video
   def grant_s3_permissions_to_flix
-    change_state(LESSON_STATE_SET_S3_PERMISSIONS, I18n.t('lesson.S3_permissions_start'))
+    change_state(LESSON_STATE_SET_S3_PERMISSIONS)
     s3_connection = RightAws::S3.new(APP_CONFIG[CONFIG_AWS_ACCESS_KEY_ID],
                                      APP_CONFIG[CONFIG_AWS_SECRET_ACCESS_KEY])
     bucket = s3_connection.bucket(APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET])
@@ -205,7 +204,7 @@ class Lesson < ActiveRecord::Base
 
   # Call out to flixcloud to trigger a conversion process
   def convert
-    change_state(LESSON_STATE_START_CONVERSION, I18n.t('lesson.conversion_start'))
+    change_state(LESSON_STATE_START_CONVERSION)
     job = FlixCloud::Job.new(:api_key => FLIX_API_KEY,
                              :recipe_id => FLIX_RECIPE_ID,
                              :input_url => input_path,
@@ -213,8 +212,7 @@ class Lesson < ActiveRecord::Base
                              :watermark_url => WATERMARK_URL,
                              :thumbnails_url => thumbnail_path)
     if job.save
-      change_state(LESSON_STATE_START_CONVERSION_SUCCESS, I18n.t('lesson.conversion_end') +
-              " (##{job.id})")
+      change_state(LESSON_STATE_START_CONVERSION_SUCCESS, " (##{job.id})")
       self.update_attributes(:flixcloud_job_id => job.id, :conversion_started_at => job.initialized_at)
       RunOncePeriodicJob.create!(:name => 'DetectZombieVideoProcess',
                                  :job => "Lesson.detect_zombie_video #{self.id}, #{job.id}",
@@ -233,7 +231,7 @@ class Lesson < ActiveRecord::Base
   end
 
   def set_thumbnail_url
-    change_state(LESSON_STATE_GET_THUMBNAIL_URL, I18n.t('lesson.calc_thumb_url_start'))
+    change_state(LESSON_STATE_GET_THUMBNAIL_URL)
     #s3_connection = s3_connect
     #bucket = s3_connection.bucket(APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET])
     #file = bucket.key(thumbnail_path + "/thumb_0000.png", true)

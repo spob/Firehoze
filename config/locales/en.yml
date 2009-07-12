@@ -67,17 +67,20 @@ en:
     conversion_triggered: Video conversion started
     need_credits: You have no available credits to watch this lesson. Would you like to buy more?
     S3_permissions_start: Setting S3 permissions
-    pending: Lesson created and awaiting transcoding
-    conversion_start: Trigger start of video transcoding
-    conversion_end: Video transcoding started
-    conversion_end_success: Video transcoding completed successfully
-    calc_thumb_url_start: Retrieving thumbnail URL
-    ready: Video conversion completed successfully and is ready for viewing
     not_ready: Conversion in process...lesson video not yet ready for viewing
     highest_rated: Highest Rated
     newest: Newest
     most_popular: Most Popular
     tagged_with: Lessons tagged with
+    # Lesson states
+    pending: Lesson created and awaiting transcoding
+    S3_permissions_start: Set S3 permissions
+    trigger_conversion_start: About to trigger video conversion
+    trigger_conversion_end: Video transcoding started
+    conversion_end_success: Video transcoding completed successfully
+    calc_thumb_url_start: Retrieving thumbnail URL
+    ready: Video conversion completed successfully and is ready for viewing
+    failed: Video failed processing
 
   line_item:
     updated_success: Updated line item
