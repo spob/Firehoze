@@ -18,6 +18,6 @@
 	<%= f.label :description %>:
     <%= f.text_field :description %><br />
     <br/>
-    <%= f.submit "Save" %>
+    <%= f.submit "Save", :disable_with => translate('general.disable_with') %>
     <%= link_to 'Cancel', skus_path %>
 <% end %>

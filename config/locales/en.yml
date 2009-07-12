@@ -34,6 +34,7 @@ en:
 #      password: password
 #      remember_me: remember me
   general:
+    disable_with: Please wait...
     _yes: 'yes'
     _no: 'no'
 

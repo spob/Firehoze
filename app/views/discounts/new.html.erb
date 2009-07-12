@@ -14,7 +14,7 @@ New Discount for SKU <%= @sku.sku %>
       <%= f.label :percent_discount %> <br/>
       <%= f.text_field :percent_discount %> (enter 0.05 for 5%)
     </p>
-    <p><%= f.submit "Submit" %></p>
+    <p><%= f.submit "Submit", :disable_with => translate('general.disable_with') %></p>
 <% end %>
 
 

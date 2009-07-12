@@ -16,7 +16,7 @@
     <%= f.password_field :password_confirmation %>
   </p>
   <p>
-    <%= f.submit "Update" %>
+    <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
     <%= link_to "Cancel", profile_path(@user) %>
   </p>
 <% end %>

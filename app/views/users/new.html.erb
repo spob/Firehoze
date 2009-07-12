@@ -37,5 +37,5 @@
     <%= form.label :password_confirmation %>:
     <%= form.password_field :password_confirmation %><br />
     <br/>
-    <%= form.submit "Register" %>
+    <%= form.submit "Register", :disable_with => translate('general.disable_with') %>
 <% end %>

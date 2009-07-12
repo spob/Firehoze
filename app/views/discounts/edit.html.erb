@@ -14,7 +14,7 @@ Edit Discount for SKU <%= @discount.sku.sku %>
     <%= f.label :active %> <br />
     <%= f.check_box :active %>
   </p>
-  <p><%= f.submit "Submit" %></p>
+  <p><%= f.submit "Submit", :disable_with => translate('general.disable_with') %></p>
 <% end %>
 
 

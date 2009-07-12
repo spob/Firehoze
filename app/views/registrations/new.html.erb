@@ -9,5 +9,5 @@ In order to request an account, you first must verify your email information:
     <%= f.label :email %>:
     <%= f.text_field :email %>
 
-    <%= f.submit "Register" %>
+    <%= f.submit "Register", :disable_with => translate('general.disable_with') %>
 <% end %>

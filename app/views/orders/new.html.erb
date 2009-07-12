@@ -57,7 +57,7 @@ New Order
       <%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year,
                         :end_year => Date.today.year + 10, :add_month_numbers => true %>
     </p>
-    <p><%= f.submit "Submit" %></p>
+    <p><%= f.submit "Submit", :disable_with => translate('general.disable_with') %></p>
 <% end %>
 
 

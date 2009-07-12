@@ -6,6 +6,6 @@ You are about to give this gift certificate to <%= @to_user.login %>. Please con
     <%= hidden_field_tag("to_user_id", @to_user.id) %>
     <%= hidden_field_tag("comments", @comments) %>
     <br/>
-    <%= f.submit "Yes" %>
+    <%= f.submit "Yes", :disable_with => translate('general.disable_with') %>
     <%= link_to "No", gift_certificates_path %>
 <% end %>

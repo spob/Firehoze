@@ -10,7 +10,7 @@
     <br/>
     <%= f.check_box :remember_me %><%= f.label :remember_me %><br />
     <br/>
-    <%= f.submit "Login" %>
+    <%= f.submit "Login", :disable_with => translate('general.disable_with') %>
 <% end %>
 <% if !current_user %>
     <%= link_to "Register", new_registration_path %> |

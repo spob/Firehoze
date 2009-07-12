@@ -10,7 +10,7 @@ New Review for Lesson <%= @lesson.title %>
       <%= f.label :body %> <br/>
       <%= f.text_area :body %>
     </p>
-    <p><%= f.submit "Submit" %></p>
+    <p><%= f.submit "Submit", :disable_with => translate('general.disable_with') %></p>
 <% end %>
 
 

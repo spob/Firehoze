@@ -6,5 +6,5 @@
     Gift Certificate Code:
     <%= f.text_field :code %>
 
-    <%= f.submit "Redeem" %>
+    <%= f.submit "Redeem", :disable_with => translate('general.disable_with') %>
 <% end %>

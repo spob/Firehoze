@@ -13,7 +13,7 @@
     <br/>
     <br/>
 
-    <%= f.submit "Update" %>
+    <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
     <%= link_to "Cancel", user_path(@user) %>
 <% end %>
 

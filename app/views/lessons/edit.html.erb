@@ -16,6 +16,6 @@
     <%= f.select :language, User.supported_languages %><br/>
     <br/>
 
-    <%= f.submit "Update" %>
+    <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
     <%= link_to "Cancel", lesson_path(@lesson) %>
 <% end %>
