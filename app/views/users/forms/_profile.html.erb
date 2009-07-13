@@ -1,0 +1,30 @@
+View your <%= link_to 'public profile', user_path(current_user) %>
+
+<% form_for(:user, :url => accounts_path(@user), :html => { :method => :put }) do |f| %>
+  <%= f.error_messages %>
+
+  Username:
+  <%= @user.login %><br />
+  <br/>
+  <%= f.label :email %>:
+  <%= f.text_field :email %><br />
+  <br/>
+  <%= f.label :first_name %>:
+  <%= f.text_field :first_name %><br F/>
+  <br/>
+  <%= f.label :last_name %>:
+  <%= f.text_field :last_name %><br />
+  <br/>
+  <%= f.label :bio %>:
+  <%= f.text_area :bio %><br />
+  <br/>
+  <%= f.label :time_zone %>:
+  <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %><br/>
+  <br/>
+  <%= f.label :language %>:
+  <%= f.select :language, User.supported_languages %><br/>
+  <br/>
+
+  <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
+  <%= link_to "Cancel", accounts_path(@user) %>
+<% end %>

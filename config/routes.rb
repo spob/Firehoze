@@ -20,7 +20,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :store, :only => :show
   map.resources :skus, :has_many => :discounts, :shallow => true
   map.resource  :user_session, :only => [ :create, :destroy, :new ]
-  map.resources :users
+  map.resources :users, :member => { :private => :get }
   map.resources :user_logons
   map.resources :registrations, :only => [ :new, :create ] do |registration|
     registration.resources :users, :only => [ :new, :create ]

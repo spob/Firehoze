@@ -133,7 +133,14 @@ en:
     account_reg_success: Account registered
     account_update_success: Account updated
     login_required: Username can't be empty
-  
+    profile: Profile
+    password: Password
+    avatar: Avatar
+    order_history: Order History
+    notices: Notices
+    privacy: Privacy
+    not_permitted_to_view: Sorry, you were not authorized to view that page
+
   # Date/Time formatting
   date:
     formats:

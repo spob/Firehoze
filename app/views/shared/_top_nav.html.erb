@@ -1,7 +1,7 @@
 <ul id="top_nav_links">
   <li><%= signin_or_signout_link %></li>
   <% if current_user %>
-      <li><%= link_to "Account Settings", accounts_path %></li>
+      <li><%= link_to_unless_current "Dashboard", private_user_path(current_user) %></li>
       <li><%= link_to "Buy Credits", store_path(1) %></li>
       <!-- pass a dummy id to the following route since restful for show requires an id -->
       <li><%= "Available Credits (#{current_user.credits.available.count})" %></li>

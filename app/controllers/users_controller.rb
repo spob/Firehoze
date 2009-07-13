@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => [:show, :edit, :update, :index]
+  before_filter :require_user, :only => [:show, :edit, :update, :index, :private]
 
-  permit ROLE_ADMIN, :except => [:new, :create, :show]
+  permit ROLE_ADMIN, :except => [:new, :create, :show, :private]
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update ], :redirect_to => :home_path
@@ -40,6 +40,14 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
+  end
+
+  def private
+    @user = User.find params[:id]
+    unless @user == @current_user
+      flash[:notice] = t 'user.not_permitted_to_view'
+      redirect_back_or_default home_path
+    end    
   end
 
   def edit
