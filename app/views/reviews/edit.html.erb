@@ -3,7 +3,7 @@ New Review for Lesson <%= @review.lesson.title %>
 <% form_for :review, :url => review_path(@review), :html => { :method => :put } do |f| %>
     <%= f.error_messages %>
     <p>
-      <%= f.label :title %><br/>
+      <%= f.label 'Headline' %><br/>
       <%= f.text_field :title %>
     </p>
     <p>

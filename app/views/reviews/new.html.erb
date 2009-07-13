@@ -3,7 +3,7 @@ New Review for Lesson <%= @lesson.title %>
 <% form_for :review, :url => lesson_reviews_url(@lesson) do |f| %>
     <%= f.error_messages %>
     <p>
-      <%= f.label :title %><br/>
+      <%= f.label 'Headline' %><br/>
       <%= f.text_field :title %>
     </p>
     <p>
