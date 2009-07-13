@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.home 'home', :controller => 'lessons', :action => 'index'
-  map.resource  :account, :controller => "profiles"
+  map.resource  :accounts
   map.resources :acquire_lessons, :only => [ :create, :new ]
   map.resources :carts, :only => [ :show ]
   map.resources :credits
@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :orders
   map.login 'login',   :controller => 'user_sessions', :action => 'new'
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
-  map.resources :profiles
+  # map.resources :profiles
   map.resources :passwords
   map.resources :password_resets
   map.resources :periodic_jobs, :member => { :rerun => :post }

@@ -48,7 +48,7 @@ class PasswordResetsControllerTest < ActionController::TestCase
 
         should_assign_to :user
         should_set_the_flash_to "Password successfully updated"
-        should_redirect_to("my account page") { account_url }
+        should_redirect_to("my account page") { accounts_url }
       end
 
       context "on PUT to :update with bad password confirmation" do

@@ -1,6 +1,6 @@
 <h1>Edit My Account</h1>
 
-<% form_for(:user, :url => profile_path(@user), :html => { :method => :put }) do |f| %>
+<% form_for(:user, :url => accounts_path(@user), :html => { :method => :put }) do |f| %>
     <%= f.error_messages %>
 
     Username:
@@ -26,5 +26,5 @@
     <br/>
 
     <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
-    <%= link_to "Cancel", profile_path(@user) %>
+    <%= link_to "Cancel", accounts_path(@user) %>
 <% end %>

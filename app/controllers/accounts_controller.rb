@@ -1,5 +1,5 @@
-# The profiles controller allows the user to update personal information on their account
-class ProfilesController < ApplicationController
+# The accounts controller allows the user to update personal information on their account
+class AccountsController < ApplicationController
   before_filter :require_user
 
   verify :method => :put, :only => [ :update ], :redirect_to => :home_path
@@ -23,7 +23,7 @@ class ProfilesController < ApplicationController
     @user.language = params[:user][:language]
     if @user.save
       flash[:notice] = t 'profile.update_success'
-      redirect_to profile_url(@user)
+      redirect_to accounts_url(@user)
     else
       render :action => :edit
     end

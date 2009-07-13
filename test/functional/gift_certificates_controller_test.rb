@@ -25,7 +25,7 @@ class GiftCertificatesControllerTest < ActionController::TestCase
         should_assign_to :gift_certificate
         should_respond_with :redirect
         should_set_the_flash_to /redeemed/
-        should_redirect_to("account page") { account_path }
+        should_redirect_to("account page") { accounts_path }
       end
 
       context "on POST to :create" do
@@ -34,7 +34,7 @@ class GiftCertificatesControllerTest < ActionController::TestCase
         should_not_assign_to :gift_certificate
         should_respond_with :redirect
         should_set_the_flash_to /redeemed/
-        should_redirect_to("account page") { account_path }
+        should_redirect_to("account page") { accounts_path }
       end
 
       context "on GET to :pregive" do

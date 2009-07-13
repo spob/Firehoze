@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ProfilesControllerTest < ActionController::TestCase
+class AccountsControllerTest < ActionController::TestCase
 
   context "when logged on" do
     setup do
@@ -32,7 +32,7 @@ class ProfilesControllerTest < ActionController::TestCase
       should_assign_to :user
       should_respond_with :redirect
       should_set_the_flash_to :profile_update_success
-      should_redirect_to("profile page") { profile_url(assigns(:user)) }
+      should_redirect_to("profile page") { accounts_url(assigns(:user)) }
     end
 
     context "on PUT to :update with bad value" do
