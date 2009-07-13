@@ -5,7 +5,7 @@ module LessonsHelper
     elsif lesson.free_credits.available.size > 0
       "Watch For Free" 
     else
-      "Acquire Lesson"
+      "Buy Lesson"
     end
   end
 

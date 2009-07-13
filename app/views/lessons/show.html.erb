@@ -4,7 +4,7 @@
 
 
 <% if @lesson.thumbnail_url %>
-    <img src="<%= @lesson.thumbnail_url %>"/>
+    <%= link_to(image_tag(@lesson.thumbnail_url), watch_lesson_path(@lesson)) %>
 <% end %>
 
 <p>
@@ -37,7 +37,7 @@
 <p>
   <b>Tags:</b>
   <% @lesson.tag_counts.each do |tag| %>
-    <%= link_to tag.name, list_lessons_path(:collection => :tagged_with, :tag => tag.name) %>
+      <%= link_to tag.name, list_lessons_path(:collection => :tagged_with, :tag => tag.name) %>
   <% end %>
 </p>
 
@@ -153,26 +153,6 @@
     </p>
 <% end %>
 
-
-<div id="player">
-  You need to
-  have <%= link_to 'Flash Player', 'http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash' %>
-  installed to display this lesson
-</div>
-
-<!--
-See http://jimneath.org/2008/06/03/converting-lessons-with-rails-converting-the-lesson/ RBS
-<script type="text/javascript">
-    var so = new SWFObject('/flash/mediaplayer.swf', 'mpl', '480', '360', '8');
-    so.addParam('allowscriptaccess', 'always');
-    so.addParam('allowfullscreen', 'true');
-    so.addVariable('height', '360');
-    so.addVariable('width', '480');
-    so.addVariable('file', '<%= @lesson.video.url %>');
-    so.write('player');
-</script>
--->
-<%= link_to watch_text(@lesson), watch_lesson_path(@lesson) %> |
 <% if @lesson.can_edit? current_user %>
     <%= link_to 'Edit', edit_lesson_path(@lesson) %> |
 <% end %>

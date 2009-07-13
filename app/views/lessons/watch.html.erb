@@ -3,3 +3,5 @@
 <% end %>
 
 <%= player({:file => @lesson.output_url, :skin => 'bluemetal'},{:width => 640, :height => 480}) %>
+
+<%= link_to "Back to lesson", lesson_path(@lesson) %>
