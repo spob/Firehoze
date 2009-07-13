@@ -1,1 +1,5 @@
-Okay, if I were really a flash player, you'd be watching the full video by now
+<% content_for :head do -%>
+  <%= javascript_include_tag 'swfobject' %>
+<% end %>
+
+<%= player({:file => @lesson.output_url, :skin => 'bluemetal'},{:width => 640, :height => 480}) %>

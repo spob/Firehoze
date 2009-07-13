@@ -303,6 +303,10 @@ class Lesson < ActiveRecord::Base
     end
     out_string
   end
+  
+  def output_url
+    "http://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}.s3.amazonaws.com/#{self.video.path}.flv"
+  end
 
   private
 

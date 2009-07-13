@@ -74,7 +74,7 @@ class LessonTest < ActiveSupport::TestCase
       context "which is ready" do
         setup { @lesson.update_attribute(:state, 'ready') }
 
-        should "not be ready" do
+        should "be ready" do
           assert @lesson.ready?
         end
       end
