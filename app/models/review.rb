@@ -2,9 +2,9 @@ class Review < ActiveRecord::Base
   belongs_to :user
   belongs_to :lesson, :counter_cache => true
   has_many :helpfuls, :dependent => :destroy
-  validates_presence_of :user, :title, :body, :lesson
+  validates_presence_of :user, :headline, :body, :lesson
   validates_uniqueness_of :user_id, :scope => :lesson_id
-  validates_length_of :title, :maximum => 100, :allow_nil => true
+  validates_length_of :headline, :maximum => 100, :allow_nil => true
   validate :validate_reviewer
 
 # Basic paginated listing finder

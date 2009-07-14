@@ -1,5 +1,5 @@
 <p>
-  <b><%= h review.title %> by <%= h review.user.login %> written on <%= l review.created_at %></b>
+  <b><%= h review.headline %> by <%= h review.user.login %> written on <%= l review.created_at %></b>
   <% unless review.helpfuls.empty? %>
       <%= pluralize(review.helpfuls.helpful_yes.size, 'user') %> found this review helpful,
       <%= pluralize(review.helpfuls.helpful_no.size, 'user') %> did not

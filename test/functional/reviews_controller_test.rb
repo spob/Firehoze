@@ -51,7 +51,7 @@ class ReviewsControllerTest < ActionController::TestCase
         setup do
           @credit = Factory.create(:credit, :user => @user)
           @review = @credit.lesson.reviews.create!(:body => 'hello',
-                                                   :title => 'title',
+                                                   :headline => 'headline',
                                                    :user => @user)
           assert @credit.lesson.reviewed_by?(@user)
           get :new, :lesson_id => @review.lesson
