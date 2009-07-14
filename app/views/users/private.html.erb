@@ -14,14 +14,16 @@
     <li><a href="#tabs-1"><%= t 'user.profile' %></a></li>
     <li><a href="#tabs-2"><%= t 'user.password' %></a></li>
     <li><a href="#tabs-3"><%= t 'user.avatar' %></a></li>
-    <li><a href="#tabs-4"><%= t 'user.order_history' %></a></li>
-    <li><a href="#tabs-5"><%= t 'user.notices' %></a></li>
-    <li><a href="#tabs-6"><%= t 'user.privacy' %></a></li>
+    <li><a href="#tabs-4"><%= t 'user.credit_history' %></a></li>
+    <li><a href="#tabs-5"><%= t 'user.order_history' %></a></li>
+    <li><a href="#tabs-6"><%= t 'user.notices' %></a></li>
+    <li><a href="#tabs-7"><%= t 'user.privacy' %></a></li>
   </ul>
   <div id="tabs-1"><%= render :partial => "users/forms/profile" %></div>
   <div id="tabs-2"><%= render :partial => "users/forms/password" %></div>
   <div id="tabs-3"><%= render :partial => "users/forms/avatar" %></div>
-  <div id="tabs-4">Order History (credit history???) placeholder</div>
-  <div id="tabs-5"><%= render :partial => "users/forms/notices" %></div>
-  <div id="tabs-6"><%= render :partial => "users/forms/privacy" %></div>
+  <div id="tabs-4">Credit history placeholder</div>
+  <div id="tabs-5">Order History placeholder</div>
+  <div id="tabs-6"><%= render :partial => "users/forms/notices" %></div>
+  <div id="tabs-7"><%= render :partial => "users/forms/privacy" %></div>
 </div>

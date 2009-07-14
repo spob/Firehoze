@@ -137,6 +137,7 @@ en:
     password: Password
     avatar: Avatar
     order_history: Order History
+    credit_history: Credit History
     notices: Notices
     privacy: Privacy
     not_permitted_to_view: Sorry, you were not authorized to view that page
