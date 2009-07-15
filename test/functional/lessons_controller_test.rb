@@ -90,7 +90,7 @@ class LessonsControllerTest < ActionController::TestCase
         context "on POST to :convert" do
           setup { post :convert, :id => @lesson }
           should_not_assign_to :lesson
-          should_redirect_to("home page") { home_path }
+          should_redirect_to("lessons index") { lessons_path }
           should_set_the_flash_to /Permission denied/
         end
       end

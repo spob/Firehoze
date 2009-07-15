@@ -123,7 +123,7 @@ class ReviewsControllerTest < ActionController::TestCase
           #should_not_assign_to :review
           should_respond_with :redirect
           should_set_the_flash_to /Permission denied/
-          should_redirect_to("home") { home_path }
+          should_redirect_to("Lessons index") { lessons_path }
         end
 
         context "on PUT to :update" do
@@ -137,7 +137,7 @@ class ReviewsControllerTest < ActionController::TestCase
           # Since assigning to @review was moved to a before filter, @review now gets assigned
           #should_not_assign_to :review
           should_respond_with :redirect
-          should_redirect_to("home") { home_path }
+          should_redirect_to("Lessons index") { lessons_path }
         end
       end
     end

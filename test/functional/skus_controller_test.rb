@@ -87,7 +87,8 @@ class SkusControllerTest < ActionController::TestCase
         should_not_assign_to :skus
         should_respond_with :redirect
         should_set_the_flash_to /denied/
-        should_redirect_to("home page") { home_url }
+        should_redirect_to("Lesson index") { lessons_url }
+
       end
     end
   end
