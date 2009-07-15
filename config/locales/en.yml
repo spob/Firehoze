@@ -129,6 +129,7 @@ en:
     logout_success: Logout successful
 
   user:
+    account_settings: Account Settings
     registration_no_longer_valid: Registration no longer valid
     account_reg_success: Account registered
     account_update_success: Account updated
