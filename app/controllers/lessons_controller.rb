@@ -131,7 +131,7 @@ class LessonsController < ApplicationController
   end
 
   def set_per_page
-    @per_page = %w(index).include?(params[:action]) ? 3 : Lesson.per_page
+    @per_page = %w(index).include?(params[:action]) ? 5 : Lesson.per_page
   end
 
 end
