@@ -4,11 +4,9 @@ class HomeController < ApplicationController
 
   verify :method => :put, :only => [ :update ], :redirect_to => :home_path
 
-  def show
-    @user = @current_user
-  end
+  before_filter :set_per_page, :only => [ :show ]
 
-  def edit
+  def show
     @user = @current_user
   end
 
@@ -29,5 +27,10 @@ class HomeController < ApplicationController
     end
   end
 
+  private 
+
+  def set_per_page
+    @per_page = %w(show).include?(params[:action]) ? 5 : Lesson.per_page
+  end
 
 end

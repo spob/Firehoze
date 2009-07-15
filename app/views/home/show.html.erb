@@ -8,28 +8,24 @@
   </script>
 <% end %>
 
-<h3>Recognized User Homepage</h3>  <!-- This is tmp -->
-
-<% content_for :head do -%>
-  <%= javascript_include_tag 'jquery-ui-1.7.2.custom.min.js' %>
-  <%= stylesheet_link_tag 'jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" %>
-  <script type="text/javascript">
-    $(function() {
-      $("#tabs").tabs();
-    });
-  </script>
-<% end %>
-
+<h3>Recognized User Homepage</h3>  <!-- This is a tmp header -->
 
 <div id="tabs">
   <ul>
     <li><a href="#tabs-1"><%= t 'lesson.most_popular' %></a></li>
     <li><a href="#tabs-2"><%= t 'lesson.highest_rated' %></a></li>
     <li><a href="#tabs-3"><%= t 'lesson.newest' %></a></li>
-    <li><a href="#tabs-4">Tag Cloud</a></li>
+    <li><a href="#tabs-4"><%= t 'lesson.lessons_you_own' %></a></li>
+    <li><a href="#tabs-5"><%= t 'lesson.wishlist' %></a></li>
+    <li><a href="#tabs-6"><%= t 'lesson.recently_viewed_items' %></a></li>
   </ul>
+
   <div id="tabs-1"><%= render :partial => "lessons/most_popular" %></div>
   <div id="tabs-2"><%= render :partial => "lessons/highest_rated" %></div>
   <div id="tabs-3"><%= render :partial => "lessons/newest" %></div>
-  <div id="tabs-4"><%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts %></div>
+  <div id="tabs-4">Owned placeholder<%#= render :partial => "lessons/owned" %></div>
+  <div id="tabs-5">Wishlist placeholder<%#= render :partial => "lessons/wishlist" %></div>
+  <div id="tabs-6">Recently Viewed placeholder<%#= render :partial => "lessons/recently_viewed" %></div>
 </div>
+
+<div><%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts %></div>

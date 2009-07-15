@@ -71,6 +71,7 @@ en:
     highest_rated: Highest Rated
     newest: Newest
     most_popular: Most Popular
+    lessons_you_own: Lessons you own
     tagged_with: Lessons tagged with
     # Lesson states
     pending: Lesson created and awaiting transcoding
@@ -80,7 +81,9 @@ en:
     conversion_end_success: Video transcoding completed successfully
     calc_thumb_url_start: Retrieving thumbnail URL
     ready: Video conversion completed successfully and is ready for viewing
+    recently_viewed_items: Recently viewed items
     failed: Video failed processing
+    wishlist: Wishlist
 
   line_item:
     updated_success: Updated line item
@@ -139,9 +142,9 @@ en:
     avatar: Avatar
     order_history: Order History
     credit_history: Credit History
+    not_permitted_to_view: Sorry, you were not authorized to view that page
     notices: Notices
     privacy: Privacy
-    not_permitted_to_view: Sorry, you were not authorized to view that page
 
   # Date/Time formatting
   date:
