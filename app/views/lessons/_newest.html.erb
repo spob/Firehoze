@@ -3,6 +3,6 @@ newest = Lesson.ready.newest.paginate :page => params[:page], :per_page => @per_
 %>
 <div class="lesson_container">
   <%= lessons_header(:newest) %>
-  <%= render :partial => "lesson_extended", :collection => newest %>
-  <%= render :partial => "pagination", :object => newest, :locals => { :collection => :newest } %>
+  <%= render :partial => "lessons/lesson_extended", :collection => newest %>
+  <%= render :partial => "lessons/pagination", :object => newest, :locals => { :collection => :newest } %>
 </div>
