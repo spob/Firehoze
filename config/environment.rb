@@ -65,6 +65,9 @@ Rails::Initializer.run do |config|
   # Not sure why this is required...but rake is failing without it. Some gems must require it -- RBS
   config.gem "hpricot", :source => "http://code.whytheluckystiff.net"
 
+  # Form builder (A Rails form builder plugin with semantically rich and accessible markup)
+  config.gem "justinfrench-formtastic", :lib => 'formtastic', :source  => 'http://gems.github.com'
+
   # Gem for secret url (for user signup requests)
   config.gem "mholling-active_url", :lib => "active_url", :source => "http://gems.github.com"
 
