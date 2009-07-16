@@ -22,10 +22,9 @@ class LessonTest < ActiveSupport::TestCase
       @lesson = Factory.create(:lesson)
     end
 
-    should_validate_presence_of      :title, :instructor, :video_file_name
+    should_validate_presence_of      :title, :instructor
     should_allow_values_for          :title, "blah blah blah"
     should_ensure_length_in_range    :title, (0..50)
-    should_have_attached_file        :video
     should_have_many                 :reviews, :lesson_state_changes, :credits, :free_credits, :taggings
     should_have_class_methods        :convert_video, :detect_zombie_video, :list, :ready
     should_have_instance_methods     :tag_list

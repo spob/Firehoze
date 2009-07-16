@@ -23,16 +23,21 @@ class LessonsController < ApplicationController
   end
 
   def create
+    video_param = params[:lesson].delete("video")
     @lesson = Lesson.new(params[:lesson])
     @lesson.initial_free_download_count = params[:initial_free_download_count].try('to_i')
     # the instructor is assumed to be the current user when creating a new lesson
     @lesson.instructor = current_user
-    if @lesson.save
-      @lesson.trigger_conversion
-      flash[:notice] = t 'lesson.created'
-      redirect_to lesson_path(@lesson)
-    else
-      render :action => :new
+    Lesson.transaction do
+      if @lesson.save!
+        OriginalVideo.create!({ :lesson => @lesson,
+                                :video => video_param})
+        @lesson.trigger_conversion
+        flash[:notice] = t 'lesson.created'
+        redirect_to lesson_path(@lesson)
+      else
+        render :action => :new
+      end
     end
   end
 
@@ -80,7 +85,7 @@ class LessonsController < ApplicationController
         redirect_to new_acquire_lesson_path(:id => @lesson)
       end
     else
-      flash[:error] = t('lesson.not_ready')                    
+      flash[:error] = t('lesson.not_ready')
       redirect_to lesson_path(@lesson)
     end
   end
@@ -99,9 +104,9 @@ class LessonsController < ApplicationController
     render :text => "OK"
     job = FlixCloud::Notification.new(params)
     logger.info "Received conversion completion notification for job #{job.id}: #{job.state}"
-    lesson = Lesson.find_by_flixcloud_job_id!(job.id)
+    video = ProcessedVideo.find_by_flixcloud_job_id!(job.id)
 
-    unless lesson.finish_conversion job
+    unless video.finish_conversion job
       logger.error "Job #{id} for lesson #{lesson.id} failed: #{job.error_message}"
       lesson.fail!
     end

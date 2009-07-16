@@ -1,6 +1,6 @@
 class AddAttachmentsVideoToVideo < ActiveRecord::Migration
   def self.up
-    add_column :lessons, :video_file_name, :string, :null => false
+    add_column :lessons, :video_file_name, :string, :null => true
     add_column :lessons, :video_content_type, :string
     add_column :lessons, :video_file_size, :integer
   end
