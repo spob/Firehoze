@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
@@ -12,33 +12,35 @@
     <%= ajaxful_rating_style %>
     <!--[if lt IE 8]>
     <%= stylesheet_link_tag 'blueprint/ie', :media => "screen, projection" %>
-    <![endif]-->
+      <![endif]-->
     <%= yield :head %>
   </head>
   <body>
     <div class="container">
-      <div class="span-24 last" id="top_nav">
+      <div class="span-40 last" id="top_nav"> 
         <%= render "shared/top_nav" %>
       </div>
 
-      <div class="clear span-24 last">
+      <div class="clear span-40 last" id="branding">
         <%= link_to image_tag("general/firehoze_logo_small.jpg", :alt => 'Firehoze'), "/" %>
       </div>
 
-      <div class="clear span-24 last main_nav" id="main_nav">
+      <div class="clear span-40 last" id="main_nav">
         <%= render "shared/main_nav" %>
       </div>
 
-      <div class="clear span-24 last" id="main"> 
-        <% if flash[:notice] or flash[:error] -%>
-        <p style="color: green"><%= flash[:notice] %></p>
-        <p style="color: red"><%= flash[:error] %></p>
-        <% end %>
+      <% if flash[:notice] or flash[:error] -%>
+        <div class="clear span-40 last" id="flash">
+          <p style="color: green"><%= flash[:notice] %></p>
+          <p style="color: red"><%= flash[:error] %></p>
+        </div>
+      <% end %>
+
+      <div class="clear span-40 last" id="main_content">
         <%= yield %>
       </div>
 
-      <div class="clear span-24 last" id="footer"></div>
-
+      <div class="clear span-40 last" id="footer"> </div>
     </div>
   </body>
 </html>

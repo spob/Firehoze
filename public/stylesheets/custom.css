@@ -1,5 +1,11 @@
+div {
+	/*border: 1px solid red;*/
+}
+
 /* top nav */
 #top_nav_links {
+    /*	border: 1px solid green;*/
+
     text-align:right;
 }
 
@@ -37,19 +43,13 @@
     color: #fff;
 }
 
-#tabs
-{
-    margin:10px;
+.lesson_container, .more, .lesson_left, .lesson_center, .lesson_right {
+    margin:0;
+    padding:0;
+    /*border: 1px solid blue;*/
 }
 
-div.lessons_container {
-    margin:0 0 12px 0;
-    padding:20px;
-}
-
-div.lesson {
-    font-size: 1.0em;
-    border:solid 1px #ccc;
-    margin:0 0 12px 0;
-    padding:8px;
+.tag_cloud {
+    padding:14px;
+    border:1px solid #999;
 }
