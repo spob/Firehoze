@@ -29,7 +29,7 @@ class LessonsController < ApplicationController
     # the instructor is assumed to be the current user when creating a new lesson
     @lesson.instructor = current_user
     Lesson.transaction do
-      if @lesson.save!
+      if @lesson.save
         OriginalVideo.create!({ :lesson => @lesson,
                                 :video => video_param})
         @lesson.trigger_conversion
