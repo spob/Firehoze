@@ -144,18 +144,6 @@ class Lesson < ActiveRecord::Base
     free_credit
   end
 
-  # Check if a video was submitted for processing and never returned. If so, send an email alert
-  def self.detect_zombie_video(lesson_id, job_id)
-    lesson = Lesson.find(lesson_id)
-    if lesson.flixcloud_job_id == job_id
-      # id is the same, so a new job hasn't been submitted
-      if lesson.state == LESSON_STATE_START_CONVERSION_SUCCESS
-        # still in a processing state
-        Notifier.deliver_lesson_processing_hung lesson
-      end
-    end
-  end
-
   # This is a utility method to build a dummy XML response message from flix cloud
   def build_flix_response
     xml = Builder::XmlMarkup.new( :target => out_string = "",

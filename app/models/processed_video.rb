@@ -26,7 +26,7 @@ class ProcessedVideo < Video
                               :conversion_started_at => job.initialized_at,
                               :status => 'Converting')
       RunOncePeriodicJob.create!(:name => 'DetectZombieVideoProcess',
-                                 :job => "Lesson.detect_zombie_video #{self.id}, #{job.id}",
+                                 :job => "ProcessedVideo.detect_zombie_video #{self.id}, #{job.id}",
                                  :next_run_at => (APP_CONFIG[CONFIG_ZOMBIE_VIDEO_PROCESS_MINUTES].to_i.minutes.from_now))
     else
       msg = ""
@@ -65,6 +65,18 @@ class ProcessedVideo < Video
   rescue Exception => e
     self.lesson.change_state(LESSON_STATE_FAILED, 'failed: ' + e.message)
     raise e
+  end
+
+  # Check if a video was submitted for processing and never returned. If so, send an email alert
+  def self.detect_zombie_video(video_id, job_id)
+    video = ProcessedVideo.find(video_id)
+    if video.flixcloud_job_id == job_id
+      # id is the same, so a new job hasn't been submitted
+      if video.status == 'Converting'
+        # still in a processing state
+        Notifier.deliver_lesson_processing_hung video.lesson
+      end
+    end
   end
 
   #def set_thumbnail_url
