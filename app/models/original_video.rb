@@ -28,8 +28,8 @@ class OriginalVideo < Video
 
   def set_url
     self.update_attributes(:s3_key => self.video.path,
-                           :s3_path => "s3://#{APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]}/#{self.s3_key}",
-                           :url => "http://#{APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]}.s3.amazonaws.com/#{self.s3_key}")
+                           :s3_path => "s3://#{APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]}/#{self.video.path}",
+                           :url => "http://#{APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]}.s3.amazonaws.com/#{self.video.path}")
   end
 
   # Call out to flixcloud to trigger a conversion process
