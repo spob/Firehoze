@@ -30,7 +30,7 @@
       <td>
         <%= number_to_currency(video.input_video_cost/100000.0,
                                :precision => 3) unless video.input_video_cost.blank? %> /
-        <%= number_to_currency(video.finished_video_cost/100000.0,
+        <%= number_to_currency(video.processed_video_cost/100000.0,
                                :precision => 3) unless video.input_video_cost.blank? %>
       </td>
   <% end %>
