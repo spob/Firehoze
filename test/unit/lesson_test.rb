@@ -20,13 +20,16 @@ class LessonTest < ActiveSupport::TestCase
     setup do
       @sku = Factory.create(:credit_sku, :sku => FREE_CREDIT_SKU)
       @lesson = Factory.create(:lesson)
+      @original_video = Factory.create(:original_video, :lesson => @lesson)
+      @lesson = Lesson.find(@lesson)
+      assert @lesson.original_video
     end
 
     should_validate_presence_of      :title, :instructor
     should_allow_values_for          :title, "blah blah blah"
     should_ensure_length_in_range    :title, (0..50)
     should_have_many                 :reviews, :lesson_state_changes, :credits, :free_credits, :taggings
-    should_have_class_methods        :convert_video, :detect_zombie_video, :list, :ready
+    should_have_class_methods        :list, :ready
     should_have_instance_methods     :tag_list
 
     should "not be ready" do
@@ -62,12 +65,6 @@ class LessonTest < ActiveSupport::TestCase
           @lesson.update_attributes(:state => LESSON_STATE_START_CONVERSION_SUCCESS,
             :flixcloud_job_id => @lesson.id * 2)
         end
-
-        should "check for zombies succesfully" do
-          assert_nothing_thrown do
-            Lesson.detect_zombie_video(@lesson.id, @lesson.id * 2)
-          end
-        end
       end
 
       context "which is ready" do
@@ -99,19 +96,6 @@ class LessonTest < ActiveSupport::TestCase
 
         should "create a job" do
           assert_equal "ConvertVideo", @job.name
-        end
-      end
-
-      context "and a response job" do
-        setup do
-          @lesson.update_attribute(:conversion_started_at, 1.minutes.ago)
-          @job = FlixCloud::Notification.new(@lesson.build_flix_response)
-          assert !@job.nil?
-          assert @lesson.finish_conversion(@job)
-        end
-
-        should "be succesfully converted" do
-          assert @lesson.ready?
         end
       end
 

@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'test_helper'                                            
 
 class OriginalVideoTest < ActiveSupport::TestCase
   context "Given an existing original video" do
@@ -6,5 +6,6 @@ class OriginalVideoTest < ActiveSupport::TestCase
 
     should_validate_presence_of      :lesson
     should_have_attached_file        :video
+    should_have_class_methods        :convert_video
   end
 end

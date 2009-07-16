@@ -24,7 +24,7 @@ class CreateVideos < ActiveRecord::Migration
       t.column :input_video_cost, :integer
       t.column :video_transcoding_error, :string
       t.column :thumbnail_url, :string
-      t.integer :converted_from_video_id, :integer
+      t.integer :converted_from_video_id
       t.datetime :conversion_started_at
       t.datetime :conversion_ended_at
       t.timestamps
