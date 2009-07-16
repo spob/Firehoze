@@ -143,45 +143,6 @@ class Lesson < ActiveRecord::Base
     end
     free_credit
   end
-
-  # This is a utility method to build a dummy XML response message from flix cloud
-  def build_flix_response
-    xml = Builder::XmlMarkup.new( :target => out_string = "",
-                                  :indent => 2 )
-
-    xml.instruct!(:xml, :encoding => "UTF-8")
-    xml.job do
-      xml.tag!("finished-job-at", Time.now.strftime("%Y-%m-%dT%H:%M:%SZ"), :type => "datetime")
-      xml.tag!("id", self.flixcloud_job_id.to_s, :type => "integer")
-      xml.tag!("initialized-job-at", self.conversion_started_at.strftime("%Y-%m-%dT%H:%M:%SZ"), :type => "datetime")
-      xml.tag!("recipe-name", "my-recipe")
-      xml.tag!("recipe-id", FLIX_RECIPE_ID, :type => "integer")
-      xml.tag!('state', 'successful_job')
-      xml.tag!('error-message')
-      xml.tag!('input-media-file') do
-        xml.tag!("url", input_path)
-        xml.tag!("width", 1280)
-        xml.tag!("height", 720)
-        xml.tag!("size", 9842956)
-        xml.tag!("duration", 10005)
-        xml.tag!("cost", 1638)
-      end
-      xml.tag!('output-media-file') do
-        xml.tag!("url", output_path)
-        xml.tag!("width", 1280)
-        xml.tag!("height", 720)
-        xml.tag!("size", 9842956)
-        xml.tag!("duration", 10005)
-        xml.tag!("cost", 1638)
-      end
-      xml.tag!('watermark-file') do
-        xml.tag!("url", "somepath to watermark")
-        xml.tag!("size", 1024)
-        xml.tag!("cost", 10)
-      end
-    end
-    out_string
-  end
   
   def output_url
     "http://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}.s3.amazonaws.com/#{self.video.path}.flv"

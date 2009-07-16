@@ -33,5 +33,10 @@
         <%= number_to_currency(video.processed_video_cost/100000.0,
                                :precision => 3) unless video.input_video_cost.blank? %>
       </td>
+      <td>
+         <% if video.class == OriginalVideo then %>
+             <%= link_to "Convert", convert_lesson_path(video.lesson), :method => :post %>
+         <% end %>
+      </td>
   <% end %>
 </tr>

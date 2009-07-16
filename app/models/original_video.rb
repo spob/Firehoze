@@ -38,8 +38,7 @@ class OriginalVideo < Video
     unless processed_video
       processed_video = ProcessedVideo.create!(:lesson_id => self.lesson.id,
                                                :video_file_name => self.video_file_name,
-                                               :converted_from_video => self,
-                                               :s3_key => self.video.path)
+                                               :converted_from_video => self)
     end
     begin
       set_url

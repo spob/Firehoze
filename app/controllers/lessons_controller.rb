@@ -1,5 +1,5 @@
 class LessonsController < ApplicationController
-  before_filter :require_user, :only => [:new, :create, :edit, :update, :watch, :convert]
+  before_filter :require_user, :only => [:new, :create, :edit, :update, :watch]
   permit ROLE_ADMIN, :only => [:convert]
 
   verify :method => :post, :only => [ :create, :convert ], :redirect_to => :home_path

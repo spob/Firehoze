@@ -106,6 +106,7 @@
             <th>Conversion Ended At</th>
             <th>Conversion Job ID:</th>
             <th>Conversion Costs<br/>Input/Output</th>
+            <th>Action</th>
         <% end %>
       </tr>
       <%= render :partial => "video", :collection => @lesson.videos %>
@@ -128,8 +129,6 @@
 <%= link_to pluralize(@lesson.reviews.size, 'Review'), lesson_reviews_path(@lesson) %>
 
 <% if current_user.try("is_admin?") %>
-    | <%= link_to "Convert", convert_lesson_path(@lesson), :method => :post %>
-
     <br/>
     <table>
       <tr>
