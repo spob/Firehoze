@@ -1,14 +1,20 @@
 <% lesson = object %>
-<div class="lesson">
+<div class="span-7 lesson_left">  this is the tn pane</div>
+
+<div class="span-15 lesson_center"> 
   <div><%= link_to lesson.title, lesson_path(lesson) %> <%= link_to_profile(lesson.instructor) %> <%= l lesson.created_at %></div>
   <div><%= lesson.rating_average %></div>
   <div>Owned?: <%= (current_user ? current_user.owns_lesson?(lesson) : false) %></div>
   <div>Number of Viewers: <%= lesson.credits_count %></div>
-
-  <div>
-    <% if current_user.try("is_admin?") or lesson.instructed_by?(current_user) %>
+  <% if current_user.try("is_admin?") or lesson.instructed_by?(current_user) %>
+    <div>
       <%= h lesson.state %>
       <%= link_to  'Edit', edit_lesson_path(lesson) %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
+
+<div class="span-5 last lesson_right"> this is lesson right</div>
+
+<!-- <div class="clear span-16 prepend-6 append-6 last lesson_footer">some base content</div> -->
+<hr />

@@ -1,8 +1,12 @@
 <%
 highest_rated = Lesson.ready.highest_rated.paginate :page => params[:page], :per_page => @per_page
 %>
-<div class="lesson_container">
+<div class="span-28 prepend-1 append-1 last lesson_container">
   <%= lessons_header(:highest_rated) %>
   <%= render :partial => "lessons/lesson_extended", :collection => highest_rated %>
+</div>
+
+<div class="span-28 prepend-1 append-1 last more">
   <%= render :partial => "lessons/pagination", :object => highest_rated, :locals => { :collection => :highest_rated } %>
 </div>
+<hr />

@@ -1,8 +1,12 @@
 <%
 newest = Lesson.ready.newest.paginate :page => params[:page], :per_page => @per_page
 %>
-<div class="lesson_container">
+<div class="span-28 prepend-1 append-1 last lesson_container">
   <%= lessons_header(:newest) %>
   <%= render :partial => "lessons/lesson_extended", :collection => newest %>
+</div>
+
+<div class="span-28 prepend-1 append-1 last more">
   <%= render :partial => "lessons/pagination", :object => newest, :locals => { :collection => :newest } %>
 </div>
+<hr />
