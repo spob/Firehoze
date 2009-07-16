@@ -84,6 +84,9 @@ class LessonsControllerTest < ActionController::TestCase
         @lesson = Factory.create(:lesson)
         @lesson.instructor = @user
         @lesson.save!
+        @original_video = Factory.create(:original_video, :lesson => @lesson)
+        @lesson = Lesson.find(@lesson)
+        assert @lesson.original_video
       end
 
       context "and not an admin" do
@@ -102,6 +105,7 @@ class LessonsControllerTest < ActionController::TestCase
 
         context "on POST to :convert" do
           setup { post :convert, :id => @lesson }
+
           should_assign_to :lesson
           should_redirect_to("lesson page") { lesson_path(@lesson) }
           should_set_the_flash_to /Video conversion started/
@@ -155,7 +159,6 @@ class LessonsControllerTest < ActionController::TestCase
         end
       end
     end
-
     context "with a lesson with free credits" do
       setup do
         @sku = Factory.create(:credit_sku, :sku => FREE_CREDIT_SKU)
@@ -182,6 +185,9 @@ class LessonsControllerTest < ActionController::TestCase
       context "which the user already owns" do
         setup do
           @lesson.update_attribute(:state, LESSON_STATE_READY)
+          @lesson = assign_video(@lesson)
+          assert @lesson.processed_videos.by_format('Flash').first
+          assert @lesson.processed_videos.by_format('Flash').first.url
           @user.credits.create!(:price => 0.99, :lesson => @lesson)
           assert @user.owns_lesson?(@lesson)
           get :watch, :id => @lesson
@@ -242,5 +248,10 @@ class LessonsControllerTest < ActionController::TestCase
         should_redirect_to("show lesson page") { lesson_path(:id => @lesson) }
       end
     end
+  end
+
+  def assign_video(lesson)
+    video = Factory.create(:ready_processed_video, :lesson => lesson)
+    Lesson.find(lesson.id)
   end
 end

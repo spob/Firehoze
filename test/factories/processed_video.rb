@@ -17,6 +17,6 @@ Factory.define :ready_processed_video, :parent => :processed_video do |video|
   video.processed_video_cost 234
   video.input_video_cost  234
   video.thumbnail_url  "http://path_to_thumbnail"
-  video.association :processed_video
+  video.association :converted_from_video, :factory => :original_video
   video.conversion_ended_at  { 2.minutes.ago}
 end
