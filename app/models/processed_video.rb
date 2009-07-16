@@ -6,6 +6,11 @@ class ProcessedVideo < Video
   validates_presence_of :lesson, :format, :status
   validates_numericality_of :video_file_size, :greater_than => 0, :allow_nil => true
 
+
+  named_scope :by_format,
+              lambda{ |format| {:conditions => { :format => format}}
+              }
+
   # Call out to flixcloud to trigger a conversion process
   def convert
     lesson.change_state(LESSON_STATE_START_CONVERSION)
@@ -34,24 +39,27 @@ class ProcessedVideo < Video
   # This method takes a job record populated from the flixcloud gem, and will update the various attributes
   # on the job accordingly.
   def finish_conversion job
-    if job.successful?
-      self.update_attributes(
-              :conversion_ended_at => job.finished_job_at,
-              :video_width => job.output_media_file.width,
-              :video_height => job.output_media_file.height,
-              :video_file_size => job.output_media_file.size,
-              :video_duration => job.output_media_file.duration,
-              :processed_video_cost => job.output_media_file.cost,
-              :input_video_cost => job.input_media_file.cost,
-              :thumbnail_url => "http://" + APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET] +
-                      ".s3.amazonaws.com/" + id.to_s + "/thumb_0000.png",
-              :s3_path => job.output_media_file.url,
-              :url => "http://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}.s3.amazonaws.com/#{self.video.path}.flv")
-      self.lesson.change_state(LESSON_STATE_READY)
-      Notifier.deliver_lesson_ready self.lesson
-    else
-      self.lesson.change_state(LESSON_STATE_FAILED, job.error_message)
-      Notifier.deliver_lesson_processing_failed self.lesson
+    Video.transaction do
+      if job.successful?
+        self.update_attributes(
+                :conversion_ended_at => job.finished_job_at,
+                :video_width => job.output_media_file.width,
+                :video_height => job.output_media_file.height,
+                :video_file_size => job.output_media_file.size,
+                :video_duration => job.output_media_file.duration,
+                :processed_video_cost => job.output_media_file.cost,
+                :input_video_cost => job.input_media_file.cost,
+                :thumbnail_url => "http://" + APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET] +
+                        ".s3.amazonaws.com/" + id.to_s + "/thumb_0000.png",
+                :s3_path => job.output_media_file.url,
+                :url => "http://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}.s3.amazonaws.com/#{self.video.path}.flv")
+        self.lesson.update_attribute(:video_duration, job.output_media_file.duration)
+        self.lesson.change_state(LESSON_STATE_READY)
+        Notifier.deliver_lesson_ready self.lesson
+      else
+        self.lesson.change_state(LESSON_STATE_FAILED, job.error_message)
+        Notifier.deliver_lesson_processing_failed self.lesson
+      end
     end
     job.successful?
   rescue Exception => e

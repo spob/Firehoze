@@ -65,6 +65,7 @@ class Lesson < ActiveRecord::Base
   has_many :credits
   has_many :free_credits, :order => "id"
   has_many :videos
+  has_many :processed_videos
   has_one :original_video
   validates_presence_of :instructor, :title, :state
   validates_length_of :title, :maximum => 50, :allow_nil => true

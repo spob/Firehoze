@@ -2,6 +2,6 @@
   <%= javascript_include_tag 'swfobject' %>
 <% end %>
 
-<%= player({:file => @lesson.output_url, :skin => 'bluemetal'},{:width => 640, :height => 480}) %>
+<%= player({:file => @lesson.processed_videos.by_format('Flash').first.url, :skin => 'bluemetal'},{:width => 640, :height => 480}) %>
 
 <%= link_to "Back to lesson", lesson_path(@lesson) %>

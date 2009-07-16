@@ -1,0 +1,37 @@
+<tr>
+  <td>
+    <%= video.format %>
+  </td>
+  <td>
+    <%= video.status %>
+  </td>
+  <% if current_user.try("is_admin?") %>
+      <td>
+        <%= number_to_human_size video.video_file_size %>
+      </td>
+      <td>
+        <%= video.video_width %> x <%= video.video_height %>
+      </td>
+      <td>
+        <%= h video.video_file_name %>
+      </td>
+      <td>
+        <%= h video.video_content_type %>
+      </td>
+      <td>
+        <%= video.conversion_started_at %>
+      </td>
+      <td>
+        <%= video.conversion_ended_at %>
+      </td>
+      <td>
+        <%= video.flixcloud_job_id %>
+      </td>
+      <td>
+        <%= number_to_currency(video.input_video_cost/100000.0,
+                               :precision => 3) unless video.input_video_cost.blank? %> /
+        <%= number_to_currency(video.finished_video_cost/100000.0,
+                               :precision => 3) unless video.input_video_cost.blank? %>
+      </td>
+  <% end %>
+</tr>
