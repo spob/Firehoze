@@ -202,6 +202,7 @@ class LessonsControllerTest < ActionController::TestCase
       context "for which the user is the instructor" do
         setup do
           @lesson.update_attribute(:state, LESSON_STATE_READY)
+          @lesson = assign_video(@lesson)
           @lesson.update_attribute(:instructor, @user)
           assert !@user.owns_lesson?(@lesson)
           get :watch, :id => @lesson
