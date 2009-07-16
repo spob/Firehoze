@@ -27,7 +27,7 @@ class OriginalVideo < Video
                                                               'video/mpeg']
 
   def set_url
-    self.update_attributes(:s3_key => self.video.path,
+    self.update_attributes!(:s3_key => self.video.path,
                            :s3_path => "s3://#{APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]}/#{self.video.path}",
                            :url => "http://#{APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]}.s3.amazonaws.com/#{self.video.path}")
   end
@@ -42,6 +42,7 @@ class OriginalVideo < Video
                                                :s3_key => self.video.path)
     end
     begin
+      set_url
       grant_s3_permissions_to_flix
     rescue Exception => e
       # rethrow the exception so we see the error in the periodic jobs log
