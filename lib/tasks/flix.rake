@@ -8,6 +8,8 @@ namespace :flix do
                                        APP_CONFIG[CONFIG_AWS_SECRET_ACCESS_KEY])
       bucket = s3_connection.bucket(APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET])
       #path = "videos/" + video.id.to_s + "/" + video.video_file_name + ".flv"
+      #puts path
+      #puts video.s3_key
       key = bucket.key(video.s3_key, true)
       if key.exists?
         print "   File exists..."
