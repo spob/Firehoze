@@ -24,7 +24,7 @@ class ProcessedVideo < Video
       lesson.change_state(LESSON_STATE_START_CONVERSION_SUCCESS, " (##{job.id})")
       self.update_attributes!(:flixcloud_job_id => job.id,
                               :conversion_started_at => job.initialized_at,
-                              :status => 'Converting',
+                              :status => VIDEO_STATUS_CONVERTING,
                               :s3_key => "videos/#{self.id}/#{self.video_file_name}.flv")
       RunOncePeriodicJob.create!(:name => 'DetectZombieVideoProcess',
                                  :job => "ProcessedVideo.detect_zombie_video #{self.id}, #{job.id}",
@@ -32,7 +32,7 @@ class ProcessedVideo < Video
     else
       msg = ""
       job.errors.each { |x| msg = (msg == "" ?  "" : ", ") + msg + x}
-      self.update_attributes!(:video_transcoding_error => msg, :status => "Failed")
+      self.update_attributes!(:video_transcoding_error => msg, :status => VIDEO_STATUS_FAILED)
       raise msg
     end
   end
@@ -53,7 +53,7 @@ class ProcessedVideo < Video
                 :thumbnail_url => "http://" + APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET] +
                         ".s3.amazonaws.com/" + id.to_s + "/thumb_0000.png",
                 :s3_path => job.output_media_file.url,
-                :status => 'Ready',
+                :status => VIDEO_STATUS_READY,
                 :url => "http://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}.s3.amazonaws.com/#{self.s3_key}.flv")
         self.lesson.update_attribute(:finished_video_duration, job.output_media_file.duration)
         self.lesson.change_state(LESSON_STATE_READY)
@@ -74,7 +74,7 @@ class ProcessedVideo < Video
     video = ProcessedVideo.find(video_id)
     if video.flixcloud_job_id == job_id
       # id is the same, so a new job hasn't been submitted
-      if video.status == 'Converting'
+      if video.status == VIDEO_STATUS_CONVERTING
         # still in a processing state
         Notifier.deliver_lesson_processing_hung video.lesson
       end
@@ -142,7 +142,7 @@ class ProcessedVideo < Video
   end
 
   def set_status_and_format
-    self.status = 'pending'
+    self.status = VIDEO_STATUS_PENDING
     self.format = 'Flash'
   end
 end

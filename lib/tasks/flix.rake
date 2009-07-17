@@ -2,7 +2,7 @@ namespace :flix do
   desc "Simulate a flix cloud response to associate a video with it's S3 output file"
   task :repair => :environment do
     for video in ProcessedVideo.find(:all, :conditions => ["status = ? and conversion_started_at is not null",
-                                                    'Converting'])
+                                                    VIDEO_STATUS_CONVERTING])
       puts "Found video ##{video.id}: #{video.lesson.title} (state: #{video.status})"
       s3_connection = RightAws::S3.new(APP_CONFIG[CONFIG_AWS_ACCESS_KEY_ID],
                                        APP_CONFIG[CONFIG_AWS_SECRET_ACCESS_KEY])

@@ -48,3 +48,13 @@ LESSON_STATE_START_CONVERSION_SUCCESS = 'trigger_conversion_end'
 LESSON_STATE_END_CONVERSION = 'conversion_end_success'
 LESSON_STATE_GET_THUMBNAIL_URL = "calc_thumb_url_start"
 LESSON_STATE_READY = 'ready'
+
+# Video statuses
+VIDEO_STATUS_PENDING = "Pending"
+VIDEO_STATUS_CONVERTING = "Converting"
+VIDEO_STATUS_FAILED = "Failed"
+VIDEO_STATUS_READY = "Ready"
+
+# Video format
+VIDEO_FORMAT_ORIGINAL = "Original"
+VIDEO_FORMAT_FLASH = "Flash"

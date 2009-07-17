@@ -28,13 +28,13 @@ class OriginalVideo < Video
 
   def set_url
     self.update_attributes!(:s3_key => self.video.path,
-                           :s3_path => "s3://#{APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]}/#{self.video.path}",
-                           :url => "http://#{APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]}.s3.amazonaws.com/#{self.video.path}")
+                            :s3_path => "s3://#{APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]}/#{self.video.path}",
+                            :url => "http://#{APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]}.s3.amazonaws.com/#{self.video.path}")
   end
 
   # Call out to flixcloud to trigger a conversion process
   def trigger_convert
-    processed_video = ProcessedVideo.find(:first, :conditions => { :lesson_id => self.lesson, :format => "Flash" })
+    processed_video = ProcessedVideo.find(:first, :conditions => { :lesson_id => self.lesson, :format => VIDEO_FORMAT_FLASH })
     unless processed_video
       processed_video = ProcessedVideo.create!(:lesson_id => self.lesson.id,
                                                :video_file_name => self.video_file_name,
@@ -46,7 +46,7 @@ class OriginalVideo < Video
     rescue Exception => e
       # rethrow the exception so we see the error in the periodic jobs log
       processed_video.update_attributes!(:video_transcoding_error => e.message,
-                                        :status => "Failed")
+                                         :status => VIDEO_STATUS_FAILED)
       raise e
     end
     processed_video.convert
@@ -72,8 +72,8 @@ class OriginalVideo < Video
   private
 
   def set_status_and_format
-    self.status = 'ready'
-    self.format = 'Original'
+    self.status = VIDEO_STATUS_READY
+    self.format = VIDEO_FORMAT_ORIGINAL
     # for some reason paperclip is putting a // in the path...so replace it with one
   end
 end
