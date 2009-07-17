@@ -4,7 +4,6 @@ class Video < ActiveRecord::Base
   # Allow flixcloud to view the raw video
   def grant_s3_permissions_to_flix
     set_url
-    #change_state(LESSON_STATE_SET_S3_PERMISSIONS)
     s3_connection = RightAws::S3.new(APP_CONFIG[CONFIG_AWS_ACCESS_KEY_ID],          
                                      APP_CONFIG[CONFIG_AWS_SECRET_ACCESS_KEY])
     bucket = s3_connection.bucket(APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET])

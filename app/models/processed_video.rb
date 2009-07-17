@@ -81,17 +81,6 @@ class ProcessedVideo < Video
     end
   end
 
-  #def set_thumbnail_url
-  #  self.lesson.change_state(LESSON_STATE_GET_THUMBNAIL_URL)
-  #s3_connection = s3_connect
-  #bucket = s3_connection.bucket(APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET])
-  #file = bucket.key(thumbnail_path + "/thumb_0000.png", true)
-  #url =
-  #self.self.update_attribute(:thumbnail_url, url)
-  #grantee = RightAws::S3::Grantee.new(bucket, FLIX_CLOUD_AWS_ID, 'READ', :apply)
-  #grantee = RightAws::S3::Grantee.new(file, FLIX_CLOUD_AWS_ID, 'READ', :apply)
-  #end
-
   # This is a utility method to build a dummy XML response message from flix cloud
   def build_flix_response
     xml = Builder::XmlMarkup.new( :target => out_string = "",
