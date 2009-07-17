@@ -5,7 +5,7 @@ class ProcessedVideoTest < ActiveSupport::TestCase
     setup { @processed_video = Factory.create(:processed_video) }
 
     should_validate_presence_of      :lesson
-    should_have_class_methods        :detect_zombie_video 
+    should_have_class_methods        :detect_zombie_video
 
     should "reference an original video" do
       assert !@processed_video.converted_from_video
@@ -27,6 +27,12 @@ class ProcessedVideoTest < ActiveSupport::TestCase
       should "be succesfully converted" do
         assert_equal "Ready", @processed_video.status
       end
+    end
+
+    context "when searching for zombies" do
+      setup { ProcessedVideo.detect_zombie_video(@processed_video.id, @processed_video.lesson.id) }
+
+      # should verify an email was sent but not sure how
     end
   end
 end
