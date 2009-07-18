@@ -45,8 +45,7 @@ class OriginalVideo < Video
       grant_s3_permissions_to_flix
     rescue Exception => e
       # rethrow the exception so we see the error in the periodic jobs log
-      processed_video.update_attributes!(:video_transcoding_error => e.message,
-                                         :status => VIDEO_STATUS_FAILED)
+      processed_video.change_status(VIDEO_STATUS_FAILED, e.message)
       raise e
     end
     processed_video.convert
@@ -63,7 +62,7 @@ class OriginalVideo < Video
 
   rescue Exception => e
     Lesson.transaction do
-      video.lesson.change_state(LESSON_STATE_FAILED, 'failed: ' + e.message)
+      video.lesson.update_attribute(:state, VIDEO_STATUS_FAILED)
     end
     # rethrow the exception so we see the error in the periodic jobs log
     raise e

@@ -39,13 +39,6 @@ FLIX_API_KEY = 'b997:klpibn:0:8x72:gsvz'
 FLIX_RECIPE_ID = 438
 WATERMARK_URL = 's3://assets.firehoze.com/watermark.png'
 
-# Lesson states
-LESSON_STATE_PENDING = "pending"
-LESSON_STATE_FAILED = "failed"
-LESSON_STATE_START_CONVERSION = 'trigger_conversion_start'
-LESSON_STATE_START_CONVERSION_SUCCESS = 'trigger_conversion_end'
-LESSON_STATE_READY = 'ready'
-
 # Video statuses
 VIDEO_STATUS_PENDING = "Pending"
 VIDEO_STATUS_CONVERTING = "Converting"

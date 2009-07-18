@@ -1,5 +1,6 @@
 class Video < ActiveRecord::Base
   belongs_to :lesson
+  has_many :lesson_state_changes
 
   # Allow flixcloud to view the raw video
   def grant_s3_permissions_to_flix

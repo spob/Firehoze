@@ -70,22 +70,18 @@ class Lesson < ActiveRecord::Base
   validates_presence_of :instructor, :title, :state
   validates_length_of :title, :maximum => 50, :allow_nil => true
 
-
-  # Used to record a messgage for the state change
-  attr_accessor :state_change_message
   # Used to seed the number of free downloads available
   attr_accessor :initial_free_download_count
 
-  before_create :record_state_change_create
+  before_validation_on_create :set_state_on_create
   after_create  :create_free_credits
-  before_update :record_state_change_update
 
   named_scope   :most_popular, :order => "credits_count DESC"
   named_scope   :highest_rated, :order => "rating_average DESC"
   named_scope   :newest, :order => "created_at DESC"
-  named_scope   :ready, :conditions => {:state => LESSON_STATE_READY }
-  named_scope   :pending, :conditions => {:state => LESSON_STATE_PENDING }
-  named_scope   :failed, :conditions => {:state => LESSON_STATE_FAILED }
+  named_scope   :ready, :conditions => {:state => VIDEO_STATUS_READY }
+  named_scope   :pending, :conditions => {:state => VIDEO_STATUS_PENDING }
+  named_scope   :failed, :conditions => {:state => VIDEO_STATUS_FAILED }
 
   # Basic paginated listing finder
   # if the user is specified and is an admin, then lessons will be retrieved regardless of
@@ -93,7 +89,7 @@ class Lesson < ActiveRecord::Base
   def self.list(page, user=nil)
     conditions = {}
     conditions = ["state = ? or instructor_id = ?",
-                  LESSON_STATE_READY, user]  unless (user and user.try(:is_admin?))
+                  VIDEO_STATUS_READY, user]  unless (user and user.try(:is_admin?))
     paginate :page => page,
              :conditions => conditions,
              :order => 'id desc',
@@ -101,7 +97,7 @@ class Lesson < ActiveRecord::Base
   end
 
   def ready?
-    self.state == LESSON_STATE_READY
+    self.state == VIDEO_STATUS_READY
   end
 
   def owned_by?(user)
@@ -120,11 +116,6 @@ class Lesson < ActiveRecord::Base
   # Has this user reviewed this lesson already?
   def reviewed_by? user
     !Review.scoped_by_user_id(user).scoped_by_lesson_id(self).empty?
-  end
-
-  def change_state(new_state, msg=nil)
-    self.update_attributes(:state => new_state,
-                           :state_change_message => I18n.t("lesson.#{new_state}") + (msg.nil? ? "" : ": #{msg}"))
   end
 
   # Create a periodic job to trigger a conversion in the background
@@ -164,13 +155,6 @@ class Lesson < ActiveRecord::Base
     #'s3://' + APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET] + "/" + self.id.to_s
   end
 
-  def record_state_change_create
-    self.state_change_message = nil
-    self.state = LESSON_STATE_PENDING
-    self.lesson_state_changes.build(:to_state => self.state,
-                                    :message =>  I18n.t('lesson.pending'))
-  end
-
   def create_free_credits
     if initial_free_download_count and initial_free_download_count > 0
       sku = CreditSku.find_by_sku!(FREE_CREDIT_SKU)
@@ -184,18 +168,12 @@ class Lesson < ActiveRecord::Base
     raise e unless ENV['RAILS_ENV'] == 'test'
   end
 
-  def record_state_change_update
-    if self.state_changed?
-      self.lesson_state_changes.build(:from_state => self.state_was,
-                                      :to_state => self.state,
-                                      :message =>  self.state_change_message)
-
-      self.state_change_message = nil
-    end
-  end
-
   def s3_connect()
     RightAws::S3.new(APP_CONFIG[CONFIG_AWS_ACCESS_KEY_ID],
                      APP_CONFIG[CONFIG_AWS_SECRET_ACCESS_KEY])
+  end
+
+  def set_state_on_create
+    self.state = VIDEO_STATUS_PENDING
   end
 end

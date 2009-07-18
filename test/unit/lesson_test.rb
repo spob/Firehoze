@@ -62,13 +62,13 @@ class LessonTest < ActiveSupport::TestCase
           # notifier needs at least one admin
           @admin = Factory.create(:user)
           @admin.has_role 'admin'
-          @lesson.update_attributes(:state => LESSON_STATE_START_CONVERSION_SUCCESS,
+          @lesson.update_attributes(:state => VIDEO_STATUS_CONVERTING,
             :flixcloud_job_id => @lesson.id * 2)
         end
       end
 
       context "which is ready" do
-        setup { @lesson.update_attribute(:state, 'ready') }
+        setup { @lesson.update_attribute(:state, VIDEO_STATUS_READY) }
 
         should "be ready" do
           assert @lesson.ready?
@@ -84,13 +84,6 @@ class LessonTest < ActiveSupport::TestCase
         assert !@lesson.consume_free_credit(Factory.create(:user))
       end
 
-      should "have a state change record" do
-        assert_equal 1, @lesson.lesson_state_changes.size
-        assert_nil @lesson.lesson_state_changes.first.from_state
-        assert_equal "pending", @lesson.lesson_state_changes.first.to_state
-        assert_match /Lesson created/, @lesson.lesson_state_changes.first.message
-      end
-
       context "and trigger a conversion" do
         setup { @job = @lesson.trigger_conversion }
 
@@ -99,29 +92,14 @@ class LessonTest < ActiveSupport::TestCase
         end
       end
 
-      context "that changed state" do
-        setup do
-          @lesson.change_state('ready', 'test msg')
-          @lesson = Lesson.find(@lesson)
-        end
-
-        should "have another state change record" do
-          assert_equal 2, @lesson.lesson_state_changes.count
-          assert_equal "pending", @lesson.lesson_state_changes.last.from_state
-          assert_equal "ready", @lesson.lesson_state_changes.last.to_state
-          assert_equal "Video conversion completed successfully and is ready for viewing: test msg",
-                       @lesson.lesson_state_changes.last.message
-        end
-      end
-
       context "and a couple more records" do
         setup do
           # and let's create a couple more
           @lesson2 = Factory.create(:lesson)
           @lesson3 = Factory.create(:lesson)
-          @lesson.update_attribute(:state, LESSON_STATE_PENDING)
-          @lesson2.update_attribute(:state, LESSON_STATE_READY)
-          @lesson3.update_attribute(:state, LESSON_STATE_READY)
+          @lesson.update_attribute(:state, VIDEO_STATUS_PENDING)
+          @lesson2.update_attribute(:state, VIDEO_STATUS_READY)
+          @lesson3.update_attribute(:state, VIDEO_STATUS_READY)
         end
 
         should "not show that it has been reviewed" do

@@ -17,6 +17,21 @@ class ProcessedVideoTest < ActiveSupport::TestCase
       end
     end
 
+    context "that changed state" do
+      setup do
+        @processed_video.change_status('ready', 'test msg')
+        @processed_video = ProcessedVideo.find(@processed_video)
+      end
+
+      should "have another state change record" do
+        assert_equal 1, @processed_video.lesson_state_changes.count
+        assert_equal "Pending", @processed_video.lesson_state_changes.last.from_state
+        assert_equal "ready", @processed_video.lesson_state_changes.last.to_state
+        #assert_equal "Video conversion completed successfully and is ready for viewing: test msg",
+        #             @processed_video.lesson_state_changes.last.message
+      end
+    end
+
     context "and a response job" do
       setup do
         @job = FlixCloud::Notification.new(@processed_video.build_flix_response)
