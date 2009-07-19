@@ -1,8 +1,8 @@
 class RemoveUneededColumnsFrom < ActiveRecord::Migration
   def self.up
-    rename_column :video_status_changes, :from_state, :from_status
-    rename_column :video_status_changes, :to_state, :to_status
-    rename_table :video_status_changes, :video_status_changes
+    rename_column :lesson_state_changes, :from_state, :from_status
+    rename_column :lesson_state_changes, :to_state, :to_status
+    rename_table :lesson_state_changes, :video_status_changes
 
     remove_index(:lessons, :flixcloud_job_id)
 
