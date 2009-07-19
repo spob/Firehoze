@@ -74,8 +74,8 @@ class ProcessedVideo < Video
     self.update_attributes(:status => new_status,
                            :video_transcoding_error => (status == VIDEO_STATUS_FAILED ? msg : nil))
     self.lesson.update_attribute(:status, new_status)
-    self.lesson_state_changes.create!(:from_state => self.status_was,
-                                       :to_state => self.status,
+    self.video_status_changes.create!(:from_status => self.status_was,
+                                       :to_status => self.status,
                                        :lesson => self.lesson,
                                        :message => msg)
   end
@@ -147,6 +147,6 @@ class ProcessedVideo < Video
   end
 
   def record_status_change_create
-    self.lesson_state_changes.build(:to_state => self.status)
+    self.video_status_changes.build(:to_status => self.status)
   end
 end

@@ -24,11 +24,11 @@ class ProcessedVideoTest < ActiveSupport::TestCase
       end
 
       should "have another state change record" do
-        assert_equal 1, @processed_video.lesson_state_changes.count
-        assert_equal "Pending", @processed_video.lesson_state_changes.last.from_state
-        assert_equal "ready", @processed_video.lesson_state_changes.last.to_state
+        assert_equal 1, @processed_video.video_status_changes.count
+        assert_equal "Pending", @processed_video.video_status_changes.last.from_status
+        assert_equal "ready", @processed_video.video_status_changes.last.to_status
         #assert_equal "Video conversion completed successfully and is ready for viewing: test msg",
-        #             @processed_video.lesson_state_changes.last.message
+        #             @processed_video.video_status_changes.last.message
       end
     end
 

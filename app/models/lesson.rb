@@ -61,7 +61,7 @@ class Lesson < ActiveRecord::Base
 
   belongs_to :instructor, :class_name => "User", :foreign_key => "instructor_id"
   has_many :reviews
-  has_many :lesson_state_changes, :order => "id"
+  has_many :video_status_changes, :order => "id"
   has_many :credits
   has_many :free_credits, :order => "id"
   has_many :videos
