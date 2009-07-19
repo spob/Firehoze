@@ -19,12 +19,16 @@ class ProcessedVideoTest < ActiveSupport::TestCase
 
     context "that changed state" do
       setup do
+        assert_equal 1, @processed_video.video_status_changes.count
+        assert_nil @processed_video.video_status_changes.last.from_status
+        assert_equal "Pending", @processed_video.video_status_changes.last.to_status
+        assert_equal "Pending", @processed_video.status
         @processed_video.change_status('ready', 'test msg')
         @processed_video = ProcessedVideo.find(@processed_video)
       end
 
       should "have another state change record" do
-        assert_equal 1, @processed_video.video_status_changes.count
+        assert_equal 2, @processed_video.video_status_changes.count
         assert_equal "Pending", @processed_video.video_status_changes.last.from_status
         assert_equal "ready", @processed_video.video_status_changes.last.to_status
         #assert_equal "Video conversion completed successfully and is ready for viewing: test msg",

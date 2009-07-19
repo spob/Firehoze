@@ -1,6 +1,7 @@
 class Video < ActiveRecord::Base
   belongs_to :lesson
-  has_many :video_status_changes
+  has_many :video_status_changes, :order => "id"
+  after_create :record_status_change_create
 
   # Allow flixcloud to view the raw video
   def grant_s3_permissions_to_flix
@@ -11,5 +12,11 @@ class Video < ActiveRecord::Base
     file = bucket.key(self.s3_key, true)
     grantee = RightAws::S3::Grantee.new(bucket, FLIX_CLOUD_AWS_ID, 'READ', :apply)
     grantee = RightAws::S3::Grantee.new(file, FLIX_CLOUD_AWS_ID, 'READ', :apply)
+  end
+
+  private
+  
+  def record_status_change_create
+    self.video_status_changes.create!(:to_status => self.status, :lesson => self.lesson)
   end
 end

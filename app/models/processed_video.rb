@@ -6,8 +6,6 @@ class ProcessedVideo < Video
   validates_presence_of :lesson, :format, :status
   validates_numericality_of :video_file_size, :greater_than => 0, :allow_nil => true
 
-  before_create :record_status_change_create
-
   named_scope :by_format,
               lambda{ |format| {:conditions => { :format => format}}
               }
@@ -71,13 +69,13 @@ class ProcessedVideo < Video
   end
 
   def change_status(new_status, msg=nil)
-    self.update_attributes(:status => new_status,
-                           :video_transcoding_error => (status == VIDEO_STATUS_FAILED ? msg : nil))
-    self.lesson.update_attribute(:status, new_status)
-    self.video_status_changes.create!(:from_status => self.status_was,
-                                       :to_status => self.status,
+    self.video_status_changes.create!(:from_status => self.status,
+                                       :to_status => new_status,
                                        :lesson => self.lesson,
                                        :message => msg)
+    self.update_attributes!(:status => new_status,
+                           :video_transcoding_error => (status == VIDEO_STATUS_FAILED ? msg : nil))
+    self.lesson.update_attribute(:status, new_status)
   end
 
   # Check if a video was submitted for processing and never returned. If so, send an email alert
@@ -144,9 +142,5 @@ class ProcessedVideo < Video
   def set_status_and_format
     self.status = VIDEO_STATUS_PENDING
     self.format = 'Flash'
-  end
-
-  def record_status_change_create
-    self.video_status_changes.build(:to_status => self.status)
   end
 end
