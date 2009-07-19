@@ -54,6 +54,8 @@ class ProcessedVideo < Video
                         ".s3.amazonaws.com/" + id.to_s + "/thumb_0000.png",
                 :s3_path => job.output_media_file.url,
                 :url => "http://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}.s3.amazonaws.com/#{self.s3_key}.flv")
+
+
         self.lesson.update_attribute(:finished_video_duration, job.output_media_file.duration)
         self.change_status(VIDEO_STATUS_READY)
         Notifier.deliver_lesson_ready self.lesson
@@ -71,7 +73,7 @@ class ProcessedVideo < Video
   def change_status(new_status, msg=nil)
     self.update_attributes(:status => new_status,
                            :video_transcoding_error => (status == VIDEO_STATUS_FAILED ? msg : nil))
-    self.lesson.update_attribute(:state, new_status)
+    self.lesson.update_attribute(:status, new_status)
     self.lesson_state_changes.create!(:from_state => self.status_was,
                                        :to_state => self.status,
                                        :lesson => self.lesson,

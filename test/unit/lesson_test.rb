@@ -62,13 +62,13 @@ class LessonTest < ActiveSupport::TestCase
           # notifier needs at least one admin
           @admin = Factory.create(:user)
           @admin.has_role 'admin'
-          @lesson.update_attributes(:state => VIDEO_STATUS_CONVERTING,
+          @lesson.update_attributes(:status => VIDEO_STATUS_CONVERTING,
             :flixcloud_job_id => @lesson.id * 2)
         end
       end
 
       context "which is ready" do
-        setup { @lesson.update_attribute(:state, VIDEO_STATUS_READY) }
+        setup { @lesson.update_attribute(:status, VIDEO_STATUS_READY) }
 
         should "be ready" do
           assert @lesson.ready?
@@ -97,9 +97,9 @@ class LessonTest < ActiveSupport::TestCase
           # and let's create a couple more
           @lesson2 = Factory.create(:lesson)
           @lesson3 = Factory.create(:lesson)
-          @lesson.update_attribute(:state, VIDEO_STATUS_PENDING)
-          @lesson2.update_attribute(:state, VIDEO_STATUS_READY)
-          @lesson3.update_attribute(:state, VIDEO_STATUS_READY)
+          @lesson.update_attribute(:status, VIDEO_STATUS_PENDING)
+          @lesson2.update_attribute(:status, VIDEO_STATUS_READY)
+          @lesson3.update_attribute(:status, VIDEO_STATUS_READY)
         end
 
         should "not show that it has been reviewed" do

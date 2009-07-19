@@ -164,7 +164,7 @@ class LessonsControllerTest < ActionController::TestCase
       setup do
         @sku = Factory.create(:credit_sku, :sku => FREE_CREDIT_SKU)
         @lesson = Factory.create(:lesson, :initial_free_download_count => 5)
-        @lesson.update_attribute(:state, VIDEO_STATUS_READY)
+        @lesson.update_attribute(:status, VIDEO_STATUS_READY)
         assert_equal 5, @lesson.free_credits.available.size
         get :watch, :id => @lesson
       end
@@ -185,7 +185,7 @@ class LessonsControllerTest < ActionController::TestCase
 
       context "which the user already owns" do
         setup do
-          @lesson.update_attribute(:state, VIDEO_STATUS_READY)
+          @lesson.update_attribute(:status, VIDEO_STATUS_READY)
           @lesson = assign_video(@lesson)
           assert @lesson.processed_videos.by_format('Flash').first
           assert @lesson.processed_videos.by_format('Flash').first.url
@@ -202,7 +202,7 @@ class LessonsControllerTest < ActionController::TestCase
 
       context "for which the user is the instructor" do
         setup do
-          @lesson.update_attribute(:state, VIDEO_STATUS_READY)
+          @lesson.update_attribute(:status, VIDEO_STATUS_READY)
           @lesson = assign_video(@lesson)
           @lesson.update_attribute(:instructor, @user)
           assert !@user.owns_lesson?(@lesson)
@@ -217,7 +217,7 @@ class LessonsControllerTest < ActionController::TestCase
 
       context "with no available credits" do
         setup do
-          @lesson.update_attribute(:state, VIDEO_STATUS_READY)
+          @lesson.update_attribute(:status, VIDEO_STATUS_READY)
           get :watch, :id => @lesson
         end
 
@@ -230,7 +230,7 @@ class LessonsControllerTest < ActionController::TestCase
           @user.credits.create!(:price => 0.99)
           assert !@user.available_credits.empty?
           assert !@user.owns_lesson?(@lesson)
-          @lesson.update_attribute(:state, VIDEO_STATUS_READY)
+          @lesson.update_attribute(:status, VIDEO_STATUS_READY)
           get :watch, :id => @lesson
           assert @lesson.ready?
         end

@@ -67,28 +67,28 @@ class Lesson < ActiveRecord::Base
   has_many :videos
   has_many :processed_videos
   has_one :original_video
-  validates_presence_of :instructor, :title, :state
+  validates_presence_of :instructor, :title, :status
   validates_length_of :title, :maximum => 50, :allow_nil => true
 
   # Used to seed the number of free downloads available
   attr_accessor :initial_free_download_count
 
-  before_validation_on_create :set_state_on_create
+  before_validation_on_create :set_status_on_create
   after_create  :create_free_credits
 
   named_scope   :most_popular, :order => "credits_count DESC"
   named_scope   :highest_rated, :order => "rating_average DESC"
   named_scope   :newest, :order => "created_at DESC"
-  named_scope   :ready, :conditions => {:state => VIDEO_STATUS_READY }
-  named_scope   :pending, :conditions => {:state => VIDEO_STATUS_PENDING }
-  named_scope   :failed, :conditions => {:state => VIDEO_STATUS_FAILED }
+  named_scope   :ready, :conditions => {:status => VIDEO_STATUS_READY }
+  named_scope   :pending, :conditions => {:status => VIDEO_STATUS_PENDING }
+  named_scope   :failed, :conditions => {:status => VIDEO_STATUS_FAILED }
 
   # Basic paginated listing finder
   # if the user is specified and is an admin, then lessons will be retrieved regardless of
   # the state of the video. Otherwise, only READY videos will be retrieved
   def self.list(page, user=nil)
     conditions = {}
-    conditions = ["state = ? or instructor_id = ?",
+    conditions = ["status = ? or instructor_id = ?",
                   VIDEO_STATUS_READY, user]  unless (user and user.try(:is_admin?))
     paginate :page => page,
              :conditions => conditions,
@@ -97,7 +97,7 @@ class Lesson < ActiveRecord::Base
   end
 
   def ready?
-    self.state == VIDEO_STATUS_READY
+    self.status == VIDEO_STATUS_READY
   end
 
   def owned_by?(user)
@@ -173,7 +173,7 @@ class Lesson < ActiveRecord::Base
                      APP_CONFIG[CONFIG_AWS_SECRET_ACCESS_KEY])
   end
 
-  def set_state_on_create
-    self.state = VIDEO_STATUS_PENDING
+  def set_status_on_create
+    self.status = VIDEO_STATUS_PENDING
   end
 end
