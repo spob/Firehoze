@@ -175,12 +175,12 @@ namespace :db do
         User.all.each do |user|
           if rand(10) + 1 > 2
             if user.owns_lesson?(lesson) and (user != lesson.instructor)
-              review = Review.new(:user => user, :title => Faker::Company.bs.titleize, :body => Populator.paragraphs(1..3))
+              review = Review.new(:user => user, :headline => Faker::Company.bs.titleize, :body => Populator.paragraphs(1..3))
               lesson.reviews << review
               review.save!
               rating = rand(5) + 1
               lesson.rate(rating, user)
-              puts "Review created by #{user.full_name}: #{review.title} | rating: #{rating}"
+              puts "Review created by #{user.full_name}: #{review.headline} | rating: #{rating}"
             end
           end
         end
@@ -222,7 +222,7 @@ namespace :db do
   private
 
   def developers_personal_info
-    [["admin@firehoze.com", "sys", "admin"], ["rich@firehoze.com", "Rich", "Sturim"], ["bob@firehoze.com", "Bob", "Sturim"], ["joel@firehoze.com", "Joel", "Lindheimer"], ["david@firehoze.com", "David", "Otaguro"]]
+    [["sys@firehoze.com", "sys", "admin"], ["rich@firehoze.com", "Rich", "Sturim"], ["bob@firehoze.com", "Bob", "Sturim"], ["joel@firehoze.com", "Joel", "Lindheimer"], ["david@firehoze.com", "David", "Otaguro"]]
   end
 
   def developers
