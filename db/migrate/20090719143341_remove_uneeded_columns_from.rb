@@ -1,5 +1,9 @@
 class RemoveUneededColumnsFrom < ActiveRecord::Migration
   def self.up
+    rename_column :lesson_state_changes, :from_state, :from_status
+    rename_column :lesson_state_changes, :to_state, :to_status
+    rename_table :lesson_state_changes, :video_status_changes
+
     remove_index(:lessons, :flixcloud_job_id)
 
     remove_column :lessons, :video_file_name
@@ -21,6 +25,10 @@ class RemoveUneededColumnsFrom < ActiveRecord::Migration
   end
 
   def self.down
+    rename_column :lesson_state_changes, :from_status, :from_state
+    rename_column :lesson_state_changes, :to_status, :to_state
+    rename_table :video_status_changes, :lesson_state_changes
+
     add_column :lessons, :video_file_name, :string, :null => true
     add_column :lessons, :video_content_type, :string
     add_column :lessons, :video_file_size, :integer

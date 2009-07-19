@@ -84,7 +84,7 @@ namespace :db do
         lesson.instructor = User.first(:order => 'RAND()')
         lesson.title = Faker::Company.catch_phrase.titleize
         lesson.description = Populator.paragraphs(1..3)
-        lesson.state = LESSON_STATE_PENDING
+        lesson.status = VIDEO_STATUS_PENDING
         dummy_video_path = "/test/videos/#{rand(5)+1}.avi" #pick a random vid,
         if !File.exist?(RAILS_ROOT + dummy_video_path)
           puts "can not find file"
@@ -197,7 +197,7 @@ namespace :db do
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE carts;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE helpfuls;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
-      ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_state_changes;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE video_status_changes;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE lessons;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE taggings;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE tags;")
@@ -239,7 +239,7 @@ namespace :db do
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE helpfuls;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
-    ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_state_changes;")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE video_status_changes;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE lessons;")
   end
 end
