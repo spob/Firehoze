@@ -3,7 +3,7 @@
     <%= video.format %>
   </td>
   <td>
-    <%= video.status %>
+    <%= t("lesson.#{video.status}") %>
   </td>
   <% if current_user.try("is_admin?") %>
       <td>
@@ -19,10 +19,10 @@
         <%= h video.video_content_type %>
       </td>
       <td>
-        <%= video.conversion_started_at %>
+        <%= l(video.conversion_started_at) if video.conversion_started_at %>
       </td>
       <td>
-        <%= video.conversion_ended_at %>
+        <%= l(video.conversion_ended_at) if video.conversion_ended_at %>
       </td>
       <td>
         <%= video.flixcloud_job_id %>

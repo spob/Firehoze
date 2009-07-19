@@ -75,12 +75,13 @@ en:
     tagged_with: Lessons tagged with
     # Lesson states
     pending: Lesson created and awaiting transcoding
+    Converting: Converting
+    Ready: Ready
     S3_permissions_start: Set S3 permissions
     trigger_conversion_start: About to trigger video conversion
     trigger_conversion_end: Video transcoding started
     conversion_end_success: Video transcoding completed successfully
     calc_thumb_url_start: Retrieving thumbnail URL
-    ready: Video conversion completed successfully and is ready for viewing
     recently_viewed_items: Recently viewed items
     failed: Video failed processing
     wishlist: Wishlist

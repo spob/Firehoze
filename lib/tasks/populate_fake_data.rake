@@ -243,6 +243,9 @@ namespace :db do
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE helpfuls;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE video_status_changes;")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE free_credits;")
+    ActiveRecord::Base.connection.execute("DELETE FROM videos WHERE TYPE = 'ProcessedVideo';")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE videos;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE lessons;")
   end
 end

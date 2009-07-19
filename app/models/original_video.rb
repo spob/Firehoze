@@ -34,10 +34,11 @@ class OriginalVideo < Video
 
   # Call out to flixcloud to trigger a conversion process
   def trigger_convert
-    processed_video = ProcessedVideo.find(:first, :conditions => { :lesson_id => self.lesson, :format => VIDEO_FORMAT_FLASH })
+    processed_video = ProcessedVideo.find(:first, :conditions => { :lesson_id => self.lesson})
     unless processed_video
       processed_video = ProcessedVideo.create!(:lesson_id => self.lesson.id,
                                                :video_file_name => self.video_file_name,
+                                               :s3_key => self.s3_key,
                                                :converted_from_video => self)
     end
     begin
@@ -62,7 +63,7 @@ class OriginalVideo < Video
 
   rescue Exception => e
     Lesson.transaction do
-      video.lesson.update_attribute(:state, VIDEO_STATUS_FAILED)
+      video.lesson.update_attribute(:status, VIDEO_STATUS_FAILED)
     end
     # rethrow the exception so we see the error in the periodic jobs log
     raise e
