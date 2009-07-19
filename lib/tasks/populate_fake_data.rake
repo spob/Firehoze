@@ -89,10 +89,12 @@ namespace :db do
         if !File.exist?(RAILS_ROOT + dummy_video_path)
           puts "can not find file"
         else
-          lesson.video = File.open(RAILS_ROOT + dummy_video_path)
           lesson.save!
+          OriginalVideo.create!(:lesson => lesson,
+                                :video => File.open(RAILS_ROOT + dummy_video_path),
+                                :format => VIDEO_FORMAT_ORIGINAL)
           lesson.trigger_conversion
-          puts "#{i}: #{lesson.video_file_name} uploaded [instructor: #{lesson.instructor.full_name} | file size:#{lesson.video_file_size}]"
+          puts "#{i}: #{lesson.original_video.video_file_name} uploaded [instructor: #{lesson.instructor.full_name} | file size:#{lesson.original_video.video_file_size}]"
         end
       end
       puts "- done -"
@@ -173,7 +175,7 @@ namespace :db do
         User.all.each do |user|
           if rand(10) + 1 > 2
             if user.owns_lesson?(lesson) and (user != lesson.instructor)
-              review = Review.new(:user => user, :title => Faker::Company.bs.titleize,:body => Populator.paragraphs(1..3))
+              review = Review.new(:user => user, :title => Faker::Company.bs.titleize, :body => Populator.paragraphs(1..3))
               lesson.reviews << review
               review.save!
               rating = rand(5) + 1
@@ -198,6 +200,7 @@ namespace :db do
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE helpfuls;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE video_status_changes;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE videos;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE lessons;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE taggings;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE tags;")
