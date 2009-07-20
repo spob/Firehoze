@@ -29,7 +29,7 @@ set :git_enable_submodules, 1
 set :use_sudo, false
 set :deploy_to, "/var/rails/#{application}"
 
-after 'deploy:update', 'deploy:finishing_touches', 'deploy:migrate', 'deploy:restart'
+after 'deploy:update', 'deploy:finishing_touches', 'deploy:migrate', 'deploy:restart', 'task_server:restart'
 
 namespace :deploy do
   task :finishing_touches, :roles => :app do
