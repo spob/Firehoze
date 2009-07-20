@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:show, :edit, :update, :index, :private]
 
-  permit ROLE_ADMIN, :except => [:new, :create, :show, :private]
+  permit ROLE_ADMIN, :except => [:new, :create, :show, :edit, :private]
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update ], :redirect_to => :home_path

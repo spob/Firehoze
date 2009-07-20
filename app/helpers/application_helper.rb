@@ -16,6 +16,11 @@ module ApplicationHelper
     end
   end
 
+  def strike_through(text, condition)
+    return "<strike>#{text}</strike>" if condition
+    text
+  end
+
   # Set field focus. For an explanation, see:
   # http://neoarch.wordpress.com/2008/02/29/setting-focus-in-rails-with-prototype/
   def set_focus_to_id(id, othertxt=nil)

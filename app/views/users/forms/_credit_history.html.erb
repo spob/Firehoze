@@ -1,0 +1,23 @@
+<table>
+  <tr>
+    <th>
+      Acquired At
+    </th>
+    <th>
+      Type
+    </th>
+    <th>
+      Price Paid
+    </th>
+    <th>
+      Redeemed At
+    </th>
+    <th>
+      Redeemed For
+    </th>
+    <th>
+      Expiration Date
+    </th>
+  </tr>
+  <%= render :partial => 'users/forms/credit', :collection => current_user.credits %>
+</table>
