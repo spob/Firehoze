@@ -10,7 +10,9 @@
         <%= number_to_human_size video.video_file_size %>
       </td>
       <td>
-        <%= video.video_width %> x <%= video.video_height %>
+        <% if video.video_width and video.video_height then %>
+            <%= video.video_width %> x <%= video.video_height %>
+        <% end %>
       </td>
       <td>
         <%= h video.video_file_name %>
@@ -34,8 +36,11 @@
                                :precision => 3) unless video.input_video_cost.blank? %>
       </td>
       <td>
-         <% if video.class == OriginalVideo then %>
+         <% if video.class == OriginalVideo and video.lesson.processed_videos.empty? then %>
              <%= link_to "Convert", convert_lesson_path(video.lesson), :method => :post %>
+         <% end %>
+         <% if video.class == ProcessedVideo then %>
+             <%= link_to "Re-convert", convert_lesson_path(video.lesson), :method => :post %>
          <% end %>
       </td>
   <% end %>

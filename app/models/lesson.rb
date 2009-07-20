@@ -4,26 +4,15 @@
 # normal workflow is as follows:
 #   pending:                  raw video was just uploaded. A periodic job will be triggered to
 #           '                 start the conversion
-#   S3_permissions_start:     about to call out to Amazon S3 to set the permissions, granting
-#                             flixcloud access to the file
-#   trigger_conversion_start: about to call out to flixcloud to start the conversion process
-#   trigger_conversion_end:   successfully triggered a conversion process to occur in flixcloud
-#   conversion_end_success:   received notification from flixcloud that conversion successfully
-#                             completed
-#   calc_thumb_url_start:     about to parse the information returned from flixcloud to calculate,
-#                             among other things, the thumbnail_url
+#   converting:               file submitted to flixcloud for conversion
 #   ready:                    video ready for viewing
 #   failed:                   an error occurred at some point along the way
 #
 #   1.  You upload a video when you create a lesson. That goes into the Amazon S3 input bucket, and the lesson is in a
 #       pending state. A periodic job is kicked off to convert the video.
-#   2. When the periodic job runs, it will invoke a conversion to start. The first thing the conversion does is change
-#      the state to S3_permissions_start, then it grants read permissions on the videos to flix cloud (they need to be
-#      able to see the videos in order to pull them and process them).
-#
-#      The convert method then updates the state to trigger_conversion_start. It then uses a web servcie call to tell
-#      flix cloud to start converting the video. If that call was successful, it will update the state to
-#      trigger_conversion_end.
+#   2. When the periodic job runs, it will invoke a conversion to start. It grants read permissions on the videos to
+#      flix cloud (they need to be able to see the videos in order to pull them and process them). It then uses a web
+#      service call to tell flix cloud to start converting the video. 
 #   3. Flix cloud will then asynchronously process the video. This usually takes between 2 and 5 minutes. FlixCloud
 #      pulls the raw video down from the Amazon S3 location, transcodes it (converts it to flash, applies the
 #      watermark), and uploads the finished result back to an output bucket on Amazon S3. It will also upload a
@@ -65,7 +54,7 @@ class Lesson < ActiveRecord::Base
   has_many :credits
   has_many :free_credits, :order => "id"
   has_many :videos
-  has_many :processed_videos
+  has_many :processed_videos, :order => "id"
   has_one :original_video
   validates_presence_of :instructor, :title, :status
   validates_length_of :title, :maximum => 50, :allow_nil => true

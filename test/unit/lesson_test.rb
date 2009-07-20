@@ -29,6 +29,8 @@ class LessonTest < ActiveSupport::TestCase
     should_allow_values_for          :title, "blah blah blah"
     should_ensure_length_in_range    :title, (0..50)
     should_have_many                 :reviews, :video_status_changes, :credits, :free_credits, :taggings
+    should_have_many                 :videos, :processed_videos
+    should_have_one                  :original_video
     should_have_class_methods        :list, :ready
     should_have_instance_methods     :tag_list
 
