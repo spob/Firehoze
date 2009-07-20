@@ -51,5 +51,9 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    unless @order.user == current_user or current_user.is_admin?
+      flash[:error] = t("order.no_access")
+      redirect_to home_path
+    end
   end
 end

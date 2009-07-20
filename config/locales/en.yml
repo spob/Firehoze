@@ -95,6 +95,7 @@ en:
 
   order:
     order_placed: Your order has been placed
+    no_access: You can only view orders that you placed
   
   password_reset:
     reset_email_msg: Instructions to reset your password have been emailed to you. Please check your email

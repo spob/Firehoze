@@ -17,14 +17,23 @@ class OrdersControllerTest < ActionController::TestCase
       should_render_template "new"
     end
 
-    context "on GET to :show" do
+    context "on GET to :show when not the owner" do
       setup { get :show, :id => Factory.create(:completed_order) }
 
       should_assign_to :order
-      should_respond_with :success
-      should_not_set_the_flash
-      should_render_template "show"
+      should_respond_with :redirect
+      should_set_the_flash_to /You can only view orders that you placed/
+      should_redirect_to("home page") { home_url }
     end
+
+    #context "on GET to :show" do
+    #  setup { get :show, :id => Factory.create(:completed_order) }
+    #
+    #  should_assign_to :order
+    #  should_respond_with :success
+    #  should_not_set_the_flash
+    #  should_render_template "show"
+    #end
 
     context "on POST to :create" do
       setup do
