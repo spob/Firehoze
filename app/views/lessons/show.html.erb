@@ -102,10 +102,8 @@
             <th>Dimensions</th>
             <th>Filename</th>
             <th>File Type</th>
-            <th>Conversion Started At</th>
-            <th>Conversion Ended At</th>
-            <th>Conversion Job ID:</th>
             <th>Conversion Costs<br/>Input/Output</th>
+            <th>Log</th>
             <th>Action</th>
         <% end %>
       </tr>
@@ -127,16 +125,3 @@
 <% end %>
 <%= link_to 'Home', home_path %> |
 <%= link_to pluralize(@lesson.reviews.size, 'Review'), lesson_reviews_path(@lesson) %>
-
-<% if current_user.try("is_admin?") %>
-    <br/>
-    <table>
-      <tr>
-        <th>Timestamp</th>
-        <th>From State</th>
-        <th>To State</th>
-        <th>Description</th>
-      </tr>
-      <%= render @lesson.video_status_changes %>
-    </table>
-<% end %>

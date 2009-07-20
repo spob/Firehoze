@@ -20,28 +20,35 @@
       <td>
         <%= h video.video_content_type %>
       </td>
+      <!--<td>-->
+        <!--<%= l(video.conversion_started_at) if video.conversion_started_at %>-->
+      <!--</td>-->
+      <!--<td>-->
+        <!--<%= l(video.conversion_ended_at) if video.conversion_ended_at %>-->
+      <!--</td>-->
+      <!--<td>-->
+        <!--<%= video.flixcloud_job_id %>-->
+      <!--</td>-->
       <td>
-        <%= l(video.conversion_started_at) if video.conversion_started_at %>
+        <% if video.class == ProcessedVideo then %>
+            <%= number_to_currency(video.input_video_cost/100000.0,
+                                   :precision => 3) unless video.input_video_cost.blank? %> /
+            <%= number_to_currency(video.processed_video_cost/100000.0,
+                                   :precision => 3) unless video.input_video_cost.blank? %>
+        <% end %>
       </td>
       <td>
-        <%= l(video.conversion_ended_at) if video.conversion_ended_at %>
+        <ul>
+          <%= render video.video_status_changes %>
+        </ul>
       </td>
       <td>
-        <%= video.flixcloud_job_id %>
-      </td>
-      <td>
-        <%= number_to_currency(video.input_video_cost/100000.0,
-                               :precision => 3) unless video.input_video_cost.blank? %> /
-        <%= number_to_currency(video.processed_video_cost/100000.0,
-                               :precision => 3) unless video.input_video_cost.blank? %>
-      </td>
-      <td>
-         <% if video.class == OriginalVideo and video.lesson.processed_videos.empty? then %>
-             <%= link_to "Convert", convert_lesson_path(video.lesson), :method => :post %>
-         <% end %>
-         <% if video.class == ProcessedVideo then %>
-             <%= link_to "Re-convert", convert_lesson_path(video.lesson), :method => :post %>
-         <% end %>
+        <% if video.class == OriginalVideo and video.lesson.processed_videos.empty? then %>
+            <%= link_to "Convert", convert_lesson_path(video.lesson), :method => :post %>
+        <% end %>
+        <% if video.class == ProcessedVideo then %>
+            <%= link_to "Re-convert", convert_lesson_path(video.lesson), :method => :post %>
+        <% end %>
       </td>
   <% end %>
 </tr>
