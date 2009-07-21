@@ -6,6 +6,6 @@
     <%= l(order.cart.purchased_at) %>
   </td>
   <td>
-    <%= number_to_currency(Order.first.cart.line_items.sum(:discounted_unit_price)) %>
+    <%= number_to_currency(order.cart.total_discounted_price) %>
   </td>
 </tr>
