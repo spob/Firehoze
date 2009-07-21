@@ -42,6 +42,7 @@ class LessonsController < ApplicationController
   end
 
   def show
+    LessonVisit.touch(@lesson, current_user, request.session.session_id)
   end
 
   def edit

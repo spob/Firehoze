@@ -14,12 +14,18 @@ class LessonsControllerTest < ActionController::TestCase
     end
 
     context "on GET to :show" do
-      setup { get :show, :id => Factory(:lesson).id }
+      setup do
+        assert LessonVisit.all.empty?
+        get :show, :id => Factory(:lesson).id
+      end
 
       should_assign_to :lesson
       should_respond_with :success
       should_not_set_the_flash
       should_render_template "show"
+      should "populate lesson visit" do
+        assert 1, LessonVisit.all.size
+      end
     end
 
     context "on GET to :new" do
@@ -59,14 +65,14 @@ class LessonsControllerTest < ActionController::TestCase
 
     # Don't know how to mock this up with a paperclip file attachment'
     #context "on POST to :create" do
-      #setup do
-      #  post :create, :lesson => Factory.attributes_for(:lesson)
-      #end
-      #
-      #should_assign_to :lesson
-      #should_respond_with :redirect
-      #should_set_the_flash_to :lesson_updated
-      #should_redirect_to("lessons index page") { lesson_url(assigns(:lesson)) }
+    #setup do
+    #  post :create, :lesson => Factory.attributes_for(:lesson)
+    #end
+    #
+    #should_assign_to :lesson
+    #should_respond_with :redirect
+    #should_set_the_flash_to :lesson_updated
+    #should_redirect_to("lessons index page") { lesson_url(assigns(:lesson)) }
     #end
 
     context "on POST to :create with bad values" do
