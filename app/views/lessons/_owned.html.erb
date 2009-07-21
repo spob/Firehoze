@@ -1,0 +1,14 @@
+<%
+   owned_lessons = current_user.lessons + current_user.instructed_lessons
+   owned_lessons.paginate :page => params[:page], :per_page => @per_page
+%>
+
+<div class="span-28 prepend-1 append-1 last lesson_container">
+  <%= lessons_header(:most_popular) %>
+  <%= render :partial => "lessons/lesson_extended", :collection => owned_lessons %>
+</div>
+
+<div class="span-28 prepend-1 append-1 last more">
+  <%= render :partial => "lessons/pagination", :object => owned_lessons, :locals => { :collection => :owned_lessons } %>
+</div>
+<hr/>

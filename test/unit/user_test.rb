@@ -33,6 +33,7 @@ class UserTest < ActiveSupport::TestCase
     should_have_many                 :helpfuls
     should_have_many                 :lesson_visits
     should_have_many                 :visited_lessons
+    should_have_many                 :instructed_lessons
 
     context "and a couple more records" do
       setup do
