@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   end
 
   has_many :user_logons, :order => "created_at DESC", :dependent => :destroy
-  has_many :credits, :dependent => :destroy
+  has_many :credits, :order => 'id', :dependent => :destroy
   has_many :gift_certificates, :dependent => :destroy
   has_many :orders, :order => 'id DESC', :dependent => :destroy
   has_many :available_credits, :class_name => 'Credit',
