@@ -31,6 +31,8 @@ class UserTest < ActiveSupport::TestCase
     should_have_many                 :orders
     should_have_many                 :user_logons
     should_have_many                 :helpfuls
+    should_have_many                 :lesson_visits
+    should_have_many                 :visited_lessons
 
     context "and a couple more records" do
       setup do
@@ -133,4 +135,14 @@ class UserTest < ActiveSupport::TestCase
       end
     end
   end
+
+  context "Given lesson visits" do
+    setup { @lesson_visit = Factory.create(:lesson_visit) }
+
+    should "retrieve lessons and visits" do
+      assert_equal 1, @lesson_visit.user.lesson_visits.size
+      assert_equal 1, @lesson_visit.user.visited_lessons.size
+    end
+  end
+
 end
