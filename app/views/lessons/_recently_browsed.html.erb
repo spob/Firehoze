@@ -1,0 +1,13 @@
+<%
+   recently_browsed = current_user.visited_lessons.paginate :page => params[:page], :per_page => @per_page
+%>
+
+<div class="span-28 prepend-1 append-1 last lesson_container">
+  <%= lessons_header(:recently_visited) %>
+  <%= render :partial => "lessons/lesson_extended", :collection => recently_browsed %>
+</div>
+
+<div class="span-28 prepend-1 append-1 last more">
+  <%= render :partial => "lessons/pagination", :object => recently_browsed, :locals => { :collection => :most_popular } %>
+</div>
+<hr />
