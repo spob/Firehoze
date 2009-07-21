@@ -1,0 +1,14 @@
+<table>
+  <tr>
+    <th>
+      Order Number
+    </th>
+    <th>
+      Order Date
+    </th>
+    <th>
+      Amount
+    </th>
+  </tr>
+  <%= render :partial => 'users/forms/order', :collection => current_user.orders %>
+</table>
