@@ -47,11 +47,8 @@ class LessonsControllerTest < ActionController::TestCase
 
     context "on GET to :index" do
       setup { get :index }
-
-      should_assign_to :lessons
-      should_respond_with :success
-      should_not_set_the_flash
-      should_render_template "index"
+      should_respond_with :redirect
+      should_redirect_to("home page") { home_path }
     end
 
     context "on GET to :new" do
