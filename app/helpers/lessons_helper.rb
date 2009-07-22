@@ -9,8 +9,8 @@ module LessonsHelper
     end
   end
 
-  def lesson_rating_for(lesson, user)
-    ratings_for(lesson, (user != @lesson.instructor and lesson.owned_by?(user)) ? :active : :static)
+  def lesson_rating_for(lesson, user, *args)
+    ratings_for(lesson, (user != lesson.instructor and lesson.owned_by?(user)) ? :active : :static, *args)
   end
 
   def lessons_header(collection, *args)
@@ -22,6 +22,10 @@ module LessonsHelper
         t('lesson.highest_rated')
       when :newest
         t('lesson.newest')
+      when :recently_browsed
+        t('lesson.recently_browsed')
+      when :owned_lessons
+        t('lesson.owned_lessons')
       when :tagged_with
         "#{t('lesson.tagged_with')} &quot;#{args.first}&quot;"
       end

@@ -2,8 +2,13 @@
 tag = params[:tag]
 tagged_with = Lesson.find_tagged_with(tag).paginate :page => params[:page], :per_page => @per_page
 %>
-<div class="lesson_container">
+
+<div class="clear append-1 span-29 last" id="lesson_tabs">
   <%= lessons_header(:tagged_with, tag) %>
-  <%= render :partial => "lesson_extended", :collection => tagged_with %>
+  <%= render :partial => "lesson_narrow", :collection => tagged_with %>
+</div>
+
+<div class="more">
   <%= render :partial => "pagination", :object => tagged_with, :locals => { :collection => :tagged_with } %>
 </div>
+<%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts %>

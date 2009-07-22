@@ -82,7 +82,8 @@ en:
     trigger_conversion_end: Video transcoding started
     conversion_end_success: Video transcoding completed successfully
     calc_thumb_url_start: Retrieving thumbnail URL
-    recently_viewed_items: Recently browsed items
+    recently_browsed: Recently browsed items
+    owned_lessons: Your lessons
     failed: Video failed processing
     wishlist: Wishlist
 

@@ -1,5 +1,5 @@
 div {
-	/*border: 1px solid red;*/
+/*	border: 1px solid red;*/
 }
 
 /* top nav */
@@ -44,9 +44,9 @@ div {
 }
 
 .lesson_container, .more, .lesson_left, .lesson_center, .lesson_right {
+		font-size: 11px;
     margin:0;
     padding:0;
-    /*border: 1px solid blue;*/
 }
 
 .tag_cloud {

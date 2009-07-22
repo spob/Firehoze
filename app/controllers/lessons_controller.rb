@@ -11,7 +11,11 @@ class LessonsController < ApplicationController
   @@free_download_counts = [ 0, 5, 10, 25 ]
 
   def index
-    @lessons = Lesson.list(params[:page], current_user)
+    if current_user 
+      redirect_to home_path
+    else
+      @lessons = Lesson.list(params[:page], current_user)
+    end
   end
 
   def list
@@ -139,5 +143,4 @@ class LessonsController < ApplicationController
   def set_per_page
     @per_page = %w(index).include?(params[:action]) ? 5 : Lesson.per_page
   end
-
 end

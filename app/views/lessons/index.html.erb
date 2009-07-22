@@ -6,7 +6,7 @@
 
 <%#= render :partial => "default" if current_user and current_user.is_admin? %>
 
-<div class="clear prepend-1 append-1 span-29 last" id="lesson_tabs">
+<div class="clear span-40 last" id="lesson_tabs">
   <div id="tabs">
     <ul>
       <li><a href="#tabs-1"><%= t 'lesson.most_popular' %></a></li>
@@ -18,3 +18,5 @@
     <div id="tabs-3"><%= render :partial => "newest" %></div>
   </div>
 </div>
+<%= render :partial => "tag_cloud", :object => Lesson.tag_counts if current_user %>
+
