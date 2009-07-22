@@ -23,7 +23,7 @@ class AccountsController < ApplicationController
     @user.language = params[:user][:language]
     if @user.save
       flash[:notice] = t 'profile.update_success'
-      redirect_to accounts_url(@user)
+      redirect_to edit_user_path(@user)
     else
       render :action => :edit
     end

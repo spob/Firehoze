@@ -111,7 +111,7 @@ en:
     one_time_job_scheduled: Job has been scheduled to run one time
   
   profile:
-    update_success: Account settings updated
+    update_success: Your profile was successfully updated
   
   registration:
     check_email_for_registration: Please check your email to complete the registration
