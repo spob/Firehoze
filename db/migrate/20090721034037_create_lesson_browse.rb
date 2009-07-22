@@ -11,7 +11,7 @@ class CreateLessonBrowse < ActiveRecord::Migration
       t.string     :session_id, :null => false
       t.timestamps
     end
-    add_index :lesson_visits, [:lesson_id, :session_id], :unique => true
+    add_index :lesson_visits, [:session_id, :lesson_id], :unique => true
     add_foreign_key(:lesson_visits, :lesson_id, :lessons)
     add_foreign_key(:lesson_visits, :user_id, :users)
   end

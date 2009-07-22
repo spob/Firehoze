@@ -3,15 +3,21 @@ class LessonVisit < ActiveRecord::Base
   belongs_to :lesson
   validates_presence_of :lesson, :session_id
 
-  named_scope :by_lesson_and_session,
-              lambda{|lesson_id, session_id|{:conditions => { :lesson_id => lesson_id, :session_id => session_id }}
+  named_scope :by_lesson,
+              lambda{|lesson_id|{:conditions => { :lesson_id => lesson_id }}
+              }
+
+  # Look at visits which results in the purchase of a video but which have not yet been compiled
+  named_scope :uncompiled_lesson_purchases, :conditions => {:purchased_this_visit => true, :rolled_up_at => nil }
+  named_scope :by_session,
+              lambda{|session_id|{:conditions => { :session_id => session_id }}
               }
 
   def self.touch(lesson, user, session_id, purchased = false)
     if ENV['RAILS_ENV'] == 'test'
       session_id = 'dummy'
     end                
-    lesson_visit = LessonVisit.by_lesson_and_session(lesson.id, session_id).first
+    lesson_visit = LessonVisit.by_lesson(lesson.id).by_session(session_id).first
     if lesson_visit
       lesson_visit.visited_at = Time.now
       lesson_visit.user = user if user
