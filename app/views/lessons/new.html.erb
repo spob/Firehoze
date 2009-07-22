@@ -3,14 +3,15 @@
   <%= stylesheet_link_tag "formtastic_changes" %>
 <% end %>
 
-
-
 <h1>Create Lesson</h1>
 <% form_for(:lesson, :url => lessons_path, :html => { :multipart => true, :class => :formtastic }) do |f| %>
   <%= f.error_messages %>
 
   <%= f.label :title %>:
   <%= f.text_field :title %><br />
+
+  <%= f.label :synopsis %>:
+  <%= f.text_area :synopsis %><br />
   <br/>
   <%= f.label :description %>:
   <%= f.text_area :description %><br />

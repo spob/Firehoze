@@ -29,7 +29,7 @@ set :git_enable_submodules, 1
 set :use_sudo, false
 set :deploy_to, "/var/rails/#{application}"
 
-after 'deploy:update', 'deploy:finishing_touches', 'deploy:migrate', 'deploy:restart', 'task_server:restart'
+after 'deploy:update', 'deploy:finishing_touches', 'deploy:migrate', 'task_server:restart'
 
 namespace :deploy do
   task :finishing_touches, :roles => :app do
@@ -43,9 +43,6 @@ namespace :deploy do
 
   task :restart, :roles => :app do
     run "touch #{current_path}/tmp/restart.txt"
-    # mongrel:restart
-    # passenger:restart
-    task_server:restart
   end
 end
 
@@ -70,17 +67,23 @@ end
 namespace :task_server do
   desc "Start Task Server"
   task :start, :roles => :app do
+    puts "Starting task server"
     run "ruby #{current_path}/script/task_server_control.rb start -- -e production"
+    puts "Done"
   end
 
   desc "Restart Task Server"
   task :restart, :roles => :app do
+    puts "Restarting task server"
     run "ruby #{current_path}/script/task_server_control.rb restart -- -e production"
+    puts "Task server restart complete"
   end
 
   desc "Stop Task Server"
   task :stop, :roles => :app do
+    puts "Stopping task server"
     run "ruby #{current_path}/script/task_server_control.rb stop -- -e production"
+    puts "Done"
   end
 end
 

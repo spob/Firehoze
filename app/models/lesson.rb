@@ -56,8 +56,9 @@ class Lesson < ActiveRecord::Base
   has_many :videos
   has_many :processed_videos, :order => "id"
   has_one :original_video
-  validates_presence_of :instructor, :title, :status
+  validates_presence_of :instructor, :title, :status, :synopsis
   validates_length_of :title, :maximum => 50, :allow_nil => true
+  validates_length_of :synopsis, :maximum => 500, :allow_nil => true
 
   # Used to seed the number of free downloads available
   attr_accessor :initial_free_download_count
