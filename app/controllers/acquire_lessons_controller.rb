@@ -18,8 +18,12 @@ class AcquireLessonsController < ApplicationController
       flash[:error] = t('lesson.need_credits')
       redirect_to store_path(1)
     else
-      @credit = current_user.available_credits.first
-      @credit.update_attributes(:lesson => @lesson, :acquired_at => Time.now)
+      Lesson.transaction do
+        @credit = current_user.available_credits.first
+        @credit.update_attributes(:lesson => @lesson, :acquired_at => Time.now)
+        LessonVisit.touch(@lesson, current_user, request.session.session_id, true)
+      end
+
       redirect_to watch_lesson_path(@lesson)
     end
   end
