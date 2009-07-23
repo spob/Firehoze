@@ -9,6 +9,9 @@ class LessonVisit < ActiveRecord::Base
 
   # Look at visits which results in the purchase of a video but which have not yet been compiled
   named_scope :uncompiled_lesson_purchases, :conditions => {:purchased_this_visit => true, :rolled_up_at => nil }
+
+  named_scope :unowned, :conditions => {:owned => false }
+
   named_scope :by_session,
               lambda{|session_id|{:conditions => { :session_id => session_id }}
               }

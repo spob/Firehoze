@@ -14,12 +14,10 @@ class LessonBuyPattern < ActiveRecord::Base
     # First find recent (uncompiled) purchases
     LessonBuyPattern.transaction do
       for visit in LessonVisit.uncompiled_lesson_purchases
-        puts "here for #{visit.id}"
         visit.update_attribute(:rolled_up_at, Time.zone.now)
-        for other_visit in LessonVisit.by_session(visit.session_id)
+        for other_visit in LessonVisit.by_session(visit.session_id).unowned
           buy_pattern = LessonBuyPattern.by_purchased_lesson(visit.lesson.id).by_lesson(other_visit.lesson.id).first
           if buy_pattern
-            puts "Found #{buy_pattern.id} with counter #{buy_pattern.counter}"
             buy_pattern.update_attributes!(:counter => buy_pattern.counter + 1)
           else
             LessonBuyPattern.create!(:purchased_lesson => visit.lesson,
