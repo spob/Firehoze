@@ -11,7 +11,7 @@ namespace :db do
   namespace :populate do
 
     desc "Bootstraps the application"
-    task :all => [ :truncate, :admins, :users, :lessons, :tags, :credits, :acquire_lessons, :reviews, :reset_passwords] do
+    task :all => [ :truncate, :admins, :users, :seed_skus, :lessons, :tags, :credits, :acquire_lessons, :reviews, :reset_passwords] do
       puts "***** ALL COMPLETE *****"
     end
 
@@ -121,6 +121,13 @@ namespace :db do
       end
     end
 
+    desc "Generate some valid skus"
+    task :seed_skus => :environment do
+      create_sku CreditSku, CREDIT_SKU, 'Download Credit', 1, 0.99
+      create_sku CreditSku, FREE_CREDIT_SKU, 'Free Lesson', 1, 0.0
+      create_sku GiftCertificateSku, GIFT_CERTIFICATE_SKU, 'Gift Certificate', 1, 0.99
+    end
+
     #Not sure I neeed this any more
     desc "Generate some line_items and carts"
     task :carts => :environment do
@@ -203,6 +210,7 @@ namespace :db do
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE video_status_changes;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE videos;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_visits;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE skus;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE lessons;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE taggings;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE tags;")
@@ -242,6 +250,7 @@ namespace :db do
   def blow_away_lessons
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE skus;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE helpfuls;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE video_status_changes;")
