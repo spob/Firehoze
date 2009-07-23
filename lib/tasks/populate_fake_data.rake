@@ -112,7 +112,7 @@ namespace :db do
         puts "tag created: #{tag.name}"
       end
 
-      Lesson.ready.each do |lesson|
+      Lesson.each do |lesson|
         tags = Tag.all(:order => "RAND()", :limit => rand(6)+1)
         tag_names = tags.collect(&:name)
         lesson.tag_list.add tag_names
@@ -202,6 +202,7 @@ namespace :db do
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE video_status_changes;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE videos;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_visits;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE lessons;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE taggings;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE tags;")
@@ -247,6 +248,7 @@ namespace :db do
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE free_credits;")
     ActiveRecord::Base.connection.execute("DELETE FROM videos WHERE TYPE = 'ProcessedVideo';")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE videos;")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_visits;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE lessons;")
   end
 end
