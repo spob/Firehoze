@@ -83,8 +83,8 @@ namespace :db do
         lesson = Lesson.new
         lesson.instructor = User.first(:order => 'RAND()')
         lesson.title = Faker::Company.catch_phrase.titleize
-        lesson.synopsis = "#{Faker::Company.catch_phrase} #{Faker::Company.catch_phrase}"
-        lesson.description = Populator.paragraphs(1..3)
+        lesson.synopsis = Populator.sentences(2..4)
+        lesson.description = Populator.paragraphs(1..4)
         lesson.status = VIDEO_STATUS_PENDING
         dummy_video_path = "/test/videos/#{rand(5)+1}.avi" #pick a random vid,
         if !File.exist?(RAILS_ROOT + dummy_video_path)

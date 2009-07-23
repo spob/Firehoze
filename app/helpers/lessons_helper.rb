@@ -29,7 +29,30 @@ module LessonsHelper
       when :tagged_with
         "#{t('lesson.tagged_with')} &quot;#{args.first}&quot;"
       end
-      "<h4>#{header}</h4>"
+      "<h3>#{header}</h3>"
     end
   end
+
+  def img_tag_lesson_tn(lesson)
+    if lesson.thumbnail_url
+      link_to(image_tag(lesson.thumbnail_url,:size => "136x91"), lesson_path(lesson))
+    else
+      link_to(image_tag("videos/video_placeholder.jpg",:size => "136x91"), lesson_path(lesson))
+    end
+  end
+
+  def number_of_students_phrase(lesson)
+    if lesson.credits_count
+      "#{t('lesson.students')}: #{lesson.credits_count}"
+    elsif lesson.created_at > 7.days.ago
+      t('lesson.new_release')
+    end
+  end
+
+  def owned_it_phase(lesson)
+    if current_user and current_user.owns_lesson?(lesson)
+      t('lesson.owned')
+    end
+  end
+
 end

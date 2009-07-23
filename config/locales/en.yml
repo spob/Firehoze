@@ -71,7 +71,10 @@ en:
     highest_rated: Highest Rated
     newest: Newest
     most_popular: Most Popular
+    new_release: New release
     lessons_you_own: Your lessons
+    owned: You own this!
+    students: Students
     tagged_with: Lessons tagged with
     # Lesson states
     pending: Lesson created and awaiting transcoding
