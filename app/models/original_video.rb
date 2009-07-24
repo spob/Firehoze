@@ -22,8 +22,8 @@ class OriginalVideo < Video
                                                                'video/3gpp',
                                                                'video/x-ms-wmv',
                                                                'video/mp4',
-                                                               'video/mpeg']
-  # "application/x-shockwave-flash",
+                                                               'video/mpeg',
+                                                               'application/x-shockwave-flash']
   # 'application/x-swf',
 
   def set_url
