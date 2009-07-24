@@ -45,7 +45,7 @@ class ProcessedVideo < Video
                 :video_height => job.output_media_file.height,
                 :video_file_size => job.output_media_file.size,
                 :video_duration => job.output_media_file.duration,
-                :video_content_type => 'application/x-flash-video',
+                :video_content_type => 'application/x-flv',
                 :processed_video_cost => job.output_media_file.cost,
                 :input_video_cost => job.input_media_file.cost,
                 :video_transcoding_error => nil,

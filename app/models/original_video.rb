@@ -23,6 +23,7 @@ class OriginalVideo < Video
                                                                'video/x-ms-wmv',
                                                                'video/mp4',
                                                                'video/mpeg',
+                                                               'video/x-flv',
                                                                'application/x-flash-video']
   # 'application/x-swf',
   # 'application/x-shockwave-flash'
