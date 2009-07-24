@@ -1,6 +1,8 @@
 <%
-   owned_lessons = current_user.lessons + current_user.instructed_lessons
-   owned_lessons = owned_lessons.paginate :page => params[:page], :per_page => @per_page
+   if current_user then
+       owned_lessons = current_user.lessons + current_user.instructed_lessons
+       owned_lessons = owned_lessons.paginate :page => params[:page], :per_page => @per_page
+   end
 %>
 
 <div class="lesson_container">

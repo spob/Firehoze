@@ -1,5 +1,7 @@
 <%
-   recently_browsed = current_user.visited_lessons.paginate :page => params[:page], :per_page => @per_page
+   if current_user then
+       recently_browsed = current_user.visited_lessons.paginate :page => params[:page], :per_page => @per_page
+   end
 %>
 
 <div class="lesson_container">
