@@ -37,7 +37,10 @@ class PasswordResetsController < ApplicationController
   def update
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
-    if @user.save
+    if params[:user][:password].nil? or params[:user][:password].blank?
+      flash[:error] = t 'password_reset.password_required'
+      render :action => :edit 
+    elsif @user.save
       flash[:notice] = t 'password_reset.pwd_update_success'
       redirect_to accounts_url
     else
