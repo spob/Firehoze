@@ -98,8 +98,8 @@
                               lesson_path(buy_pattern.purchased_lesson)) %>
               <% end %>
               <%= lesson_rating_for(buy_pattern.purchased_lesson, current_user, :small_stars => true) %>
-              <% unless @lesson.reviews.empty? %>
-                  (<%= link_to(@lesson.reviews.size, lesson_reviews_path(@lesson)) %>)
+              <% unless buy_pattern.purchased_lesson.reviews.empty? %>
+                  <%= link_to pluralize(buy_pattern.purchased_lesson.reviews.size, 'Review'), lesson_reviews_path(buy_pattern.purchased_lesson) %>
               <% end %>
             </td>
           </tr>
