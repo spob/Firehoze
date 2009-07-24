@@ -30,13 +30,26 @@ class LessonTest < ActiveSupport::TestCase
     should_ensure_length_in_range    :title, (0..50)
     should_ensure_length_in_range    :synopsis, (0..500)
     should_have_many                 :reviews, :video_status_changes, :credits, :free_credits, :taggings
-    should_have_many                 :videos, :processed_videos
+    should_have_many                 :videos, :processed_videos, :lesson_buy_patterns
     should_have_one                  :original_video
     should_have_class_methods        :list, :ready
     should_have_instance_methods     :tag_list
 
     should "not be ready" do
       assert !@lesson.ready?
+    end
+
+    context "with buy patterns" do
+      setup do
+        @buy_pattern1 = Factory.create(:lesson_buy_pattern, :lesson => @lesson, :counter => 1)
+        @buy_pattern2 = Factory.create(:lesson_buy_pattern, :lesson => @lesson, :counter => 2)
+        @buy_pattern3 = Factory.create(:lesson_buy_pattern, :lesson => @lesson, :counter => 3)
+      end
+
+      should "return buy patterns" do
+        assert_equal 3, @lesson.lesson_buy_patterns.size
+        assert_equal 6, @lesson.total_buy_pattern_counts
+      end
     end
 
     should "not have any tags assigned" do

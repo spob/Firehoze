@@ -55,7 +55,8 @@ class Lesson < ActiveRecord::Base
   has_many :free_credits, :order => "id"
   has_many :videos
   has_many :processed_videos, :order => "id"
-  has_one :original_video
+  has_many :lesson_buy_patterns, :order => "counter DESC"
+  has_one  :original_video
   validates_presence_of :instructor, :title, :status, :synopsis
   validates_length_of :title, :maximum => 50, :allow_nil => true
   validates_length_of :synopsis, :maximum => 500, :allow_nil => true
@@ -127,6 +128,10 @@ class Lesson < ActiveRecord::Base
   
   def output_url
     "http://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}.s3.amazonaws.com/#{self.video.path}.flv"
+  end
+
+  def total_buy_pattern_counts
+    self.lesson_buy_patterns.inject(0) {|sum, item| sum + item.counter}
   end
 
   private

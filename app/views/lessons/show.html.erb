@@ -72,6 +72,42 @@
     </p>
 <% end %>
 
+<% unless @lesson.lesson_buy_patterns.empty? %>
+    <h3>What Do Students Ultimately Buy After Browsing This Item?</h3>
+    <table>
+      <% for buy_pattern in @lesson.lesson_buy_patterns[0..APP_CONFIG[CONFIG_NUMBER_OF_BUY_PATTERNS_TO_SHOW]] %>
+          <tr>
+            <td width="1%">
+              <%= img_tag_lesson_tn(buy_pattern.purchased_lesson) %>
+            </td>
+            <td>
+              <% if @lesson == buy_pattern.purchased_lesson %>
+                  <span style="color:green">
+                    <b><%= number_to_percentage(100 * buy_pattern.counter/@lesson.total_buy_pattern_counts,
+                                                :precision => 0) %></b>
+                    buy the lesson featured on this page:
+                  </span>
+                  <br/>
+                  <%= h(buy_pattern.purchased_lesson.title) %>
+              <% else %>
+                  <b><%= number_to_percentage(100 * buy_pattern.counter/@lesson.total_buy_pattern_counts,
+                                              :precision => 0) %></b>
+                  buy
+                  <br/>
+                  <%= link_to(h(buy_pattern.purchased_lesson.title),
+                              lesson_path(buy_pattern.purchased_lesson)) %>
+              <% end %>
+              <%= lesson_rating_for(buy_pattern.purchased_lesson, current_user, :small_stars => true) %>
+              <% unless @lesson.reviews.empty? %>
+                  (<%= link_to(@lesson.reviews.size, lesson_reviews_path(@lesson)) %>)
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+    </table>
+<% end %>
+
+
 <% if @lesson.credits.size > 0 and (current_user.try("is_admin?") or @lesson.instructor == current_user) %>
     <h2>Lesson Purchases</h2>
     <table>
