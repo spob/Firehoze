@@ -23,8 +23,9 @@ class OriginalVideo < Video
                                                                'video/x-ms-wmv',
                                                                'video/mp4',
                                                                'video/mpeg',
-                                                               'application/x-shockwave-flash']
+                                                               'application/x-flash-video']
   # 'application/x-swf',
+  # 'application/x-shockwave-flash'
 
   def set_url
     self.update_attributes!(:s3_key => self.video.path,
