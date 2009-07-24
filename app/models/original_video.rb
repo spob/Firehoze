@@ -15,14 +15,16 @@ class OriginalVideo < Video
 
   validates_attachment_presence :video
   validates_attachment_size :video, :less_than => APP_CONFIG[CONFIG_MAX_VIDEO_SIZE].megabytes
-  validates_attachment_content_type :video, :content_type => ['application/x-avi',
-                                                              'video/x-msvideo',
-                                                              'video/avi',
-                                                              'video/quicktime',
-                                                              'video/3gpp',
-                                                              'video/x-ms-wmv',
-                                                              'video/mp4',
-                                                              'video/mpeg']
+  validates_attachment_content_type :video, :content_type => [ 'application/x-avi',
+                                                               'video/x-msvideo',
+                                                               'video/avi',
+                                                               'video/quicktime',
+                                                               'video/3gpp',
+                                                               'video/x-ms-wmv',
+                                                               'video/mp4',
+                                                               'video/mpeg']
+  # "application/x-shockwave-flash",
+  # 'application/x-swf',
 
   def set_url
     self.update_attributes!(:s3_key => self.video.path,
