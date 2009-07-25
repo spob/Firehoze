@@ -1,0 +1,2 @@
+module LessonCommentsHelper
+end

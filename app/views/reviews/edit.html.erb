@@ -1,4 +1,4 @@
-New Review for Lesson <%= @review.lesson.title %>
+Edit Review for Lesson <%= @review.lesson.title %>
 
 <% form_for :review, :url => review_path(@review), :html => { :method => :put } do |f| %>
     <%= f.error_messages %>

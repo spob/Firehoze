@@ -52,6 +52,7 @@ class Lesson < ActiveRecord::Base
   has_many :reviews
   has_many :video_status_changes, :order => "id"
   has_many :credits
+  has_many :comments, :class_name => "LessonComment"
   has_many :free_credits, :order => "id"
   has_many :videos
   has_many :processed_videos, :order => "id"

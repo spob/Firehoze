@@ -1,0 +1,6 @@
+<h3>Discussion for Lesson "<%= h @lesson.title%>"</h3>
+
+<%= render @lesson_comments %>
+
+<%= link_to "Back to Lesson", lesson_path(@lesson) %>
+| <%= link_to "Add a Comment", new_lesson_lesson_comment_path(@lesson) %>

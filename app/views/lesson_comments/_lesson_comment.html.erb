@@ -1,0 +1,12 @@
+<p>
+  <%= simple_format lesson_comment.body %>
+</p>
+<p>
+  <b><%= lesson_comment.user.login %></b> <i>commented at <%= l(lesson_comment.created_at) %></i>
+  <% if current_user %>
+      <% if lesson_comment.can_edit? current_user %>
+          | <%= link_to "Edit", edit_lesson_comment_path(lesson_comment) %>
+      <% end %>
+  <% end %>
+</p>
+<hr/>

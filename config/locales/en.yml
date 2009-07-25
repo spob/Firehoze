@@ -90,6 +90,12 @@ en:
     failed: Video failed processing
     wishlist: Wishlist
 
+  lesson_comment:
+    create_success: Your lesson comment has been recorded
+    cannot_edit: You do not have rights to edit this comment
+    update_success: Lesson comment updated successfully
+
+
   line_item:
     updated_success: Updated line item
     updated_failure: Line update failed
