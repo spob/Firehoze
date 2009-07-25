@@ -3,4 +3,7 @@ You have not yet acquired this lesson (<%= @lesson.title %>).
 Would you like to apply one of your credits to watch this video?
 
 <br/><br/>
-<%= link_to "Acquire Lesson", acquire_lessons_path(:id => @lesson), :method => :post %>&nbsp;<%= link_to "Cancel", lesson_path(@lesson) %>
+<%= link_to "Acquire Lesson", acquire_lessons_path(:id => @lesson),
+            :method => :post, :disable_with => translate('general.disable_with') %>
+&nbsp;
+<%= link_to "Cancel", lesson_path(@lesson) %>

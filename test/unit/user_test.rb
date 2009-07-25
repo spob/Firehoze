@@ -36,6 +36,19 @@ class UserTest < ActiveSupport::TestCase
     should_have_many                 :instructed_lessons
     should_have_and_belong_to_many   :wishes
 
+    context "and an item on the wish list" do
+      setup do
+        @lesson = Factory.create(:lesson)
+        @lesson2 = Factory.create(:lesson)
+        @user.wishes << @lesson        
+      end
+
+      should "find lesson on wish list" do
+        assert @user.on_wish_list?(@lesson)
+        assert !@user.on_wish_list?(@lesson2)
+      end
+    end
+
     context "and a couple more records" do
       setup do
         # and let's create a couple more

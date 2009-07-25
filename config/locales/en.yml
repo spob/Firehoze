@@ -159,6 +159,12 @@ en:
     notices: Notices
     privacy: Privacy
 
+  wish:
+    create_success: Lesson added to your wish list
+    already_owned: You already own that lesson and thus do not need to put it on your wish list
+    you_are_author: As the author of this video, you do not need to put it on your wish list
+    already_wished: This lesson is already on your wish list
+
   # Date/Time formatting
   date:
     formats:

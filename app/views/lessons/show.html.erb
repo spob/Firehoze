@@ -167,3 +167,7 @@
 <%= link_to 'Home', home_path %> |
 <%= link_to pluralize(@lesson.reviews.size, 'Review'), lesson_reviews_path(@lesson) %> |
 <%= link_to pluralize(@lesson.comments.size, 'Comments'), lesson_lesson_comments_path(@lesson) %>
+<% if current_user and !current_user.on_wish_list?(@lesson) %>
+    | <%= link_to "Add to Wish List", wish_lists_path(:id => @lesson), :method => :post,
+                  :disable_with => translate('general.disable_with') %>
+<% end %>

@@ -113,6 +113,10 @@ class User < ActiveRecord::Base
     login
   end
 
+  def on_wish_list? lesson
+    self.wishes.find_by_id(lesson.id)
+  end
+
   private
 
   def persist_user_logon
