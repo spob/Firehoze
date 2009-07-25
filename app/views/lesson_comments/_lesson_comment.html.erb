@@ -3,6 +3,9 @@
 </p>
 <p>
   <b><%= lesson_comment.user.login %></b> <i>commented at <%= l(lesson_comment.created_at) %></i>
+  <% if lesson_comment.can_edit? current_user and !lesson_comment.public %>
+      | <i>Private Comment</i>
+  <% end %>
   <% if current_user %>
       <% if lesson_comment.can_edit? current_user %>
           | <%= link_to "Edit", edit_lesson_comment_path(lesson_comment) %>

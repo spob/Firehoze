@@ -5,7 +5,7 @@ class CommentTest < ActiveSupport::TestCase
     setup { @comment = Factory.create(:comment) }
 
     should_belong_to :user
-    should_validate_presence_of      :user, :public, :body
+    should_validate_presence_of      :user, :body
 
     context "and invoking can edit" do
       setup { @user = Factory.create(:user) }
