@@ -21,6 +21,7 @@ class ReviewsControllerTest < ActionController::TestCase
         setup { get :index, :lesson_id => @lesson }
 
         should_assign_to :reviews
+        should_assign_to :lesson
         should_respond_with :success
         should_not_set_the_flash
         should_render_template "index"
@@ -30,6 +31,7 @@ class ReviewsControllerTest < ActionController::TestCase
         setup { get :new, :lesson_id => @lesson }
 
         should_assign_to :review
+        should_assign_to :lesson
         should_respond_with :success
         should_not_set_the_flash
         should_render_template "new"
@@ -67,7 +69,7 @@ class ReviewsControllerTest < ActionController::TestCase
         setup do
           @lesson2 = Factory.create(:lesson)
           get :new, :lesson_id => @lesson2
-          assert !@lesson2.owned_by?(@user)  
+          assert !@lesson2.owned_by?(@user)
         end
 
         should_assign_to :review

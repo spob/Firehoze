@@ -41,7 +41,6 @@ class LessonCommentsController < ApplicationController
 
   def update
     params[:lesson_comment][:public] ||= false
-    puts "...............>#{params[:lesson_comment][:public]}"
     if @lesson_comment.update_attributes(params[:lesson_comment])
       flash[:notice] = t 'lesson_comment.update_success'
       redirect_to lesson_lesson_comments_url(@lesson_comment.lesson)
