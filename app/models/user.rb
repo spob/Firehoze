@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   has_many :lessons, :through => :credits
   has_many :reviews, :dependent => :destroy
   has_many :helpfuls, :dependent => :destroy
+  has_and_belongs_to_many :wishes, :join_table => 'wishes', :class_name => 'Lesson'
 
   # Active users
   named_scope :active, :conditions => {:active => true}

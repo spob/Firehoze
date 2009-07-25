@@ -58,6 +58,7 @@ class Lesson < ActiveRecord::Base
   has_many :processed_videos, :order => "id"
   has_many :lesson_buy_patterns, :order => "counter DESC"
   has_one  :original_video
+  has_and_belongs_to_many :lesson_wishers, :join_table => 'wishes', :class_name => 'User'
   validates_presence_of :instructor, :title, :status, :synopsis
   validates_length_of :title, :maximum => 50, :allow_nil => true
   validates_length_of :synopsis, :maximum => 500, :allow_nil => true

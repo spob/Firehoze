@@ -1,3 +1,5 @@
+require "migration_helpers"
+
 class CreateRoles < ActiveRecord::Migration
     extend MigrationHelpers
 
