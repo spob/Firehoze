@@ -11,7 +11,7 @@ class LessonsController < ApplicationController
   @@free_download_counts = [ 0, 5, 10, 25 ]
 
   def index
-    if current_user 
+    if current_user
       redirect_to home_path
     else
       @lessons = Lesson.list(params[:page], current_user)
@@ -43,6 +43,10 @@ class LessonsController < ApplicationController
         render :action => :new
       end
     end
+  rescue Exception => e
+    # Creating the original video failed...the lesson should have rolled back. Let's trap the error
+    flash[:error] = e.message
+    render :action => :new
   end
 
   def show
