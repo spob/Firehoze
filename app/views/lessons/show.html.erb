@@ -96,7 +96,7 @@
                   <br/>
                   <%= link_to(h(buy_pattern.purchased_lesson.title),
                               lesson_path(buy_pattern.purchased_lesson)) %>
-              <% end %>   
+              <% end %>
               <%= lesson_rating_for(buy_pattern.purchased_lesson, current_user, :static, :small_stars => true) %>
               <% unless buy_pattern.purchased_lesson.reviews.empty? %>
                   <%= link_to pluralize(buy_pattern.purchased_lesson.reviews.size, 'Review'), lesson_reviews_path(buy_pattern.purchased_lesson) %>
@@ -167,7 +167,13 @@
 <%= link_to 'Home', home_path %> |
 <%= link_to pluralize(@lesson.reviews.size, 'Review'), lesson_reviews_path(@lesson) %> |
 <%= link_to pluralize(@lesson.comments.size, 'Comments'), lesson_lesson_comments_path(@lesson) %>
-<% if current_user and !current_user.on_wish_list?(@lesson) %>
-    | <%= link_to "Add to Wish List", wish_lists_path(:id => @lesson), :method => :post,
-                  :disable_with => translate('general.disable_with') %>
+<% if current_user and @lesson.instructor != current_user and ! @lesson.owned_by?(current_user) %>
+    |
+    <% if current_user.on_wish_list?(@lesson) %>
+        <%= link_to "Remove from Wish List", wish_lists_path(:id => @lesson), :method => :delete,
+                    :disable_with => translate('general.disable_with') %>
+    <% else %>
+        <%= link_to "Add to Wish List", wish_lists_path(:id => @lesson), :method => :post,
+                    :disable_with => translate('general.disable_with') %>
+    <% end %>
 <% end %>

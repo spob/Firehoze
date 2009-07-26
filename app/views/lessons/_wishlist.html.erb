@@ -1,0 +1,15 @@
+<%
+   if current_user then
+       wished_lessons = current_user.wishes
+   end
+%>
+
+<div class="lesson_container">
+  <%= lessons_header(:wished_lessons) %>
+  <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => wished_lessons %>
+</div>
+
+<div class="more">
+  <%= render :partial => "lessons/pagination", :object => wished_lessons, :locals => { :collection => :wished_lessons } %>
+</div>
+<hr/>

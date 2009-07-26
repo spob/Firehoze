@@ -19,6 +19,16 @@ class WishListsController < ApplicationController
     redirect_to lesson_path(@lesson)
   end
 
+  def destroy
+    if current_user.on_wish_list?(@lesson)
+      current_user.wishes.delete(@lesson)
+      flash[:notice] = t('wish.delete_success')
+    else
+      flash[:notice] = t('wish.not_on_wishlist')
+    end
+    redirect_to lesson_path(@lesson)
+  end
+
   private
 
   # Called by thebefore filter to retrieve the lesson based on the id that

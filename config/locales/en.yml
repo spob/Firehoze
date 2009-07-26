@@ -161,9 +161,11 @@ en:
 
   wish:
     create_success: Lesson added to your wish list
+    delete_success: Lesson has been removed from your wish list
     already_owned: You already own that lesson and thus do not need to put it on your wish list
     you_are_author: As the author of this video, you do not need to put it on your wish list
     already_wished: This lesson is already on your wish list
+    not_on_wishlist: This lesson is not on your wishlist
 
   # Date/Time formatting
   date:
