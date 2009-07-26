@@ -14,13 +14,14 @@ class AcquireLessonsController < ApplicationController
   def create
     @lesson = Lesson.find params[:id]
     if current_user.available_credits.empty?
-      # no free creates
+      # no available creates
       flash[:error] = t('lesson.need_credits')
       redirect_to store_path(1)
     else
       Lesson.transaction do
         @credit = current_user.available_credits.first
         @credit.update_attributes(:lesson => @lesson, :acquired_at => Time.now)
+        current_user.wishes.delete(@lesson) if current_user.on_wish_list?(@lesson)
         LessonVisit.touch(@lesson, current_user, request.session.session_id, true)
       end
 
