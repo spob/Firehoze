@@ -9,6 +9,13 @@ module LessonsHelper
     end
   end
 
+  # Not sure how to handle this with i18n???
+  def free_remaining_text lesson
+    if lesson.free_credits?
+      "#{pluralize(lesson.free_credits.available.size, 'Free View')} Remaining" 
+    end
+  end
+
   def lesson_rating_for(lesson, user, *args)
     ratings_for(lesson, (user != lesson.instructor and lesson.owned_by?(user)) ? :active : :static, *args)
   end
