@@ -111,6 +111,10 @@ class Lesson < ActiveRecord::Base
     !Review.scoped_by_user_id(user).scoped_by_lesson_id(self).empty?
   end
 
+  def free_credits?
+    free_credits.available.size > 0
+  end
+
   # Create a periodic job to trigger a conversion in the background
   def trigger_conversion
     RunOncePeriodicJob.create!(:name => 'ConvertVideo',
