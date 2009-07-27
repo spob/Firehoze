@@ -30,6 +30,8 @@ class AcquireLessonsControllerTest < ActionController::TestCase
 
       context "with available credits" do
         setup do
+          @user.wishes << @lesson
+          assert @user.on_wish_list?(@lesson)
           @user.credits.create!(:price => 0.99)
           assert_equal 1, @user.available_credits.size
           @credit = @user.available_credits.first
@@ -43,6 +45,9 @@ class AcquireLessonsControllerTest < ActionController::TestCase
           assert @user.owns_lesson?(@lesson)
           assert_equal @credit.lesson.id, @lesson.id
           assert @user.available_credits.empty?
+        end
+        should "does not wish for the lesson" do
+          assert !@user.on_wish_list?(@lesson)
         end
         should_assign_to :lesson
         should_not_set_the_flash

@@ -168,6 +168,8 @@ class LessonsControllerTest < ActionController::TestCase
         @sku = Factory.create(:credit_sku, :sku => FREE_CREDIT_SKU)
         @lesson = Factory.create(:lesson, :initial_free_download_count => 5)
         @lesson.update_attribute(:status, VIDEO_STATUS_READY)
+        @user.wishes << @lesson
+        assert @user.on_wish_list?(@lesson)
         assert_equal 5, @lesson.free_credits.available.size
         get :watch, :id => @lesson
       end
@@ -178,6 +180,9 @@ class LessonsControllerTest < ActionController::TestCase
 
       should "have 4 free credits" do
         assert_equal 4, @lesson.free_credits.available.size
+      end
+      should "does not wish for the lesson" do
+        assert !@user.on_wish_list?(@lesson)
       end
     end
 
