@@ -117,6 +117,10 @@ class User < ActiveRecord::Base
     self.wishes.find_by_id(lesson.id)
   end
 
+  def owned_lessons
+    lessons + instructed_lessons
+  end
+
   private
 
   def persist_user_logon

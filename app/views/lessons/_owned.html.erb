@@ -1,16 +1,9 @@
-<%
-   if current_user then
-       owned_lessons = current_user.lessons + current_user.instructed_lessons
-       owned_lessons = owned_lessons.paginate :page => params[:page], :per_page => @per_page
-   end
-%>
-
 <div class="lesson_container">
   <%= lessons_header(:owned_lessons) %>
-  <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => owned_lessons %>
+  <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => current_user.owned_lessons %>
 </div>
 
 <div class="more">
-  <%= render :partial => "lessons/pagination", :object => owned_lessons, :locals => { :collection => :owned } %>
+  <%= render :partial => "lessons/pagination", :object => current_user.owned_lessons, :locals => { :collection => :owned } %>
 </div>
 <hr/>
