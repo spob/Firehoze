@@ -33,6 +33,7 @@ class OrdersController < ApplicationController
       # the credit card was charged.
       if @order.save
         if @order.purchase
+          @order.email_receipt
           flash[:notice] = t 'order.order_placed'
           redirect_to order_path(@order)
         else

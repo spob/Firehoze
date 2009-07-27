@@ -37,6 +37,7 @@ class OrdersControllerTest < ActionController::TestCase
 
     context "on POST to :create" do
       setup do
+        assert PeriodicJob.all.empty?
         post :create, :order => Factory.attributes_for(:order, :card_number => "1")
       end
 
@@ -46,7 +47,10 @@ class OrdersControllerTest < ActionController::TestCase
       should_redirect_to("show order page") { order_url(assigns(:order)) }
       should "set the order transaction" do
         assert_equal "Bogus Gateway: Forced success", assigns(:order).last_transaction.first.message
-      end  
+      end
+      should "have a periodic job" do
+        assert 1, PeriodicJob.all.size
+      end
     end
 
     context "on POST to :create that will fail" do

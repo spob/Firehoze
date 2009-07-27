@@ -79,6 +79,17 @@ class Order < ActiveRecord::Base
     "#{address1}#{newline_character}#{address2 + newline_character unless (address2.nil? or address2.empty?)}#{city}, #{state} #{zip}#{newline_character}#{country}"
   end
 
+  def email_receipt
+    RunOncePeriodicJob.create(
+            :name => 'Email Receipt',
+            :job => "Order.email_receipt(#{self.id})")
+  end
+
+  def self.email_receipt(order_id)
+    order = Order.find(order_id)
+    Notifier.receipt_for_order(order)
+  end
+
   private
 
   # The credit card gateway expects monetary amounts expressed in cents

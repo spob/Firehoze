@@ -58,4 +58,15 @@ class OrderTest < ActiveSupport::TestCase
     assert_equal "American Express", Order.user_friend_card_type("american_express")
     assert_nil Order.user_friend_card_type("xxx")
   end
+
+  context "email order receipt" do
+    setup do
+      assert PeriodicJob.all.empty?
+      Factory.create(:order).email_receipt
+    end
+
+    should "have a periodic job" do
+      assert 1, PeriodicJob.all.size
+    end
+  end
 end

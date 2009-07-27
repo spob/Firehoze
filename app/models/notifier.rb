@@ -38,6 +38,16 @@ class Notifier < ActionMailer::Base
                :url => login_url
   end
 
+  # Receipt for an order
+  def receipt_for_order(order)
+    subject    "Receipt for order ##{order.id}"
+    recipients order.user.email
+    from        APP_CONFIG[CONFIG_ADMIN_EMAIL]
+
+    body       :order => order,
+               :url => login_url
+  end
+
   # You received a gift certificate
   def gift_certificate_received(gift_certificate, from_user)
     subject      "You have received a gift"
