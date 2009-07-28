@@ -170,10 +170,8 @@
 <% if current_user and @lesson.instructor != current_user and ! @lesson.owned_by?(current_user) %>
     |
     <% if current_user.on_wish_list?(@lesson) %>
-        <%= link_to "Remove from Wish List", wish_lists_path(:id => @lesson), :method => :delete,
-                    :disable_with => translate('general.disable_with') %>
+        <%= link_to "Remove from Wish List", wish_lists_path(:id => @lesson), :method => :delete, :disable_with => translate('general.disable_with') %>
     <% else %>
-        <%= link_to "Add to Wish List", wish_lists_path(:id => @lesson), :method => :post,
-                    :disable_with => translate('general.disable_with') %>
+        <%= link_to "Add to Wish List", wish_lists_path(:id => @lesson), :method => :post, :disable_with => translate('general.disable_with') %>
     <% end %>
 <% end %>
