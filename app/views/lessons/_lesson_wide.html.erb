@@ -2,20 +2,20 @@
 
 <div class="span-6 lesson_left">
   <div><%= img_tag_lesson_tn(lesson) %></div>
+  <div><%= ratings_for(lesson, :static) %></div>
   <%= content_tag(:div, free_remaining_text(lesson)) if lesson.has_free_credits? %>
   <div><%= number_of_students_phrase(lesson) %></div>
-  <%= content_tag(:div, owned_it_phase(lesson)) unless owned_it_phase(lesson).blank? %>
+  <div>Posted: <%=  time_ago_in_words(lesson.created_at) %> ago</div>
   <div><%= render :partial => "lessons/stats", :object => lesson %></div>
 </div>
 
 <div class="span-26 lesson_center">
-  <div><%= lesson_rating_for(lesson, current_user, :static => true) %></div>
-  <div class="clearfix">
-    <div class="span-20 lesson_center"><%= link_to lesson.title, lesson_path(lesson), :class => :lesson_title_link %></div>
-    <div class="lesson_center last" style="text-align:right; white-space:nowrap">(posted <%=  time_ago_in_words(lesson.created_at) %> ago)</div>
-  </div>
+  <div><%= link_to lesson.title, lesson_path(lesson), :class => :lesson_title_link %> <%= content_tag(:span, "(#{owned_it_phase(lesson)})" ) unless owned_it_phase(lesson).blank? %></div>
   <div><%= lesson.synopsis %></div>
-  <div><%= render :partial => "lessons/tag_links_for", :object => lesson %></div>
+  <div class="clearfix">
+    <div class="span-20 lesson_center"><%= render :partial => "lessons/tag_links_for", :object => lesson %></div>
+    <div class="lesson_center last" style="text-align:right; white-space:nowrap"> <!-- reserved for later --> </div>
+  </div>
   <div><%= render :partial => "lessons/actions", :object => lesson %></div>
 </div>
 
