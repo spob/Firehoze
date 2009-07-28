@@ -111,7 +111,7 @@ class Lesson < ActiveRecord::Base
     !Review.scoped_by_user_id(user).scoped_by_lesson_id(self).empty?
   end
 
-  def free_credits?
+  def has_free_credits?
     free_credits.available.size > 0
   end
 

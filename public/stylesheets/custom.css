@@ -1,8 +1,10 @@
+/* GENERAL */
+
 div {
     /*	border: 1px solid red;*/
 }
 
-/* top nav */
+/* TOP NAV */
 #top_nav_links {
     /*	border: 1px solid green;*/
 
@@ -16,7 +18,8 @@ div {
     padding-left: 10px;
 }
 
-/* main_nav */
+/* MAIN NAVIGATION */
+
 #main_nav ul {
     padding-left: 0;
     margin-left: 0;
@@ -43,6 +46,9 @@ div {
     color: #fff;
 }
 
+
+/* LESSONS */
+
 .lesson_container, .more, .lesson_left, .lesson_center, .lesson_right {
     font-size: 11px;
     margin:0;
@@ -59,4 +65,11 @@ div {
     padding-top:20px;
     background-color: #fff;
     border: solid 1px #999;
+}
+
+/* FORMS */
+
+.button-to {
+    float: left;
+    padding-left:3px;
 }

@@ -11,8 +11,8 @@ module LessonsHelper
 
   # Not sure how to handle this with i18n???
   def free_remaining_text lesson
-    if lesson.free_credits?
-      "#{pluralize(lesson.free_credits.available.size, 'Free View')} Remaining" 
+    if lesson.has_free_credits?
+      "#{pluralize(lesson.free_credits.available.size, 'Free View')} Remaining"
     end
   end
 
@@ -59,6 +59,40 @@ module LessonsHelper
   def owned_it_phase(lesson)
     if current_user and current_user.owns_lesson?(lesson)
       t('lesson.owned')
+    end
+  end
+
+  def button_to_buy_or_watch(lesson)
+    if lesson.ready?
+      if lesson.owned_by?(current_user) or lesson.instructed_by?(current_user)
+        button_to "Watch", watch_lesson_path(lesson), :method => :get
+      elsif lesson.has_free_credits?
+        button_to "Watch for Free", watch_lesson_path(lesson), :method => :get
+      else
+        button_to "Buy", :action => "new"
+      end
+    end
+  end
+
+  def button_to_preview(lesson)
+    if lesson.ready?
+      if lesson.owned_by?(current_user) or lesson.instructed_by?(current_user)
+        return
+      else
+        button_to "Preview", nil, { :alt => '#FIXME (when preview functionality is coded by Bob)', :disabled => true }
+      end
+    end
+  end
+
+  def button_to_wish(lesson)
+    if current_user
+      if lesson.instructed_by?(current_user) or lesson.owned_by?(current_user)
+        return
+      elsif current_user.on_wish_list?(lesson)
+        button_to "Remove from Wish List", wish_lists_path(:id => lesson), :method => :delete, :disable_with => translate('general.disable_with')
+      else
+        button_to "Add to Wish List", wish_lists_path(:id => lesson), :method => :post, :disable_with => translate('general.disable_with')
+      end
     end
   end
 

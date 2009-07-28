@@ -40,10 +40,7 @@
 </p>
 
 <p>
-  <b>Tags:</b>
-  <% @lesson.tag_counts.each do |tag| %>
-      <%= link_to tag.name, list_lessons_path(:collection => :tagged_with, :tag => tag.name) %>
-  <% end %>
+  <%= render :partial => "tag_links_for", :object => @lesson %></p>
 </p>
 
 <p>
