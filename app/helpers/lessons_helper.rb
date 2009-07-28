@@ -69,7 +69,7 @@ module LessonsHelper
       elsif lesson.has_free_credits?
         button_to "Watch for Free", watch_lesson_path(lesson), :method => :get
       else
-        button_to "Buy", :action => "new"
+        button_to "Buy", watch_lesson_path(lesson), :method => :get
       end
     end
   end
