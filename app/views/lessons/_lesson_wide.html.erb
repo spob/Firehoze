@@ -1,30 +1,28 @@
 <% lesson = object %>
 
 <div class="span-6 lesson_left">
-  <div><%= lesson_rating_for(lesson, current_user, :small_stars => true) %></div>
   <div><%= img_tag_lesson_tn(lesson) %></div>
+  <%= content_tag(:div, free_remaining_text(lesson)) if lesson.has_free_credits? %>
   <div><%= number_of_students_phrase(lesson) %></div>
   <%= content_tag(:div, owned_it_phase(lesson)) unless owned_it_phase(lesson).blank? %>
-  <%= content_tag(:div, free_remaining_text(lesson)) if lesson.has_free_credits? %>
+  <div><%= render :partial => "stats", :object => lesson %></div>
 </div>
 
 <div class="span-26 lesson_center">
-  <div><%= link_to lesson.title, lesson_path(lesson) %> <%= link_to_profile(lesson.instructor) %> <%= l lesson.created_at %></div>
+  <div><%= lesson_rating_for(lesson, current_user, :static => true) %></div>
+  <div class="clearfix">
+    <div class="span-20 lesson_center"><%= link_to lesson.title, lesson_path(lesson), :class => :lesson_title_link %></div>
+    <div class="lesson_center last" style="text-align:right; white-space:nowrap">(posted <%=  time_ago_in_words(lesson.created_at) %> ago)</div>
+  </div>
   <div><%= lesson.synopsis %></div>
   <div><%= render :partial => "tag_links_for", :object => lesson %></div>
   <div><%= render :partial => "actions", :object => lesson %></div>
-
-  <% if current_user.try("is_admin?") or lesson.instructed_by?(current_user) %>
-    <div>
-      <%= t("lesson.#{lesson.status}") %>
-    </div>
-  <% end %>
 </div>
 
 <div class="span-6 last lesson_right">
   <div><%= link_to_profile(lesson.instructor) %></div>
   <div>user avatar</div>
-  <div>member since:<br /><%= lesson.instructor.created_at.to_date.to_s(:long) %></div>
+  <div>Member Since:<br /><%= lesson.instructor.created_at.to_date.to_s(:long) %></div>
 </div>
 <!-- <div class="clear span-16 prepend-6 append-6 last lesson_footer">some base content</div> -->
 <hr />

@@ -1,0 +1,8 @@
+<% 
+lesson = object
+ %>
+
+<% if current_user.try("is_admin?") or lesson.instructed_by?(current_user) %>
+  <div>status: <%= t("lesson.#{lesson.status}") %></div>
+  <div>last updated: <%= time_ago_in_words(lesson.updated_at) %> ago</div>
+<% end %>
