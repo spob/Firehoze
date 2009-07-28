@@ -40,12 +40,12 @@ module LessonsHelper
     end
   end
 
+
   def img_tag_lesson_tn(lesson)
     if lesson.thumbnail_url
-      link_to(image_tag(lesson.thumbnail_url,:size => "136x91"), lesson_path(lesson))
-    else
-      link_to(image_tag("videos/video_placeholder.jpg",:size => "136x91"), lesson_path(lesson))
+      img_src = lesson.thumbnail_url ? lesson.thumbnail_url : "videos/video_placeholder.jpg"
     end
+    link_to(image_tag(img_src, :class => :lesson_tn, :alt => lesson.title), lesson_path(lesson))
   end
 
   def number_of_students_phrase(lesson)
