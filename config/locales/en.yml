@@ -77,7 +77,7 @@ en:
     students: Students
     tagged_with: Lessons tagged with
     # Lesson states
-    pending: Lesson created and awaiting transcoding
+    Pending: Lesson created and awaiting transcoding
     Converting: Converting
     Ready: Ready
     S3_permissions_start: Set S3 permissions
@@ -87,7 +87,7 @@ en:
     calc_thumb_url_start: Retrieving thumbnail URL
     recently_browsed: Recently browsed items
     owned_lessons: Your lessons
-    failed: Video failed processing
+    Failed: Video failed processing
     wishlist: Wishlist
 
   lesson_comment:
