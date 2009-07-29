@@ -52,7 +52,7 @@ class ProcessedVideo < Video
                 :thumbnail_url => "http://" + APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET] +
                         ".s3.amazonaws.com/" + id.to_s + "/thumb_0000.png",
                 :s3_path => job.output_media_file.url,
-                :url => "http://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}.s3.amazonaws.com/#{self.s3_key}")
+                :url => "http://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}.s3.amazonaws.com/#{ENV['RAILS_ENV']}/#{self.s3_key}")
 
 
         self.lesson.update_attributes(:finished_video_duration => job.output_media_file.duration,
@@ -134,7 +134,7 @@ class ProcessedVideo < Video
   private
 
   def output_path
-    's3://' + APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET] + '/' + self.s3_key
+    's3://' + APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET] + '/' + ENV['RAILS_ENV'] + '/' + self.s3_key
   end
 
   def thumbnail_path
