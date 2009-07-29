@@ -12,7 +12,7 @@ class ProcessedVideo < Video
 
   # Call out to flixcloud to trigger a conversion process
   def convert
-    self.update_attributes!(:s3_key => "#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/videos/#{self.id}/#{self.video_file_name}.flv")
+    self.update_attributes!(:s3_key => "#{self.s3_root_dir}/videos/#{self.id}/#{self.video_file_name}.flv")
     job = FlixCloud::Job.new(:api_key => FLIX_API_KEY,
                              :recipe_id => FLIX_RECIPE_ID,
                              :input_url => self.converted_from_video.s3_path,
@@ -49,9 +49,9 @@ class ProcessedVideo < Video
                 :processed_video_cost => job.output_media_file.cost,
                 :input_video_cost => job.input_media_file.cost,
                 :video_transcoding_error => nil,
-                :thumbnail_url => "http://#{APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET]}.s3.amazonaws.com/#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/#{id.to_s}/thumb_0000.png",
+                :thumbnail_url => "http://#{APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET]}.s3.amazonaws.com/#{self.s3_root_dir}/#{id.to_s}/thumb_0000.png",
                 :s3_path => job.output_media_file.url,
-                :url => "http://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}.s3.amazonaws.com/#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/#{self.s3_key}")
+                :url => "http://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}.s3.amazonaws.com/#{self.s3_root_dir}/#{self.s3_key}")
 
 
         self.lesson.update_attributes(:finished_video_duration => job.output_media_file.duration,
@@ -133,12 +133,12 @@ class ProcessedVideo < Video
   private
 
   def output_path
-    TaskServerLogger.instance.debug "Output path s3://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}/#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/#{self.s3_key}"
-    "s3://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}/#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/#{self.s3_key}"
+    TaskServerLogger.instance.debug "Output path s3://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}/#{self.s3_root_dir}/#{self.s3_key}"
+    "s3://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}/#{self.s3_root_dir}/#{self.s3_key}"
   end
 
   def thumbnail_path
-    "s3://#{APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET]}/#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/#{self.id.to_s}"
+    "s3://#{APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET]}/#{self.s3_root_dir}/#{self.id.to_s}"
   end
 
   def set_status_and_format

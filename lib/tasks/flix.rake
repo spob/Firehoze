@@ -10,7 +10,7 @@ namespace :flix do
       #path = "videos/" + video.id.to_s + "/" + video.video_file_name + ".flv"
       #puts path
       #puts video.s3_key
-      key_path = "#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/#{video.s3_key}"
+      key_path = "#{video.s3_root_dir}/#{video.s3_key}"
       puts "Checking for file at #{key_path}"
       key = bucket.key(key_path, true)
       if key.exists?

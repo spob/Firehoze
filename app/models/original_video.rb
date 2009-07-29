@@ -30,8 +30,8 @@ class OriginalVideo < Video
 
   def set_url
     self.update_attributes!(:s3_key => self.video.path,
-                            :s3_path => "s3://#{APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]}/#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/#{self.video.path}",
-                            :url => "http://#{APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]}.s3.amazonaws.com/#{self.video.path}")
+                            :s3_path => "s3://#{APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]}/#{self.s3_root_dir}/#{self.video.path}",
+                            :url => "http://#{APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]}/#{self.video.path}")
   end
 
   # Call out to flixcloud to trigger a conversion process
@@ -41,7 +41,8 @@ class OriginalVideo < Video
       processed_video = ProcessedVideo.create!(:lesson_id => self.lesson.id,
                                                :video_file_name => self.video_file_name,
                                                :s3_key => self.s3_key,
-                                               :converted_from_video => self)
+                                               :converted_from_video => self,
+                                               :s3_root_dir => self.s3_root_dir)
     end
     begin
       set_url
@@ -76,6 +77,6 @@ class OriginalVideo < Video
   def set_status_and_format
     self.status = VIDEO_STATUS_READY
     self.format = VIDEO_FORMAT_ORIGINAL
-    # for some reason paperclip is putting a // in the path...so replace it with one
+    self.s3_root_dir = APP_CONFIG[CONFIG_S3_DIRECTORY]
   end
 end
