@@ -1,11 +1,11 @@
 module LessonsHelper
-  def watch_text lesson
+  def watch_text(lesson)
     if current_user.nil? or current_user.owns_lesson?(lesson) or current_user == lesson.instructor
-      "Watch Lesson"
+      t('lesson.watch')
     elsif lesson.free_credits.available.size > 0
-      "Watch For Free"
+      t('lesson.watch_for_free')
     else
-      "Buy Lesson"
+      t('lesson.buy')
     end
   end
 
@@ -23,20 +23,20 @@ module LessonsHelper
   def lessons_header(collection, *args)
     if controller.action_name == 'list'
       header =
-              case collection
-                when :most_popular
-                  t('lesson.most_popular')
-                when :highest_rated
-                  t('lesson.highest_rated')
-                when :newest
-                  t('lesson.newest')
-                when :recently_browsed
-                  t('lesson.recently_browsed')
-                when :owned_lessons
-                  t('lesson.owned_lessons')
-                when :tagged_with
-                  "#{t('lesson.tagged_with')} &quot;#{args.first}&quot;"
-              end
+        case collection
+      when :most_popular
+        t('lesson.most_popular')
+      when :highest_rated
+        t('lesson.highest_rated')
+      when :newest
+        t('lesson.newest')
+      when :recently_browsed
+        t('lesson.recently_browsed')
+      when :owned_lessons
+        t('lesson.owned_lessons')
+      when :tagged_with
+        "#{t('lesson.tagged_with')} &quot;#{args.first}&quot;"
+      end
       "<h3>#{header}</h3>"
     end
   end
@@ -64,13 +64,7 @@ module LessonsHelper
 
   def button_to_buy_or_watch(lesson)
     if lesson.ready?
-      if lesson.owned_by?(current_user) or lesson.instructed_by?(current_user)
-        button_to "Watch", watch_lesson_path(lesson), :method => :get
-      elsif lesson.has_free_credits?
-        button_to "Watch for Free", watch_lesson_path(lesson), :method => :get
-      else
-        button_to "Buy", watch_lesson_path(lesson), :method => :get
-      end
+      button_to watch_text(lesson), watch_lesson_path(lesson), :method => :get
     end
   end
 
