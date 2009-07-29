@@ -134,7 +134,11 @@ class ProcessedVideo < Video
   private
 
   def output_path
-    's3://' + APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET] + '/' + ENV['RAILS_ENV'] + '/' + self.s3_key
+    # the environment is set differently depending on whether it's run from the task manager
+    ENV['RAILS_ENV'] = RAILS_ENV
+    TaskServerLogger.instance.info "Starting convert to path s3://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}/#{ENV['RAILS_ENV']}/#{self.s3_key}"
+
+    "s3://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}/#{ENV['RAILS_ENV']}/#{self.s3_key}"
   end
 
   def thumbnail_path
