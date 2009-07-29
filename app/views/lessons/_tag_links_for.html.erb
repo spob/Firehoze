@@ -1,8 +1,11 @@
-<% lesson = object %>
-
+<% 
+lesson = object 
+%>
 <% unless lesson.tag_counts.empty? %>
+<div class="<%= css_classes %>">
   <b>Tags:</b>
   <% lesson.tag_counts.each do |tag| %>
     <%= link_to tag.name, list_lessons_path(:collection => :tagged_with, :tag => tag.name) %>
   <% end %>
+</div>
 <% end %>
