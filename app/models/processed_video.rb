@@ -12,7 +12,7 @@ class ProcessedVideo < Video
 
   # Call out to flixcloud to trigger a conversion process
   def convert
-    self.update_attributes!(:s3_key => "videos/#{self.id}/#{self.video_file_name}.flv")
+    self.update_attributes!(:s3_key => "#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/videos/#{self.id}/#{self.video_file_name}.flv")
     job = FlixCloud::Job.new(:api_key => FLIX_API_KEY,
                              :recipe_id => FLIX_RECIPE_ID,
                              :input_url => self.converted_from_video.s3_path,
