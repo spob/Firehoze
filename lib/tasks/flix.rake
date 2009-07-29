@@ -10,7 +10,9 @@ namespace :flix do
       #path = "videos/" + video.id.to_s + "/" + video.video_file_name + ".flv"
       #puts path
       #puts video.s3_key
-      key = bucket.key(video.s3_key, true)
+      key_path = "#{ENV['RAILS_ENV']}/#{video.s3_key}"
+      puts "Checking for file at #{key_path}"
+      key = bucket.key(key_path, true)
       if key.exists?
         print "   File exists..."
         job = FlixCloud::Notification.new(video.build_flix_response)
