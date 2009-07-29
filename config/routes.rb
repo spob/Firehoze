@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.home 'home', :controller => 'home', :action => 'show'
-  map.resource  :accounts
+  map.resource  :accounts, :only => [ :edit, :show, :update ]
   map.resources :acquire_lessons, :only => [ :create, :new ]
   map.resources :carts, :only => [ :show ]
   map.resources :credits

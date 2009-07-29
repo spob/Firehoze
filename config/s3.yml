@@ -5,6 +5,7 @@ development:
   aws_s3_input_video_bucket: input.firehoze.com
   aws_s3_output_video_bucket: output.firehoze.com
   aws_s3_thumbs_bucket: thumbs.firehoze.com
+  aws_s3_images_bucket: images.firehoze.com
   
 test:
   access_key_id: xyz
@@ -13,6 +14,7 @@ test:
   aws_s3_input_video_bucket: xyz
   aws_s3_output_video_bucket: abc
   aws_s3_thumbs_bucket: aaa123
+  aws_s3_images_bucket: aab123
   
 production:
   access_key_id: AKIAJHAN3EBVVY6W7MVA
@@ -21,3 +23,4 @@ production:
   aws_s3_input_video_bucket: input.firehoze.com
   aws_s3_output_video_bucket: output.firehoze.com
   aws_s3_thumbs_bucket: thumbs.firehoze.com
+  aws_s3_images_bucket: images.firehoze.com

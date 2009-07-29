@@ -1,7 +1,7 @@
 /* GENERAL */
 
 div {
-    /*border: 1px solid red;*/
+    /* border: 1px solid red;*/
 }
 
 /* TOP NAV */
@@ -65,11 +65,15 @@ div {
     border: solid 1px #999;
 }
 
-
 /* styled like an <h4> */
 .lesson_title_link {
     font-size: 1.2em;
     line-height: 1.25;
+}
+
+.lesson_center div {
+    margin: 0 0 5px 0;
+    padding:0;
 }
 
 img.lesson_tn {
@@ -80,7 +84,7 @@ img.lesson_tn {
 
 /* FORMS */
 
-.button-to {
+.lesson_center .button-to {
     float: left;
     margin:0;
     padding:3px 3px 5px 0;

@@ -12,10 +12,7 @@
 <div class="span-16 lesson_center">
   <div><%= link_to lesson.title, lesson_path(lesson), :class => :lesson_title_link %> <%= content_tag(:span, "(#{owned_it_phase(lesson)})" ) unless owned_it_phase(lesson).blank? %></div>
   <div><%= lesson.synopsis %></div>
-  <div class="clearfix">
-    <div class="span-10 lesson_center"><%= render :partial => "lessons/tag_links_for", :object => lesson %></div>
-    <div class="lesson_center last" style="text-align:right; white-space:nowrap"> <!-- reserved for later --> </div>
-  </div>
+    <%= render :partial => "lessons/tag_links_for", :object => lesson, :locals => { :css_classes =>  "lesson_center" } %>
   <div><%= render :partial => "lessons/actions", :object => lesson %></div>
 </div>
 

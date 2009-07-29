@@ -29,6 +29,7 @@ CONFIG_GIFT_CERTIFICATE_EXPIRES_DAYS = 'gift_certificate_expires_days'
 CONFIG_AWS_S3_INPUT_VIDEO_BUCKET = 'aws_s3_input_video_bucket'
 CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET = 'aws_s3_output_video_bucket'
 CONFIG_AWS_S3_THUMBS_BUCKET = 'aws_s3_thumbs_bucket'
+CONFIG_AWS_S3_IMAGES_BUCKET = 'aws_s3_images_bucket'
 CONFIG_ZOMBIE_VIDEO_PROCESS_MINUTES = 'zombie_video_process_minutes'
 CONFIG_NUMBER_OF_BUY_PATTERNS_TO_SHOW = 'number_of_buy_patterns_to_show'
 

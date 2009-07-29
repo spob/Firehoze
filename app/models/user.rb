@@ -46,6 +46,23 @@ class User < ActiveRecord::Base
   validates_length_of       :first_name, :maximum => 40, :allow_nil => true
   validates_length_of       :login, :maximum => 25, :allow_nil => true
 
+  # PAPERCLIP
+  has_attached_file :avatar,
+    :styles => {
+    :tiny => ["35x35#", :png],
+    :medium => ["75x75#", :png],
+    :large => ["220x220#", :png]
+  },
+    :storage => :s3,
+    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+    :s3_permissions => 'private',
+    :path => ":attachment/:id/:basename.:extension",
+    :bucket => APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]
+  #:url => "/assets/avatars/:id/:basename.:extension",
+  #:path => ":rails_root/public/assets/avatars/:id/:basename.:extension"
+  validates_attachment_size :avatar, :less_than => 3.megabytes, :message => "All uploaded images must be less then 3 megabytes"
+  validates_attachment_content_type :avatar, :content_type => [ 'image/gif', 'image/png', 'image/x-png', 'image/jpeg', 'image/pjpeg', 'image/jpg' ]
+
   attr_protected :email, :login
 
   def self.admins
@@ -54,12 +71,6 @@ class User < ActiveRecord::Base
 
   def self.supported_languages
     LANGUAGES
-  end
-
-  def full_name
-    if first_name or last_name
-      "#{first_name} #{last_name}".strip
-    end
   end
 
   # Reset the password token and then send the user an email
@@ -88,7 +99,7 @@ class User < ActiveRecord::Base
   # name with a space betwen them
   def full_name
     return last_name if first_name.nil? or first_name.empty?
-    "#{first_name} #{last_name}"
+    "#{first_name} #{last_name}".strip
   end
 
   # Has this user purchased this lesson?

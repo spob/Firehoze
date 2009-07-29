@@ -1,1 +1,22 @@
-avatar form placeholder
+<% form_for(:accounts, :url => accounts_path(@user), :html => { :method => :put, :multipart => true }) do |f| %>
+  <ul>
+    <li class="unlabeled">
+      <%= avatar_tag @user, :size => :medium %>
+    </li>
+    <li>
+      <%= f.label :avatar %>
+      <%= f.file_field :avatar, :class => 'file', :size => 10 %>
+    </li>
+    
+    <li class="unlabeled">
+      <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
+    </li>
+
+    <% if @user.avatar? %>
+    <li class="unlabeled">
+      <%= link_to('Delete current', user_url(@user, :destroy_avatar => 'true'), :method => "put", :confirm => 'Are you sure?').gsub('&', '&amp;') %>
+    </li>
+    <% end %>
+    
+  </ul>
+<% end %>

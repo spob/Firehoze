@@ -56,45 +56,46 @@ en:
     no_such_user: The user you entered ({{user}}) is not recognized
 
   helpful:
-    create_success: Your feedback has been recorded
     cant_feedback_own: You cannot provide feedback on a review you have written
     cant_helpful_as_instructor: As an instructor, you cannot provide feedback on reviews for your lesson
+    create_success: Your feedback has been recorded
 
   lesson:
-    created: Your lesson created and your video has been submitted for processing. You should receive notification in several minutes when your lesson video is ready for viewing.
     access_message: You do not have access to edit this lesson
-    updated: Lesson updated
+    buy: Buy
+    calc_thumb_url_start: Retrieving thumbnail URL
+    conversion_end_success: Video transcoding completed successfully
     conversion_triggered: Video conversion started
-    need_credits: You have no available credits to watch this lesson. Would you like to buy more?
-    S3_permissions_start: Setting S3 permissions
-    not_ready: Conversion in process...lesson video not yet ready for viewing
+    created: Your lesson created and your video has been submitted for processing. You should receive notification in several minutes when your lesson video is ready for viewing.
+    Failed: Video failed processing
     highest_rated: Highest Rated
-    newest: Newest
-    most_popular: Most Popular
-    new_release: New release
     lessons_you_own: Your lessons
+    most_popular: Most Popular
+    need_credits: You have no available credits to watch this lesson. Would you like to buy more?
+    new_release: New release
+    newest: Newest
+    not_ready: Conversion in process...lesson video not yet ready for viewing
     owned: You own this!
+    owned_lessons: Your lessons
+    recently_browsed: Recently browsed items
+    S3_permissions_start: Set S3 permissions
     students: Students
     tagged_with: Lessons tagged with
-    # Lesson states
-    Pending: Lesson created and awaiting transcoding
-    Converting: Converting
-    Ready: Ready
-    S3_permissions_start: Set S3 permissions
-    trigger_conversion_start: About to trigger video conversion
     trigger_conversion_end: Video transcoding started
-    conversion_end_success: Video transcoding completed successfully
-    calc_thumb_url_start: Retrieving thumbnail URL
-    recently_browsed: Recently browsed items
-    owned_lessons: Your lessons
-    Failed: Video failed processing
+    trigger_conversion_start: About to trigger video conversion
+    updated: Lesson updated
+    watch: Watch
+    watch_for_free: Watch For Free
     wishlist: Wishlist
+    # Lesson states
+    Converting: Converting
+    Pending: Lesson created and awaiting transcoding
+    Ready: Ready
 
   lesson_comment:
     create_success: Your lesson comment has been recorded
     cannot_edit: You do not have rights to edit this comment
     update_success: Lesson comment updated successfully
-
 
   line_item:
     updated_success: Updated line item
