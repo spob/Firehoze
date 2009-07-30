@@ -55,3 +55,6 @@ number_of_buy_patterns_to_show: 5
 
 # s3 directory name provides the name of the top level directory within Amazon buckets for storing videos
 s3_directory: default
+
+# http path for the cdn
+cdn_url: http://3685.voxcdn.com

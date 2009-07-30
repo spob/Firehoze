@@ -32,6 +32,7 @@ CONFIG_AWS_S3_THUMBS_BUCKET = 'aws_s3_thumbs_bucket'
 CONFIG_AWS_S3_IMAGES_BUCKET = 'aws_s3_images_bucket'
 CONFIG_ZOMBIE_VIDEO_PROCESS_MINUTES = 'zombie_video_process_minutes'
 CONFIG_NUMBER_OF_BUY_PATTERNS_TO_SHOW = 'number_of_buy_patterns_to_show'
+CONFIG_CDN_URL = 'cdn_url'
 
 # Configuration properties in the s3.yml file
 CONFIG_AWS_ACCESS_KEY_ID = 'access_key_id'
