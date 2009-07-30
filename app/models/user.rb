@@ -55,8 +55,8 @@ class User < ActiveRecord::Base
   },
     :storage => :s3,
     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
-    :s3_permissions => 'private',
-    :path => ":attachment/:id/:basename.:extension",
+    :s3_permissions => 'public-read',
+    :path => "#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/:attachment/:id/:basename.:extension",
     :bucket => APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET],
     :default_url => "users/avatars/medium/missing.png"
   # :url => "/assets/avatars/:id/:basename.:extension",
