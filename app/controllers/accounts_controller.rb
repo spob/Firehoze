@@ -32,11 +32,14 @@ class AccountsController < ApplicationController
     if @user.save
       flash[:notice] = t 'profile.update_success'
       redirect_to edit_user_path(@user)
+    else
+      # getting here because not all (required) fields are getting passed in ...  
+      flash[:notice] = "sorry ... there was a problem"
+      redirect_to edit_user_path(@user)
     end
 
   rescue Exception => e
-    raise params.inspect
     flash[:error] = e.message
-    render edit_user_path(@user)
+    redirect_to edit_user_path(@user)
   end
 end

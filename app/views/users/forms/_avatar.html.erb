@@ -1,22 +1,26 @@
-<% form_for(:accounts, :url => accounts_path(@user), :html => { :method => :put, :multipart => true }) do |f| %>
-  <ul>
-    <li class="unlabeled">
-      <%= avatar_tag @user, :size => :medium %>
-    </li>
-    <li>
-      <%= f.label :avatar %>
-      <%= f.file_field :avatar, :class => 'file', :size => 10 %>
-    </li>
-    
-    <li class="unlabeled">
-      <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
-    </li>
+<% form_for(:user, :url => accounts_path, :html => { :method => :put, :multipart => true }) do |f| %>
 
-    <% if @user.avatar? %>
-    <li class="unlabeled">
-      <%= link_to('Delete current', user_url(@user, :destroy_avatar => 'true'), :method => "put", :confirm => 'Are you sure?').gsub('&', '&amp;') %>
-    </li>
-    <% end %>
-    
-  </ul>
+  <%= f.error_messages %>
+
+  <p>
+    <%#= avatar_tag @user, :size => :medium   %>
+<%#=     image_tag @user.avatar.url(:medium) , options.merge({ :alt => @user.full_name, :class => 'avatar' }) %>
+
+
+<%= image_tag @user.avatar.url(:small) %>
+
+  </p>
+
+  <p>
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar, :class => 'file', :size => 10 %>
+  </p>
+
+  <p>
+    <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
+  </p>
+
+  <% if @user.avatar? %>
+    <%= link_to('Delete current', user_url(@user, :destroy_avatar => 'true'), :method => "put", :confirm => 'Are you sure?').gsub('&', '&amp;') %>
+  <% end %>
 <% end %>

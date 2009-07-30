@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
   # PAPERCLIP
   has_attached_file :avatar,
     :styles => {
-    :tiny => ["35x35#", :png],
+    :small => ["35x35#", :png],
     :medium => ["75x75#", :png],
     :large => ["220x220#", :png]
   },
@@ -57,13 +57,19 @@ class User < ActiveRecord::Base
     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
     :s3_permissions => 'private',
     :path => ":attachment/:id/:basename.:extension",
-    :bucket => APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]
-  #:url => "/assets/avatars/:id/:basename.:extension",
-  #:path => ":rails_root/public/assets/avatars/:id/:basename.:extension"
+    :bucket => APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET],
+    :default_url => "users/avatars/medium/missing.png"
+  # :url => "/assets/avatars/:id/:basename.:extension",
+  # :path => ":rails_root/public/assets/avatars/:id/:basename.:extension",
   validates_attachment_size :avatar, :less_than => 3.megabytes, :message => "All uploaded images must be less then 3 megabytes"
   validates_attachment_content_type :avatar, :content_type => [ 'image/gif', 'image/png', 'image/x-png', 'image/jpeg', 'image/pjpeg', 'image/jpg' ]
 
   attr_protected :email, :login
+
+  # keep, may use this 
+  # def self.default_avatar_url(style)
+  #   "http://#{PAPERCLIP_BUCKET}/users/avatars/%s/missing.jpg" % style.to_s
+  # end
 
   def self.admins
     Role.find_by_name('admin').users
