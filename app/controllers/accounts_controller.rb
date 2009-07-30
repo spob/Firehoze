@@ -26,7 +26,7 @@ class AccountsController < ApplicationController
       @user.bio = params[:user][:bio]
       @user.time_zone = params[:user][:time_zone]
       @user.language = params[:user][:language]
-      @user.avatar = params[:user][:avatar] if !params[:user][:avatar].blank?
+      @user.avatar = params[:user][:avatar] unless params[:user][:avatar].blank?
     end
 
     if @user.save
