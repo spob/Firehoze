@@ -16,7 +16,9 @@ class ProcessedVideo < Video
     job = FlixCloud::Job.new(:api_key => FLIX_API_KEY,
                              :recipe_id => FLIX_RECIPE_ID,
                              :input_url => self.converted_from_video.s3_path,
-                             :output_url => output_path,
+                             :output_url => output_ftp_path,
+                             :output_user => 'output',
+                             :output_password => 'gxdk4v27zmc2th6amguw58',
                              :watermark_url => WATERMARK_URL,
                              :thumbnails_url => thumbnail_path)
     if job.save
@@ -55,7 +57,7 @@ class ProcessedVideo < Video
 
 
         self.lesson.update_attributes(:finished_video_duration => job.output_media_file.duration,
-                :thumbnail_url => self.thumbnail_url)
+                                      :thumbnail_url => self.thumbnail_url)
         self.change_status(VIDEO_STATUS_READY)
         Notifier.deliver_lesson_ready self.lesson
       else
@@ -114,7 +116,7 @@ class ProcessedVideo < Video
         xml.tag!("cost", 1638)
       end
       xml.tag!('output-media-file') do
-        xml.tag!("url", output_path)
+        xml.tag!("url", output_ftp_path)
         xml.tag!("width", 1280)
         xml.tag!("height", 720)
         xml.tag!("size", 9842956)
@@ -132,9 +134,14 @@ class ProcessedVideo < Video
 
   private
 
-  def output_path
-    TaskServerLogger.instance.debug "Output path s3://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}/#{self.s3_key}"
-    "s3://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}/#{self.s3_key}"
+  def output_ftp_path
+    #TaskServerLogger.instance.debug "Output path s3://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}/#{self.s3_key}"
+    #"s3://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}/#{self.s3_key}"
+    "ftp://upload-ftp.simplecdn.com/#{self.s3_root_dir}/videos/#{self.id.to_s}.flv"
+  end
+
+  def output_rtmp_path
+    "output/#{self.s3_root_dir}/videos/#{self.id.to_s}.flv"
   end
 
   def thumbnail_path
