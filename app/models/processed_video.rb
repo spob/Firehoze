@@ -51,7 +51,7 @@ class ProcessedVideo < Video
                 :video_transcoding_error => nil,
                 :thumbnail_url => "http://#{APP_CONFIG[CONFIG_CDN_SERVER]}/#{self.s3_root_dir}/thumbs/#{id.to_s}/thumb_0000.png",
                 :s3_path => job.output_media_file.url,
-                :url => "http://#{APP_CONFIG[CONFIG_CDN_SERVER]}/#{self.s3_root_dir}/#{self.s3_key}")
+                :url => "http://#{APP_CONFIG[CONFIG_CDN_SERVER]}/#{self.s3_key}")
 
 
         self.lesson.update_attributes(:finished_video_duration => job.output_media_file.duration,
