@@ -133,8 +133,8 @@ class ProcessedVideo < Video
   private
 
   def output_path
-    TaskServerLogger.instance.debug "Output path s3://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}/#{self.s3_root_dir}/#{self.s3_key}"
-    "s3://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}/#{self.s3_root_dir}/#{self.s3_key}"
+    TaskServerLogger.instance.debug "Output path s3://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}/#{self.s3_key}"
+    "s3://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}/#{self.s3_key}"
   end
 
   def thumbnail_path
