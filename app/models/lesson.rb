@@ -133,7 +133,7 @@ class Lesson < ActiveRecord::Base
   end
   
   def output_url
-    "#{APP_CONFIG[CONFIG_CDN_URL]}/#{self.video.path}.flv"
+    "http://#{APP_CONFIG[CONFIG_CDN_SERVER]}/#{self.video.path}.flv"
   end
 
   def total_buy_pattern_counts

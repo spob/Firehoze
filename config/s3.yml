@@ -4,7 +4,7 @@ development:
   # The name of the Amazon S3 bucket where raw videos you be uploaded
   aws_s3_input_video_bucket: input.firehoze.com
   aws_s3_output_video_bucket: output.firehoze.com
-  aws_s3_thumbs_bucket: thumbs.firehoze.com
+  aws_s3_thumbs_bucket: output.firehoze.com
   aws_s3_images_bucket: images.firehoze.com
   
 test:
@@ -22,5 +22,5 @@ production:
   # The name of the Amazon S3 bucket where raw videos you be uploaded
   aws_s3_input_video_bucket: input.firehoze.com
   aws_s3_output_video_bucket: output.firehoze.com
-  aws_s3_thumbs_bucket: thumbs.firehoze.com
+  aws_s3_thumbs_bucket: output.firehoze.com
   aws_s3_images_bucket: images.firehoze.com

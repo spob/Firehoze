@@ -49,9 +49,9 @@ class ProcessedVideo < Video
                 :processed_video_cost => job.output_media_file.cost,
                 :input_video_cost => job.input_media_file.cost,
                 :video_transcoding_error => nil,
-                :thumbnail_url => "#{APP_CONFIG[CONFIG_CDN_URL]}/#{self.s3_root_dir}/#{id.to_s}/thumb_0000.png",
+                :thumbnail_url => "http://#{APP_CONFIG[CONFIG_CDN_SERVER]}/#{self.s3_root_dir}/thumbs/#{id.to_s}/thumb_0000.png",
                 :s3_path => job.output_media_file.url,
-                :url => "#{APP_CONFIG[CONFIG_CDN_URL]}/#{self.s3_root_dir}/#{self.s3_key}")
+                :url => "http://#{APP_CONFIG[CONFIG_CDN_SERVER]}/#{self.s3_root_dir}/#{self.s3_key}")
 
 
         self.lesson.update_attributes(:finished_video_duration => job.output_media_file.duration,
@@ -138,7 +138,7 @@ class ProcessedVideo < Video
   end
 
   def thumbnail_path
-    "s3://#{APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET]}/#{self.s3_root_dir}/#{self.id.to_s}"
+    "s3://#{APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET]}/#{self.s3_root_dir}/thumbs/#{self.id.to_s}"
   end
 
   def set_status_and_format

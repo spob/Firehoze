@@ -33,7 +33,7 @@ class OriginalVideo < Video
     video_path = "#{self.s3_root_dir}/videos/#{self.id}/#{self.video_file_name}"
     self.update_attributes!(:s3_key => video_path,
                             :s3_path => "s3://#{APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]}/#{video_path}",
-                            :url => "#{APP_CONFIG[CONFIG_CDN_URL]}/#{video_path}")
+                            :url => "http://#{APP_CONFIG[CONFIG_CDN_SERVER]}/#{video_path}")
   end
 
   # Call out to flixcloud to trigger a conversion process
