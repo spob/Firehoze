@@ -24,7 +24,7 @@ class ProcessedVideo < Video
       self.update_attributes!(:flixcloud_job_id => job.id,
                               :conversion_started_at => job.initialized_at)
       RunOncePeriodicJob.create!(:name => 'DetectZombieVideoProcess',
-                                 :job => "ProcessedVideo.detect_zombie_video #{self.id}, #{job.id}",
+                                 :job => "ProcessedVideo.detect_zombie_video(#{self.id}, #{job.id})",
                                  :next_run_at => (APP_CONFIG[CONFIG_ZOMBIE_VIDEO_PROCESS_MINUTES].to_i.minutes.from_now))
     else
       msg = ""

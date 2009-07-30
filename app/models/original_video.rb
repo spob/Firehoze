@@ -1,5 +1,5 @@
 class OriginalVideo < Video
-  before_validation :set_status_and_format
+  before_validation_on_create :set_status_and_format
 
   validates_presence_of :video_file_name
   validates_presence_of :lesson, :format, :status
@@ -29,9 +29,13 @@ class OriginalVideo < Video
   # 'application/x-shockwave-flash'
 
   def set_url
-    self.update_attributes!(:s3_key => self.video.path,
-                            :s3_path => "s3://#{APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]}/#{self.s3_root_dir}/#{self.video.path}",
-                            :url => "http://#{APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]}/#{self.video.path}")
+    puts "==========================>#{self.video.path}, before #{self.s3_key}"
+    # The environment.yml files aren't set for task_scheduler, so manually calculate the video path here'
+    video_path = "#{self.s3_root_dir}/videos/#{self.id}/#{self.video_file_name}"
+    self.update_attributes!(:s3_key => video_path,
+                            :s3_path => "s3://#{APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]}/#{video_path}",
+                            :url => "http://#{APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]}/#{video_path}")
+    puts "==========================>#{self.video.path}, after #{self.s3_key}"
   end
 
   # Call out to flixcloud to trigger a conversion process
