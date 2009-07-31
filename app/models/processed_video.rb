@@ -17,7 +17,7 @@ class ProcessedVideo < Video
                              :recipe_id => FLIX_RECIPE_ID,
                              :input_url => self.converted_from_video.s3_path,
                              :output_url => output_ftp_path,
-                             :output_user => 'output',
+                             :output_user => APP_CONFIG[CONFIG_CDN_VIDEO_BUCKET],
                              :output_password => 'gxdk4v27zmc2th6amguw58',
                              :watermark_url => WATERMARK_URL,
                              :thumbnails_url => thumbnail_path)
@@ -133,15 +133,13 @@ class ProcessedVideo < Video
   end
 
   def output_rtmp_path
-    "output/#{self.s3_root_dir}/videos/#{self.id.to_s}.flv"
+    "#{APP_CONFIG[CONFIG_CDN_VIDEO_BUCKET]}/#{self.s3_root_dir}/videos/#{self.id.to_s}.flv"
   end
 
   private
 
   def output_ftp_path
-    #TaskServerLogger.instance.debug "Output path s3://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}/#{self.s3_key}"
-    #"s3://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}/#{self.s3_key}"
-    "ftp://upload-ftp.simplecdn.com/#{self.s3_root_dir}/videos/#{self.id.to_s}.flv"
+    "ftp://#{APP_CONFIG[CONFIG_FTP_CDN_PATH]}/#{self.s3_root_dir}/videos/#{self.id.to_s}.flv"
   end
 
   def thumbnail_path

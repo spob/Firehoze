@@ -33,6 +33,8 @@ CONFIG_AWS_S3_IMAGES_BUCKET = 'aws_s3_images_bucket'
 CONFIG_ZOMBIE_VIDEO_PROCESS_MINUTES = 'zombie_video_process_minutes'
 CONFIG_NUMBER_OF_BUY_PATTERNS_TO_SHOW = 'number_of_buy_patterns_to_show'
 CONFIG_CDN_SERVER = 'cdn_server'
+CONFIG_FTP_CDN_PATH = 'ftp_cdn_path'
+CONFIG_CDN_VIDEO_BUCKET = 'cdn_video_bucket'
 
 # Configuration properties in the s3.yml file
 CONFIG_AWS_ACCESS_KEY_ID = 'access_key_id'
