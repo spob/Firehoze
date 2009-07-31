@@ -67,7 +67,7 @@ class ProcessedVideo < Video
     end
     job.successful?
   rescue Exception => e
-    self.change_status(VIDEO_STATUS_FAILED, 'failed: ' + e.message)
+    self.change_status(VIDEO_STATUS_FAILED, ': ' + e.message)
     raise e
   end
 
