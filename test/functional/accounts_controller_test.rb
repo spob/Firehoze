@@ -39,9 +39,9 @@ class AccountsControllerTest < ActionController::TestCase
       setup { put :update, :user => Factory.attributes_for(:user, :last_name => "") }
 
       should_assign_to :user
-      should_respond_with :success
-      should_not_set_the_flash
-      should_render_template :edit
+      should_respond_with :redirect
+      should_set_the_flash_to I18n.t('account_settings.update_error')
+      should_redirect_to("edit user screen") { edit_user_path(assigns(:user)) }
     end
   end
 end
