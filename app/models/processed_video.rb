@@ -132,16 +132,16 @@ class ProcessedVideo < Video
     out_string
   end
 
+  def output_rtmp_path
+    "output/#{self.s3_root_dir}/videos/#{self.id.to_s}.flv"
+  end
+
   private
 
   def output_ftp_path
     #TaskServerLogger.instance.debug "Output path s3://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}/#{self.s3_key}"
     #"s3://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}/#{self.s3_key}"
     "ftp://upload-ftp.simplecdn.com/#{self.s3_root_dir}/videos/#{self.id.to_s}.flv"
-  end
-
-  def output_rtmp_path
-    "output/#{self.s3_root_dir}/videos/#{self.id.to_s}.flv"
   end
 
   def thumbnail_path
