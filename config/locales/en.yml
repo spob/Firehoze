@@ -122,9 +122,9 @@ en:
     one_time_job_scheduled: Job has been scheduled to run one time
   
   account_settings:
-    update_success: Your account was successfully updated
     avatar_success: Hey, that's a nice picture!
     update_error: Oops, something wasn't quite right with the information you entered
+    update_success: Your account was successfully updated
   
   registration:
     check_email_for_registration: Please check your email to complete the registration
