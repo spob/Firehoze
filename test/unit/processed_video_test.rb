@@ -11,6 +11,10 @@ class ProcessedVideoTest < ActiveSupport::TestCase
       assert !@processed_video.converted_from_video
     end
 
+    should "set output_rtmp_path" do
+      assert_equal "output/xxx/videos/#{@processed_video.id.to_s}.flv", @processed_video.output_rtmp_path
+    end
+
     should "check for zombies succesfully" do
       assert_nothing_thrown do
         ProcessedVideo.detect_zombie_video(@processed_video.id, @processed_video.id * 2)
