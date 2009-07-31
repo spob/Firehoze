@@ -47,6 +47,7 @@ div {
 
 /* LESSONS */
 
+/* lesson_collections */
 .lesson_container, .more, .lesson_left, .lesson_center, .lesson_right {
     font-size: 11px;
     margin:0;
@@ -88,6 +89,29 @@ img.lesson_tn {
     border: solid 1px #CFCFCF;
     height: 91px;
     width: 136px;
+}
+
+/* lesson_show */
+
+#lesson_container #banner {
+    padding: 10px 0;
+    border-top: solid 1px #CFCFCF;
+    border-bottom: solid 1px #CFCFCF;
+}
+
+#lesson_container #banner #rating {
+
+}
+
+#lesson_container #banner #rating #stats {
+    height:18px;
+    text-align:right;
+    vertical-align: middle;
+    padding: 4px 0;
+}
+
+#lesson_container #banner #rating #stars {
+    float:right;
 }
 
 /* FORMS */

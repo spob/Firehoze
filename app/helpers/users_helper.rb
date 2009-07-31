@@ -18,7 +18,6 @@ module UsersHelper
   def avatar_tag(user, options = {})
     return unless user
     size = options[:size] || :medium
-    
     avatar_url = user.avatar.file? ? user.avatar.url(size) : User.default_avatar_url(size)
     image_tag avatar_url, options.merge({ :alt => user.full_name, :class => 'avatar' })
   end

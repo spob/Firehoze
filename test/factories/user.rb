@@ -13,7 +13,6 @@ Factory.sequence :ptoken do |n|
   "6cde0674657a8a313ce952df979de2830309aa4c11ca65805dd00bfdc65dbcc2f5e36718660a1d2e68c1a08c276d996763985d2f06fd3d076eb7bc4d97b1e3#{n}"
 end
 
-
 Factory.define :user, :default_strategy => :create do |f|
   f.password "xxxxx"
   f.password_confirmation "xxxxx"
@@ -27,4 +26,5 @@ Factory.define :user, :default_strategy => :create do |f|
   f.perishable_token "xxxx"
   f.email  { Factory.next(:email) }
   f.language 'en'
-end                             
+  f.avatar { ActionController::TestUploadedFile.new(File.join(RAILS_ROOT, 'test', 'images', 'test_image.jpg'), 'image/jpg') }
+end
