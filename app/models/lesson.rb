@@ -49,14 +49,14 @@ class Lesson < ActiveRecord::Base
   @@per_page = LESSONS_PER_PAGE
 
   belongs_to :instructor, :class_name => "User", :foreign_key => "instructor_id"
-  has_many :reviews
-  has_many :video_status_changes, :order => "id"
-  has_many :credits
-  has_many :comments, :class_name => "LessonComment"
-  has_many :free_credits, :order => "id"
-  has_many :videos
+  has_many :reviews, :dependent => :destroy
+  has_many :video_status_changes, :order => "id", :dependent => :destroy
+  has_many :credits, :dependent => :destroy
+  has_many :comments, :class_name => "LessonComment", :dependent => :destroy
+  has_many :free_credits, :order => "id", :dependent => :destroy
+  has_many :videos, :dependent => :destroy
   has_many :processed_videos, :order => "id"
-  has_many :lesson_buy_patterns, :order => "counter DESC"
+  has_many :lesson_buy_patterns, :order => "counter DESC", :dependent => :destroy
   has_one  :original_video
   has_and_belongs_to_many :lesson_wishers, :join_table => 'wishes', :class_name => 'User'
   validates_presence_of :instructor, :title, :status, :synopsis
