@@ -17,8 +17,8 @@ class ProcessedVideo < Video
                              :recipe_id => FLIX_RECIPE_ID,
                              :input_url => self.converted_from_video.s3_path,
                              :output_url => output_ftp_path,
-                             :output_user => APP_CONFIG[CONFIG_CDN_VIDEO_BUCKET],
-                             :output_password => 'gxdk4v27zmc2th6amguw58',
+                             :output_user => APP_CONFIG[CONFIG_FTP_CDN_USER],
+                             :output_password => APP_CONFIG[CONFIG_FTP_CDN_PASSWORD],
                              :watermark_url => WATERMARK_URL,
                              :thumbnails_url => thumbnail_path)
     if job.save

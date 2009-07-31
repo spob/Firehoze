@@ -62,5 +62,9 @@ cdn_server: 3685.voxcdn.com
 # ftp path where transcoded files should be uploaded
 ftp_cdn_path: upload-ftp.simplecdn.com
 
+ftp_cdn_user: output
+
+ftp_cdn_password: gxdk4v27zmc2th6amguw58
+
 # cdn video bucket
 cdn_video_bucket: output
