@@ -133,7 +133,7 @@ class ProcessedVideo < Video
   end
 
   def output_rtmp_path
-    "#{APP_CONFIG[CONFIG_CDN_VIDEO_BUCKET]}/#{self.s3_root_dir}/videos/#{self.id.to_s}.flv"
+    "#{APP_CONFIG[CONFIG_CDN_VIDEO_BUCKET]}/#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/videos/#{self.id.to_s}.flv"
   end
 
   private

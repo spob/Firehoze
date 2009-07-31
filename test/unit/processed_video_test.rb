@@ -12,7 +12,7 @@ class ProcessedVideoTest < ActiveSupport::TestCase
     end
 
     should "set output_rtmp_path" do
-      assert_equal "output/xxx/videos/#{@processed_video.id.to_s}.flv", @processed_video.output_rtmp_path
+      assert_equal "output/default/videos/#{@processed_video.id.to_s}.flv", @processed_video.output_rtmp_path
     end
 
     should "check for zombies succesfully" do
