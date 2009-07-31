@@ -55,14 +55,14 @@ div {
 
 .tag_cloud {
     padding:14px;
-    border:1px solid #999;
+    border: solid 1px #CFCFCF;
 }
 
 #lesson_list_collection
 {
     padding-top:20px;
     background-color: #fff;
-    border: solid 1px #999;
+    border: solid 1px #CFCFCF;
 }
 
 /* styled like an <h4> */
@@ -76,8 +76,16 @@ div {
     padding:0;
 }
 
+.lesson_instructor_avatar {
+    margin: 0;
+    padding:0;
+    border: solid 1px #CFCFCF;
+    height: 110px;
+    width: 110px;
+}
+
 img.lesson_tn {
-    border: solid 1px #999;
+    border: solid 1px #CFCFCF;
     height: 91px;
     width: 136px;
 }

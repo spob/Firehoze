@@ -9,16 +9,16 @@
   <div><%= render :partial => "lessons/stats", :object => lesson %></div>
 </div>
 
-<div class="span-16 lesson_center">
+<div class="span-17 lesson_center">
   <div><%= link_to lesson.title, lesson_path(lesson), :class => :lesson_title_link %> <%= content_tag(:span, "(#{owned_it_phase(lesson)})" ) unless owned_it_phase(lesson).blank? %></div>
   <div><%= lesson.synopsis %></div>
   <%= render :partial => "lessons/tag_links_for", :object => lesson, :locals => { :options => { :css_classes =>  "lesson_center" } } %>
   <div><%= render :partial => "lessons/actions", :object => lesson %></div>
 </div>
 
-<div class="span-6 last lesson_right">
+<div class="span-5 last lesson_right">
+  <div class="lesson_instructor_avatar"><%= avatar_tag lesson.instructor, :size => :medium %></div>
   <div><%= link_to_profile(lesson.instructor) %></div>
-  <div>user avatar</div>
   <div>Member Since:<br /><%= lesson.instructor.created_at.to_date.to_s(:long) %></div>
 </div>
 <!-- <div class="clear span-16 prepend-6 append-6 last lesson_footer">some base content</div> -->

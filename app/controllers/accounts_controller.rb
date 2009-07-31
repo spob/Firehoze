@@ -15,10 +15,14 @@ class AccountsController < ApplicationController
   def update
 
     @user = @current_user
+    flash_msg = t 'account_settings.update_success'
 
     # avoid mass assignment here
     if params[:user][:destroy_avatar] == 'true'
       @user.avatar.clear
+    elsif params[:user][:avatar]
+      @user.update_attribute(:avatar, params[:user][:avatar])
+      flash_msg = t 'account_settings.avatar_success'
     else
       @user.email = params[:user][:email].try(:strip)
       @user.first_name = params[:user][:first_name].try(:strip)
@@ -26,15 +30,14 @@ class AccountsController < ApplicationController
       @user.bio = params[:user][:bio]
       @user.time_zone = params[:user][:time_zone]
       @user.language = params[:user][:language]
-      @user.avatar = params[:user][:avatar] unless params[:user][:avatar].blank?
     end
 
     if @user.save
-      flash[:notice] = t 'profile.update_success'
+      flash[:notice] = flash_msg
       redirect_to edit_user_path(@user)
     else
       # getting here because not all (required) fields are getting passed in ...  
-      flash[:notice] = "sorry ... there was a problem"
+      flash[:error] = t 'account_settings.update_error'
       redirect_to edit_user_path(@user)
     end
 

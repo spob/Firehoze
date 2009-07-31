@@ -49,27 +49,25 @@ class User < ActiveRecord::Base
   # PAPERCLIP
   has_attached_file :avatar,
     :styles => {
-    :small => ["35x35#", :png],
-    :medium => ["75x75#", :png],
+    :tiny => ["35x35#", :png],
+    :small => ["75x75#", :png],
+    :medium => ["110x110#", :png],
     :large => ["220x220#", :png]
   },
     :storage => :s3,
     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
     :s3_permissions => 'public-read',
-    :path => "#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/:attachment/:id/:basename.:extension",
-    :bucket => APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET],
-    :default_url => "users/avatars/medium/missing.png"
-  # :url => "/assets/avatars/:id/:basename.:extension",
-  # :path => ":rails_root/public/assets/avatars/:id/:basename.:extension",
+    :path => "#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/users/:attachment/:id/:style/:basename.:extension",
+    :bucket => APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]
+
   validates_attachment_size :avatar, :less_than => 3.megabytes, :message => "All uploaded images must be less then 3 megabytes"
   validates_attachment_content_type :avatar, :content_type => [ 'image/gif', 'image/png', 'image/x-png', 'image/jpeg', 'image/pjpeg', 'image/jpg' ]
 
   attr_protected :email, :login
 
-  # keep, may use this 
-  # def self.default_avatar_url(style)
-  #   "http://#{PAPERCLIP_BUCKET}/users/avatars/%s/missing.jpg" % style.to_s
-  # end
+  def self.default_avatar_url(style)
+    "http://#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}/users/avatars/missing/%s/missing.png" % style.to_s
+  end
 
   def self.admins
     Role.find_by_name('admin').users
@@ -87,8 +85,7 @@ class User < ActiveRecord::Base
 
   # Basic paginated listing finder
   def self.list(page)
-    paginate :page => page, :order => 'email',
-             :per_page => ROWS_PER_PAGE
+    paginate :page => page, :order => 'email', :per_page => ROWS_PER_PAGE
   end
 
   # used to verify whether the user typed their correct password when, for example,
