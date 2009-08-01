@@ -67,6 +67,7 @@ en:
     conversion_end_success: Video transcoding completed successfully
     conversion_triggered: Video conversion started
     created: Your lesson created and your video has been submitted for processing. You should receive notification in several minutes when your lesson video is ready for viewing.
+    discussion: Discussion
     Failed: Video failed processing
     highest_rated: Highest Rated
     lessons_you_own: Your lessons
@@ -75,9 +76,11 @@ en:
     new_release: New release
     newest: Newest
     not_ready: Conversion in process...lesson video not yet ready for viewing
+    notes: Notes
     owned: You own this!
     owned_lessons: Your lessons
     recently_browsed: Recently browsed items
+    reviews: Reviews
     S3_permissions_start: Set S3 permissions
     students: Students
     tagged_with: Lessons tagged with

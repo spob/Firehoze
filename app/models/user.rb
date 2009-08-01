@@ -118,12 +118,17 @@ class User < ActiveRecord::Base
     [ city, state ].reject { |e| e.blank? }.join(', ')
   end
   
-  def handle_or_name
-    return 'Firehoze member' if handle.blank? and name.blank?
-    handle || full_name
+  def name_or_username
+    return 'Firehoze member' if username.blank? and username.blank?
+      full_name || username
   end
 
-  def handle 
+  def username_or_name
+    return 'Firehoze member' if username.blank? and username.blank?
+      username || full_name
+  end
+
+  def username 
     login
   end
 

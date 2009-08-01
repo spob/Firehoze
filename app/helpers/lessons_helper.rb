@@ -20,6 +20,10 @@ module LessonsHelper
     ratings_for(lesson, (user != lesson.instructor and lesson.owned_by?(user)) ? :active : :static, *args)
   end
 
+  def vote_counts_phrase(lesson)
+    "#{pluralize(lesson.total_rates, "vote")} cast"
+  end
+
   def lessons_header(collection, *args)
     if controller.action_name == 'list'
       header =
@@ -40,7 +44,6 @@ module LessonsHelper
       "<h3>#{header}</h3>"
     end
   end
-
 
   def img_tag_lesson_tn(lesson)
     # TODO: We should move the placeholder into a config property

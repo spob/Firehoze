@@ -1,51 +1,47 @@
 <% content_for :head do -%>
   <%= javascript_include_tag 'swfobject' %>
+  <%= javascript_include_tag 'jquery-ui-1.7.2.custom.min.js' %>
+  <%= stylesheet_link_tag 'jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" %>
+  <%= javascript_include_tag 'tabs.js' %>
+  <%= javascript_include_tag 'accordian.js' %>
 <% end %>
 
 <div id="lesson_container">
+<%# TITLE BAR %>
   <div class="clear span-40 last" id="banner">
     <div class="span-27" id="banner_title">
-      <%= h @lesson.title %> by <%= @lesson.instructor.full_name %>
+      <%= h @lesson.title %> by <%= link_to_profile(@lesson.instructor, 'full_name') %>
     </div>
 
     <div id="rating">
       <div class="span-7 last" id="stats">
-        Rating: <span id="<%= dom_id(@lesson) %>_average average"><%= current_average(@lesson) -%></span> (<%= @lesson.total_rates %> votes cast)
+        Rating: <span id="<%= dom_id(@lesson) %>_average" class="average"><%= current_average(@lesson) -%></span> (<span id="<%= dom_id(@lesson) %>_count"><%= vote_counts_phrase(@lesson) %></span>)
       </div>
       <div class="span-6 last" id="stars">
         <%= lesson_rating_for(@lesson, current_user) -%>
       </div>
     </div>
-
   </div>
 
-  <div class="clear span-40 last" id="lesson_summary_container">
-    <div class="span-18" id="lesson_container">
-      <% if @lesson.thumbnail_url %>
-        <%= link_to(image_tag(@lesson.thumbnail_url), watch_lesson_path(@lesson)) %>
+<%# LESSON SUMMARY %>
+  <div class="clear prepend-top span-40 last" id="lesson_summary_container">
+    <!-- VIDEO -->
+    <div class="span-22" id="lesson_container">
+      <% content_for :head do -%>
+        <%= javascript_include_tag 'swfobject' %>
       <% end %>
+      <%= player({:streamer => "rtmp://e1f1.simplecdn.net/play", :file => @lesson.processed_videos.by_format('Flash').last.output_rtmp_path, :skin => 'bluemetal'},{:width => 540, :height => 400}) %>
+
+      <%= render :partial => "lessons/tag_links_for", :object => @lesson, :locals => { :options => { :css_classes =>  "tags_lesson_show" } } %>
+
     </div>
-    <div class="span-22 last" id="lesson_description">
 
-      <p>
-        <b>Title:</b>
-        <%= h @lesson.title %>
-      </p>
-
-      <p>
-        <b>Synopsis:</b>
+<%# LESSON DESCRIPTION %>
+    <div class="span-17 last" id="lesson_description">
+      <div class="span-17 last"><%= render :partial => "lessons/actions", :object => @lesson %></div>
+      <div>
         <%= h(@lesson.synopsis) %>
-      </p>
-
-      <p>
-        <b>Number of Viewers:</b>
-        <%= @lesson.credits_count %>
-      </p>
-
-      <p>
-        <b>Instructor:</b>
-        <%= h @lesson.instructor.login %>
-      </p>
+      </div>
       <p>
         <b>Language:</b>
         <%= h language_value(@lesson.language) %>
@@ -61,25 +57,38 @@
         <b>Published At:</b>
         <%= l @lesson.created_at %>
       </p>
-      <% if @lesson.free_credits.available.size > 0 %>
-        <p>
-          <b>Free Views Remaining:</b>
-          <%= @lesson.free_credits.available.size %>
-        </p>
-      <% end %>
+      <p>
+        <%= free_remaining_text @lesson %>
+      </p>
 
+      <p>
+        <%= number_of_students_phrase(@lesson) %>
+      </p>
     </div>
-    <div class="clear span-22 prepend-18 last"><%= render :partial => "tag_links_for", :object => @lesson %></div>
-    <div class="clear span-22 prepend-18 last" id="action_bttons">actions</div>
   </div>
 </div>
 
 
-<p>
-  <b>Notes:</b>
-  <%= simple_format @lesson.notes %>
-</p>
+<div class="clear prepend-top span-40 last">
 
+<%# LESSON TABS %>
+  <div class="clear append-1 span-30 last" id="lesson_tabs">
+    <div id="tabs">
+      <ul>
+        <li><a href="#tabs-1"><%= t 'lesson.notes' %></a></li>
+        <li><a href="#tabs-2"><%= t 'lesson.reviews' %></a></li>
+        <li><a href="#tabs-3"><%= t 'lesson.discussion' %></a></li>
+      </ul>
+      <div id="tabs-1"><%= simple_format @lesson.notes %></div>
+      <div id="tabs-2"><%= render :partial => "reviews/review", :collection => @lesson.reviews %></div>
+      <div id="tabs-3">discussion placeholder</div>
+    </div>
+  </div>
+
+  <% #TAG CLOUD  %>
+  <%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts %>
+
+</div>
 
 <% unless @lesson.lesson_buy_patterns.empty? %>
   <h3>What Do Students Ultimately Buy After Browsing This Item?</h3>
@@ -116,71 +125,81 @@
   </table>
 <% end %>
 
+<%# LESSON ACCORDIAN FOR INSTRUCTOR AND ADMINS %>
+<div class="clear span-40 last prepend-top">
+  <div id="accordion">
+    <% if @lesson.credits.size > 0 and (current_user.try("is_admin?") or @lesson.instructor == current_user) %>
+      <h3><a href="#">Lesson Purchases</a></h3>
+      <div>
+        <table>
+          <tr>
+            <th>Timestamp</th>
+            <% if current_user.try("is_admin?") %>
+              <th>User</th>
+            <% end %>
+            <th>Price Paid</th>
+            <th>Description</th>
+          </tr>
+          <%= render :partial => 'lessons/credit', :collection => @lesson.credits %>
+          <tr>
+            <td><b>TOTAL</b></td>
+            <% if current_user.try("is_admin?") %>
+              <td/>
+            <% end %>
+            <td><%= number_to_currency(@lesson.credits.sum(:price)) %></td>
+            <td/>
+          </tr>
+        </table>
+      </div>
+    <% end %>
 
-<% if @lesson.credits.size > 0 and (current_user.try("is_admin?") or @lesson.instructor == current_user) %>
-  <h2>Lesson Purchases</h2>
-  <table>
-    <tr>
-      <th>Timestamp</th>
-      <% if current_user.try("is_admin?") %>
-        <th>User</th>
-      <% end %>
-      <th>Price Paid</th>
-      <th>Description</th>
-    </tr>
-    <%= render :partial => 'lessons/credit', :collection => @lesson.credits %>
-    <tr>
-      <td><b>TOTAL</b></td>
-      <% if current_user.try("is_admin?") %>
-        <td/>
-      <% end %>
-      <td><%= number_to_currency(@lesson.credits.sum(:price)) %></td>
-      <td/>
-    </tr>
-  </table>
-<% end %>
+    <% if current_user.try("is_admin?") or @lesson.instructor == current_user %>
+      <h3><a href="#">Videos</a></h3>
+      <div>
+        <table>
+          <tr>
+            <th>Video</th>
+            <th>Status</th>
+            <% if current_user.try("is_admin?") %>
+              <th>Size</th>
+              <th>Dimensions</th>
+              <th>Filename</th>
+              <th>File Type</th>
+              <th>Conversion Costs<br/>Input/Output</th>
+              <th>Log</th>
+              <th>Action</th>
+            <% end %>
+          </tr>
+          <%= render :partial => "video", :collection => @lesson.videos %>
+        </table>
+        <p>
+          <b>State:</b>
+          <%= translate("lesson.#{@lesson.status}") %>
+        </p>
+      </div>
+    <% elsif current_user == @lesson.instructor %>
+      <h3><a href="#">State</a></h3>
+      <div>
+        <%= h @lesson.status %>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-<% if current_user.try("is_admin?") or @lesson.instructor == current_user %>
-  <h2>Videos</h2>
-  <br/>
-  <table>
-    <tr>
-      <th>Video</th>
-      <th>Status</th>
-      <% if current_user.try("is_admin?") %>
-        <th>Size</th>
-        <th>Dimensions</th>
-        <th>Filename</th>
-        <th>File Type</th>
-        <th>Conversion Costs<br/>Input/Output</th>
-        <th>Log</th>
-        <th>Action</th>
-      <% end %>
-    </tr>
-    <%= render :partial => "video", :collection => @lesson.videos %>
-  </table>
-  <p>
-    <b>State:</b>
-    <%= translate("lesson.#{@lesson.status}") %>
-  </p>
-<% elsif current_user == @lesson.instructor %>
-  <p>
-    <b>State:</b>
-    <%= h @lesson.status %>
-  </p>
-<% end %>
-
-<% if @lesson.can_edit? current_user %>
-  <%= link_to 'Edit', edit_lesson_path(@lesson) %> |
-<% end %>
-<%= link_to 'Home', home_path %> |
-<%= link_to pluralize(@lesson.reviews.size, 'Review'), lesson_reviews_path(@lesson) %> |
-<%= link_to pluralize(@lesson.comments.size, 'Comments'), lesson_lesson_comments_path(@lesson) %>
-<% if current_user and @lesson.instructor != current_user and ! @lesson.owned_by?(current_user) %>
-  |
-  <% if current_user.on_wish_list?(@lesson) %>
-    <%= link_to "Remove from Wish List", wish_lists_path(:id => @lesson), :method => :delete, :disable_with => translate('general.disable_with') %>
-  <% else %>
-    <%= link_to "Add to Wish List", wish_lists_path(:id => @lesson), :method => :post, :disable_with => translate('general.disable_with') %>
+<% # MISC ACTIONS %>
+<div class="clear span-40 last prepend-top">
+  <% if @lesson.can_edit? current_user %>
+    <%= link_to 'Edit', edit_lesson_path(@lesson) %> |
   <% end %>
-<% end %>
+  <%= link_to 'Home', home_path %> |
+  <%= link_to pluralize(@lesson.reviews.size, 'Review'), lesson_reviews_path(@lesson) %> |
+  <%= link_to pluralize(@lesson.comments.size, 'Comments'), lesson_lesson_comments_path(@lesson) %>
+  <% if current_user and @lesson.instructor != current_user and ! @lesson.owned_by?(current_user) %>
+    |
+    <% if current_user.on_wish_list?(@lesson) %>
+      <%= link_to "Remove from Wish List", wish_lists_path(:id => @lesson), :method => :delete, :disable_with => translate('general.disable_with') %>
+    <% else %>
+      <%= link_to "Add to Wish List", wish_lists_path(:id => @lesson), :method => :post, :disable_with => translate('general.disable_with') %>
+    <% end %>
+  <% end %>
+</div>
