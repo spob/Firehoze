@@ -1,7 +1,7 @@
 /* GENERAL */
 
 div {
-    /* border: 1px solid red;*/
+/*     border: 1px solid red;*/
 }
 
 /* TOP NAV */
@@ -95,13 +95,14 @@ img.lesson_tn {
 
 #lesson_container #banner {
     padding: 10px 0;
-    border-top: solid 1px #CFCFCF;
-    border-bottom: solid 1px #CFCFCF;
+		border: solid 1px #999;
+		background-color: #e3e3e3;
 }
 
-#lesson_container #banner #rating {
+#banner_title {  font-size: 1.4em; margin: 0 0 0 10px; }
 
-}
+
+#lesson_container #banner #rating { }
 
 #lesson_container #banner #rating #stats {
     height:18px;
@@ -114,9 +115,24 @@ img.lesson_tn {
     float:right;
 }
 
+#lesson_description {
+	padding-left: 10px;
+	
+}
+
+.tags_lesson_show
+{
+	width:520px;
+	margin:10px 0 0 0;
+	border: solid 1px #999;
+	background-color: #e3e3e3;
+	padding: 10px;
+}
+
+
 /* FORMS */
 
-.lesson_center .button-to {
+.lesson_center .button-to, #lesson_description .button-to {
     float: left;
     margin:0;
     padding:3px 3px 5px 0;
