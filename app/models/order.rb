@@ -87,7 +87,7 @@ class Order < ActiveRecord::Base
 
   def self.email_receipt(order_id)
     order = Order.find(order_id)
-    Notifier.receipt_for_order(order)
+    Notifier.deliver_receipt_for_order(order)
   end
 
   private
