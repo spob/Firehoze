@@ -58,6 +58,8 @@ class Lesson < ActiveRecord::Base
   has_many :processed_videos, :order => "id"
   has_many :lesson_buy_patterns, :order => "counter DESC", :dependent => :destroy
   has_one  :original_video
+  has_one  :full_processed_video
+  has_one  :preview_processed_video
   has_and_belongs_to_many :lesson_wishers, :join_table => 'wishes', :class_name => 'User'
   validates_presence_of :instructor, :title, :status, :synopsis
   validates_length_of :title, :maximum => 50, :allow_nil => true
@@ -131,7 +133,7 @@ class Lesson < ActiveRecord::Base
     end
     free_credit
   end
-  
+
   def output_url
     "http://#{APP_CONFIG[CONFIG_CDN_SERVER]}/#{self.video.path}.flv"
   end
@@ -140,9 +142,42 @@ class Lesson < ActiveRecord::Base
     self.lesson_buy_patterns.inject(0) {|sum, item| sum + item.counter}
   end
 
+  def update_status
+    if any_video_match_by_status(VIDEO_STATUS_FAILED)
+      update_status_attribute(VIDEO_STATUS_FAILED)
+    elsif processed_videos.empty? or all_videos_match_by_status(VIDEO_STATUS_PENDING)
+      update_status_attribute(VIDEO_STATUS_PENDING)
+    elsif any_video_match_by_status(VIDEO_STATUS_CONVERTING)
+      update_status_attribute(VIDEO_STATUS_CONVERTING)
+    elsif all_videos_match_by_status(VIDEO_STATUS_READY)
+      update_status_attribute(VIDEO_STATUS_READY)
+      Notifier.deliver_lesson_ready(self)
+    else
+      update_status_attribute("Unknown status")
+    end
+  end
+
   private
 
   Tag.destroy_unused = true
+
+  def update_status_attribute(status)
+    self.update_attribute(:status, status)
+  end
+
+  def any_video_match_by_status(status)
+    for video in processed_videos
+      return true if video.status == status
+    end
+    return false
+  end
+
+  def all_videos_match_by_status(status)
+    for video in processed_videos
+      return false if video.status != status
+    end
+    return true
+  end
 
   def input_path
     #'s3://' + APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET] + '/' + self.video.path

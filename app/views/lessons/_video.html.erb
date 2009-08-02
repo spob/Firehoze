@@ -1,6 +1,6 @@
 <tr>
   <td>
-    <%= video.format %>
+    <%= video.class.to_s %>
   </td>
   <td>
     <%= t("lesson.#{video.status}") %>
@@ -46,7 +46,7 @@
         <% if video.class == OriginalVideo and video.lesson.processed_videos.empty? then %>
             <%= link_to "Convert", convert_lesson_path(video.lesson), :method => :post %>
         <% end %>
-        <% if video.class == ProcessedVideo then %>
+        <% if video.class == FullProcessedVideo or video.class == PreviewProcessedVideo then %>
             <%= link_to "Re-convert", convert_lesson_path(video.lesson), :method => :post %>
         <% end %>
       </td>

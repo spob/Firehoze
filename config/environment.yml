@@ -57,7 +57,7 @@ number_of_buy_patterns_to_show: 5
 s3_directory: default
 
 # cdn server
-cdn_server: 3685.voxcdn.com
+cdn_server: amazonstaging.lg1.simplecdn.net
 
 # ftp path where transcoded files should be uploaded
 ftp_cdn_path: upload-ftp.simplecdn.com

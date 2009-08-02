@@ -1,26 +1,23 @@
 class ProcessedVideo < Video
-  before_validation_on_create :set_status_and_format
+  before_validation_on_create :set_video_status
 
   belongs_to :converted_from_video, :class_name => 'OriginalVideo'
   validates_presence_of :video_file_name
-  validates_presence_of :lesson, :format, :status
+  validates_presence_of :lesson, :status
   validates_numericality_of :video_file_size, :greater_than => 0, :allow_nil => true
-
-  named_scope :by_format,
-              lambda{ |format| {:conditions => { :format => format}}
-              }
 
   # Call out to flixcloud to trigger a conversion process
   def convert
-    self.update_attributes!(:s3_key => "#{self.s3_root_dir}/videos/#{self.id}/#{self.video_file_name}.flv")
+    self.update_attributes!(:s3_key => "#{self.s3_root_dir}/videos/#{self.id}/#{self.video_file_name}.flv",
+                            :thumbnail_s3_path => thumbnail_s3_path)
     job = FlixCloud::Job.new(:api_key => FLIX_API_KEY,
-                             :recipe_id => FLIX_RECIPE_ID,
+                             :recipe_id => flix_recipe_id,
                              :input_url => self.converted_from_video.s3_path,
                              :output_url => output_ftp_path,
                              :output_user => APP_CONFIG[CONFIG_FTP_CDN_USER],
                              :output_password => APP_CONFIG[CONFIG_FTP_CDN_PASSWORD],
                              :watermark_url => WATERMARK_URL,
-                             :thumbnails_url => thumbnail_path)
+                             :thumbnails_url => thumbnail_s3_path)
     if job.save
       change_status(VIDEO_STATUS_CONVERTING, " (##{job.id})")
       self.update_attributes!(:flixcloud_job_id => job.id,
@@ -51,15 +48,14 @@ class ProcessedVideo < Video
                 :processed_video_cost => job.output_media_file.cost,
                 :input_video_cost => job.input_media_file.cost,
                 :video_transcoding_error => nil,
-                :thumbnail_url => "http://#{APP_CONFIG[CONFIG_CDN_SERVER]}/#{self.s3_root_dir}/thumbs/#{id.to_s}/thumb_0000.png",
+                :thumbnail_url => thumbnail_path,
                 :s3_path => job.output_media_file.url,
                 :url => "http://#{APP_CONFIG[CONFIG_CDN_SERVER]}/#{self.s3_key}")
 
 
-        self.lesson.update_attributes(:finished_video_duration => job.output_media_file.duration,
-                                      :thumbnail_url => self.thumbnail_url)
+        update_lesson_attributes(job)
+
         self.change_status(VIDEO_STATUS_READY)
-        Notifier.deliver_lesson_ready self.lesson
       else
         self.change_status(VIDEO_STATUS_FAILED, job.error_message)
         Notifier.deliver_lesson_processing_failed self.lesson
@@ -78,7 +74,7 @@ class ProcessedVideo < Video
                                       :message => msg)
     self.update_attributes!(:status => new_status,
                             :video_transcoding_error => (status == VIDEO_STATUS_FAILED ? msg : nil))
-    self.lesson.update_attribute(:status, new_status)
+    self.lesson.update_status
   end
 
   # Check if a video was submitted for processing and never returned. If so, send an email alert
@@ -104,7 +100,7 @@ class ProcessedVideo < Video
       xml.tag!("id", self.flixcloud_job_id.to_s, :type => "integer")
       xml.tag!("initialized-job-at", self.conversion_started_at.strftime("%Y-%m-%dT%H:%M:%SZ"), :type => "datetime")
       xml.tag!("recipe-name", "my-recipe")
-      xml.tag!("recipe-id", FLIX_RECIPE_ID, :type => "integer")
+      xml.tag!("recipe-id", FLIX_FULL_RECIPE_ID, :type => "integer")
       xml.tag!('state', 'successful_job')
       xml.tag!('error-message')
       xml.tag!('input-media-file') do
@@ -132,22 +128,13 @@ class ProcessedVideo < Video
     out_string
   end
 
-  def output_rtmp_path
-    "#{APP_CONFIG[CONFIG_CDN_VIDEO_BUCKET]}/#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/videos/#{self.id.to_s}.flv"
-  end
-
   private
 
-  def output_ftp_path
-    "ftp://#{APP_CONFIG[CONFIG_FTP_CDN_PATH]}/#{self.s3_root_dir}/videos/#{self.id.to_s}.flv"
-  end
-
-  def thumbnail_path
+  def thumbnail_s3_path
     "s3://#{APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET]}/#{self.s3_root_dir}/thumbs/#{self.id.to_s}"
   end
 
-  def set_status_and_format
+  def set_video_status
     self.status = VIDEO_STATUS_PENDING
-    self.format = VIDEO_FORMAT_FLASH
   end
 end

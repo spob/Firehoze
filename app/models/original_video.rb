@@ -2,7 +2,7 @@ class OriginalVideo < Video
   before_validation_on_create :set_status_and_format
 
   validates_presence_of :video_file_name
-  validates_presence_of :lesson, :format, :status
+  validates_presence_of :lesson, :status
   validates_numericality_of :video_file_size, :greater_than => 0, :allow_nil => true
   has_attached_file :video,
                     :storage => :s3,
@@ -37,10 +37,10 @@ class OriginalVideo < Video
   end
 
   # Call out to flixcloud to trigger a conversion process
-  def trigger_convert
-    processed_video = ProcessedVideo.find(:first, :conditions => { :lesson_id => self.lesson})
+  def trigger_convert(clazz)
+    processed_video = clazz.find(:first, :conditions => { :lesson_id => self.lesson })
     unless processed_video
-      processed_video = ProcessedVideo.create!(:lesson_id => self.lesson.id,
+      processed_video = clazz.create!(:lesson_id => self.lesson.id,
                                                :video_file_name => self.video_file_name,
                                                :s3_key => self.s3_key,
                                                :converted_from_video => self,
@@ -62,8 +62,12 @@ class OriginalVideo < Video
   def self.convert_video video_id
     video = OriginalVideo.find(video_id)
 
-    unless video.trigger_convert
-      raise "Starting conversion failed"
+    unless video.trigger_convert(FullProcessedVideo)
+      raise "Starting flash conversion failed"
+    end
+
+    unless video.trigger_convert(PreviewProcessedVideo)
+      raise "Starting flash preview conversion failed"
     end
 
   rescue Exception => e
@@ -78,7 +82,6 @@ class OriginalVideo < Video
 
   def set_status_and_format
     self.status = VIDEO_STATUS_READY
-    self.format = VIDEO_FORMAT_ORIGINAL
     self.s3_root_dir = APP_CONFIG[CONFIG_S3_DIRECTORY]
   end
 end
