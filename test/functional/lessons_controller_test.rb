@@ -195,8 +195,8 @@ class LessonsControllerTest < ActionController::TestCase
         setup do
           @lesson.update_attribute(:status, VIDEO_STATUS_READY)
           @lesson = assign_video(@lesson)
-          assert @lesson.processed_videos.by_format('Flash').first
-          assert @lesson.processed_videos.by_format('Flash').first.url
+          assert @lesson.full_processed_video
+          assert @lesson.full_processed_video.url
           @user.credits.create!(:price => 0.99, :lesson => @lesson)
           assert @user.owns_lesson?(@lesson)
           get :watch, :id => @lesson
@@ -261,7 +261,7 @@ class LessonsControllerTest < ActionController::TestCase
   end
 
   def assign_video(lesson)
-    video = Factory.create(:ready_processed_video, :lesson => lesson)
+    video = Factory.create(:ready_full_processed_video, :lesson => lesson)
     Lesson.find(lesson.id)
   end
 end
