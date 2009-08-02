@@ -92,8 +92,7 @@ namespace :db do
         else
           lesson.save!
           OriginalVideo.create!(:lesson => lesson,
-                                :video => File.open(RAILS_ROOT + dummy_video_path),
-                                :format => VIDEO_FORMAT_ORIGINAL)
+                                :video => File.open(RAILS_ROOT + dummy_video_path)
           lesson.trigger_conversion
           puts "#{i}: #{lesson.original_video.video_file_name} uploaded [instructor: #{lesson.instructor.full_name} | file size:#{lesson.original_video.video_file_size}]"
         end

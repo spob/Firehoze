@@ -25,6 +25,78 @@ class LessonTest < ActiveSupport::TestCase
       assert @lesson.original_video
     end
 
+    context "with processed videos" do
+      setup do
+        @full_processed_video = Factory.create(:full_processed_video, :lesson => @lesson)
+        @preview_processed_video = Factory.create(:ready_preview_processed_video, :lesson => @lesson)
+      end
+
+      should "have processed videos" do
+        assert @lesson.full_processed_video
+        assert @lesson.preview_processed_video
+      end
+
+      context "with both pending" do
+        setup do
+          @full_processed_video.update_attribute(:status, VIDEO_STATUS_PENDING)
+          @preview_processed_video.update_attribute(:status, VIDEO_STATUS_PENDING)
+          @lesson.update_status
+        end
+
+        should "be pending" do
+          assert_equal VIDEO_STATUS_PENDING, @lesson.status
+        end
+      end
+
+      context "with one converting" do
+        setup do
+          @full_processed_video.update_attribute(:status, VIDEO_STATUS_PENDING)
+          @preview_processed_video.update_attribute(:status, VIDEO_STATUS_CONVERTING)
+          @lesson.update_status
+        end
+
+        should "be pending" do
+          assert_equal VIDEO_STATUS_CONVERTING, @lesson.status
+        end
+      end
+
+      context "with one ready" do
+        setup do
+          @full_processed_video.update_attribute(:status, VIDEO_STATUS_READY)
+          @preview_processed_video.update_attribute(:status, VIDEO_STATUS_CONVERTING)
+          @lesson.update_status
+        end
+
+        should "be pending" do
+          assert_equal VIDEO_STATUS_CONVERTING, @lesson.status
+        end
+      end
+
+      context "with both ready" do
+        setup do
+          @full_processed_video.update_attribute(:status, VIDEO_STATUS_READY)
+          @preview_processed_video.update_attribute(:status, VIDEO_STATUS_READY)
+          @lesson.update_status
+        end
+
+        should "be pending" do
+          assert_equal VIDEO_STATUS_READY, @lesson.status
+        end
+      end
+
+      context "with one failed" do
+        setup do
+          @full_processed_video.update_attribute(:status, VIDEO_STATUS_READY)
+          @preview_processed_video.update_attribute(:status, VIDEO_STATUS_FAILED)
+          @lesson.update_status
+        end
+
+        should "be pending" do
+          assert_equal VIDEO_STATUS_FAILED, @lesson.status
+        end
+      end
+    end
+
     should_validate_presence_of      :title, :instructor, :synopsis
     should_allow_values_for          :title, "blah blah blah"
     should_ensure_length_in_range    :title, (0..50)
@@ -82,7 +154,7 @@ class LessonTest < ActiveSupport::TestCase
           @admin = Factory.create(:user)
           @admin.has_role 'admin'
           @lesson.update_attributes(:status => VIDEO_STATUS_CONVERTING,
-            :flixcloud_job_id => @lesson.id * 2)
+                                    :flixcloud_job_id => @lesson.id * 2)
         end
       end
 
