@@ -1,4 +1,4 @@
-Factory.define :processed_video do |video|
+Factory.define :full_processed_video do |video|
   video.association :lesson
   video.video_file_name "path_to_video"
   video.flixcloud_job_id 123456
@@ -6,7 +6,7 @@ Factory.define :processed_video do |video|
   video.s3_key "/videos/2/video.avi"
 end
 
-Factory.define :ready_processed_video, :parent => :processed_video do |video|
+Factory.define :ready_full_processed_video, :parent => :full_processed_video do |video|
   video.s3_path "s3://amazon.com/somepath"
   video.url "http://some/path"
   video.video_file_size 21342

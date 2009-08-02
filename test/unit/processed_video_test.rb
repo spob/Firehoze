@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ProcessedVideoTest < ActiveSupport::TestCase
   context "Given an existing processed video" do
-    setup { @processed_video = Factory.create(:processed_video) }
+    setup { @processed_video = Factory.create(:full_processed_video) }
 
     should_validate_presence_of      :lesson
     should_have_class_methods        :detect_zombie_video
