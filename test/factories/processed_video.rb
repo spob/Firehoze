@@ -20,3 +20,9 @@ Factory.define :ready_full_processed_video, :parent => :full_processed_video do 
   video.association :converted_from_video, :factory => :original_video
   video.conversion_ended_at  { 2.minutes.ago}
 end
+
+
+
+Factory.define :ready_preview_processed_video, :parent => :full_processed_video, :class => 'PreviewProcessedVideo' do |video|
+
+end
