@@ -44,7 +44,7 @@ CONFIG_AWS_SECRET_ACCESS_KEY = 'secret_access_key'
 
 FLIX_CLOUD_AWS_ID = '99293b905e1e3610f938fccb8405c4d56e913c2f0acf7bf1b74af1fdc107294c'
 FLIX_API_KEY = 'b997:klpibn:0:8x72:gsvz'
-FLIX_RECIPE_ID = 582
+FLIX_FULL_RECIPE_ID = 582
 FLIX_PREVIEW_RECIPE_ID = 581
 WATERMARK_URL = 's3://assets.firehoze.com/watermark.png'
 
