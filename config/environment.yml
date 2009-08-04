@@ -68,3 +68,7 @@ ftp_cdn_password: gxdk4v27zmc2th6amguw58
 
 # cdn video bucket
 cdn_video_bucket: output
+
+# If true, then users must enter a security code in order to register. This is used for beta instances
+# which we don't want to open to the general public
+restrict_registration: false

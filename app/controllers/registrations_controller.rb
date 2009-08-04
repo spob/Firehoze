@@ -9,6 +9,7 @@ class RegistrationsController < ApplicationController
     # on the link in the email, they can complete the process of requesting an account (which will then be
     # handled by the users controller).
     @registration = Registration.new(params[:registration])
+    @registration.registration_code = params[:registration][:registration_code]
     # The ActiveURL plugin can't differentiate between a creation and an update callback. So, I'm setting this
     # flag to true so that the confirmation will go out in this case, but not on subsequent updates to the
     # registration record

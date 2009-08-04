@@ -6,11 +6,16 @@
 # To read more about the ActiveUrl plugin, and the address confirmation logic, read:
 # http://github.com/mholling/active_url/tree/master
 class Registration < ActiveUrl::Base
+  extend HashHelper
+
   attribute :email, :accessible => true
   attribute :username,  :accessible => true
+  attribute :registration_code, :accessible => true  
   attr_accessor :send_email
 
-  validate :account_not_taken
+  # Used to verify if a registration is authorized (when restricting registrations)
+
+  validate :additional_validation
   validates_format_of :email, :with => /^[\w\.=-]+@[\w\.-]+\.[a-zA-Z]{2,4}$/ix, :allow_nil => true
   validates_presence_of :email, :username
   validates_length_of       :email, :maximum => 100, :allow_nil => true
@@ -21,12 +26,17 @@ class Registration < ActiveUrl::Base
   protected
 
   # Verify that this email and logic have not been taken before
-  def account_not_taken
+  def additional_validation
     if User.find_by_email(email)
       errors.add(:email, I18n.t('registration.already_used'))
     end
     if User.find_by_login(username)
       errors.add(:username,  I18n.t('registration.already_used'))
+    end
+    if APP_CONFIG[CONFIG_RESTRICT_REGISTRATION]
+      unless Registration.match?(self.email, self.registration_code, HASH_PREFIX, HASH_SUFFIX)
+        errors.add(:registration_code,  I18n.t('registration.invalid_reg_code'))
+      end
     end
   end
 

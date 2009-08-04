@@ -40,7 +40,7 @@ class UserTest < ActiveSupport::TestCase
       setup do
         @lesson = Factory.create(:lesson)
         @lesson2 = Factory.create(:lesson)
-        @user.wishes << @lesson        
+        @user.wishes << @lesson
       end
 
       should "find lesson on wish list" do
@@ -159,5 +159,4 @@ class UserTest < ActiveSupport::TestCase
       assert_equal 1, @lesson_visit.user.visited_lessons.size
     end
   end
-
 end
