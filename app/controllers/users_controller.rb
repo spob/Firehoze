@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => [:show, :edit, :update, :index, :private]
+  before_filter :require_user, :only => [:edit, :update, :index, :private]
 
   permit ROLE_ADMIN, :except => [:new, :create, :show, :edit, :private]
 
