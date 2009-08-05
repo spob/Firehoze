@@ -2,11 +2,13 @@
   <%= javascript_include_tag 'jquery-ui-1.7.2.custom.min.js' %>
   <%= stylesheet_link_tag 'jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" %>
   <%= javascript_include_tag 'tabs.js' %>
+  <%= javascript_include_tag 'accordian.js' %>
 <% end %>
 
 <div class="span-40 last">
   <h3>Recognized User Homepage</h3>  <!-- This is a tmp header -->
 </div>
+
 <div class="clear append-1 span-30 last" id="lesson_tabs">
   <div id="tabs">
     <ul>
@@ -29,3 +31,13 @@
 
 <%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts %>
 
+<% if current_user and current_user.is_admin? %>
+<div class="clear span-40 last prepend-top">
+  <div id="accordion">
+    <h3><a href="#">Status of All Lessons</a></h3>
+    <div>
+      <%= render :partial => "lessons/lesson_admin_view", :object => @lessons %>
+    </div>
+  </div>
+</div>
+<% end %>
