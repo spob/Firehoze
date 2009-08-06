@@ -65,9 +65,35 @@ module LessonsHelper
     end
   end
 
+  # Deprecated
   def button_to_buy_or_watch(lesson)
     if lesson.ready?
       button_to watch_text(lesson), watch_lesson_path(lesson), :method => :get
+    end
+  end
+
+  def button_to_buy(lesson)
+    if lesson.ready? and current_user
+      if lesson.owned_by?(current_user) or current_user == lesson.instructor
+        return
+      end
+
+      if lesson.free_credits.available.size > 0
+        action_text = t('lesson.watch_for_free')
+      else
+        action_text = t('lesson.buy')
+      end
+      button_to action_text, watch_lesson_path(lesson), :method => :get
+    end
+  end
+
+  def link_to_wishes
+    link_to t('lesson.wishlist'), list_lessons_path(:collection => :wishlist )
+  end
+
+  def button_to_edit(lesson)
+    if lesson.instructed_by?(current_user) or current_user.try("is_admin?")
+      button_to t('lesson.edit'), edit_lesson_path(lesson), :method => :get 
     end
   end
 
