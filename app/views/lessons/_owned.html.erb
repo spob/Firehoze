@@ -3,7 +3,4 @@
   <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => current_user.owned_lessons %>
 </div>
 
-<div class="more">
-  <%= render :partial => "lessons/pagination", :object => current_user.owned_lessons, :locals => { :collection => :owned } %>
-</div>
-<hr/>
+<%#= render :partial => "lessons/pagination", :object => current_user.owned_lessons, :locals => { :collection => :owned } %>
