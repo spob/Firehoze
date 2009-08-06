@@ -9,7 +9,4 @@
   <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => recently_browsed %>
 </div>
 
-<div class="more">
-  <%= render :partial => "lessons/pagination", :object => recently_browsed, :locals => { :collection => :recently_browsed } %>
-</div>
-<hr />
+<%= render :partial => "lessons/pagination", :object => recently_browsed, :locals => { :collection => :recently_browsed } %>

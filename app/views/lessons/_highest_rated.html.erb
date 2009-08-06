@@ -1,5 +1,9 @@
 <%
-highest_rated = Lesson.ready.highest_rated.paginate :page => params[:page], :per_page => @per_page
+if current_user
+  highest_rated = Lesson.ready.highest_rated.not_owned_by(current_user).paginate :page => params[:page], :per_page => @per_page
+else
+  highest_rated = Lesson.ready.highest_rated.paginate :page => params[:page], :per_page => @per_page
+end
 %>
 
 <div class="lesson_container">
@@ -7,7 +11,4 @@ highest_rated = Lesson.ready.highest_rated.paginate :page => params[:page], :per
   <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => highest_rated %>
 </div>
 
-<div class="more">
-  <%= render :partial => "lessons/pagination", :object => highest_rated, :locals => { :collection => :highest_rated } %>
-</div>
-<hr />
+<%= render :partial => "lessons/pagination", :object => highest_rated, :locals => { :collection => :highest_rated } %>

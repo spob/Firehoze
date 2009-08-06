@@ -1,7 +1,7 @@
 <%
-   if current_user then
-       wishlist = current_user.wishes.paginate :page => params[:page], :per_page => @per_page
-   end
+if current_user then
+  wishlist = current_user.wishes.paginate :page => params[:page], :per_page => @per_page
+end
 %>
 
 <div class="lesson_container">
@@ -9,7 +9,4 @@
   <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => wishlist %>
 </div>
 
-<div class="more">
-  <%= render :partial => "lessons/pagination", :object => wishlist, :locals => { :collection => :wishlist } %>
-</div>
-<hr/>
+<%= render :partial => "lessons/pagination", :object => wishlist, :locals => { :collection => :wishlist } %>
