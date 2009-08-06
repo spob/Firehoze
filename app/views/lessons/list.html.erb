@@ -1,3 +1,7 @@
+<% content_for :head do -%>
+  <%= stylesheet_link_tag 'jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" %>
+<% end %>
+
 <div class="clear prepend-1 span-39 last" id="lesson_list_collection">
   <%= render :partial => @collection, :locals => { :lesson_format => :wide } %>
 </div>
