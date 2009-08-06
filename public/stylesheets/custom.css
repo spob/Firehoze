@@ -129,6 +129,10 @@ img.lesson_tn {
 	padding: 10px;
 }
 
+.adjacent_icon {
+	float: left; margin-right: .3em;
+}
+
 
 /* FORMS */
 

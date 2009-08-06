@@ -5,7 +5,7 @@
   <div><%= ratings_for(lesson, :static) %></div>
   <%= content_tag(:div, free_remaining_text(lesson)) if lesson.has_free_credits? %>
   <div><%= number_of_students_phrase(lesson) %></div>
-  <div>Posted: <%=  time_ago_in_words(lesson.created_at) %> ago</div>
+  <div><span class='ui-icon ui-icon-calendar adjacent_icon'></span>Posted: <%=  time_ago_in_words(lesson.created_at) %> ago</div>
   <div><%= render :partial => "lessons/stats", :object => lesson %></div>
 </div>
 
@@ -17,9 +17,10 @@
 </div>
 
 <div class="span-5 last lesson_right">
+
   <div class="lesson_instructor_avatar"><%= avatar_tag lesson.instructor, :size => :medium %></div>
   <div><%= link_to_profile(lesson.instructor) %></div>
-  <div>Member Since:<br /><%= lesson.instructor.created_at.to_date.to_s(:long) %></div>
+  <div>Member Since:<br /><%= l(lesson.instructor.created_at.to_date) %></div>
 </div>
 <!-- <div class="clear span-16 prepend-6 append-6 last lesson_footer">some base content</div> -->
 <hr />

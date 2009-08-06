@@ -12,7 +12,7 @@ module LessonsHelper
   # Not sure how to handle this with i18n???
   def free_remaining_text lesson
     if lesson.has_free_credits?
-      "#{pluralize(lesson.free_credits.available.size, 'Free View')} Remaining"
+      "<span class='ui-icon ui-icon-heart adjacent_icon'></span>#{pluralize(lesson.free_credits.available.size, 'Free View')} Remaining"
     end
   end
 
@@ -53,7 +53,7 @@ module LessonsHelper
 
   def number_of_students_phrase(lesson)
     if lesson.credits_count
-      "#{t('lesson.students')}: #{lesson.credits_count}"
+      "<span class='ui-icon ui-icon-person adjacent_icon'></span>#{t('lesson.students')}: #{lesson.credits_count}"
     elsif lesson.created_at > 7.days.ago
       t('lesson.new_release')
     end
