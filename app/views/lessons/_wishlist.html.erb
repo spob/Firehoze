@@ -1,6 +1,6 @@
 <%
    if current_user then
-       wishlist = current_user.wishes
+       wishlist = current_user.wishes.paginate :page => params[:page], :per_page => @per_page
    end
 %>
 
