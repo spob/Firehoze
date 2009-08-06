@@ -97,6 +97,30 @@ class LessonTest < ActiveSupport::TestCase
       end
     end
 
+    context "and several more lessons owned by a user" do
+      setup do
+        @lesson2 = Factory.create(:lesson)
+        @lesson3 = Factory.create(:lesson)
+        @lesson4 = Factory.create(:lesson)
+        @user = Factory.create(:user)
+        @credit2 = Factory.create(:credit, :lesson => @lesson2, :user => @user)
+        @credit4 = Factory.create(:credit, :lesson => @lesson4, :user => @user)
+        assert !@lesson.owned_by?(@user)
+        assert @lesson2.owned_by?(@user)
+        assert !@lesson3.owned_by?(@user)
+        assert @lesson4.owned_by?(@user)
+        @lessons = Lesson.not_owned_by(@user)
+      end
+
+      should "retrieve unowned videos" do
+        assert_equal 2, @lessons.size
+        assert @lessons.include?(@lesson)
+        assert !@lessons.include?(@lesson2)
+        assert @lessons.include?(@lesson3)
+        assert !@lessons.include?(@lesson4)
+      end
+    end
+
     should_validate_presence_of      :title, :instructor, :synopsis
     should_allow_values_for          :title, "blah blah blah"
     should_ensure_length_in_range    :title, (0..50)

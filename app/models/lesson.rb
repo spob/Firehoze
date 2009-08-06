@@ -77,6 +77,10 @@ class Lesson < ActiveRecord::Base
   named_scope   :ready, :conditions => {:status => VIDEO_STATUS_READY }
   named_scope   :pending, :conditions => {:status => VIDEO_STATUS_PENDING }
   named_scope   :failed, :conditions => {:status => VIDEO_STATUS_FAILED }
+  # Credits which have been warned to be about to expire
+  named_scope :not_owned_by,
+              lambda{ |user| { :conditions => ["lessons.id not in (?)", user.lessons.collect(&:id)] }
+              }
 
   # Basic paginated listing finder
   # if the user is specified and is an admin, then lessons will be retrieved regardless of
