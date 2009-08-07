@@ -126,7 +126,7 @@ class LessonTest < ActiveSupport::TestCase
     should_ensure_length_in_range    :title, (0..50)
     should_ensure_length_in_range    :synopsis, (0..500)
     should_have_many                 :reviews, :video_status_changes, :credits, :free_credits, :taggings
-    should_have_many                 :videos, :processed_videos, :lesson_buy_patterns, :comments
+    should_have_many                 :videos, :processed_videos, :lesson_buy_patterns, :lesson_buy_pairs, :comments
     should_have_and_belong_to_many   :lesson_wishers
     should_have_one                  :original_video
     should_have_one                  :full_processed_video
