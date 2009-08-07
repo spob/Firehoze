@@ -5,10 +5,10 @@
     <p>
       <%= avatar_tag @user, :size => :medium %>
     </p>
-    <p>
+    <div>
       <%= f.label :avatar %>
       <%= f.file_field :avatar %>
-    </p>
+    </div>
   </fieldset>
   <p>
     <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
