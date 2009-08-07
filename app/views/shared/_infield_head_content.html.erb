@@ -1,0 +1,10 @@
+<% content_for :head do -%>
+  <%= javascript_include_tag 'jquery.infieldlabel.min.js' %>
+  <%= javascript_include_tag 'infield-label.js' %>
+  <%= stylesheet_link_tag 'infield_label_form' %>
+  <!--[if lte IE 6]>
+  <style type="text/css" media="screen">
+    form label { background: #fff; }
+  </style>
+  <![endif]-->
+<% end %>

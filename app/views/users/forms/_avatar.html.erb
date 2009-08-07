@@ -1,20 +1,18 @@
-<% form_for(:user, :url => accounts_path, :html => { :method => :put, :multipart => true }) do |f| %>
-
+<% form_for(:user, :url => accounts_path, :html => { :method => :put, :multipart => true, :id => "avatar" }) do |f| %>
   <%= f.error_messages %>
-
-  <p>
-    <%= avatar_tag @user, :size => :medium %>
-  </p>
-
-  <p>
-    <%= f.label :avatar %>
-    <%= f.file_field :avatar %>
-  </p>
-
+  <fieldset>
+    <legend>Upload an Avatar</legend>
+    <p>
+      <%= avatar_tag @user, :size => :medium %>
+    </p>
+    <p>
+      <%= f.label :avatar %>
+      <%= f.file_field :avatar %>
+    </p>
+  </fieldset>
   <p>
     <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
   </p>
-
   <% if @user.avatar? %>
     <%= link_to('Delete current', user_url(@user, :destroy_avatar => 'true'), :method => "put", :confirm => 'Are you sure?').gsub('&', '&amp;') %>
   <% end %>

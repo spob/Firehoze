@@ -1,30 +1,46 @@
-View your <%= link_to 'public profile', user_path(current_user) %>
+<% form_for(:user, :url => accounts_path(@user), :html => { :method => :put, :id => "profile" }) do |f| %>
+<%= f.error_messages %>
+<fieldset>
+  <legend>Update Your Profile</legend>
+  <div class="help">View your public profile <%= link_to 'here', user_path(current_user) %></div>
+  <p>
+    Username:
+    <%= f.text_field :login, :disabled => true %>
+  </p>
 
-<% form_for(:user, :url => accounts_path(@user), :html => { :method => :put }) do |f| %>
-  <%= f.error_messages %>
+  <p>
+    Email:
+    <%= f.text_field :email %>
+  </p>
 
-  Username:
-  <%= @user.login %><br />
-  <br/>
-  <%= f.label :email %>:
-  <%= f.text_field :email %><br />
-  <br/>
-  <%= f.label :first_name %>:
-  <%= f.text_field :first_name %><br F/>
-  <br/>
-  <%= f.label :last_name %>:
-  <%= f.text_field :last_name %><br />
-  <br/>
-  <%= f.label :bio %>:
-  <%= f.text_area :bio %><br />
-  <br/>
-  <%= f.label :time_zone %>:
-  <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %><br/>
-  <br/>
-  <%= f.label :language %>:
-  <%= f.select :language, User.supported_languages %><br/>
-  <br/>
+  <p>
+    First name:
+    <%= f.text_field :first_name %>
+  </p>
 
+  <p>
+    Last name:
+    <%= f.text_field :last_name %>
+  </p>
+
+  <p>
+    Bio:
+    <%= f.text_area :bio %>
+  </p>
+
+  <p>
+    Time Zone:
+    <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
+  </p>
+
+  <p>
+    Language:
+    <%= f.select :language, User.supported_languages %>
+  </p>
+</fieldset>
+
+<p>
   <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
-  <%= link_to "Cancel", accounts_path(@user) %>
+  <%= link_to 'Cancel', home_path %>
+</p>
 <% end %>

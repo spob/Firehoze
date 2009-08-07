@@ -1,34 +1,47 @@
-<% content_for :head do -%>
-  <%= stylesheet_link_tag "formtastic" %>
-  <%= stylesheet_link_tag "formtastic_changes" %>
-<% end %>
+<%= render :partial => "shared/infield_head_content" %>
 
-<h1>Create Lesson</h1>
-<% form_for(:lesson, :url => lessons_path, :html => { :multipart => true, :class => :formtastic }) do |f| %>
+<% form_for(:lesson, :url => lessons_path, :html => { :multipart => true, :class => "create_lesson", :id => "inline" }) do |f| %>
   <%= f.error_messages %>
+  <fieldset>
+    <legend>Create Lesson</legend>
+    <p>
+      <%= f.label :title %><br />
+      <%= f.text_field :title %>
+    </p>
 
-  <%= f.label :title %>:
-  <%= f.text_field :title %><br />
+    <p>
+      <%= f.label :synopsis %><br />
+      <%= f.text_area :synopsis %>
+    </p>
 
-  <%= f.label :synopsis %>:
-  <%= f.text_area :synopsis %><br />
-  <br/>
-  <%= f.label :notes %>:
-  <%= f.text_area :notes %><br />
-  <br/>
-  <%= f.label :tags %>:
-  <%= f.text_field :tag_list %><br />
-  <br/>
-  <%= f.label :video %>
-  <%= f.file_field :video %>
-  <br/>
-  <%= f.label 'Free Downloads' %>
-  <%= select_tag :initial_free_download_count, options_for_select(LessonsController.free_download_counts) %>
-  <br/>
-    <%= f.label :language %>:
-    <%= f.select :language, User.supported_languages %><br/>
-    <br/>
+    <p>
+      <%= f.label :notes %><br />
+      <%= f.text_area :notes %>
+    </p>
 
-  <%= f.submit "Create lesson", :disable_with => translate('general.disable_with') %>
-  <%= link_to "Cancel", lessons_path %>
+    <p>
+      <%= f.label :tag_list, :Tags %><br />
+      <%= f.text_field :tag_list %>
+      <p class="help">(use commas to separate multiple tags)</p>
+    </p>
+
+  <div>
+    <%= f.label :video %>
+    <%= f.file_field :video %>
+  </div>
+
+  <div>
+    <%= f.label 'Free Downloads' %>
+    <%= select_tag :initial_free_download_count, options_for_select(LessonsController.free_download_counts) %>
+  </div>
+  <div>
+    <%= f.label :language %>
+    <%= f.select :language, User.supported_languages %>
+  </div>
+  </fieldset>
+
+  <p>
+    <%= f.submit "Create lesson", :disable_with => translate('general.disable_with') %>
+    <%= link_to "Cancel", lessons_path %>
+  </p>
 <% end %>

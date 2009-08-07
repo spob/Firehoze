@@ -1,21 +1,30 @@
-<h1>Register</h1>
+<%= render :partial => "shared/infield_head_content" %>
 
-In order to request an account, you first must verify your email information:
-<% form_for(:registration, :url => registrations_path) do |f| %>
-    <%= f.error_messages %>
-    <b>Username</b>:
-    <%= f.text_field :username %><br />
-    <br/>
-    <%= f.label :email %>:
-    <%= f.text_field :email %>
+<% form_for(:registration, :url => registrations_path, :html => { :id => "inline", :class => "register" }) do |f| %>
+  <%= f.error_messages %>
+  <fieldset>
+    <legend>Sign Up</legend>
+    <div class="help">In order to request an account, you first must verify your email information:</div>
+    <p>
+      <%= f.label :username, :Username %>
+      <%= f.text_field :username %>
+    </p>
+
+    <p>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </p>
+
     <% if APP_CONFIG[CONFIG_RESTRICT_REGISTRATION] %>
-        <br/>
+      <p>
         <%= f.label :registration_code %>:
         <%= f.text_field :registration_code %>
+      </p>
     <% end %>
-    <br/>
+  </fieldset>
 
-
+  <p>
     <%= f.submit "Register", :disable_with => translate('general.disable_with') %>
+    <%= link_to "Already have an account?", login_path %>
+  </p>
 <% end %>
-<%= link_to "Back to Login", login_path %>

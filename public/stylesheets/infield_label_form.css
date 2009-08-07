@@ -1,0 +1,113 @@
+/* FORMS: In-field labels */
+form#inline {
+    padding: 30px 40px 15px 40px;
+    background-color: #eee;
+		border:solid 10px #ccc;
+		margin-bottom:20px;
+}
+
+form#profile, form#avatar {
+  padding: 30px 40px 15px 40px;
+  background-color: #eee;
+	border:solid 1px #ccc;
+	margin-top:10px;
+}
+
+
+form#profile p input, form#profile p textarea {
+	margin:0 0 20px 0;
+}
+
+form.login, form.register, form.password_reset {
+	width:420px;
+}
+
+form fieldset  {
+  /*	border:solid 1px red;*/
+    border: none;
+    padding: 0;
+    margin:0;
+}
+
+form legend {
+    /*	border:solid 1px red;*/
+    color: #333;
+    padding: 0;
+    margin:0;
+    text-transform: uppercase;
+}
+
+form, form fieldset input, form fieldset textarea, form label {
+    font-family: Helvetica, Arial;
+    font-size: 12pt;
+}
+
+form p { position: relative; margin: 10px 0;}
+form p label { position: absolute; top: 0; left: 0;}
+form p br {display: none;}
+
+
+form fieldset select  {
+  font-size: 12pt;
+  color: #3F3F3F;
+}
+
+form fieldset p input,
+form fieldset p textarea {
+    display: block;
+    padding: 4px;
+    width: 400px;
+    margin: 0;
+}
+
+/* deviate on create lesson width */
+form.create_lesson fieldset p input,
+form.create_lesson fieldset p textarea {
+	    width: 865px;
+	}
+
+form fieldset p label {
+    width: 380px;
+    display: block;
+    margin: 5px 5px 5px 6px;
+    padding: 0;
+}
+
+form fieldset p textarea {
+    padding: 2px;
+    width: 404px;
+}
+
+/* deviate on create lesson width */
+form.create_lesson fieldset p textarea {
+    width: 869px;
+}
+
+form fieldset p textarea,
+form fieldset p input {
+    border: solid 1px #ccc;
+}
+
+form fieldset p label,
+form fieldset div {
+    color: #777;
+}
+
+form fieldset div {
+		padding: 10px 0;
+}
+form .help {
+  font-size: 10pt;
+  color: #777;
+	padding:0 0 10px 0;
+	margin:0;
+	
+}
+
+form a {
+	font-size: 12px;
+	
+}
+form input { 
+font-size: 12pt;
+}

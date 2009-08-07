@@ -1,12 +1,17 @@
-<h1>Forgot Password</h1>
+<%= render :partial => "shared/infield_head_content" %>
 
-Fill out the form below and instructions to reset your password will be emailed to you:<br />
-<br />
-
-<% form_tag password_resets_path do %>
-  <label>Email:</label><br />
-  <%= text_field_tag "email" %><br />
-  <br />
-  <%= submit_tag "Reset my password" %>
+<% form_tag password_resets_path,  :id => "inline", :class => "password_reset"  do %>
+  <fieldset>
+    <legend>Forgot Password</legend>
+    <div class="help">Fill out the form below and instructions to reset your password will be emailed to you:</div>
+    <p>
+      <label>Email:</label>
+      <%= text_field_tag "email" %>
+    </p>
+  </fieldset>
+  <p>
+    <%= submit_tag "Reset my password" %>
+    <%= link_to "Back to Login", login_path %>
+  </p>
 <% end %>
-<%= link_to "Back to Login", login_path %>
+
