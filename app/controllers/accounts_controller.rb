@@ -20,6 +20,7 @@ class AccountsController < ApplicationController
     # avoid mass assignment here
     if params[:user][:destroy_avatar] == 'true'
       @user.avatar.clear
+      @user.save
     elsif params[:user][:avatar]
       @user.update_attribute(:avatar, params[:user][:avatar])
       flash_msg = t 'account_settings.avatar_success'
