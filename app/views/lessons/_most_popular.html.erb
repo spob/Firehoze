@@ -5,7 +5,6 @@ else
   most_popular = Lesson.ready.most_popular.paginate :page => params[:page], :per_page => @per_page
 end
 %>
-
 <div class="lesson_container">
   <%= lessons_header(:most_popular) %>
   <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => most_popular %>
