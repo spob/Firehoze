@@ -44,6 +44,7 @@ namespace :db do
     create_job RunIntervalPeriodicJob, 'PeriodicJobCleanup', 'PeriodicJob.cleanup', 3600  #once an hour
     create_job RunIntervalPeriodicJob, 'CreditExpiration', 'Credit.expire_unused_credits', 3600 * 24  #once a day
     create_job RunIntervalPeriodicJob, 'LessonBuyPattern', 'LessonBuyPattern.rollup_buy_patterns', 3600  #once an hour
+    create_job RunIntervalPeriodicJob, 'LessonBuyAffiliate', 'LessonBuyAffiliate.rollup_buy_patterns', 3600  #once an hour
   end
 end
 

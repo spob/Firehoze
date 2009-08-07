@@ -22,10 +22,28 @@ class CreditTest < ActiveSupport::TestCase
         @credit = Credit.find(@credit)
         assert @credit.redeemed_at.nil?
         assert @credit.lesson.nil?
+        assert @credit.rolled_up_at.nil?
       end
 
       should "retrieve available rows" do
         assert_equal 1, Credit.available.count
+      end
+
+      should "retrieve unrolled up rows" do
+        assert_equal 1, Credit.unrolled_up.count
+      end
+
+      should "retrieve no used rows" do
+        assert Credit.used.empty?
+      end
+
+      context "with one used credit" do
+        setup { @credit2 = Factory.create(:credit) }
+
+        should "retrieve one used credit" do
+          assert_equal 1, Credit.used.count
+          assert Credit.used.include? @credit2
+        end
       end
 
       should "retrieve rows for which a warning hasn't been issues" do
