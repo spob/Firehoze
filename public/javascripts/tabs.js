@@ -1,3 +1,3 @@
 $(function() {
-	$("#tabs").tabs();
+	$('#tabs').tabs({ cookie: { expires: 30 } });
 });
