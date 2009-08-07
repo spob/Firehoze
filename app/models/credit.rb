@@ -24,6 +24,12 @@ class Credit < ActiveRecord::Base
   # Credits which have not yet been redeemed
   named_scope :available, :conditions => {:redeemed_at => nil, :expired_at => nil}
 
+  # Credits which have been used to purchase
+  named_scope :used, :conditions => "redeemed_at is not null and expired_at is null"
+
+  # Credits which have not yet been rolled up to lesson_buy_affiliates
+  named_scope :unrolled_up, :conditions => { :rolled_up_at => nil }
+
   # Credits which have not yet been warned to be about to expire
   named_scope :unwarned, :conditions => {:expiration_warning_issued_at => nil}
 
