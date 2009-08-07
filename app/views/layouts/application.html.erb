@@ -16,7 +16,19 @@
     <%= yield :head %>
   </head>
   <body>
+
+    <% if flash[:notice] or flash[:error] -%>
+    <div class="centered">
+      <div id="flash">
+        <p style="color: green"><%= flash[:notice] %></p>
+        <p style="color: red"><%= flash[:error] %></p>
+      </div>
+    </div>
+    <% end %>
+
     <div class="container <%#= "showgrid" if current_user and current_user.login == "rich" %>">
+
+
       <div class="span-40 last" id="top_nav"> 
         <%= render "shared/top_nav" %>
       </div>
@@ -29,12 +41,6 @@
         <%= render "shared/main_nav" %>
       </div>
 
-      <% if flash[:notice] or flash[:error] -%>
-        <div class="clear span-40 last" id="flash">
-          <p style="color: green"><%= flash[:notice] %></p>
-          <p style="color: red"><%= flash[:error] %></p>
-        </div>
-      <% end %>
 
       <div class="clear span-40 last" id="main_content">
         <%= yield %>

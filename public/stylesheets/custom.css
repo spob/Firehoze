@@ -1,7 +1,7 @@
 /* GENERAL */
 
 div {
-    /*border: 1px solid red;*/
+	/* border: 1px solid red;*/
 }
 
 /* TOP NAV */
@@ -136,4 +136,23 @@ img.lesson_tn {
     float: left;
     margin:0;
     padding:3px 3px 5px 0;
+}
+
+#flash {
+	text-align: center;
+	padding:18px 0 0 0;
+	margin-left: auto;
+	margin-right: auto;
+	width: 980px;
+  font-size: 1.2em;
+  line-height: 1.25;
+	font-weight:bold;
+	
+}
+.centered {
+	padding:0;
+	margin-left: auto;
+	margin-right: auto;
+  border-bottom: solid 1px #999;
+  background-color: #e3e3e3;
 }
