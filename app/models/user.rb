@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :orders, :order => 'id DESC', :dependent => :destroy
   has_many :visited_lessons, :source => :lesson, :through => :lesson_visits, :order => 'visited_at DESC'
   has_many :lesson_visits, :order => 'visited_at DESC', :dependent => :destroy
+  has_many :flags, :dependent => :destroy
   has_many :available_credits, :class_name => 'Credit',
            :conditions => { :redeemed_at => nil },
            :order => "id"

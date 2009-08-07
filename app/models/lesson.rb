@@ -58,6 +58,7 @@ class Lesson < ActiveRecord::Base
   has_many :processed_videos, :order => "id"
   has_many :lesson_buy_patterns, :order => "counter DESC", :dependent => :destroy
   has_many :lesson_buy_pairs, :order => "counter DESC", :dependent => :destroy
+  has_many :flags, :as => :flaggable, :dependent => :destroy
   has_one  :original_video
   has_one  :full_processed_video
   has_one  :preview_processed_video

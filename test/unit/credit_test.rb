@@ -42,7 +42,7 @@ class CreditTest < ActiveSupport::TestCase
 
         should "retrieve one used credit" do
           assert_equal 1, Credit.used.count
-          assert Credit.used.include? @credit2
+          assert Credit.used.include?(@credit2)
         end
       end
 
