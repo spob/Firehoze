@@ -1,19 +1,42 @@
 <%= render :partial => "shared/infield_head_content" %>
 
+<% content_for :head do -%>
+  <%= javascript_include_tag 'jquery.simplyCountable.js' %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function()
+    {
+      $('#lesson_title').simplyCountable({
+        counter: '#lesson_title_counter',
+        countType: 'characters',
+        maxCount: 50,
+        countDirection: 'down'
+      });
+      $('#lesson_synopsis').simplyCountable({
+        counter: '#lesson_synopsis_counter',
+        countType: 'characters',
+        maxCount: 500,
+        countDirection: 'down'
+      });
+    });
+  </script>
+<% end %>
+
 <% form_for(:lesson, :url => lessons_path, :html => { :multipart => true, :class => "create_lesson", :id => "inline" }) do |f| %>
   <%= f.error_messages %>
   <fieldset>
     <legend>Create Lesson</legend>
     <p>
       <%= f.label :title %><br />
-      <%= f.text_field :title %>
+      <%= f.text_field :title, :maxlength => "50" %>
+      <div class="counter"><span id="lesson_title_counter"></span> characters left</div>
     </p>
 
     <p>
       <%= f.label :synopsis %><br />
-      <%= f.text_area :synopsis %>
+      <%= f.text_area :synopsis, :maxlength => "500" %>
+      <div class="counter"><span id="lesson_synopsis_counter"></span> characters left</div>
     </p>
-
+  
     <p>
       <%= f.label :notes %><br />
       <%= f.text_area :notes %>
@@ -25,23 +48,25 @@
       <p class="help">(use commas to separate multiple tags)</p>
     </p>
 
-  <div>
-    <%= f.label :video %>
-    <%= f.file_field :video %>
-  </div>
+    <div>
+      <%= f.label :video %>
+      <%= f.file_field :video %>
+    </div>
 
-  <div>
-    <%= f.label 'Free Downloads' %>
-    <%= select_tag :initial_free_download_count, options_for_select(LessonsController.free_download_counts) %>
-  </div>
-  <div>
-    <%= f.label :language %>
-    <%= f.select :language, User.supported_languages %>
-  </div>
+    <div>
+      <%= f.label 'Free Downloads' %>
+      <%= select_tag :initial_free_download_count, options_for_select(LessonsController.free_download_counts) %>
+    </div>
+
+    <div>
+      <%= f.label :language %>
+      <%= f.select :language, User.supported_languages %>
+    </div>
   </fieldset>
 
   <p>
     <%= f.submit "Create lesson", :disable_with => translate('general.disable_with') %>
     <%= link_to "Cancel", lessons_path %>
   </p>
-<% end %>
+  <% end %>
+  

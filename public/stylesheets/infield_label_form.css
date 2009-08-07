@@ -2,28 +2,27 @@
 form#inline {
     padding: 30px 40px 15px 40px;
     background-color: #eee;
-		border:solid 10px #ccc;
-		margin-bottom:20px;
+    border:solid 10px #ccc;
+    margin-bottom:20px;
 }
 
 form#profile, form#avatar {
-  padding: 30px 40px 15px 40px;
-  background-color: #eee;
-	border:solid 1px #ccc;
-	margin-top:10px;
+    padding: 30px 40px 15px 40px;
+    background-color: #eee;
+    border:solid 1px #ccc;
+    margin-top:10px;
 }
 
-
 form#profile p input, form#profile p textarea {
-	margin:0 0 20px 0;
+    margin:0 0 20px 0;
 }
 
 form.login, form.register, form.password_reset {
-	width:420px;
+    width:420px;
 }
 
 form fieldset  {
-  /*	border:solid 1px red;*/
+    /*	border:solid 1px red;*/
     border: none;
     padding: 0;
     margin:0;
@@ -48,8 +47,8 @@ form p br {display: none;}
 
 
 form fieldset select  {
-  font-size: 12pt;
-  color: #3F3F3F;
+    font-size: 12pt;
+    color: #3F3F3F;
 }
 
 form fieldset p input,
@@ -63,8 +62,8 @@ form fieldset p textarea {
 /* deviate on create lesson width */
 form.create_lesson fieldset p input,
 form.create_lesson fieldset p textarea {
-	    width: 865px;
-	}
+    width: 865px;
+}
 
 form fieldset p label {
     width: 380px;
@@ -84,7 +83,7 @@ form.create_lesson fieldset p textarea {
 }
 
 form fieldset p textarea,
-form fieldset p input {
+form fieldset p input { 
     border: solid 1px #ccc;
 }
 
@@ -94,20 +93,33 @@ form fieldset div {
 }
 
 form fieldset div {
-		padding: 10px 0;
+    padding: 10px 0;
 }
+
 form .help {
-  font-size: 10pt;
-  color: #777;
-	padding:0 0 10px 0;
-	margin:0;
-	
+    font-size: 10pt;
+    color: #777;
+    padding:0 0 10px 0;
+    margin:0;
 }
 
 form a {
-	font-size: 12px;
-	
+    font-size: 12px;
 }
+
 form input { 
-font-size: 12pt;
+    font-size: 12pt;
 }
+
+/* CHARACTER COUNTER */
+.counter {
+    margin: 0;
+    padding: 0  0 10px 5px;
+}
+
+.counter .safe, .counter .over {
+    padding:3px; color:white; font-weight:bold;
+}
+
+.counter .safe { color: inherit;}
+.counter .over {background:red;}
