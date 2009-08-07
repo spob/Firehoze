@@ -5,7 +5,7 @@
     <legend>Forgot Password</legend>
     <div class="help">Fill out the form below and instructions to reset your password will be emailed to you:</div>
     <p>
-      <label>Email:</label>
+      <label for="email">Email</label><br />
       <%= text_field_tag "email" %>
     </p>
   </fieldset>
@@ -14,4 +14,3 @@
     <%= link_to "Back to Login", login_path %>
   </p>
 <% end %>
-
