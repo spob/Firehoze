@@ -22,6 +22,7 @@ class OriginalVideo < Video
                                                                'video/3gpp',
                                                                'video/x-ms-wmv',
                                                                'video/mp4',
+                                                               'video/x-m4v',
                                                                'video/mpeg',
                                                                'video/x-flv',
                                                                'application/x-flash-video']
