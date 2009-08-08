@@ -28,13 +28,8 @@
   <div class="clear prepend-top span-40 last" id="lesson_summary_container">
     <!-- VIDEO -->
     <div class="span-22" id="lesson_container">
-      <% content_for :head do -%>
-          <%= javascript_include_tag 'swfobject' %>
-      <% end %>
       <%= player({:streamer => "rtmp://e1f1.simplecdn.net/play", :file => @lesson.preview_processed_video.try("output_rtmp_path"), :skin => 'bluemetalpreview'}, {:width => 540, :height => 400}) %>
-
       <%= render :partial => "lessons/tag_links_for", :object => @lesson, :locals => { :options => { :css_classes =>  "tags_lesson_show" } } %>
-
     </div>
 
 <%# LESSON DESCRIPTION %>
