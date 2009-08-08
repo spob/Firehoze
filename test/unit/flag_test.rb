@@ -3,7 +3,11 @@ require 'test_helper'
 class FlagTest < ActiveSupport::TestCase
   context "given an existing record" do
     setup do
-      @flag = Factory.create(:flag)
+      @lesson = Factory.create(:lesson)
+      @lesson.flags.create(:status => "PENDING", :flag_type => "Smut", :comments => "Some comments")
+      #@flag = Factory.create(:flag)
     end
+
+    should_belong_to :user  
   end
 end
