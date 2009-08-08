@@ -13,21 +13,20 @@
     <!--[if lt IE 8]>
     <%= stylesheet_link_tag 'blueprint/ie', :media => "screen, projection" %>
       <![endif]-->
+    <%= javascript_include_tag 'flash.js' %>
     <%= yield :head %>
   </head>
   <body>
-
     <% if flash[:notice] or flash[:error] -%>
-    <div class="centered">
-      <div id="flash">
-        <p style="color: green"><%= flash[:notice] %></p>
-        <p style="color: red"><%= flash[:error] %></p>
+      <div class="flash">
+        <div id="centered_flash">
+          <%= content_tag(:p, flash[:notice], :class => "notice_msg")  if flash[:notice] %>
+          <%= content_tag(:p, flash[:error], :class => "error_msg") if flash[:error] %>
+        </div>
       </div>
-    </div>
     <% end %>
 
     <div class="container <%#= "showgrid" if current_user and current_user.login == "rich" %>">
-
 
       <div class="span-40 last" id="top_nav"> 
         <%= render "shared/top_nav" %>
