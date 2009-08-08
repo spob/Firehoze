@@ -8,7 +8,7 @@ class CreateFlags < ActiveRecord::Migration
       t.integer :flaggable_id, :null => false
       t.string :flaggable_type, :null => false
       t.references :user, :null => false
-      t.string :flag_type, :null => false, :limit => 20
+      t.string :reason_type, :null => false, :limit => 20
       t.string :status, :null => false, :limit => 20
       t.string :comments, :null => false
       t.string :response, :null => true
