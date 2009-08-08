@@ -7,7 +7,7 @@
 
   <div class="span-8 last tag_cloud" id="right_content">
     <h4>Tags</h4>
-      <% tag_cloud tags, %w(css1 css2 css3 css4) do |tag, css_class| %>
+      <% tag_cloud tags[0..100], %w(css1 css2 css3 css4) do |tag, css_class| %>
         <%= link_to tag.name, list_lessons_path(:collection => :tagged_with, :tag => tag.name), :class => css_class %>
       <% end %>
   </div>
