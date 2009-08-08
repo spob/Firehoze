@@ -1,8 +1,9 @@
 require 'test_helper'
 
 class FlagTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  context "given an existing record" do
+    setup do
+      @flag = Factory.create(:flag)
+    end
   end
 end
