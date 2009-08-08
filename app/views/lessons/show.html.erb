@@ -59,6 +59,13 @@
         <%= l @lesson.created_at %>
       </p>
 
+      <% if current_user.try("is_admin?") or @lesson.instructor == current_user %>
+      <p>
+        <b>State:</b>
+        <%= translate("lesson.#{@lesson.status}") %>
+      </p>
+      <% end %>
+
       <p>
         <%= free_remaining_text @lesson %>
       </p>
@@ -66,6 +73,7 @@
       <p>
         <%= number_of_students_phrase(@lesson) %>
       </p>
+
     </div>
   </div>
 </div>
@@ -197,10 +205,6 @@
             </tr>
             <%= render :partial => "video", :collection => @lesson.videos %>
           </table>
-          <p>
-            <b>State:</b>
-            <%= translate("lesson.#{@lesson.status}") %>
-          </p>
         </div>
     <% elsif current_user == @lesson.instructor %>
         <h3><a href="#">State</a></h3>
