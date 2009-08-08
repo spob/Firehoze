@@ -58,7 +58,7 @@ class ProcessedVideo < Video
         self.change_status(VIDEO_STATUS_READY)
       else
         self.change_status(VIDEO_STATUS_FAILED, job.error_message)
-        Notifier.deliver_lesson_processing_failed self.lesson
+        Notifier.deliver_lesson_processing_failed self
       end
     end
     job.successful?
