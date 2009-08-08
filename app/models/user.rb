@@ -1,7 +1,9 @@
 # As its name implies, a user is a authorized user of the site. It contains information about the user
 # (for example, first and last name), their encrypted password, etc.
 class User < ActiveRecord::Base
-  
+
+  has_friendly_id :login
+
   # Ajaxful-rating plugin
   ajaxful_rater
 
