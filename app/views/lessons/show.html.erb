@@ -1,9 +1,9 @@
 <% content_for :head do -%>
-  <%= javascript_include_tag 'swfobject' %>
-  <%= javascript_include_tag 'jquery-ui-1.7.2.custom.min.js' %>
-  <%= stylesheet_link_tag 'jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" %>
-  <%= javascript_include_tag 'tabs.js','jquery.cookie.js' %>
-  <%= javascript_include_tag 'accordian.js' %>
+    <%= javascript_include_tag 'swfobject' %>
+    <%= javascript_include_tag 'jquery-ui-1.7.2.custom.min.js' %>
+    <%= stylesheet_link_tag 'jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" %>
+    <%= javascript_include_tag 'tabs.js', 'jquery.cookie.js' %>
+    <%= javascript_include_tag 'accordian.js' %>
 <% end %>
 
 <div id="lesson_container">
@@ -28,7 +28,11 @@
   <div class="clear prepend-top span-40 last" id="lesson_summary_container">
     <!-- VIDEO -->
     <div class="span-22" id="lesson_container">
-      <%= player({:streamer => "rtmp://e1f1.simplecdn.net/play", :file => @lesson.preview_processed_video.try("output_rtmp_path"), :skin => 'bluemetalpreview'}, {:width => 540, :height => 400}) %>
+      <% if @lesson.owned_by?(current_user) or @lesson.instructed_by?(current_user) %>
+          <%= player({:streamer => "rtmp://e1f1.simplecdn.net/play", :file => @lesson.full_processed_video.try("output_rtmp_path"), :skin => 'bluemetal', :autostart => true}, {:width => 540, :height => 400}) %>
+      <% else %>
+          <%= player({:streamer => "rtmp://e1f1.simplecdn.net/play", :file => @lesson.preview_processed_video.try("output_rtmp_path"), :skin => 'bluemetal'}, {:width => 540, :height => 400}) %>
+      <% end %>
       <%= render :partial => "lessons/tag_links_for", :object => @lesson, :locals => { :options => { :css_classes =>  "tags_lesson_show" } } %>
     </div>
 
@@ -55,10 +59,10 @@
       </p>
 
       <% if current_user.try("is_admin?") or @lesson.instructor == current_user %>
-      <p>
-        <b>State:</b>
-        <%= translate("lesson.#{@lesson.status}") %>
-      </p>
+          <p>
+            <b>State:</b>
+            <%= translate("lesson.#{@lesson.status}") %>
+          </p>
       <% end %>
 
       <p>
@@ -90,7 +94,7 @@
     </div>
   </div>
 
-  <% #TAG CLOUD   %>
+  <% #TAG CLOUD     %>
   <%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts %>
 
 </div>
@@ -211,7 +215,7 @@
   </div>
 </div>
 
-<% # MISC ACTIONS  %>
+<% # MISC ACTIONS    %>
 <div class="clear span-40 last prepend-top">
   <% if @lesson.can_edit? current_user %>
       <%= link_to 'Edit', edit_lesson_path(@lesson) %> |

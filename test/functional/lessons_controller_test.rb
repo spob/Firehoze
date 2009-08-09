@@ -176,7 +176,7 @@ class LessonsControllerTest < ActionController::TestCase
 
       should_assign_to :lesson
       should_not_set_the_flash
-      should_redirect_to("watch screen") { watch_lesson_path(@lesson) }
+      should_redirect_to("watch screen") { lesson_path(@lesson) }
 
       should "have 4 free credits" do
         assert_equal 4, @lesson.free_credits.available.size

@@ -25,7 +25,7 @@ class AcquireLessonsController < ApplicationController
         LessonVisit.touch(@lesson, current_user, request.session.session_id, true)
       end
 
-      redirect_to watch_lesson_path(@lesson)
+      redirect_to lesson_path(@lesson)
     end
   end
 end

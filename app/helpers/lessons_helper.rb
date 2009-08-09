@@ -66,11 +66,11 @@ module LessonsHelper
   end
 
   # Deprecated
-  def button_to_buy_or_watch(lesson)
-    if lesson.ready?
-      button_to watch_text(lesson), watch_lesson_path(lesson), :method => :get
-    end
-  end
+  #def button_to_buy_or_watch(lesson)
+  #  if lesson.ready?
+  #    button_to watch_text(lesson), watch_lesson_path(lesson), :method => :get
+  #  end
+  #end
 
   def button_to_buy(lesson)
     if lesson.ready? and current_user

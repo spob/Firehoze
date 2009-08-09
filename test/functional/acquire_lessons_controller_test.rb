@@ -51,7 +51,7 @@ class AcquireLessonsControllerTest < ActionController::TestCase
         end
         should_assign_to :lesson
         should_not_set_the_flash
-        should_redirect_to("watch lesson screen") { watch_lesson_path(@lesson) }
+        should_redirect_to("watch lesson screen") { lesson_path(@lesson) }
       end
     end
   end

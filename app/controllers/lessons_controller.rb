@@ -87,7 +87,7 @@ class LessonsController < ApplicationController
         Lesson.transaction do
           if @lesson.consume_free_credit current_user
             current_user.wishes.delete(@lesson) if current_user.on_wish_list?(@lesson)
-            redirect_to watch_lesson_path(@lesson)
+            redirect_to lesson_path(@lesson)
           else
             # This should only happen in very rare circumstances with concurrency problems
             flash[:error] = t('lesson.need_credits')
