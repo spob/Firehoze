@@ -14,6 +14,7 @@
     <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
   </p>
   <% if @user.avatar? %>
-    <%= link_to('Delete current', user_url(@user, :destroy_avatar => 'true'), :method => "put", :confirm => 'Are you sure?').gsub('&', '&amp;') %>
+    <%= link_to('Delete current', destroy_avatar_accounts_path(@user),
+                html_options = {:method => :post, :confirm => 'Are you sure?'} ) %>
   <% end %>
 <% end %>

@@ -17,6 +17,15 @@ class AccountsControllerTest < ActionController::TestCase
       should_render_template "show"
     end
 
+    context "on POST to destroy_avatar" do
+      setup { post :destroy_avatar }
+
+      should_assign_to :user
+      should_respond_with :redirect
+      should_set_the_flash_to :avatar_cleared
+      should_redirect_to("edit user page") { edit_user_path(assigns(:user)) }
+    end
+
     context "on GET to :edit" do
       setup { get :edit, :id => Factory(:user).id }
 

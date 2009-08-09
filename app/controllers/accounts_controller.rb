@@ -1,20 +1,28 @@
 # The accounts controller allows the user to update personal information on their account
 class AccountsController < ApplicationController
-  before_filter :require_user
+  before_filter :require_user, :populate_user
 
   verify :method => :put, :only => [ :update ], :redirect_to => :home_path
+  verify :method => :post, :only => [ :destroy_avatar ], :redirect_to => :home_path
 
   def show
-    @user = @current_user
   end
 
   def edit
-    @user = @current_user
+  end
+
+  def destroy_avatar
+    @user.avatar.clear
+    if @user.save
+      flash[:notice] = t 'account_settings.avatar_cleared'
+    else
+      # getting here because not all (required) fields are getting passed in ...
+      flash[:error] = t 'account_settings.update_error'
+    end
+    redirect_to edit_user_path(@user)
   end
 
   def update
-
-    @user = @current_user
     flash_msg = t 'account_settings.update_success'
 
     # avoid mass assignment here
@@ -45,5 +53,11 @@ class AccountsController < ApplicationController
   rescue Exception => e
     flash[:error] = e.message
     redirect_to edit_user_path(@user)
+  end
+
+  private
+
+  def populate_user
+    @user = current_user
   end
 end

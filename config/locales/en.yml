@@ -127,6 +127,7 @@ en:
   
   account_settings:
     avatar_success: Hey, that's a nice picture!
+    avatar_cleared: You have successfully removed your avatar
     update_error: Oops, something wasn't quite right with the information you entered
     update_success: Your account was successfully updated
   
