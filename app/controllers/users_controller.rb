@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => [:edit, :update, :index, :private]
+  before_filter :require_user, :only => [:edit, :update, :list, :private]
 
   permit ROLE_ADMIN, :except => [:new, :create, :show, :edit, :private]
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update ], :redirect_to => :home_path
 
-  def index
+  def list
     @users = User.list params[:page]
   end
 

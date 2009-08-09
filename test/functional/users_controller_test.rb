@@ -41,13 +41,13 @@ class UsersControllerTest < ActionController::TestCase
         @user.has_role 'admin'
       end
 
-      context "on GET to :index" do
-        setup { get :index }
+      context "on GET to :list" do
+        setup { get :list }
 
         should_assign_to :users
         should_respond_with :success
         should_not_set_the_flash
-        should_render_template "index"
+        should_render_template "list"
       end
 
       context "on GET to :show" do

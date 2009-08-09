@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.home 'home', :controller => 'home', :action => 'show'
   map.resource  :accounts, :only => [ :edit, :show, :update ], :member => { :destroy_avatar => :post }
-  map.resource  :accounts, :member => { :destroy_avatar => :post }
+  # map.resource  :accounts, :member => { :destroy_avatar => :post }
   map.resources :acquire_lessons, :only => [ :create, :new ]
   map.resources :carts, :only => [ :show ]
   map.resources :credits
@@ -30,6 +30,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :registrations, :only => [ :new, :create ] do |registration|
     registration.resources :users, :only => [ :new, :create ]
   end
+
+  map.redirect '/admin', :controller => 'users', :action => 'list'
   map.current_cart 'cart', :controller => 'carts', :action => 'show', :id => 'current'
   map.root :controller => "lessons", :action => "index"
 end
