@@ -52,17 +52,17 @@ class User < ActiveRecord::Base
 
   # PAPERCLIP
   has_attached_file :avatar,
-    :styles => {
-    :tiny => ["35x35#", :png],
-    :small => ["75x75#", :png],
-    :medium => ["110x110#", :png],
-    :large => ["220x220#", :png]
-  },
-    :storage => :s3,
-    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
-    :s3_permissions => 'public-read',
-    :path => "#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/users/:attachment/:id/:style/:basename.:extension",
-    :bucket => APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]
+                    :styles => {
+                            :tiny => ["35x35#", :png],
+                            :small => ["75x75#", :png],
+                            :medium => ["110x110#", :png],
+                            :large => ["220x220#", :png]
+                    },
+                    :storage => :s3,
+                    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+                    :s3_permissions => 'public-read',
+                    :path => "#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/users/:attachment/:id/:style/:basename.:extension",
+                    :bucket => APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]
 
   validates_attachment_size :avatar, :less_than => 3.megabytes, :message => "All uploaded images must be less then 3 megabytes"
   validates_attachment_content_type :avatar, :content_type => [ 'image/gif', 'image/png', 'image/x-png', 'image/jpeg', 'image/pjpeg', 'image/jpg' ]
@@ -72,6 +72,12 @@ class User < ActiveRecord::Base
   def self.default_avatar_url(style)
     # "http://#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}/users/avatars/missing/%s/missing.png" % style.to_s
     "/images/users/avatars/%s/missing.png" % style.to_s
+  end
+
+  # convert an amazon url for an avator to a cdn url
+  def self.convert_avatar_url_to_cdn(url)
+    regex = Regexp.new("//.*#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}")
+    url.gsub(regex, "//" + APP_CONFIG[CONFIG_CDN_SERVER])
   end
 
   def self.admins
@@ -122,18 +128,18 @@ class User < ActiveRecord::Base
   def city_and_state
     [ city, state ].reject { |e| e.blank? }.join(', ')
   end
-  
+
   def name_or_username
     return 'Firehoze member' if username.blank? and username.blank?
-      full_name || username
+    full_name || username
   end
 
   def username_or_name
     return 'Firehoze member' if username.blank? and username.blank?
-      username || full_name
+    username || full_name
   end
 
-  def username 
+  def username
     login
   end
 

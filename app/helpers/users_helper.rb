@@ -23,6 +23,7 @@ module UsersHelper
     return unless user
     size = options[:size] || :medium
     avatar_url = user.avatar.file? ? user.avatar.url(size) : User.default_avatar_url(size)
-    image_tag avatar_url, options.merge({ :alt => user.full_name, :class => 'avatar' })
+    cdn_avatar_url = User.convert_avatar_url_to_cdn(avatar_url)
+    image_tag cdn_avatar_url, options.merge({ :alt => user.full_name, :class => 'avatar' })
   end
 end

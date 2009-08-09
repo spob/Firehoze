@@ -14,7 +14,7 @@ test:
   aws_s3_input_video_bucket: xyz
   aws_s3_output_video_bucket: abc
   aws_s3_thumbs_bucket: aaa123
-  aws_s3_images_bucket: aab123
+  aws_s3_images_bucket: images.firehoze.com
 
 production:
   access_key_id: AKIAJHAN3EBVVY6W7MVA
