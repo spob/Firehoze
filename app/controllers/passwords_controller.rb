@@ -1,17 +1,18 @@
 # Controller to allow a user to change their password when they are logged in
 class PasswordsController < ApplicationController
   before_filter :require_user
-  
+  before_filter :find_user
+
   verify :method => :put, :only => [ :update ], :redirect_to => :home_path
 
   def edit
-    @user = @current_user
+    # @user = @current_user
   end
 
   def update
-    @user = User.find(@current_user.id)
+    # @user = User.find(@current_user.id)
     @user.current_password = params[:user][:current_password]
-    unless @user.valid_current_password?
+    unless @user.valid_current_password? or @current_user.is_admin?
       # user typed a bad value for current password
       @user.password = params[:user][:password]
       render :action => :edit
@@ -24,6 +25,16 @@ class PasswordsController < ApplicationController
       redirect_to edit_user_url(@user)
     else
       render :action => :edit
+    end
+  end
+
+  private
+
+  def find_user
+    if @current_user.is_admin?
+      @user = User.find params[:id]
+    else
+      @user = @current_user
     end
   end
 end
