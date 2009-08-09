@@ -7,6 +7,8 @@ class UsersController < ApplicationController
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update ], :redirect_to => :home_path
 
+  layout :layout_for_action
+
   def list
     @users = User.list params[:page]
   end
@@ -42,6 +44,10 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
   end
 
+  def show_admin
+    @user = User.find params[:id]
+  end
+
   def private
     @user = User.find params[:id]
     unless @user == @current_user
@@ -54,7 +60,14 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
   end
 
+  def edit_admin
+    @user = User.find params[:id]
+  end
+
   def update
+    
+    raise params.inspect
+    
     # Required for supporting checkboxes
     params[:user][:role_ids] ||= []
 
@@ -77,6 +90,10 @@ class UsersController < ApplicationController
 end
 
 private
+
+def layout_for_action
+  %w(show_admin edit_admin list).include?(params[:action]) ? 'admin' : 'application'
+end
 
 def populate_user_from_registration_and_params
   user = User.new(params[:user])

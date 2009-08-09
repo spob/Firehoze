@@ -1,5 +1,5 @@
 <tr>
- <td><%= user.login %></td>
+ <td><%= link_to "#{user.login}", show_admin_user_path(user) %></td>
  <td><%= user.email %></td>
  <td><%= "#{user.first_name} " unless user.first_name.nil? %><%= user.last_name %></td>
  <td><%= user.active %></td>
@@ -9,5 +9,5 @@
  <td><%= user.last_login_ip %></td>
  <td><%= l user.current_login_at if user.current_login_at %></td>
  <td><%= user.current_login_ip %></td>
- <td><%= link_to "View", user_path(user) %>&nbsp;<%= link_to "Edit", edit_user_path(user) %></td>
+ <td><%= link_to "Edit", edit_admin_user_path(user) %>&nbsp;<%= link_to "Public", user_path(user) %></td>
 </tr>

@@ -5,6 +5,8 @@ class UserLogonsController < ApplicationController
   # admins only
   permit ROLE_ADMIN
 
+  layout 'admin'
+
   def index
     @user_logons = UserLogon.list params[:page]
   end

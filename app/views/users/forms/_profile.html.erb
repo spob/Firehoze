@@ -1,8 +1,11 @@
 <% form_for(:user, :url => accounts_path(@user), :html => { :method => :put, :id => "profile" }) do |f| %>
 <%= f.error_messages %>
 <fieldset>
+  
+  <% unless params[:action] == "edit_admin" -%> 
   <legend>Update Your Profile</legend>
   <div class="help">View your public profile <%= link_to 'here', user_path(current_user) %></div>
+  <% end -%>
   <p>
     Username:
     <%= f.text_field :login, :disabled => true %>
@@ -40,7 +43,7 @@
 </fieldset>
 
 <p>
-  <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
+  <%= f.submit "Update" %>
   <%= link_to 'Cancel', home_path %>
 </p>
 <% end %>

@@ -6,6 +6,8 @@ class PeriodicJobsController < ApplicationController
   verify :method => :post, :only => [:rerun ],
           :redirect_to => :periodic_jobs_path
 
+  layout 'admin'
+
   def index
     @periodic_jobs = PeriodicJob.list params[:page], ROWS_PER_PAGE
   end

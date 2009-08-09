@@ -4,6 +4,8 @@ class SkusController < ApplicationController
   # Admins only
   permit ROLE_ADMIN
 
+  layout 'admin'
+
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
   verify :method => :destroy, :only => [:delete ], :redirect_to => :home_path

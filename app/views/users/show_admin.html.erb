@@ -1,0 +1,89 @@
+
+<p>
+  <%= avatar_tag @user, :size => :medium %>
+</p>
+
+<p>
+    <b>Username:</b>
+    <%= h @user.login %>
+</p>
+
+<p>
+    <b>Email:</b>
+    <%= h @user.email %>
+</p>
+
+<p>
+    <b>First Name:</b>
+    <%= h @user.first_name %>
+</p>
+
+<p>
+    <b>Last Name:</b>
+    <%= h @user.last_name %>
+</p>
+
+<p>
+    <b>Bio:</b>
+    <%= textilize(@user.bio) unless @user.bio.blank? %>
+</p>
+
+<p>
+    <b>User Time Zone:</b>
+    <%= h @user.time_zone %>
+</p>
+
+<p>
+  <b>Language:</b>
+  <%= h language_value(@user.language) %>
+</p>
+
+<p>
+    <b>Active:</b>
+    <%= h @user.active %>
+</p>
+
+<p>
+    <b>Login count:</b>
+    <%= h @user.login_count %>
+</p>
+
+<p>
+    <b>Failed login count:</b>
+    <%= h @user.failed_login_count %>
+</p>
+
+<p>
+    <b>Last request at:</b>
+    <%= l @user.last_request_at if @user.last_request_at %>
+</p>
+
+<p>
+    <b>Last login at:</b>
+    <%= l @user.last_login_at if  @user.last_login_at %>
+</p>
+
+<p>
+    <b>Current login at:</b>
+    <%= l @user.current_login_at if @user.current_login_at %>
+</p>
+
+<p>
+    <b>Last login ip:</b>
+    <%= h @user.last_login_ip %>
+</p>
+
+<p>
+    <b>Current login ip:</b>
+    <%= h @user.current_login_ip %>
+</p>
+<p>
+    <b>Roles:</b> <br/>
+    <% for role in @user.roles %>
+        <%= role.name %> <br/>
+    <% end %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_user_path(@user) %>
+<%= link_to 'List', users_path %>

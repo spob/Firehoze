@@ -2,7 +2,7 @@
 class UserLogon < ActiveRecord::Base
   # todo: not sure this is necessary...Bob to investigate
   acts_as_authorizable
-  
+
   belongs_to :user
 
    # Basic paginated listing finder
