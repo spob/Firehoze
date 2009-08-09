@@ -1,8 +1,0 @@
-<% content_for :head do -%>
-  <%= javascript_include_tag 'swfobject' %>
-<% end %>
-
-<h1><%= h @lesson.title %></h1>
-<%= player({:streamer => "rtmp://e1f1.simplecdn.net/play", :file => @lesson.full_processed_video.output_rtmp_path, :skin => 'bluemetal', :autostart => true},{:width => 640, :height => 480}) %>
-
-<%= link_to "Back to lesson", lesson_path(@lesson) %>
