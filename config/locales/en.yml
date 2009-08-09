@@ -154,19 +154,21 @@ en:
     logout_success: Logout successful
 
   user:
+    account_details_for: Account Details for
     account_settings: Account Settings
-    registration_no_longer_valid: Registration no longer valid
     account_reg_success: Account registered
     account_update_success: Account updated
-    login_required: Username can't be empty
-    profile: Profile
-    password: Password
     avatar: Avatar
-    order_history: Order History
     credit_history: Credit History
+    login_required: Username can't be empty
+    password: Password
+    profile: Profile
     not_permitted_to_view: Sorry, you were not authorized to view that page
     notices: Notices
+    order_history: Order History
     privacy: Privacy
+    registration_no_longer_valid: Registration no longer valid
+    roles: Roles
 
   wish:
     create_success: Lesson added to your wish list
