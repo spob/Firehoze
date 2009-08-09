@@ -199,13 +199,13 @@ class LessonsControllerTest < ActionController::TestCase
           assert @lesson.full_processed_video.url
           @user.credits.create!(:price => 0.99, :lesson => @lesson)
           assert @user.owns_lesson?(@lesson)
-          get :watch, :id => @lesson
+          get :show, :id => @lesson
         end
 
         should_assign_to :lesson
         should_respond_with :success
         should_not_set_the_flash
-        should_render_template "watch"
+        should_render_template "show"
       end
 
       context "for which the user is the instructor" do
@@ -214,13 +214,13 @@ class LessonsControllerTest < ActionController::TestCase
           @lesson = assign_video(@lesson)
           @lesson.update_attribute(:instructor, @user)
           assert !@user.owns_lesson?(@lesson)
-          get :watch, :id => @lesson
+          get :show, :id => @lesson
         end
 
         should_assign_to :lesson
         should_respond_with :success
         should_not_set_the_flash
-        should_render_template "watch"
+        should_render_template "show"
       end
 
       context "with no available credits" do
