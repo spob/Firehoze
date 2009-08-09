@@ -11,7 +11,7 @@ class AccountsController < ApplicationController
   def edit
   end
 
-  def destroy_avatar
+  def clear_avatar
     @user.avatar.clear
     if @user.save
       flash[:notice] = t 'account_settings.avatar_cleared'
@@ -58,6 +58,6 @@ class AccountsController < ApplicationController
   private
 
   def populate_user
-    @user = current_user
+    @user = User.find(params[:id])
   end
 end

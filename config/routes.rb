@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
+
   map.home 'home', :controller => 'home', :action => 'show'
-  map.resource  :accounts, :only => [ :edit, :show, :update ], :member => { :destroy_avatar => :post }
+  map.resources  :accounts, :only => [ :edit, :show, :update, :clear_avatar ], :member => { :clear_avatar => :post }
   map.resources :acquire_lessons, :only => [ :create, :new ]
   map.resources :carts, :only => [ :show ]
   map.resources :credits
@@ -22,10 +23,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :periodic_jobs, :member => { :rerun => :post }
   map.resources :store, :only => :show
   map.resources :skus, :has_many => :discounts, :shallow => true
-  map.resource  :user_session, :only => [ :create, :destroy, :new ]
+  map.resources  :user_session, :only => [ :create, :destroy, :new ]
   map.resources :users, :member => { :show_admin => :get, :edit_admin => :get }, :collection => { :list => :get }
   map.resources :user_logons
-  map.resource  :wish_lists, :only => [ :create, :destroy ]
+  map.resources  :wish_lists, :only => [ :create, :destroy ]
   map.resources :registrations, :only => [ :new, :create ] do |registration|
     registration.resources :users, :only => [ :new, :create ]
   end
@@ -33,4 +34,7 @@ ActionController::Routing::Routes.draw do |map|
   map.redirect '/admin', :controller => 'users', :action => 'list'
   map.current_cart 'cart', :controller => 'carts', :action => 'show', :id => 'current'
   map.root :controller => "lessons", :action => "index"
+
+  map.connect ':controller/:action/:id.:format'
+  map.connect ':controller/:action/:id'
 end
