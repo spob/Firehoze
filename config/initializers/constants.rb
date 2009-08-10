@@ -65,3 +65,6 @@ FLAG_SPAM = 'spam'
 FLAG_OFFENSIVE = 'offensive'
 FLAG_DANGEROUS = 'dangerous'
 FLAG_IP = 'ip'
+
+# flag status
+FLAG_STATUS_PENDING = 'pending'

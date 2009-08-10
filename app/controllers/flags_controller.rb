@@ -5,14 +5,14 @@ class FlagsController < ApplicationController
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
 
   def create
-    @flag = @flagger.flags.new(params[:flags])
+    @flag = @flagger.flags.new(params[:flag])
+    @flag.status = FLAG_STATUS_PENDING
+    @flag.user = current_user
     if @flag.save
-      flash[:notice] = t(flag.create_success)
-      respond_to do |format|
-        format.html {redirect_to :controller => @flagger.class.to_s.pluralize.downcase, :action => :show, :id => @flagger.id}
-      end
+      flash[:notice] = t('flag.create_success')
+      redirect_to :controller => @flagger.class.to_s.pluralize.downcase, :action => :show, :id => @flagger.id
     else
-      render :action => :new
+      render :action => "new"
     end
   end
 

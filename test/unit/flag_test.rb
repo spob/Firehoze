@@ -9,6 +9,6 @@ class FlagTest < ActiveSupport::TestCase
     end
 
     should_belong_to :user
-    should_validate_presence_of :user, :status , :reason_type
+    should_validate_presence_of :user, :status , :reason_type, :comments
   end
 end
