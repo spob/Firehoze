@@ -47,6 +47,14 @@ en:
     update_success: Successfully updated discount
     destroyed_success: Successfully destroyed discount
 
+  flag:
+    create_success: Thank you for bringing this to our attention. Your feedback has been recorded and will be reviewed.
+    flag_lewd: Sexual Content
+    flag_spam: Spam
+    flag_offensive: Offensive or Abusive
+    flag_dangerous: Depicts a Dangerous Act
+    flag_ip: Infringes My Rights
+
   gift_certificate:
     already_redeemed: The gift certificate '{{code}}' has already been redeemed
     invalid_gift_certificate: No such gift certificate '{{code}}'

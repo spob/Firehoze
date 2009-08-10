@@ -58,3 +58,13 @@ VIDEO_STATUS_READY = "Ready"
 # Hash codes
 HASH_PREFIX = "asdfas"
 HASH_SUFFIX = "fdasae"
+
+# flag reason codes
+FLAG_LEWD = 'lewd'
+FLAG_SPAM = 'spam'
+FLAG_OFFENSIVE = 'offensive'
+FLAG_DANGEROUS = 'dangerous'
+FLAG_IP = 'ip'
+
+# flag status
+FLAG_STATUS_PENDING = 'pending'

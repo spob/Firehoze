@@ -85,6 +85,17 @@ class Lesson < ActiveRecord::Base
               lambda{ |user| { :conditions => ["lessons.id not in (?)", user.lessons.collect(&:id)] }
               }
 
+  @@flag_reasons = [
+          FLAG_LEWD,
+          FLAG_SPAM,
+          FLAG_OFFENSIVE,
+          FLAG_DANGEROUS,
+          FLAG_IP ]
+
+  def self.flag_reasons
+    @@flag_reasons
+  end
+
   # Basic paginated listing finder
   # if the user is specified and is an admin, then lessons will be retrieved regardless of
   # the state of the video. Otherwise, only READY videos will be retrieved
@@ -163,7 +174,7 @@ class Lesson < ActiveRecord::Base
       update_status_attribute("Unknown status")
     end
   end
-  
+
   def to_param
     "#{id}-#{title.parameterize}"
   end
