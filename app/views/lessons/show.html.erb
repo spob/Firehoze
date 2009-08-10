@@ -220,6 +220,7 @@
   <% if @lesson.can_edit? current_user %>
       <%= link_to 'Edit', edit_lesson_path(@lesson) %> |
   <% end %>
+  <%= link_to "Flag", new_flag_path(:flagger_type => 'Lesson') %> |
   <%= link_to 'Home', home_path %> |
   <%= link_to pluralize(@lesson.reviews.size, 'Review'), lesson_reviews_path(@lesson) %> |
   <%= link_to pluralize(@lesson.comments.size, 'Comments'), lesson_lesson_comments_path(@lesson) %>
