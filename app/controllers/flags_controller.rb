@@ -1,18 +1,23 @@
 class FlagsController < ApplicationController
   before_filter :require_user
-  before_filter :find_flagger, :except => [ :new ]
+  before_filter :find_flagger
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
 
   def create
-    flag = @flagger.flags.create(params[:flags])
-    respond_to do |format|
-      format.html {redirect_to :controller => @flagger.class.to_s.pluralize.downcase, :action => :show, :id => @flagger.id}
+    @flag = @flagger.flags.new(params[:flags])
+    if @flag.save
+      flash[:notice] = t(flag.create_success)
+      respond_to do |format|
+        format.html {redirect_to :controller => @flagger.class.to_s.pluralize.downcase, :action => :show, :id => @flagger.id}
+      end
+    else
+      render :action => :new
     end
   end
 
   def new
-    new_flag
+    @flag = @flagger.flags.new
   end
 
   private
@@ -21,10 +26,4 @@ class FlagsController < ApplicationController
     @klass = params[:flagger_type].capitalize.constantize
     @flagger = @klass.find(params[:flagger_id])
   end
-
-  def new_flag
-    @klass = params[:flagger_type].capitalize.constantize
-    @flag = @klass.flags.new
-  end
-
 end

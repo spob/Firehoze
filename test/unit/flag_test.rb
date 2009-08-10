@@ -8,6 +8,7 @@ class FlagTest < ActiveSupport::TestCase
       #@flag = Factory.create(:flag)
     end
 
-    should_belong_to :user  
+    should_belong_to :user
+    should_validate_presence_of :user, :status , :reason_type
   end
 end

@@ -1,1 +1,22 @@
-<H1>Flag Inappropriate Content for <%= @flag.flaggable_type %></H1>
+<H1>Flag Inappropriate Content</H1>
+
+
+<% form_for :flag, :url => flags_url(@flag) do |f| %>
+    <%= f.error_messages %>
+    <%= hidden_field_tag(:flagger_type, @flag.flaggable.class.to_s) %>
+    <%= hidden_field_tag(:flagger_id, @flag.flaggable.id) %>
+    <p>
+      <b><%= @flag.flaggable.class.to_s %></b>:
+      <%= link_to @flag.friendly_flagger_name, flaggable_show_path %> by <%= link_to_profile(offending_user) %>
+    </p>
+    <p>
+      <b>Reason</b>: <%= f.select(:reason_type, reason_select_list, :prompt => "Please choose...") %>
+    </p>
+    <p>
+      <%= f.label :comments %>:
+      <%= f.text_area :comments %>
+    </p>
+    <p><%= f.submit "Submit", :disable_with => translate('general.disable_with') %>
+      <%= link_to "Cancel", flaggable_show_path %>
+    </p>
+<% end %>
