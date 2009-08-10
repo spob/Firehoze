@@ -19,5 +19,5 @@
       Expiration Date
     </th>
   </tr>
-  <%= render :partial => 'users/forms/credit', :collection => current_user.credits.all(:order => "created_at DESC") %>
+  <%= render :partial => 'users/forms/credit', :collection => @user.credits.all(:order => "created_at DESC") %>
 </table>
