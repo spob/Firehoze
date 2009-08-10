@@ -1,10 +1,8 @@
 <H1>Flag Inappropriate Content</H1>
 
 
-<% form_for :flag, :url => flags_url(@flag) do |f| %>
+<% form_for :flag, :url => flags_url(@flag, :flagger_type => @flag.flaggable.class.to_s, :flagger_id =>@flag.flaggable.id) do |f| %>
     <%= f.error_messages %>
-    <%= hidden_field_tag(:flagger_type, @flag.flaggable.class.to_s) %>
-    <%= hidden_field_tag(:flagger_id, @flag.flaggable.id) %>
     <p>
       <b><%= @flag.flaggable.class.to_s %></b>:
       <%= link_to @flag.friendly_flagger_name, flaggable_show_path %> by <%= link_to_profile(offending_user) %>
