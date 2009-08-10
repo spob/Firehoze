@@ -1,9 +1,9 @@
 $(function(){
     if ($(".flash").is(":hidden")) {
-        $(".flash").slideDown(400);
+        $(".flash").slideDown(500);
     }
     setTimeout(function(){
-        $(".flash").fadeOut(750, function () {
+        $(".flash").slideUp(750, function () {
             $(".flash").remove();
         });
     }, 3000);

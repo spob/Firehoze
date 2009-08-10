@@ -10,7 +10,7 @@
 <%# TITLE BAR %>
   <div class="clear span-40 last" id="banner">
     <div class="span-27" id="banner_title">
-      <%= h @lesson.title %> by <%= link_to_profile(@lesson.instructor, 'full_name') %>
+      <%= h @lesson.title %> by <%= link_to_profile(@lesson.instructor) %>
     </div>
 
     <div id="rating">
