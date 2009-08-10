@@ -5,7 +5,8 @@ class PasswordsControllerTest < ActionController::TestCase
   context "when logged in" do
     setup do
       activate_authlogic
-      UserSession.create Factory(:user)
+      @user = Factory(:user)
+      UserSession.create @user
     end
 
 
@@ -27,7 +28,7 @@ class PasswordsControllerTest < ActionController::TestCase
       should_assign_to :user
       should_respond_with :redirect
       should_set_the_flash_to :pwd_update_success
-      should_redirect_to("profile page") { accounts_url(assigns(:user)) }
+      should_redirect_to("profile page") { edit_user_url(assigns(:user)) }
     end
 
     context "on PUT to :update with bad current password" do

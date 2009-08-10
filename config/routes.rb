@@ -23,7 +23,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :periodic_jobs, :member => { :rerun => :post }
   map.resources :store, :only => :show
   map.resources :skus, :has_many => :discounts, :shallow => true
-  map.resources  :user_session, :only => [ :create, :destroy, :new ]
+  map.resource  :user_session, :only => [ :create, :destroy, :new ]
   map.resources :users, :member => { :show_admin => :get, :edit_admin => :get }, :collection => { :list => :get }
   map.resources :user_logons
   map.resources  :wish_lists, :only => [ :create, :destroy ]

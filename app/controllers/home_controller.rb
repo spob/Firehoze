@@ -22,7 +22,7 @@ class HomeController < ApplicationController
     @user.language = params[:user][:language]
     if @user.save
       flash[:notice] = t 'account_settings.update_success'
-      redirect_to accounts_url(@user)
+      redirect_to account_url(@user)
     else
       render :action => :edit
     end

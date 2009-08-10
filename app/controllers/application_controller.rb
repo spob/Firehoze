@@ -85,7 +85,7 @@ class ApplicationController < ActionController::Base
     if current_user
       store_location
       flash[:error] = t 'security.you_must_be_logged_out'
-      redirect_to accounts_url
+      redirect_to account_url(current_user)
       return false
     end
   end

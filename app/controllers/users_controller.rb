@@ -66,7 +66,7 @@ class UsersController < ApplicationController
 
   def update
     
-    raise params.inspect
+    #raise params.inspect
     
     # Required for supporting checkboxes
     params[:user][:role_ids] ||= []

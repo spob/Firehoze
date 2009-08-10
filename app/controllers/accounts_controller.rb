@@ -3,7 +3,7 @@ class AccountsController < ApplicationController
   before_filter :require_user, :populate_user
 
   verify :method => :put, :only => [ :update ], :redirect_to => :home_path
-  verify :method => :post, :only => [ :destroy_avatar ], :redirect_to => :home_path
+  verify :method => :post, :only => [ :clear_avatar ], :redirect_to => :home_path
 
   def show
   end
@@ -25,11 +25,7 @@ class AccountsController < ApplicationController
   def update
     flash_msg = t 'account_settings.update_success'
 
-    # avoid mass assignment here
-    if params[:user][:destroy_avatar] == 'true'
-      @user.avatar.clear
-      @user.save
-    elsif params[:user][:avatar]
+    if params[:user][:avatar]
       @user.update_attribute(:avatar, params[:user][:avatar])
       flash_msg = t 'account_settings.avatar_success'
     else

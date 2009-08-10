@@ -5,11 +5,12 @@ class AccountsControllerTest < ActionController::TestCase
   context "when logged on" do
     setup do
       activate_authlogic
-      UserSession.create Factory(:user)
+      @user = Factory.create(:user)
+      UserSession.create(@user)
     end
 
     context "on GET to :show" do
-      setup { get :show }
+      setup { get :show, :id => @user }
 
       should_assign_to :user
       should_respond_with :success
@@ -17,8 +18,8 @@ class AccountsControllerTest < ActionController::TestCase
       should_render_template "show"
     end
 
-    context "on POST to destroy_avatar" do
-      setup { post :destroy_avatar }
+    context "on POST to clear_avatar" do
+      setup { post :clear_avatar, :id => @user }
 
       should_assign_to :user
       should_respond_with :redirect
@@ -36,7 +37,7 @@ class AccountsControllerTest < ActionController::TestCase
     end
 
     context "on PUT to :update" do
-      setup { put :update, :user => Factory.attributes_for(:user) }
+      setup { put :update, :id => @user, :user => Factory.attributes_for(:user) }
 
       should_assign_to :user
       should_respond_with :redirect
@@ -45,7 +46,7 @@ class AccountsControllerTest < ActionController::TestCase
     end
 
     context "on PUT to :update with bad value" do
-      setup { put :update, :user => Factory.attributes_for(:user, :last_name => "") }
+      setup { put :update, :id => @user, :user => Factory.attributes_for(:user, :last_name => "") }
 
       should_assign_to :user
       should_respond_with :redirect
