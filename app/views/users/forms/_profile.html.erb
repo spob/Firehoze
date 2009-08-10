@@ -1,10 +1,10 @@
 <% form_for(:user, :url => account_path(@user), :html => { :method => :put, :id => "profile" }) do |f| %>
+<%= admin_edit_hidden_field_tag %>
 <%= f.error_messages %>
 <fieldset>
-  
   <% unless params[:action] == "edit_admin" -%> 
-  <legend>Update Your Profile</legend>
-  <div class="help">View your public profile <%= link_to 'here', user_path(current_user) %></div>
+    <legend>Update Your Profile</legend>
+    <div class="help">View your public profile <%= link_to 'here', user_path(current_user) %></div>
   <% end -%>
   <p>
     Username:

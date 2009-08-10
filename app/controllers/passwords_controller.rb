@@ -6,11 +6,16 @@ class PasswordsController < ApplicationController
   verify :method => :put, :only => [ :update ], :redirect_to => :home_path
 
   def edit
-    # @user = @current_user
   end
 
   def update
-    # @user = User.find(@current_user.id)
+
+    edit_redirect = edit_user_path(@user)
+
+    if params[:admin_edit] == 'true'
+      edit_redirect = edit_admin_user_path(@user)
+    end
+
     @user.current_password = params[:user][:current_password]
     unless @user.valid_current_password? or @current_user.is_admin?
       # user typed a bad value for current password
@@ -18,14 +23,18 @@ class PasswordsController < ApplicationController
       render :action => :edit
       return
     end
+
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
     if @user.save
       flash[:notice] = t 'password.pwd_update_success'
-      redirect_to edit_user_url(@user)
-    else
-      render :action => :edit
+      redirect_to edit_redirect
     end
+
+  rescue Exception => e
+    flash[:error] = e.message
+    redirect_to edit_redirect
+    # render :action => :edit
   end
 
   private

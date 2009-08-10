@@ -1,4 +1,5 @@
 <% form_for(:user, :url => account_path, :html => { :method => :put, :multipart => true, :id => "avatar" }) do |f| %>
+  <%= admin_edit_hidden_field_tag %>
   <%= f.error_messages %>
   <fieldset>
     <legend>Upload an Avatar</legend>
