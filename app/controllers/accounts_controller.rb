@@ -25,6 +25,11 @@ class AccountsController < ApplicationController
   def update
     flash_msg = t 'account_settings.update_success'
 
+    edit_redirect = edit_user_path(@user)
+    if params[:admin_edit] == 'true'
+      edit_redirect = edit_admin_user_path(@user)
+    end
+
     if params[:user][:avatar]
       @user.update_attribute(:avatar, params[:user][:avatar])
       flash_msg = t 'account_settings.avatar_success'
@@ -39,16 +44,16 @@ class AccountsController < ApplicationController
 
     if @user.save
       flash[:notice] = flash_msg
-      redirect_to edit_user_path(@user)
     else
-      # getting here because not all (required) fields are getting passed in ...  
+      # getting here because not all (required) fields are getting passed in ...
       flash[:error] = t 'account_settings.update_error'
-      redirect_to edit_user_path(@user)
     end
+
+    redirect_to edit_redirect
 
   rescue Exception => e
     flash[:error] = e.message
-    redirect_to edit_user_path(@user)
+    redirect_to edit_redirect
   end
 
   private

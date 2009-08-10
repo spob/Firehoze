@@ -1,4 +1,5 @@
 <% form_for(:user, :url => user_path(@user), :html => { :method => :put }) do |f| %>
+  <%= admin_edit_hidden_field_tag %>
   <%= f.error_messages %>
   <% unless f.object.nil? %>
     <%= f.label :active %>:
