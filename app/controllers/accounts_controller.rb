@@ -1,6 +1,6 @@
 # The accounts controller allows the user to update personal information on their account
 class AccountsController < ApplicationController
-  before_filter :require_user, :populate_user
+  before_filter :require_user, :find_user
 
   verify :method => :put, :only => [ :update ], :redirect_to => :home_path
   verify :method => :post, :only => [ :clear_avatar ], :redirect_to => :home_path
@@ -53,7 +53,11 @@ class AccountsController < ApplicationController
 
   private
 
-  def populate_user
-    @user = User.find(params[:id])
+  def find_user
+    if @current_user.is_admin?
+      @user = User.find params[:id]
+    else
+      @user = @current_user
+    end
   end
 end
