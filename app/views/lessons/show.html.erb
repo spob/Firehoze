@@ -31,7 +31,7 @@
       <% if @lesson.owned_by?(current_user) or @lesson.instructed_by?(current_user) %>
           <%= player({:streamer => "rtmp://e1f1.simplecdn.net/play", :file => @lesson.full_processed_video.try("output_rtmp_path"), :skin => 'bluemetal', :autostart => true}, {:width => 540, :height => 400}) %>
       <% else %>
-          <%= player({:streamer => "rtmp://e1f1.simplecdn.net/play", :file => @lesson.preview_processed_video.try("output_rtmp_path"), :skin => 'bluemetal'}, {:width => 540, :height => 400}) %>
+          <%= player({:streamer => "rtmp://e1f1.simplecdn.net/play", :file => @lesson.preview_processed_video.try("output_rtmp_path"), :skin => 'bluemetal', :logo => 'http://assets.firehoze.com.s3.amazonaws.com/PreviewLogo.gif'}, {:width => 540, :height => 400}) %>
       <% end %>
       <%= render :partial => "lessons/tag_links_for", :object => @lesson, :locals => { :options => { :css_classes =>  "tags_lesson_show" } } %>
     </div>
