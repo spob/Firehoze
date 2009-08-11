@@ -30,7 +30,7 @@ class FlagsControllerTest < ActionController::TestCase
         end
 
         should_assign_to :flagger
-        should_respond_with :flag
+        should_respond_with :redirect
         should_set_the_flash_to /Thank you for bringing this to our attention/
         should_redirect_to("Show lessons page") { lesson_url(@lesson) }
       end

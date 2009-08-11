@@ -10,7 +10,7 @@ class FlagsController < ApplicationController
     @flag.user = current_user
     if @flag.save
       flash[:notice] = t('flag.create_success')
-      redirect_to :controller => @flagger.class.to_s.pluralize.downcase, :action => :show, :id => @flagger.id
+      redirect_to :controller => @flagger.class.to_s.pluralize.downcase, :action => :show, :id => @flagger
     else
       render :action => "new"
     end
