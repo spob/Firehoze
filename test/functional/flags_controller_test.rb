@@ -33,10 +33,16 @@ class FlagsControllerTest < ActionController::TestCase
         should_respond_with :redirect
         should_set_the_flash_to /Thank you for bringing this to our attention/
         should_redirect_to("Show lessons page") { lesson_url(@lesson) }
-      end
 
-      context "and a flag already existing" do
+        context "and try to flag a second time" do
+          setup do
+            post :create, :flag => @new_flag_attr, :flagger_type => 'Lesson', :flagger_id => @lesson
+          end
 
+          should_assign_to :flagger
+          should_respond_with :success
+          should_render_template :new
+        end
       end
     end
   end

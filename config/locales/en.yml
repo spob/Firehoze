@@ -48,6 +48,7 @@ en:
     destroyed_success: Successfully destroyed discount
 
   flag:
+    already_flagged: You've already flagged this item.
     create_success: Thank you for bringing this to our attention. Your feedback has been recorded and will be reviewed.
     flag_lewd: Sexual Content
     flag_spam: Spam
