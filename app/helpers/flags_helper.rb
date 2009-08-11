@@ -1,10 +1,8 @@
 module FlagsHelper
-  def flaggable_show_path
-    url_for :controller => @flag.flaggable.class.to_s.pluralize, :action => 'show', :id => @flag.flaggable.id
-  end
 
   def offending_user
     @flag.flaggable.instructor if @flag.flaggable.class == Lesson
+    @flag.flaggable.user if @flag.flaggable.class == Review
   end
 
   def reason_select_list

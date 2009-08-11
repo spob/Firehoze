@@ -2,10 +2,20 @@ class Review < ActiveRecord::Base
   belongs_to :user
   belongs_to :lesson, :counter_cache => true
   has_many :helpfuls, :dependent => :destroy
+  has_many :flags, :as => :flaggable, :dependent => :destroy
   validates_presence_of :user, :headline, :body, :lesson
   validates_uniqueness_of :user_id, :scope => :lesson_id
   validates_length_of :headline, :maximum => 100, :allow_nil => true
   validate :validate_reviewer
+
+  @@flag_reasons = [
+          FLAG_LEWD,
+          FLAG_SPAM,
+          FLAG_OFFENSIVE ]
+
+  def self.flag_reasons
+    @@flag_reasons
+  end
 
 # Basic paginated listing finder
   def self.list(lesson, page)

@@ -5,6 +5,7 @@ class Flag < ActiveRecord::Base
 
   def friendly_flagger_name
     flaggable.title if self.flaggable.class.to_s == "Lesson"
+    flaggable.headline if self.flaggable.class.to_s == "Review" 
   end
 
   def validate

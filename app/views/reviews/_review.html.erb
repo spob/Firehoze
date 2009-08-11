@@ -22,9 +22,10 @@
       <% end %>
       <% if review.can_edit? current_user %>
           <% if review.can_edit? current_user %>
-              <%= link_to "Edit", edit_review_path(review) %>
+              <%= link_to "Edit", edit_review_path(review) %> |
           <% end %>
       <% end %>
+      <%= link_to "Flag", new_flag_path(:flagger_type => 'Review', :flagger_id => review) %>
     </p>
 <% end %>
 <hr/>

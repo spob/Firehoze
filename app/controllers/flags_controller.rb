@@ -1,6 +1,7 @@
 class FlagsController < ApplicationController
   before_filter :require_user
   before_filter :find_flagger
+  helper_method :flaggable_show_path
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
 
@@ -10,7 +11,7 @@ class FlagsController < ApplicationController
     @flag.user = current_user
     if @flag.save
       flash[:notice] = t('flag.create_success')
-      redirect_to :controller => @flagger.class.to_s.pluralize.downcase, :action => :show, :id => @flagger
+      redirect_to flaggable_show_path
     else
       render :action => "new"
     end
@@ -19,8 +20,20 @@ class FlagsController < ApplicationController
   def new
     @flag = @flagger.flags.new
   end
+  
+  def flaggable_show_path
+    if @flag.flaggable.class == Review
+       show_url Lesson, @flag.flaggable.lesson.id
+    else
+       show_url @flag.flaggable.class, @flag.flaggable.id
+    end
+  end
 
-  private
+  private   
+
+  def show_url klass, id
+    url_for :controller => klass.to_s.pluralize, :action => 'show', :id => id
+  end
 
   def find_flagger
     @klass = params[:flagger_type].capitalize.constantize
