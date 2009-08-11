@@ -9,7 +9,6 @@ class PasswordsController < ApplicationController
   end
 
   def update
-
     edit_redirect = edit_user_path(@user)
 
     if params[:admin_edit] == 'true'

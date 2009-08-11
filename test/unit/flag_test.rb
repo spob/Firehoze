@@ -5,10 +5,13 @@ class FlagTest < ActiveSupport::TestCase
     setup do
       @lesson = Factory.create(:lesson)
       @lesson.flags.create(:status => "PENDING", :reason_type => "Smut", :comments => "Some comments")
-      #@flag = Factory.create(:flag)
     end
 
     should_belong_to :user
     should_validate_presence_of :user, :status , :reason_type, :comments
+
+    should "set the friendly name" do
+      assert_equal @lesson.title, @lesson.flags.first.friendly_flagger_name
+    end
   end
 end
