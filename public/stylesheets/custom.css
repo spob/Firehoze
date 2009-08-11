@@ -174,3 +174,11 @@ img.lesson_tn {
 .notice_msg {
     color: green;
 }
+
+#avatar_form input.submit {
+/*font-size: 30px;*/
+}
+
+form.edit_user label.error {
+	margin-left: 20px;
+}

@@ -1,4 +1,4 @@
-<% form_for(:user, :url => account_path, :html => { :method => :put, :multipart => true, :id => "avatar" }) do |f| %>
+<% form_for(:user, :url => account_path, :html => { :method => :put, :multipart => true, :id => "avatar_form", :class => "edit_user" }) do |f| %>
   <%= admin_edit_hidden_field_tag %>
   <%= f.error_messages %>
   <fieldset>
@@ -8,14 +8,14 @@
     </p>
     <div>
       <%= f.label :avatar %>
-      <%= f.file_field :avatar %>
+      <%= f.file_field :avatar, :class => "required" %>
     </div>
   </fieldset>
   <p>
-    <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
+    <%# Submit now disabled using jquery %>
+    <%= f.submit "Update", :class => "submit" %>
   </p>
   <% if @user.avatar? %>
-    <%= link_to('Delete current', clear_avatar_account_path(@user.id),
-                html_options = {:method => :post, :confirm => 'Are you sure?'} ) %>
+    <%= link_to('Delete current', clear_avatar_account_path(@user.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) %>
   <% end %>
 <% end %>
