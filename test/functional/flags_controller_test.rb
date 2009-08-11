@@ -34,6 +34,10 @@ class FlagsControllerTest < ActionController::TestCase
         should_set_the_flash_to /Thank you for bringing this to our attention/
         should_redirect_to("Show lessons page") { lesson_url(@lesson) }
       end
+
+      context "and a flag already existing" do
+
+      end
     end
   end
 end
