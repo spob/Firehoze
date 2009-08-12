@@ -7,7 +7,7 @@
 
 <%= render :partial => "shared/infield_head_content" %>
 
-<h3><%= t 'user.account_settings' %> for <%= @user.full_name %></h3>
+<h3><%= t 'user.account_settings' %> for <%= link_to_profile(@user, 'full_name') %></h3>
 
 <div id="tabs">
   <ul>
