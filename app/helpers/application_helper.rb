@@ -35,4 +35,12 @@ module ApplicationHelper
   def language_value(key)
     LANGUAGES.rassoc(key).first
   end
+
+  def link_to_profile(user, options=[])
+    if options.include?("full_name")
+      link_to_unless_current user.name_or_username, user_path(user)
+    else
+      link_to_unless_current user.username_or_name, user_path(user)
+    end
+  end
 end

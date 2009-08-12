@@ -4,8 +4,13 @@ class Flag < ActiveRecord::Base
   validates_presence_of :user, :status, :reason_type, :comments
 
   def friendly_flagger_name
-    flaggable.title if self.flaggable.class.to_s == "Lesson"
-    flaggable.headline if self.flaggable.class.to_s == "Review" 
+    if self.flaggable.class.to_s == "Lesson"
+      return flaggable.title
+    elsif self.flaggable.class.to_s == "Review"
+      return flaggable.headline
+    else
+      return "ERROR: Unknown"
+    end
   end
 
   def validate
