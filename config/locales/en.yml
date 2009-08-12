@@ -175,6 +175,7 @@ en:
     not_permitted_to_view: Sorry, you were not authorized to view that page
     notices: Notices
     order_history: Order History
+    password_reset_sent: Password has been reset and sent to user
     privacy: Privacy
     registration_no_longer_valid: Registration no longer valid
     roles: Roles

@@ -57,37 +57,58 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def update
-    # Required for supporting checkboxes
-    params[:user][:role_ids] ||= []
 
-    # Figure out which role value checkboxes were checked and update accordingly
-    for role_id in params[:user][:role_ids]
-      role = Role.find(role_id)
-      @user.has_role role.name
-    end
-    @user.login = params[:user][:login]
-    @user.email = params[:user][:email]
-    if @user.update_attributes(params[:user])
-      flash[:notice] = t 'user.account_update_success'
-      redirect_to user_url(@user)
+  def update
+    @user.email = params[:user][:email].try(:strip)
+    @user.first_name = params[:user][:first_name].try(:strip)
+    @user.last_name = params[:user][:last_name].try(:strip)
+    @user.bio = params[:user][:bio]
+    @user.time_zone = params[:user][:time_zone]
+    @user.language = params[:user][:language]
+
+    if @user.save!
+      flash[:notice] = t 'account_settings.update_success'
     else
-      render :action => :edit
+      # getting here because not all (required) fields are getting passed in ...
+      flash[:error] = t 'account_settings.update_error'
     end
+
+    redirect_to edit_user_path(@user)
+
+  rescue Exception => e
+    flash[:error] = e.message
+    redirect_to edit_user_path(@user)
   end
+
+  #  temp: saving for "roles code"
+  # def update
+  #   
+  #   # raise params.inspect
+  #   # Required for supporting checkboxes
+  #   params[:user][:role_ids] ||= []
+  # 
+  #   # Figure out which role value checkboxes were checked and update accordingly
+  #   for role_id in params[:user][:role_ids]
+  #     role = Role.find(role_id)
+  #     @user.has_role role.name
+  #   end
+  #   @user.login = params[:user][:login]
+  #   @user.email = params[:user][:email]
+  #   if @user.update_attributes(params[:user])
+  #     flash[:notice] = t 'user.account_update_success'
+  #     redirect_to edit_user_path(@user)
+  #   else
+  #     render :action => :edit
+  #   end
+  # end
 
   def update_avatar
-    raise params.inspect
-    
     if params[:user][:avatar]
-      @user.update_attribute(:avatar, params[:user][:avatar])
-      flash[:notice] = t 'account_settings.update_success'
+      if  @user.update_attribute(:avatar, params[:user][:avatar])
+        flash[:notice] = t 'account_settings.avatar_success'
+        redirect_to edit_user_path(@user)
+      end
     end
-  end
-
-  def reset_password
-    @user = User.find params[:id]
-    @user.deliver_password_reset_instructions! if @user
   end
 
   def clear_avatar
@@ -96,6 +117,15 @@ class UsersController < ApplicationController
       flash[:notice] = t 'account_settings.avatar_cleared'
     else
       # getting here because not all (required) fields are getting passed in ...
+      flash[:error] = t 'account_settings.update_error'
+    end
+    redirect_to edit_user_path(@user)
+  end
+
+  def reset_password
+    if @user.deliver_password_reset_instructions! 
+      flash[:notice] = t 'user.password_reset_sent'
+    else
       flash[:error] = t 'account_settings.update_error'
     end
     redirect_to edit_user_path(@user)
