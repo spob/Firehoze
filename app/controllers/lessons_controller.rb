@@ -124,7 +124,7 @@ class LessonsController < ApplicationController
     video = ProcessedVideo.find_by_flixcloud_job_id!(job.id)
 
     unless video.finish_conversion job
-      logger.error "Job #{id} for lesson #{lesson.id} failed: #{job.error_message}"
+      logger.error "Job #{id} for lesson #{video.lesson.id} failed: #{job.error_message}"
       lesson.fail!
     end
   end
