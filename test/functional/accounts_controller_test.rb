@@ -24,7 +24,7 @@ class AccountsControllerTest < ActionController::TestCase
       should_assign_to :user
       should_respond_with :redirect
       should_set_the_flash_to :avatar_cleared
-      should_redirect_to("edit user page") { edit_user_path(assigns(:user)) }
+      should_redirect_to("edit account page") { edit_account_path(assigns(:user)) }
     end
 
     context "on GET to :edit" do
@@ -42,7 +42,7 @@ class AccountsControllerTest < ActionController::TestCase
       should_assign_to :user
       should_respond_with :redirect
       should_set_the_flash_to :profile_update_success
-      should_redirect_to("edit user page") { edit_user_path(assigns(:user)) }
+      should_redirect_to("edit account page") { edit_account_path(assigns(:user)) }
     end
 
     context "on PUT to :update with bad value" do
@@ -51,7 +51,7 @@ class AccountsControllerTest < ActionController::TestCase
       should_assign_to :user
       should_respond_with :redirect
       should_set_the_flash_to I18n.t('account_settings.update_error')
-      should_redirect_to("edit user screen") { edit_user_path(assigns(:user)) }
+      should_redirect_to("edit account screen") { edit_account_path(assigns(:user)) }
     end
   end
 end
