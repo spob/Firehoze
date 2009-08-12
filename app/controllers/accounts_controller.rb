@@ -25,11 +25,6 @@ class AccountsController < ApplicationController
   def update
     flash_msg = t 'account_settings.update_success'
 
-    edit_redirect = edit_user_path(@user)
-    if params[:admin_edit] == 'true'
-      edit_redirect = edit_admin_user_path(@user)
-    end
-
     if params[:user][:avatar]
       @user.update_attribute(:avatar, params[:user][:avatar])
       flash_msg = t 'account_settings.avatar_success'
@@ -49,11 +44,11 @@ class AccountsController < ApplicationController
       flash[:error] = t 'account_settings.update_error'
     end
 
-    redirect_to edit_redirect
+    redirect_to edit_user_path
 
   rescue Exception => e
     flash[:error] = e.message
-    redirect_to edit_redirect
+    redirect_to edit_user_path
   end
 
   private

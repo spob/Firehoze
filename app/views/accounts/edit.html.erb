@@ -1,30 +1,28 @@
-<h1>Edit My Account</h1>
-
-<% form_for(:user, :url => account_path(@user), :html => { :method => :put }) do |f| %>
-    <%= f.error_messages %>
-
-    Username:
-    <%= @user.login %><br />
-    <br/>
-    <%= f.label :email %>:
-    <%= f.text_field :email %><br />
-    <br/>
-    <%= f.label :first_name %>:
-    <%= f.text_field :first_name %><br />
-    <br/>
-    <%= f.label :last_name %>:
-    <%= f.text_field :last_name %><br />
-    <br/>
-    <%= f.label :bio %>:
-    <%= f.text_area :bio %><br />
-    <br/>
-    <%= f.label :time_zone %>:
-    <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %><br/>
-    <br/>
-    <%= f.label :language %>:
-    <%= f.select :language, User.supported_languages %><br/>
-    <br/>
-
-    <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
-    <%= link_to "Cancel", account_path(@user) %>
+<% content_for :head do -%>
+  <%= javascript_include_tag 'jquery-ui-1.7.2.custom.min.js' %>
+  <%= stylesheet_link_tag 'jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" %>
+  <%= javascript_include_tag 'tabs.js','jquery.cookie.js' %>
+  <%= javascript_include_tag 'validate/jquery.validate.js', 'validate/account.setting.validate.js' %>
 <% end %>
+
+<%= render :partial => "shared/infield_head_content" %>
+
+<h3><%= t 'user.account_settings' %></h3>
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1"><%= t 'user.profile' %></a></li>
+    <li><a href="#tabs-2"><%= t 'user.password' %></a></li>
+    <li><a href="#tabs-3"><%= t 'user.avatar' %></a></li>
+    <li><a href="#tabs-4"><%= t 'user.credit_history' %></a></li>
+    <li><a href="#tabs-5"><%= t 'user.order_history' %></a></li>
+    <li><a href="#tabs-6"><%= t 'user.notices' %></a></li>
+    <li><a href="#tabs-7"><%= t 'user.privacy' %></a></li>
+  </ul>
+  <div id="tabs-1"><%= render :partial => "accounts/forms/profile" %></div>
+  <div id="tabs-2"><%= render :partial => "accounts/forms/password" %></div>
+  <div id="tabs-3"><%= render :partial => "accounts/forms/avatar" %></div>
+  <div id="tabs-4"><%= render :partial => "accounts/forms/credit_history" %></div>
+  <div id="tabs-5"><%= render :partial => "accounts/forms/order_history" %></div>
+  <div id="tabs-6"><%= render :partial => "accounts/forms/notices" %></div>
+  <div id="tabs-7"><%= render :partial => "accounts/forms/privacy" %></div>
+</div>

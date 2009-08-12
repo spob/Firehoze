@@ -27,7 +27,4 @@ module UsersHelper
     image_tag cdn_avatar_url, options.merge({ :alt => user.full_name, :class => 'avatar' })
   end
 
-  def admin_edit_hidden_field_tag
-    hidden_field_tag 'admin_edit', 'true' if @current_user.is_admin? and params[:action] ==  "edit_admin"
-  end
 end

@@ -60,10 +60,6 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
   end
 
-  def edit_admin
-    @user = User.find params[:id]
-  end
-
   def update
     
     #raise params.inspect
@@ -92,7 +88,7 @@ end
 private
 
 def layout_for_action
-  %w(show_admin edit_admin list).include?(params[:action]) ? 'admin' : 'application'
+  %w(show_admin edit list).include?(params[:action]) ? 'admin' : 'application'
 end
 
 def populate_user_from_registration_and_params
