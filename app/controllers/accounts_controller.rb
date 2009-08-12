@@ -11,6 +11,15 @@ class AccountsController < ApplicationController
   def edit
   end
 
+  def update_avatar
+    if params[:user][:avatar]
+      if  @user.update_attribute(:avatar, params[:user][:avatar])
+        flash[:notice] = t 'account_settings.avatar_success'
+        redirect_to edit_account_path(@user)
+      end
+    end
+  end
+
   def clear_avatar
     @user.avatar.clear
     if @user.save
@@ -42,13 +51,6 @@ class AccountsController < ApplicationController
   rescue Exception => e
     flash[:error] = e.message
     redirect_to edit_account_path
-  end
-
-  def update_avatar
-    if params[:user][:avatar]
-      @user.update_attribute(:avatar, params[:user][:avatar])
-      flash[:notice] = t 'account_settings.update_success'
-    end
   end
 
   private
