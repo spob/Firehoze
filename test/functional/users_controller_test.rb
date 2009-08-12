@@ -33,6 +33,7 @@ class UsersControllerTest < ActionController::TestCase
     setup do
       activate_authlogic
       @user = Factory(:user)
+      @other_user = Factory(:user)
       UserSession.create @user
     end   
 
@@ -51,7 +52,7 @@ class UsersControllerTest < ActionController::TestCase
       end
 
       context "on GET to :show" do
-        setup { get :show, :id => Factory(:user).id }
+        setup { get :show, :id => @other_user.id }
 
         should_assign_to :user
         should_respond_with :success
@@ -60,20 +61,28 @@ class UsersControllerTest < ActionController::TestCase
       end
 
       context "on GET to :edit" do
-        setup { get :edit, :id => Factory(:user).id }
+        setup { get :edit, :id => @other_user.id }
         should_assign_to :user
         should_respond_with :success
         should_not_set_the_flash
         should_render_template "edit"
       end
 
-      context "on PUT to :update" do
-        setup { put :update, :id => Factory(:user).id, :user => Factory.attributes_for(:user) }
+      context "on PUT to :update a profile screen" do
+        setup { put :update, :id => @other_user.id, :user => @other_user }
 
         should_assign_to :user
         should_respond_with :redirect
         should_set_the_flash_to :account_update_success
-        should_redirect_to("user page") { edit_user_url(assigns(:user)) }
+        should_redirect_to("user page") { edit_user_url(@other_user) }
+      end
+
+      context "on PUT to :update a profile screen with bad values" do
+        setup { put :update, :id => @other_user, :user => Factory.attributes_for(:user, :last_name => "") }
+
+        should_respond_with :redirect
+        should_set_the_flash_to :update_error
+        should_redirect_to("edit user page") { edit_user_path(@other_user) }
       end
     end
 
