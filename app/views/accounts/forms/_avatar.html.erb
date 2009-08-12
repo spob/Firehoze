@@ -1,6 +1,6 @@
 <% form_for(:user, :url => account_path, :html => { :method => :put, :multipart => true, :id => "avatar_form", :class => "edit_user" }) do |f| %>
   <%= f.error_messages %>
-  <fieldset>
+  <fieldset>                                      _
     <legend>Upload an Avatar</legend>
     <p>
       <%= avatar_tag @user, :size => :medium %>
