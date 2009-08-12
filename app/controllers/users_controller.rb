@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:edit, :update, :list, :private]
+  before_filter :find_user, :only => [ :clear_avatar, :edit, :show, :show_admin, :private, :reset_password, :update, :update_avatar ]
 
   permit ROLE_ADMIN, :except => [:new, :create, :show, :edit, :private]
 
@@ -41,15 +42,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find params[:id]
   end
 
   def show_admin
-    @user = User.find params[:id]
   end
 
   def private
-    @user = User.find params[:id]
     unless @user == @current_user
       flash[:notice] = t 'user.not_permitted_to_view'
       redirect_back_or_default home_path
@@ -57,17 +55,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find params[:id]
   end
 
   def update
-    
-    #raise params.inspect
-    
     # Required for supporting checkboxes
     params[:user][:role_ids] ||= []
-
-    @user = User.find params[:id]
 
     # Figure out which role value checkboxes were checked and update accordingly
     for role_id in params[:user][:role_ids]
@@ -83,17 +75,46 @@ class UsersController < ApplicationController
       render :action => :edit
     end
   end
-end
 
-private
+  def update_avatar
+    raise params.inspect
+    
+    if params[:user][:avatar]
+      @user.update_attribute(:avatar, params[:user][:avatar])
+      flash[:notice] = t 'account_settings.update_success'
+    end
+  end
 
-def layout_for_action
-  %w(show_admin edit list).include?(params[:action]) ? 'admin' : 'application'
-end
+  def reset_password
+    @user = User.find params[:id]
+    @user.deliver_password_reset_instructions! if @user
+  end
 
-def populate_user_from_registration_and_params
-  user = User.new(params[:user])
-  user.email = @registration.email
-  user.login = @registration.username
-  user
+  def clear_avatar
+    @user.avatar.clear
+    if @user.save
+      flash[:notice] = t 'account_settings.avatar_cleared'
+    else
+      # getting here because not all (required) fields are getting passed in ...
+      flash[:error] = t 'account_settings.update_error'
+    end
+    redirect_to edit_user_path(@user)
+  end
+
+  private
+
+  def layout_for_action
+    %w(show_admin edit list).include?(params[:action]) ? 'admin' : 'application'
+  end
+
+  def find_user
+    @user = User.find params[:id]
+  end
+
+  def populate_user_from_registration_and_params
+    user = User.new(params[:user])
+    user.email = @registration.email
+    user.login = @registration.username
+    user
+  end
 end
