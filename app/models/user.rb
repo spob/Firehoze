@@ -77,7 +77,7 @@ class User < ActiveRecord::Base
   # convert an amazon url for an avator to a cdn url
   def self.convert_avatar_url_to_cdn(url)
     regex = Regexp.new("//.*#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}")
-    url.gsub(regex, "//" + APP_CONFIG[CONFIG_CDN_SERVER])
+    url.gsub(regex, "//" + APP_CONFIG[CONFIG_CDN_OUTPUT_SERVER])
   end
 
   def self.admins

@@ -50,7 +50,7 @@ class ProcessedVideo < Video
                 :video_transcoding_error => nil,
                 :thumbnail_url => thumbnail_path,
                 :s3_path => job.output_media_file.url,
-                :url => "http://#{APP_CONFIG[CONFIG_CDN_SERVER]}/#{self.s3_key}")
+                :url => "http://#{APP_CONFIG[CONFIG_CDN_OUTPUT_SERVER]}/#{self.s3_key}")
 
 
         update_lesson_attributes(job)

@@ -8,7 +8,7 @@ class PreviewProcessedVideo < ProcessedVideo
   end
 
   def thumbnail_path
-    thumbnail = "http://#{APP_CONFIG[CONFIG_CDN_THUMBS_SERVER]}/#{self.s3_root_dir}/thumbs/#{id.to_s}/thumb_0000.png"
+    thumbnail = "http://#{APP_CONFIG[CONFIG_CDN_THUMBS_SERVER]}/#{self.s3_root_dir}/thumbs/#{id.to_s}/thumb_0001.png"
   end
 
   def update_lesson_attributes(job)
