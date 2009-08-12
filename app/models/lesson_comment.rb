@@ -1,6 +1,7 @@
 class LessonComment < Comment
   belongs_to :lesson
   validates_presence_of :lesson
+  has_many :flags, :as => :flaggable, :dependent => :destroy
 
 # Basic paginated listing finder
   def self.list(lesson, page, current_user=nil)

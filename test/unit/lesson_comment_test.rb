@@ -6,6 +6,7 @@ class LessonCommentTest < ActiveSupport::TestCase
 
     should_belong_to :lesson
     should_validate_presence_of      :lesson
+    should_have_many :flags
 
     context "and another private record" do
       setup do

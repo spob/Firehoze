@@ -8,6 +8,8 @@ class Flag < ActiveRecord::Base
       return flaggable.title
     elsif self.flaggable.class.to_s == "Review"
       return flaggable.headline
+    elsif self.flaggable.class.to_s == "LessonComment"
+      return abbreviate(flaggable.body, 45)
     else
       return "ERROR: Unknown"
     end
@@ -18,6 +20,16 @@ class Flag < ActiveRecord::Base
                                           :flaggable_id => self.flaggable_id,
                                           :user_id => self.user_id })
       errors.add_to_base I18n.t('flag.already_flagged')
+    end
+  end
+
+  private
+
+  def abbreviate str, len
+    if str.length > len
+      str[0..len] + "..."
+    else
+      str
     end
   end
 end

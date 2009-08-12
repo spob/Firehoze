@@ -22,7 +22,7 @@ class FlagsController < ApplicationController
   end
   
   def flaggable_show_path
-    if @flag.flaggable.class == Review
+    if @flag.flaggable.class == Review or @flag.flaggable.class == LessonComment
        show_url Lesson, @flag.flaggable.lesson.id
     else
        show_url @flag.flaggable.class, @flag.flaggable.id
@@ -36,7 +36,7 @@ class FlagsController < ApplicationController
   end
 
   def find_flagger
-    @klass = params[:flagger_type].capitalize.constantize
+    @klass = params[:flagger_type].constantize
     @flagger = @klass.find(params[:flagger_id])
   end
 end
