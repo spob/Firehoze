@@ -152,9 +152,9 @@ class Lesson < ActiveRecord::Base
     free_credit
   end
 
-  def output_url
-    "http://#{APP_CONFIG[CONFIG_CDN_SERVER]}/#{self.video.path}.flv"
-  end
+  #def output_url
+  #  "http://#{APP_CONFIG[CONFIG_CDN_SERVER]}/#{self.video.path}.flv"
+  #end
 
   def total_buy_pattern_counts
     self.lesson_buy_patterns.inject(0) {|sum, item| sum + item.counter}
