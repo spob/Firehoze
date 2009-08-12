@@ -1,8 +1,13 @@
 module FlagsHelper
 
   def offending_user
-    @flag.flaggable.instructor if @flag.flaggable.class == Lesson
-    @flag.flaggable.user if @flag.flaggable.class == Review
+    if @flag.flaggable.class == Lesson
+      @flag.flaggable.instructor
+    elsif @flag.flaggable.class == Review
+      @flag.flaggable.user
+    else
+      raise
+    end
   end
 
   def reason_select_list
