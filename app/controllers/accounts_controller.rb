@@ -19,7 +19,7 @@ class AccountsController < ApplicationController
       # getting here because not all (required) fields are getting passed in ...
       flash[:error] = t 'account_settings.update_error'
     end
-    redirect_to edit_user_path(@user)
+    redirect_to edit_account_path(@user)
   end
 
   def update
@@ -37,11 +37,11 @@ class AccountsController < ApplicationController
       flash[:error] = t 'account_settings.update_error'
     end
 
-    redirect_to edit_user_path
+    redirect_to edit_account_path
 
   rescue Exception => e
     flash[:error] = e.message
-    redirect_to edit_user_path
+    redirect_to edit_account_path
   end
 
   def update_avatar
