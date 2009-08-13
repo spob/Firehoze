@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   has_many :orders, :order => 'id DESC', :dependent => :destroy
   has_many :visited_lessons, :source => :lesson, :through => :lesson_visits, :order => 'visited_at DESC'
   has_many :lesson_visits, :order => 'visited_at DESC', :dependent => :destroy
-  has_many :flags, :dependent => :destroy
+  has_many :flags, :as => :flaggable, :dependent => :destroy
   has_many :available_credits, :class_name => 'Credit',
            :conditions => { :redeemed_at => nil },
            :order => "id"
@@ -68,6 +68,15 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => [ 'image/gif', 'image/png', 'image/x-png', 'image/jpeg', 'image/pjpeg', 'image/jpg' ]
 
   attr_protected :email, :login
+
+  @@flag_reasons = [
+          FLAG_LEWD,
+          FLAG_SPAM,
+          FLAG_OFFENSIVE ]
+
+  def self.flag_reasons
+    @@flag_reasons
+  end
 
   def self.default_avatar_url(style)
     # "http://#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}/users/avatars/missing/%s/missing.png" % style.to_s

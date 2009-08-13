@@ -1,29 +1,30 @@
-
 <p>
   <%= avatar_tag @user, :size => :medium %>
 </p>
 
 <p>
-    <b>Username:</b>
-    <%= h @user.login %>
+  <b>Username:</b>
+  <%= h @user.login %>
 </p>
 
 <p>
-    <b>Email:</b>
-    <%= h @user.email %>
+  <b>Email:</b>
+  <%= h @user.email %>
 </p>
 
 <p>
-    <b>First Name:</b>
-    <%= h @user.first_name %>
+  <b>First Name:</b>
+  <%= h @user.first_name %>
 </p>
 
 <p>
-    <b>Last Name:</b>
-    <%= h @user.last_name %>
+  <b>Last Name:</b>
+  <%= h @user.last_name %>
 </p>
 
 <p>
-    <b>Bio:</b>
-    <%= textilize(@user.bio) unless @user.bio.blank? %>
+  <b>Bio:</b>
+  <%= textilize(@user.bio) unless @user.bio.blank? %>
 </p>
+
+<%= link_to "Flag", new_flag_path(:flagger_type => 'User', :flagger_id => @user) %>

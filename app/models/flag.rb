@@ -4,11 +4,13 @@ class Flag < ActiveRecord::Base
   validates_presence_of :user, :status, :reason_type, :comments
 
   def friendly_flagger_name
-    if self.flaggable.class.to_s == "Lesson"
+    if self.flaggable.class == Lesson
       return flaggable.title
-    elsif self.flaggable.class.to_s == "Review"
+    elsif self.flaggable.class == Review
       return flaggable.headline
-    elsif self.flaggable.class.to_s == "LessonComment"
+    elsif self.flaggable.class == User
+      return flaggable.login
+    elsif self.flaggable.class == LessonComment
       return abbreviate(flaggable.body, 45)
     else
       return "ERROR: Unknown"

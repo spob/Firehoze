@@ -3,6 +3,8 @@ module FlagsHelper
   def offending_user
     if @flag.flaggable.class == Lesson
       @flag.flaggable.instructor
+    elsif @flag.flaggable.class == User
+      @flag.flaggable
     elsif @flag.flaggable.class == Review or @flag.flaggable.class == LessonComment
       @flag.flaggable.user
     else

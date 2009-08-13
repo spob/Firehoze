@@ -5,7 +5,10 @@
     <%= f.error_messages %>
     <p>
       <b><%= @flag.flaggable.class.to_s %></b>:
-      <%= link_to @flag.friendly_flagger_name, flaggable_show_path %> by <%= link_to_profile(offending_user) %>
+      <%= link_to @flag.friendly_flagger_name, flaggable_show_path %>
+      <% unless @flag.flaggable.class == User %>
+          by <%= link_to_profile(offending_user) %>
+      <% end %>
     </p>
     <p>
       <b>Reason</b>: <%= f.select(:reason_type, reason_select_list, :prompt => "Please choose...") %>

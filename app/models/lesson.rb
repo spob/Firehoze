@@ -42,7 +42,6 @@
 #      set amount of time (an hour I think?). when that job wakes up, it checks to see if the video has completed
 #      processing. If it hasn't, it will alert the admin via email that something may have gone wrong.
 class Lesson < ActiveRecord::Base
-
   acts_as_taggable
 
   ajaxful_rateable :stars => 5
