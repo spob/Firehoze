@@ -1,16 +1,15 @@
-  <table>
-    <tr>
-      <th>Id</th>
-      <th>Type</th>
-      <th>Name</th>
-      <th>Command</th>
-      <th>Last Run</th>
-      <th>Last Result</th>
-      <th>Next Run</th>
-      <th>Action</th>
-    </tr>
-    
-    <%= render :partial => 'periodic_job', :collection => @periodic_jobs %>
-    
-  </table>
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Type</th>
+    <th>Name</th>
+    <th>Command</th>
+    <th>Last Run</th>
+    <th>Last Result</th>
+    <th>Next Run</th>
+    <th>Action</th>
+  </tr>
+
+  <%= render :partial => 'periodic_job', :collection => @periodic_jobs %>
+</table>
 <%= will_paginate @jobs %>

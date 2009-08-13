@@ -1,0 +1,12 @@
+<%= link_to "New SKU", new_sku_path if current_user.is_admin? %>
+<table>
+    <tr>
+      <th>Item Type</th>
+      <th>Flagged Item</th>
+      <th>Action</th>
+    </tr>
+    
+    <%= render :partial => 'flag', :collection => @flags %>
+    
+  </table>
+<%= will_paginate @flags %>

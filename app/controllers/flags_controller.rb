@@ -1,7 +1,9 @@
 class FlagsController < ApplicationController
   before_filter :require_user
-  before_filter :find_flagger
+  before_filter :find_flagger, :except => [:index]
   helper_method :flaggable_show_path
+
+  permit ROLE_ADMIN, :only => [ :index ]
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
 
@@ -11,7 +13,7 @@ class FlagsController < ApplicationController
     @flag.user = current_user
     if @flag.save
       flash[:notice] = t('flag.create_success')
-      redirect_to flaggable_show_path
+      redirect_to flaggable_show_path(@flag)
     else
       render :action => "new"
     end
@@ -20,12 +22,16 @@ class FlagsController < ApplicationController
   def new
     @flag = @flagger.flags.new
   end
+
+  def index
+    @flags = Flag.pending(:order_by => id).paginate :page => params[:page], :per_page => @per_page
+  end
   
-  def flaggable_show_path
-    if @flag.flaggable.class == Review or @flag.flaggable.class == LessonComment
-       show_url Lesson, @flag.flaggable.lesson.id
+  def flaggable_show_path(flag)
+    if flag.flaggable.class == Review or flag.flaggable.class == LessonComment
+       show_url Lesson, flag.flaggable.lesson.id
     else
-       show_url @flag.flaggable.class, @flag.flaggable.id
+       show_url flag.flaggable.class, flag.flaggable.id
     end
   end
 
