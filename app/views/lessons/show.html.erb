@@ -88,7 +88,7 @@
         <li><a href="#tabs-2"><%= t 'lesson.reviews' %></a></li>
         <li><a href="#tabs-3"><%= t 'lesson.discussion' %></a></li>
       </ul>
-      <div id="tabs-1"><%= simple_format @lesson.notes %></div>
+      <div id="tabs-1"><%= auto_link(simple_format(@lesson.notes)) %></div>
       <div id="tabs-2"><%= render :partial => "reviews/review", :collection => @lesson.reviews %></div>
       <div id="tabs-3"><%= render :partial => "lesson_comments/lesson_comment", :collection => @lesson.comments %></div>
     </div>
