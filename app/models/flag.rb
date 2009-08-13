@@ -3,6 +3,8 @@ class Flag < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :user, :status, :reason_type, :comments
 
+  named_scope   :pending, :conditions => {:status => FLAG_STATUS_PENDING }
+
   def friendly_flagger_name
     if self.flaggable.class == Lesson
       return flaggable.title
