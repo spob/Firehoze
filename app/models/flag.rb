@@ -1,7 +1,9 @@
 class Flag < ActiveRecord::Base
+  before_validation_on_create :default_values
   belongs_to :flaggable, :polymorphic => true
   belongs_to :user
   validates_presence_of :user, :status, :reason_type, :comments
+  validates_inclusion_of :status, :in => [ FLAG_STATUS_PENDING, FLAG_STATUS_REMOVED, FLAG_STATUS_REMOVED_MANUALLY ]
 
   named_scope   :pending, :conditions => {:status => FLAG_STATUS_PENDING }
 
@@ -35,5 +37,9 @@ class Flag < ActiveRecord::Base
     else
       str
     end
+  end
+
+  def default_values
+    self.status = FLAG_STATUS_PENDING
   end
 end

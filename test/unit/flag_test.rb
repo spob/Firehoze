@@ -11,7 +11,9 @@ class FlagTest < ActiveSupport::TestCase
     end
 
     should_belong_to :user
-    should_validate_presence_of :user, :status , :reason_type, :comments
+    should_validate_presence_of :user, :reason_type, :comments
+    should_allow_values_for     :status, FLAG_STATUS_PENDING
+    #should_not_allow_values_for :status, "blah"
 
     should "set the friendly name" do
       assert_equal @lesson.title, @lesson.flags.first.friendly_flagger_name

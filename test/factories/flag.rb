@@ -1,5 +1,5 @@
 Factory.define :flag do |flag|
-  flag.status "PENDING"
+  flag.status "pending"
   flag.reason_type "Smut"
   flag.comments "Some comments"
   flag.association :user

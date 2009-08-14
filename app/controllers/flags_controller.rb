@@ -1,10 +1,10 @@
 class FlagsController < ApplicationController
   before_filter :require_user
-  before_filter :find_flagger, :except => [:index]
+  before_filter :find_flagger, :except => [:index, :show]
   helper_method :flaggable_show_path
   layout :layout_for_action
 
-  permit ROLE_ADMIN, :only => [ :index ]
+  permit ROLE_ADMIN, :only => [ :index, :show ]
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
 
@@ -22,6 +22,13 @@ class FlagsController < ApplicationController
 
   def new
     @flag = @flagger.flags.new
+  end
+
+  def show
+    @flag = Flag.find(params[:id])
+    params[:flagger_type] = @flag.flaggable.class.to_s
+    params[:flagger_id] = @flag.flaggable.id
+    find_flagger
   end
 
   def index

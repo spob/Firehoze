@@ -1,0 +1,19 @@
+<p>
+  Item Type: <%= h @flag.flaggable.class.to_s %>
+</p>
+<p>
+  Flagged Item: <%= link_to h(@flag.friendly_flagger_name), flaggable_show_path(@flag) %>
+</p>
+<p>
+  Flag Status: <%= h @flag.status.capitalize %>
+</p>
+Reported By: <%= link_to_profile(@flag.user) %>
+<p>
+  Reason: <%= h @flag.reason_type.capitalize %>
+</p>
+<p>
+  Comments: <%= rbs_formatter(@flag.comments) %>
+</p>
+<p>
+  <%= link_to "Back to Flags", flags_path %>
+</p>

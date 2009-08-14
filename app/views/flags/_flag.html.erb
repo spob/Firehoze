@@ -6,5 +6,6 @@
   <td><%= h flag.reason_type.capitalize %></td>
   <td><%= h truncate(flag.comments, :length => 45) %></td>
   <td>
+    <%= link_to "View", flag_path(flag) %>
   </td>
 </tr>
