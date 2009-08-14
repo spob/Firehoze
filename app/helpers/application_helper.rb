@@ -26,6 +26,13 @@ module ApplicationHelper
     text
   end
 
+  def rbs_formatter(text)
+    return text if text.blank?
+    text = text.gsub(/^\*\s(.*)$/, '<ul><li>\1</li></ul>').gsub(/<\/ul>\s*<ul>/, "\n")
+    text = text.gsub(/^#\s(.*)$/, '<ol><li>\1</li></ol>').gsub(/<\/ol>\s*<ol>/, "\n")
+    auto_link(simple_format(text))
+  end
+
   # Set field focus. For an explanation, see:
   # http://neoarch.wordpress.com/2008/02/29/setting-focus-in-rails-with-prototype/
   def set_focus_to_id(id, othertxt=nil)

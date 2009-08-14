@@ -20,7 +20,7 @@
 
 <p>
     <b>Bio:</b>
-    <%= textilize(@user.bio) unless @user.bio.blank? %>
+    <%= rbs_formatter(@user.bio) %>
 </p>
 
 <p>
