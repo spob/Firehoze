@@ -24,7 +24,7 @@ class FlagsController < ApplicationController
   end
 
   def index
-    @flags = Flag.pending(:order_by => id).paginate :page => params[:page], :per_page => @per_page
+    @flags = Flag.pending(:order_by => object_id).paginate :page => params[:page], :per_page => @per_page
   end
   
   def flaggable_show_path(flag)
