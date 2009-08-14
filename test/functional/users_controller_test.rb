@@ -84,6 +84,12 @@ class UsersControllerTest < ActionController::TestCase
         should_set_the_flash_to :update_error
         should_redirect_to("edit user page") { edit_user_path(@other_user) }
       end
+
+      context "on POST to :reset_password on the users update page" do
+        setup { post :reset_password, :id => @other_user.id, :user => @other_user }
+        should_respond_with :redirect
+        should_set_the_flash_to :password_reset_sent
+      end
     end
 
     context "without admin access" do
