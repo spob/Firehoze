@@ -8,6 +8,29 @@ class FlagsControllerTest < ActionController::TestCase
       UserSession.create @user
     end
 
+    context "without sysadmin access" do
+      context "on GET to :index" do
+        setup { get :index }
+
+        should_respond_with :redirect
+        should_set_the_flash_to /Permission denied/
+        should_redirect_to("home page") { lessons_path }
+      end
+    end
+
+    context "with sysadmin access" do
+      setup { @user.has_role 'admin' }
+
+      context "on GET to :index" do
+        setup { get :index }
+
+        should_assign_to :flags
+        should_respond_with :success
+        should_not_set_the_flash
+        should_render_template "index"
+      end
+    end
+
     context "given an existing lesson" do
       setup do
         @lesson = Factory.create(:lesson)

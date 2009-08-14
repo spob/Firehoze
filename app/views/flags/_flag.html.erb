@@ -1,6 +1,10 @@
 <tr>
   <td><%= h flag.flaggable.class.to_s %></td>
   <td><%= link_to h(flag.friendly_flagger_name), flaggable_show_path(flag) %></td>
+  <td><%= h flag.status.capitalize %></td>
+  <td><%= link_to_profile(flag.user) %></td>
+  <td><%= h flag.reason_type.capitalize %></td>
+  <td><%= h truncate(flag.comments, :length => 45) %></td>
   <td>
   </td>
 </tr>
