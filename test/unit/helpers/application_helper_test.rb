@@ -19,6 +19,7 @@ class ApplicationHelperTest < ActionView::TestCase
     setup do
       @raw_text = <<END
 These are bullets
+and so are these
 * one
 * two
 * three
@@ -27,6 +28,7 @@ and that's the end
 END
       @formatted_raw_text = <<END
 These are bullets
+and so are these
 <ul><li>one</li>
 <li>two</li>
 <li>three</li></ul>
@@ -36,7 +38,7 @@ END
     end
 
     should 'bulletize text' do
-      assert_equal @formatted_raw_text, mini_formatter(@raw_text)
+      assert_equal @formatted_raw_text, rbs_formatter(@raw_text)
     end
   end
 end
