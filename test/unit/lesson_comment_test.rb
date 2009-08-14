@@ -16,6 +16,11 @@ class LessonCommentTest < ActiveSupport::TestCase
         @private_comment = Factory.create(:lesson_comment, :lesson => @lesson_comment.lesson, :public => false)
       end
 
+      should "retrieve last record" do
+        assert_equal @private_comment, @lesson_comment.lesson.last_comment
+        assert_equal @lesson_comment, @lesson_comment.lesson.last_public_comment
+      end
+
       should "retrieve public records only" do
         assert_equal 1, LessonComment.list(@lesson_comment.lesson, 1).size
         assert_equal 1, LessonComment.list(@lesson_comment.lesson, 1, @user).size

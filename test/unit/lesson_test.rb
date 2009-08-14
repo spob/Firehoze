@@ -128,6 +128,8 @@ class LessonTest < ActiveSupport::TestCase
     should_have_many                 :reviews, :video_status_changes, :credits, :free_credits, :taggings, :flags
     should_have_many                 :videos, :processed_videos, :lesson_buy_patterns, :lesson_buy_pairs, :comments
     should_have_and_belong_to_many   :lesson_wishers
+    should_have_one                  :last_comment
+    should_have_one                  :last_public_comment
     should_have_one                  :original_video
     should_have_one                  :full_processed_video
     should_have_one                  :preview_processed_video

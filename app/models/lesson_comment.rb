@@ -11,4 +11,8 @@ class LessonComment < Comment
              :conditions => conditions, :order => 'id desc',
              :per_page => ROWS_PER_PAGE
   end
+
+  def can_edit? user
+    super
+  end
 end

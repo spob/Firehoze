@@ -52,7 +52,10 @@ class Lesson < ActiveRecord::Base
   has_many :reviews, :dependent => :destroy
   has_many :video_status_changes, :order => "id", :dependent => :destroy
   has_many :credits, :dependent => :destroy
-  has_many :comments, :class_name => "LessonComment", :dependent => :destroy
+  has_many :comments, :class_name => "LessonComment", :order => "id", :dependent => :destroy
+  has_one  :last_comment, :class_name => "LessonComment", :order => "id DESC"
+  has_one  :last_public_comment, :class_name => "LessonComment",
+           :conditions => { :public => true }, :order => "id DESC"
   has_many :free_credits, :order => "id", :dependent => :destroy
   has_many :videos, :dependent => :destroy
   has_many :processed_videos, :order => "id"
