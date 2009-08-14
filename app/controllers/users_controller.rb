@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => [:edit, :update, :list, :private]
-  before_filter :find_user, :only => [ :clear_avatar, :edit, :show, :show_admin, :private, :reset_password, :update, :update_avatar ]
+  before_filter :find_user, :only => [ :clear_avatar, :edit, :show, :show_admin, :private, :reset_password, :update, :update_avatar, :update_roles ]
 
   permit ROLE_ADMIN, :except => [:new, :create, :show, :edit, :private]
 
@@ -81,26 +81,23 @@ class UsersController < ApplicationController
   end
 
   #  temp: saving for "roles code"
-  # def update
-  #   
-  #   # raise params.inspect
-  #   # Required for supporting checkboxes
-  #   params[:user][:role_ids] ||= []
-  # 
-  #   # Figure out which role value checkboxes were checked and update accordingly
-  #   for role_id in params[:user][:role_ids]
-  #     role = Role.find(role_id)
-  #     @user.has_role role.name
-  #   end
-  #   @user.login = params[:user][:login]
-  #   @user.email = params[:user][:email]
-  #   if @user.update_attributes(params[:user])
-  #     flash[:notice] = t 'user.account_update_success'
-  #     redirect_to edit_user_path(@user)
-  #   else
-  #     render :action => :edit
-  #   end
-  # end
+  def update_roles
+    # Required for supporting checkboxes
+    params[:user][:role_ids] ||= []
+
+    # Figure out which role value checkboxes were checked and update accordingly
+    for role_id in params[:user][:role_ids].reject! {|x| x.empty? }
+      role = Role.find(role_id)
+      @user.has_role role.name
+    end
+
+    if @user.update_attributes(params[:user])
+      flash[:notice] = t 'user.account_update_success'
+      redirect_to edit_user_path(@user)
+    else
+      render :action => :edit
+    end
+  end
 
   def update_avatar
     if params[:user][:avatar]
