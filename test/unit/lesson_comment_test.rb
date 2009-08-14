@@ -17,8 +17,8 @@ class LessonCommentTest < ActiveSupport::TestCase
       end
 
       should "retrieve last comment" do
-        assert_equal @private_comment, @lesson_comment.lesson.last_comment
-        assert_equal @lesson_comment, @lesson_comment.lesson.last_public_comment
+        assert_equal @private_comment, @lesson_comment.lesson.vlast_comment
+        assert_equal @lesson_comment, @lesson_comment.lesson.vlast_public_comment
 
         assert @private_comment.last_comment?
         assert !@private_comment.last_public_comment?

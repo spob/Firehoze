@@ -13,11 +13,11 @@ class LessonComment < Comment
   end
 
   def last_comment?
-    self == self.lesson.last_comment
+    self == self.lesson.vlast_comment
   end
 
   def last_public_comment?
-    self == self.lesson.last_public_comment
+    self == self.lesson.vlast_public_comment
   end
 
   def can_edit? user

@@ -6,7 +6,7 @@ Edit Comment for Lesson <%= @lesson_comment.lesson.title %>
       <%= f.label :body %> <br/>
       <%= f.text_area :body %>
     </p>
-    <% if @lesson_comment.can_edit? current_user %>
+    <% if current_user.is_moderator? %>
         <p>
           <%= f.label :public %> <br/>
           <%= f.check_box :public %>

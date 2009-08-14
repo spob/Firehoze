@@ -53,9 +53,11 @@ class Lesson < ActiveRecord::Base
   has_many :video_status_changes, :order => "id", :dependent => :destroy
   has_many :credits, :dependent => :destroy
   has_many :comments, :class_name => "LessonComment", :order => "id", :dependent => :destroy
-  has_one  :last_comment, :class_name => "LessonComment", :order => "id DESC"
-  has_one  :last_public_comment, :class_name => "LessonComment",
-           :conditions => { :public => true }, :order => "id DESC"
+  # there seems to be a mysql bug. See http://forums.mysql.com/read.php?20,276313,276313#msg-276313
+  # so for now, I'm going to hand code this as a method'
+  #has_one  :last_comment, :class_name => "LessonComment", :order => "id DESC"
+  #has_one  :last_public_comment, :class_name => "LessonComment",
+  #         :conditions => { :public => true }, :order => "id DESC"
   has_many :free_credits, :order => "id", :dependent => :destroy
   has_many :videos, :dependent => :destroy
   has_many :processed_videos, :order => "id"
@@ -76,9 +78,11 @@ class Lesson < ActiveRecord::Base
   before_validation_on_create :set_status_on_create
   after_create  :create_free_credits
 
-  named_scope   :most_popular, :order => "credits_count DESC"
-  named_scope   :highest_rated, :order => "rating_average DESC"
-  named_scope   :newest, :order => "created_at DESC"
+  # I added the id to the sort criteria so that the videos would be sorted in the same order every time, even in the
+  # event of a tie in the primary sort criteria RBS
+  named_scope   :most_popular, :order => "credits_count DESC, id DESC"
+  named_scope   :highest_rated, :order => "rating_average DESC, id DESC"
+  named_scope   :newest, :order => "id DESC"
   named_scope   :ready, :conditions => {:status => VIDEO_STATUS_READY }
   named_scope   :pending, :conditions => {:status => VIDEO_STATUS_PENDING }
   named_scope   :failed, :conditions => {:status => VIDEO_STATUS_FAILED }
@@ -96,6 +100,17 @@ class Lesson < ActiveRecord::Base
 
   def self.flag_reasons
     @@flag_reasons
+  end
+
+
+  # Call it vlast (as in very last) as opposed to last to differentiate it from the dynamic finder
+  def vlast_comment
+    kludge_workaround_for_f__cking_db_bug(comments)
+  end
+
+  # Call it vlast (as in very last) as opposed to last to differentiate it from the dynamic finder
+  def vlast_public_comment
+    kludge_workaround_for_f__cking_db_bug(comments.public)
   end
 
   # Basic paginated listing finder
@@ -235,5 +250,15 @@ class Lesson < ActiveRecord::Base
 
   def set_status_on_create
     self.status = VIDEO_STATUS_PENDING
+  end
+
+  def kludge_workaround_for_f__cking_db_bug c
+    # do this as a two stepper to avoid http://forums.mysql.com/read.php?20,276313,276313#msg-276313
+    # doing it this way avoids the limit bug in the database
+    if c.empty?
+      nil
+    else
+      c.at(c.size - 1)
+    end
   end
 end
