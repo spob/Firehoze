@@ -2,6 +2,7 @@ class FlagsController < ApplicationController
   before_filter :require_user
   before_filter :find_flagger, :except => [:index]
   helper_method :flaggable_show_path
+  layout :layout_for_action
 
   permit ROLE_ADMIN, :only => [ :index ]
 
@@ -35,7 +36,11 @@ class FlagsController < ApplicationController
     end
   end
 
-  private   
+  private
+
+  def layout_for_action
+    %w(index).include?(params[:action]) ? 'admin' : 'application'
+  end
 
   def show_url klass, id
     url_for :controller => klass.to_s.pluralize, :action => 'show', :id => id
