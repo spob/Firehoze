@@ -11,6 +11,9 @@
           | <%= link_to "Edit", edit_lesson_comment_path(lesson_comment) %>
       <% end %>
   <% end %>
+  <% unless lesson_comment.status == COMMENT_STATUS_ACTIVE %>
+      Status: <%= lesson_comment.status %> |
+  <% end %>
   <%= link_to "Flag", new_flag_path(:flagger_type => 'LessonComment', :flagger_id => lesson_comment) %>
 </p>
 <hr/>

@@ -69,3 +69,6 @@ FLAG_IP = 'ip'
 
 # flag status
 FLAG_STATUS_PENDING = 'pending'
+
+# comment status
+COMMENT_STATUS_ACTIVE = 'active'

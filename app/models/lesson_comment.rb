@@ -6,7 +6,7 @@ class LessonComment < Comment
 # Basic paginated listing finder
   def self.list(lesson, page, current_user=nil)
     conditions = { :lesson_id => lesson }
-    conditions = conditions.merge({:public => true}) unless (current_user and current_user.is_moderator?)
+    conditions = conditions.merge({:public => true, :status => COMMENT_STATUS_ACTIVE}) unless (current_user and current_user.is_moderator?)
     paginate :page => page,
              :conditions => conditions, :order => 'id desc',
              :per_page => ROWS_PER_PAGE

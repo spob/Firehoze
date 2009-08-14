@@ -1,6 +1,7 @@
 Factory.define :comment do |cart|
   cart.association :user
   cart.public true
+  cart.status 'active'
   cart.body  "This is a body of a comment"
 end                                             
 
