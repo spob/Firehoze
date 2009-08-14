@@ -16,9 +16,14 @@ class LessonCommentTest < ActiveSupport::TestCase
         @private_comment = Factory.create(:lesson_comment, :lesson => @lesson_comment.lesson, :public => false)
       end
 
-      should "retrieve last record" do
+      should "retrieve last comment" do
         assert_equal @private_comment, @lesson_comment.lesson.last_comment
         assert_equal @lesson_comment, @lesson_comment.lesson.last_public_comment
+
+        assert @private_comment.last_comment?
+        assert !@private_comment.last_public_comment?
+        assert !@lesson_comment.last_comment?
+        assert @lesson_comment.last_public_comment?
       end
 
       should "retrieve public records only" do
@@ -31,6 +36,25 @@ class LessonCommentTest < ActiveSupport::TestCase
 
         should "retrieve public and private records" do
           assert_equal 2, LessonComment.list(@lesson_comment.lesson, 1, @user).size
+        end
+
+        should "allow moderator to edit the last record" do
+          assert @private_comment.can_edit?(@user)
+          assert !@private_comment.can_edit?(@private_comment.user)
+          assert !@private_comment.can_edit?(Factory.create(:user))
+        end
+      end
+
+      context "and one more comment which is public" do
+        setup do
+          @nobody_user = Factory.create(:user)
+          assert !@nobody_user.is_moderator?
+          @public_comment = Factory.create(:lesson_comment, :lesson => @lesson_comment.lesson)
+        end
+
+        should "allow editing for author" do
+          assert @public_comment.can_edit?(@public_comment.user)
+          assert !@public_comment.can_edit?(@nobody_user)
         end
       end
     end
