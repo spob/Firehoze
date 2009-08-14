@@ -182,3 +182,69 @@ img.lesson_tn {
 form.edit_user label.error {
 	margin-left: 20px;
 }
+
+
+/* Reviews */
+
+.review_container {
+/*    font-size: 12px;*/
+    margin:0;
+    padding:0;
+}
+
+
+/* styled like an <h4> */
+.review_headline {
+
+font-size: 1.2em; 
+line-height: 1.25;
+ margin-bottom: 1.25em; 
+}
+
+
+.review_left div {
+    margin: 0 0 5px 0;
+    padding:0;
+}
+
+.review_right div {
+    margin: 0 0 5px 0;
+    padding:0;
+}
+
+
+.review_right  .button-to {
+/*	height:24px;*/
+    float: right;
+    margin:0 3px;
+    padding:0;
+/*     border: 1px solid red;*/
+
+}
+
+
+.review_instructor_avatar {
+    margin: 0;
+    padding:0;
+    border: solid 1px #CFCFCF;
+    height: 110px;
+    width: 110px;
+}
+
+#review_container #rating { }
+
+#review_container #banner #rating #stats {
+    height:18px;
+    text-align:right;
+    vertical-align: middle;
+    padding: 4px 0;
+}
+
+#review_container #banner #rating #stars {
+    float:right;
+}
+
+.adjacent_icon {
+    float: left; margin-right: .3em;
+}
+
