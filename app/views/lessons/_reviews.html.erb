@@ -1,0 +1,12 @@
+<% lesson = object %>
+
+<% if lesson.reviews.empty?  %>
+  <h4>Share your thoughts on this lesson</h4>
+<% else %>
+  <%= render :partial => "reviews/review", :collection => @lesson.reviews %>
+<% end %>
+
+
+
+
+
