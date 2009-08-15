@@ -16,15 +16,28 @@ class ReviewTest < ActiveSupport::TestCase
     should_belong_to :lesson
     should_have_many :helpfuls, :flags
     should_validate_presence_of :user, :headline, :body, :lesson
+    should_allow_values_for    :status, "active", "rejected"
     should_validate_uniqueness_of :user_id, :scoped_to => :lesson_id
     should_ensure_length_in_range :headline, (0..100)
 
     should "return records" do
-      assert_equal 1, Review.list(@review.lesson, 1).size
+      assert_equal 1, Review.list(@review.lesson, 1, @user).size
     end
 
     should "not be reviewed" do
       assert_nil @review.helpful?(Factory.create(:user))
+    end
+
+    context "when rejecting" do
+      setup do
+        assert_equal @review.status, REVIEW_STATUS_ACTIVE
+        @review.reject
+        @review.save
+      end
+
+      should "be rejected" do
+        assert_equal @review.status, REVIEW_STATUS_REJECTED
+      end
     end
 
     context "that was marked as helpful by a user" do

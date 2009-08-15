@@ -1,9 +1,12 @@
 class Review < ActiveRecord::Base
+  before_validation_on_create :default_values
+  
   belongs_to :user
   belongs_to :lesson, :counter_cache => true
   has_many :helpfuls, :dependent => :destroy
   has_many :flags, :as => :flaggable, :dependent => :destroy
-  validates_presence_of :user, :headline, :body, :lesson
+  validates_presence_of :user, :headline, :body, :lesson, :status
+  validates_inclusion_of :status, :in => %w{ active rejected }
   validates_uniqueness_of :user_id, :scope => :lesson_id
   validates_length_of :headline, :maximum => 100, :allow_nil => true
   validate :validate_reviewer
@@ -18,9 +21,11 @@ class Review < ActiveRecord::Base
   end
 
 # Basic paginated listing finder
-  def self.list(lesson, page)
+  def self.list(lesson, page, current_user)
+    conditions = { :lesson_id => lesson }
+    conditions = conditions.merge({ :status => REVIEW_STATUS_ACTIVE}) unless (current_user and current_user.is_moderator?)
     paginate :page => page,
-             :conditions => { :lesson_id => lesson }, :order => 'id desc',
+             :conditions => conditions, :order => 'id desc',
              :per_page => ROWS_PER_PAGE
   end
 
@@ -36,7 +41,7 @@ class Review < ActiveRecord::Base
   end
 
   def reject
-    # TODO: implement
+    self.status = REVIEW_STATUS_REJECTED
   end
 
   private
@@ -50,5 +55,9 @@ class Review < ActiveRecord::Base
     if self.user and !self.user.owns_lesson? self.lesson
       errors.add_to_base(I18n.t('review.must_view_to_review'))
     end
+  end
+
+  def default_values
+    self.status = REVIEW_STATUS_ACTIVE
   end
 end

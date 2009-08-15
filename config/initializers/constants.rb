@@ -76,3 +76,7 @@ FLAG_STATUS_RESOLVED_MANUALLY = 'resolved_manually'
 # comment status
 COMMENT_STATUS_ACTIVE = 'active'
 COMMENT_STATUS_REJECTED = 'rejected'
+
+# review status
+REVIEW_STATUS_ACTIVE = 'active'
+REVIEW_STATUS_REJECTED = 'rejected'

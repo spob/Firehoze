@@ -3,4 +3,5 @@ Factory.define :review do |review|
   review.body "This is a longer description"
   review.association :user
   review.association :lesson
+  review.status 'active'
 end

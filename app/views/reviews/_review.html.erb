@@ -1,47 +1,52 @@
-<%  reviewer = review.user %>
+<% reviewer = review.user %>
 
 <div class="review_container">
 
   <div class="span-5 review_left">
     <div class="review_instructor_avatar"><%= avatar_tag reviewer, :size => :medium %></div>
     <div><%= link_to_profile(reviewer) %></div>
-    <div>Member Since:<br /><%= l(reviewer.created_at.to_date) %></div>
+    <div>Member Since:<br/><%= l(reviewer.created_at.to_date) %></div>
   </div>
 
   <div class="span-23 last review_right">
     <div>
       <% unless review.helpfuls.empty? %>
-        <%= review.helpfuls.helpful_yes.size %> of <%= review.helpfuls.size %> people found this review helpful:
+          <%= review.helpfuls.helpful_yes.size %> of <%= review.helpfuls.size %> people found this review helpful:
       <% end %>
     </div>
-    <div class="review_headline"><%= h review.headline %> by <%= h review.user.login %> written on <%= l review.created_at %></div>
+    <div class="review_headline"><%= h review.headline %> by <%= h review.user.login %> written
+      on <%= l review.created_at %></div>
     <div><%= rbs_formatter review.body %></div>
     <div style='background-color:blue;'>
       <% if current_user %>
-        <div class="span-20" style='float:left' >
+          <div class="span-20" style='float:left'>
 
-          <span style="float:left;margin-left:220px">Was this review helpful to you?</span>
+            <span style="float:left;margin-left:220px">Was this review helpful to you?</span>
 
-          <% unless review.user == current_user %>
-            <% if review.helpful?(current_user).nil? %>
-              <%= button_to t('general._yes'), helpfuls_path(:review_id => review, :helpful => 'yes'), :method => :post %>
-              &nbsp;
-              <%= button_to t('general._no'), helpfuls_path(:review_id => review, :helpful => 'no'), :method => :post %>
-            <% else %>
-              <%= review.helpful?(current_user) ? t('general._yes') : t('general._no') %>
+            <% unless review.user == current_user %>
+                <% if review.helpful?(current_user).nil? %>
+                    <%= button_to t('general._yes'), helpfuls_path(:review_id => review, :helpful => 'yes'), :method => :post %>
+                    &nbsp;
+                    <%= button_to t('general._no'), helpfuls_path(:review_id => review, :helpful => 'no'), :method => :post %>
+                <% else %>
+                    <%= review.helpful?(current_user) ? t('general._yes') : t('general._no') %>
+                <% end %>
             <% end %>
-          <% end %>
-          <% if review.can_edit? current_user %>
             <% if review.can_edit? current_user %>
-              <%= link_to "Edit", edit_review_path(review) %> |
+                <% if review.can_edit? current_user %>
+                    <%= link_to "Edit", edit_review_path(review) %> |
+                <% end %>
             <% end %>
-          <% end %>
-        </div>
-        <div class="span-3 last">
-          <span class='ui-icon ui-icon-flag adjacent_icon'></span><%= link_to "Flag", new_flag_path(:flagger_type => 'Review', :flagger_id => review) %>
-        </div>
+          </div>
+          <div class="span-3 last">
+            <span class='ui-icon ui-icon-flag adjacent_icon'></span>
+            <% unless review.status == REVIEW_STATUS_ACTIVE %>
+                | Status: <%= review.status %> |
+            <% end %>
+            <%= link_to "Flag", new_flag_path(:flagger_type => 'Review', :flagger_id => review) %>
+          </div>
       <% end %>
     </div>
   </div>
 </div>
-<hr class="clear" />
+<hr class="clear"/>

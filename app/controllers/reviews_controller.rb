@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
   verify :method => :destroy, :only => [:delete ], :redirect_to => :home_path
 
   def index
-    @reviews = Review.list @lesson, params[:page]
+    @reviews = Review.list @lesson, params[:page], current_user
   end
 
   def new
