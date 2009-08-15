@@ -2,8 +2,10 @@ class Flag < ActiveRecord::Base
   before_validation_on_create :default_values
   belongs_to :flaggable, :polymorphic => true
   belongs_to :user
+  belongs_to :moderator_user, :class_name => "User", :foreign_key => "moderator_user_id"
   validates_presence_of :user, :status, :reason_type, :comments
-  validates_inclusion_of :status, :in => [ FLAG_STATUS_PENDING, FLAG_STATUS_REMOVED, FLAG_STATUS_RESOLVED_MANUALLY ]
+  validates_inclusion_of :status, :in => [ FLAG_STATUS_PENDING, FLAG_STATUS_REMOVED,
+                                           FLAG_STATUS_RESOLVED_MANUALLY, FLAG_STATUS_REJECTED ]
 
   attr_protected :status, :response
 
@@ -12,12 +14,13 @@ class Flag < ActiveRecord::Base
   @@flag_statuses = [
           FLAG_STATUS_PENDING,
           FLAG_STATUS_REMOVED,
-          FLAG_STATUS_RESOLVED_MANUALLY ]
+          FLAG_STATUS_RESOLVED_MANUALLY,
+          FLAG_STATUS_REJECTED ]
 
   def self.flag_statuses_select_list
     statuses = []
     for status in @@flag_statuses
-      s = I18n.translate("flag.#{status}")
+      s = I18n.translate("flag.action_#{status}")
       statuses << [s, status]
     end
     statuses

@@ -57,9 +57,14 @@ en:
     flag_offensive: Offensive or Abusive
     flag_dangerous: Depicts a Dangerous Act
     flag_ip: Infringes My Rights
+    action_pending: Leave status unchanged
+    action_removed: Remove the flaggable item
+    action_resolved_manually: I've manually edited the flaggable item
+    action_rejected: The flaggable item is acceptable...reject this flagging
     pending: Pending
     removed: Removed
-    resolved_manually: Manually Resolved
+    resolved_manually: Manually resolved
+    rejected: Flagging was rejected
 
   gift_certificate:
     already_redeemed: The gift certificate '{{code}}' has already been redeemed

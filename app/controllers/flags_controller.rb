@@ -37,6 +37,7 @@ class FlagsController < ApplicationController
   def update
     @flag.response = params[:flag][:response]
     @flag.status = params[:flag][:status]
+    @flag.moderator_user = current_user
     Flag.transaction do
       if @flag.save
         flash[:notice] = t 'flag.update_success'
@@ -44,6 +45,11 @@ class FlagsController < ApplicationController
           redirect_to flag_path(@flag)
         else
           if @flag.status == FLAG_STATUS_REMOVED
+            for flag in @flag.flaggable.flags.pending
+              flag.status = FLAG_STATUS_REMOVED
+              flag.moderator_user = current_user
+              flag.save!
+            end
             flash[:notice] = t 'flag.flaggable_rejected', :flaggable => @flag.flaggable.class.to_s
             @flag.flaggable.reject
             @flag.flaggable.save!

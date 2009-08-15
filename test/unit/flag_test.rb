@@ -11,8 +11,10 @@ class FlagTest < ActiveSupport::TestCase
     end
 
     should_belong_to :user
+    should_belong_to :moderator_user
     should_validate_presence_of :user, :reason_type, :comments
-    should_allow_values_for     :status, FLAG_STATUS_PENDING
+    should_allow_values_for     :status, FLAG_STATUS_PENDING, FLAG_STATUS_REMOVED,
+                                FLAG_STATUS_RESOLVED_MANUALLY, FLAG_STATUS_REJECTED
     should_not_allow_mass_assignment_of :response, :status    
     #should_not_allow_values_for :status, "blah"
 
