@@ -58,11 +58,11 @@ en:
     flag_dangerous: Depicts a Dangerous Act
     flag_ip: Infringes My Rights
     action_pending: Leave status unchanged
-    action_removed: Remove the flaggable item
+    action_resolved: Remove the flaggable item
     action_resolved_manually: I've manually edited the flaggable item
     action_rejected: The flaggable item is acceptable...reject this flagging
     pending: Pending
-    removed: Removed
+    resolved: Resolved
     resolved_manually: Manually resolved
     rejected: Flagging was rejected
 

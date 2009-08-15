@@ -8,7 +8,7 @@ class FlagsControllerTest < ActionController::TestCase
       UserSession.create @user
     end
 
-    context "without sysadmin access" do
+    context "without moderator access" do
       context "on GET to :index" do
         setup { get :index }
 
@@ -18,8 +18,127 @@ class FlagsControllerTest < ActionController::TestCase
       end
     end
 
-    context "with sysadmin access" do
-      setup { @user.has_role 'admin' }
+    context "with moderator access" do
+      setup { @user.has_role 'moderator' }
+
+      context "with several existing flags" do
+        setup do
+          @lesson_comment = Factory.create(:lesson_comment)
+          @flag1 = @lesson_comment.flags.create!(:status => FLAG_STATUS_PENDING, :reason_type => "Smut", :comments => "Some comments",
+                                                 :user => Factory.create(:user))
+          @flag2 = @lesson_comment.flags.create!(:status => FLAG_STATUS_PENDING, :reason_type => "Smut", :comments => "Some comments",
+                                                 :user => Factory.create(:user))
+          @flag3 = Factory.create(:lesson_comment).flags.create!(:status => FLAG_STATUS_PENDING, :reason_type => "Smut", :comments => "Some comments",
+                                                                 :user => Factory.create(:user))
+          assert !@flag1.nil?
+          assert !@flag2.nil?
+          assert !@flag3.nil?
+        end
+
+        context "on PUT to :update to upon the flag with status pending" do
+          setup do
+            put :update, :id => @flag1, :flag => { :response => "Some reason", :status => FLAG_STATUS_PENDING}
+            @flag1 = Flag.find(@flag1.id)
+            @flag2 = Flag.find(@flag2.id)
+            @flag3 = Flag.find(@flag3.id)
+          end
+
+          should_set_the_flash_to /success/
+          should_assign_to :flag
+          should_respond_with :redirect
+          should_redirect_to("Flag show page") { flag_url(@flag1) }
+          should "update the flag" do
+            assert_equal "Some reason", @flag1.response
+            assert_equal FLAG_STATUS_PENDING, @flag1.status
+            assert "Some reason" != @flag2.response
+            assert_equal FLAG_STATUS_PENDING, @flag2.status
+            assert "Some reason" != @flag3.response
+            assert_equal FLAG_STATUS_PENDING, @flag3.status
+
+            assert COMMENT_STATUS_ACTIVE, @flag1.flaggable.status
+            assert COMMENT_STATUS_ACTIVE, @flag2.flaggable.status
+            assert COMMENT_STATUS_ACTIVE, @flag3.flaggable.status
+          end
+        end
+
+        context "on PUT to :update to upon the flag with status rejected" do
+          setup do
+            put :update, :id => @flag1, :flag => { :response => "Some reason", :status => FLAG_STATUS_REJECTED }
+            @flag1 = Flag.find(@flag1.id)
+            @flag2 = Flag.find(@flag2.id)
+            @flag3 = Flag.find(@flag3.id)
+          end
+
+          should_set_the_flash_to /success/
+          should_assign_to :flag
+          should_respond_with :redirect
+          should_redirect_to("Flags index page") { flags_url }
+          should "update the flag" do
+            assert_equal "Some reason", @flag1.response
+            assert_equal FLAG_STATUS_REJECTED, @flag1.status
+            assert "Some reason" != @flag2.response
+            assert_equal FLAG_STATUS_PENDING, @flag2.status
+            assert "Some reason" != @flag3.response
+            assert_equal FLAG_STATUS_PENDING, @flag3.status
+
+            assert COMMENT_STATUS_ACTIVE, @flag1.flaggable.status
+            assert COMMENT_STATUS_ACTIVE, @flag2.flaggable.status
+            assert COMMENT_STATUS_ACTIVE, @flag3.flaggable.status
+          end
+        end
+
+        context "on PUT to :update to upon the flag with status resolved manually" do
+          setup do
+            put :update, :id => @flag1, :flag => { :response => "Some reason", :status => FLAG_STATUS_RESOLVED_MANUALLY }
+            @flag1 = Flag.find(@flag1.id)
+            @flag2 = Flag.find(@flag2.id)
+            @flag3 = Flag.find(@flag3.id)
+          end
+
+          should_set_the_flash_to /success/
+          should_assign_to :flag
+          should_respond_with :redirect
+          should_redirect_to("Flags index page") { flags_url }
+          should "update the flag" do
+            assert_equal "Some reason", @flag1.response
+            assert_equal FLAG_STATUS_RESOLVED_MANUALLY, @flag1.status
+            assert "Some reason" != @flag2.response
+            assert_equal FLAG_STATUS_PENDING, @flag2.status
+            assert "Some reason" != @flag3.response
+            assert_equal FLAG_STATUS_PENDING, @flag3.status
+
+            assert COMMENT_STATUS_ACTIVE, @flag1.flaggable.status
+            assert COMMENT_STATUS_ACTIVE, @flag2.flaggable.status
+            assert COMMENT_STATUS_ACTIVE, @flag3.flaggable.status
+          end
+        end
+
+        context "on PUT to :update to upon the flag with status resolved automatically" do
+          setup do
+            put :update, :id => @flag1, :flag => { :response => "Some reason", :status => FLAG_STATUS_RESOLVED }
+            @flag1 = Flag.find(@flag1.id)
+            @flag2 = Flag.find(@flag2.id)
+            @flag3 = Flag.find(@flag3.id)
+          end
+
+          should_set_the_flash_to /success/
+          should_assign_to :flag
+          should_respond_with :redirect
+          should_redirect_to("Flags index page") { flags_url }
+          should "update the flag" do
+            assert_equal "Some reason", @flag1.response
+            assert_equal FLAG_STATUS_RESOLVED, @flag1.status
+            assert "Some reason" != @flag2.response
+            assert_equal FLAG_STATUS_RESOLVED, @flag2.status
+            assert "Some reason" != @flag3.response
+            assert_equal FLAG_STATUS_PENDING, @flag3.status
+
+            assert COMMENT_STATUS_REJECTED, @flag1.flaggable.status
+            assert COMMENT_STATUS_REJECTED, @flag2.flaggable.status
+            assert COMMENT_STATUS_ACTIVE, @flag3.flaggable.status
+          end
+        end
+      end
 
       context "on GET to :index" do
         setup { get :index }

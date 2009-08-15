@@ -5,7 +5,7 @@ class FlagsController < ApplicationController
   helper_method :flaggable_show_path
   layout :layout_for_action
 
-  permit ROLE_ADMIN, :only => [ :index, :show, :update, :edit ]
+  permit ROLE_MODERATOR, :only => [ :index, :show, :update, :edit ]
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
@@ -44,9 +44,9 @@ class FlagsController < ApplicationController
         if @flag.status == FLAG_STATUS_PENDING
           redirect_to flag_path(@flag)
         else
-          if @flag.status == FLAG_STATUS_REMOVED
+          if @flag.status == FLAG_STATUS_RESOLVED
             for flag in @flag.flaggable.flags.pending
-              flag.status = FLAG_STATUS_REMOVED
+              flag.status = FLAG_STATUS_RESOLVED
               flag.moderator_user = current_user
               flag.save!
             end

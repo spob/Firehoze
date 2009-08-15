@@ -87,7 +87,7 @@ class Lesson < ActiveRecord::Base
   named_scope   :pending, :conditions => {:status => VIDEO_STATUS_PENDING }
   named_scope   :failed, :conditions => {:status => VIDEO_STATUS_FAILED }
   # Credits which have been warned to be about to expire
-  # Note...add -1 to lesson collection to ensure that never that case where it will return NULL
+  # Note...add -1 to lesson collection to ensure that never that case where it will return NULL 
   named_scope :not_owned_by,
               lambda{ |user| { :conditions => ["lessons.id not in (?)", user.lessons.collect(&:id) + [-1]] }
               }

@@ -4,7 +4,7 @@ class Flag < ActiveRecord::Base
   belongs_to :user
   belongs_to :moderator_user, :class_name => "User", :foreign_key => "moderator_user_id"
   validates_presence_of :user, :status, :reason_type, :comments
-  validates_inclusion_of :status, :in => [ FLAG_STATUS_PENDING, FLAG_STATUS_REMOVED,
+  validates_inclusion_of :status, :in => [ FLAG_STATUS_PENDING, FLAG_STATUS_RESOLVED,
                                            FLAG_STATUS_RESOLVED_MANUALLY, FLAG_STATUS_REJECTED ]
 
   attr_protected :status, :response
@@ -13,7 +13,7 @@ class Flag < ActiveRecord::Base
 
   @@flag_statuses = [
           FLAG_STATUS_PENDING,
-          FLAG_STATUS_REMOVED,
+          FLAG_STATUS_RESOLVED,
           FLAG_STATUS_RESOLVED_MANUALLY,
           FLAG_STATUS_REJECTED ]
 
