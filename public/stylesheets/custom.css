@@ -176,31 +176,31 @@ img.lesson_tn {
 }
 
 #avatar_form input.submit {
-/*font-size: 30px;*/
+    /*font-size: 30px;*/
 }
 
 form.edit_user label.error {
-	margin-left: 20px;
+    margin-left: 20px;
 }
 
 
 /* Reviews */
-
 .review_container {
-/*    font-size: 12px;*/
+    font-size: 12px;
     margin:0;
     padding:0;
 }
 
-
-/* styled like an <h4> */
 .review_headline {
-
-font-size: 1.2em; 
-line-height: 1.25;
- margin-bottom: 1.25em; 
+    font-size: 16px;
+    line-height: 1.25;
+    margin-bottom: 1.25em;
 }
 
+.review_timestamp {
+    color: #999;
+    font-style: italic
+}
 
 .review_left div {
     margin: 0 0 5px 0;
@@ -212,23 +212,23 @@ line-height: 1.25;
     padding:0;
 }
 
-
-.review_right  .button-to {
-/*	height:24px;*/
-    float: right;
-    margin:0 3px;
-    padding:0;
-/*     border: 1px solid red;*/
-
-}
-
-
 .review_instructor_avatar {
     margin: 0;
     padding:0;
     border: solid 1px #CFCFCF;
     height: 110px;
     width: 110px;
+}
+
+.review_actions .button-to {
+    float: left;
+    margin:0;
+    padding:3px 3px 5px 0;
+}
+
+hr.space {
+    margin:0;
+    padding:0;
 }
 
 #review_container #rating { }
@@ -247,4 +247,3 @@ line-height: 1.25;
 .adjacent_icon {
     float: left; margin-right: .3em;
 }
-
