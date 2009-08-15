@@ -1,25 +1,25 @@
 <% reviewer = review.user %>
 
-<div class="review_container">
+<div class="review">
 
   <div class="span-5 review_left">
-    <div class="review_instructor_avatar"><%= avatar_tag reviewer, :size => :medium %></div>
+    <div class="instructor_avatar"><%= avatar_tag reviewer, :size => :medium %></div>
     <div><%= link_to_profile(reviewer) %></div>
     <div>Member Since:<br/><%= l(reviewer.created_at.to_date) %></div>
   </div>
 
   <div class="span-23 last review_right">
-    <div class="helpful">
+    <div class="helpful_phrase" >
       <% unless review.helpfuls.empty? %>
-        <%= review.helpfuls.helpful_yes.size %> of <%= review.helpfuls.size %> people found this review helpful:
+        <%= review.helpfuls.helpful_yes.size %> of <%= review.helpfuls.size %> people found this review helpful
       <% end %>
     </div>
 
-    <div class="review_headline">
-      <%= h review.headline %> by <%= h review.user.login %>
+    <div class="headline h3">
+      <%= h review.headline %>
     </div>
 
-    <div class="review_timestamp">
+    <div class="timestamp">
       written on <%= l review.created_at %>
     </div>
 
@@ -27,7 +27,7 @@
       <%= rbs_formatter review.body %>
     </div>
 
-    <div>
+    <div class="actions">
       <%= render :partial => 'reviews/actions', :object => review %>
     </div>
   </div>

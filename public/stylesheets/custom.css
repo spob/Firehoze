@@ -1,5 +1,5 @@
 /* GENERAL */
-
+c
 /* psuedo-header classes */
 .h1,.h2,.h3,.h4,.h5,.h6 { font-weight: normal; color: #111; }
 .h1 { font-size: 3em; line-height: 1; margin-bottom: 0.5em; }
@@ -16,8 +16,7 @@ div {
     text-align:right;
 }
 
-#top_nav_links li
-{
+#top_nav_links li {
     display: inline;
     list-style-type: none;
     padding-left: 10px;
@@ -66,8 +65,7 @@ div {
     border: solid 1px #CFCFCF;
 }
 
-#lesson_list_collection
-{
+#lesson_list_collection {
     padding-top:20px;
     background-color: #fff;
     border: solid 1px #CFCFCF;
@@ -125,8 +123,7 @@ img.lesson_tn {
     padding-left: 10px;
 }
 
-.tags_lesson_show
-{
+.tags_lesson_show {
     width:520px;
     margin:10px 0 0 0;
     border: solid 1px #999;
@@ -185,34 +182,39 @@ form.edit_user label.error {
 
 
 /* Reviews */
-.review_container {
+div.review {
     font-size: 12px;
     margin:0;
     padding:0;
 }
 
-.review_headline {
-    font-size: 16px;
-    line-height: 1.25;
-    margin-bottom: 1.25em;
+div.review .helpful_phrase {
+    color: #8F8F8F;
+    font-style: italic;
+    margin-bottom:10px;
 }
 
-.review_timestamp {
-    color: #999;
-    font-style: italic
+div.review .headline {
+    margin-bottom:8px;
 }
 
-.review_left div {
+div.review .timestamp {
+    color: #8F8F8F;
+    font-style: italic;
+    margin-bottom:8px;
+}
+
+div.review_left div {
     margin: 0 0 5px 0;
     padding:0;
 }
 
-.review_right div {
+div.review_right {
     margin: 0 0 5px 0;
     padding:0;
 }
 
-.review_instructor_avatar {
+div.review .instructor_avatar {
     margin: 0;
     padding:0;
     border: solid 1px #CFCFCF;
@@ -220,7 +222,7 @@ form.edit_user label.error {
     width: 110px;
 }
 
-.review_actions .button-to {
+div.review .actions .button-to {
     float: left;
     margin:0;
     padding:3px 3px 5px 0;
@@ -231,16 +233,16 @@ hr.space {
     padding:0;
 }
 
-#review_container #rating { }
+div.review .rating { }
 
-#review_container #banner #rating #stats {
+div.review .banner .rating .stats {
     height:18px;
     text-align:right;
     vertical-align: middle;
     padding: 4px 0;
 }
 
-#review_container #banner #rating #stars {
+div.review .banner .rating .stars {
     float:right;
 }
 
