@@ -1,6 +1,9 @@
-<% lessons = object %>
+<% 
+options ||= {}
+lessons = object
+%>
 
-<% if lessons.size >= Lesson::per_page %>
+<% if options[:count] and options[:count] > Lesson::per_page %>
  <div class="more">
     <% if controller.action_name == 'list' %>
       <%= will_paginate lessons %>

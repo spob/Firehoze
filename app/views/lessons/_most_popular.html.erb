@@ -1,7 +1,9 @@
 <%
 if current_user
+  count = Lesson.ready.most_popular.not_owned_by(current_user).size
   most_popular = Lesson.ready.most_popular.not_owned_by(current_user).paginate :page => params[:page], :per_page => @per_page
 else
+  count = Lesson.ready.most_popular.size
   most_popular = Lesson.ready.most_popular.paginate :page => params[:page], :per_page => @per_page
 end
 %>
@@ -10,4 +12,4 @@ end
   <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => most_popular %>
 </div>
 
-<%= render :partial => "lessons/pagination", :object => most_popular, :locals => { :collection => :most_popular } %>
+<%= render :partial => "lessons/pagination", :object => most_popular, :locals => { :collection => :most_popular, :options => { :count => count } } %>

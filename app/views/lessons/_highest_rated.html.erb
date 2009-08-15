@@ -1,7 +1,9 @@
 <%
 if current_user
+  count = Lesson.ready.highest_rated.not_owned_by(current_user).size
   highest_rated = Lesson.ready.highest_rated.not_owned_by(current_user).paginate :page => params[:page], :per_page => @per_page
 else
+  count = Lesson.ready.highest_rated.size
   highest_rated = Lesson.ready.highest_rated.paginate :page => params[:page], :per_page => @per_page
 end
 %>
@@ -11,4 +13,4 @@ end
   <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => highest_rated %>
 </div>
 
-<%= render :partial => "lessons/pagination", :object => highest_rated, :locals => { :collection => :highest_rated } %>
+<%= render :partial => "lessons/pagination", :object => highest_rated, :locals => { :collection => :highest_rated, :options => { :count => count } } %>
