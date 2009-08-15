@@ -121,7 +121,7 @@ class FlagsControllerTest < ActionController::TestCase
             @flag3 = Flag.find(@flag3.id)
           end
 
-          should_set_the_flash_to /success/
+          should_set_the_flash_to /rejected/
           should_assign_to :flag
           should_respond_with :redirect
           should_redirect_to("Flags index page") { flags_url }
