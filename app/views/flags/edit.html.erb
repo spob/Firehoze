@@ -1,0 +1,32 @@
+<% form_for :flag, :url => flag_path(@flag), :html => { :method => :put } do |f| %>
+    <%= f.error_messages %>
+    
+    <p>
+      Item Type: <%= h @flag.flaggable.class.to_s %>
+    </p>
+    <p>
+      Flagged Item: <%= link_to h(@flag.friendly_flagger_name), flaggable_show_path(@flag) %>
+    </p>
+    <p>
+      Flag Status: <%= h @flag.status.capitalize %>
+    </p>
+    <p>
+      Reported By: <%= link_to_profile(@flag.user) %>
+    </p>
+    <p>
+      Reason: <%= h @flag.reason_type.capitalize %>
+    </p>
+    <p>
+      Comments: <%= rbs_formatter(@flag.comments) %>
+    </p>
+    <p>
+      Response: <%= f.text_area :response %>
+    </p>
+    <p>
+      Status: <%= f.select(:status, Flag.flag_statuses_select_list) %>
+    </p>
+    <p>
+      <%= f.submit "Submit", :disable_with => translate('general.disable_with') %>
+      <%= link_to "Cancel", flags_path %>
+    </p>
+<% end %>

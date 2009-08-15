@@ -70,7 +70,8 @@ FLAG_IP = 'ip'
 # flag status
 FLAG_STATUS_PENDING = 'pending'
 FLAG_STATUS_REMOVED = 'removed'
-FLAG_STATUS_REMOVED_MANUALLY = 'removed manually'
+FLAG_STATUS_RESOLVED_MANUALLY = 'resolved_manually'
 
 # comment status
 COMMENT_STATUS_ACTIVE = 'active'
+COMMENT_STATUS_REJECTED = 'rejected'

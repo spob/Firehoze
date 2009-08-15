@@ -10,6 +10,7 @@ class UserTest < ActiveSupport::TestCase
     should_validate_uniqueness_of    :login
     should_validate_presence_of      :email, :last_name, :login, :language
     should_validate_numericality_of  :login_count, :failed_login_count
+    should_not_allow_mass_assignment_of :email, :login  
 
     # Apparently should not allow values for only works if you pass the error message you expect
     # to see...though this is not clear in the shoulda documentation.

@@ -7,7 +7,9 @@
 <p>
   Flag Status: <%= h @flag.status.capitalize %>
 </p>
-Reported By: <%= link_to_profile(@flag.user) %>
+<p>
+  Reported By: <%= link_to_profile(@flag.user) %>
+</p>
 <p>
   Reason: <%= h @flag.reason_type.capitalize %>
 </p>
@@ -15,5 +17,9 @@ Reported By: <%= link_to_profile(@flag.user) %>
   Comments: <%= rbs_formatter(@flag.comments) %>
 </p>
 <p>
+  Response: <%= rbs_formatter(@flag.response) %>
+</p>
+<p>
+    <%= link_to "Action", edit_flag_path(@flag) %> |
   <%= link_to "Back to Flags", flags_path %>
 </p>

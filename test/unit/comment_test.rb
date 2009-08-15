@@ -9,6 +9,18 @@ class CommentTest < ActiveSupport::TestCase
     should_allow_values_for    :status, "active", "rejected"
     #should_not_allow_values_for    :status, "blah"
 
+    context "when rejecting" do
+      setup do
+        assert_equal @comment.status, COMMENT_STATUS_ACTIVE
+        @comment.reject
+        @comment.save
+      end
+
+      should "be rejected" do
+        assert_equal @comment.status, COMMENT_STATUS_REJECTED
+      end
+    end
+
     context "and invoking can edit" do
       setup { @user = Factory.create(:user) }
 

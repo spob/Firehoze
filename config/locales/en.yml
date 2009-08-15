@@ -50,11 +50,16 @@ en:
   flag:
     already_flagged: You've already flagged this item.
     create_success: Thank you for bringing this to our attention. Your feedback has been recorded and will be reviewed.
+    update_success: Flag updated successfully
+    flaggable_rejected: The {{flaggable}} has been rejected
     flag_lewd: Sexual Content
     flag_spam: Spam
     flag_offensive: Offensive or Abusive
     flag_dangerous: Depicts a Dangerous Act
     flag_ip: Infringes My Rights
+    pending: Pending
+    removed: Removed
+    resolved_manually: Manually Resolved
 
   gift_certificate:
     already_redeemed: The gift certificate '{{code}}' has already been redeemed

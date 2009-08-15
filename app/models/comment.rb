@@ -14,6 +14,10 @@ class Comment < ActiveRecord::Base
   def self.flag_reasons
     @@flag_reasons
   end
+
+  def reject
+    self.status = COMMENT_STATUS_REJECTED
+  end
   
   def can_edit? user
     user.try("is_moderator?")

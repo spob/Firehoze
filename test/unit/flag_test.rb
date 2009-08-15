@@ -13,6 +13,7 @@ class FlagTest < ActiveSupport::TestCase
     should_belong_to :user
     should_validate_presence_of :user, :reason_type, :comments
     should_allow_values_for     :status, FLAG_STATUS_PENDING
+    should_not_allow_mass_assignment_of :response, :status    
     #should_not_allow_values_for :status, "blah"
 
     should "set the friendly name" do
