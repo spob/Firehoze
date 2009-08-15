@@ -196,6 +196,10 @@ class Lesson < ActiveRecord::Base
     "#{id}-#{title.parameterize}"
   end
 
+  def reject
+    # TODO: implement
+  end
+
   private
 
   Tag.destroy_unused = true

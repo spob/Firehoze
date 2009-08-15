@@ -35,6 +35,10 @@ class Review < ActiveRecord::Base
     self.helpfuls.scoped_by_user_id(user).first.try(:helpful)
   end
 
+  def reject
+    # TODO: implement
+  end
+
   private
 
   def validate_reviewer

@@ -159,6 +159,10 @@ class User < ActiveRecord::Base
     lessons + instructed_lessons
   end
 
+  def reject
+    # TODO: implement
+  end
+
   private
 
   def persist_user_logon
