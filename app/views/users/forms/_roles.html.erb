@@ -1,21 +1,15 @@
-<% form_for(:user, :url => update_roles_user_path(@user), :html => { :method => :put }) do |f| %>
+<% form_for(:user, :url => update_roles_user_path(@user), :html => { :method => :put, :id => "roles" }) do |f| %>
   <%= f.error_messages %>
-  <% unless f.object.nil? %>
-    <%= f.label :active %>:
-    <%= f.check_box :active %><br />
-    <br/>
-  <% end %>
-
-  <%= f.label "Roles" %>:
-  <br/>
-  <% for role in Role.by_name %>
-    <%= check_box_tag "user[role_ids][]", role.id, @user.has_role?(role.name) %>
-    <%= h role.name %>
-  <% end %>
-  <%= hidden_field_tag "user[role_ids][]", '' %>
-  <div>
-    <p>
-      <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
-    </p>
-  </div>
+  <fieldset>
+    <legend>Update Roles</legend>
+    <% for role in Role.by_name %>
+      <%= check_box_tag "user[role_ids][]", role.id, @user.has_role?(role.name) %>
+      <%= h role.name %>
+    <% end %>
+    <%= hidden_field_tag "user[role_ids][]", '' %>
+  </fieldset>
+  <p>
+    <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
+    <%= link_to 'Cancel', home_path %>
+  </p>
 <% end -%>

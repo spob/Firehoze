@@ -6,8 +6,8 @@ form#inline {
     margin-bottom:20px;
 }
 
-form#profile, form#avatar {
-    padding: 30px 40px 15px 40px;
+form#profile, form#avatar_form, form#roles, #password {
+    padding: 30px 40px 15px 30px;
     background-color: #eee;
     border:solid 1px #ccc;
     margin-top:10px;
@@ -22,19 +22,23 @@ form.login, form.register, form.password_reset {
 }
 
 form fieldset  {
-    /*	border:solid 1px red;*/
     border: none;
     padding: 0;
     margin:0;
 }
 
 form legend {
-    /*	border:solid 1px red;*/
     color: #333;
     padding: 0;
     margin:0;
     text-transform: uppercase;
 }
+
+#password h3  { 
+  margin: 0 0 15px 0;
+  text-transform: uppercase;
+	font-weight: bold; 
+	}
 
 form, form fieldset input, form fieldset textarea, form label {
     font-family: Helvetica, Arial;

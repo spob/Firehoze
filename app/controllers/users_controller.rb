@@ -59,6 +59,7 @@ class UsersController < ApplicationController
 
 
   def update
+    @user.active = params[:user][:active]
     @user.email = params[:user][:email].try(:strip)
     @user.first_name = params[:user][:first_name].try(:strip)
     @user.last_name = params[:user][:last_name].try(:strip)
