@@ -13,7 +13,7 @@ class ReviewsControllerTest < ActionController::TestCase
       setup do
         @lesson = Factory.create(:lesson)
         @user.credits.create!(:price => 0.99, :lesson => @lesson, :acquired_at => Time.now,
-                              :line_item => Factory.create(:line_item))
+          :line_item => Factory.create(:line_item))
         assert @user.owns_lesson?(@lesson)
       end
 
@@ -53,8 +53,8 @@ class ReviewsControllerTest < ActionController::TestCase
         setup do
           @credit = Factory.create(:credit, :user => @user)
           @review = @credit.lesson.reviews.create!(:body => 'hello',
-                                                   :headline => 'headline',
-                                                   :user => @user)
+            :headline => 'headline',
+            :user => @user)
           assert @credit.lesson.reviewed_by?(@user)
           get :new, :lesson_id => @review.lesson
         end
@@ -105,7 +105,19 @@ class ReviewsControllerTest < ActionController::TestCase
           should_set_the_flash_to :review_update_success
           should_assign_to :review
           should_respond_with :redirect
-          should_redirect_to("Reviews index page") { lesson_reviews_url(@review.lesson) }
+          should_redirect_to("Reviews index page") { review_path(@review) }
+        end
+
+        context "on GET to :show" do
+          setup do
+            @review = Factory.create(:review, :user => @user, :lesson => @lesson)
+            get :show, :id => @review
+          end
+
+          should_assign_to :review
+          should_respond_with :success
+          should_not_set_the_flash
+          should_render_template "show"
         end
       end
 
