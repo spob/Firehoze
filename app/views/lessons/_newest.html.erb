@@ -3,7 +3,7 @@ if current_user
   count = Lesson.ready.newest.not_owned_by(current_user).size
   newest = Lesson.ready.newest.not_owned_by(current_user).paginate :page => params[:page], :per_page => @per_page
 else
-  newest = Lesson.ready.newest.size
+  count = Lesson.ready.newest.size
   newest = Lesson.ready.newest.paginate :page => params[:page], :per_page => @per_page
 end
 %>
