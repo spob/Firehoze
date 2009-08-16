@@ -42,11 +42,11 @@ END
     end
   end
 
-  context "with embedded hyperlinks" do
+  context "with embedded hyperlinks and bold and italics" do
     setup do
-      @raw_text = "this is link http://www.google.com yes!"
+      @raw_text = "this *is* link http://www.google.com _yes_!"
       @formatted_raw_text =<<END
-this is link <a href="http://www.google.com">http://www.google.com</a> yes!
+this <b>is</b> link <a href="http://www.google.com">http://www.google.com</a> <i>yes</i>!
 END
     end
 

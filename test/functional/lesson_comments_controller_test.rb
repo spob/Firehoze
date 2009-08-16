@@ -80,12 +80,13 @@ class LessonCommentsControllerTest < ActionController::TestCase
           context "on GET to :edit" do
             setup do
               assert !@user.is_moderator?
+              assert !@lesson_comment.can_edit?(@user)
               get :edit, :id => @lesson_comment
             end
 
             should_respond_with :redirect
-            should_set_the_flash_to /Permission denied/
-            should_redirect_to("Lessons index") { lessons_path }
+            should_set_the_flash_to /You do not have rights/
+            should_redirect_to("Lesson Comments") { lesson_lesson_comments_path(@lesson) }
           end
 
           context "on PUT to :update" do
@@ -94,9 +95,9 @@ class LessonCommentsControllerTest < ActionController::TestCase
                   :lesson_comment => { :public => true }
             end
 
-            should_set_the_flash_to /Permission denied/
+            should_set_the_flash_to /You do not have rights/
             should_respond_with :redirect
-            should_redirect_to("Lessons index") { lessons_path }
+            should_redirect_to("Lesson Comments") { lesson_lesson_comments_path(@lesson) }
           end
         end
       end

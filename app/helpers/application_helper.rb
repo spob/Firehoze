@@ -28,8 +28,13 @@ module ApplicationHelper
 
   def rbs_formatter(text)
     return text if text.blank?
+    # process bold and italics
+    text = text.gsub(/(^.+)\*(.+)\*/, '\1<b>\2</b>').gsub(/_(.+)_/, '<i>\1</i>')
+    # and unordered lists
     text = text.gsub(/^\*\s(.*)$/, '<ul><li>\1</li></ul>').gsub(/<\/ul>\s*<ul>/, "\n")
+    # and ordered lists
     text = text.gsub(/^#\s(.*)$/, '<ol><li>\1</li></ol>').gsub(/<\/ol>\s*<ol>/, "\n")
+    # collapse the </ul> and <ul>
     text.gsub(/^<br\s*\/><ul>/, "<ul>").gsub(/^<br\s*\/><ol>/, "<ol>").gsub(/^<br\s*\/><li>/, "<li>")
     auto_link(simple_format(text))
   end
