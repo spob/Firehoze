@@ -5,7 +5,7 @@ class LessonsController < ApplicationController
   verify :method => :post, :only => [ :create, :convert ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update, :conversion_notify ], :redirect_to => :home_path
   before_filter :find_lesson, :only => [ :show, :edit, :update, :watch, :convert, :rate ]
-  before_filter :set_per_page, :only => [ :index, :list, :list_newest, :list_most_popular ]
+  before_filter :set_per_page, :only => [ :index, :list, :list_newest, :list_most_popular, :list_highest_rated ]
 
   # The number of free download counts to display on the create lesson page
   @@free_download_counts = [ 0, 5, 10, 25 ]
@@ -165,7 +165,7 @@ class LessonsController < ApplicationController
   end
 
   def set_per_page
-    if %w(list_newest list_most_popular).include?(params[:action])
+    if %w(list_newest list_most_popular list_highest_rated).include?(params[:action])
       @per_page = 3
     else
       @per_page = %w(index).include?(params[:action]) ? 5 : Lesson.per_page
