@@ -6,9 +6,6 @@ class LessonCommentsController < ApplicationController
   before_filter :find_lesson, :except => [ :edit, :update, :destroy ]
   before_filter :find_lesson_comment, :only => [ :edit, :update ]
 
-
-  permit ROLE_MODERATOR, :only => [:edit, :update]
-
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
   verify :method => :destroy, :only => [:delete ], :redirect_to => :home_path
@@ -35,11 +32,16 @@ class LessonCommentsController < ApplicationController
   def edit
     unless @lesson_comment.can_edit? current_user
       flash[:error] = t 'lesson_comment.cannot_edit'
-      redirect_to lesson_reviews_path(@lesson)
+      redirect_to lesson_lesson_comments_path(@lesson_comment.lesson)
     end
   end
 
   def update
+    unless @lesson_comment.can_edit? current_user
+      flash[:error] = t 'lesson_comment.cannot_edit'
+      redirect_to lesson_lesson_comments_path(@lesson_comment.lesson)
+      return
+    end
     params[:lesson_comment][:public] ||= false
     if @lesson_comment.update_attributes(params[:lesson_comment])
       flash[:notice] = t 'lesson_comment.update_success'

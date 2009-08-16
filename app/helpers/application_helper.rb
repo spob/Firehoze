@@ -28,10 +28,15 @@ module ApplicationHelper
 
   def rbs_formatter(text)
     return text if text.blank?
-    text = auto_link(simple_format(text))
+    # process bold and italics
+    text = text.gsub(/(^.+)\*(.+)\*/, '\1<b>\2</b>').gsub(/_(.+)_/, '<i>\1</i>')
+    # and unordered lists
     text = text.gsub(/^\*\s(.*)$/, '<ul><li>\1</li></ul>').gsub(/<\/ul>\s*<ul>/, "\n")
+    # and ordered lists
     text = text.gsub(/^#\s(.*)$/, '<ol><li>\1</li></ol>').gsub(/<\/ol>\s*<ol>/, "\n")
-    text.gsub(/^<br\s*\/><ul>/, "<ul>").gsub(/^<br\s*\/><ol>/, "<ol>").gsub(/^<br\s*\/><li>/, "<li>")
+    text = auto_link(simple_format(text))
+    text = text.gsub(/^<br\s*\/><ul>/, "<ul>").gsub(/^<br\s*\/><ol>/, "<ol>").gsub(/^<br\s*\/><li>/, "<li>")
+    text
   end
 
   # Set field focus. For an explanation, see:
