@@ -36,6 +36,7 @@ module ApplicationHelper
     text = text.gsub(/^#\s(.*)$/, '<ol><li>\1</li></ol>').gsub(/<\/ol>\s*<ol>/, "\n")
     text = auto_link(simple_format(text))
     text = text.gsub(/^<br\s*\/><ul>/, "<ul>").gsub(/^<br\s*\/><ol>/, "<ol>").gsub(/^<br\s*\/><li>/, "<li>")
+    text = text.gsub(/<\/ul>\s*<br\s*\/>/, "</ul>").gsub(/<\/ol>\s*<br\s*\/>/, "</ol>").gsub(/^<br\s*\/><\/li>/, "</li>")
     text
   end
 
