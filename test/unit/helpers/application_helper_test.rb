@@ -27,27 +27,27 @@ and so are these
 and that's the end
 END
       @formatted_raw_text = <<END
-These are bullets
-and so are these
+<p>These are bullets
+<br />and so are these
 <ul><li>one</li>
 <li>two</li>
-<li>three</li></ul>
+<li>three</li></ul></p>
 
-and that's the end
+<p>and that's the end
+</p>
 END
     end
 
     should 'bulletize text' do
-      assert_equal @formatted_raw_text, rbs_formatter(@raw_text)
+      assert_equal @formatted_raw_text.rstrip, rbs_formatter(@raw_text)
     end
   end
 
   context "with embedded hyperlinks and bold and italics" do
     setup do
       @raw_text = "this *is* link http://www.google.com _yes_!"
-      @formatted_raw_text =<<END
-this <b>is</b> link <a href="http://www.google.com">http://www.google.com</a> <i>yes</i>!
-END
+      @formatted_raw_text =
+"<p>this <b>is</b> link <a href=\"http://www.google.com\">http://www.google.com</a> <i>yes</i>!</p>"
     end
 
     should 'bulletize text' do
