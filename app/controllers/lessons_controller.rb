@@ -81,17 +81,29 @@ class LessonsController < ApplicationController
 
   # SUPPORTING AJAX TABS
   def tabbed_newest
-    @lessons = Lesson.ready.newest.paginate(:per_page => @per_page, :page => params[:page])
+    if current_user
+      @lessons = Lesson.ready.newest.not_owned_by(current_user).paginate(:per_page => @per_page, :page => params[:page])
+    else
+      @lessons = Lesson.ready.newest.paginate(:per_page => @per_page, :page => params[:page])
+    end
     render :layout => 'lessons_in_tab'
   end
 
   def tabbed_most_popular
-    @lessons = Lesson.ready.most_popular.paginate(:per_page => @per_page, :page => params[:page])
+    if current_user
+      @lessons = Lesson.ready.most_popular.not_owned_by(current_user).paginate(:per_page => @per_page, :page => params[:page])
+    else
+      @lessons = Lesson.ready.most_popular.paginate(:per_page => @per_page, :page => params[:page])
+    end
     render :layout => 'lessons_in_tab'
   end
 
   def tabbed_highest_rated
-    @lessons = Lesson.ready.highest_rated.paginate(:per_page => @per_page, :page => params[:page])
+    if current_user
+      @lessons = Lesson.ready.highest_rated.not_owned_by(current_user).paginate(:per_page => @per_page, :page => params[:page])
+    else
+      @lessons = Lesson.ready.highest_rated.paginate(:per_page => @per_page, :page => params[:page])
+    end
     render :layout => 'lessons_in_tab'
   end
 
