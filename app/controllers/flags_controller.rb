@@ -1,6 +1,6 @@
 class FlagsController < ApplicationController
   before_filter :require_user
-  before_filter :find_flagger, :only => [ :new, :create ]
+  before_filter :find_flaggable, :only => [ :new, :create ]
   before_filter :find_flag, :only => [ :show, :update, :edit ]
   helper_method :flaggable_show_path
   layout :layout_for_action
@@ -11,7 +11,7 @@ class FlagsController < ApplicationController
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
 
   def create
-    @flag = @flagger.flags.new(params[:flag])
+    @flag = @flaggable.flags.new(params[:flag])
     @flag.status = FLAG_STATUS_PENDING
     @flag.user = current_user
     if @flag.save
@@ -23,7 +23,7 @@ class FlagsController < ApplicationController
   end
 
   def new
-    @flag = @flagger.flags.new
+    @flag = @flaggable.flags.new
   end
 
   def show
@@ -84,9 +84,9 @@ class FlagsController < ApplicationController
     url_for :controller => klass.to_s.pluralize, :action => 'show', :id => id
   end
 
-  def find_flagger
+  def find_flaggable
     @klass = params[:flagger_type].constantize
-    @flagger = @klass.find(params[:flagger_id])
+    @flaggable = @klass.find(params[:flagger_id])
   end
 
   def find_flag
@@ -96,6 +96,6 @@ class FlagsController < ApplicationController
   def populate_flagger_type
     params[:flagger_type] = @flag.flaggable.class.to_s
     params[:flagger_id] = @flag.flaggable.id
-    find_flagger
+    find_flaggable
   end
 end

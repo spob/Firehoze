@@ -10,14 +10,19 @@ class FlagTest < ActiveSupport::TestCase
       assert !Flag.pending.empty? 
     end
 
+    context "when calling user.has_flaggable?" do
+       assert @lesson.flags.first.user.has_flagged?(@lesson)
+       assert !@lesson.flags.first.user.has_flagged?(Factory.create(:lesson))
+    end
+
     context "and invoking the by_flaggable scope" do
       should "return rows appropriately" do
         assert !@lesson.flags.first.user.flaggings.empty?
-        assert !@lesson.flags.first.user.flaggings.by_flaggable(Lesson).empty?
-        assert_equal @lesson.flags.first, @lesson.flags.first.user.flaggings.by_flaggable(Lesson).first
-        assert @lesson.flags.first.user.flaggings.by_flaggable(User).empty?
-        assert @lesson.flags.first.user.flaggings.by_flaggable(LessonComment).empty?
-        assert @lesson.flags.first.user.flaggings.by_flaggable(Review).empty?
+        assert !@lesson.flags.first.user.flaggings.by_flaggable_type(Lesson).empty?
+        assert_equal @lesson.flags.first, @lesson.flags.first.user.flaggings.by_flaggable_type(Lesson).first
+        assert @lesson.flags.first.user.flaggings.by_flaggable_type(User).empty?
+        assert @lesson.flags.first.user.flaggings.by_flaggable_type(Comment).empty?
+        assert @lesson.flags.first.user.flaggings.by_flaggable_type(Review).empty?
       end
     end
 

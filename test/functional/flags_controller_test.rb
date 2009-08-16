@@ -159,7 +159,7 @@ class FlagsControllerTest < ActionController::TestCase
         setup { get :new, :flagger_type => 'Lesson', :flagger_id => @lesson }
 
         should_assign_to :flag
-        should_assign_to :flagger
+        should_assign_to :flaggable
         should_respond_with :success
         should_not_set_the_flash
         should_render_template "new"
@@ -172,7 +172,7 @@ class FlagsControllerTest < ActionController::TestCase
           post :create, :flag => @new_flag_attr, :flagger_type => 'Lesson', :flagger_id => @lesson
         end
 
-        should_assign_to :flagger
+        should_assign_to :flaggable
         should_respond_with :redirect
         should_set_the_flash_to /Thank you for bringing this to our attention/
         should "create a flag" do
@@ -185,7 +185,7 @@ class FlagsControllerTest < ActionController::TestCase
             post :create, :flag => @new_flag_attr, :flagger_type => 'Lesson', :flagger_id => @lesson
           end
 
-          should_assign_to :flagger
+          should_assign_to :flaggable
           should_respond_with :success
           should_render_template :new
         end
@@ -205,7 +205,7 @@ class FlagsControllerTest < ActionController::TestCase
         setup { get :new, :flagger_type => 'Review', :flagger_id => @review }
 
         should_assign_to :flag
-        should_assign_to :flagger
+        should_assign_to :flaggable
         should_respond_with :success
         should_not_set_the_flash
         should_render_template "new"
@@ -218,7 +218,7 @@ class FlagsControllerTest < ActionController::TestCase
           post :create, :flag => @new_flag_attr, :flagger_type => 'Review', :flagger_id => @review
         end
 
-        should_assign_to :flagger
+        should_assign_to :flaggable
         should_respond_with :redirect
         should_set_the_flash_to /Thank you for bringing this to our attention/
         should "create a flag" do
@@ -231,7 +231,7 @@ class FlagsControllerTest < ActionController::TestCase
             post :create, :flag => @new_flag_attr, :flagger_type => 'Review', :flagger_id => @review
           end
 
-          should_assign_to :flagger
+          should_assign_to :flaggable
           should_respond_with :success
           should_render_template :new
         end
@@ -247,7 +247,7 @@ class FlagsControllerTest < ActionController::TestCase
         setup { get :new, :flagger_type => 'LessonComment', :flagger_id => @lesson_comment }
 
         should_assign_to :flag
-        should_assign_to :flagger
+        should_assign_to :flaggable
         should_respond_with :success
         should_not_set_the_flash
         should_render_template "new"
@@ -260,7 +260,7 @@ class FlagsControllerTest < ActionController::TestCase
           post :create, :flag => @new_flag_attr, :flagger_type => 'LessonComment', :flagger_id => @lesson_comment
         end
 
-        should_assign_to :flagger
+        should_assign_to :flaggable
         should_respond_with :redirect
         should_set_the_flash_to /Thank you for bringing this to our attention/
         should "create a flag" do
@@ -273,7 +273,7 @@ class FlagsControllerTest < ActionController::TestCase
             post :create, :flag => @new_flag_attr, :flagger_type => 'LessonComment', :flagger_id => @lesson_comment
           end
 
-          should_assign_to :flagger
+          should_assign_to :flaggable
           should_respond_with :success
           should_render_template :new
         end
@@ -289,7 +289,7 @@ class FlagsControllerTest < ActionController::TestCase
         setup { get :new, :flagger_type => 'User', :flagger_id => @profile_user }
 
         should_assign_to :flag
-        should_assign_to :flagger
+        should_assign_to :flaggable
         should_respond_with :success
         should_not_set_the_flash
         should_render_template "new"
@@ -302,7 +302,7 @@ class FlagsControllerTest < ActionController::TestCase
           post :create, :flag => @new_flag_attr, :flagger_type => 'User', :flagger_id => @profile_user
         end
 
-        should_assign_to :flagger
+        should_assign_to :flaggable
         should_respond_with :redirect
         should_set_the_flash_to /Thank you for bringing this to our attention/
         should "create a flag" do
@@ -315,7 +315,7 @@ class FlagsControllerTest < ActionController::TestCase
             post :create, :flag => @new_flag_attr, :flagger_type => 'User', :flagger_id => @profile_user
           end
 
-          should_assign_to :flagger
+          should_assign_to :flaggable
           should_respond_with :success
           should_render_template :new
         end

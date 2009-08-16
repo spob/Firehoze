@@ -166,6 +166,13 @@ class User < ActiveRecord::Base
     self.active = false
   end
 
+  def has_flagged? (flaggable)
+    klass = flaggable.class
+    # for some reason rails settings the flaggable type to Comment instead of LessonComment
+    klass = Comment if flaggable.class.to_s == "LessonComment"
+    !flaggings.by_flaggable_type(klass).find_by_flaggable_id(flaggable.id).nil?
+  end
+
   private
 
   def persist_user_logon
