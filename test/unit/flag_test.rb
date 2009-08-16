@@ -6,13 +6,17 @@ class FlagTest < ActiveSupport::TestCase
       @lesson = Factory.create(:lesson)
       @lesson.flags.create!(:status => FLAG_STATUS_PENDING, :reason_type => "Smut", :comments => "Some comments",
                             :user => Factory.create(:user))
+      assert !@lesson.nil?
       assert !Flag.all.empty?
-      assert !Flag.pending.empty? 
+      assert !Flag.pending.empty?
     end
 
     context "when calling user.has_flaggable?" do
-       assert @lesson.flags.first.user.has_flagged?(@lesson)
-       assert !@lesson.flags.first.user.has_flagged?(Factory.create(:lesson))
+      should "find flaggable" do
+        assert !@lesson.flags.first .nil?
+        assert @lesson.flags.first.user.has_flagged?(@lesson)
+        assert !@lesson.flags.first.user.has_flagged?(Factory.create(:lesson))
+      end
     end
 
     context "and invoking the by_flaggable scope" do
@@ -31,7 +35,7 @@ class FlagTest < ActiveSupport::TestCase
     should_validate_presence_of :user, :reason_type, :comments
     should_allow_values_for     :status, FLAG_STATUS_PENDING, FLAG_STATUS_RESOLVED,
                                 FLAG_STATUS_RESOLVED_MANUALLY, FLAG_STATUS_REJECTED
-    should_not_allow_mass_assignment_of :response, :status    
+    should_not_allow_mass_assignment_of :response, :status
     #should_not_allow_values_for :status, "blah"
 
     should "set the friendly name" do
@@ -39,7 +43,7 @@ class FlagTest < ActiveSupport::TestCase
     end
 
     should "return one pending flag" do
-      assert_equal 1, Flag.pending.size 
+      assert_equal 1, Flag.pending.size
     end
   end
 end
