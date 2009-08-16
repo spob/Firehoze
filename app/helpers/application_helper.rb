@@ -28,7 +28,7 @@ module ApplicationHelper
 
   def rbs_formatter(text)
     return text if text.blank?
-    auto_link(simple_format(text))
+    text = auto_link(simple_format(text))
     text = text.gsub(/^\*\s(.*)$/, '<ul><li>\1</li></ul>').gsub(/<\/ul>\s*<ul>/, "\n")
     text = text.gsub(/^#\s(.*)$/, '<ol><li>\1</li></ol>').gsub(/<\/ol>\s*<ol>/, "\n")
     text.gsub(/^<br\s*\/><ul>/, "<ul>").gsub(/^<br\s*\/><ol>/, "<ol>").gsub(/^<br\s*\/><li>/, "<li>")
