@@ -77,7 +77,7 @@ class FlagsController < ApplicationController
   private
 
   def layout_for_action
-    %w(index).include?(params[:action]) ? 'admin' : 'application'
+    %w(index show edit).include?(params[:action]) ? 'admin' : 'application'
   end
 
   def show_url klass, id

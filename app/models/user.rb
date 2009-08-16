@@ -160,7 +160,7 @@ class User < ActiveRecord::Base
   end
 
   def reject
-    # TODO: implement
+    self.active = false
   end
 
   private
