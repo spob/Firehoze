@@ -20,7 +20,7 @@
       Comments: <%= rbs_formatter(@flag.comments) %>
     </p>
     <p>
-      Response: <%= f.text_area :response %>
+      Moderator Response: <%= f.text_area :response %>
     </p>
     <p>
       Action: <%= f.select(:status, Flag.flag_statuses_select_list) %>
