@@ -83,9 +83,10 @@ class Lesson < ActiveRecord::Base
   named_scope   :most_popular, :order => "credits_count DESC, id DESC"
   named_scope   :highest_rated, :order => "rating_average DESC, id DESC"
   named_scope   :newest, :order => "id DESC"
-  named_scope   :ready, :conditions => {:status => VIDEO_STATUS_READY }
-  named_scope   :pending, :conditions => {:status => VIDEO_STATUS_PENDING }
-  named_scope   :failed, :conditions => {:status => VIDEO_STATUS_FAILED }
+  named_scope   :ready, :conditions => {:status => LESSON_STATUS_READY }
+  named_scope   :pending, :conditions => {:status => LESSON_STATUS_PENDING }
+  named_scope   :failed, :conditions => {:status => LESSON_STATUS_FAILED }
+  named_scope   :rejected, :conditions => {:status => LESSON_STATUS_REJECTED }
   # Credits which have been warned to be about to expire
   # Note...add -1 to lesson collection to ensure that never that case where it will return NULL 
   named_scope :not_owned_by,
@@ -120,7 +121,7 @@ class Lesson < ActiveRecord::Base
   def self.list(page, user=nil)
     conditions = {}
     conditions = ["status = ? or instructor_id = ?",
-                  VIDEO_STATUS_READY, user]  unless (user and user.try(:is_admin?))
+                  LESSON_STATUS_READY, user]  unless (user and user.try(:is_admin?))
     paginate :page => page,
              :conditions => conditions,
              :order => 'id desc',
@@ -128,7 +129,7 @@ class Lesson < ActiveRecord::Base
   end
 
   def ready?
-    self.status == VIDEO_STATUS_READY
+    self.status == LESSON_STATUS_READY
   end
 
   def owned_by?(user)
@@ -179,14 +180,16 @@ class Lesson < ActiveRecord::Base
   end
 
   def update_status
-    if any_video_match_by_status(VIDEO_STATUS_FAILED)
-      update_status_attribute(VIDEO_STATUS_FAILED)
+    if self.status == LESSON_STATUS_REJECTED
+      # do nothing...moderator put it in this status for a reason
+    elsif any_video_match_by_status(VIDEO_STATUS_FAILED)
+      update_status_attribute(LESSON_STATUS_FAILED)
     elsif processed_videos.empty? or all_videos_match_by_status(VIDEO_STATUS_PENDING)
-      update_status_attribute(VIDEO_STATUS_PENDING)
-    elsif any_video_match_by_status(VIDEO_STATUS_CONVERTING)
-      update_status_attribute(VIDEO_STATUS_CONVERTING)
-    elsif all_videos_match_by_status(VIDEO_STATUS_READY)
-      update_status_attribute(VIDEO_STATUS_READY)
+      update_status_attribute(LESSON_STATUS_PENDING)
+    elsif any_video_match_by_status(LESSON_STATUS_CONVERTING)
+      update_status_attribute(LESSON_STATUS_CONVERTING)
+    elsif all_videos_match_by_status(LESSON_STATUS_READY)
+      update_status_attribute(LESSON_STATUS_READY)
       Notifier.deliver_lesson_ready(self)
     else
       update_status_attribute("Unknown status")
@@ -198,7 +201,7 @@ class Lesson < ActiveRecord::Base
   end
 
   def reject
-    # TODO: implement
+    self.status = LESSON_STATUS_REJECTED
   end
 
   private
