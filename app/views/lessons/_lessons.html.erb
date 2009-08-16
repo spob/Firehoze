@@ -1,13 +1,19 @@
-<%  lesson_format = :wide %>
+<%
+# @lessons = collection
+%>
+
+<%  
+  lesson_format = :wide 
+%>
 <div class="clear prepend-1 span-39 last" id="lesson_list_collection">
 
-  <%= will_paginate @newest %>
+  <%= will_paginate @lessons %>
 
   <div class="lesson_container">
     <%= lessons_header(:newest) %>
-    <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => @newest, :locals => { :lesson_format => lesson_format } %>
+    <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => @lessons, :locals => { :lesson_format => lesson_format } %>
   </div>
 
-  <%= will_paginate @newest %>
+  <%= will_paginate @lessons %>
 
 </div>
