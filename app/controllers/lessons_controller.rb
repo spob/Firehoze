@@ -5,7 +5,7 @@ class LessonsController < ApplicationController
   verify :method => :post, :only => [ :create, :convert ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update, :conversion_notify ], :redirect_to => :home_path
   before_filter :find_lesson, :only => [ :show, :edit, :update, :watch, :convert, :rate ]
-  before_filter :set_per_page, :only => [ :index, :list, :list_newest, :list_most_popular, :list_highest_rated ]
+  before_filter :set_per_page, :only => [ :index, :list, :list_newest, :list_most_popular, :list_highest_rated, :lesson_foo ]
 
   # The number of free download counts to display on the create lesson page
   @@free_download_counts = [ 0, 5, 10, 25 ]
@@ -16,18 +16,6 @@ class LessonsController < ApplicationController
     else
       @lessons = Lesson.list(params[:page], current_user)
     end
-  end
-
-  def list_newest
-    @lessons = Lesson.ready.newest.paginate(:per_page => @per_page, :page => params[:page])
-  end
-
-  def list_most_popular
-    @lessons = Lesson.ready.most_popular.paginate(:per_page => @per_page, :page => params[:page])
-  end
-
-  def list_highest_rated
-    @lessons = Lesson.ready.highest_rated.paginate(:per_page => @per_page, :page => params[:page])
   end
 
   def list
@@ -90,6 +78,42 @@ class LessonsController < ApplicationController
       redirect_to lesson_path(@lesson)
     end
   end
+
+  # SUPPORTING AJAX TABS
+  def tabbed_newest
+    @lessons = Lesson.ready.newest.paginate(:per_page => @per_page, :page => params[:page])
+    render :layout => 'lessons_in_tab'
+  end
+
+  def tabbed_most_popular
+    @lessons = Lesson.ready.most_popular.paginate(:per_page => @per_page, :page => params[:page])
+    render :layout => 'lessons_in_tab'
+  end
+
+  def tabbed_highest_rated
+    @lessons = Lesson.ready.highest_rated.paginate(:per_page => @per_page, :page => params[:page])
+    render :layout => 'lessons_in_tab'
+  end
+
+  # SUPPORTING AJAX PAGINATION
+  def ajax_list_newest
+    @lessons = Lesson.ready.newest.paginate(:per_page => @per_page, :page => params[:page])
+  end
+
+  def ajax_list_most_popular
+    @lessons = Lesson.ready.most_popular.paginate(:per_page => @per_page, :page => params[:page])
+  end
+
+  def ajax_list_highest_rated
+    @lessons = Lesson.ready.highest_rated.paginate(:per_page => @per_page, :page => params[:page])
+  end
+
+  # FIXME -- testing purposes here ...
+  def list_recently_browsed
+    me = User.find 2
+    @lessons = me.visited_lessons.paginate :page => params[:page], :per_page => @per_page
+    render :layout => 'lessons_in_tab'
+   end
 
   def watch
     if @lesson.ready?

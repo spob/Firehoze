@@ -1,3 +1,13 @@
 $(function() {
-	$('#tabs').tabs({ cookie: { expires: 30 } });
+    $('#tabs').tabs(
+    {
+        // cache: true,
+        cookie: { 
+            expires: 30
+        },
+        fx: { 
+            opacity: 'toggle'
+        }
+    });
+
 });

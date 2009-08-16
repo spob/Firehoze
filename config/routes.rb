@@ -11,7 +11,17 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :helpfuls, :only => [ :create ]
   map.resources :lessons, :has_many => :reviews, :shallow => true,
                 :member => { :watch => :get, :convert => :post, :rate => :post },
-                :collection => { :conversion_notify => :put, :list => :get, :list_newest => :get, :list_most_popular => :get, :list_highest_rated => :get }
+                :collection => { 
+                  :conversion_notify => :put, 
+                  :list => :get, 
+                  :ajax_list_newest => :get, 
+                  :ajax_list_most_popular => :get, 
+                  :ajax_list_highest_rated => :get,  
+                  :ajax_list_recently_browsed => :get, 
+                  :tabbed_newest => :get, 
+                  :tabbed_most_popular => :get, 
+                  :tabbed_highest_rated => :get,  
+                  }
   map.resources :lessons, :has_many => :lesson_comments, :shallow => true,
                 :member => { :watch => :get, :convert => :post, :rate => :post },
                 :collection => { :conversion_notify => :put, :list => :get }

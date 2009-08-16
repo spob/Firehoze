@@ -1,20 +1,18 @@
 <% content_for :head do -%>
   <%= javascript_include_tag 'jquery-ui-1.7.2.custom.min.js' %>
   <%= stylesheet_link_tag 'jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" %>
-  <%= javascript_include_tag 'tabs.js','jquery.cookie.js' %>
+  <%= javascript_include_tag 'tabs.js', 'pagination.js', 'jquery.cookie.js' %>
 <% end %>
 
 <div class="clear span-40 last" id="lesson_tabs">
-  <div id="tabs">
-    <ul>
-      <li><a href="#tabs-1"><%= t 'lesson.most_popular' %></a></li>
-      <li><a href="#tabs-2"><%= t 'lesson.highest_rated' %></a></li>
-      <li><a href="#tabs-3"><%= t 'lesson.newest' %></a></li>
-    </ul>
-    <div id="tabs-1"><%= render :partial => "most_popular", :locals => { :lesson_format => :wide } %></div>
-    <div id="tabs-2"><%= render :partial => "highest_rated", :locals => { :lesson_format => :wide } %></div>
-    <div id="tabs-3"><%= render :partial => "newest", :locals => { :lesson_format => :wide } %></div>
-  </div>
-</div>
-<%= render :partial => "tag_cloud", :object => Lesson.tag_counts if current_user %>
 
+<div id="tabs">
+	<ul>
+		<li><%= link_to t('lesson.most_popular'), tabbed_most_popular_lessons_path %></li>
+		<li><%= link_to t('lesson.highest_rated'), tabbed_highest_rated_lessons_path %></li>
+		<li><%= link_to t('lesson.newest'), tabbed_newest_lessons_path %></li>
+	</ul>
+  <div style="display:block"></div>
+</div>
+
+<%= render :partial => "tag_cloud", :object => Lesson.tag_counts if current_user %>
