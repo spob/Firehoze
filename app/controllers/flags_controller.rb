@@ -67,7 +67,7 @@ class FlagsController < ApplicationController
   end
 
   def flaggable_show_path(flag)
-    if flag.flaggable.class == Review or flag.flaggable.class == LessonComment
+    if flag.flaggable.class == LessonComment
       show_url Lesson, flag.flaggable.lesson.id
     else
       show_url flag.flaggable.class, flag.flaggable.id
