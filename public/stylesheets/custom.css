@@ -7,6 +7,10 @@ c
 .h3 { font-size: 1.5em; line-height: 1; margin-bottom: 1em; }
 .h4 { font-size: 1.2em; line-height: 1.25; margin-bottom: 1.25em; }
 
+.hidden {
+    display:none;
+}
+
 div {
     /* border: 1px solid red;*/
 }
