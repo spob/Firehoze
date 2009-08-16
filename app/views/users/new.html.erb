@@ -21,7 +21,10 @@
     <%= form.text_field :last_name %><br />
     <br/>
     <%= form.label :bio %>:
-    <%= form.text_area :bio %><br />
+    <%= form.text_area :bio %>
+    <br/>
+    (Format using *<b>bold</b>* and _<i>italics</i>_ text)
+    <br/>
     <br/>
     <%= form.label :time_zone %>:
     <%= form.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>

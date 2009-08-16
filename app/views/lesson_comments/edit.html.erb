@@ -5,6 +5,8 @@ Edit Comment for Lesson <%= @lesson_comment.lesson.title %>
     <p>
       <%= f.label :body %> <br/>
       <%= f.text_area :body %>
+      <br/>
+      (Format using *<b>bold</b>* and _<i>italics</i>_ text)
     </p>
     <% if current_user.is_moderator? %>
         <p>

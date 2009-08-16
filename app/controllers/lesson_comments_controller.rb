@@ -32,14 +32,14 @@ class LessonCommentsController < ApplicationController
   def edit
     unless @lesson_comment.can_edit? current_user
       flash[:error] = t 'lesson_comment.cannot_edit'
-      redirect_to lesson_lesson_comments_path(@lesson)
+      redirect_to lesson_lesson_comments_path(@lesson_comment.lesson)
     end
   end
 
   def update
     unless @lesson_comment.can_edit? current_user
       flash[:error] = t 'lesson_comment.cannot_edit'
-      redirect_to lesson_lesson_comments_path(@lesson)
+      redirect_to lesson_lesson_comments_path(@lesson_comment.lesson)
       return
     end
     params[:lesson_comment][:public] ||= false

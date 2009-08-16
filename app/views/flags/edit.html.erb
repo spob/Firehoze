@@ -21,6 +21,8 @@
     </p>
     <p>
       Moderator Response: <%= f.text_area :response %>
+      <br/>
+      (Format using *<b>bold</b>* and _<i>italics</i>_ text)
     </p>
     <p>
       Action: <%= f.select(:status, Flag.flag_statuses_select_list) %>
