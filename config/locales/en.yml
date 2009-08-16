@@ -57,9 +57,9 @@ en:
     flag_offensive: Offensive or Abusive
     flag_dangerous: Depicts a Dangerous Act
     flag_ip: Infringes My Rights
-    action_pending: Leave status unchanged
-    action_resolved: Remove the flaggable item
-    action_resolved_manually: I've manually edited the flaggable item
+    action_pending: Leave status as 'Pending'
+    action_resolved: Deactivate the flaggable item and mark this flagging as processed
+    action_resolved_manually: I've manually edited the flaggable item. Mark this flagging as processed
     action_rejected: The flaggable item is acceptable...reject this flagging
     pending: Pending
     resolved: Resolved
