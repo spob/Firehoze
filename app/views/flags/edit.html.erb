@@ -20,10 +20,10 @@
       Comments: <%= rbs_formatter(@flag.comments) %>
     </p>
     <p>
-      Response: <%= f.text_area :response %>
+      Moderator Response: <%= f.text_area :response %>
     </p>
     <p>
-      Status: <%= f.select(:status, Flag.flag_statuses_select_list) %>
+      Action: <%= f.select(:status, Flag.flag_statuses_select_list) %>
     </p>
     <p>
       <%= f.submit "Submit", :disable_with => translate('general.disable_with') %>
