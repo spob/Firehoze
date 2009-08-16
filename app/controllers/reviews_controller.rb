@@ -3,8 +3,8 @@ class ReviewsController < ApplicationController
   before_filter :require_user, :except => [:index]
   # Since this controller is nested, in most cases we'll need to retrieve the lesson first, so I made it a
   # before filter
-  before_filter :find_lesson, :except => [ :edit, :update, :destroy ]
-  before_filter :find_review, :only => [ :edit, :update ]
+  before_filter :find_lesson, :except => [ :edit, :update, :destroy, :show ]
+  before_filter :find_review, :only => [ :edit, :update, :show ]
 
 
   permit ROLE_MODERATOR, :only => [:edit, :update]
@@ -15,6 +15,9 @@ class ReviewsController < ApplicationController
 
   def index
     @reviews = Review.list @lesson, params[:page], current_user
+  end
+
+  def show
   end
 
   def new
@@ -53,7 +56,7 @@ class ReviewsController < ApplicationController
   def update
     if @review.update_attributes(params[:review])
       flash[:notice] = t 'review.update_success'
-      redirect_to lesson_reviews_url(@review.lesson)
+      redirect_to review_path(@review)
     else
       render :action => 'edit'
     end
