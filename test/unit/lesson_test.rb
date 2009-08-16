@@ -25,6 +25,18 @@ class LessonTest < ActiveSupport::TestCase
       assert @lesson.original_video
     end
 
+    context "when rejecting" do
+      setup do
+        assert_equal LESSON_STATUS_PENDING, @lesson.status
+        @lesson.reject
+        @lesson.save
+      end
+
+      should "be rejected" do
+        assert_equal LESSON_STATUS_REJECTED, @lesson.status
+      end
+    end
+
     context "with processed videos" do
       setup do
         @full_processed_video = Factory.create(:full_processed_video, :lesson => @lesson)

@@ -38,7 +38,6 @@ class UserTest < ActiveSupport::TestCase
     should_have_many                 :instructed_lessons
     should_have_and_belong_to_many   :wishes
 
-
     context "when rejecting" do
       setup do
         assert @user.active
@@ -50,6 +49,7 @@ class UserTest < ActiveSupport::TestCase
         assert !@user.active
       end
     end
+    
     context "and an item on the wish list" do
       setup do
         @lesson = Factory.create(:lesson)
