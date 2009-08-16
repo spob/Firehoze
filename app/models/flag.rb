@@ -10,6 +10,10 @@ class Flag < ActiveRecord::Base
   attr_protected :status, :response
 
   named_scope   :pending, :conditions => {:status => FLAG_STATUS_PENDING }
+  # Credits which have been warned to be about to expire
+  named_scope :by_flaggable,
+              lambda{ |flaggable| {:conditions => { :flaggable_type => flaggable.to_s } }
+              }
 
   @@flag_statuses = [
           FLAG_STATUS_PENDING,

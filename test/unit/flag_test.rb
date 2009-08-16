@@ -10,6 +10,17 @@ class FlagTest < ActiveSupport::TestCase
       assert !Flag.pending.empty? 
     end
 
+    context "and invoking the by_flaggable scope" do
+      should "return rows appropriately" do
+        assert !@lesson.flags.first.user.flaggings.empty?
+        assert !@lesson.flags.first.user.flaggings.by_flaggable(Lesson).empty?
+        assert_equal @lesson.flags.first, @lesson.flags.first.user.flaggings.by_flaggable(Lesson).first
+        assert @lesson.flags.first.user.flaggings.by_flaggable(User).empty?
+        assert @lesson.flags.first.user.flaggings.by_flaggable(LessonComment).empty?
+        assert @lesson.flags.first.user.flaggings.by_flaggable(Review).empty?
+      end
+    end
+
     should_belong_to :user
     #should_belong_to :moderator_user
     should_validate_presence_of :user, :reason_type, :comments
