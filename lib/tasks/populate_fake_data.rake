@@ -220,10 +220,8 @@ namespace :db do
 
     desc "reset all passwords"
     task :reset_passwords => :environment do
-
-      params =  { :active => true, :language => 'en', :password => "pa$$word", :password_confirmation => "pa$$word", :password_salt => 'as;fdaslkjasdfn', :time_zone =>Time.zone.name }
       User.all.each do |user|
-        user.update_attributes(:password => "pa$$word", :password_confirmation => "pa$$word", :password_salt => 'as;fdaslkjasdfn')
+        user.update_attributes(:password => "123p123p123p", :password_confirmation => "123p123p123p", :password_salt => 'as;fdaslkjasdfn')
       end
     end
   end
