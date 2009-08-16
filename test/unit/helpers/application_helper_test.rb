@@ -41,4 +41,17 @@ END
       assert_equal @formatted_raw_text, rbs_formatter(@raw_text)
     end
   end
+
+  context "with embedded hyperlinks" do
+    setup do
+      @raw_text = "this is link http://www.google.com yes!"
+      @formatted_raw_text =<<END
+this is link <a href="http://www.google.com">http://www.google.com</a> yes!
+END
+    end
+
+    should 'bulletize text' do
+      assert_equal @formatted_raw_text, rbs_formatter(@raw_text)
+    end
+  end
 end
