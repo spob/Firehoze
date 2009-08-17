@@ -10,6 +10,8 @@ class Review < ActiveRecord::Base
   validates_uniqueness_of :user_id, :scope => :lesson_id
   validates_length_of :headline, :maximum => 100, :allow_nil => true
   validate :validate_reviewer
+  
+  attr_protected :status
 
   @@flag_reasons = [
           FLAG_LEWD,

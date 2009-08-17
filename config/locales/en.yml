@@ -91,11 +91,11 @@ en:
     Failed: Video failed processing
     highest_rated: Highest Rated
     lessons_you_own: Your lessons
+    not_ready: The lesson you requested is not available for viewing
     most_popular: Most Popular
     need_credits: You have no available credits to watch this lesson. Would you like to buy more?
     new_release: New release
     newest: Newest
-    not_ready: Conversion in process...lesson video not yet ready for viewing
     rejected: Rejected
     notes: Notes
     owned: You own this!
@@ -161,6 +161,7 @@ en:
     cannot_edit: You do not have permissions required to edit this review
     cannot_review_own_lesson: An author can't review their own work
     create_success: Review created
+    not_ready: The review you requested is not available for viewing
     found_helpful: You found this review helpful
     found_unhelpful: You found this review unhelpful
     must_view_to_review: You can only review videos which you have viewed

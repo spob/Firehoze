@@ -13,10 +13,29 @@ class LessonsControllerTest < ActionController::TestCase
       should_render_template "index"
     end
 
-    context "on GET to :show" do
+    context "on GET to :show in a not-ready state" do
       setup do
         assert LessonVisit.all.empty?
-        get :show, :id => Factory(:lesson).id
+        @lesson = Factory.create(:lesson)
+        assert !@lesson.ready?
+        get :show, :id => @lesson.id
+      end
+
+      should_assign_to :lesson
+      should_respond_with :redirect
+      should_set_the_flash_to /not available/
+      should "not populate lesson visit" do
+        assert LessonVisit.all.empty?
+      end
+    end
+
+    context "on GET to :show with a lesson in the ready state" do
+      setup do
+        assert LessonVisit.all.empty?
+        @lesson = Factory.create(:lesson)
+        @lesson. update_attribute(:status, LESSON_STATUS_READY)
+        assert @lesson.ready?
+        get :show, :id => @lesson.id
       end
 
       should_assign_to :lesson
@@ -24,7 +43,7 @@ class LessonsControllerTest < ActionController::TestCase
       should_not_set_the_flash
       should_render_template "show"
       should "populate lesson visit" do
-        assert 1, LessonVisit.all.size
+        assert_equal 1, LessonVisit.all.size
       end
     end
 
@@ -254,7 +273,7 @@ class LessonsControllerTest < ActionController::TestCase
         end
 
         should_assign_to :lesson
-        should_set_the_flash_to /Conversion in process/
+        should_set_the_flash_to /not available/
         should_redirect_to("show lesson page") { lesson_path(:id => @lesson) }
       end
     end

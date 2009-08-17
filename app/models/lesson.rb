@@ -74,6 +74,7 @@ class Lesson < ActiveRecord::Base
 
   # Used to seed the number of free downloads available
   attr_accessor :initial_free_download_count
+  attr_protected :status
 
   before_validation_on_create :set_status_on_create
   after_create  :create_free_credits

@@ -68,7 +68,7 @@ class LessonsController < ApplicationController
     Lesson.transaction do
       if @lesson.save
         video = OriginalVideo.new({ :lesson => @lesson,
-            :video => video_param})
+                                    :video => video_param})
         video.save!
         @lesson.trigger_conversion
         flash[:notice] = t 'lesson.created'
@@ -87,7 +87,12 @@ class LessonsController < ApplicationController
   end
 
   def show
-    LessonVisit.touch(@lesson, current_user, request.session.session_id)
+    if @lesson.ready? or @lesson.instructed_by?(current_user) or (current_user and current_user.is_moderator?)
+      LessonVisit.touch(@lesson, current_user, request.session.session_id)
+    else
+      flash[:error] = t 'lesson.not_ready'
+      redirect_to lessons_path
+    end
   end
 
   def edit

@@ -13,7 +13,7 @@ class ReviewsControllerTest < ActionController::TestCase
       setup do
         @lesson = Factory.create(:lesson)
         @user.credits.create!(:price => 0.99, :lesson => @lesson, :acquired_at => Time.now,
-          :line_item => Factory.create(:line_item))
+                              :line_item => Factory.create(:line_item))
         assert @user.owns_lesson?(@lesson)
       end
 
@@ -53,8 +53,8 @@ class ReviewsControllerTest < ActionController::TestCase
         setup do
           @credit = Factory.create(:credit, :user => @user)
           @review = @credit.lesson.reviews.create!(:body => 'hello',
-            :headline => 'headline',
-            :user => @user)
+                                                   :headline => 'headline',
+                                                   :user => @user)
           assert @credit.lesson.reviewed_by?(@user)
           get :new, :lesson_id => @review.lesson
         end
@@ -76,6 +76,18 @@ class ReviewsControllerTest < ActionController::TestCase
         should_respond_with :redirect
         should_set_the_flash_to /You can only review videos which you have viewed/
         should_redirect_to("Reviews index page") { lesson_reviews_url(@lesson2) }
+      end
+
+      context "on GET to :show with a rejected review" do
+        setup do
+          @review = Factory.create(:review, :user => @user, :lesson => @lesson)
+          @review.update_attribute(:status, REVIEW_STATUS_REJECTED)
+          get :show, :id => @review
+        end
+
+        should_assign_to :review
+        should_respond_with :redirect
+        should_set_the_flash_to /not available/
       end
 
       context "with moderator access" do
