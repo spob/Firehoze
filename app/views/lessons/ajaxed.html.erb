@@ -1,7 +1,10 @@
-<h3><%= t("lesson.#{@collection}") %></h3>
-
-<div id="loader" class="hidden">
-  <%= image_tag("general/spinners/ajax-loader_small_arrows.gif") %>
+<div style="position:relative;margin:-20px 0 20px 0;">
+  <div style="height:32px; width:32px;">
+    <div id="loader" style="display:none">
+      <%= image_tag("general/spinners/ajax-loader_small_spinner.gif") %>
+    </div>
+  </div>
+  <div class="h3" style="margin: 10px 0 0 0px;"><%= t("lesson.#{@collection}") %></div>
 </div>
 
 <div id="lessons">

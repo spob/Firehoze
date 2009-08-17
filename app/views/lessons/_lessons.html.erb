@@ -4,7 +4,10 @@ lesson_format = lesson_format || :wide
 title = @collection.humanize.titleize
 %>
 <div>
-  <%= will_paginate @lessons if @lessons.is_a?(WillPaginate::Collection)%>
+
+  <% if @lessons.is_a?(WillPaginate::Collection) %>
+    <div style="margin:20px 0"><%= will_paginate @lessons %></div>
+  <% end %>
 
   <div class="lesson_container">
     <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => @lessons, :locals => { :lesson_format => lesson_format } %>
