@@ -148,6 +148,7 @@ class LessonTest < ActiveSupport::TestCase
     should_have_one                  :preview_processed_video
     should_have_class_methods        :list, :ready
     should_have_instance_methods     :tag_list
+    should_not_allow_mass_assignment_of :status
 
     should "not be ready" do
       assert !@lesson.ready?
