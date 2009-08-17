@@ -1,19 +1,20 @@
+<%= javascript 'pagination' %>
 <%
-# @lessons = collection
+lesson_format = lesson_format || :wide 
 %>
 
-<%  
-  lesson_format = :wide 
-%>
-<div class="clear prepend-1 span-39 last" id="lesson_list_collection">
+<div class="lesson_container">
 
-  <%= will_paginate @lessons %>
+  <%= will_paginate @lessons if @lessons.is_a?(WillPaginate::Collection)%>
 
   <div class="lesson_container">
     <%= lessons_header(:newest) %>
     <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => @lessons, :locals => { :lesson_format => lesson_format } %>
   </div>
 
-  <%= will_paginate @lessons %>
-
+  <% if @lessons.is_a?(WillPaginate::Collection) %>
+    <%= will_paginate @lessons %>
+  <% else %>
+    <%= link_to 'More &raquo;', @more_path %>
+  <% end %>
 </div>

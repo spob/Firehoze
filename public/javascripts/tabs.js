@@ -1,7 +1,7 @@
 $(function() {
     $('#tabs').tabs(
     {
-        // cache: true,
+        cache: true,
         cookie: { 
             expires: 30
         },

@@ -8,11 +8,12 @@
 
 <div id="tabs">
 	<ul>
-		<li><%= link_to t('lesson.most_popular'), tabbed_most_popular_lessons_path %></li>
-		<li><%= link_to t('lesson.highest_rated'), tabbed_highest_rated_lessons_path %></li>
-		<li><%= link_to t('lesson.newest'), tabbed_newest_lessons_path %></li>
+		<li><%= link_to t('lesson.most_popular'), tabbed_lessons_path(:collection => 'most_popular') %></li>
+		<li><%= link_to t('lesson.highest_rated'), tabbed_lessons_path(:collection => 'highest_rated') %></li>
+		<li><%= link_to t('lesson.newest'), tabbed_lessons_path(:collection => 'newest') %></li>
 	</ul>
   <div style="display:block"></div>
+
 </div>
 
 <%= render :partial => "tag_cloud", :object => Lesson.tag_counts if current_user %>

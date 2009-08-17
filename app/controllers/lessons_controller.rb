@@ -1,11 +1,16 @@
 class LessonsController < ApplicationController
+
+  TAB_COLLECTIONS = %w(tabbed tabbed_lessons, tabbed_newest tabbed_most_popular tabbed_highest_rated)
+  AJAX_PAGED_COLLECTIONS = %w(ajax_list_newest ajax_list_most_popular ajax_list_highest_rated)
+
   before_filter :require_user, :only => [:new, :create, :edit, :update, :watch]
   permit ROLE_ADMIN, :only => [:convert]
 
   verify :method => :post, :only => [ :create, :convert ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update, :conversion_notify ], :redirect_to => :home_path
   before_filter :find_lesson, :only => [ :show, :edit, :update, :watch, :convert, :rate ]
-  before_filter :set_per_page, :only => [ :index, :list, :list_newest, :list_most_popular, :list_highest_rated, :lesson_foo ]
+  before_filter :set_per_page, :only => [ :index, :list, :ajax_list_newest, :ajax_list_most_popular, :ajax_list_highest_rated, :tabbed ]
+  before_filter :set_collection, :only => TAB_COLLECTIONS
 
   # The number of free download counts to display on the create lesson page
   @@free_download_counts = [ 0, 5, 10, 25 ]
@@ -36,7 +41,7 @@ class LessonsController < ApplicationController
     Lesson.transaction do
       if @lesson.save
         video = OriginalVideo.new({ :lesson => @lesson,
-                                    :video => video_param})  
+            :video => video_param})
         video.save!
         @lesson.trigger_conversion
         flash[:notice] = t 'lesson.created'
@@ -80,6 +85,35 @@ class LessonsController < ApplicationController
   end
 
   # SUPPORTING AJAX TABS
+  def tabbed
+    @lesson_format = current_user ? 'narrow' : 'wide'      
+
+    @lessons = case @collection
+    when 'most_popular'
+      @more_path = ajax_list_most_popular_lessons_path
+      if current_user
+        Lesson.ready.most_popular.not_owned_by(current_user).all(:limit => @per_page) #.paginate(:per_page => @per_page, :page => params[:page])
+      else
+        Lesson.ready.most_popular.all(:limit => @per_page) #.paginate(:per_page => @per_page, :page => params[:page])
+      end
+    when 'newest'
+      @more_path = ajax_list_newest_lessons_path
+      if current_user
+        Lesson.ready.newest.not_owned_by(current_user).all(:limit => @per_page) #.paginate(:per_page => @per_page, :page => params[:page])
+      else
+        Lesson.ready.newest.all(:limit => @per_page) #.paginate(:per_page => @per_page, :page => params[:page])
+      end
+    when 'highest_rated'
+      @more_path = ajax_list_highest_rated_lessons_path
+      if current_user
+        Lesson.ready.highest_rated.not_owned_by(current_user).all(:limit => @per_page) #.paginate(:per_page => @per_page, :page => params[:page])
+      else
+        Lesson.ready.highest_rated.all(:limit => @per_page) #.paginate(:per_page => @per_page, :page => params[:page])
+      end
+    end
+    render :layout => 'lessons_in_tab'
+  end
+
   def tabbed_newest
     if current_user
       @lessons = Lesson.ready.newest.not_owned_by(current_user).paginate(:per_page => @per_page, :page => params[:page])
@@ -125,7 +159,7 @@ class LessonsController < ApplicationController
     me = User.find 2
     @lessons = me.visited_lessons.paginate :page => params[:page], :per_page => @per_page
     render :layout => 'lessons_in_tab'
-   end
+  end
 
   def watch
     if @lesson.ready?
@@ -200,9 +234,20 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
   end
 
+
+  def set_collection
+    @collection = params[:collection]
+    raise "Invalid collection" unless (TAB_COLLECTIONS).include?(@collection)
+  rescue
+    # send_response_document :unprocessable_entity
+    false
+  end
+
   def set_per_page
-    if %w(list_newest list_most_popular list_highest_rated).include?(params[:action])
+    if TAB_COLLECTIONS.include?(params[:action])
       @per_page = 3
+    elsif AJAX_PAGED_COLLECTIONS.include?(params[:action])
+      @per_page = 5
     else
       @per_page = %w(index).include?(params[:action]) ? 5 : Lesson.per_page
     end
