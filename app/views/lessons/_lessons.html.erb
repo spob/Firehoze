@@ -1,20 +1,19 @@
-<%= javascript 'pagination' %>
+<%= javascript 'pagination' if params[:action] == "ajaxed" %>
 <%
 lesson_format = lesson_format || :wide 
+title = @collection.humanize.titleize
 %>
-
 <div class="lesson_container">
 
   <%= will_paginate @lessons if @lessons.is_a?(WillPaginate::Collection)%>
 
   <div class="lesson_container">
-    <%= lessons_header(:newest) %>
     <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => @lessons, :locals => { :lesson_format => lesson_format } %>
   </div>
 
   <% if @lessons.is_a?(WillPaginate::Collection) %>
     <%= will_paginate @lessons %>
   <% else %>
-    <%= link_to 'More &raquo;', @more_path %>
+    <%= link_to "View all &quot;#{@collection.humanize.titleize} Lessons&quot;", list_lessons_path(:collection => @collection) %>
   <% end %>
 </div>

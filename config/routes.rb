@@ -14,14 +14,8 @@ ActionController::Routing::Routes.draw do |map|
                 :collection => { 
                   :conversion_notify => :put, 
                   :list => :get, 
-                  :ajax_list_newest => :get, 
-                  :ajax_list_most_popular => :get, 
-                  :ajax_list_highest_rated => :get,  
-                  :ajax_list_recently_browsed => :get, 
                   :tabbed => :get, 
-                  :tabbed_newest => :get, 
-                  :tabbed_most_popular => :get, 
-                  :tabbed_highest_rated => :get,  
+                  :ajaxed => :get, 
                   }
   map.resources :lessons, :has_many => :lesson_comments, :shallow => true,
                 :member => { :watch => :get, :convert => :post, :rate => :post },
