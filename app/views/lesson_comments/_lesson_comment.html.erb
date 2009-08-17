@@ -1,4 +1,6 @@
-<%= rbs_formatter lesson_comment.body %>
+<a name="LessonComment<%= lesson_comment.id %>">
+  <%= rbs_formatter lesson_comment.body %>
+</a>
 
 <p>
   <b><%= lesson_comment.user.login %></b> <i>commented at <%= l(lesson_comment.created_at) %></i>
