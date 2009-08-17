@@ -24,7 +24,6 @@ class LessonsControllerTest < ActionController::TestCase
       should_assign_to :lesson
       should_respond_with :redirect
       should_set_the_flash_to /not available/
-      should_render_template "show"
       should "not populate lesson visit" do
         assert LessonVisit.all.empty?
       end

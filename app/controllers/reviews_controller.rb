@@ -18,6 +18,12 @@ class ReviewsController < ApplicationController
   end
 
   def show
+    if @review.status == REVIEW_STATUS_ACTIVE or (current_user and current_user.is_moderator?)
+      # view the review
+    else
+      flash[:error] = t 'review.not_ready'
+      redirect_to lesson_path(@review.lesson)
+    end
   end
 
   def new
