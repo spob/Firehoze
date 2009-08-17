@@ -6,7 +6,8 @@ $(function() {
             expires: 30
         },
         fx: { 
-            opacity: 'toggle'
+            opacity: 'toggle',
+            duration: 300
         }
     });
 
