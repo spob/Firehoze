@@ -3,8 +3,7 @@
 lesson_format = lesson_format || :wide 
 title = @collection.humanize.titleize
 %>
-<div class="lesson_container">
-
+<div>
   <%= will_paginate @lessons if @lessons.is_a?(WillPaginate::Collection)%>
 
   <div class="lesson_container">

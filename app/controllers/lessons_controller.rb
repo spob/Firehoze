@@ -1,14 +1,13 @@
 class LessonsController < ApplicationController
 
-
   before_filter :require_user, :only => [:new, :create, :edit, :update, :watch]
   permit ROLE_ADMIN, :only => [:convert]
 
   verify :method => :post, :only => [ :create, :convert ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update, :conversion_notify ], :redirect_to => :home_path
   before_filter :find_lesson, :only => [ :show, :edit, :update, :watch, :convert, :rate ]
-  before_filter :set_per_page, :only => [ :index, :list, :ajax_list_newest, :ajax_list_most_popular, :ajax_list_highest_rated, :tabbed ]
-  before_filter :set_collection, :only => [ :tabbed, :list, :ajaxed ]
+  before_filter :set_per_page, :only => [ :index, :list, :ajaxed, :tabbed ]
+  before_filter :set_collection, :only => [ :list, :ajaxed, :tabbed ]
 
   LIST_COLLECTIONS = %w(newest most_popular highest_rated tagged_with recently_browsed)
 
@@ -32,21 +31,18 @@ class LessonsController < ApplicationController
       else
         Lesson.ready.most_popular.paginate(:per_page => @per_page, :page => params[:page])
       end
-
     when 'newest'
       if current_user
         Lesson.ready.newest.not_owned_by(current_user).paginate(:per_page => @per_page, :page => params[:page])
       else
         Lesson.ready.newest.paginate(:per_page => @per_page, :page => params[:page])
       end
-
     when 'highest_rated'
       if current_user
         Lesson.ready.highest_rated.not_owned_by(current_user).paginate(:per_page => @per_page, :page => params[:page])
       else
         Lesson.ready.highest_rated.paginate(:per_page => @per_page, :page => params[:page])
       end
-
     when 'tagged_with'
       @lesson_format = 'narrow' 
       @tag = params[:tag]

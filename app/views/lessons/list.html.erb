@@ -1,3 +1,16 @@
 <% stylesheet('jquery-ui/smoothness/jquery-ui-1.7.2.custom') %>
 
-<%= render :partial => "lessons", :object => @lessons, :locals => { :lesson_format => @lesson_format } %>
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+    <% %w(most_popular highest_rated newest).each do | collection | %>
+      <% if collection == @collection %>
+        <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-1"><%= t("lesson.#{collection}") %></a></li>
+      <% else %>
+        <li class="ui-state-default ui-corner-top"><%= link_to t("lesson.#{collection}"), list_lessons_path(:collection => collection) %></li>
+      <% end %>
+    <% end %>
+  </ul>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-1">
+    <%= render :partial => "lessons", :object => @lessons, :locals => { :lesson_format => @lesson_format } %>
+  </div>
+</div>
