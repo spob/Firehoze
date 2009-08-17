@@ -68,7 +68,7 @@ class FlagsController < ApplicationController
 
   def flaggable_show_path(flag)
     if flag.flaggable.class == LessonComment
-      show_url Lesson, flag.flaggable.lesson.id
+      lesson_lesson_comments_path(flag.flaggable.lesson, :anchor => "LessonComment#{flag.flaggable.id}")
     else
       show_url flag.flaggable.class, flag.flaggable.id
     end
@@ -80,8 +80,8 @@ class FlagsController < ApplicationController
     %w(index show edit).include?(params[:action]) ? 'admin' : 'application'
   end
 
-  def show_url klass, id
-    url_for :controller => klass.to_s.pluralize, :action => 'show', :id => id
+  def show_url klass, id, anchor=nil
+    url_for :controller => klass.to_s.pluralize, :action => 'show', :id => id, :anchor => anchor
   end
 
   def find_flaggable
