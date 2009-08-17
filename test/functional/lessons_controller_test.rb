@@ -13,7 +13,7 @@ class LessonsControllerTest < ActionController::TestCase
       should_render_template "index"
     end
 
-    context "on GET to :show" do
+    context "on GET to :show in a not-ready state" do
       setup do
         assert LessonVisit.all.empty?
         get :show, :id => Factory(:lesson).id
@@ -21,10 +21,25 @@ class LessonsControllerTest < ActionController::TestCase
 
       should_assign_to :lesson
       should_respond_with :success
+      should_set_the_flash_to /not available/
+      should_render_template "show"
+      should "not populate lesson visit" do
+        assert LessonVisit.all.empty?
+      end
+    end
+
+    context "on GET to :show with a lesson in the ready state" do
+      setup do
+        assert LessonVisit.all.empty?
+        get :show, :id => Factory(:lesson, :status => 'ready').id
+      end
+
+      should_assign_to :lesson
+      should_respond_with :success
       should_not_set_the_flash
       should_render_template "show"
       should "populate lesson visit" do
-        assert 1, LessonVisit.all.size
+        assert_equal 1, LessonVisit.all.size
       end
     end
 
