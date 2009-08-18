@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :require_user, :only => [:edit, :update, :list, :private]
   before_filter :find_user, :only => [ :clear_avatar, :edit, :show, :show_admin, :private, :reset_password, :update, :update_avatar, :update_roles ]
 
-  permit ROLE_ADMIN, :except => [:new, :create, :show, :edit, :private]
+  permit "#{ROLE_ADMIN} and #{ROLE_MODERATOR}", :except => [:show]
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update ], :redirect_to => :home_path
@@ -59,11 +59,12 @@ class UsersController < ApplicationController
 
 
   def update
-    @user.active = params[:user][:active]
+    @user.active = params[:user][:active] || false
+    @user.rejected_bio = params[:user][:rejected_bio] || false
     @user.email = params[:user][:email].try(:strip)
     @user.first_name = params[:user][:first_name].try(:strip)
     @user.last_name = params[:user][:last_name].try(:strip)
-    @user.bio = params[:user][:bio]
+    @user.bio = params[:user][:bio].try(:strip)
     @user.time_zone = params[:user][:time_zone]
     @user.language = params[:user][:language]
 

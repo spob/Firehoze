@@ -28,3 +28,6 @@
 </p>
 
 <%= link_to "Flag", new_flag_path(:flagger_type => 'User', :flagger_id => @user) %>
+<% if @user.can_edit? current_user %>
+    | <%= link_to "Edit", edit_user_path(@user)  %>
+<% end %>

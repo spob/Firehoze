@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   attr_accessor :current_password
 
   validates_presence_of     :email, :language,
-                            :login_count, :failed_login_count, :last_name, :rejected_bio
+                            :login_count, :failed_login_count, :last_name
   validates_presence_of     :login#, :message => :login_required
   validates_uniqueness_of   :email, :case_sensitive => false
   validates_uniqueness_of   :login, :case_sensitive => false
@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
   validates_attachment_size :avatar, :less_than => 3.megabytes, :message => "All uploaded images must be less then 3 megabytes"
   validates_attachment_content_type :avatar, :content_type => [ 'image/gif', 'image/png', 'image/x-png', 'image/jpeg', 'image/pjpeg', 'image/jpg' ]
 
-  attr_protected :email, :login
+  attr_protected :email, :login, :rejected_bio
 
   @@flag_reasons = [
           FLAG_LEWD,
@@ -154,6 +154,10 @@ class User < ActiveRecord::Base
     login
   end
 
+  def can_edit? current_user
+    (current_user and (current_user.is_admin? or current_user.is_moderator?))
+  end
+
   def on_wish_list? lesson
     self.wishes.find_by_id(lesson.id)
   end
@@ -163,7 +167,7 @@ class User < ActiveRecord::Base
   end
 
   def reject
-    self.active = false
+    self.rejected_bio = true
   end
 
   def has_flagged? (flaggable)
