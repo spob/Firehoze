@@ -11,19 +11,23 @@ class FlagsController < ApplicationController
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
 
   def create
-    @flag = @flaggable.flags.new(params[:flag])
-    @flag.status = FLAG_STATUS_PENDING
-    @flag.user = current_user
-    if @flag.save
-      flash[:notice] = t('flag.create_success')
-      redirect_to flaggable_show_path(@flag)
-    else
-      render :action => "new"
+    if reflag_ok(@flaggable)
+      @flag = @flaggable.flags.new(params[:flag])
+      @flag.status = FLAG_STATUS_PENDING
+      @flag.user = current_user
+      if @flag.save
+        flash[:notice] = t('flag.create_success')
+        redirect_to flaggable_show_path(@flag)
+      else
+        render :action => "new"
+      end
     end
   end
 
   def new
-    @flag = @flaggable.flags.new
+    if reflag_ok(@flaggable)
+      @flag = @flaggable.flags.new
+    end
   end
 
   def show
@@ -75,6 +79,25 @@ class FlagsController < ApplicationController
   end
 
   private
+
+  def reflag_ok flaggable
+    msg = nil
+    flags = current_user.get_flags(flaggable)
+    unless flags.empty?
+      if flags.collect(&:status).include? FLAG_STATUS_REJECTED
+        msg = t 'flag.user_flagging_reject'
+      elsif flags.collect(&:status).include? FLAG_STATUS_PENDING
+        msg = t 'flag.user_flagging_pending'
+      end
+    end
+    if msg
+      flash[:error] = msg
+      redirect_to flaggable_show_path(flags.first)
+      return false
+    else
+      return true
+    end
+  end
 
   def layout_for_action
     %w(index show edit).include?(params[:action]) ? 'admin' : 'application'

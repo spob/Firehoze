@@ -54,4 +54,10 @@ END
       assert_equal @formatted_raw_text, rbs_formatter(@raw_text)
     end
   end
+
+  context "testing flag_link" do
+    should "show flag link" do
+      
+    end
+  end
 end

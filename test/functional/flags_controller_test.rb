@@ -186,8 +186,8 @@ class FlagsControllerTest < ActionController::TestCase
           end
 
           should_assign_to :flaggable
-          should_respond_with :success
-          should_render_template :new
+          should_respond_with :redirect   
+          #should_render_template :new
         end
       end
     end
@@ -232,8 +232,8 @@ class FlagsControllerTest < ActionController::TestCase
           end
 
           should_assign_to :flaggable
-          should_respond_with :success
-          should_render_template :new
+          should_respond_with :redirect
+          #should_render_template :new
         end
       end
     end
@@ -274,8 +274,8 @@ class FlagsControllerTest < ActionController::TestCase
           end
 
           should_assign_to :flaggable
-          should_respond_with :success
-          should_render_template :new
+          should_respond_with :redirect
+          #should_render_template :new
         end
       end
     end
@@ -316,8 +316,8 @@ class FlagsControllerTest < ActionController::TestCase
           end
 
           should_assign_to :flaggable
-          should_respond_with :success
-          should_render_template :new
+          should_respond_with :redirect
+          #should_render_template :new
         end
       end
     end

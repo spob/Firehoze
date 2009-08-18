@@ -171,10 +171,23 @@ class User < ActiveRecord::Base
   end
 
   def has_flagged? (flaggable)
+    !get_flags(flaggable).empty?
+  end
+
+  def has_flagged_rejected? (flaggable)
+    flags = get_flags(flaggable)
+    if flags.empty?
+      false
+    else
+      flags.collect(&:status).include? FLAG_STATUS_REJECTED
+    end
+  end
+
+  def get_flags(flaggable)
     klass = flaggable.class
     # for some reason rails settings the flaggable type to Comment instead of LessonComment
     klass = Comment if flaggable.class.to_s == "LessonComment"
-    !flaggings.by_flaggable_type(klass).find_by_flaggable_id(flaggable.id).nil?
+    flaggings.by_flaggable_type(klass).find_all_by_flaggable_id(flaggable.id)
   end
 
   private
