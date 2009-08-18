@@ -41,13 +41,13 @@ class UserTest < ActiveSupport::TestCase
 
     context "when rejecting" do
       setup do
-        assert @user.active
+        assert !@user.rejected_bio
         @user.reject
         @user.save
       end
 
       should "be rejected" do
-        assert !@user.active
+        assert @user.rejected_bio
       end
     end
     

@@ -24,7 +24,7 @@
 
 <p>
   <b>Bio:</b>
-  <%= textilize(@user.bio) unless @user.bio.blank? %>
+  <%= show_bio %>
 </p>
 
 <%= link_to "Flag", new_flag_path(:flagger_type => 'User', :flagger_id => @user) %>

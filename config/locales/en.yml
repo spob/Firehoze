@@ -193,6 +193,7 @@ en:
     privacy: Privacy
     registration_no_longer_valid: Registration no longer valid
     roles: Roles
+    rejected_bio: This user's bio has been flagged for inappropriate content and thus cannot be displayed
 
   wish:
     create_success: Lesson added to your wish list

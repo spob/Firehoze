@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
-  before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => [:edit, :update, :list, :private]
+  before_filter :require_no_user, :only => [ :new, :create ]
+  before_filter :require_user, :except => [ :new, :create, :show ]
   before_filter :find_user, :only => [ :clear_avatar, :edit, :show, :show_admin, :private, :reset_password, :update, :update_avatar, :update_roles ]
 
-  permit "#{ROLE_ADMIN} and #{ROLE_MODERATOR}", :except => [:show]
+  permit ROLE_ADMIN, :only => [ :clear_avatar, :show_admin, :private, :reset_password, :update_avatar, :update_roles, :index ]
+  permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [ :edit, :update]
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update ], :redirect_to => :home_path

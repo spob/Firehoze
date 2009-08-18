@@ -7,6 +7,16 @@ module UsersHelper
     end
   end
 
+  def show_bio
+    unless @user.bio.blank?
+      if @user.rejected_bio
+        "<i>" + t('user.rejected_bio') + "</i>"
+      else
+        textilize(@user.bio)
+      end
+    end
+  end
+
   def signout_link(string)
     link_to "#{string}", logout_path, :method => :delete
   end
