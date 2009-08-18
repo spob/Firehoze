@@ -1,25 +1,6 @@
 <%= render :partial => "shared/infield_head_content" %>
 
-<% content_for :head do -%>
-  <%= javascript_include_tag 'jquery.simplyCountable.js' %>
-  <script type="text/javascript" charset="utf-8">
-    $(document).ready(function()
-    {
-      $('#lesson_title').simplyCountable({
-        counter: '#lesson_title_counter',
-        countType: 'characters',
-        maxCount: 50,
-        countDirection: 'down'
-      });
-      $('#lesson_synopsis').simplyCountable({
-        counter: '#lesson_synopsis_counter',
-        countType: 'characters',
-        maxCount: 500,
-        countDirection: 'down'
-      });
-    });
-  </script>
-<% end %>
+<%= javascript 'jquery.simplyCountable', 'validate/lesson.create' %>
 
 <% form_for(:lesson, :url => lessons_path, :html => { :multipart => true, :class => "create_lesson", :id => "inline" }) do |f| %>
   <%= f.error_messages %>

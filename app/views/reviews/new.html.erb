@@ -1,6 +1,6 @@
 <%= render :partial => "shared/infield_head_content" %>
 
-<%= javascript 'jquery.simplyCountable.js', 'validate/reviews.js' %>
+<%= javascript 'jquery.simplyCountable', 'validate/reviews' %>
 
 <% form_for(:review, :url => lesson_reviews_url(@lesson), :html => { :multipart => true, :class => "create_review", :id => "inline" }) do |f| %>
   <%= f.error_messages %>
