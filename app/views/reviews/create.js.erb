@@ -1,0 +1,6 @@
+$("#review_form").before('<div id="flash_notice"><%= escape_javascript(flash.delete(:notice)) %></div>');
+$("#reviews_count").html("<%= pluralize(@lesson.reviews_count + 1, 'Review') %>");
+$("#reviews").prepend("<%= escape_javascript(render(:partial => @review)) %>");
+$("#review_form").slideToggle(2000);
+$("#review_link").fadeOut(4000);
+$("#flash_notice").fadeOut(6000);

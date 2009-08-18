@@ -157,15 +157,18 @@ en:
     invalid_reg_code: is invalid. Contact support for a valid code.
 
   review:
+    add_your_review: Add Your Review of the Lesson
     already_reviewed: You can only write a review for a lesson once
     cannot_edit: You do not have permissions required to edit this review
     cannot_review_own_lesson: An author can't review their own work
     create_success: Review created
+    create_failure: There were problems
     not_ready: The review you requested is not available for viewing
     found_helpful: You found this review helpful
     found_unhelpful: You found this review unhelpful
     must_view_to_review: You can only review videos which you own
     update_success: Review updated
+    add_your_review: Add Your Review of the Lesson
 
   sku:
     create_success: SKU created

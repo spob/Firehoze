@@ -44,11 +44,23 @@ class ReviewsController < ApplicationController
   def create
     @review = @lesson.reviews.build(params[:review])
     @review.user = current_user
-    if @review.save
-      flash[:notice] = t 'review.create_success'
-      redirect_to lesson_reviews_path(@lesson)
-    else
-      render :action => 'new'
+
+    respond_to do |format|
+      format.html {
+        if @review.save
+          flash[:notice] = t 'review.create_success'
+          redirect_to lesson_reviews_path(@lesson)
+        else
+          render :action => 'new'
+        end
+      }
+      format.js {
+        if @review.save
+          flash[:notice] = t 'review.create_success'
+        else
+          flash[:notice] = t 'review.create_failure'
+        end
+      }
     end
   end
 

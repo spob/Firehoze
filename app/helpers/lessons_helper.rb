@@ -16,10 +16,10 @@ module LessonsHelper
     end
   end
 
+  # must own lesson, but cannot be the instructor
   def lesson_rating_for(lesson, user, *args)
     ratings_for(lesson, user, (user != lesson.instructor and lesson.owned_by?(user)) ? :active : :static, *args)
   end
-
 
   def lesson_rating_by_reviewer_for(lesson, user, *args)
     # if current_user == user

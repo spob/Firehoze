@@ -2,7 +2,7 @@
 
 <%= javascript 'jquery.simplyCountable', 'validate/reviews' %>
 
-<% form_for(:review, :url => lesson_reviews_url(@lesson), :html => { :multipart => true, :class => "create_review", :id => "inline" }) do |f| %>
+<% form_for(:review, :url => lesson_reviews_url(@lesson), :html => { :class => "create_review", :id => "inline" }) do |f| %>
   <%= f.error_messages %>
   <fieldset>
 
