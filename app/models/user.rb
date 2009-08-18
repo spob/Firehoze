@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   attr_accessor :current_password
 
   validates_presence_of     :email, :language,
-                            :login_count, :failed_login_count, :last_name
+                            :login_count, :failed_login_count, :last_name, :rejected_bio
   validates_presence_of     :login#, :message => :login_required
   validates_uniqueness_of   :email, :case_sensitive => false
   validates_uniqueness_of   :login, :case_sensitive => false
