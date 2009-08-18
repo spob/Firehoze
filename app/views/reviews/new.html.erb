@@ -1,19 +1,26 @@
-New Review for Lesson <%= @lesson.title %>
+<%= render :partial => "shared/infield_head_content" %>
 
-<% form_for :review, :url => lesson_reviews_url(@lesson) do |f| %>
-    <%= f.error_messages %>
+<%= javascript 'jquery.simplyCountable.js', 'validate/reviews.js' %>
+
+<% form_for(:review, :url => lesson_reviews_url(@lesson), :html => { :multipart => true, :class => "create_review", :id => "inline" }) do |f| %>
+  <%= f.error_messages %>
+  <fieldset>
+
+    <legend>Create a Review for Lesson <%= @lesson.title %></legend>
     <p>
-      <%= f.label :headline %><br/>
-      <%= f.text_field :headline %>
-    </p>
-    <p>
-      <%= f.label :body %> <br/>
-      <%= f.text_area :body %>
-      <br/>
-      (Format using *<b>bold</b>* and _<i>italics</i>_ text)
-    </p>
-    <p><%= f.submit "Submit", :disable_with => translate('general.disable_with') %></p>
+      <%= f.label :headline %><br />
+      <%= f.text_field :headline, :maxlength => "100" %>
+    <div class="counter"><span id="headline_counter"></span> characters left</div>
+  </p>
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+    <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
+  </p>
+  </fieldset>
+
+  <p>
+    <%= f.submit "Create review", :disable_with => translate('general.disable_with') %>
+    <%= link_to "Cancel", lesson_reviews_path(@lesson) %>
+  </p>
 <% end %>
-
-
-<p><%= link_to "Cancel", lesson_reviews_path(@lesson) %></p>
