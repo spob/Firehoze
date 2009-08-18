@@ -4,6 +4,7 @@
 class Helpful < ActiveRecord::Base
   belongs_to :user
   belongs_to :review
+  before_create :calculate_review_score
 
   validates_presence_of :user, :review
   validate :not_author
@@ -17,5 +18,11 @@ class Helpful < ActiveRecord::Base
     if review and self.review.user == self.user
       errors.add(:user, I18n.t('helpful.cant_feedback_own'))
     end
+  end
+
+  private
+
+  def calculate_review_score
+    self.review.calculate_score
   end
 end

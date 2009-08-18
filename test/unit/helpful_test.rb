@@ -33,11 +33,24 @@ class HelpfulTest < ActiveSupport::TestCase
       setup do
         @helpful1 = Factory.create(:helpful, :review => @review)
         @helpful2 = Factory.create(:helpful, :review => @review, :helpful => false)
+        @review = Review.find(@review)
       end
 
       should "have 2 yes and 1 no" do
         assert_equal 2, Helpful.helpful_yes.size
         assert_equal 1, Helpful.helpful_no.size
+      end
+
+      context "and testing score" do
+        setup do
+          @review.helpfuls.create!(:helpful => true, :user => Factory.create(:user))
+          assert_equal 3, @review.helpfuls.helpful_yes.size
+          assert_equal 1, @review.helpfuls.helpful_no.size
+        end
+
+        should "calculate score" do
+          assert_equal 2, @review.score
+        end
       end
     end
   end

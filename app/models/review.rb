@@ -31,6 +31,10 @@ class Review < ActiveRecord::Base
              :per_page => ROWS_PER_PAGE
   end
 
+  def calculate_score
+    self.update_attribute(:score, helpfuls.helpful_yes.count - helpfuls.helpful_no.count)
+  end
+
   # The review can be edited by a moderator
   def can_edit? user
     user and user.is_moderator?
