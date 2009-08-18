@@ -13,6 +13,8 @@ class Review < ActiveRecord::Base
   
   attr_protected :status
 
+  named_scope :helpful, :conditions => "score > 0"
+
   @@flag_reasons = [
           FLAG_LEWD,
           FLAG_SPAM,
