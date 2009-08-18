@@ -57,4 +57,23 @@ module ApplicationHelper
       link_to_unless_current user.username_or_name, user_path(user)
     end
   end
+
+  def flag_link flaggable
+    msg = nil
+    if current_user
+      flags = current_user.get_flags(flaggable)
+      unless flags.empty?
+        if flags.collect(&:status).include? FLAG_STATUS_REJECTED
+          msg = t 'flag.user_flagging_reject'
+        elsif flags.collect(&:status).include? FLAG_STATUS_PENDING
+          msg = t 'flag.user_flagging_pending'
+        end
+      end
+    end
+    if msg.nil?
+      link_to "Flag", new_flag_path(:flagger_type => flaggable.class.to_s, :flagger_id => flaggable)
+    else
+      msg
+    end
+  end
 end

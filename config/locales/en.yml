@@ -65,6 +65,8 @@ en:
     resolved: Resolved
     resolved_manually: Manually resolved
     rejected: Flagging was rejected
+    user_flagging_reject: Your flag on this item was rejected
+    user_flagging_pending: You've already flagged this item and your feedback is under consideration
 
   gift_certificate:
     already_redeemed: The gift certificate '{{code}}' has already been redeemed

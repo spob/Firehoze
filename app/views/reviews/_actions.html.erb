@@ -24,10 +24,6 @@
   </div>
 
   <div>
-    <% if current_user.has_flagged?(review) %>
-      You have flagged this
-    <% else %>
-      <%= link_to "Flag", new_flag_path(:flagger_type => 'Review', :flagger_id => review) %>
-    <% end %>
+      <%= flag_link review %>
   </div>
 <% end %>

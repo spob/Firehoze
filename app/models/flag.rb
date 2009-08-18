@@ -47,7 +47,8 @@ class Flag < ActiveRecord::Base
   def validate_on_create
     if Flag.find(:first, :conditions => { :flaggable_type => self.flaggable_type,
                                           :flaggable_id => self.flaggable_id,
-                                          :user_id => self.user_id })
+                                          :user_id => self.user_id,
+                                          :status => FLAG_STATUS_REJECTED })
       errors.add_to_base I18n.t('flag.already_flagged')
     end
   end
