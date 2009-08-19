@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class FlagsControllerTest < ActionController::TestCase
   context "when logged on" do
@@ -165,6 +165,39 @@ class FlagsControllerTest < ActionController::TestCase
         should_render_template "new"
       end
 
+      context "with an existing pending flag" do
+        setup do
+          @lesson.flags.create!(:status => FLAG_STATUS_PENDING, :reason_type => "Smut", :comments => "Some comments",
+                                :user => @user)
+        end
+
+        context "on GET to :new" do
+          setup { get :new, :flagger_type => 'Lesson', :flagger_id => @lesson }
+
+          should_not_assign_to :flag
+          should_assign_to :flaggable
+          should_respond_with :redirect
+          should_set_the_flash_to :user_flagging_pending
+        end
+
+        context "and an existing rejected flag" do
+          setup do
+            @lesson.flags.create!(:status => FLAG_STATUS_REJECTED, :reason_type => "Smut", :comments => "Some comments",
+                                  :user => @user)
+            get :new, :flagger_type => 'Lesson', :flagger_id => @lesson
+          end
+
+          context "on GET to :new" do
+            setup { get :new, :flagger_type => 'Lesson', :flagger_id => @lesson }
+
+            should_not_assign_to :flag
+            should_assign_to :flaggable
+            should_respond_with :redirect
+            should_set_the_flash_to :user_flagging_reject
+          end
+        end
+      end
+
       context "on POST to :create" do
         setup do
           assert Flag.all.empty?
@@ -186,7 +219,7 @@ class FlagsControllerTest < ActionController::TestCase
           end
 
           should_assign_to :flaggable
-          should_respond_with :redirect   
+          should_respond_with :redirect
           #should_render_template :new
         end
       end
