@@ -166,6 +166,7 @@ en:
     already_reviewed: You can only write a review for a lesson once
     cannot_edit: You do not have permissions required to edit this review
     cannot_review_own_lesson: An author can't review their own work
+    must_rate: In order to review a lesson, please rate it first
     create_success: Review created
     create_failure: There were problems
     not_ready: The review you requested is not available for viewing

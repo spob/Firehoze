@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper' 
 
 class HelpfulsControllerTest < ActionController::TestCase
 
@@ -12,7 +12,16 @@ class HelpfulsControllerTest < ActionController::TestCase
     context "with a review" do
       setup do
         @lesson = Factory.create(:lesson)
-        @user.credits.create(:price => 0.99, :lesson => @lesson)
+        assert @lesson.rates.empty?
+        @user.credits.create!(:price => 0.99, :lesson => @lesson)
+        @rate = @lesson.rates.create!(:user_id => @user.id)
+        # I have no idea why the user id isn't set above RBS'
+        @rate.update_attribute(:user_id, @user.id)
+        assert !@lesson.rates.empty?
+        assert_equal @lesson, @lesson.rates.first.rateable
+        assert_equal @user, @lesson.rates.first.user
+        assert_equal @lesson.id, @lesson.rates.first.rateable.id
+        assert !@user.rates.lesson_rates.by_rateable_id(@lesson).empty?
         @review = Factory.create(:review, :user => @user, :lesson => @lesson)
       end
 

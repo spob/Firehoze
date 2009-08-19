@@ -1,6 +1,6 @@
 class Review < ActiveRecord::Base
   before_validation_on_create :default_values
-  
+
   belongs_to :user
   belongs_to :lesson, :counter_cache => true
   has_many :helpfuls, :dependent => :destroy
@@ -10,7 +10,7 @@ class Review < ActiveRecord::Base
   validates_uniqueness_of :user_id, :scope => :lesson_id
   validates_length_of :headline, :maximum => 100, :allow_nil => true
   validate :validate_reviewer
-  
+
   attr_protected :status
 
   named_scope :helpful, :conditions => "score > 0"
@@ -55,13 +55,17 @@ class Review < ActiveRecord::Base
   private
 
   def validate_reviewer
-    # Instructor can't review their own video'
+    # Instructor can't review their own lesson'
     if self.lesson and self.lesson.instructor == self.user
       errors.add_to_base(I18n.t('review.cannot_review_own_lesson'))
     end
-    # Must have viewed the video to review it
+    # Must have viewed the lesson to review it
     if self.user and !self.user.owns_lesson? self.lesson
       errors.add_to_base(I18n.t('review.must_view_to_review'))
+    end
+    # Must rate lesson in order to review it
+    if self.user and self.lesson and self.user.rates.lesson_rates.by_rateable_id(self.lesson).empty?
+      errors.add_to_base(I18n.t('review.must_rate'))
     end
   end
 

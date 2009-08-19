@@ -145,8 +145,9 @@ class LessonTest < ActiveSupport::TestCase
     should_allow_values_for          :title, "blah blah blah"
     should_ensure_length_in_range    :title, (0..50)
     should_ensure_length_in_range    :synopsis, (0..500)
-    should_have_many                 :reviews, :video_status_changes, :credits, :free_credits, :taggings, :flags
-    should_have_many                 :videos, :processed_videos, :lesson_buy_patterns, :lesson_buy_pairs, :comments
+    should_have_many                 :reviews, :video_status_changes, :credits, :free_credits, :taggings, :flags,
+                                      :videos, :processed_videos, :lesson_buy_patterns, :lesson_buy_pairs, :comments,
+                                      :rates
     should_have_and_belong_to_many   :lesson_wishers
     # See associated comments on the model as to why this are commented out RBS
     #should_have_one                  :last_comment
