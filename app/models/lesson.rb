@@ -122,17 +122,20 @@ class Lesson < ActiveRecord::Base
       ORDER BY l.rating_average DESC
       LIMIT ?
 END
-    @lessons1 = Lesson.find_by_sql([sql, user.id, limit])
-    @lessons2 = []
-    limit = limit - @lessons1.size
-    if limit > 0
-      @lessons2 = Lesson.find(:all, :conditions => ["id not in (?) and id not in (?)",
-                                                    @lessons1.collect(&:id) + [-1],
-                                                    user.lessons.collect(&:id) + [-1]],
-                              :limit => limit,
-                              :order => "rating_average DESC")
+    lessons1 = Lesson.find_by_sql([sql, user.id, limit])
+    lessons2 = []
+    tmp_limit = limit * 2 - lessons1.size
+    lessons2 = Lesson.find(:all, :conditions => ["id not in (?) and id not in (?)",
+                                                 lessons1.collect(&:id) + [-1],
+                                                 user.lessons.collect(&:id) + [-1]],
+                           :limit => tmp_limit,
+                           :order => "rating_average DESC")
+    all = lessons1 + lessons2
+    lessons = []
+    (1..limit).each do |i|
+      lessons << all.delete(all.at(rand(all.size)))
     end
-    @lessons1 + @lessons2
+    lessons
   end
 
   # Call it vlast (as in very last) as opposed to last to differentiate it from the dynamic finder
