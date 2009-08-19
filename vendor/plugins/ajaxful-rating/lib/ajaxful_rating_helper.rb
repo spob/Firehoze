@@ -1,3 +1,4 @@
+
 module AjaxfulRating # :nodoc:
   module Helper
     class MissingRateRoute < StandardError
@@ -66,24 +67,19 @@ module AjaxfulRating # :nodoc:
     #         other: "{{count}} stars out of {{total}}"
     def ratings_for(rateable, *args)
       user = extract_options(rateable, *args)
+
       ajaxful_styles << %Q(
       .#{options[:class]} { width: #{rateable.class.max_rate_value * 25}px; }
       .#{options[:small_star_class]} { width: #{rateable.class.max_rate_value * 10}px; }
       )
-
-      # width = (rateable.rate_average(true, options[:dimension]) / rateable.class.max_rate_value.to_f) * 100
-
-      # Fix via trak3r, added by rsturim
-      # http://github.com/trak3r/ajaxful-rating/tree/master
-
       if user && rateable.rated_by?(user, options[:dimension])
         rating = rateable.rate_by(user, options[:dimension]).stars
+      elsif user
+        rating = 0
       else
         rating = rateable.rate_average(true, options[:dimension])
       end
-
-      width = (rating / rateable.class.max_rate_value.to_f) * 100      
-      
+      width = (rating / rateable.class.max_rate_value.to_f) * 100
       
       ul = content_tag(:ul, options[:html]) do
         Range.new(1, rateable.class.max_rate_value).collect do |i|
@@ -92,7 +88,7 @@ module AjaxfulRating # :nodoc:
             :class => 'current-rating', :style => "width:#{width}%"))
       end
       if options[:wrap]
-        content_tag(:div, ul, :id => "ajaxful-rating-#{!options[:dimension].blank? ?
+        content_tag(:div, ul, :class => 'ajaxful-rating-wrapper', :id => "ajaxful-rating-#{!options[:dimension].blank? ?
           "#{options[:dimension]}-" : ''}#{rateable.class.name.downcase}-#{rateable.id}")
       else
         ul
@@ -107,8 +103,7 @@ module AjaxfulRating # :nodoc:
     #     <%= ajaxful_rating_style %>
     #   </head>
     def ajaxful_rating_style
-      stylesheet_link_tag('ajaxful_rating') + content_tag(:style, ajaxful_styles,
-        :type => 'text/css') unless ajaxful_styles.blank?
+      stylesheet_link_tag('ajaxful_rating') + content_tag(:style, ajaxful_styles, :type => 'text/css') unless ajaxful_styles.blank?
     end
   
     private
@@ -123,17 +118,19 @@ module AjaxfulRating # :nodoc:
         }
       )
       rated = rateable.rated_by?(user, options[:dimension]) if user
-      star = if user && ((rated && rateable.class.options[:allow_update]) || !rated)
+      star = if user && (((rated && rateable.class.options[:allow_update]) && !options[:static]) || !rated)
         link_to_remote(i, build_remote_options({:class => a_class, :title => pluralize_title(i, rateable.class.max_rate_value)}, i))
       else
         content_tag(:span, i, :class => a_class, :title => current_average(rateable))
       end
+
       content_tag(:li, star)
     end
   
     # Default options for the helper.
     def options
-      @options ||= {
+      @ajaxful_options ||= {
+        :static => false,
         :wrap => true,
         :class => 'ajaxful-rating',
         :link_class_prefix => :stars,
@@ -153,9 +150,7 @@ module AjaxfulRating # :nodoc:
     # Returns the current average string.
     def current_average(rateable)
       avg = format("%0.2f", (rateable.rate_average(true, options[:dimension])).to_f)
-      I18n.t('ajaxful_rating.stars.current_average', :average => rateable.rate_average(true, options[:dimension]),
-        :max => rateable.class.max_rate_value, :default => "#{avg}")
-        # :max => rateable.class.max_rate_value, :default => "Current rating average: {{average}}/{{max}}")
+      I18n.t('ajaxful_rating.stars.current_average', :average => rateable.rate_average(true, options[:dimension]), :max => rateable.class.max_rate_value, :default => "#{avg}")
     end
   
     # Temporary instance to hold dynamic styles.
@@ -173,12 +168,11 @@ module AjaxfulRating # :nodoc:
     def extract_options(rateable, *args)
       user = if args.first.class.name == rateable.class.user_class_name.classify
         args.shift
-      elsif args.first != :static
+      elsif !args.include?(:static)
         current_user if respond_to?(:current_user)
       end
       options.merge!(args.last) if !args.empty? && args.last.is_a?(Hash)
-      options[:remote_options][:url] ||= respond_to?(url = "rate_#{rateable.class.name.downcase}_path") ?
-        send(url, rateable) : raise(MissingRateRoute)
+      options[:remote_options][:url] ||= respond_to?(url = "rate_#{rateable.class.name.downcase}_path") ? send(url, rateable) : raise(MissingRateRoute)
       options[:html].reverse_merge!(:class => "#{options[:class]} #{options[:small_star_class] if options[:small_stars]}")
       user
     end

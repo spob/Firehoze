@@ -21,17 +21,6 @@ module LessonsHelper
     ratings_for(lesson, user, (user != lesson.instructor and lesson.owned_by?(user)) ? :active : :static, *args)
   end
 
-  def lesson_rating_by_reviewer_for(lesson, user, *args)
-    # if current_user == user
-    #   ratings_for(lesson, user, :active)
-    # else
-      ratings_for(lesson, :static)
-    # end
-    
-    # ratings_for(lesson, user, (user != lesson.instructor and lesson.owned_by?(user)) ? :active : :static)
-  end
-
-
   def vote_counts_phrase(lesson)
     "#{pluralize(lesson.total_rates, "vote")} cast"
   end

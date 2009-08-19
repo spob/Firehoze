@@ -3,6 +3,15 @@
 <div class="review">
 
   <div class="span-5 review_left">
+
+    <div>
+      <% if reviewer == current_user %>
+        <div id="stars"><%= ratings_for(review.lesson, current_user, { :static => false }) %></div>
+      <% else %>
+        <%= ratings_for(review.lesson, reviewer, { :static => true } ) %>
+      <% end %>
+    </div>
+
     <div class="instructor_avatar"><%= avatar_tag reviewer, :size => :medium %></div>
     <div><%= link_to_profile(reviewer) %></div>
     <div>Member Since:<br/><%= l(reviewer.created_at.to_date) %></div>
