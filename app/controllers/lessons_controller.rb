@@ -174,7 +174,7 @@ class LessonsController < ApplicationController
   def watch
     if @lesson.ready?
       if current_user.owns_lesson? @lesson or current_user == @lesson.instructor
-        # watch the video
+        redirect_to lesson_path(@lesson)
       elsif @lesson.free_credits.available.size > 0
         Lesson.transaction do
           if @lesson.consume_free_credit current_user

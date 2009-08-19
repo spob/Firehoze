@@ -74,7 +74,7 @@ module LessonsHelper
   #end
 
   def button_to_buy(lesson)
-    if lesson.ready? and current_user
+    if lesson.ready?
       if lesson.owned_by?(current_user) or current_user == lesson.instructor
         return
       end
