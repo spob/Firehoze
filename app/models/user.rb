@@ -106,8 +106,8 @@ class User < ActiveRecord::Base
   end
 
   # Basic paginated listing finder
-  def self.list(page)
-    paginate :page => page, :order => 'email', :per_page => ROWS_PER_PAGE
+  def self.list(page, per_page)
+    paginate :page => page, :order => 'email', :per_page => per_page
   end
 
   # used to verify whether the user typed their correct password when, for example,

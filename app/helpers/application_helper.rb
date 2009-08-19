@@ -76,4 +76,22 @@ module ApplicationHelper
       msg
     end
   end
+
+  def per_page_select refresh_url
+    link_to_command(10, refresh_url) +
+            link_to_command(25, refresh_url) +
+            link_to_command(50, refresh_url) +
+            link_to_command(100, refresh_url, false)
+  end
+
+  private
+
+  def link_to_command per_page, refresh_url, append_space=true
+    if session[:per_page] == per_page.to_s
+      "#{per_page}#{append_space ? "&nbsp;" : ""}"
+    else
+      link_to(per_page, set_per_pages_path(:per_page => per_page, :refresh_url => refresh_url), :method => :post) +
+              (append_space ? "&nbsp;" : "")
+    end
+  end
 end

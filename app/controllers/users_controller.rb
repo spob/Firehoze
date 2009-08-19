@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   layout :layout_for_action
 
   def list
-    @users = User.list params[:page]
+    @users = User.list params[:page], session[:per_page] || ROWS_PER_PAGE
   end
 
   def new

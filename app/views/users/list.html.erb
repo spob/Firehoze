@@ -15,3 +15,5 @@
   <%= render @users %>
 </table>
 <%= will_paginate @users %>
+<br/>
+Rows to Display Per Page: <%= per_page_select(list_users_path) %>

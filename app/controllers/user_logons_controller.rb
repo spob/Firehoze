@@ -8,6 +8,6 @@ class UserLogonsController < ApplicationController
   layout 'admin'
 
   def index
-    @user_logons = UserLogon.list params[:page]
+    @user_logons = UserLogon.list params[:page], session[:per_page] || ROWS_PER_PAGE
   end
 end

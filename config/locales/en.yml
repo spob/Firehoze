@@ -143,6 +143,9 @@ en:
 
   password:
     pwd_update_success: Password updated
+
+  per_page:
+    per_page_updated: Rows to display per page set to {{per_page}}
   
   periodic_jobs:
     one_time_job_scheduled: Job has been scheduled to run one time

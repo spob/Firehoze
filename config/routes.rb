@@ -26,6 +26,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
   map.resources :passwords
   map.resources :password_resets
+  map.resources :per_pages, :collection => { :set => :post }, :only => [ :set ]
   map.resources :periodic_jobs, :member => { :rerun => :post }
   map.resources :store, :only => :show
   map.resources :skus, :has_many => :discounts, :shallow => true
