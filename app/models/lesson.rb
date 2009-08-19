@@ -105,6 +105,35 @@ class Lesson < ActiveRecord::Base
     @@flag_reasons
   end
 
+  def self.lesson_recommendations(user, limit=5)
+    sql = <<END
+      SELECT l.* FROM lessons AS l
+      WHERE EXISTS (
+        SELECT null
+        FROM lesson_buy_pairs AS pairs
+        INNER JOIN credits AS c ON c.lesson_id = pairs.lesson_id
+        WHERE c.user_id = ?
+          AND l.id = pairs.lesson_id
+          AND NOT EXISTS
+          (SELECT null
+           FROM credits
+           WHERE user_id = c.user_id
+             AND lesson_id = pairs.other_lesson_id))
+      ORDER BY l.rating_average DESC
+      LIMIT ?
+END
+    @lessons1 = Lesson.find_by_sql([sql, user.id, limit])
+    @lessons2 = []
+    limit = limit - @lessons1.size
+    if limit > 0
+      @lessons2 = Lesson.find(:all, :conditions => ["id not in (?) and id not in (?)",
+                                                    @lessons1.collect(&:id) + [-1],
+                                                    user.lessons.collect(&:id) + [-1]],
+                              :limit => limit,
+                              :order => "rating_average DESC")
+    end
+    @lessons1 + @lessons2
+  end
 
   # Call it vlast (as in very last) as opposed to last to differentiate it from the dynamic finder
   def vlast_comment

@@ -25,6 +25,14 @@ class LessonTest < ActiveSupport::TestCase
       assert @lesson.original_video
     end
 
+    context "testing lesson_recommendations" do
+      setup { @lessons = Lesson.lesson_recommendations(Factory.create(:user), 5) }
+
+      should "retrieve lessons" do
+        assert !@lessons.empty?
+      end
+    end
+
     context "when rejecting" do
       setup do
         assert_equal LESSON_STATUS_PENDING, @lesson.status
