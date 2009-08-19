@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class HelpfulTest < ActiveSupport::TestCase
   context "given an existing helpful record" do
@@ -7,6 +7,9 @@ class HelpfulTest < ActiveSupport::TestCase
       @lesson = Factory.create(:lesson)
       @user.credits.create!(:price => 0.99, :lesson => @lesson, :acquired_at => Time.now,
                             :line_item => Factory.create(:line_item))
+      @rate = @lesson.rates.create!(:user_id => @user.id)
+      # I have no idea why the user id isn't set above RBS'
+      @rate.update_attribute(:user_id, @user.id)
       @review = Factory.create(:review, :user => @user, :lesson => @lesson)
       assert @user.owns_lesson?(@lesson)
       @helpful = Factory.create(:helpful, :review => @review)

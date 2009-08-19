@@ -228,6 +228,9 @@ class FlagsControllerTest < ActionController::TestCase
     context "given an existing review" do
       setup do
         @credit = Factory.create(:credit, :user => @user)
+        @rate = @credit.lesson.rates.create!(:user_id => @user.id)
+        # I have no idea why the user id isn't set above RBS'
+        @rate.update_attribute(:user_id, @user.id)
         @review = @credit.lesson.reviews.create!(:body => 'hello',
                                                  :headline => 'headline',
                                                  :user => @user)
