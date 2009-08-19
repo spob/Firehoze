@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class SkuTest < ActiveSupport::TestCase
   context "given an existing record" do
@@ -27,7 +27,7 @@ class SkuTest < ActiveSupport::TestCase
       end
 
       should "return rows" do
-        assert_equal 3, Sku.list(1).size
+        assert_equal 3, Sku.list(1, 10).size
       end
     end
 

@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class UserTest < ActiveSupport::TestCase
   CHARSET = "utf-8"
@@ -79,7 +79,7 @@ class UserTest < ActiveSupport::TestCase
       end
 
       should "return user records" do
-        assert_equal 3, User.list(1).size
+        assert_equal 3, User.list(1, 10).size
       end
 
       should "find 3 records" do
