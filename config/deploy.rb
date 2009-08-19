@@ -1,6 +1,6 @@
 set :application, 'Firehoze'
 set :user, 'root'
-set :domain, '208.64.71.172'
+set :domain, '208.88.125.156'
 set :rails_env, 'production'
 set :server_hostname, domain
 set :keep_releases, 8
