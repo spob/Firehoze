@@ -15,6 +15,8 @@ class ReviewsController < ApplicationController
 
   def index
     @reviews = Review.list @lesson, params[:page], current_user
+    @style = params[:style]
+    render :layout => 'content_in_tab' if @style == 'tab'
   end
 
   def show

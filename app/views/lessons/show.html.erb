@@ -77,22 +77,7 @@
 <div class="clear prepend-top span-40 last">
 
 <%# LESSON TABS %>
-  <div class="clear append-1 span-30 last" id="lesson_tabs">
-    <div id="tabs">
-      <ul>
-        <% unless @lesson.notes.blank? %>
-          <li><a href="#tabs-1"><%= t 'lesson.notes' %></a></li>
-        <% end %>
-        <li><a href="#tabs-2"><%= t 'lesson.reviews' %></a></li>
-        <li><a href="#tabs-3"><%= t 'lesson.discussion' %></a></li>
-      </ul>
-      <% unless @lesson.notes.blank? %>
-        <div id="tabs-1"><%= rbs_formatter(@lesson.notes) %></div>
-      <% end %>
-      <div id="tabs-2"><%= render :partial => 'reviews', :object => @lesson %></div>
-      <div id="tabs-3"><%= render :partial => 'discussion', :object => @lesson %></div>
-    </div>
-  </div>
+  <%= render :partial => 'tabs' %>
 
   <% #TAG CLOUD     %>
   <%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts %>
@@ -220,9 +205,7 @@
   <% if @lesson.can_edit? current_user %>
     <%= link_to 'Edit', edit_lesson_path(@lesson) %> |
   <% end %>
-  <%= link_to 'Home', home_path %> |
-  <%= link_to pluralize(@lesson.reviews.size, 'Review'), lesson_reviews_path(@lesson) %> |
-  <%= link_to pluralize(@lesson.comments.size, 'Comments'), lesson_lesson_comments_path(@lesson) %> |
+
   <% if current_user and @lesson.instructor != current_user and ! @lesson.owned_by?(current_user) %>
     <% if current_user.on_wish_list?(@lesson) %>
       <%= link_to "Remove from Wish List", wish_lists_path(:id => @lesson), :method => :delete, :disable_with => translate('general.disable_with') %>

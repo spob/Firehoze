@@ -12,6 +12,13 @@ class LessonCommentsController < ApplicationController
 
   def index
     @lesson_comments = LessonComment.list @lesson, params[:page]
+    render :layout => 'content_in_tab'
+  end
+
+  def index
+    @lesson_comments = LessonComment.list @lesson, params[:page]
+    @style = params[:style]
+    render :layout => 'content_in_tab' if @style == 'tab'
   end
 
   def new

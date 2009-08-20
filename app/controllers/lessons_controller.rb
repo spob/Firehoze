@@ -5,7 +5,7 @@ class LessonsController < ApplicationController
 
   verify :method => :post, :only => [ :create, :convert ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update, :conversion_notify ], :redirect_to => :home_path
-  before_filter :find_lesson, :only => [ :show, :edit, :update, :watch, :convert, :rate ]
+  before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :show, :update, :watch ]
   before_filter :set_per_page, :only => [ :index, :list, :ajaxed, :tabbed ]
   before_filter :set_collection, :only => [ :list, :ajaxed, :tabbed ]
 
@@ -64,7 +64,7 @@ class LessonsController < ApplicationController
     Lesson.transaction do
       if @lesson.save
         video = OriginalVideo.new({ :lesson => @lesson,
-                                    :video => video_param})
+            :video => video_param})
         video.save!
         @lesson.trigger_conversion
         flash[:notice] = t 'lesson.created'
@@ -83,11 +83,25 @@ class LessonsController < ApplicationController
   end
 
   def show
+    @style = params[:style]
+    if @style == 'tab'
+      render :layout => 'content_in_tab' 
+      return
+    end
+    
     if @lesson.ready? or @lesson.instructed_by?(current_user) or (current_user and current_user.is_moderator?)
       LessonVisit.touch(@lesson, current_user, request.session.session_id)
     else
       flash[:error] = t 'lesson.not_ready'
       redirect_to lessons_path
+    end
+  end
+
+  def lesson_notes
+    @style = params[:style]
+    if @style == 'tab'
+      render :layout => 'content_in_tab' 
+      return
     end
   end
 
@@ -135,7 +149,7 @@ class LessonsController < ApplicationController
         Lesson.ready.highest_rated.all(:limit => @per_page)
       end
     end
-    render :layout => 'lessons_in_tab'
+    render :layout => 'content_in_tab'
   end
 
   # SUPPORTING AJAX PAGINATION (keeping this around for a little while, just in case we need it later)
@@ -163,12 +177,11 @@ class LessonsController < ApplicationController
     end
   end
 
-
   # FIXME -- testing purposes here ...
   def list_recently_browsed
     me = User.find 2
     @lessons = me.visited_lessons.paginate :page => params[:page], :per_page => @per_page
-    render :layout => 'lessons_in_tab'
+    render :layout => 'content_in_tab'
   end
 
   def watch
