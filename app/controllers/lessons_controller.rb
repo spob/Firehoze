@@ -83,12 +83,6 @@ class LessonsController < ApplicationController
   end
 
   def show
-    @style = params[:style]
-    if @style == 'tab'
-      render :layout => 'content_in_tab' 
-      return
-    end
-    
     if @lesson.ready? or @lesson.instructed_by?(current_user) or (current_user and current_user.is_moderator?)
       LessonVisit.touch(@lesson, current_user, request.session.session_id)
     else
