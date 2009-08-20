@@ -30,7 +30,7 @@ class Review < ActiveRecord::Base
     conditions = conditions.merge({ :status => REVIEW_STATUS_ACTIVE}) unless (current_user and current_user.is_moderator?)
     paginate :page => page,
              :conditions => conditions, :order => 'id desc',
-             :order => 'score DESC',
+             :order => "if(user_id = #{current_user ? current_user.id : -1}, -1, 0) ASC, score DESC",
              :per_page => ROWS_PER_PAGE
   end
 
