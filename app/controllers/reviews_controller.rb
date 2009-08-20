@@ -51,6 +51,7 @@ class ReviewsController < ApplicationController
           flash[:notice] = t 'review.create_success'
           redirect_to lesson_reviews_path(@lesson)
         else
+          flash[:error] = t 'review.create_failure'
           render :action => 'new'
         end
       }
@@ -58,7 +59,7 @@ class ReviewsController < ApplicationController
         if @review.save
           flash[:notice] = t 'review.create_success'
         else
-          flash[:notice] = t 'review.create_failure'
+          flash[:error] = t 'review.create_failure'
         end
       }
     end

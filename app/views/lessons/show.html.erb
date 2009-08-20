@@ -9,12 +9,12 @@
 <div id="lesson_container">
 <%# TITLE BAR %>
   <div class="clear span-40 last" id="banner">
-    <div class="span-27" id="banner_title">
+    <div class="span-25" id="banner_title">
       <%= h @lesson.title %> by <%= link_to_profile(@lesson.instructor) %>
     </div>
 
     <div id="rating">
-      <div class="span-7 last" id="stats">
+      <div class="span-9 last" id="stats">
         Average Rating: <span id="<%= dom_id(@lesson) %>_average" class="average"><%= current_average(@lesson) -%></span>
         (<span id="<%= dom_id(@lesson) %>_count"><%= vote_counts_phrase(@lesson) %></span>)
       </div>
