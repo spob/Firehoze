@@ -15,7 +15,7 @@
 
     <div id="rating">
       <div class="span-7 last" id="stats">
-        Rating: <span id="<%= dom_id(@lesson) %>_average" class="average"><%= current_average(@lesson) -%></span>
+        Average Rating: <span id="<%= dom_id(@lesson) %>_average" class="average"><%= current_average(@lesson) -%></span>
         (<span id="<%= dom_id(@lesson) %>_count"><%= vote_counts_phrase(@lesson) %></span>)
       </div>
       <div class="span-6 last" id="stars">

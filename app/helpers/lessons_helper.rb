@@ -18,7 +18,11 @@ module LessonsHelper
 
   # must own lesson, but cannot be the instructor
   def lesson_rating_for(lesson, user, *args)
-    ratings_for(lesson, user, (user != lesson.instructor and lesson.owned_by?(user)) ? :active : :static, *args)
+    if (user == lesson.instructor or !lesson.owned_by?(user))
+      ratings_for(lesson, :static)
+    else
+      ratings_for(lesson)
+    end
   end
 
   def vote_counts_phrase(lesson)
