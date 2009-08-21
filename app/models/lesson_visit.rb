@@ -24,7 +24,7 @@ class LessonVisit < ActiveRecord::Base
     if lesson_visit
       lesson_visit.visited_at = Time.now
       lesson_visit.user = user if user
-      lesson_visit.purchased_this_visit = purchased
+      lesson_visit.purchased_this_visit = purchased unless lesson_visit.purchased_this_visit
       lesson_visit.save!
     else                                            
       lesson_visit = LessonVisit.create!(:user => user,
