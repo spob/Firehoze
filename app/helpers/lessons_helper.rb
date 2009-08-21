@@ -51,7 +51,7 @@ module LessonsHelper
   end
 
   def img_tag_lesson_tn(lesson)
-    # TODO: We should move the placeholder into a config property
+    #TODO: We should move the placeholder into a config property
     img_src = lesson.thumbnail_url ? lesson.thumbnail_url : "videos/video_placeholder.jpg"
     link_to(image_tag(img_src, :class => :lesson_tn, :alt => lesson.title), lesson_path(lesson))
   end
@@ -84,8 +84,6 @@ module LessonsHelper
 
       if current_user
         button_to action_text, watch_lesson_path(lesson), :method => :get
-      else
-        link_to action_text, new_user_session_path(:from => 'buy_link')
       end
     end
   end
@@ -113,8 +111,6 @@ module LessonsHelper
   def button_to_review(lesson)
     if !lesson.reviewed_by?(current_user) and lesson.owned_by?(current_user)
       button_to "Write a Review", new_lesson_review_path(lesson), :method => :get
-    else
-      link_to "Write a Review", new_user_session_path(:from => 'review_link')
     end
   end
 
@@ -127,8 +123,6 @@ module LessonsHelper
       else
         button_to "Add to Wish List", wish_lists_path(:id => lesson), :method => :post, :disable_with => translate('general.disable_with')
       end
-    else
-      link_to "Add to Wish List", new_user_session_path(:from => 'wish_list_link')
     end
   end
 
