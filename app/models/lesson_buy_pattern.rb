@@ -3,7 +3,7 @@ class LessonBuyPattern < ActiveRecord::Base
   belongs_to :purchased_lesson, :class_name => 'Lesson'
   validates_presence_of :lesson, :purchased_lesson, :counter
 
-  named_scope :ready, { :joins => 'INNER JOIN lessons ON lessons.id = lesson_buy_patterns.lesson_id',
+  named_scope :ready, { :joins => 'INNER JOIN lessons ON lessons.id = lesson_buy_patterns.purchased_lesson_id',
               :conditions => { :lessons => { :status => 'ready'}}}
   named_scope :by_lesson,
               lambda{|lesson_id|{:conditions => { :lesson_id => lesson_id }}
