@@ -109,7 +109,8 @@ class Lesson < ActiveRecord::Base
   def self.lesson_recommendations(user, limit=5)
     sql = <<END
       SELECT l.* FROM lessons AS l
-      WHERE EXISTS (
+      WHERE status = ?
+        AND EXISTS (
         SELECT null
         FROM lesson_buy_pairs AS pairs
         INNER JOIN credits AS c ON c.lesson_id = pairs.lesson_id
@@ -123,10 +124,10 @@ class Lesson < ActiveRecord::Base
       ORDER BY l.rating_average DESC
       LIMIT ?
 END
-    lessons1 = Lesson.find_by_sql([sql, user.id, limit])
+    lessons1 = Lesson.ready.find_by_sql([sql, VIDEO_STATUS_READY, user.id, limit])
     lessons2 = []
     tmp_limit = limit * 2 - lessons1.size
-    lessons2 = Lesson.find(:all, :conditions => ["id not in (?) and id not in (?)",
+    lessons2 = Lesson.ready.find(:all, :conditions => ["id not in (?) and id not in (?)",
                                                  lessons1.collect(&:id) + [-1],
                                                  user.lessons.collect(&:id) + [-1]],
                            :limit => tmp_limit,
