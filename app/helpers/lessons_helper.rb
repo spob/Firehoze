@@ -70,13 +70,6 @@ module LessonsHelper
     end
   end
 
-  # Deprecated
-  #def button_to_buy_or_watch(lesson)
-  #  if lesson.ready?
-  #    button_to watch_text(lesson), watch_lesson_path(lesson), :method => :get
-  #  end
-  #end
-
   def button_to_buy(lesson)
     if lesson.ready?
       if lesson.owned_by?(current_user) or current_user == lesson.instructor
@@ -92,7 +85,7 @@ module LessonsHelper
       if current_user
         button_to action_text, watch_lesson_path(lesson), :method => :get
       else
-        link_to action_text, new_user_session_path(:from => 'buy_link'), :method => :get
+        link_to action_text, new_user_session_path(:from => 'buy_link')
       end
     end
   end
