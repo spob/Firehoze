@@ -92,8 +92,8 @@ class ApplicationController < ActionController::Base
 
   # store the location that the user navigated to...used so that, if we need to redirect to
   # the login page, we can continue on to this location after the user authenticates
-  def store_location
-    session[:return_to] = request.request_uri
+  def store_location uri=request.request_uri
+    session[:return_to] = uri 
   end
 
   # redirect back to where the user was trying to get to if, for example, we needed to first redirect

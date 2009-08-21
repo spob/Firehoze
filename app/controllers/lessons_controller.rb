@@ -1,6 +1,6 @@
 class LessonsController < ApplicationController
 
-  before_filter :require_user, :only => [:new, :create, :edit, :update, :watch]
+  before_filter :require_user, :only => [:new, :create, :edit, :update]
   permit ROLE_ADMIN, :only => [:convert]
 
   verify :method => :post, :only => [ :create, :convert ], :redirect_to => :home_path
@@ -23,31 +23,32 @@ class LessonsController < ApplicationController
   end
 
   def list
-    @lesson_format = 'wide' 
-    @lessons = case @collection
-    when 'most_popular'
-      if current_user
-        Lesson.ready.most_popular.not_owned_by(current_user).paginate(:per_page => @per_page, :page => params[:page])
-      else
-        Lesson.ready.most_popular.paginate(:per_page => @per_page, :page => params[:page])
-      end
-    when 'newest'
-      if current_user
-        Lesson.ready.newest.not_owned_by(current_user).paginate(:per_page => @per_page, :page => params[:page])
-      else
-        Lesson.ready.newest.paginate(:per_page => @per_page, :page => params[:page])
-      end
-    when 'highest_rated'
-      if current_user
-        Lesson.ready.highest_rated.not_owned_by(current_user).paginate(:per_page => @per_page, :page => params[:page])
-      else
-        Lesson.ready.highest_rated.paginate(:per_page => @per_page, :page => params[:page])
-      end
-    when 'tagged_with'
-      @lesson_format = 'narrow' 
-      @tag = params[:tag]
-      Lesson.ready.find_tagged_with(@tag).paginate(:page => params[:page], :per_page => @per_page)
-    end
+    @lesson_format = 'wide'
+    @lessons =
+            case @collection
+              when 'most_popular'
+                if current_user
+                  Lesson.ready.most_popular.not_owned_by(current_user).paginate(:per_page => @per_page, :page => params[:page])
+                else
+                  Lesson.ready.most_popular.paginate(:per_page => @per_page, :page => params[:page])
+                end
+              when 'newest'
+                if current_user
+                  Lesson.ready.newest.not_owned_by(current_user).paginate(:per_page => @per_page, :page => params[:page])
+                else
+                  Lesson.ready.newest.paginate(:per_page => @per_page, :page => params[:page])
+                end
+              when 'highest_rated'
+                if current_user
+                  Lesson.ready.highest_rated.not_owned_by(current_user).paginate(:per_page => @per_page, :page => params[:page])
+                else
+                  Lesson.ready.highest_rated.paginate(:per_page => @per_page, :page => params[:page])
+                end
+              when 'tagged_with'
+                @lesson_format = 'narrow'
+                @tag = params[:tag]
+                Lesson.ready.find_tagged_with(@tag).paginate(:page => params[:page], :per_page => @per_page)
+            end
   end
 
   def new
@@ -64,7 +65,7 @@ class LessonsController < ApplicationController
     Lesson.transaction do
       if @lesson.save
         video = OriginalVideo.new({ :lesson => @lesson,
-            :video => video_param})
+                                    :video => video_param})
         video.save!
         @lesson.trigger_conversion
         flash[:notice] = t 'lesson.created'
@@ -94,7 +95,7 @@ class LessonsController < ApplicationController
   def lesson_notes
     @style = params[:style]
     if @style == 'tab'
-      render :layout => 'content_in_tab' 
+      render :layout => 'content_in_tab'
       return
     end
   end
@@ -122,53 +123,55 @@ class LessonsController < ApplicationController
 
   # SUPPORTING AJAX TABS
   def tabbed
-    @lesson_format = current_user ? 'narrow' : 'wide' 
-    @lessons = case @collection
-    when 'most_popular'
-      if current_user
-        Lesson.ready.most_popular.not_owned_by(current_user).all(:limit => @per_page)
-      else
-        Lesson.ready.most_popular.all(:limit => @per_page)
-      end
-    when 'newest'
-      if current_user
-        Lesson.ready.newest.not_owned_by(current_user).all(:limit => @per_page)
-      else
-        Lesson.ready.newest.all(:limit => @per_page)
-      end
-    when 'highest_rated'
-      if current_user
-        Lesson.ready.highest_rated.not_owned_by(current_user).all(:limit => @per_page)
-      else
-        Lesson.ready.highest_rated.all(:limit => @per_page)
-      end
-    end
+    @lesson_format = current_user ? 'narrow' : 'wide'
+    @lessons =
+            case @collection
+              when 'most_popular'
+                if current_user
+                  Lesson.ready.most_popular.not_owned_by(current_user).all(:limit => @per_page)
+                else
+                  Lesson.ready.most_popular.all(:limit => @per_page)
+                end
+              when 'newest'
+                if current_user
+                  Lesson.ready.newest.not_owned_by(current_user).all(:limit => @per_page)
+                else
+                  Lesson.ready.newest.all(:limit => @per_page)
+                end
+              when 'highest_rated'
+                if current_user
+                  Lesson.ready.highest_rated.not_owned_by(current_user).all(:limit => @per_page)
+                else
+                  Lesson.ready.highest_rated.all(:limit => @per_page)
+                end
+            end
     render :layout => 'content_in_tab'
   end
 
   # SUPPORTING AJAX PAGINATION (keeping this around for a little while, just in case we need it later)
   def ajaxed
-    @lesson_format = 'wide' 
-    @lessons = case @collection
-    when 'most_popular'
-      if current_user
-        Lesson.ready.most_popular.not_owned_by(current_user).paginate(:per_page => @per_page, :page => params[:page])
-      else
-        Lesson.ready.most_popular.paginate(:per_page => @per_page, :page => params[:page])
-      end
-    when 'newest'
-      if current_user
-        Lesson.ready.newest.not_owned_by(current_user).paginate(:per_page => @per_page, :page => params[:page])
-      else
-        Lesson.ready.newest.paginate(:per_page => @per_page, :page => params[:page])
-      end
-    when 'highest_rated'
-      if current_user
-        Lesson.ready.highest_rated.not_owned_by(current_user).paginate(:per_page => @per_page, :page => params[:page])
-      else
-        Lesson.ready.highest_rated.paginate(:per_page => @per_page, :page => params[:page])
-      end
-    end
+    @lesson_format = 'wide'
+    @lessons =
+            case @collection
+              when 'most_popular'
+                if current_user
+                  Lesson.ready.most_popular.not_owned_by(current_user).ready.paginate(:per_page => @per_page, :page => params[:page])
+                else
+                  Lesson.ready.most_popular.ready.paginate(:per_page => @per_page, :page => params[:page])
+                end
+              when 'newest'
+                if current_user
+                  Lesson.ready.newest.not_owned_by(current_user).ready.paginate(:per_page => @per_page, :page => params[:page])
+                else
+                  Lesson.ready.newest.ready.paginate(:per_page => @per_page, :page => params[:page])
+                end
+              when 'highest_rated'
+                if current_user
+                  Lesson.ready.highest_rated.not_owned_by(current_user).ready.paginate(:per_page => @per_page, :page => params[:page])
+                else
+                  Lesson.ready.highest_rated.ready.paginate(:per_page => @per_page, :page => params[:page])
+                end
+            end
   end
 
   # FIXME -- testing purposes here ...
@@ -179,30 +182,36 @@ class LessonsController < ApplicationController
   end
 
   def watch
-    if @lesson.ready?
-      if current_user.owns_lesson? @lesson or current_user == @lesson.instructor
-        redirect_to lesson_path(@lesson)
-      elsif @lesson.free_credits.available.size > 0
-        Lesson.transaction do
-          if @lesson.consume_free_credit current_user
-            current_user.wishes.delete(@lesson) if current_user.on_wish_list?(@lesson)
-            redirect_to lesson_path(@lesson)
-          else
-            # This should only happen in very rare circumstances with concurrency problems
-            flash[:error] = t('lesson.need_credits')
-            redirect_to lesson_path(@lesson)
+    if current_user
+      if @lesson.ready?
+        if current_user.owns_lesson? @lesson or current_user == @lesson.instructor
+          redirect_to lesson_path(@lesson)
+        elsif @lesson.free_credits.available.size > 0
+          Lesson.transaction do
+            if @lesson.consume_free_credit current_user
+              current_user.wishes.delete(@lesson) if current_user.on_wish_list?(@lesson)
+              redirect_to lesson_path(@lesson)
+            else
+              # This should only happen in very rare circumstances with concurrency problems
+              flash[:error] = t('lesson.need_credits')
+              redirect_to lesson_path(@lesson)
+            end
           end
+        elsif current_user.available_credits.empty?
+          # User doesn't have enough credits...redirect them to the online store
+          flash[:error] = t('lesson.need_credits')
+          redirect_to store_path(1)
+        else
+          redirect_to new_acquire_lesson_path(:id => @lesson)
         end
-      elsif current_user.available_credits.empty?
-        # User doesn't have enough credits...redirect them to the online store
-        flash[:error] = t('lesson.need_credits')
-        redirect_to store_path(1)
       else
-        redirect_to new_acquire_lesson_path(:id => @lesson)
+        flash[:error] = t('lesson.not_ready')
+        redirect_to lesson_path(@lesson)
       end
     else
-      flash[:error] = t('lesson.not_ready')
-      redirect_to lesson_path(@lesson)
+      store_location lesson_path(@lesson)
+      flash[:error] = t('lesson.must_logon')
+      redirect_to new_user_session_url
     end
   end
 
@@ -260,12 +269,12 @@ class LessonsController < ApplicationController
 
   def set_per_page
     @per_page =
-      if %w(tabbed).include?(params[:action])
-      3
-    elsif %w(ajaxed).include?(params[:action])
-      5
-    else
-      Lesson.per_page
-    end
+            if %w(tabbed).include?(params[:action])
+              3
+            elsif %w(ajaxed).include?(params[:action])
+              5
+            else
+              Lesson.per_page
+            end
   end
 end
