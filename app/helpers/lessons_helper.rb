@@ -88,7 +88,12 @@ module LessonsHelper
       else
         action_text = t('lesson.buy')
       end
-      button_to action_text, watch_lesson_path(lesson), :method => :get
+
+      if current_user
+        button_to action_text, watch_lesson_path(lesson), :method => :get
+      else
+        link_to action_text, new_user_session_path(:from => 'buy_link'), :method => :get
+      end
     end
   end
 
@@ -115,6 +120,8 @@ module LessonsHelper
   def button_to_review(lesson)
     if !lesson.reviewed_by?(current_user) and lesson.owned_by?(current_user)
       button_to "Write a Review", new_lesson_review_path(lesson), :method => :get
+    else
+      link_to "Write a Review", new_user_session_path(:from => 'review_link')
     end
   end
 
@@ -127,6 +134,8 @@ module LessonsHelper
       else
         button_to "Add to Wish List", wish_lists_path(:id => lesson), :method => :post, :disable_with => translate('general.disable_with')
       end
+    else
+      link_to "Add to Wish List", new_user_session_path(:from => 'wish_list_link')
     end
   end
 
