@@ -43,6 +43,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    unless @user.active or (current_user and (current_user.is_moderator? or !current_user.is_admin?))
+      flash[:error] = t 'user.inactive_cannot_show'
+      redirect_to lessons_path
+    end
   end
 
   def show_admin

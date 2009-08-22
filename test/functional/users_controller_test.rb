@@ -60,6 +60,36 @@ class UsersControllerTest < ActionController::TestCase
         should_render_template "show"
       end
 
+      context "for an inactive user" do
+        setup do
+          @other_user.update_attribute(:active, false)
+        end
+
+        context "on GET to :show" do
+          setup { get :show, :id => @other_user.id }
+
+          should_assign_to :user
+          should_respond_with :redirect
+          should_set_the_flash_to /account has been deactivated/
+          should_redirect_to("lessons page") {lessons_path }
+        end
+
+        context "as a moderator" do
+          setup do
+            @user.has_role 'moderator'
+          end
+
+          context "on GET to :show" do
+            setup { get :show, :id => @other_user.id }
+
+            should_assign_to :user
+            should_respond_with :success
+            should_not_set_the_flash
+            should_render_template "show"
+          end
+        end
+      end
+
       context "on GET to :edit" do
         setup { get :edit, :id => @other_user.id }
         should_assign_to :user

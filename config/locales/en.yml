@@ -212,6 +212,7 @@ en:
     registration_no_longer_valid: Registration no longer valid
     roles: Roles
     rejected_bio: This user's bio has been flagged for inappropriate content and thus cannot be displayed
+    inactive_cannot_show: This user's account has been deactivated and cannot be displayed
 
   wish:
     create_success: Lesson added to your wish list
