@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     unless @user == @current_user
       flash[:notice] = t 'user.not_permitted_to_view'
       redirect_back_or_default home_path
-    end    
+    end
   end
 
   def edit
@@ -68,12 +68,24 @@ class UsersController < ApplicationController
     @user.bio = params[:user][:bio].try(:strip)
     @user.time_zone = params[:user][:time_zone]
     @user.language = params[:user][:language]
+    User.transaction do
+      unless @user.active
+        @user.instructed_lessons.each do |lesson|
+          lesson.reject
+          lesson.save!
+        end
+        @user.reviews.each do |review|
+          review.reject
+          review.save!
+        end
+      end
 
-    if @user.save!
-      flash[:notice] = t 'account_settings.update_success'
-    else
-      # getting here because not all (required) fields are getting passed in ...
-      flash[:error] = t 'account_settings.update_error'
+      if @user.save!
+        flash[:notice] = t 'account_settings.update_success'
+      else
+        # getting here because not all (required) fields are getting passed in ...
+        flash[:error] = t 'account_settings.update_error'
+      end
     end
 
     redirect_to edit_user_path(@user)
@@ -123,7 +135,7 @@ class UsersController < ApplicationController
   end
 
   def reset_password
-    if @user.deliver_password_reset_instructions! 
+    if @user.deliver_password_reset_instructions!
       flash[:notice] = t 'user.password_reset_sent'
     else
       flash[:error] = t 'account_settings.update_error'

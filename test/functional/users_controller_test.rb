@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class UsersControllerTest < ActionController::TestCase
 
@@ -17,16 +17,16 @@ class UsersControllerTest < ActionController::TestCase
     #  should_render_template "new"
     #end
 
-  #  context "on POST to :create" do
-  #    setup do
-  #      post :create, :user => Factory.attributes_for(:user)
-  #    end
-  #
-  #    should_assign_to :user
-  #    should_respond_with :redirect
-  #    should_set_the_flash_to "Account registered!"
-  #    should_redirect_to("user page") { user_url(assigns(:user)) }
-  #  end
+    #  context "on POST to :create" do
+    #    setup do
+    #      post :create, :user => Factory.attributes_for(:user)
+    #    end
+    #
+    #    should_assign_to :user
+    #    should_respond_with :redirect
+    #    should_set_the_flash_to "Account registered!"
+    #    should_redirect_to("user page") { user_url(assigns(:user)) }
+    #  end
   end
 
   context "when logged on" do
@@ -35,7 +35,7 @@ class UsersControllerTest < ActionController::TestCase
       @user = Factory(:user)
       @other_user = Factory(:user)
       UserSession.create @user
-    end   
+    end
 
     context "with admin access" do
       setup do
@@ -68,13 +68,45 @@ class UsersControllerTest < ActionController::TestCase
         should_render_template "edit"
       end
 
-      context "on PUT to :update a profile screen" do
-        setup { put :update, :id => @other_user.id, :user => @other_user }
+      context "with an existing lesson" do
+        setup do
+          @lesson = Factory.create(:lesson, :instructor => @other_user)
+          assert_equal LESSON_STATUS_PENDING, @lesson.status
+        end
 
-        should_assign_to :user
-        should_respond_with :redirect
-        should_set_the_flash_to :account_update_success
-        should_redirect_to("user page") { edit_user_url(@other_user) }
+        context "on PUT to :update a profile screen" do
+          setup do
+            put :update, :id => @other_user.id, :user => @other_user
+            @lesson = Lesson.find(@lesson)
+          end
+
+          should_assign_to :user
+          should_respond_with :redirect
+          should_set_the_flash_to :account_update_success
+          should_redirect_to("user page") { edit_user_url(@other_user) }
+          should "not change the status" do
+            assert_equal LESSON_STATUS_PENDING, @lesson.status
+          end
+        end
+
+        context "with inactivate the user" do
+          setup { @other_user.active = false }
+
+          context "on PUT to :update" do
+            setup do
+              put :update, :id => @other_user.id, :user => @other_user
+              @lesson = Lesson.find(@lesson)
+            end
+
+            should_assign_to :user
+            should_respond_with :redirect
+            should_set_the_flash_to :account_update_success
+            should_redirect_to("user page") { edit_user_url(@other_user) }
+            should "not change the status" do
+              assert_equal LESSON_STATUS_REJECTED, @lesson.status
+            end
+          end
+        end
       end
 
       context "on PUT to :update a profile screen with bad values" do

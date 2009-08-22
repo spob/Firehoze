@@ -28,8 +28,9 @@ class User < ActiveRecord::Base
   has_many :available_credits, :class_name => 'Credit',
            :conditions => { :redeemed_at => nil },
            :order => "id"
-  # Lessons represents lessons that this user has "bought"
+  # Instructed represents lessons that this user has instructed
   has_many :instructed_lessons, :class_name => 'Lesson', :foreign_key => 'instructor_id'
+  # Lessons represents lessons that this user has "bought"
   has_many :lessons, :through => :credits
   has_many :reviews, :dependent => :destroy
   has_many :helpfuls, :dependent => :destroy
@@ -205,4 +206,5 @@ class User < ActiveRecord::Base
                                         :expiration_warning_issued_at => nil )
     end
   end
+
 end
