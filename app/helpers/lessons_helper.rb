@@ -96,6 +96,12 @@ module LessonsHelper
     end
   end
 
+  def button_to_unreject(lesson)
+    if current_user.try("is_moderator?") and lesson.status == LESSON_STATUS_REJECTED
+      button_to t('lesson.unreject'), unreject_lesson_path(lesson), :method => :post
+    end
+  end
+
   def button_to_preview(lesson)
     if lesson.ready?
       if lesson.owned_by?(current_user) or lesson.instructed_by?(current_user)

@@ -1,11 +1,12 @@
 class LessonsController < ApplicationController
 
-  before_filter :require_user, :only => [:new, :create, :edit, :update]
+  before_filter :require_user, :only => [:new, :create, :edit, :update, :unreject]
   permit ROLE_ADMIN, :only => [:convert]
+  permit ROLE_MODERATOR, :only => [:unreject]
 
-  verify :method => :post, :only => [ :create, :convert ], :redirect_to => :home_path
+  verify :method => :post, :only => [ :create, :convert, :unreject ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update, :conversion_notify ], :redirect_to => :home_path
-  before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :show, :update, :watch ]
+  before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :show, :update, :watch, :unreject ]
   before_filter :set_per_page, :only => [ :index, :list, :ajaxed, :tabbed ]
   before_filter :set_collection, :only => [ :list, :ajaxed, :tabbed ]
 
@@ -90,6 +91,17 @@ class LessonsController < ApplicationController
       flash[:error] = t 'lesson.not_ready'
       redirect_to lessons_path
     end
+  end
+
+  def unreject
+    if @lesson.status == LESSON_STATUS_REJECTED
+      @lesson.update_status(true)
+      @lesson.save!
+      flash[:notice] = t 'lesson.unrejected'
+    else
+      flash[:error] = t 'lesson.unreject_failed'
+    end
+    redirect_to lesson_path(@lesson)
   end
 
   def lesson_notes

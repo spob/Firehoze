@@ -214,8 +214,8 @@ END
     self.lesson_buy_patterns.inject(0) {|sum, item| sum + item.counter}
   end
 
-  def update_status
-    if self.status == LESSON_STATUS_REJECTED
+  def update_status(unreject=false)
+    if self.status == LESSON_STATUS_REJECTED and !unreject
       # do nothing...moderator put it in this status for a reason
     elsif any_video_match_by_status(VIDEO_STATUS_FAILED)
       update_status_attribute(LESSON_STATUS_FAILED)

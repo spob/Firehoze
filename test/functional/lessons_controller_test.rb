@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class LessonsControllerTest < ActionController::TestCase
 
@@ -112,9 +112,51 @@ class LessonsControllerTest < ActionController::TestCase
         assert @lesson.original_video
       end
 
+      context "as a moderator" do
+        setup { @user.has_role 'moderator'}
+
+        context "on POST to :unreject" do
+          setup do
+            @status = @lesson.status
+            assert @lesson
+            post :unreject, :id => @lesson.id
+            @lesson = Lesson.find(@lesson)
+          end
+
+          should_assign_to :lesson
+          should_respond_with :redirect
+          should_set_the_flash_to :unreject_failed
+          should_redirect_to("lesson page") { lesson_path(@lesson) }
+          should "not have changed lesson status" do
+            assert_equal @status, @lesson.status
+          end
+        end
+
+        context "with lesson in rejected status" do
+          setup { @lesson.update_attribute(:status, LESSON_STATUS_REJECTED) }
+
+          context "on POST to :unreject" do
+            setup do
+              @status = @lesson.status
+              post :unreject, :id => @lesson.id
+              @lesson = Lesson.find(@lesson)
+            end
+
+            should_assign_to :lesson
+            should_respond_with :redirect
+            should_set_the_flash_to :unrejected
+            should_redirect_to("lesson page") { lesson_path(@lesson) }
+            should "have changed lesson status" do
+              assert_equal LESSON_STATUS_PENDING, @lesson.status
+            end
+          end
+        end
+      end
+
       context "and not an admin" do
         context "on POST to :convert" do
           setup { post :convert, :id => @lesson }
+
           should_not_assign_to :lesson
           should_redirect_to("lessons index") { lessons_path }
           should_set_the_flash_to /Permission denied/
@@ -283,4 +325,5 @@ class LessonsControllerTest < ActionController::TestCase
     video = Factory.create(:ready_full_processed_video, :lesson => lesson)
     Lesson.find(lesson.id)
   end
+
 end

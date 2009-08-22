@@ -89,12 +89,15 @@ en:
   lesson:
     access_message: You do not have access to edit this lesson
     buy: Buy
+    unrejected: You have moved this lesson our of the rejected state
+    unreject_failed: You cannot  un-reject this lesson because it is not currently rejected
     calc_thumb_url_start: Retrieving thumbnail URL
     conversion_end_success: Video transcoding completed successfully
     conversion_triggered: Video conversion started
     created: Your lesson created and your video has been submitted for processing. You should receive notification in several minutes when your lesson video is ready for viewing.
     discussion: Discussion
     edit: Edit
+    unreject: Un-reject
     Failed: Video failed processing
     highest_rated: Highest Rated
     lessons_you_own: Your lessons
@@ -103,7 +106,6 @@ en:
     need_credits: You have no available credits to watch this lesson. Would you like to buy more?
     new_release: New release
     newest: Newest
-    rejected: Rejected
     notes: Notes
     owned: You own this!
     owned_lessons: Your lessons
@@ -120,6 +122,7 @@ en:
     must_logon: Please log on or request an account in order to watch this video
     wishlist: Wishlist
     # Lesson states
+    Rejected: Rejected
     Converting: Converting
     Pending: Lesson created and awaiting transcoding
     Ready: Ready

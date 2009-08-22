@@ -10,13 +10,18 @@ ActionController::Routing::Routes.draw do |map|
                 :member => { :redeem => :post, :give => :post, :pregive => :get, :confirm_give => :post }
   map.resources :helpfuls, :only => [ :create ]
   map.resources :lessons, :has_many => :reviews, :shallow => true,
-                :member => { :convert => :post, :lesson_notes => :get, :rate => :post, :watch => :get },
-                :collection => { 
-                  :conversion_notify => :put, 
-                  :list => :get, 
-                  :tabbed => :get, 
-                  :ajaxed => :get, 
-                  }
+                :member => {
+                        :convert => :post,
+                        :lesson_notes => :get,
+                        :rate => :post,
+                        :watch => :get,
+                        :unreject => :post },
+                :collection => {
+                        :conversion_notify => :put,
+                        :list => :get,
+                        :tabbed => :get,
+                        :ajaxed => :get,
+                        }
   map.resources :lessons, :has_many => :lesson_comments, :shallow => true,
                 :member => { :watch => :get, :convert => :post, :rate => :post },
                 :collection => { :conversion_notify => :put, :list => :get }
