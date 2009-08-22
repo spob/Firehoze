@@ -217,6 +217,7 @@ en:
     you_are_author: As the author of this video, you do not need to put it on your wish list
     already_wished: This lesson is already on your wish list
     not_on_wishlist: This lesson is not on your wishlist
+    must_logon: Please log on or request an account in order to add this lesson to your wish list
 
   # Date/Time formatting
   date:
