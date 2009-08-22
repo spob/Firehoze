@@ -174,7 +174,7 @@ class FlagsControllerTest < ActionController::TestCase
         context "on GET to :new" do
           setup { get :new, :flagger_type => 'Lesson', :flagger_id => @lesson }
 
-          should_not_assign_to :flag
+          should_assign_to :flag
           should_assign_to :flaggable
           should_respond_with :redirect
           should_set_the_flash_to :user_flagging_pending
@@ -190,7 +190,7 @@ class FlagsControllerTest < ActionController::TestCase
           context "on GET to :new" do
             setup { get :new, :flagger_type => 'Lesson', :flagger_id => @lesson }
 
-            should_not_assign_to :flag
+            should_assign_to :flag
             should_assign_to :flaggable
             should_respond_with :redirect
             should_set_the_flash_to :user_flagging_reject
