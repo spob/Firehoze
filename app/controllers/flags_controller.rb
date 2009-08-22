@@ -1,5 +1,5 @@
 class FlagsController < ApplicationController
-  before_filter :require_user
+  before_filter :require_user, :except => :new
   before_filter :find_flaggable, :only => [ :new, :create ]
   before_filter :find_flag, :only => [ :show, :update, :edit ]
   helper_method :flaggable_show_path
@@ -25,8 +25,13 @@ class FlagsController < ApplicationController
   end
 
   def new
-    if reflag_ok(@flaggable)
-      @flag = @flaggable.flags.new
+    @flag = @flaggable.flags.new
+    if current_user
+      reflag_ok(@flaggable)
+    else
+      store_location new_flag_path(:flagger_type => @flaggable.class.to_s, :flagger_id => @flaggable.id)
+      flash[:error] = t('flag.must_logon', :item => t("flag.#{@flaggable.class.to_s.downcase}"))
+      redirect_to new_user_session_url
     end
   end
 
