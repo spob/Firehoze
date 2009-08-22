@@ -32,20 +32,20 @@ module LessonsHelper
   def lessons_header(collection, *args)
     if controller.action_name == 'list'
       header =
-        case collection
-      when :most_popular
-        t('lesson.most_popular')
-      when :highest_rated
-        t('lesson.highest_rated')
-      when :newest
-        t('lesson.newest')
-      when :recently_browsed
-        t('lesson.recently_browsed')
-      when :owned_lessons
-        t('lesson.owned_lessons')
-      when :tagged_with
-        "#{t('lesson.tagged_with')} &quot;#{args.first}&quot;"
-      end
+              case collection
+                when :most_popular
+                  t('lesson.most_popular')
+                when :highest_rated
+                  t('lesson.highest_rated')
+                when :newest
+                  t('lesson.newest')
+                when :recently_browsed
+                  t('lesson.recently_browsed')
+                when :owned_lessons
+                  t('lesson.owned_lessons')
+                when :tagged_with
+                  "#{t('lesson.tagged_with')} &quot;#{args.first}&quot;"
+              end
       "<h3>#{header}</h3>"
     end
   end
@@ -82,9 +82,7 @@ module LessonsHelper
         action_text = t('lesson.buy')
       end
 
-      if current_user
-        button_to action_text, watch_lesson_path(lesson), :method => :get
-      end
+      button_to action_text, watch_lesson_path(lesson), :method => :get
     end
   end
 
@@ -94,7 +92,7 @@ module LessonsHelper
 
   def button_to_edit(lesson)
     if lesson.instructed_by?(current_user) or current_user.try("is_admin?")
-      button_to t('lesson.edit'), edit_lesson_path(lesson), :method => :get 
+      button_to t('lesson.edit'), edit_lesson_path(lesson), :method => :get
     end
   end
 
