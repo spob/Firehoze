@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class AccountsControllerTest < ActionController::TestCase
 
@@ -43,6 +43,22 @@ class AccountsControllerTest < ActionController::TestCase
       should_respond_with :redirect
       should_set_the_flash_to :profile_update_success
       should_redirect_to("edit account page") { edit_account_path(assigns(:user)) }
+    end
+
+    context "on PUT to :update_privacy" do
+      setup do
+        assert !@user.show_real_name
+        put :update_privacy, :id => @user, :user => { :show_real_name => true }
+        @user = User.find(@user)
+      end
+
+      should_assign_to :user
+      should_respond_with :redirect
+      should_set_the_flash_to :profile_update_success
+      should_redirect_to("edit account page") { edit_account_path(assigns(:user)) }
+      should "set show real name" do
+        assert @user.show_real_name
+      end
     end
 
     context "on PUT to :update with bad value" do

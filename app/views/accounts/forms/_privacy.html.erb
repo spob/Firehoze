@@ -1,1 +1,14 @@
-privacy placeholder
+<% form_for(:user, :url => update_privacy_account_path(@user), :html => { :method => :put, :id => "privacy" }) do |f| %>
+    <%= f.error_messages %>
+
+    <fieldset>
+      <legend>Update Privacy Settings</legend>
+      Show Real First and Last Name: <%= f.check_box :show_real_name, :class => :foobar %>
+      (if you leave this unchecked, other users will only see your username)
+    </fieldset>
+
+    <p>
+      <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
+      <%= link_to 'Cancel', home_path %>
+    </p>
+<% end %>

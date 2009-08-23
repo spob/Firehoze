@@ -1,7 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.home 'home', :controller => 'home', :action => 'show'
-  map.resources  :accounts, :only => [ :edit, :show, :update, :clear_avatar ], :member => { :clear_avatar => :post, :update_avatar => :put }
+  map.resources  :accounts, :only => [ :edit, :show, :update, :clear_avatar ],
+                 :member => { :clear_avatar => :post, :update_avatar => :put, :update_privacy => :put }
   map.resources :acquire_lessons, :only => [ :create, :new ]
   map.resources :carts, :only => [ :show ]
   map.resources :credits
@@ -36,7 +37,14 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :store, :only => :show
   map.resources :skus, :has_many => :discounts, :shallow => true
   map.resource  :user_session, :only => [ :create, :destroy, :new ]
-  map.resources :users, :member => { :show_admin => :get, :clear_avatar => :post, :reset_password => :post, :update_avatar => :put, :update_roles => :put }, :collection => { :list => :get }
+  map.resources :users,
+                :member => { :show_admin => :get,
+                             :clear_avatar => :post,
+                             :reset_password => :post,
+                             :update_privacy => :put, 
+                             :update_avatar => :put,
+                             :update_roles => :put },
+                :collection => { :list => :get }
   map.resources :user_logons
   map.resources :wish_lists, :only => [ :create, :destroy ]
   map.resources :registrations, :only => [ :new, :create ] do |registration|

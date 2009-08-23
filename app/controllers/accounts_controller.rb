@@ -2,7 +2,7 @@
 class AccountsController < ApplicationController
   before_filter :require_user, :find_user
 
-  verify :method => :put, :only => [ :update ], :redirect_to => :home_path
+  verify :method => :put, :only => [ :update, :update_privacy ], :redirect_to => :home_path
   verify :method => :post, :only => [ :clear_avatar ], :redirect_to => :home_path
 
   def show
@@ -38,6 +38,23 @@ class AccountsController < ApplicationController
     @user.bio = params[:user][:bio]
     @user.time_zone = params[:user][:time_zone]
     @user.language = params[:user][:language]
+
+    if @user.save
+      flash[:notice] = t 'account_settings.update_success'
+    else
+      # getting here because not all (required) fields are getting passed in ...
+      flash[:error] = t 'account_settings.update_error'
+    end
+
+    redirect_to edit_account_path
+
+  rescue Exception => e
+    flash[:error] = e.message
+    redirect_to edit_account_path
+  end
+
+  def update_privacy
+    @user.show_real_name = params[:user][:show_real_name] || false
 
     if @user.save
       flash[:notice] = t 'account_settings.update_success'

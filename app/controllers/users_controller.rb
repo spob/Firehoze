@@ -1,13 +1,15 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [ :new, :create ]
   before_filter :require_user, :except => [ :new, :create, :show ]
-  before_filter :find_user, :only => [ :clear_avatar, :edit, :show, :show_admin, :private, :reset_password, :update, :update_avatar, :update_roles ]
+  before_filter :find_user, :only => [ :clear_avatar, :edit, :show, :show_admin, :private, :reset_password, :update,
+                                       :update_privacy, :update_avatar, :update_roles ]
 
-  permit ROLE_ADMIN, :only => [ :clear_avatar, :show_admin, :private, :reset_password, :update_avatar, :update_roles, :index ]
+  permit ROLE_ADMIN, :only => [ :clear_avatar, :show_admin, :private, :reset_password, :update_avatar,
+                                :update_privacy, :update_roles, :index ]
   permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [ :edit, :update]
 
-  verify :method => :post, :only => [:create ], :redirect_to => :home_path
-  verify :method => :put, :only => [ :update ], :redirect_to => :home_path
+  verify :method => :post, :only => [:create, :clear_avatar, :reset_password, :update_roles ], :redirect_to => :home_path
+  verify :method => :put, :only => [ :update, :update_privacy, :update_avatar ], :redirect_to => :home_path
 
   layout :layout_for_action
 
@@ -97,6 +99,22 @@ class UsersController < ApplicationController
         # getting here because not all (required) fields are getting passed in ...
         flash[:error] = t 'account_settings.update_error'
       end
+    end
+
+    redirect_to edit_user_path(@user)
+
+  rescue Exception => e
+    flash[:error] = e.message
+    redirect_to edit_user_path(@user)
+  end
+
+  def update_privacy
+    @user.show_real_name = params[:user][:show_real_name] || false
+    if @user.save!
+      flash[:notice] = t 'account_settings.update_success'
+    else
+      # getting here because not all (required) fields are getting passed in ...
+      flash[:error] = t 'account_settings.update_error'
     end
 
     redirect_to edit_user_path(@user)
