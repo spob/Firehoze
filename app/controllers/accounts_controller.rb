@@ -55,6 +55,7 @@ class AccountsController < ApplicationController
 
   def update_privacy
     @user.show_real_name = params[:user][:show_real_name] || false
+    @user.allow_contact = params[:user][:allow_contact]
 
     if @user.save
       flash[:notice] = t 'account_settings.update_success'

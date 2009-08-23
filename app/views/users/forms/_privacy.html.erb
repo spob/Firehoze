@@ -4,6 +4,12 @@
     <fieldset>
       <legend>Update Privacy Settings</legend>
       Show Real First and Last Name: <%= f.check_box :show_real_name, :class => :foobar %>
+      <p>
+        Who can contact this user via email?
+        <%= f.radio_button :allow_contact, USER_ALLOW_CONTACT_NONE %>&nbsp;No one
+        <%= f.radio_button :allow_contact, USER_ALLOW_CONTACT_ANYONE %>&nbsp;Anyone
+        <%= f.radio_button :allow_contact, USER_ALLOW_CONTACT_STUDENTS_ONLY %>&nbsp;Only students have purchased at least one of this instructor's lessons
+      </p>
     </fieldset>
 
     <p>
