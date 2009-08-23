@@ -191,6 +191,18 @@ class User < ActiveRecord::Base
     flaggings.by_flaggable_type(klass).find_all_by_flaggable_id(flaggable.id)
   end
 
+  # Has this user specified by the parameter bought of this this user's lessons'
+  def student_of?(user)
+    user.lessons.collect(&:instructor).include?(self)
+  end
+
+
+  # Can the user parameter contact this user via email?
+  def can_contact?(user)
+    allow_contact == USER_ALLOW_CONTACT_ANYONE or
+            (allow_contact == USER_ALLOW_CONTACT_STUDENTS_ONLY and student_of?(user))
+  end
+
   private
 
   def persist_user_logon

@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class LessonTest < ActiveSupport::TestCase
 
@@ -139,6 +139,53 @@ class LessonTest < ActiveSupport::TestCase
         assert @lessons.include?(@lesson3)
         assert !@lessons.include?(@lesson4)
       end
+
+      should "computer whether user is a student of this instructor" do
+        assert @lesson2.instructor.student_of?(@user)
+        assert !@lesson.instructor.student_of?(@user)
+      end
+
+      context "and instructor is allow_contact NONE" do
+        setup do
+          @lesson2.instructor.update_attribute(:allow_contact, USER_ALLOW_CONTACT_NONE)
+          @lesson2 = Lesson.find(@lesson2)
+          @lesson.instructor.update_attribute(:allow_contact, USER_ALLOW_CONTACT_NONE)
+          @lesson = Lesson.find(@lesson)
+        end
+
+        should "control who can contact this user" do
+          assert !@lesson2.instructor.can_contact?(@user)
+          assert !@lesson.instructor.can_contact?(@user)
+        end                                                                      
+      end
+
+      context "and instructor is allow_contact ANYONE" do
+        setup do
+          @lesson2.instructor.update_attribute(:allow_contact, USER_ALLOW_CONTACT_ANYONE)
+          @lesson2 = Lesson.find(@lesson2)
+          @lesson.instructor.update_attribute(:allow_contact, USER_ALLOW_CONTACT_ANYONE)
+          @lesson = Lesson.find(@lesson)
+        end
+
+        should "control who can contact this user" do
+          assert @lesson2.instructor.can_contact?(@user)
+          assert @lesson.instructor.can_contact?(@user)
+        end
+      end
+
+      context "and instructor is allow_contact STUDENTS_ONLY" do
+        setup do
+          @lesson2.instructor.update_attribute(:allow_contact, USER_ALLOW_CONTACT_STUDENTS_ONLY)
+          @lesson2 = Lesson.find(@lesson2)
+          @lesson.instructor.update_attribute(:allow_contact, USER_ALLOW_CONTACT_STUDENTS_ONLY)
+          @lesson = Lesson.find(@lesson)
+        end
+
+        should "control who can contact this user" do
+          assert @lesson2.instructor.can_contact?(@user)
+          assert !@lesson.instructor.can_contact?(@user)
+        end
+      end
     end
 
     should_validate_presence_of      :title, :instructor, :synopsis
@@ -146,8 +193,8 @@ class LessonTest < ActiveSupport::TestCase
     should_ensure_length_in_range    :title, (0..50)
     should_ensure_length_in_range    :synopsis, (0..500)
     should_have_many                 :reviews, :video_status_changes, :credits, :free_credits, :taggings, :flags,
-                                      :videos, :processed_videos, :lesson_buy_patterns, :lesson_buy_pairs, :comments,
-                                      :rates
+                                     :videos, :processed_videos, :lesson_buy_patterns, :lesson_buy_pairs, :comments,
+                                     :rates
     should_have_and_belong_to_many   :lesson_wishers
     # See associated comments on the model as to why this are commented out RBS
     #should_have_one                  :last_comment
