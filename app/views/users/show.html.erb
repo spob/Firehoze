@@ -1,3 +1,8 @@
+<% content_for :head do -%>
+    <%= stylesheet_link_tag 'jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" %>
+    <%= javascript_include_tag 'accordian.js' %>
+<% end %>
+
 <p>
   <%= avatar_tag @user, :size => :medium %>
 </p>
@@ -31,3 +36,23 @@
     <%= link_to "Edit", edit_user_path(@user) %> |
 <% end %>
 <%= flag_link @user %>
+
+<div class="clear span-40 last prepend-top">
+  <div id="accordion">
+    <% unless @lessons.empty? %>
+        <h3><a href="#">Lesson by this Instructor</a></h3>
+
+        <div>
+          <%= render :partial => "lessons/lesson_narrow", :collection => @lessons %>
+        </div>
+    <% end %>
+
+    <% unless @reviews.empty? %>
+        <h3><a href="#">Reviews by this User</a></h3>
+
+        <div>
+          <%= render :partial => "reviews/review", :collection => @reviews %>
+        </div>
+    <% end %>
+  </div>
+</div>

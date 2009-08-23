@@ -47,6 +47,13 @@ class UsersController < ApplicationController
       flash[:error] = t 'user.inactive_cannot_show'
       redirect_to lessons_path
     end
+    if current_user.try("is_moderator?") or current_user.try("is_admin?")
+      @lessons = @user.instructed_lessons
+      @reviews = @user.reviews
+    else
+      @lessons = @user.instructed_lessons.ready
+      @reviews = @user.reviews.ready
+    end
   end
 
   def show_admin

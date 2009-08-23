@@ -153,14 +153,14 @@ END
   # Basic paginated listing finder
   # if the user is specified and is an admin, then lessons will be retrieved regardless of
   # the state of the video. Otherwise, only READY videos will be retrieved
-  def self.list(page, user=nil)
+  def self.list(page, user=nil, lessons_per_page=per_page)
     conditions = {}
     conditions = ["status = ? or instructor_id = ?",
                   LESSON_STATUS_READY, user]  unless (user and user.try(:is_admin?))
     paginate :page => page,
              :conditions => conditions,
              :order => 'id desc',
-             :per_page => per_page
+             :per_page => lessons_per_page
   end
 
   def ready?

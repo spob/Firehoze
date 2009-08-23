@@ -14,6 +14,7 @@ class Review < ActiveRecord::Base
   attr_protected :status
 
   named_scope :helpful, :conditions => "score > 0"
+  named_scope   :ready, :conditions => {:status => REVIEW_STATUS_ACTIVE }
 
   @@flag_reasons = [
           FLAG_LEWD,
