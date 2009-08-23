@@ -1,0 +1,10 @@
+<% lesson = object %>
+
+<div class="span-6 lesson_left">
+  <div><%= img_tag_lesson_tn(lesson) %></div>
+  <div><%= ratings_for(lesson, :static) %></div>
+  <%= content_tag(:div, free_remaining_text(lesson)) if lesson.has_free_credits? %>
+  <div><%= number_of_students_phrase(lesson) %></div>
+  <div><span class='ui-icon ui-icon-calendar adjacent_icon'></span>Posted: <%=  time_ago_in_words(lesson.created_at) %> ago</div>
+  <div><%= render :partial => "lessons/stats", :object => lesson %></div>
+</div>

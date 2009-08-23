@@ -43,6 +43,7 @@ class ReviewTest < ActiveSupport::TestCase
 
       should "return records" do
         assert_equal 1, Review.list(@review.lesson, 1, @user).size
+        assert_equal 1, Review.ready.size
       end
 
       should "not be reviewed" do

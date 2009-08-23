@@ -1,13 +1,6 @@
 <% lesson = object %>
 
-<div class="span-6 lesson_left">
-  <div><%= img_tag_lesson_tn(lesson) %></div>
-  <div><%= ratings_for(lesson, :static) %></div>
-  <%= content_tag(:div, free_remaining_text(lesson)) if lesson.has_free_credits? %>
-  <div><%= number_of_students_phrase(lesson) %></div>
-  <div><span class='ui-icon ui-icon-calendar adjacent_icon'></span>Posted: <%=  time_ago_in_words(lesson.created_at) %> ago</div>
-  <div><%= render :partial => "lessons/stats", :object => lesson %></div>
-</div>
+<%= render :partial => "lessons/lesson_image_block", :object => lesson %>
 
 <div class="span-17 lesson_center">
   <div><%= link_to lesson.title, lesson_path(lesson), :class => :lesson_title_link %> <%= content_tag(:span, "(#{owned_it_phase(lesson)})" ) unless owned_it_phase(lesson).blank? %></div>
@@ -19,7 +12,7 @@
 <div class="span-5 last lesson_right">
   <div class="lesson_instructor_avatar"><%= avatar_tag lesson.instructor, :size => :medium %></div>
   <div><%= link_to_profile(lesson.instructor) %></div>
-  <div>Member Since:<br /><%= l(lesson.instructor.created_at.to_date) %></div>
+  <div>Member Since:<br/><%= l(lesson.instructor.created_at.to_date) %></div>
 </div>
 <!-- <div class="clear span-16 prepend-6 append-6 last lesson_footer">some base content</div> -->
-<hr />
+<hr/>

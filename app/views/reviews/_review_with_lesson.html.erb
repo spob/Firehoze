@@ -1,0 +1,31 @@
+<% reviewer = review_with_lesson.user %>
+
+<div class="review">
+
+  <%= render :partial => "lessons/lesson_image_block", :object => review_with_lesson.lesson %>
+
+  <div class="span-23 last review_right">
+    <div class="helpful_phrase">
+      <% unless review_with_lesson.helpfuls.empty? %>
+          <%= review_with_lesson.helpfuls.helpful_yes.size %> of <%= review_with_lesson.helpfuls.size %> people found this review helpful
+      <% end %>
+    </div>
+
+    <div class="headline h3">
+      "<%= h review_with_lesson.headline %>" for the lesson "<%= h review_with_lesson.lesson.title %>"
+    </div>
+
+    <div class="timestamp">
+      written on <%= l review_with_lesson.created_at %>
+    </div>
+
+    <div>
+      <%= rbs_formatter review_with_lesson.body %>
+    </div>
+
+    <div class="actions">
+      <%= render :partial => 'reviews/actions', :object => review_with_lesson %>
+    </div>
+  </div>
+</div>
+<hr class="clear"/>
