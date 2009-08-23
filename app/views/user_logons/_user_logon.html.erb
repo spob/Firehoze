@@ -1,5 +1,5 @@
 <tr>
-  <td><%= link_to_profile(user_logon.user) %></td>
+  <td><%= h user_logon.user.login %></td>
   <td><%= link_to_profile(user_logon.user, "full_name") %></td>
   <td><%= mail_to user_logon.user.email %></td>
   <td><%= user_logon.login_ip %></td>

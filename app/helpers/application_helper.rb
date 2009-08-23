@@ -51,8 +51,8 @@ module ApplicationHelper
   end
 
   def link_to_profile(user, options=[])
-    if options.include?("full_name")
-      link_to_unless_current user.name_or_username, user_path(user)
+    if options.include?("full_name") or current_user.try("is_moderator?") or current_user.try("is_admin?") 
+      link_to_unless_current "#{user.name_or_username} (#{user.login})", user_path(user)
     else
       link_to_unless_current user.username_or_name, user_path(user)
     end
