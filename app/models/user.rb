@@ -39,6 +39,11 @@ class User < ActiveRecord::Base
   # Active users
   named_scope :active, :conditions => {:active => true}
 
+  named_scope :admins,
+              :joins => [:roles],
+              :conditions => { :roles => {:name => 'admin'}},
+              :order => :email
+
   # Used to verify current password during password changes
   attr_accessor :current_password
 
@@ -90,10 +95,6 @@ class User < ActiveRecord::Base
   def self.convert_avatar_url_to_cdn(url)
     regex = Regexp.new("//.*#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}")
     url.gsub(regex, "//" + APP_CONFIG[CONFIG_CDN_OUTPUT_SERVER])
-  end
-
-  def self.admins
-    Role.find_by_name('admin').users
   end
 
   def self.supported_languages

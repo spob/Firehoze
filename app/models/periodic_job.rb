@@ -120,6 +120,10 @@ class PeriodicJob < ActiveRecord::Base
       TaskServerLogger.instance.error err_string
       puts err_string unless ENV['RAILS_ENV'] == "test"
       self.last_run_result = err_string.slice(1..500)
+      begin
+        Notifier.deliver_job_failure(self)
+      rescue
+      end
     end
     self.save
 

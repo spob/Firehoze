@@ -39,6 +39,16 @@ class Notifier < ActionMailer::Base
   end
 
   # Receipt for an order
+  def job_failure(job)
+    subject    "Periodic Job Failed ##{job.id}"
+    recipients   User.admins.active.collect(&:email)
+    from        APP_CONFIG[CONFIG_ADMIN_EMAIL]
+
+    body       :job => job,
+               :url => login_url
+  end
+
+  # Receipt for an order
   def receipt_for_order(order)
     subject    "Receipt for order ##{order.id}"
     recipients order.user.email

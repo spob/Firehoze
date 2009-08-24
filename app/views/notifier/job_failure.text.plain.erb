@@ -1,0 +1,8 @@
+A Periodic Job Failed:
+
+Job ID: <%= @job.id %>
+   Job: <%= @job.job %>
+  Type: <%= @job.type %>
+Ran At: <%= l @job.last_run_at %>
+Result:
+<%= @job.last_run_result %>

@@ -1,0 +1,25 @@
+<p>
+  A Periodic Job Failed:
+</p>
+<table>
+  <tr>
+    <td>Job ID:</td>
+    <td><%= @job.id %></td>
+  </tr>
+  <tr>
+    <td>Job:</td>
+    <td><%= @job.job %></td>
+  </tr>
+  <tr>
+    <td>Type:</td>
+    <td><%= @job.type %></td>
+  </tr>
+  <tr>
+    <td>Ran At:</td>
+    <td><%= l @job.last_run_at %></td>
+  </tr>
+  <tr>
+    <td>Result:</td>
+    <td><%= @job.last_run_result %></td>
+  </tr>
+</table>
