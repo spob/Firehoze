@@ -72,6 +72,17 @@ class Notifier < ActionMailer::Base
                :url => login_url
   end
 
+  def contact_user(to_user, from_user, subject, msg)
+    subject    "A message from a Firehoze user: #{subject}"
+    recipients to_user.email
+    from       from_user.email
+
+    body       :msg => msg,
+               :to_user => to_user,
+               :from_user => from_user,
+               :url => login_url
+  end
+
   # Notify a user and admins that a video failed to transcode
   def lesson_processing_failed(video)
     subject    "The video for your lesson failed to process"

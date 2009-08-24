@@ -1,0 +1,17 @@
+<h1>Contact <%= link_to_profile(@to_user) %></h1>
+<% form_tag(contact_users_path) do -%>
+    <%= hidden_field_tag 'id', @to_user.id %>
+    <p>
+      Subject:
+      <br/>
+      <%= text_field_tag 'subject' %>
+    </p>
+    <p>
+      Message:
+      <br/>
+      <%= text_area_tag 'msg' %>
+    </p>
+    <p>
+      <%= submit_tag 'Send Email' %>
+    </p>
+<% end %>

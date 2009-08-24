@@ -112,7 +112,7 @@ class PeriodicJob < ActiveRecord::Base
       self.last_run_at = Time.zone.now
       self.next_run_at = nil
       self.save
-      eval(self.job)
+      eval(self.job.gsub(/#JOBID#/, self.id.to_s))
       self.last_run_result = "OK"
       TaskServerLogger.instance.info "Job completed successfully"
     rescue Exception

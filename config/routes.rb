@@ -5,6 +5,7 @@ ActionController::Routing::Routes.draw do |map|
                  :member => { :clear_avatar => :post, :update_avatar => :put, :update_privacy => :put }
   map.resources :acquire_lessons, :only => [ :create, :new ]
   map.resources :carts, :only => [ :show ]
+  map.resources :contact_users, :only => [ :create, :new ]
   map.resources :credits
   map.resources :flags, :only => [ :new, :create, :index, :show, :update, :edit ]
   map.resources :gift_certificates,

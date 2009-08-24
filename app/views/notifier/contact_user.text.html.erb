@@ -1,0 +1,15 @@
+<p>
+  Hi <%= @to_user.full_name %>,
+</p>
+<p>
+  A Firehoze user has sent you a message:
+</p>
+<p>
+  <%= simple_format @msg %>
+</p>
+<p>
+  Sincerely, <%= @from_user.full_name %>
+</p>
+<p>
+  <%= link_to 'Sign In', @url %>
+</p>

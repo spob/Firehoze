@@ -32,6 +32,10 @@
   <%= show_bio %>
 </p>
 
+<% if @user.can_contact? current_user %>
+    <%= link_to 'Contact This User', new_contact_user_path(:id => @user.id) %> |
+<% end %>
+
 <% if @user.can_edit? current_user %>
     <%= link_to "Edit", edit_user_path(@user) %> |
 <% end %>
