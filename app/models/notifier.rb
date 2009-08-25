@@ -79,7 +79,7 @@ class Notifier < ActionMailer::Base
     from         APP_CONFIG[CONFIG_ADMIN_EMAIL]
 
     body       :lesson => lesson,
-               :url => lesson_path(lesson)
+               :url => lesson_url(lesson)
   end
 
   def contact_user(to_user, from_user, subject, msg)
@@ -101,7 +101,7 @@ class Notifier < ActionMailer::Base
     from         APP_CONFIG[CONFIG_ADMIN_EMAIL]
 
     body       :video => video,
-               :url => lesson_path(lesson)
+               :url => lesson_url(lesson)
   end
 
   # Notify the admin that a video never completed their transcoding
@@ -111,6 +111,6 @@ class Notifier < ActionMailer::Base
     from         APP_CONFIG[CONFIG_ADMIN_EMAIL]
 
     body       :lesson => lesson,
-               :url => lesson_path(lesson)
+               :url => lesson_url(lesson)
   end
 end
