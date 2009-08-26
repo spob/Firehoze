@@ -1,8 +1,18 @@
 <% reviewer = review.user %>
 
 <div class="review">
+  <div class="span-5">
+    <div class="instructor_avatar"><%= avatar_tag reviewer, :size => :medium %></div>
+    <div><%= link_to_profile(reviewer) %></div>
+    <div>Member Since:<br/><%= l(reviewer.created_at.to_date) %></div>
+  </div>
 
-  <div class="span-5 review_left">
+  <div class="prepend-5 last">
+    <div class="helpful_phrase" >
+      <% unless review.helpfuls.empty? %>
+        <%= review.helpfuls.helpful_yes.size %> of <%= review.helpfuls.size %> people found this review helpful
+      <% end %>
+    </div>
 
     <div>
       <% if reviewer == current_user %>
@@ -10,22 +20,10 @@
       <% else %>
         <%= ratings_for(review.lesson, reviewer, { :static => true } ) %>
       <% end %>
-    </div>
 
-    <div class="instructor_avatar"><%= avatar_tag reviewer, :size => :medium %></div>
-    <div><%= link_to_profile(reviewer) %></div>
-    <div>Member Since:<br/><%= l(reviewer.created_at.to_date) %></div>
-  </div>
-
-  <div class="span-23 last review_right">
-    <div class="helpful_phrase" >
-      <% unless review.helpfuls.empty? %>
-        <%= review.helpfuls.helpful_yes.size %> of <%= review.helpfuls.size %> people found this review helpful
-      <% end %>
-    </div>
-
-    <div class="headline h3">
-      <%= h review.headline %>
+      <div class="headline h3">
+        <%= h review.headline %>
+      </div>
     </div>
 
     <div class="timestamp">

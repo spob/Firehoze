@@ -12,7 +12,7 @@
 }
 
 div {
-    /* border: 1px solid red;*/
+    /*border: 1px solid red;*/
 }
 
 /* TOP NAV */
@@ -196,27 +196,17 @@ div.review {
 div.review .helpful_phrase {
     color: #8F8F8F;
     font-style: italic;
-    margin-bottom:10px;
 }
 
 div.review .headline {
-    margin-bottom:8px;
+    color: #6F6F6F;
+    margin:8px 0;
 }
 
 div.review .timestamp {
     color: #8F8F8F;
     font-style: italic;
     margin-bottom:8px;
-}
-
-div.review_left div {
-    margin: 0 0 5px 0;
-    padding:0;
-}
-
-div.review_right {
-    margin: 0 0 5px 0;
-    padding:0;
 }
 
 div.review .instructor_avatar {
@@ -256,31 +246,18 @@ div.review .banner .rating .stars {
 }
 
 /* LESSON COMMENTS */
-div.lesson_comment .helpful_phrase {
-    color: #8F8F8F;
-    font-style: italic;
-    margin-bottom:10px;
-}
-
-div.lesson_comment .headline {
-    margin-bottom:8px;
-}
-
 div.lesson_comment .timestamp {
     color: #8F8F8F;
     font-style: italic;
     margin-bottom:8px;
 }
 
-div.lesson_comment_left div {
-    margin: 0 0 5px 0;
-    padding:0;
+div.lesson_comment .private {
+    font-weight:bold;
+    color: #8F8F8F;
+    margin-bottom:8px;
 }
 
-div.lesson_comment_right {
-    margin: 0 0 5px 0;
-    padding:0;
-}
 
 div.lesson_comment .commenter_avatar {
     margin: 0;
@@ -295,4 +272,3 @@ div.lesson_comment .actions .button-to {
     margin:0;
     padding:3px 3px 5px 0;
 }
-

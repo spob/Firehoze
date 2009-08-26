@@ -1,22 +1,31 @@
 <% commenter = lesson_comment.user %>
 
 <div class="lesson_comment">
-  <div class="span-5 lesson_comment_left">
+  <div class="span-5">
     <div class="coommenter_avatar"><%= avatar_tag commenter, :size => :medium %></div>
     <div><%= link_to_profile(commenter) %></div>
     <div>Member Since:<br/><%= l(commenter.created_at.to_date) %></div>
   </div>
 
-  <div class="span-23 last lesson_comment_right">
+  <div class="prepend-5 last">
+    <% if lesson_comment.can_edit? current_user and !lesson_comment.public %>
+      <div class="private">
+        Private Comment
+      </div>
+    <% end %>
+
     <div class="timestamp">
       <%= l(lesson_comment.created_at) %>
     </div>
+
     <div>
       <%= rbs_formatter lesson_comment.body %>
     </div>
+
     <div class="actions">
       <%= render :partial => 'lesson_comments/actions', :object => lesson_comment  %>
     </div>
+
   </div>
 </div>
 <hr class="clear"/>
