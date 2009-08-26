@@ -26,11 +26,11 @@ class Review < ActiveRecord::Base
   end
 
 # Basic paginated listing finder
-  def self.list(lesson, page, current_user)
+  def self.list(lesson, page, current_user, per_page)
     paginate :page => page,
              :conditions => list_conditions(lesson, current_user), :order => 'id desc',
              :order => "if(user_id = #{current_user ? current_user.id : -1}, -1, 0) ASC, score DESC",
-             :per_page => ROWS_PER_PAGE
+             :per_page => per_page
   end
 
   def self.list_count(lesson, current_user)

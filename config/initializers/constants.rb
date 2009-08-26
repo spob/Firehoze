@@ -2,6 +2,7 @@ LANGUAGES = [['English', 'en'],['Wookie', 'wk']]
 
 ROWS_PER_PAGE = 10
 LESSONS_PER_PAGE = 10
+REVIEWS_ON_LESSON_SHOW_PER_PAGE = 5
 
 # Roles
 ROLE_ADMIN = 'admin'
