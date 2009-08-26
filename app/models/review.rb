@@ -80,5 +80,6 @@ class Review < ActiveRecord::Base
   def self.list_conditions(lesson, current_user)
     conditions = { :lesson_id => lesson }
     conditions.merge({ :status => REVIEW_STATUS_ACTIVE}) unless (current_user and current_user.is_moderator?)
+    conditions
   end
 end
