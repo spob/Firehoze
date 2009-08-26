@@ -5,11 +5,13 @@ class LessonComment < Comment
 
 # Basic paginated listing finder
   def self.list(lesson, page, current_user=nil)
-    conditions = { :lesson_id => lesson }
-    conditions = conditions.merge({:public => true, :status => COMMENT_STATUS_ACTIVE}) unless (current_user and current_user.is_moderator?)
     paginate :page => page,
-             :conditions => conditions, :order => 'id desc',
+             :conditions => list_conditions(lesson, current_user), :order => 'id desc',
              :per_page => ROWS_PER_PAGE
+  end
+
+  def self.list_count(lesson, current_user)
+    LessonComment.count(:conditions => list_conditions(lesson, current_user))
   end
 
   def last_comment?
@@ -22,5 +24,10 @@ class LessonComment < Comment
 
   def can_edit? user
     super or (self.last_public_comment? and self.user == user)
+  end
+
+  def self.list_conditions(lesson, current_user)
+    conditions = { :lesson_id => lesson }
+    conditions = conditions.merge({:public => true, :status => COMMENT_STATUS_ACTIVE}) unless (current_user and current_user.is_moderator?)
   end
 end
