@@ -1,13 +1,13 @@
 <% commenter = lesson_comment.user %>
 
-<div class="review">
-  <div class="span-5 review_left">
-    <div class="instructor_avatar"><%= avatar_tag commenter, :size => :medium %></div>
+<div class="lesson_comment">
+  <div class="span-5 lesson_comment_left">
+    <div class="coommenter_avatar"><%= avatar_tag commenter, :size => :medium %></div>
     <div><%= link_to_profile(commenter) %></div>
     <div>Member Since:<br/><%= l(commenter.created_at.to_date) %></div>
   </div>
 
-  <div class="span-23 last review_right">
+  <div class="span-23 last lesson_comment_right">
     <div class="timestamp">
       <%= l(lesson_comment.created_at) %>
     </div>
