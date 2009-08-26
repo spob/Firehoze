@@ -1,5 +1,5 @@
 /* FORMS: In-field labels */
-form#inline, form#review {
+form#inline, form#review, form#lesson_comment {
     padding: 30px 40px 15px 40px;
     background-color: #eee;
     border:solid 10px #ccc;

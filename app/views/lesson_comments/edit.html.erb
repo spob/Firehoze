@@ -1,21 +1,23 @@
-Edit Comment for Lesson <%= @lesson_comment.lesson.title %>
+<%= render :partial => "shared/infield_head_content" %>
 
-<% form_for :lesson_comment, :url => lesson_comment_path(@lesson_comment), :html => { :method => :put } do |f| %>
-    <%= f.error_messages %>
-    <p>
-      <%= f.label :body %> <br/>
-      <%= f.text_area :body %>
-      <br/>
-      (Format using *<b>bold</b>* and _<i>italics</i>_ text)
-    </p>
+<%= stylesheet 'validation' %>
+<%= javascript 'validate/jquery.validate', 'validate/lesson_comment.validate' %>
+
+<% form_for :lesson_comment, :url => lesson_comment_path(@lesson_comment), :html => { :method => :put, :id => "lesson_comment" } do |f| %>
+  <%= f.error_messages %>
+  <fieldset>
+    <legend>Edit a Comment for Lesson <%= @lesson_comment.lesson.title %></legend>
     <% if current_user.is_moderator? %>
-        <p>
-          <%= f.label :public %> <br/>
-          <%= f.check_box :public %>
-        </p>
+      Public: <%= f.check_box :public %>
     <% end %>
-    <p><%= f.submit "Submit", :disable_with => translate('general.disable_with') %></p>
+    <p>
+      <%= f.label :body %><br />
+      <%= f.text_area :body, :style => "width:520px;", :class => "required" %>
+      <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
+    </p>
+  </fieldset>
+  <p>
+    <%= f.submit "Add Comment", :class => "submit" %>
+    <%= link_to "Cancel", lesson_path(@lesson_comment.lesson) %>
+  </p>
 <% end %>
-
-
-<p><%= link_to "Cancel", lesson_lesson_comments_path(@lesson_comment.lesson) %></p>

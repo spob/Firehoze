@@ -2,7 +2,7 @@ form.edit_user label.error {
     margin-left: 20px;
 }
 
-form#review label.error, form#review label.error {
+form#review label.error, form#review label.error, form#lesson_comment label.error {
 	margin:0 0 0 580px;
 	width: 290px;
 }
