@@ -14,14 +14,15 @@
     </div>
 <% end %>
 
-<hr class="space"/>
+<hr class="space" />
+
 <div>
   <% if review.can_edit? current_user %>
       <%= link_to "Edit", edit_review_path(review) %> |
   <% end %>
 
   <% unless review.status == REVIEW_STATUS_ACTIVE %>
-      | Status: <%= review.status %> |
+      | Status: <%= review.status %>
   <% end %>
 </div>
 

@@ -118,8 +118,8 @@ module LessonsHelper
     end
   end
 
-  def button_to_comment(lesson)
-    button_to "Add a Comment", new_lesson_lesson_comment_path(lesson), :method => :get
+  def button_to_comment(lesson, label)
+    button_to label, new_lesson_lesson_comment_path(lesson), :method => :get
   end
 
   def button_to_wish(lesson)

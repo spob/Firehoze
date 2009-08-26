@@ -1,9 +1,15 @@
 <%= content_tag(:h3, "Discussion for Lesson: #{ link_to @lesson.title, lesson_path(@lesson) }")  unless @style == 'tab' %>
-<%= content_tag(:div, button_to_comment(@lesson), :class => "action_box") %>
-<%= render @lesson_comments %>
+
+<% if @lesson_comments.empty? %>
+  <p>Need some help?  Leave a question here.</p>
+  <%= content_tag(:div, button_to_comment(@lesson, "Ask a question"), :class => "action_box") %>
+<% else %>
+  <%= content_tag(:div, button_to_comment(@lesson, "Post reply"), :class => "action_box") %>
+  <%= render @lesson_comments %>
+<% end %>
 
 <% if @style == 'tab'%>
-    <%= show_all_lesson_comments_link(@lesson, current_user) %>
+  <%= show_all_lesson_comments_link(@lesson, current_user) %>
 <% else %>
   <%= link_to "Back to Lesson", lesson_path(@lesson) %> | <%= link_to("Write a Comment", new_lesson_lesson_comment_path(@lesson)) if @lesson.owned_by? current_user %>
 <% end %>
