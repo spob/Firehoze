@@ -5,11 +5,5 @@ class UserLogon < ActiveRecord::Base
 
   belongs_to :user
 
-   # Basic paginated listing finder
-  def self.list(page, per_page)
-    paginate :page => page, 
-      :conditions => ['created_at > ?', (Time.zone.now - 60*60*24*90).to_s(:db)],
-      :order => 'created_at desc', 
-      :per_page => per_page
-  end
+  named_scope :last_90_days, :conditions => ['user_logons.created_at > ?', (Time.zone.now - 60*60*24*90).to_s(:db)]
 end

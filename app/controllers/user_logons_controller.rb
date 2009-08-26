@@ -8,6 +8,8 @@ class UserLogonsController < ApplicationController
   layout 'admin'
 
   def index
-    @user_logons = UserLogon.list params[:page], session[:per_page] || ROWS_PER_PAGE
+    @search = UserLogon.last_90_days.descend_by_created_at.search(params[:search])
+    @user_logons = @search.paginate(:page => params[:page],
+                                    :per_page => (session[:per_page] || ROWS_PER_PAGE))
   end
 end

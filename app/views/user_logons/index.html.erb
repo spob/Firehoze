@@ -1,3 +1,14 @@
+<% form_for @search do |f| %>
+    <p>
+      <%= f.label :user_login_like, "Username" %>
+      <%= f.text_field :user_login_like %>
+      <%= f.label :user_email_like, "Email" %>
+      <%= f.text_field :user_email_like %>
+
+      <%= f.submit "Search" %>
+    </p>
+<% end %>
+
 <table>
     <tr>
         <th>User</th>
