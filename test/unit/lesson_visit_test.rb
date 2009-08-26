@@ -11,6 +11,9 @@ class LessonVisitTest < ActiveSupport::TestCase
     context "retrieving using named scope" do
       should "retrieve a lesson visit" do
         assert_equal 1, LessonVisit.by_lesson(@lesson_visit.lesson.id).by_session(@lesson_visit.session_id).size
+        assert_equal 1, LessonVisit.by_user(@lesson_visit.user.id).size
+        assert_equal 1, LessonVisit.latest.size
+        assert_equal 1, LessonVisit.by_not_session("xxx").size
       end
 
       context "searching uncompiled purchases" do

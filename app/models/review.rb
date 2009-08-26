@@ -27,12 +27,14 @@ class Review < ActiveRecord::Base
 
 # Basic paginated listing finder
   def self.list(lesson, page, current_user)
-    conditions = { :lesson_id => lesson }
-    conditions = conditions.merge({ :status => REVIEW_STATUS_ACTIVE}) unless (current_user and current_user.is_moderator?)
     paginate :page => page,
-             :conditions => conditions, :order => 'id desc',
+             :conditions => list_conditions(lesson, current_user), :order => 'id desc',
              :order => "if(user_id = #{current_user ? current_user.id : -1}, -1, 0) ASC, score DESC",
              :per_page => ROWS_PER_PAGE
+  end
+
+  def self.list_count(lesson, current_user)
+    Review.count(:conditions => list_conditions(lesson, current_user))
   end
 
   def calculate_score
@@ -73,5 +75,10 @@ class Review < ActiveRecord::Base
 
   def default_values
     self.status = REVIEW_STATUS_ACTIVE
+  end
+
+  def self.list_conditions(lesson, current_user)
+    conditions = { :lesson_id => lesson }
+    conditions.merge({ :status => REVIEW_STATUS_ACTIVE}) unless (current_user and current_user.is_moderator?)
   end
 end
