@@ -1,5 +1,5 @@
 <%= content_tag(:h3, "Reviews for Lesson: #{ link_to @lesson.title, lesson_path(@lesson) }")  unless @style == 'tab' %>
-
+<%= content_tag(:div, button_to_review(@lesson), :class => "action_box") %>
 <%= render @reviews %>
 
 <% if @style == 'tab'%>

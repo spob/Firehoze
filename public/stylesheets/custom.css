@@ -188,6 +188,11 @@ div.review {
     padding:0;
 }
 
+.action_box {
+    padding:10px;
+    text-align:right;
+}
+
 div.review .helpful_phrase {
     color: #8F8F8F;
     font-style: italic;
