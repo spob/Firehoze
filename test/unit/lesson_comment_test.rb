@@ -29,6 +29,8 @@ class LessonCommentTest < ActiveSupport::TestCase
       should "retrieve public records only" do
         assert_equal 1, LessonComment.list(@lesson_comment.lesson, 1).size
         assert_equal 1, LessonComment.list(@lesson_comment.lesson, 1, @user).size
+        assert_equal 1, LessonComment.list_count(@lesson_comment.lesson, @user)
+        assert_equal 1, LessonComment.list_count(@lesson_comment.lesson, nil)
       end
 
       context "and a user who is a moderator" do

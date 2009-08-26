@@ -3,7 +3,7 @@
 <%= render @lesson_comments %>
 
 <% if @style == 'tab'%>
-  <%= link_to pluralize(1, 'Comment'), lesson_lesson_comments_path(@lesson) %>
+    <%= show_all_lesson_comments_link(@lesson, current_user) %>
 <% else %>
   <%= link_to "Back to Lesson", lesson_path(@lesson) %> | <%= link_to("Write a Comment", new_lesson_lesson_comment_path(@lesson)) if @lesson.owned_by? current_user %>
 <% end %>
