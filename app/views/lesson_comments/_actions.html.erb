@@ -3,10 +3,10 @@ lesson_comment = object
 %>
 
 <% if current_user and lesson_comment.can_edit? current_user %>
-  <%= link_to "Edit", edit_lesson_comment_path(lesson_comment) %>
+  <div><%= link_to "Edit", edit_lesson_comment_path(lesson_comment) %></div>
 <% end %>
 
 <% unless lesson_comment.status == COMMENT_STATUS_ACTIVE %>
-  | Status: <%= lesson_comment.status %>
+  <div>Status: <%= lesson_comment.status %></div>
 <% end %>
-| <%= flag_link lesson_comment %>
+<div><%= flag_link lesson_comment %></div>
