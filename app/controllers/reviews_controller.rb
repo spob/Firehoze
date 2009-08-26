@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
   verify :method => :destroy, :only => [:delete ], :redirect_to => :home_path
 
   def index
-    @reviews = Review.list @lesson, params[:page], current_user
+    @reviews = Review.list @lesson, params[:page], current_user, params[:per_page]
     @style = params[:style]
     render :layout => 'content_in_tab' if @style == 'tab'
   end

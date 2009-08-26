@@ -2,7 +2,7 @@
   <div id="tabs">
     <ul>
       <%= content_tag(:li, "#{ link_to t('lesson.notes'), lesson_notes_lesson_path(@lesson, :style => 'tab') }")  unless @lesson.notes.blank? %>
-      <li><%= link_to t('lesson.reviews'), lesson_reviews_path(@lesson, :style => 'tab') %></li>
+      <li><%= link_to t('lesson.reviews'), lesson_reviews_path(@lesson, :style => 'tab', :per_page => REVIEWS_ON_LESSON_SHOW_PER_PAGE) %></li>
       <li><%= link_to t('lesson.discussion'), lesson_lesson_comments_path(@lesson, :style => 'tab') %></li>
     </ul>
     <div style="display:block"></div>
