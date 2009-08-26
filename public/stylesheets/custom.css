@@ -254,3 +254,45 @@ div.review .banner .rating .stars {
 .adjacent_icon {
     float: left; margin-right: .3em;
 }
+
+/* LESSON COMMENTS */
+div.lesson_comment .helpful_phrase {
+    color: #8F8F8F;
+    font-style: italic;
+    margin-bottom:10px;
+}
+
+div.lesson_comment .headline {
+    margin-bottom:8px;
+}
+
+div.lesson_comment .timestamp {
+    color: #8F8F8F;
+    font-style: italic;
+    margin-bottom:8px;
+}
+
+div.lesson_comment_left div {
+    margin: 0 0 5px 0;
+    padding:0;
+}
+
+div.lesson_comment_right {
+    margin: 0 0 5px 0;
+    padding:0;
+}
+
+div.lesson_comment .commenter_avatar {
+    margin: 0;
+    padding:0;
+    border: solid 1px #CFCFCF;
+    height: 110px;
+    width: 110px;
+}
+
+div.lesson_comment .actions .button-to {
+    float: left;
+    margin:0;
+    padding:3px 3px 5px 0;
+}
+
