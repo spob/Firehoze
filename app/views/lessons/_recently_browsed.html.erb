@@ -1,7 +1,7 @@
 <%
 if current_user then
   count = current_user.visited_lessons.size
-  recently_browsed = current_user.visited_lessons.paginate :page => params[:page], :per_page => @per_page
+  recently_browsed = current_user.latest_visited_lessons.paginate :page => params[:page], :per_page => @per_page
 end
 %>
 

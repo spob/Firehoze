@@ -19,8 +19,9 @@ class User < ActiveRecord::Base
   has_many :credits, :order => 'id', :dependent => :destroy
   has_many :gift_certificates, :dependent => :destroy
   has_many :orders, :order => 'id DESC', :dependent => :destroy
-  has_many :visited_lessons, :source => :lesson, :through => :lesson_visits, :order => 'visited_at DESC',
-           :select => 'DISTINCT lessons.*'
+  has_many :visited_lessons, :source => :lesson, :through => :lesson_visits, :order => 'visited_at DESC'
+  has_many :latest_visited_lessons, :source => :lesson, :through => :lesson_visits,
+           :conditions => 'latest = 1', :order => 'visited_at DESC'
   has_many :lesson_visits, :order => 'visited_at DESC', :dependent => :destroy
   # the times this user's profile has been flagged
   has_many :flags, :as => :flaggable, :dependent => :destroy
