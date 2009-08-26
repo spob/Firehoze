@@ -187,11 +187,11 @@ class LessonsController < ApplicationController
   end
 
   # FIXME -- testing purposes here ...
-  def list_recently_browsed
-    me = User.find 2
-    @lessons = me.visited_lessons.paginate :page => params[:page], :per_page => @per_page
-    render :layout => 'content_in_tab'
-  end
+  #def list_recently_browsed
+  #  me = User.find 2
+  #  @lessons = me.visited_lessons.latest.paginate :page => params[:page], :per_page => @per_page
+  #  render :layout => 'content_in_tab'
+  #end
 
   def watch
     if current_user

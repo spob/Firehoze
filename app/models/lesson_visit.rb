@@ -39,8 +39,8 @@ class LessonVisit < ActiveRecord::Base
       lesson_visit.save!
     else
       if user
-        LessonVisit.by_lesson(lesson.id).by_user(user.id).latest.each do |visit|
-
+        LessonVisit.by_lesson(lesson.id).by_user(user.id).by_not_session(session_id).latest.each do |visit|
+          visit.update_attribute(:latest, false)
         end
       end
       lesson_visit = LessonVisit.create!(:user => user,
