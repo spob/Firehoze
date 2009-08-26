@@ -40,9 +40,14 @@ form legend {
 	font-weight: bold; 
 	}
 
-form, form fieldset input, form fieldset textarea, form label {
+form, form legend a, form fieldset input, form fieldset textarea, form label   {
     font-family: Helvetica, Arial;
     font-size: 12pt;
+}
+
+form legend a {
+  font-size: inherit;
+	
 }
 
 form p { position: relative; margin: 10px 0;}
