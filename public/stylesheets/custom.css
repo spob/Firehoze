@@ -15,6 +15,13 @@ div {
     /*border: 1px solid red;*/
 }
 
+.spacer {
+    border-top: solid 1px #CFCFCF;
+    margin: 20px 0;
+    padding:0;
+}
+
+
 /* TOP NAV */
 #top_nav_links {
     text-align:right;
@@ -221,11 +228,6 @@ div.review .actions .button-to {
     float: left;
     margin:0;
     padding:3px 3px 5px 0;
-}
-
-hr.space {
-    margin:0;
-    padding:0;
 }
 
 div.review .rating { }

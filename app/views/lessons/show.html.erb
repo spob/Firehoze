@@ -85,7 +85,8 @@
 </div>
 
 <% unless @lesson.lesson_buy_patterns.ready.empty? %>
-  <h3>What Do Students Ultimately Buy After Browsing This Item?</h3>
+<div class="prepend-top">
+ <h3>What Do Students Ultimately Buy After Browsing This Item?</h3>
   <table>
     <% for buy_pattern in @lesson.lesson_buy_patterns.ready[0..APP_CONFIG[CONFIG_NUMBER_OF_BUY_PATTERNS_TO_SHOW]] %>
       <tr>
@@ -117,9 +118,11 @@
       </tr>
     <% end %>
   </table>
+</div>
 <% end %>
 
 <% unless @lesson.lesson_buy_pairs.ready.empty? %>
+<div class="prepend-top">
   <h3>Students who bought this video also bought...</h3>
   <table>
     <% for buy_pair in @lesson.lesson_buy_pairs.ready[0..APP_CONFIG[CONFIG_NUMBER_OF_BUY_PATTERNS_TO_SHOW]] %>
@@ -138,6 +141,7 @@
       </tr>
     <% end %>
   </table>
+</div>
 <% end %>
 
 <%# LESSON ACCORDIAN FOR INSTRUCTOR AND ADMINS %>
