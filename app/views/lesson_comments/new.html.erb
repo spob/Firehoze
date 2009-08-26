@@ -3,7 +3,7 @@
 <%= stylesheet 'validation' %>
 <%= javascript 'validate/jquery.validate', 'validate/lesson_comment.validate' %>
 
-<% form_for (:lesson_comment, :url => lesson_lesson_comments_url(@lesson), :html => { :class => "lesson_comment", :id => "lesson_comment" }) do |f| %>
+<% form_for(:lesson_comment, :url => lesson_lesson_comments_url(@lesson), :html => { :class => "lesson_comment", :id => "lesson_comment" }) do |f| %>
   <%= f.error_messages %>
   <fieldset>
     <legend>Leave a comment for: <%= link_to @lesson.title, lesson_path(@lesson) %></legend>
