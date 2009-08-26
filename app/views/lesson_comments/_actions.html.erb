@@ -1,0 +1,16 @@
+<%
+lesson_comment = object
+%>
+
+<% if lesson_comment.can_edit? current_user and !lesson_comment.public %>
+  <i>Private Comment</i>
+<% end %>
+
+<% if current_user and lesson_comment.can_edit? current_user %>
+  | <%= link_to "Edit", edit_lesson_comment_path(lesson_comment) %>
+<% end %>
+
+<% unless lesson_comment.status == COMMENT_STATUS_ACTIVE %>
+  | Status: <%= lesson_comment.status %> |
+<% end %>
+| <%= flag_link lesson_comment %>

@@ -1,20 +1,22 @@
-<a name="LessonComment<%= lesson_comment.id %>">
-  <%= rbs_formatter lesson_comment.body %>
-</a>
+<% commenter = lesson_comment.user %>
 
-<p>
-  <b><%= lesson_comment.user.login %></b> <i>commented at <%= l(lesson_comment.created_at) %></i>
-  <% if lesson_comment.can_edit? current_user and !lesson_comment.public %>
-      | <i>Private Comment</i>
-  <% end %>
-  <% if current_user %>
-      <% if lesson_comment.can_edit? current_user %>
-          | <%= link_to "Edit", edit_lesson_comment_path(lesson_comment) %>
-      <% end %>
-  <% end %>
-  <% unless lesson_comment.status == COMMENT_STATUS_ACTIVE %>
-      | Status: <%= lesson_comment.status %> |
-  <% end %>
-  | <%= flag_link lesson_comment %>
-</p>
-<hr/>
+<div class="review">
+  <div class="span-5 review_left">
+    <div class="instructor_avatar"><%= avatar_tag commenter, :size => :medium %></div>
+    <div><%= link_to_profile(commenter) %></div>
+    <div>Member Since:<br/><%= l(commenter.created_at.to_date) %></div>
+  </div>
+
+  <div class="span-23 last review_right">
+    <div class="timestamp">
+      <%= l(lesson_comment.created_at) %>
+    </div>
+    <div>
+      <%= rbs_formatter lesson_comment.body %>
+    </div>
+    <div class="actions">
+      <%= render :partial => 'lesson_comments/actions', :object => lesson_comment  %>
+    </div>
+  </div>
+</div>
+<hr class="clear"/>

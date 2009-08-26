@@ -118,6 +118,10 @@ module LessonsHelper
     end
   end
 
+  def button_to_comment(lesson)
+    button_to "Add a Comment", new_lesson_lesson_comment_path(lesson), :method => :get
+  end
+
   def button_to_wish(lesson)
     if lesson.instructed_by?(current_user) or lesson.owned_by?(current_user)
       return

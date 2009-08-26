@@ -1,5 +1,5 @@
 <%= content_tag(:h3, "Discussion for Lesson: #{ link_to @lesson.title, lesson_path(@lesson) }")  unless @style == 'tab' %>
-
+<%= content_tag(:div, button_to_comment(@lesson), :class => "action_box") %>
 <%= render @lesson_comments %>
 
 <% if @style == 'tab'%>
