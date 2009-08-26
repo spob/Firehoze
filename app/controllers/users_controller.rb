@@ -14,7 +14,8 @@ class UsersController < ApplicationController
   layout :layout_for_action
 
   def list
-    @users = User.list params[:page], session[:per_page] || ROWS_PER_PAGE
+    @search = User.search(params[:search])
+    @users = @search.paginate(:page => params[:page], :per_page => (session[:per_page] || ROWS_PER_PAGE))
   end
 
   def new

@@ -78,10 +78,6 @@ class UserTest < ActiveSupport::TestCase
         assert_equal @user3, admins.first
       end
 
-      should "return user records" do
-        assert_equal 3, User.list(1, 10).size
-      end
-
       should "find 3 records" do
         user_list = User.active
         assert_equal 3, user_list.size

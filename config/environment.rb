@@ -80,6 +80,9 @@ Rails::Initializer.run do |config|
   # For interacting with AWS
   config.gem 'right_aws'
 
+  # Search Logic
+  config.gem "searchlogic"
+
   # The following gems are required for interacting with flix cloud. Yeah, Rich, I know you'd like
   # all the gems to be alphabetically ordered, but at least for now I'd like to keep these grouped
   # together

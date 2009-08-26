@@ -16,6 +16,7 @@ class LessonVisit < ActiveRecord::Base
               lambda{|session_id|{:conditions => { :session_id => session_id }}
               }
 
+
   def self.touch(lesson, user, session_id, purchased = false)
     if ENV['RAILS_ENV'] == 'test'
       session_id = 'dummy'

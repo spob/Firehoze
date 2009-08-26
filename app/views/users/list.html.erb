@@ -1,17 +1,32 @@
+<% form_for @search do |f| %>
+    <p>
+      <%= f.label :login_like, "Username" %>
+      <%= f.text_field :login_like %>
+      <%= f.label :email_like, "Email" %>
+      <%= f.text_field :email_like %>
+      
+      <b>Order by:</b>
+      <%= order @search, :by => :login, :as => "Username" %>&nbsp;
+      <%= order @search, :by => :email %>
+
+      <%= f.submit "Search" %>
+    </p>
+<% end %>
+
 <table>
-    <tr>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Name</th>
-        <th>Active</th>
-        <th>Time Zone</th>
-        <th>Success/Failure<br/>Login Count</th>
-        <th>Last Login At</th>
-        <th>Last Login IP</th>
-        <th>Current Login At</th>
-        <th>Current Login IP</th>
-        <th>Action</th>
-    </tr>
+  <tr>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Name</th>
+    <th>Active</th>
+    <th>Time Zone</th>
+    <th>Success/Failure<br/>Login Count</th>
+    <th>Last Login At</th>
+    <th>Last Login IP</th>
+    <th>Current Login At</th>
+    <th>Current Login IP</th>
+    <th>Action</th>
+  </tr>
   <%= render @users %>
 </table>
 <%= will_paginate @users %>
