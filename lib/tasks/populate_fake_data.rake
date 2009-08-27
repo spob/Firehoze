@@ -159,7 +159,7 @@ namespace :db do
 
       Lesson.all(:order => "RAND()").each do |lesson|
         User.all.each do |user|
-          if rand(10) + 1 > 3
+          if rand(10) + 1 > 7
             unless user.available_credits.empty?
               credit = user.available_credits.first
               credit.update_attributes(:lesson => lesson, :acquired_at => Time.now)
