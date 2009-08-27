@@ -84,7 +84,7 @@ namespace :db do
         lesson.instructor = User.first(:order => 'RAND()')
         lesson.title = Faker::Company.catch_phrase.titleize
         lesson.synopsis = Populator.sentences(2..4)
-        lesson.description = Populator.paragraphs(1..4)
+        lesson.notes = Populator.paragraphs(2..6)
         lesson.status = VIDEO_STATUS_PENDING
         dummy_video_path = "/test/videos/#{rand(5)+1}.avi" #pick a random vid,
         if !File.exist?(RAILS_ROOT + dummy_video_path)
@@ -111,7 +111,7 @@ namespace :db do
         puts "tag created: #{tag.name}"
       end
 
-      Lesson.each do |lesson|
+      Lesson.all.each do |lesson|
         tags = Tag.all(:order => "RAND()", :limit => rand(6)+1)
         tag_names = tags.collect(&:name)
         lesson.tag_list.add tag_names
@@ -182,11 +182,12 @@ namespace :db do
         User.all.each do |user|
           if rand(10) + 1 > 2
             if user.owns_lesson?(lesson) and (user != lesson.instructor)
+              rating = rand(5) + 1
+              lesson.rate(rating, user)
               review = Review.new(:user => user, :headline => Faker::Company.bs.titleize, :body => Populator.paragraphs(1..3))
               lesson.reviews << review
               review.save!
-              rating = rand(5) + 1
-              lesson.rate(rating, user)
+
               puts "Review created by #{user.full_name}: #{review.headline} | rating: #{rating}"
             end
           end
@@ -198,6 +199,7 @@ namespace :db do
     desc "truncates tables"
     task :truncate => :environment do
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE periodic_jobs;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE free_credits;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE gift_certificates;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE line_items;")
@@ -210,6 +212,11 @@ namespace :db do
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE videos;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_visits;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE skus;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_buy_pairs;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_buy_patterns;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE comments;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE wishes;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE flags;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE lessons;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE taggings;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE tags;")
@@ -229,7 +236,7 @@ namespace :db do
   private
 
   def developers_personal_info
-    [["sys@firehoze.com", "sys", "admin"], ["rich@firehoze.com", "Rich", "Sturim"], ["bob@firehoze.com", "Bob", "Sturim"], ["joel@firehoze.com", "Joel", "Lindheimer"], ["david@firehoze.com", "David", "Otaguro"]]
+    [["sys@firehoze.com", "sys", "admin"], ["rich@firehoze.com", "Rich", "Sturim"], ["bob@firehoze.com", "Bob", "Sturim"]]
   end
 
   def developers
