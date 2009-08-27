@@ -1,0 +1,17 @@
+<h1>Create Payment Level</h1>
+
+<% form_for(:payment_level, :url => payment_levels_path) do |f| %>
+    <%= f.error_messages %>
+    
+    <%= f.label :name %>:
+    <%= f.text_field :name %><br />
+    <br/>
+    <%= f.label :rate %>:
+    <%= f.text_field :rate %> (enter 0.05 for 5%)<br />
+    <br/>
+    <%= f.label :default_payment_level %>:
+    <%= f.check_box :default_payment_level %><br />
+    <br/>
+    <%= f.submit "Save", :disable_with => translate('general.disable_with') %>
+    <%= link_to 'Cancel', payment_levels_path %>
+<% end %>
