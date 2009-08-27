@@ -1,7 +1,7 @@
 class LessonsController < ApplicationController
 
   before_filter :require_user, :only => [:new, :create, :edit, :update, :unreject]
-  permit ROLE_ADMIN, :only => [:convert]
+  permit ROLE_ADMIN, :only => [:convert, :list_admin]
   permit ROLE_MODERATOR, :only => [:unreject]
 
   verify :method => :post, :only => [ :create, :convert, :unreject ], :redirect_to => :home_path
@@ -9,6 +9,9 @@ class LessonsController < ApplicationController
   before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :show, :update, :watch, :unreject ]
   before_filter :set_per_page, :only => [ :index, :list, :ajaxed, :tabbed ]
   before_filter :set_collection, :only => [ :list, :ajaxed, :tabbed ]
+
+  layout :layout_for_action
+
 
   LIST_COLLECTIONS = %w(newest most_popular highest_rated tagged_with recently_browsed)
 
@@ -50,6 +53,10 @@ class LessonsController < ApplicationController
                 @tag = params[:tag]
                 Lesson.ready.find_tagged_with(@tag).paginate(:page => params[:page], :per_page => @per_page)
             end
+  end
+
+  def list_admin
+    @lessons = Lesson.all.paginate :page => params[:page], :per_page => session[:per_page] || ROWS_PER_PAGE
   end
 
   def new
@@ -107,7 +114,7 @@ class LessonsController < ApplicationController
   def lesson_notes
     @style = params[:style]
     if @style == 'tab'
-      render :layout => 'content_in_tab'
+      # render :layout => 'content_in_tab'
       return
     end
   end
@@ -157,7 +164,7 @@ class LessonsController < ApplicationController
                   Lesson.ready.highest_rated.all(:limit => @per_page)
                 end
             end
-    render :layout => 'content_in_tab'
+    # render :layout => 'content_in_tab'
   end
 
   # SUPPORTING AJAX PAGINATION (keeping this around for a little while, just in case we need it later)
@@ -267,6 +274,16 @@ class LessonsController < ApplicationController
   end
 
   private
+
+  def layout_for_action
+    if %w(lesson_notes tabbed).include?(params[:action]) 
+      'content_in_tab'
+    elsif %w(list_admin).include?(params[:action]) 
+      'admin'
+    else
+      'application'
+    end
+  end
 
   def find_lesson
     @lesson = Lesson.find(params[:id])

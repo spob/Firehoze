@@ -23,10 +23,17 @@ ActionController::Routing::Routes.draw do |map|
                         :list => :get,
                         :tabbed => :get,
                         :ajaxed => :get,
+                        :list_admin => :get 
                         }
   map.resources :lessons, :has_many => :lesson_comments, :shallow => true,
-                :member => { :watch => :get, :convert => :post, :rate => :post },
-                :collection => { :conversion_notify => :put, :list => :get }
+                :member => { 
+                        :watch => :get, 
+                        :convert => :post, 
+                        :rate => :post },
+                :collection => { 
+                        :conversion_notify => :put, 
+                        :list => :get 
+                        }
   map.resources :line_items, :only => [ :create, :destroy, :update ]
   map.resources :orders
   map.login 'login',   :controller => 'user_sessions', :action => 'new'
