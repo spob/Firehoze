@@ -1,6 +1,7 @@
 <%
 if current_user then
-  wishlist = current_user.wishes.paginate :page => params[:page], :per_page => @per_page
+  wishlist = current_user.wishes
+  # wishlist = current_user.wishes.paginate :page => params[:page], :per_page => @per_page
 end
 %>
 <% if wishlist.empty? %>
@@ -8,9 +9,9 @@ end
 <div class="content">You have no items in your wishlist</div>
 
 <% else %>
-  <div class="lesson_container">
-    <%= lessons_header(:wishlist) %>
+  <!-- <div class="lesson_container"> -->
+    <%#= lessons_header(:wishlist) %>
     <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => wishlist %>
-  </div>
-  <%= render :partial => "lessons/pagination", :object => wishlist, :locals => { :collection => :wishlist } %>
+  <!-- </div> -->
+  <%#= render :partial => "lessons/pagination", :object => wishlist, :locals => { :collection => :wishlist } %>
 <% end %>
