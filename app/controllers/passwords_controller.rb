@@ -13,7 +13,7 @@ class PasswordsController < ApplicationController
     unless @user.valid_current_password?
       # user typed a bad value for current password
       @user.password = params[:user][:password]
-      render :action => :edit
+      render :template => 'accounts/edit'
       return
     end
     @user.password = params[:user][:password]
@@ -22,7 +22,7 @@ class PasswordsController < ApplicationController
       flash[:notice] = t 'password.pwd_update_success'
       redirect_to edit_user_url(@user)
     else
-      render :action => :edit
+      render :template => 'accounts/edit'
     end
   end
 
