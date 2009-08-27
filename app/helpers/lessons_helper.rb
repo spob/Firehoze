@@ -43,6 +43,8 @@ module LessonsHelper
                   t('lesson.recently_browsed')
                 when :owned_lessons
                   t('lesson.lessons_you_own')
+                when :instructed_lessons
+                  t('lesson.lessons_you_instructed')
                 when :tagged_with
                   "#{t('lesson.tagged_with')} &quot;#{args.first}&quot;"
               end

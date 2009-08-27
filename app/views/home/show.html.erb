@@ -1,8 +1,8 @@
 <% content_for :head do -%>
-  <%= javascript_include_tag 'jquery-ui-1.7.2.custom.min.js' %>
-  <%= stylesheet_link_tag 'jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" %>
-  <%= javascript_include_tag 'tabs.js','jquery.cookie.js' %>
-  <%= javascript_include_tag 'accordian.js' %>
+    <%= javascript_include_tag 'jquery-ui-1.7.2.custom.min.js' %>
+    <%= stylesheet_link_tag 'jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" %>
+    <%= javascript_include_tag 'tabs.js', 'jquery.cookie.js' %>
+    <%= javascript_include_tag 'accordian.js' %>
 <% end %>
 
 <div class="span-40 last">
@@ -24,16 +24,27 @@
   <div id="user_accordion_container">
     <div id="user_accordion">
       <h3><a href="#"><%= t 'lesson.lessons_you_own' %></a></h3>
+
       <div class="content">
         <%= render :partial => "lessons/owned", :locals => { :lesson_format => :brief } %>
       </div>
 
+      <% unless current_user.instructed_lessons.empty? %>
+          <h3><a href="#"><%= t 'lesson.lessons_you_instructed' %></a></h3>
+
+          <div class="content">
+            <%= render :partial => "lessons/instructed", :locals => { :lesson_format => :brief } %>
+          </div>
+      <% end %>
+
       <h3><a href="#"><%= t 'lesson.wishlist' %></a></h3>
+
       <div class="content">
         <%= render :partial => "lessons/wishlist", :locals => { :lesson_format => :brief } %>
       </div>
 
       <h3><a href="#"><%= t 'lesson.recently_browsed' %></a></h3>
+
       <div class="content">
         <%= render :partial => "lessons/recently_browsed", :locals => { :lesson_format => :brief } %>
       </div>
