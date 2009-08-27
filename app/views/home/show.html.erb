@@ -12,14 +12,11 @@
 <div class="clear append-0 span-29" id="lesson_tabs">
   <div id="tabs">
     <ul>
-      <li><a href="#tabs-1"><%= t 'lesson.most_popular' %></a></li>
-      <li><a href="#tabs-2"><%= t 'lesson.highest_rated' %></a></li>
-      <li><a href="#tabs-3"><%= t 'lesson.newest' %></a></li>
+      <li><%= link_to t('lesson.most_popular'), tabbed_lessons_path(:collection => 'most_popular') %></li>
+      <li><%= link_to t('lesson.highest_rated'), tabbed_lessons_path(:collection => 'highest_rated') %></li>
+      <li><%= link_to t('lesson.newest'), tabbed_lessons_path(:collection => 'newest') %></li>
     </ul>
-
-    <div id="tabs-1"><%= render :partial => "lessons/most_popular", :locals => { :lesson_format => :narrow } %></div>
-    <div id="tabs-2"><%= render :partial => "lessons/highest_rated", :locals => { :lesson_format => :narrow } %></div>
-    <div id="tabs-3"><%= render :partial => "lessons/newest", :locals => { :lesson_format => :narrow } %></div>
+    <div style="display:block"></div>
   </div>
 </div>
 
