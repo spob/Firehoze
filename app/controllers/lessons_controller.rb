@@ -10,10 +10,9 @@ class LessonsController < ApplicationController
   before_filter :set_per_page, :only => [ :index, :list, :ajaxed, :tabbed ]
   before_filter :set_collection, :only => [ :list, :ajaxed, :tabbed ]
 
-  layout :layout_for_action
-
-
   LIST_COLLECTIONS = %w(newest most_popular highest_rated tagged_with recently_browsed)
+
+  layout :layout_for_action
 
   # The number of free download counts to display on the create lesson page
   @@free_download_counts = [ 0, 5, 10, 25 ]

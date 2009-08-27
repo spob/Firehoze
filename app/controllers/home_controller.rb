@@ -8,7 +8,6 @@ class HomeController < ApplicationController
 
   def show
     @user = @current_user
-    @lessons = Lesson.all if current_user and current_user.is_admin?
   end
 
   def update

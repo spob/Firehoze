@@ -11,4 +11,6 @@ tagged_with = Lesson.ready.find_tagged_with(tag).paginate :page => params[:page]
 
 <%= render :partial => "pagination", :object => tagged_with, :locals => { :collection => :tagged_with } %>
 
-<%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts %>
+<div class="span-9 last tag_cloud">
+  <%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts %>
+</div>

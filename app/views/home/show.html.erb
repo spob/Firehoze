@@ -6,38 +6,44 @@
 <% end %>
 
 <div class="span-40 last">
-  <h3>Recognized User Homepage</h3>  <!-- This is a tmp header -->
+  <!-- Header placeholder  -->
 </div>
 
-<div class="clear append-1 span-30 last" id="lesson_tabs">
+<div class="clear append-0 span-29" id="lesson_tabs">
   <div id="tabs">
     <ul>
       <li><a href="#tabs-1"><%= t 'lesson.most_popular' %></a></li>
       <li><a href="#tabs-2"><%= t 'lesson.highest_rated' %></a></li>
       <li><a href="#tabs-3"><%= t 'lesson.newest' %></a></li>
-      <li><a href="#tabs-4"><%= t 'lesson.lessons_you_own' %></a></li>
-      <li><a href="#tabs-5"><%= t 'lesson.wishlist' %></a></li>
-      <li><a href="#tabs-6"><%= t 'lesson.recently_browsed' %></a></li>
     </ul>
 
     <div id="tabs-1"><%= render :partial => "lessons/most_popular", :locals => { :lesson_format => :narrow } %></div>
     <div id="tabs-2"><%= render :partial => "lessons/highest_rated", :locals => { :lesson_format => :narrow } %></div>
     <div id="tabs-3"><%= render :partial => "lessons/newest", :locals => { :lesson_format => :narrow } %></div>
-    <div id="tabs-4"><%= render :partial => "lessons/owned", :locals => { :lesson_format => :narrow } %></div>
-    <div id="tabs-5"><%= render :partial => "lessons/wishlist", :locals => { :lesson_format => :narrow } %></div>
-    <div id="tabs-6"><%= render :partial => "lessons/recently_browsed", :locals => { :lesson_format => :narrow } %></div>
   </div>
 </div>
 
-<%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts %>
+<div class="span-11 last">
+  <div id="user_accordion_container">
+    <div id="user_accordion">
+      <h3><a href="#"><%= t 'lesson.lessons_you_own' %></a></h3>
+      <div class="content">
+        <%= render :partial => "lessons/owned", :locals => { :lesson_format => :brief } %>
+      </div>
 
-<% if current_user and current_user.is_admin? %>
-<div class="clear span-40 last prepend-top">
-  <div id="accordion">
-    <h3><a href="#">Status of All Lessons</a></h3>
-    <div>
-      <%= render :partial => "lessons/lesson_admin_view", :object => @lessons %>
+      <h3><a href="#"><%= t 'lesson.wishlist' %></a></h3>
+      <div class="content">
+        <%= render :partial => "lessons/wishlist", :locals => { :lesson_format => :brief } %>
+      </div>
+
+      <h3><a href="#"><%= t 'lesson.recently_browsed' %></a></h3>
+      <div class="content">
+        <%= render :partial => "lessons/recently_browsed", :locals => { :lesson_format => :brief } %>
+      </div>
     </div>
   </div>
+
+  <div class="tag_cloud prepend-top">
+    <%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts %>
+  </div>
 </div>
-<% end %>

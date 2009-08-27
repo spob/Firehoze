@@ -1,6 +1,4 @@
-<div class="lesson_container">
   <%= lessons_header(:owned_lessons) %>
   <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => current_user.owned_lessons.paginate(:page => (params[:page] || 1), :per_page => 3) %>
-</div>
 
 <%#= render :partial => "lessons/pagination", :object => current_user.owned_lessons, :locals => { :collection => :owned } %>
