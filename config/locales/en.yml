@@ -130,6 +130,7 @@ en:
     Converting: Converting
     Pending: Lesson created and awaiting transcoding
     Ready: Ready
+    must_logon: Please log on or request an account in order to join the discussion
 
   lesson_comment:
     create_success: Your lesson comment has been recorded

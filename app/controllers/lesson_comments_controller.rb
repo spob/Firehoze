@@ -1,6 +1,6 @@
 # This controller is a nested resource. It will generally be invoked from the lesson controller
 class LessonCommentsController < ApplicationController
-  before_filter :require_user, :except => [:index]
+  before_filter :require_user, :except => [:index, :new]
   # Since this controller is nested, in most cases we'll need to retrieve the lesson first, so I made it a
   # before filter
   before_filter :find_lesson, :except => [ :edit, :update, :destroy ]
@@ -22,7 +22,13 @@ class LessonCommentsController < ApplicationController
   end
 
   def new
-    @lesson_comment = @lesson.comments.build
+    if current_user
+      @lesson_comment = @lesson.comments.build
+    else
+      store_location new_lesson_lesson_comment_path(@lesson)
+      flash[:error] = t('lesson.must_logon')
+      redirect_to new_user_session_url
+    end
   end
 
   def create
