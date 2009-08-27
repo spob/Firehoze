@@ -42,18 +42,16 @@
 <%= flag_link @user %>
 
 <div class="clear span-40 last prepend-top">
-  <div id="accordion">
+  <div id="public_user_accordion">
     <% unless @lessons.empty? %>
         <h3><a href="#">Lesson by this Instructor</a></h3>
-
         <div>
-          <%= render :partial => "lessons/lesson_narrow", :collection => @lessons %>
+          <%= render :partial => "lessons/lesson_wide", :collection => @lessons %>
         </div>
     <% end %>
 
     <% unless @reviews.empty? %>
         <h3><a href="#">Reviews by this User</a></h3>
-
         <div>
           <%= render :partial => "reviews/review_with_lesson", :collection => @reviews %>
         </div>

@@ -12,7 +12,7 @@
 }
 
 div {
-    /* border: 1px solid red;*/
+    /*border: 1px solid red;*/
 }
 
 .spacer {
@@ -166,6 +166,16 @@ img.lesson_tn {
 
 #user_accordion .lesson_brief .synopsis {
     margin:0 0 10px 0;
+}
+
+/* USER SHOW */
+
+#public_user_accordion {
+    height:400px;
+}
+
+#public_user_accordion .ui-accordion-content {
+    padding:0 2px 15px 15px;
 }
 
 /* FORMS */
