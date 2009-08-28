@@ -137,7 +137,7 @@ END
     (1..limit).each do |i|
       lessons << all.delete(all.at(rand(all.size)))
     end
-    lessons
+    lessons.find_all{|l| l}
   end
 
   # Call it vlast (as in very last) as opposed to last to differentiate it from the dynamic finder
