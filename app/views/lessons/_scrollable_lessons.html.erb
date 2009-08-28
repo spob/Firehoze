@@ -1,0 +1,26 @@
+<%= javascript 'jquerytools/jquery.tools.min', 'jquerytools/jquery.mousewheel', 'jquerytools/scrollable' %>
+<%= stylesheet 'jquerytools/scrollable','jquerytools/scrollable-navig' %>
+
+<div class="span-40 last" id="scrollable_container_header">
+  <h3>You might like...</h3>
+</div>
+<div class="span-40 last" id="scrollable_container">
+  <!-- navigator -->
+  <div class="navi"></div>
+
+  <!-- prev link -->
+  <a class="prev"></a>
+
+  <!-- root element for scrollable -->
+  <div class="scrollable">
+    <div id="thumbs">
+      <%= render :partial => 'lessons/scrollable_lesson', :collection => Lesson.lesson_recommendations(current_user, 16) %>
+    </div>
+  </div>
+
+  <!-- next link -->
+  <a class="next"></a>
+
+  <!-- let rest of the page float normally -->
+  <br clear="all" />
+</div>
