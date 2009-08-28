@@ -148,7 +148,7 @@
 
 <%# LESSON ACCORDIAN FOR INSTRUCTOR AND ADMINS %>
 <div class="clear span-40 last prepend-top">
-  <div id="accordion">
+  <div id="lesson_stats_accordion">
     <% if @lesson.credits.size > 0 and (current_user.try("is_admin?") or @lesson.instructor == current_user) %>
       <h3><a href="#">Lesson Purchases</a></h3>
 
