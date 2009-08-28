@@ -3,7 +3,8 @@ ActionController::Routing::Routes.draw do |map|
   map.home 'home', :controller => 'home', :action => 'show'
   map.resources  :accounts, :only => [ :edit, :show, :update, :clear_avatar, :update_avatar ],
                  :member => { :clear_avatar => :post, :update_avatar => :put, :update_author => :put,
-                              :update_privacy => :put, :enroll_instructor => :post }
+                              :update_privacy => :put, :enroll_instructor => :post },
+                 :collection => { :author_agreement => :get }
   map.resources :acquire_lessons, :only => [ :create, :new ]
   map.resources :carts, :only => [ :show ]
   map.resources :contact_users, :only => [ :create, :new ]

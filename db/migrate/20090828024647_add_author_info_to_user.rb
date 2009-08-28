@@ -10,7 +10,7 @@ class AddAuthorInfoToUser < ActiveRecord::Migration
     add_column :users, :city, :string, :null => true
     add_column :users, :state, :string, :null => true
     add_column :users, :postal_code, :string, :null => true
-    add_column :users, :country, :string, :null => true
+    add_column :users, :country, :string, :null => true, :default => 'US'
     add_column :users, :author_agreement_accepted_on, :datetime, :null => true
     add_column :users, :withold_taxes, :boolean, :null => false, :default => true
     add_column :users, :payment_level_id, :integer, :null => true

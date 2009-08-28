@@ -1,6 +1,7 @@
 # The accounts controller allows the user to update personal information on their account
 class AccountsController < ApplicationController
-  before_filter :require_user, :find_user
+  before_filter :require_user, :except => [:author_agreement]
+  before_filter :find_user
 
   verify :method => :put, :only => [ :update, :update_privacy, :update_author, :update_avatar ], :redirect_to => :home_path
   verify :method => :post, :only => [ :enroll_instructor, :clear_avatar ], :redirect_to => :home_path
@@ -28,21 +29,38 @@ class AccountsController < ApplicationController
     redirect_to edit_account_path
   end
 
+  def author_agreement
+    render :layout => 'content_in_tab'
+  end
+
   def update_author
-    @user.instructor_status = params[:user][:instructor_status]
     @user.address1 = params[:user][:address1]
     @user.address2 = params[:user][:address2]
     @user.city = params[:user][:city]
     @user.state = params[:user][:state]
     @user.postal_code = params[:user][:postal_code]
     @user.country = params[:user][:country]
-    if @user.save
+
+    if @user.address1_changed? or @user.address2_changed? or @user.city_changed? or
+            @user.state_changed? or @user.postal_code_changed? or @user.country_changed?
+      @user.verified_address_on = nil
+    elsif params[:confirm_contact]
+      @user.verified_address_on = Time.now
+    end
+
+    if @user.author_agreement_accepted_on.nil? and params[:accept_agreement]
+      @user.author_agreement_accepted_on = Time.now
+    end
+    if @user.save!
       flash[:notice] = t 'account_settings.update_success'
     else
       flash[:error] = t 'account_settings.update_error'
     end
-
     redirect_to edit_account_path
+  rescue Exception => e
+    flash[:error] = e.message
+    redirect_to edit_account_path
+
     #:author_agreement_accepted_on,
     #:withold_taxes,
     #:payment_level_id

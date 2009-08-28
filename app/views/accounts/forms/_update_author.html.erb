@@ -1,11 +1,92 @@
 <% form_for(:user, :url => update_author_account_path(@user), :html => { :method => :put, :id => "author" }) do |f| %>
     <%= f.error_messages %>
 
-    <%= author_progress %>
+    <table>
+      <tr>
+        <th>Task</th>
+        <th>Description</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td>Mailing Address Provided</td>
+        <td>Firehoze requires this information to know how to pay you</td>
+        <td <%= done_color(@user.address_provided?) %> ><%= done_text(@user.address_provided?) %></td>
+      </tr>
+      <tr>
+        <td>Contact Information Verified</td>
+        <td>Verify that your name and address is correct...otherwise, you won't get paid</td>
+        <td <%= done_color(@user.verified_address_on) %> ><%= done_text(@user.verified_address_on) %></td>
+      </tr>
+      <tr>
+        <td>Agreement Accepted</td>
+        <td>You must accept the Author Agreement before you can create lessons</td>
+        <td <%= done_color(!@user.author_agreement_accepted_on.nil?) %> ><%= done_text(!@user.author_agreement_accepted_on.nil?) %></td>
+      </tr>
+      <tr>
+        <td>Tax Forms Provided</td>
+        <td>You can post lessons and receive payments from Firehoze. However, by law Firehoze must without taxes
+        on your payments. If you'd like to avoid witholding by Firehoze, see XXX.</td>
+        <td <%= done_color(!@user.withold_taxes) %> ><%= done_text(!@user.withold_taxes) %></td>
+      </tr>
+      <tr>
+        <td>Agree to Exclusivity</td>
+        <td>If you agree to make our content available exclusively to Firehoze, you will receive a higher percentage
+        of each sale. See XXX for details.</td>
+        <td <%= done_color(!@user.withold_taxes) %> ><%= done_text(!@user.withold_taxes) %></td>
+      </tr>
+    </table>
     <fieldset>
-      <legend>Update Author Information</legend>
+      <legend>Mailing Address (for payments)</legend>
+
       <p>
-       <I><B>UNDER CONSTRUCTION</B></I>
+        <%= f.label :address1 %>
+        <%= f.text_field :address1 %>
+      </p>
+
+      <p>
+        <%= f.label :address2 %>
+        <%= f.text_field :address2 %>
+      </p>
+
+      <p>
+        <%= f.label :city %>
+        <%= f.text_field :city %>
+      </p>
+
+      <p>
+        <%= f.label :state, "State or Region" %>
+        <%= f.text_field :state %>
+      </p>
+
+      <p>
+        <%= f.label :postal_code, "Postal Code or Zip Code" %>
+        <%= f.text_field :postal_code %>
+      </p>
+      <p>
+        <%= f.localized_country_select(:country, ['US']) %>
+      </p>
+      <% if @user.address_provided? and !@user.verified_address_on %>
+          <legend>Verify Payment Information</legend>
+          <p>
+            Payments will be sent to:
+            <br/>
+            <%= h @user.full_name %>,
+            <%= formatted_address(", ") %>
+          </p>
+          <p>
+            I confirm that this information is correct
+            <%= check_box_tag :confirm_contact %>
+          </p>
+      <% end %>
+      <legend>Author Agreement</legend>
+      <%= render :partial => 'accounts/forms/author_agreement' %>
+      <p>
+        <% if @user.author_agreement_accepted_on.nil? %>
+            By checking this box I hereby agreement to be bound by the terms of this agreement
+            <%= check_box_tag :accept_agreement %>
+        <% else %>
+            Accepted on: <%= l @user.author_agreement_accepted_on %>
+        <% end %>
       </p>
 
     </fieldset>
@@ -13,4 +94,4 @@
       <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
       <%= link_to 'Cancel', home_path %>
     </p>
-<% end %>
+<% end %>                                            `

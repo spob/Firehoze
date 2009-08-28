@@ -224,6 +224,8 @@ en:
     roles: Roles
     rejected_bio: This user's bio has been flagged for inappropriate content and thus cannot be displayed
     inactive_cannot_show: This user's account has been deactivated and cannot be displayed
+    done: Completed
+    not_done: Not Completed
 
   wish:
     create_success: Lesson added to your wish list

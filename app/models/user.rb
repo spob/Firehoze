@@ -97,7 +97,8 @@ class User < ActiveRecord::Base
   # convert an amazon url for an avator to a cdn url
   def self.convert_avatar_url_to_cdn(url)
     regex = Regexp.new("//.*#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}")
-    url.gsub(regex, "//" + APP_CONFIG[CONFIG_CDN_OUTPUT_SERVER])
+    regex2 = Regexp.new("https")
+    url.gsub(regex, "//" + APP_CONFIG[CONFIG_CDN_OUTPUT_SERVER]).gsub(regex2, "http")
   end
 
   def self.supported_languages
@@ -120,6 +121,12 @@ class User < ActiveRecord::Base
     true
   end
 
+  def address_provided?
+    not_blank_or_nil(address1) and not_blank_or_nil(city) and
+            not_blank_or_nil(state) and not_blank_or_nil(postal_code) and
+            not_blank_or_nil(country)
+  end
+
   # Utility method to return either the last_name if no first name is specified, or the first and last
   # name with a space betwen them
   def full_name
@@ -134,6 +141,10 @@ class User < ActiveRecord::Base
 
   def instructor? lesson
     self == lesson.instructor
+  end
+
+  def author?
+    address_provided and verified_address_on and self.author_agreement_accepted_on
   end
 
   def city_and_state
@@ -218,4 +229,7 @@ class User < ActiveRecord::Base
     end
   end
 
+  def not_blank_or_nil field
+    !field.nil? and !field.blank?
+  end
 end

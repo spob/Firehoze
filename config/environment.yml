@@ -57,8 +57,8 @@ number_of_buy_patterns_to_show: 5
 s3_directory: default
 
 # cdn server
-cdn_output_server: amazonstaging.lg1.simplecdn.net
-cdn_thumbs_server: amazonthumbs.lg1.simplecdn.net
+cdn_output_server: cdn.firehoze.com
+cdn_thumbs_server: thumbs.firehoze.com
 
 # ftp path where transcoded files should be uploaded
 ftp_cdn_path: upload-ftp.simplecdn.com
