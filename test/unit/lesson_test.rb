@@ -26,7 +26,12 @@ class LessonTest < ActiveSupport::TestCase
     end
 
     context "testing lesson_recommendations" do
-      setup { @lessons = Lesson.lesson_recommendations(Factory.create(:user), 5) }
+      setup do
+        @lesson.status = LESSON_STATUS_READY
+        @lesson.save!
+        assert @lesson.ready? 
+        @lessons = Lesson.lesson_recommendations(Factory.create(:user), 5)
+      end
 
       should "retrieve lessons" do
         assert !@lessons.empty?
@@ -156,7 +161,7 @@ class LessonTest < ActiveSupport::TestCase
         should "control who can contact this user" do
           assert !@lesson2.instructor.can_contact?(@user)
           assert !@lesson.instructor.can_contact?(@user)
-        end                                                                      
+        end
       end
 
       context "and instructor is allow_contact ANYONE" do
