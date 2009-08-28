@@ -143,6 +143,14 @@ img.lesson_tn {
     padding: 10px;
 }
 
+#lesson_stats_accordion {
+    height:400px;
+}
+
+#lesson_stats_accordion .ui-accordion-content {
+    padding:0 2px 15px 15px;
+}
+
 .adjacent_icon {
     float: left; margin-right: .3em;
 }
