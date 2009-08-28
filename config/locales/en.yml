@@ -173,6 +173,7 @@ en:
     avatar_cleared: You have successfully removed your avatar
     update_error: Oops, something wasn't quite right with the information you entered
     update_success: Your account was successfully updated
+    enrollment_started: Please fill in the author profile information to complete the author enrollment process
   
   registration:
     check_email_for_registration: Please check your email to complete the registration
@@ -209,6 +210,7 @@ en:
     account_reg_success: Account registered
     account_update_success: Account updated
     avatar: Avatar
+    author_info: Author Information
     credit_history: Credit History
     login_required: Username can't be empty
     password: Password

@@ -8,9 +8,11 @@ class UserTest < ActiveSupport::TestCase
 
     should_validate_uniqueness_of    :email
     should_validate_uniqueness_of    :login
-    should_validate_presence_of      :email, :last_name, :login, :language
+    should_validate_presence_of      :email, :last_name, :login, :language, :instructor_status
     should_validate_numericality_of  :login_count, :failed_login_count
-    should_not_allow_mass_assignment_of :email, :login, :rejected_bio  
+    should_not_allow_mass_assignment_of :email, :login, :rejected_bio, :instructor_status, :address1, :address2,
+                                        :city, :state, :postal_code, :country, :author_agreement_accepted_on,
+                                        :withold_taxes, :payment_level_id  
 
     # Apparently should not allow values for only works if you pass the error message you expect
     # to see...though this is not clear in the shoulda documentation.
