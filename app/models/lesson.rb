@@ -128,10 +128,10 @@ END
     lessons2 = []
     tmp_limit = limit * 2 - lessons1.size
     lessons2 = Lesson.ready.find(:all, :conditions => ["id not in (?) and id not in (?)",
-                                                 lessons1.collect(&:id) + [-1],
-                                                 user.lessons.collect(&:id) + [-1]],
-                           :limit => tmp_limit,
-                           :order => "rating_average DESC")
+                                                       lessons1.collect(&:id) + [-1],
+                                                       user.lessons.collect(&:id) + [-1]],
+                                 :limit => tmp_limit,
+                                 :order => "rating_average DESC")
     all = lessons1 + lessons2
     lessons = []
     (1..limit).each do |i|
@@ -215,18 +215,25 @@ END
   end
 
   def update_status(unreject=false)
+    puts "=============>#{id}"
     if self.status == LESSON_STATUS_REJECTED and !unreject
+      puts "=============>1"
       # do nothing...moderator put it in this status for a reason
     elsif any_video_match_by_status(VIDEO_STATUS_FAILED)
+      puts "=============>2"
       update_status_attribute(LESSON_STATUS_FAILED)
     elsif processed_videos.empty? or all_videos_match_by_status(VIDEO_STATUS_PENDING)
+      puts "=============>3 #{processed_videos.empty?} #{all_videos_match_by_status(VIDEO_STATUS_PENDING)}"
       update_status_attribute(LESSON_STATUS_PENDING)
     elsif any_video_match_by_status(LESSON_STATUS_CONVERTING)
+      puts "=============>4"
       update_status_attribute(LESSON_STATUS_CONVERTING)
     elsif all_videos_match_by_status(LESSON_STATUS_READY)
+      puts "=============>5"
       update_status_attribute(LESSON_STATUS_READY)
       Notifier.deliver_lesson_ready(self)
     else
+      puts "=============>6"
       update_status_attribute("Unknown status")
     end
   end
@@ -248,14 +255,14 @@ END
   end
 
   def any_video_match_by_status(status)
-    for video in processed_videos
-      return true if video.status == status
+    videos.find_all{|video| video.class == FullProcessedVideo or video.class == PreviewProcessedVideo }.each do |video|
+      return true if video.status == status 
     end
     return false
   end
 
   def all_videos_match_by_status(status)
-    for video in processed_videos
+    videos.find_all{|video| video.class == FullProcessedVideo or video.class == PreviewProcessedVideo }.each do |video|
       return false if video.status != status
     end
     return true
