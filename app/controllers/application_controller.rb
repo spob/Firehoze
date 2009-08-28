@@ -4,7 +4,7 @@
 class ApplicationController < ActionController::Base
   helper :all
   helper_method :current_user_session, :current_user
-  filter_parameter_logging :password, :password_confirmation
+  filter_parameter_logging :password, :password_confirmation, :current_password
   filter_parameter_logging :card_number, :card_verification
   before_filter :set_timezone
   before_filter :set_user_language
