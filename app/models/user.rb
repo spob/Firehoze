@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
   has_many :lessons, :through => :credits
   has_many :reviews, :order => 'score desc, id', :dependent => :destroy
   has_many :helpfuls, :dependent => :destroy
+  belongs_to :payment_level
   has_and_belongs_to_many :wishes, :join_table => 'wishes', :class_name => 'Lesson'
 
   # Active users

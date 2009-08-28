@@ -23,15 +23,18 @@
         <td <%= done_color(!@user.author_agreement_accepted_on.nil?) %> ><%= done_text(!@user.author_agreement_accepted_on.nil?) %></td>
       </tr>
       <tr>
-        <td>Tax Forms Provided</td>
-        <td>You can post lessons and receive payments from Firehoze. However, by law Firehoze must without taxes
-        on your payments. If you'd like to avoid witholding by Firehoze, see XXX.</td>
-        <td <%= done_color(!@user.withold_taxes) %> ><%= done_text(!@user.withold_taxes) %></td>
-      </tr>
-      <tr>
         <td>Agree to Exclusivity</td>
         <td>If you agree to make our content available exclusively to Firehoze, you will receive a higher percentage
-        of each sale. See XXX for details.</td>
+          of each sale. See XXX for details.
+        </td>
+        <td <%= done_color(!@user.payment_level.try('default_payment_level')) %> >
+          <%= done_text(!@user.payment_level.try('default_payment_level')) %></td>
+      </tr>
+      <tr>
+        <td>Tax Forms Provided</td>
+        <td>You can post lessons and receive payments from Firehoze. However, by law Firehoze must without taxes
+          on your payments. If you'd like to avoid witholding by Firehoze, see XXX.
+        </td>
         <td <%= done_color(!@user.withold_taxes) %> ><%= done_text(!@user.withold_taxes) %></td>
       </tr>
     </table>
@@ -62,6 +65,7 @@
         <%= f.label :postal_code, "Postal Code or Zip Code" %>
         <%= f.text_field :postal_code %>
       </p>
+
       <p>
         <%= f.localized_country_select(:country, ['US']) %>
       </p>
@@ -73,11 +77,22 @@
             <%= h @user.full_name %>,
             <%= formatted_address(", ") %>
           </p>
+
           <p>
             I confirm that this information is correct
             <%= check_box_tag :confirm_contact %>
           </p>
       <% end %>
+
+      <legend>Exclusivity</legend>
+      <p>
+        <% if @user.payment_level and !@user.payment_level.default_payment_level and !@user.instructed_lessons.empty? %>
+            <%= @user.payment_level.name %>
+            (pays at <%= number_to_percentage(100 * @user.payment_level.rate, :precision => 1) %>)
+        <% else %>
+            <%= f.select :payment_level, options_from_collection_for_select(PaymentLevel.all, 'id', 'name', @user.payment_level.id) %>
+        <% end %>
+      </p>
       <legend>Author Agreement</legend>
       <%= render :partial => 'accounts/forms/author_agreement' %>
       <p>

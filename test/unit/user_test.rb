@@ -39,6 +39,7 @@ class UserTest < ActiveSupport::TestCase
     should_have_many                 :lesson_visits
     should_have_many                 :visited_lessons
     should_have_many                 :instructed_lessons
+    should_belong_to                 :payment_level
     should_have_and_belong_to_many   :wishes
 
     context "when rejecting" do
@@ -166,7 +167,7 @@ class UserTest < ActiveSupport::TestCase
 
   context "given an avator url" do
     should "convert to a cdn url" do
-      assert_equal "http://amazonstaging.lg1.simplecdn.net/staging/users/avatars/2/medium/DSC_0043_Small.png?1249443866",
+      assert_equal "http://cdn.firehoze.com/staging/users/avatars/2/medium/DSC_0043_Small.png?1249443866",
                    User.convert_avatar_url_to_cdn("http://s3.amazonaws.com/images.firehoze.com/staging/users/avatars/2/medium/DSC_0043_Small.png?1249443866")
     end
   end

@@ -1,8 +1,10 @@
 class PaymentLevel < ActiveRecord::Base
   before_save :unset_default_payment_level
-  validates_presence_of :name, :rate
-  validates_uniqueness_of :name
+  validates_presence_of :name, :rate, :code
+  validates_uniqueness_of :name, :code
   validates_numericality_of :rate, :greater_than => 0, :less_than => 1, :allow_nil => true
+
+  has_many :users
 
   private
 

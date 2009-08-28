@@ -10,6 +10,10 @@ class AccountsController < ApplicationController
   end
 
   def edit
+    if @user.payment_level.nil?
+      # Default payment level
+      @user.payment_level = PaymentLevel.find_by_default_payment_level(true)
+    end
   end
 
   def update_avatar
@@ -40,6 +44,10 @@ class AccountsController < ApplicationController
     @user.state = params[:user][:state]
     @user.postal_code = params[:user][:postal_code]
     @user.country = params[:user][:country]
+
+    if !@user.payment_level or @user.payment_level.default_payment_level or @user.instructed_lessons.empty?
+      @user.payment_level = PaymentLevel.find(params[:user][:payment_level])
+    end
 
     if @user.address1_changed? or @user.address2_changed? or @user.city_changed? or
             @user.state_changed? or @user.postal_code_changed? or @user.country_changed?

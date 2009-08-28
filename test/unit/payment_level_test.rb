@@ -6,8 +6,10 @@ class PaymentLevelTest < ActiveSupport::TestCase
       @payment_level = Factory.create(:payment_level)
     end
 
-    should_validate_presence_of      :rate, :name
+    should_have_many                 :users
+    should_validate_presence_of      :rate, :name, :code
     should_validate_uniqueness_of    :name
+    should_validate_uniqueness_of    :code
     should_allow_values_for          :rate, 0.99, 0.05, 0.01
 
     # Apparently should not allow values for only works if you pass the error message you expect

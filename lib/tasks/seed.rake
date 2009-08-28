@@ -1,6 +1,6 @@
 namespace :db do
   desc "Populate the database with seed data"
-  task :seed => [:seed_users, :seed_jobs, :seed_roles, :seed_skus]
+  task :seed => [:seed_users, :seed_jobs, :seed_roles, :seed_skus, :seed_payment_levels]
 
   desc "Seed the database with users"
   task :seed_users => :environment do
@@ -19,6 +19,12 @@ namespace :db do
 
       admin.has_role ROLE_ADMIN
     end
+  end
+
+  desc "Seed payment levels"
+  task :seed_payment_levels do
+    create_payment_level('EXCL', 'Exclusive', 0.5, false)
+    create_payment_level('NEXCL', 'Non-Exclusive', 0.25, true)
   end
 
   desc "Seed the database with skus"
@@ -68,5 +74,15 @@ def create_sku sku_class, sku_name, description, credits, price
     sku = sku_class.create!(:sku => sku_name, :description => description,
                             :num_credits => credits, :price => price)
     puts "Sku #{sku.sku} created"
+  end
+end
+
+def create_payment_level(code, name, rate, default_payment_level)
+  pl = PaymentLevel.find_by_code(code)
+  if pl
+    puts "Payment level #{code} already exists"
+  else
+    PaymentLevel.create!(:code => code, :name => name, :rate => rate, :default_payment_level => default_payment_level)
+    puts "Created payment level #{code}"
   end
 end
