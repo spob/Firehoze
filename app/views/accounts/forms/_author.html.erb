@@ -1,0 +1,5 @@
+<% if @user.instructor_status == AUTHOR_STATUS_NO %>
+    <%= render :partial => "accounts/forms/enroll_author" %>
+<% else %>
+    <%= render :partial => "accounts/forms/update_author" %>
+<% end %>

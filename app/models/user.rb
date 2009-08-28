@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   attr_accessor :current_password
 
   validates_presence_of     :email, :language,
-                            :login_count, :failed_login_count, :last_name
+                            :login_count, :failed_login_count, :last_name, :instructor_status
   validates_presence_of     :login#, :message => :login_required
   validates_uniqueness_of   :email, :case_sensitive => false
   validates_uniqueness_of   :login, :case_sensitive => false
@@ -77,7 +77,8 @@ class User < ActiveRecord::Base
   validates_attachment_size :avatar, :less_than => 3.megabytes, :message => "All uploaded images must be less then 3 megabytes"
   validates_attachment_content_type :avatar, :content_type => [ 'image/gif', 'image/png', 'image/x-png', 'image/jpeg', 'image/pjpeg', 'image/jpg' ]
 
-  attr_protected :email, :login, :rejected_bio
+  attr_protected :email, :login, :rejected_bio, :instructor_status, :address1, :address2, :city, :state,
+                 :postal_code, :country, :author_agreement_accepted_on, :withold_taxes, :payment_level_id
 
   @@flag_reasons = [
           FLAG_LEWD,

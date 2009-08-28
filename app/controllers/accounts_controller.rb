@@ -2,8 +2,8 @@
 class AccountsController < ApplicationController
   before_filter :require_user, :find_user
 
-  verify :method => :put, :only => [ :update, :update_privacy ], :redirect_to => :home_path
-  verify :method => :post, :only => [ :clear_avatar ], :redirect_to => :home_path
+  verify :method => :put, :only => [ :update, :update_privacy, :update_author, :update_avatar ], :redirect_to => :home_path
+  verify :method => :post, :only => [ :enroll_instructor, :clear_avatar ], :redirect_to => :home_path
 
   def show
   end
@@ -13,11 +13,39 @@ class AccountsController < ApplicationController
 
   def update_avatar
     if params[:user][:avatar]
-      if  @user.update_attribute(:avatar, params[:user][:avatar])
+      if @user.update_attribute(:avatar, params[:user][:avatar])
         flash[:notice] = t 'account_settings.avatar_success'
         redirect_to edit_account_path(@user)
       end
     end
+  end
+
+  def enroll_instructor
+    if @user.instructor_status == AUTHOR_STATUS_NO
+      @user.update_attribute(:instructor_status, AUTHOR_STATUS_INPROGRESS)
+      flash[:notice] = t 'account_settings.enrollment_started'
+    end
+    redirect_to edit_account_path
+  end
+
+  def update_author
+    @user.instructor_status = params[:user][:instructor_status]
+    @user.address1 = params[:user][:address1]
+    @user.address2 = params[:user][:address2]
+    @user.city = params[:user][:city]
+    @user.state = params[:user][:state]
+    @user.postal_code = params[:user][:postal_code]
+    @user.country = params[:user][:country]
+    if @user.save
+      flash[:notice] = t 'account_settings.update_success'
+    else
+      flash[:error] = t 'account_settings.update_error'
+    end
+
+    redirect_to edit_account_path
+    #:author_agreement_accepted_on,
+    #:withold_taxes,
+    #:payment_level_id
   end
 
   def clear_avatar
