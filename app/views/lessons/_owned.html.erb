@@ -1,4 +1,4 @@
   <%= lessons_header(:owned_lessons) %>
-  <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => current_user.owned_lessons %>
+  <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => current_user.lessons %>
 
 <%#= render :partial => "lessons/pagination", :object => current_user.owned_lessons, :locals => { :collection => :owned } %>

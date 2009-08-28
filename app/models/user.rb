@@ -161,7 +161,7 @@ class User < ActiveRecord::Base
     self.wishes.find_by_id(lesson.id)
   end
 
-  def owned_lessons
+  def owned_and_instructed_lessons
     lessons + instructed_lessons
   end
 
