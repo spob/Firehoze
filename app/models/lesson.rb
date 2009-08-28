@@ -110,6 +110,7 @@ class Lesson < ActiveRecord::Base
     sql = <<END
       SELECT l.* FROM lessons AS l
       WHERE status = ?
+        AND l.instructor_id <> ?
         AND EXISTS (
         SELECT null
         FROM lesson_buy_pairs AS pairs
@@ -124,10 +125,11 @@ class Lesson < ActiveRecord::Base
       ORDER BY l.rating_average DESC
       LIMIT ?
 END
-    lessons1 = Lesson.ready.find_by_sql([sql, VIDEO_STATUS_READY, user.id, limit])
+    lessons1 = Lesson.ready.find_by_sql([sql, VIDEO_STATUS_READY, user.id, user.id, limit])
     lessons2 = []
     tmp_limit = limit * 2 - lessons1.size
-    lessons2 = Lesson.ready.find(:all, :conditions => ["id not in (?) and id not in (?)",
+    lessons2 = Lesson.ready.find(:all, :conditions => ["instructor_id <> ? and id not in (?) and id not in (?)",
+                                                       user.id,
                                                        lessons1.collect(&:id) + [-1],
                                                        user.lessons.collect(&:id) + [-1]],
                                  :limit => tmp_limit,
