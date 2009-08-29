@@ -1,0 +1,46 @@
+<h2>Instructor Enrollment Wizard</h2>
+<%= instructor_wizard_breadcrumbs 2 %>
+<br/>
+<br/>
+<% form_for(:user, :url => update_instructor_wizard_account_path(@user), :html => { :method => :put, :id => "author" }) do |f| %>
+    <%= f.error_messages %>
+    <%= hidden_field_tag :step, "2" %>
+    <fieldset>
+      <legend>Exclusivity</legend>
+      <p>
+        Instructors who choose to make their content available exclusively on Firehoze receive a greater percentage
+        of the revenues whenever a user purchases one of their videos. However, in agreeing to make your content
+        available exclusively on Firehoze, you are agreeing not to distribute your videos by other means.
+      </p>
+
+      <p>
+        Exclusive providers earn
+        <%= number_to_percentage(100 * PaymentLevel.find_by_default_payment_level(false).rate, :precision => 1) %>
+        of each sale, while non-exclusive providers earn
+        <%= number_to_percentage(100 * PaymentLevel.find_by_default_payment_level(true).rate, :precision => 1) %>
+        of each sale.
+      </p>
+
+      <p>
+        The choice is yours...but choose carefully. Once you start posting lessons to Firehoze, you will be
+        limited in your ability to change your mind.
+      </p>
+
+      <p>
+        <% if @user.payment_level and !@user.instructed_lessons.empty? %>
+            <%= @user.payment_level.name %>
+            (pays at <%= number_to_percentage(100 * @user.payment_level.rate, :precision => 1) %>)
+        <% else %>
+            <%= f.select :payment_level, options_from_collection_for_select(PaymentLevel.all, 'id', 'name',
+                                                                            (@user.payment_level ? @user.payment_level : PaymentLevel.find_by_default_payment_level(true).id)) %>
+        <% end %>
+      </p>
+
+    </fieldset>
+    <% if !@user.payment_level or @user.instructed_lessons.empty? %>
+        <p>
+          <%= f.submit "Next", :disable_with => translate('general.disable_with') %>
+          <%= link_to 'Cancel', home_path %>
+        </p>
+    <% end %>
+<% end %>

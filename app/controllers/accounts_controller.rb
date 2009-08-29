@@ -1,19 +1,89 @@
 # The accounts controller allows the user to update personal information on their account
 class AccountsController < ApplicationController
-  before_filter :require_user, :except => [:author_agreement]
+  before_filter :require_user, :except => [:instructor_agreement]
   before_filter :find_user
 
-  verify :method => :put, :only => [ :update, :update_privacy, :update_author, :update_avatar ], :redirect_to => :home_path
-  verify :method => :post, :only => [ :enroll_instructor, :clear_avatar ], :redirect_to => :home_path
+  verify :method => :put, :only => [ :update, :update_privacy, :update_instructor, :update_avatar, :update_instructor_wizard ], :redirect_to => :home_path
+  verify :method => :post, :only => [ :clear_avatar ], :redirect_to => :home_path
 
   def show
   end
 
-  def edit
-    if @user.payment_level.nil?
-      # Default payment level
-      @user.payment_level = PaymentLevel.find_by_default_payment_level(true)
+  def instructor_signup_wizard
+    redirect_to calc_next_wizard_step(@user)
+  end
+
+  def instructor_wizard_step1
+
+  end
+
+  def update_instructor_wizard
+    if params[:step] == "1"
+      # Accepting the agreement
+      if @user.author_agreement_accepted_on.nil?
+        if params[:accept_agreement]
+          @user.author_agreement_accepted_on = Time.now
+          if @user.instructor_status == AUTHOR_STATUS_NO
+            @user.instructor_status = AUTHOR_STATUS_INPROGRESS
+          end
+          if @user.save
+            redirect_to calc_next_wizard_step(@user)
+          else
+            render :action => "instructor_wizard_step1"
+          end
+        else
+          flash[:error] = t 'account_settings.must_accept_agreement'
+          render :action => "instructor_wizard_step1"
+        end
+      end
+    elsif params[:step] == "2"
+      if !@user.payment_level or @user.instructed_lessons.empty?
+        @user.payment_level = PaymentLevel.find(params[:user][:payment_level])
+        if @user.save
+          redirect_to calc_next_wizard_step(@user)
+        else
+          render :action => "instructor_wizard_step2"
+        end
+      end
+    elsif params[:step] == "3"
+      @user.address1 = params[:user][:address1]
+      @user.address2 = params[:user][:address2]
+      @user.city = params[:user][:city]
+      @user.state = params[:user][:state]
+      @user.postal_code = params[:user][:postal_code]
+      @user.country = params[:user][:country]
+
+      if @user.address1_changed? or @user.address2_changed? or @user.city_changed? or
+              @user.state_changed? or @user.postal_code_changed? or @user.country_changed?
+        @user.verified_address_on = nil
+      end
+      if @user.save
+        if !@user.address_provided?
+          flash[:error] = t('user.address_incomplete')
+        end
+        redirect_to calc_next_wizard_step(@user)
+      else
+        render :action => "instructor_wizard_step3"
+      end
+    elsif params[:step] == "4"
+      if params[:confirm_contact]
+        @user.verified_address_on = Time.now
+        @user.instructor_status = AUTHOR_STATUS_OK
+        if @user.save
+          redirect_to calc_next_wizard_step(@user)
+        else
+          redirect_to calc_next_wizard_step(@user)
+        end
+      else
+        flash[:error] = t 'account_settings.confirm_address'
+        render :action => "instructor_wizard_step4"
+      end
+    else
+      raise
     end
+  end
+
+  def edit
   end
 
   def update_avatar
@@ -25,53 +95,18 @@ class AccountsController < ApplicationController
     end
   end
 
-  def enroll_instructor
-    if @user.instructor_status == AUTHOR_STATUS_NO
-      @user.update_attribute(:instructor_status, AUTHOR_STATUS_INPROGRESS)
-      flash[:notice] = t 'account_settings.enrollment_started'
-    end
-    redirect_to edit_account_path
-  end
-
-  def author_agreement
+  def instructor_agreement
     render :layout => 'content_in_tab'
   end
 
-  def update_author
-    @user.address1 = params[:user][:address1]
-    @user.address2 = params[:user][:address2]
-    @user.city = params[:user][:city]
-    @user.state = params[:user][:state]
-    @user.postal_code = params[:user][:postal_code]
-    @user.country = params[:user][:country]
+  def update_instructor
 
-    if !@user.payment_level or @user.payment_level.default_payment_level or @user.instructed_lessons.empty?
-      @user.payment_level = PaymentLevel.find(params[:user][:payment_level])
-    end
-
-    if @user.address1_changed? or @user.address2_changed? or @user.city_changed? or
-            @user.state_changed? or @user.postal_code_changed? or @user.country_changed?
-      @user.verified_address_on = nil
-    elsif params[:confirm_contact]
-      @user.verified_address_on = Time.now
-    end
-
-    if @user.author_agreement_accepted_on.nil? and params[:accept_agreement]
-      @user.author_agreement_accepted_on = Time.now
-    end
     if @user.save!
       flash[:notice] = t 'account_settings.update_success'
     else
       flash[:error] = t 'account_settings.update_error'
     end
     redirect_to edit_account_path
-  rescue Exception => e
-    flash[:error] = e.message
-    redirect_to edit_account_path
-
-    #:author_agreement_accepted_on,
-    #:withold_taxes,
-    #:payment_level_id
   end
 
   def clear_avatar
@@ -127,6 +162,20 @@ class AccountsController < ApplicationController
 
   private
 
+  def calc_next_wizard_step user
+    if user.author_agreement_accepted_on.nil?
+      return instructor_wizard_step1_account_path(user)
+    elsif !user.payment_level
+      return instructor_wizard_step2_account_path(user)
+    elsif !user.address_provided?
+      return instructor_wizard_step3_account_path(user)
+    elsif !user.verified_address_on
+      return instructor_wizard_step4_account_path(user)
+    else
+      return instructor_wizard_step5_account_path(user)
+    end
+  end
+
   def find_user
     if @current_user.is_admin?
       @user = User.find params[:id]
@@ -134,4 +183,5 @@ class AccountsController < ApplicationController
       @user = @current_user
     end
   end
+
 end

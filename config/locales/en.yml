@@ -173,7 +173,8 @@ en:
     avatar_cleared: You have successfully removed your avatar
     update_error: Oops, something wasn't quite right with the information you entered
     update_success: Your account was successfully updated
-    enrollment_started: Please fill in the author profile information to complete the author enrollment process
+    must_accept_agreement: You must accept the instructor agreement before continuing with the enrollment process
+    confirm_address: Please confirm your contact information before continuing
   
   registration:
     check_email_for_registration: Please check your email to complete the registration
@@ -184,7 +185,7 @@ en:
     add_your_review: Add Your Review of the Lesson
     already_reviewed: You can only write a review for a lesson once
     cannot_edit: You do not have permissions required to edit this review
-    cannot_review_own_lesson: An author can't review their own work
+    cannot_review_own_lesson: An instructor can't review their own work
     must_rate: In order to review a lesson, please rate it first
     create_success: Review created
     create_failure: There were problems
@@ -210,7 +211,7 @@ en:
     account_reg_success: Account registered
     account_update_success: Account updated
     avatar: Avatar
-    author_info: Author Information
+    author_info: Instructor Information
     credit_history: Credit History
     login_required: Username can't be empty
     password: Password
@@ -226,12 +227,13 @@ en:
     inactive_cannot_show: This user's account has been deactivated and cannot be displayed
     done: Completed
     not_done: Not Completed
+    address_incomplete: The address you entered appears to be incomplete
 
   wish:
     create_success: Lesson added to your wish list
     delete_success: Lesson has been removed from your wish list
     already_owned: You already own that lesson and thus do not need to put it on your wish list
-    you_are_author: As the author of this video, you do not need to put it on your wish list
+    you_are_author: As the instructor of this lesson, you do not need to put it on your wish list
     already_wished: This lesson is already on your wish list
     not_on_wishlist: This lesson is not on your wishlist
     must_logon: Please log on or request an account in order to add this lesson to your wish list

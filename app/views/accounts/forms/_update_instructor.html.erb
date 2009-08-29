@@ -1,0 +1,49 @@
+<% form_for(:user, :url => update_instructor_account_path(@user), :html => { :method => :put, :id => "author" }) do |f| %>
+    <%= f.error_messages %>
+
+    <table>
+      <tr>
+        <th>Task</th>
+        <th>Description</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td>Mailing Address Provided</td>
+        <td>Firehoze requires this information to know how to pay you</td>
+        <td <%= done_color(@user.address_provided?) %> ><%= done_text(@user.address_provided?) %></td>
+      </tr>
+      <tr>
+        <td>Contact Information Verified</td>
+        <td>Verify that your name and address is correct...otherwise, you won't get paid</td>
+        <td <%= done_color(@user.verified_address_on) %> ><%= done_text(@user.verified_address_on) %></td>
+      </tr>
+      <tr>
+        <td>Agreement Accepted</td>
+        <td>You must accept the Author Agreement before you can create lessons</td>
+        <td <%= done_color(!@user.author_agreement_accepted_on.nil?) %> ><%= done_text(!@user.author_agreement_accepted_on.nil?) %></td>
+      </tr>
+      <tr>
+        <td>Agree to Exclusivity</td>
+        <td>If you agree to make our content available exclusively to Firehoze, you will receive a higher percentage
+          of each sale. See XXX for details.
+        </td>
+        <td <%= done_color(!@user.payment_level.try('default_payment_level')) %> >
+          <%= done_text(!@user.payment_level.try('default_payment_level')) %></td>
+      </tr>
+      <tr>
+        <td>Tax Forms Provided</td>
+        <td>You can post lessons and receive payments from Firehoze. However, by law Firehoze must without taxes
+          on your payments. If you'd like to avoid witholding by Firehoze, see XXX.
+        </td>
+        <td <%= done_color(!@user.withold_taxes) %> ><%= done_text(!@user.withold_taxes) %></td>
+      </tr>
+    </table>
+    <fieldset>
+
+
+    </fieldset>
+    <p>
+      <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
+      <%= link_to 'Cancel', home_path %>
+    </p>
+<% end %>                                            `

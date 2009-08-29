@@ -3,6 +3,35 @@ module AccountsHelper
     t("user.#{done ? '' : 'not_'}done")
   end
 
+  def instructor_wizard_breadcrumbs(step)
+    link_text("Instructor Agreement", 1, step,
+              @user.author_agreement_accepted_on, instructor_wizard_step1_account_path(@user)) +
+            " > " +
+            link_text("Exclusivity", 2, step,
+                      (@user.author_agreement_accepted_on and @user.payment_level),
+                      instructor_wizard_step2_account_path(@user)) +
+            " > " +
+            link_text("Postal Address", 3, step,
+                      (@user.author_agreement_accepted_on and @user.payment_level),
+                      instructor_wizard_step3_account_path(@user)) +
+            " > " +
+            link_text("Confirm Contact Information", 4, step,
+                      (@user.address_provided? and @user.author_agreement_accepted_on and @user.payment_level),
+                      instructor_wizard_step4_account_path(@user)) +
+            " > " +
+            link_text("Tax Witholding", 5, step,
+                      (@user.address_provided? and @user.author_agreement_accepted_on and @user.payment_level and @user.verified_address_on and @user.verified_address_on),
+                      instructor_wizard_step5_account_path(@user))
+  end
+
+  def link_text text, text_step, step, enabled, url
+    if text_step == step or !enabled
+      bold(italics(text, text_step < step), text_step == step)
+    else
+      italics(link_to(text, url), text_step < step)
+    end
+  end
+
   def done_color(done)
     if done
       "style='color: green;'"
@@ -20,4 +49,5 @@ module AccountsHelper
   def completed yes_no
     (yes_no ? "Complete" : "Incomplete")
   end
+
 end

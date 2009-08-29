@@ -26,6 +26,11 @@ module ApplicationHelper
     text
   end
 
+  def bold(text, condition)
+    return "<b>#{text}</b>" if condition
+    text
+  end
+
   def rbs_formatter(text)
     return text if text.blank?
     # process bold and italics

@@ -1,0 +1,28 @@
+<h2>Instructor Enrollment Wizard</h2>
+<%= instructor_wizard_breadcrumbs 1 %>
+<br/>
+<br/>
+<% form_for(:user, :url => update_instructor_wizard_account_path(@user), :html => { :method => :put, :id => "author" }) do |f| %>
+    <%= f.error_messages %>
+    <%= hidden_field_tag :step, "1" %>
+    <fieldset>
+      <legend>Author Agreement</legend>
+      <%= render :partial => 'accounts/forms/instructor_agreement' %>
+      <p>
+        <b>
+          <% if @user.author_agreement_accepted_on.nil? %>
+              By checking this box I hereby agreement to be bound by the terms of this agreement
+              <%= check_box_tag :accept_agreement %>
+          <% else %>
+              Accepted on: <%= l @user.author_agreement_accepted_on %>
+          <% end %>
+        </b>
+      </p>
+    </fieldset>
+    <% if !@user.author_agreement_accepted_on %>
+        <p>
+          <%= f.submit "Next", :disable_with => translate('general.disable_with') %>
+          <%= link_to 'Cancel', home_path %>
+        </p>
+    <% end %>
+<% end %>

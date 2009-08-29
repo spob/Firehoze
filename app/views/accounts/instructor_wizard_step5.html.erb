@@ -1,0 +1,29 @@
+<h2>Instructor Enrollment Wizard</h2>
+<%= instructor_wizard_breadcrumbs 5 %>
+<br/>
+<br/>
+<% form_for(:user, :url => update_instructor_wizard_account_path(@user), :html => { :method => :put, :id => "author" }) do |f| %>
+    <%= f.error_messages %>
+    <%= hidden_field_tag :step, "5" %>
+    <fieldset>
+      <legend>Tax Witholding</legend>
+      <p>
+        That's it! You are now a Firehoze Instructor. Congratulations!
+      </p>
+
+      <p>
+        One last thing...Uncle Sam requires that you pay your taxes. You have two choices.
+      <ol>
+        <li>Do nothing...we'll automatically withold taxes from your sales and pay the required taxes</li>
+        <li>Work with us to file a XYZ form. In doing so, you are taking responsibilty for paying any required
+        taxes, and Scribe will not withold any taxes from the money owed to you.</li>
+      </ol>
+      </p>
+      <p>
+        The choice is yours.
+      </p>
+      <p>
+        Happy teaching!
+      </p>
+    </fieldset>
+<% end %>
