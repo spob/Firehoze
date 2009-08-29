@@ -22,7 +22,6 @@ class PaymentLevelsController < ApplicationController
 
   def create
     @payment_level =  PaymentLevel.new(params[:payment_level])
-
     if @payment_level.save
       flash[:notice] = t 'payment_level.create_success'
       redirect_to payment_levels_path

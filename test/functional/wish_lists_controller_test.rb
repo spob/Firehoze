@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class WishListsControllerTest < ActionController::TestCase
   context "with an existing lesson" do
@@ -53,7 +53,7 @@ class WishListsControllerTest < ActionController::TestCase
 
         should_assign_to :lesson
         should_respond_with :redirect
-        should_set_the_flash_to /As the author of this video/
+        should_set_the_flash_to /As the instructor of this lesson/
         should_redirect_to("show lesson page") { lesson_url(@lesson2) }
 
         should "does not wish for the lesson" do
