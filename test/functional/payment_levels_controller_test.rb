@@ -55,8 +55,10 @@ class PaymentLevelsControllerTest < ActionController::TestCase
         should_redirect_to("Payment levels index page") { payment_levels_url }
       end
 
-      context "with at least one existing sku" do
+      context "with at least one existing payment level" do
         setup do
+          PaymentLevel.delete_all
+          assert PaymentLevel.all.empty?
           @payment_level = Factory.create(:payment_level)
         end
 
