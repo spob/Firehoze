@@ -175,6 +175,7 @@ en:
     update_success: Your account was successfully updated
     must_accept_agreement: You must accept the instructor agreement before continuing with the enrollment process
     confirm_address: Please confirm your contact information before continuing
+    wizard_jump_ahead: Hey, no fair jumping ahead
   
   registration:
     check_email_for_registration: Please check your email to complete the registration

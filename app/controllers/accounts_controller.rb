@@ -10,11 +10,27 @@ class AccountsController < ApplicationController
   end
 
   def instructor_signup_wizard
-    redirect_to calc_next_wizard_step(@user)
+    redirect_path = "redirect_to instructor_wizard_step#{calc_next_wizard_step(@user)}_account_path"
+    eval redirect_path
   end
 
   def instructor_wizard_step1
+  end
 
+  def instructor_wizard_step2
+    enforce_order @user, 2
+  end
+
+  def instructor_wizard_step3
+    enforce_order @user, 3
+  end
+
+  def instructor_wizard_step4
+    enforce_order @user, 4
+  end
+
+  def instructor_wizard_step5
+    enforce_order @user, 5
   end
 
   def update_instructor_wizard
@@ -162,17 +178,24 @@ class AccountsController < ApplicationController
 
   private
 
+  def enforce_order user, step_num
+    if calc_next_wizard_step(user) < step_num
+      flash[:error] = t('account_settings.wizard_jump_ahead')
+      instructor_signup_wizard
+    end
+  end
+
   def calc_next_wizard_step user
     if user.author_agreement_accepted_on.nil?
-      return instructor_wizard_step1_account_path(user)
+      1
     elsif !user.payment_level
-      return instructor_wizard_step2_account_path(user)
+      2
     elsif !user.address_provided?
-      return instructor_wizard_step3_account_path(user)
+      3
     elsif !user.verified_address_on
-      return instructor_wizard_step4_account_path(user)
+      4
     else
-      return instructor_wizard_step5_account_path(user)
+      5
     end
   end
 
