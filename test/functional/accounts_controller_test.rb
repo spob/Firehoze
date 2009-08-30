@@ -158,7 +158,7 @@ class AccountsControllerTest < ActionController::TestCase
         context "on PUT to :update_instructor_wizard" do
           setup { put :update_instructor_wizard, :id => @user, :step => 3,
                       :user => { :address1 => "aaa", :city => "yyy", :state => "XX", :postal_code => "99999",
-                              :country => "US" }  }
+                                 :country => "US" }  }
 
           should_assign_to :user
           should_respond_with :redirect
@@ -195,15 +195,21 @@ class AccountsControllerTest < ActionController::TestCase
             should_redirect_to("fourth wizard step") {instructor_wizard_step4_account_path(assigns(:user)) }
           end
 
-        context "on PUT to :update_instructor_wizard" do
-          setup { put :update_instructor_wizard, :id => @user, :step => 4,
-                      :confirm_contact => 1  }
+          context "on PUT to :update_instructor_wizard" do
+            setup do
+              put :update_instructor_wizard, :id => @user, :step => 4,
+                  :confirm_contact => 1
+              @user = User.find(@user)
+            end
 
-          should_assign_to :user
-          should_respond_with :redirect
-          should_not_set_the_flash
-          should_redirect_to("five wizard step") {instructor_wizard_step5_account_path(assigns(:user)) }
-        end
+            should_assign_to :user
+            should_respond_with :redirect
+            should_not_set_the_flash
+            should_redirect_to("five wizard step") {instructor_wizard_step5_account_path(assigns(:user)) }
+            should "be an instructor?" do
+              assert @user.is_instructor?
+            end
+          end
 
           context "when having confirmed the address" do
             setup do

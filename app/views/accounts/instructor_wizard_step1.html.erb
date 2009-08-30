@@ -19,10 +19,12 @@
         </b>
       </p>
     </fieldset>
-    <% if !@user.author_agreement_accepted_on %>
-        <p>
+    <p>
+      <% if @user.author_agreement_accepted_on %>
+          <%= link_to "Next", instructor_wizard_step2_account_path(current_user) %>
+      <% else %>
           <%= f.submit "Next", :disable_with => translate('general.disable_with') %>
-          <%= link_to 'Cancel', home_path %>
-        </p>
-    <% end %>
+      <% end %>
+          <%= link_to 'Cancel', edit_account_path(current_user) %>
+    </p>
 <% end %>

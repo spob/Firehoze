@@ -85,14 +85,13 @@ class AccountsController < ApplicationController
       if params[:confirm_contact]
         @user.verified_address_on = Time.now
         @user.instructor_status = AUTHOR_STATUS_OK
-        if @user.save
-          instructor_signup_wizard
-        else
-          instructor_signup_wizard
-        end
-      else
+        @user.save
+        instructor_signup_wizard
+      elsif @user.verified_address_on.nil?
         flash[:error] = t 'account_settings.confirm_address'
         render :action => "instructor_wizard_step4"
+      else
+        instructor_signup_wizard
       end
     else
       raise
@@ -116,7 +115,6 @@ class AccountsController < ApplicationController
   end
 
   def update_instructor
-
     if @user.save!
       flash[:notice] = t 'account_settings.update_success'
     else

@@ -16,14 +16,18 @@
       <ol>
         <li>Do nothing...we'll automatically withold taxes from your sales and pay the required taxes</li>
         <li>Work with us to file a XYZ form. In doing so, you are taking responsibilty for paying any required
-        taxes, and Scribe will not withold any taxes from the money owed to you.</li>
+          taxes, and Scribe will not withold any taxes from the money owed to you.
+        </li>
       </ol>
       </p>
       <p>
         The choice is yours.
       </p>
+
       <p>
         Happy teaching!
       </p>
     </fieldset>
+    <%= link_to "Back", instructor_wizard_step4_account_path(current_user) %>
+    <%= link_to 'All Done', edit_account_path(current_user) %>
 <% end %>
