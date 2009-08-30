@@ -1,14 +1,10 @@
 Factory.sequence :name do |n|
-  "name#{n}"                                                
+  "name#{n}"
 end
 
-Factory.sequence :code do |n|
-  "code#{n}"
-end
-
-Factory.define :payment_level do |payment_level|
-  payment_level.sequence(:code) {|n| "code#{n}" }
-  payment_level.name { Factory.next(:name) }
-  payment_level.rate 0.25
-  payment_level.default_payment_level true
+Factory.define :payment_level do |p|
+  p.sequence(:code) {|n| "code#{n}" }
+  p.sequence(:name) {|n| "name#{n}" }
+  p.rate 0.25
+  p.default_payment_level false
 end

@@ -131,7 +131,7 @@ class UserTest < ActiveSupport::TestCase
         @user.state = "MA"
         @user.postal_code = "01984"
         @user.country = "US"
-        assert !@user.author?
+        assert !@user.instructor?
       end
 
       should "validate address" do
@@ -141,14 +141,14 @@ class UserTest < ActiveSupport::TestCase
       context "while testing if an author" do
         setup do
           @user.verified_address_on = Time.now
-          assert !@user.author?
+          assert !@user.instructor?
           @user.author_agreement_accepted_on = Time.now
-          assert !@user.author?
+          assert !@user.instructor?
           @user.payment_level = Factory.create(:payment_level)
         end
 
         should "be an author" do
-          assert @user.author?
+          assert @user.instructor?
         end
       end
     end

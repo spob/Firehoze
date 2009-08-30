@@ -145,7 +145,7 @@ class User < ActiveRecord::Base
     self == lesson.instructor
   end
 
-  def author?
+  def instructor?
     address_provided? and verified_address_on and author_agreement_accepted_on and payment_level
   end
 

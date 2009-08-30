@@ -7,6 +7,9 @@ class AccountsControllerTest < ActionController::TestCase
       activate_authlogic
       @user = Factory.create(:user)
       UserSession.create(@user)
+      PaymentLevel.delete_all
+      @payment_level1 = Factory.create(:payment_level, :default_payment_level => true)
+      @payment_level2 = Factory.create(:payment_level, :code => "xxx", :default_payment_level => false)
     end
 
     context "on GET to :show" do
@@ -77,6 +80,110 @@ class AccountsControllerTest < ActionController::TestCase
       should_respond_with :redirect
       should_not_set_the_flash
       should_redirect_to("first wizard step") {instructor_wizard_step1_account_path(assigns(:user)) }
+    end
+
+    context "on GET to :instructor_wizard_step2 when jumping ahead" do
+      setup { get :instructor_wizard_step2, :id => @user }
+
+      should_assign_to :user
+      should_respond_with :redirect
+      should_set_the_flash_to :wizard_jump_head
+      should_redirect_to("first wizard step") {instructor_wizard_step1_account_path(assigns(:user)) }
+    end
+
+    context "when having accepted user agreement" do
+      setup do
+        @user.update_attribute(:author_agreement_accepted_on, Time.now)
+      end
+
+      context "on GET to :instructor_signup_wizard" do
+        setup { get :instructor_signup_wizard, :id => @user }
+
+        should_assign_to :user
+        should_respond_with :redirect
+        should_not_set_the_flash
+        should_redirect_to("first wizard step") {instructor_wizard_step2_account_path(assigns(:user)) }
+      end
+
+      context "on GET to :instructor_wizard_step3 when jumping ahead" do
+        setup { get :instructor_wizard_step3, :id => @user }
+
+        should_assign_to :user
+        should_respond_with :redirect
+        should_set_the_flash_to :wizard_jump_head
+        should_redirect_to("second wizard step") {instructor_wizard_step2_account_path(assigns(:user)) }
+      end
+
+      context "when having selected payment level" do
+        setup do
+          @user.update_attribute(:payment_level, PaymentLevel.first)
+        end
+
+        context "on GET to :instructor_signup_wizard" do
+          setup { get :instructor_signup_wizard, :id => @user }
+
+          should_assign_to :user
+          should_respond_with :redirect
+          should_not_set_the_flash
+          should_redirect_to("first wizard step") {instructor_wizard_step3_account_path(assigns(:user)) }
+        end
+
+        context "on GET to :instructor_wizard_step4 when jumping ahead" do
+          setup { get :instructor_wizard_step4, :id => @user }
+
+          should_assign_to :user
+          should_respond_with :redirect
+          should_set_the_flash_to :wizard_jump_head
+          should_redirect_to("second wizard step") {instructor_wizard_step3_account_path(assigns(:user)) }
+        end
+
+        context "when having entered an address" do
+          setup do
+            @user.address1 = "xxx"
+            @user.city = "yyy"
+            @user.state = "XXX"
+            @user.postal_code = "99999"
+            @user.country = "US"
+            @user.save!
+            assert @user.address_provided?
+          end
+
+          context "on GET to :instructor_signup_wizard" do
+            setup { get :instructor_signup_wizard, :id => @user }
+
+            should_assign_to :user
+            should_respond_with :redirect
+            should_not_set_the_flash
+            should_redirect_to("fourth wizard step") {instructor_wizard_step4_account_path(assigns(:user)) }
+          end
+
+          context "on GET to :instructor_wizard_step4 when jumping ahead" do
+            setup { get :instructor_wizard_step5, :id => @user }
+
+            should_assign_to :user
+            should_respond_with :redirect
+            should_set_the_flash_to :wizard_jump_head
+            should_redirect_to("fourth wizard step") {instructor_wizard_step4_account_path(assigns(:user)) }
+          end
+
+
+          context "when having confirmed the address" do
+            setup do
+              @user.verified_address_on = Time.now
+              @user.save!
+            end
+
+            context "on GET to :instructor_signup_wizard" do
+              setup { get :instructor_signup_wizard, :id => @user }
+
+              should_assign_to :user
+              should_respond_with :redirect
+              should_not_set_the_flash
+              should_redirect_to("fifth wizard step") {instructor_wizard_step5_account_path(assigns(:user)) }
+            end
+          end
+        end
+      end
     end
   end
 end

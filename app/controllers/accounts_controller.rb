@@ -43,7 +43,7 @@ class AccountsController < ApplicationController
             @user.instructor_status = AUTHOR_STATUS_INPROGRESS
           end
           if @user.save
-            redirect_to calc_next_wizard_step(@user)
+            instructor_signup_wizard
           else
             render :action => "instructor_wizard_step1"
           end
@@ -56,7 +56,7 @@ class AccountsController < ApplicationController
       if !@user.payment_level or @user.instructed_lessons.empty?
         @user.payment_level = PaymentLevel.find(params[:user][:payment_level])
         if @user.save
-          redirect_to calc_next_wizard_step(@user)
+          instructor_signup_wizard
         else
           render :action => "instructor_wizard_step2"
         end
@@ -77,7 +77,7 @@ class AccountsController < ApplicationController
         if !@user.address_provided?
           flash[:error] = t('user.address_incomplete')
         end
-        redirect_to calc_next_wizard_step(@user)
+        instructor_signup_wizard
       else
         render :action => "instructor_wizard_step3"
       end
@@ -86,9 +86,9 @@ class AccountsController < ApplicationController
         @user.verified_address_on = Time.now
         @user.instructor_status = AUTHOR_STATUS_OK
         if @user.save
-          redirect_to calc_next_wizard_step(@user)
+          instructor_signup_wizard
         else
-          redirect_to calc_next_wizard_step(@user)
+          instructor_signup_wizard
         end
       else
         flash[:error] = t 'account_settings.confirm_address'
