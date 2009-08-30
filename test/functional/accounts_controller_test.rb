@@ -69,5 +69,14 @@ class AccountsControllerTest < ActionController::TestCase
       should_set_the_flash_to I18n.t('account_settings.update_error')
       should_redirect_to("edit account screen") { edit_account_path(assigns(:user)) }
     end
+
+    context "on GET to :instructor_signup_wizard" do
+      setup { get :instructor_signup_wizard, :id => @user }
+
+      should_assign_to :user
+      should_respond_with :redirect
+      should_not_set_the_flash
+      should_redirect_to("first wizard step") {instructor_wizard_step1_account_path(assigns(:user)) }
+    end
   end
 end
