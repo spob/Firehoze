@@ -33,6 +33,7 @@ class UserTest < ActiveSupport::TestCase
     should_have_many                 :reviews
     should_have_many                 :orders
     should_have_many                 :flags
+    should_have_many                 :lesson_comments
     should_have_many                 :flaggings
     should_have_many                 :user_logons
     should_have_many                 :helpfuls

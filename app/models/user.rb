@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   has_many :flags, :as => :flaggable, :dependent => :destroy
   # the times this user has reported in appropriate content
   has_many :flaggings, :class_name => 'Flag'
+  has_many :lesson_comments
   has_many :available_credits, :class_name => 'Credit',
            :conditions => { :redeemed_at => nil },
            :order => "id"

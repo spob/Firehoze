@@ -28,7 +28,7 @@ class LessonComment < Comment
 
   def self.list_conditions(lesson, current_user)
     conditions = { :lesson_id => lesson }
-    conditions = conditions.merge({:public => true, :status => COMMENT_STATUS_ACTIVE}) unless (current_user and current_user.is_moderator?)
+    conditions = conditions.merge!({:public => true, :status => COMMENT_STATUS_ACTIVE}) unless (current_user and current_user.is_moderator?)
     conditions
   end
 end

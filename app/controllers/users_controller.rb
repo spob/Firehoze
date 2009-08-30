@@ -92,6 +92,10 @@ class UsersController < ApplicationController
           review.reject
           review.save!
         end
+        @user.lesson_comments.each do |comment|
+          comment.reject
+          comment.save!
+        end
       end
 
       if @user.save!
