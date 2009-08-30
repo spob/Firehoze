@@ -46,6 +46,7 @@ class PaymentLevelsControllerTest < ActionController::TestCase
 
       context "on POST to :create" do
         setup do
+          PaymentLevel.delete_all
           post :create, :payment_level => Factory.attributes_for(:payment_level)
         end
 
