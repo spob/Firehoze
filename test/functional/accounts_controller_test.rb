@@ -82,6 +82,15 @@ class AccountsControllerTest < ActionController::TestCase
       should_redirect_to("first wizard step") {instructor_wizard_step1_account_path(assigns(:user)) }
     end
 
+    context "on PUT to :update_instructor_wizard" do
+      setup { put :update_instructor_wizard, :id => @user, :step => 1, :accept_agreement => 1  }
+
+      should_assign_to :user
+      should_respond_with :redirect
+      should_not_set_the_flash
+      should_redirect_to("second wizard step") {instructor_wizard_step2_account_path(assigns(:user)) }
+    end
+
     context "on GET to :instructor_wizard_step2 when jumping ahead" do
       setup { get :instructor_wizard_step2, :id => @user }
 
@@ -114,6 +123,15 @@ class AccountsControllerTest < ActionController::TestCase
         should_redirect_to("second wizard step") {instructor_wizard_step2_account_path(assigns(:user)) }
       end
 
+      context "on PUT to :update_instructor_wizard" do
+        setup { put :update_instructor_wizard, :id => @user, :step => 2, :user => { :payment_level => PaymentLevel.first }  }
+
+        should_assign_to :user
+        should_respond_with :redirect
+        should_not_set_the_flash
+        should_redirect_to("third wizard step") {instructor_wizard_step3_account_path(assigns(:user)) }
+      end
+
       context "when having selected payment level" do
         setup do
           @user.update_attribute(:payment_level, PaymentLevel.first)
@@ -135,6 +153,17 @@ class AccountsControllerTest < ActionController::TestCase
           should_respond_with :redirect
           should_set_the_flash_to :wizard_jump_head
           should_redirect_to("second wizard step") {instructor_wizard_step3_account_path(assigns(:user)) }
+        end
+
+        context "on PUT to :update_instructor_wizard" do
+          setup { put :update_instructor_wizard, :id => @user, :step => 3,
+                      :user => { :address1 => "aaa", :city => "yyy", :state => "XX", :postal_code => "99999",
+                              :country => "US" }  }
+
+          should_assign_to :user
+          should_respond_with :redirect
+          should_not_set_the_flash
+          should_redirect_to("fourth wizard step") {instructor_wizard_step4_account_path(assigns(:user)) }
         end
 
         context "when having entered an address" do
@@ -166,6 +195,15 @@ class AccountsControllerTest < ActionController::TestCase
             should_redirect_to("fourth wizard step") {instructor_wizard_step4_account_path(assigns(:user)) }
           end
 
+        context "on PUT to :update_instructor_wizard" do
+          setup { put :update_instructor_wizard, :id => @user, :step => 4,
+                      :confirm_contact => 1  }
+
+          should_assign_to :user
+          should_respond_with :redirect
+          should_not_set_the_flash
+          should_redirect_to("five wizard step") {instructor_wizard_step5_account_path(assigns(:user)) }
+        end
 
           context "when having confirmed the address" do
             setup do
