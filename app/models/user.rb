@@ -145,7 +145,7 @@ class User < ActiveRecord::Base
   end
 
   def author?
-    address_provided and verified_address_on and self.author_agreement_accepted_on
+    address_provided? and verified_address_on and author_agreement_accepted_on and payment_level
   end
 
   def city_and_state

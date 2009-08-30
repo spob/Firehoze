@@ -12,7 +12,7 @@ class UserTest < ActiveSupport::TestCase
     should_validate_numericality_of  :login_count, :failed_login_count
     should_not_allow_mass_assignment_of :email, :login, :rejected_bio, :instructor_status, :address1, :address2,
                                         :city, :state, :postal_code, :country, :author_agreement_accepted_on,
-                                        :withold_taxes, :payment_level_id  
+                                        :withold_taxes, :payment_level_id
 
     # Apparently should not allow values for only works if you pass the error message you expect
     # to see...though this is not clear in the shoulda documentation.
@@ -53,7 +53,7 @@ class UserTest < ActiveSupport::TestCase
         assert @user.rejected_bio
       end
     end
-    
+
     context "and an item on the wish list" do
       setup do
         @lesson = Factory.create(:lesson)
@@ -120,6 +120,36 @@ class UserTest < ActiveSupport::TestCase
       fn = @user.first_name
       ln = @user.last_name
       assert_equal @user.full_name, "#{fn} #{ln}"
+      assert !@user.address_provided?
+    end
+
+    context "with address specified" do
+      setup do
+        @user.address1 = "135 Larch Row"
+        @user.city = "Wenham"
+        @user.state = "MA"
+        @user.postal_code = "01984"
+        @user.country = "US"
+        assert !@user.author?
+      end
+
+      should "validate address" do
+        assert @user.address_provided?
+      end
+
+      context "while testing if an author" do
+        setup do
+          @user.verified_address_on = Time.now
+          assert !@user.author?
+          @user.author_agreement_accepted_on = Time.now
+          assert !@user.author?
+          @user.payment_level = Factory.create(:payment_level)
+        end
+
+        should "be an author" do
+          assert @user.author?
+        end
+      end
     end
 
     should "return fullname as just last" do
