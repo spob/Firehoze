@@ -68,23 +68,28 @@ class LessonsController < ApplicationController
   end
 
   def create
-    video_param = params[:lesson].delete("video")
-    video = nil
-    @lesson = Lesson.new(params[:lesson])
-    @lesson.initial_free_download_count = params[:initial_free_download_count].try('to_i')
-    # the instructor is assumed to be the current user when creating a new lesson
-    @lesson.instructor = current_user
-    Lesson.transaction do
-      if @lesson.save
-        video = OriginalVideo.new({ :lesson => @lesson,
-                                    :video => video_param})
-        video.save!
-        @lesson.trigger_conversion
-        flash[:notice] = t 'lesson.created'
-        redirect_to lesson_path(@lesson)
-      else
-        render :action => :new
+    if current_user.is_instructor?
+      video_param = params[:lesson].delete("video")
+      video = nil
+      @lesson = Lesson.new(params[:lesson])
+      @lesson.initial_free_download_count = params[:initial_free_download_count].try('to_i')
+      # the instructor is assumed to be the current user when creating a new lesson
+      @lesson.instructor = current_user
+      Lesson.transaction do
+        if @lesson.save
+          video = OriginalVideo.new({ :lesson => @lesson,
+                                      :video => video_param})
+          video.save!
+          @lesson.trigger_conversion
+          flash[:notice] = t 'lesson.created'
+          redirect_to lesson_path(@lesson)
+        else
+          render :action => :new
+        end
       end
+    else
+      flash[:error] = t 'lesson.must_be_instructor'
+      redirect_to instructor_signup_wizard_account_path(current_user)
     end
   rescue Exception => e
     # Creating the original video failed...the lesson should have rolled back. Let's trap the error. This is

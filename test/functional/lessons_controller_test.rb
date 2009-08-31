@@ -81,16 +81,7 @@ class LessonsControllerTest < ActionController::TestCase
 
     context "when an instructor" do
       setup do
-        @user.author_agreement_accepted_on = Time.now
-        @user.payment_level = Factory.create(:payment_level)
-        @user.address1 = "xxx"
-        @user.city = "yyy"
-        @user.state = "XXX"
-        @user.postal_code = "99999"
-        @user.country = "US"
-        @user.verified_address_on = Time.now
-        @user.save!
-        @user = User.find(@user)
+        set_instructor
         assert @user.is_instructor?
       end
 
@@ -118,6 +109,8 @@ class LessonsControllerTest < ActionController::TestCase
 
     context "on POST to :create with bad values" do
       setup do
+        set_instructor
+        assert @user.is_instructor?
         post :create, :lesson => Factory.attributes_for(:lesson, :title => "")
       end
 
@@ -351,4 +344,16 @@ class LessonsControllerTest < ActionController::TestCase
     Lesson.find(lesson.id)
   end
 
+  def set_instructor
+    @user.author_agreement_accepted_on = Time.now
+    @user.payment_level = Factory.create(:payment_level)
+    @user.address1 = "xxx"
+    @user.city = "yyy"
+    @user.state = "XXX"
+    @user.postal_code = "99999"
+    @user.country = "US"
+    @user.verified_address_on = Time.now
+    @user.save!
+    @user = User.find(@user)
+  end
 end

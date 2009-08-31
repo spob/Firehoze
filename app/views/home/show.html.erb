@@ -27,7 +27,7 @@
         <%= render :partial => "lessons/owned", :locals => { :lesson_format => :brief } %>
       </div>
 
-      <% unless current_user.instructed_lessons.empty? %>
+      <% if current_user.is_instructor? %>
         <h3><a href="#"><%= t 'lesson.lessons_you_instructed' %></a></h3>
 
         <div class="content">
