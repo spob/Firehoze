@@ -33,6 +33,20 @@ class AccountsController < ApplicationController
     enforce_order @user, 5
   end
 
+  def update_address
+    @user.address1 = params[:user][:address1]
+    @user.address2 = params[:user][:address2]
+    @user.city = params[:user][:city]
+    @user.state = params[:user][:state]
+    @user.postal_code = params[:user][:postal_code]
+    @user.country = params[:user][:country]
+
+    if @user.address1_changed? or @user.address2_changed? or @user.city_changed? or
+            @user.state_changed? or @user.postal_code_changed? or @user.country_changed?
+      @user.verified_address_on = nil
+    end
+  end
+
   def update_instructor_wizard
     if params[:step] == "1"
       # Accepting the agreement
@@ -62,17 +76,7 @@ class AccountsController < ApplicationController
         end
       end
     elsif params[:step] == "3"
-      @user.address1 = params[:user][:address1]
-      @user.address2 = params[:user][:address2]
-      @user.city = params[:user][:city]
-      @user.state = params[:user][:state]
-      @user.postal_code = params[:user][:postal_code]
-      @user.country = params[:user][:country]
-
-      if @user.address1_changed? or @user.address2_changed? or @user.city_changed? or
-              @user.state_changed? or @user.postal_code_changed? or @user.country_changed?
-        @user.verified_address_on = nil
-      end
+      update_address
       if @user.save
         if !@user.address_provided?
           flash[:error] = t('user.address_incomplete')
@@ -115,12 +119,18 @@ class AccountsController < ApplicationController
   end
 
   def update_instructor
+    update_address
     if @user.save!
       flash[:notice] = t 'account_settings.update_success'
     else
       flash[:error] = t 'account_settings.update_error'
     end
-    redirect_to edit_account_path
+    if @user.verified_address_on
+      redirect_to edit_account_path
+    else
+      flash[:notice] = t 'account_settings.confirm_address'
+      instructor_signup_wizard
+    end
   end
 
   def clear_avatar

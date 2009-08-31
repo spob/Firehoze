@@ -211,6 +211,50 @@ class AccountsControllerTest < ActionController::TestCase
             end
           end
 
+          context "on PUT to :update_instructor with no change" do
+            setup do
+              @user.update_attribute(:verified_address_on, Time.now)
+              put :update_instructor, :id => @user, :step => 3,
+                  :user => { :address1 => @user.address1,
+                             :address2 => @user.address2,
+                             :city => @user.city,
+                             :state => @user.state,
+                             :postal_code => @user.postal_code,
+                             :country => @user.country }
+              @user = User.find(@user)
+            end
+
+            should_assign_to :user
+            should_respond_with :redirect
+            should_set_the_flash_to /successfully updated/
+            should_redirect_to("edit account") {edit_account_path(assigns(:user)) }
+            should "be an instructor?" do
+              assert @user.is_instructor?
+            end
+          end
+
+          context "on PUT to :update_instructor with a change" do
+            setup do
+              @user.update_attribute(:verified_address_on, Time.now)
+              put :update_instructor, :id => @user, :step => 3,
+                  :user => { :address1 => @user.address1 + "xxx",
+                             :address2 => @user.address2,
+                             :city => @user.city,
+                             :state => @user.state,
+                             :postal_code => @user.postal_code,
+                             :country => @user.country }
+              @user = User.find(@user)
+            end
+
+            should_assign_to :user
+            should_respond_with :redirect
+            should_set_the_flash_to :confirm_address
+            should_redirect_to("three wizard step") {instructor_wizard_step4_account_path(assigns(:user)) }
+            should "not be an instructor?" do
+              assert !@user.is_instructor?
+            end
+          end
+
           context "when having confirmed the address" do
             setup do
               @user.verified_address_on = Time.now
