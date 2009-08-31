@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class PaymentLevelTest < ActiveSupport::TestCase
   context "given a payment level" do
     setup do
-      @payment_level = Factory.create(:payment_level, :default_payment_level => true)
+      @payment_level = Factory.create(:payment_level, :code => Time.now.to_i.to_s, :default_payment_level => true)
     end
 
     should_have_many                 :users
@@ -37,9 +37,10 @@ class PaymentLevelTest < ActiveSupport::TestCase
     context "and creating a new non-default payment level" do
       setup do
         assert @payment_level.default_payment_level
-        @new_payment_level = Factory.build(:payment_level, :name => 'new', :default_payment_level => false)
+        @new_payment_level = Factory.build(:payment_level, :name => 'new',
+                                           :default_payment_level => false)
         assert !@new_payment_level.default_payment_level
-        assert @new_payment_level.save
+        assert @new_payment_level.save!
         @payment_level = PaymentLevel.find(@payment_level.id)
         @new_payment_level = PaymentLevel.find(@new_payment_level.id)
       end
