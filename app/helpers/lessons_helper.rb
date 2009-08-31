@@ -128,7 +128,7 @@ module LessonsHelper
     if lesson.instructed_by?(current_user) or lesson.owned_by?(current_user)
       return
     elsif current_user and current_user.on_wish_list?(lesson)
-      button_to "Remove from Wish List", wish_lists_path(:id => lesson), :method => :delete, :disable_with => translate('general.disable_with')
+      button_to "Remove from Wish List", wish_list_path(lesson), :method => :delete, :disable_with => translate('general.disable_with')
     else
       button_to "Add to Wish List", wish_lists_path(:id => lesson), :method => :post, :disable_with => translate('general.disable_with')
     end
