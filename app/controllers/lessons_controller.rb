@@ -59,7 +59,12 @@ class LessonsController < ApplicationController
   end
 
   def new
-    @lesson = Lesson.new
+    if current_user.is_instructor?
+      @lesson = Lesson.new
+    else
+      flash[:error] = t 'lesson.must_be_instructor'
+      redirect_to instructor_signup_wizard_account_path(current_user)
+    end
   end
 
   def create
@@ -275,9 +280,9 @@ class LessonsController < ApplicationController
   private
 
   def layout_for_action
-    if %w(lesson_notes tabbed).include?(params[:action]) 
+    if %w(lesson_notes tabbed).include?(params[:action])
       'content_in_tab'
-    elsif %w(list_admin).include?(params[:action]) 
+    elsif %w(list_admin).include?(params[:action])
       'admin'
     else
       'application'

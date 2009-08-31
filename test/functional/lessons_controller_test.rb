@@ -47,7 +47,7 @@ class LessonsControllerTest < ActionController::TestCase
       end
     end
 
-    context "on GET to :new" do
+    context "on GET to :new when not an instructor" do
       setup { get :new }
 
       should_not_assign_to :lesson
@@ -70,13 +70,38 @@ class LessonsControllerTest < ActionController::TestCase
       should_redirect_to("home page") { home_path }
     end
 
-    context "on GET to :new" do
+    context "on GET to :new when not an instructor" do
       setup { get :new }
 
-      should_assign_to :lesson
-      should_respond_with :success
-      should_not_set_the_flash
-      should_render_template "new"
+      should_not_assign_to :lesson
+      should_respond_with :redirect
+      should_set_the_flash_to :must_be_instructor
+      should_redirect_to("first wizard step") {instructor_signup_wizard_account_path(@user) }
+    end
+
+    context "when an instructor" do
+      setup do
+        @user.author_agreement_accepted_on = Time.now
+        @user.payment_level = Factory.create(:payment_level)
+        @user.address1 = "xxx"
+        @user.city = "yyy"
+        @user.state = "XXX"
+        @user.postal_code = "99999"
+        @user.country = "US"
+        @user.verified_address_on = Time.now
+        @user.save!
+        @user = User.find(@user)
+        assert @user.is_instructor?
+      end
+
+      context "on GET to :new" do
+        setup { get :new }
+
+        should_assign_to :lesson
+        should_respond_with :success
+        should_not_set_the_flash
+        should_render_template "new"
+      end
     end
 
     # Don't know how to mock this up with a paperclip file attachment'

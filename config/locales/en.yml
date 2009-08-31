@@ -131,6 +131,7 @@ en:
     Pending: Lesson created and awaiting transcoding
     Ready: Ready
     must_logon: Please log on or request an account in order to join the discussion
+    must_be_instructor: Please complete your instructor information before creating a lesson 
 
   lesson_comment:
     create_success: Your lesson comment has been recorded
