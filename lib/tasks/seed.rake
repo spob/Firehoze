@@ -23,8 +23,8 @@ namespace :db do
 
   desc "Seed payment levels"
   task :seed_payment_levels do
-    create_payment_level('EXCL', 'Exclusive', 0.5, false)
-    create_payment_level('NEXCL', 'Non-Exclusive', 0.25, true)
+    create_payment_level('EXCL', 'Exclusive', 0.5, true)
+    create_payment_level('NEXCL', 'Non-Exclusive', 0.25, false)
   end
 
   desc "Seed the database with skus"
