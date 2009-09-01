@@ -212,6 +212,7 @@ en:
     account_settings: Account Settings
     account_reg_success: Account registered
     account_update_success: Account updated
+    account_update_failure: Account not updated
     avatar: Avatar
     author_info: Instructor Information
     credit_history: Credit History
