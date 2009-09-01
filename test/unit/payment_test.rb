@@ -7,6 +7,7 @@ class PaymentTest < ActiveSupport::TestCase
     end
 
     should_belong_to :user
+    should_have_many :credits
     should_validate_presence_of :user, :amount
     should_allow_values_for          :amount, 5.99, 0.05, 9999.3
 

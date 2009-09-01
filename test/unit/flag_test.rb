@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class FlagTest < ActiveSupport::TestCase
   context "given an existing record" do

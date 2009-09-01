@@ -17,6 +17,7 @@ class Credit < ActiveRecord::Base
   belongs_to :user
   belongs_to :lesson, :counter_cache => true
   belongs_to :line_item
+  belongs_to :payment
 
   before_create :set_acquired_at_and_will_expire_at
   before_validation :set_redeemed_at

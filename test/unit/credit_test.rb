@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class CreditTest < ActiveSupport::TestCase
   context "given an existing record" do
@@ -15,6 +15,7 @@ class CreditTest < ActiveSupport::TestCase
                                      :message => I18n.translate('activerecord.errors.messages.greater_than_or_equal_to', :count => 0)
     should_belong_to :user, :lesson
     should_belong_to :sku
+    should_belong_to :payment
 
     context "that has not yet been redeemed" do
       setup do
