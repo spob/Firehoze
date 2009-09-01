@@ -1,0 +1,45 @@
+<% form_for(:user, :url => update_instructor_user_path(@user), :html => { :method => :put, :id => "author" }) do |f| %>
+    <%= f.error_messages %>
+    <fieldset>
+      <legend>Payment Level</legend>
+      <p>
+        <%= f.select :payment_level, options_from_collection_for_select(PaymentLevel.all, 'id', 'name',
+                                                                        (@user.payment_level ? @user.payment_level : PaymentLevel.find_by_default_payment_level(true).id)) %>
+      </p>
+      <legend>Postal Address</legend>
+
+      <p>
+        <%= f.label :address1 %>
+        <%= f.text_field :address1 %>
+      </p>
+
+      <p>
+        <%= f.label :address2 %>
+        <%= f.text_field :address2 %>
+      </p>
+
+      <p>
+        <%= f.label :city %>
+        <%= f.text_field :city %>
+      </p>
+
+      <p>
+        <%= f.label :state, "State or Region" %>
+        <%= f.text_field :state %>
+      </p>
+
+      <p>
+        <%= f.label :postal_code, "Postal Code or Zip Code" %>
+        <%= f.text_field :postal_code %>
+      </p>
+
+      <p>
+        <%= f.localized_country_select(:country, ['US']) %>
+      </p>
+
+    </fieldset>
+    <p>
+      <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
+      <%= link_to 'Cancel', home_path %>
+    </p>
+<% end %>                                            `
