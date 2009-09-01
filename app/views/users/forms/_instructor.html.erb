@@ -3,8 +3,10 @@
     <fieldset>
       <legend>Payment Level</legend>
       <p>
-        <%= f.select :payment_level, options_from_collection_for_select(PaymentLevel.all, 'id', 'name',
-                                                                        (@user.payment_level ? @user.payment_level : PaymentLevel.find_by_default_payment_level(true).id)) %>
+        <%= f.select :payment_level,
+                     options_from_collection_for_select(PaymentLevel.ascend_by_name, 'id', 'name',
+                                                        @user.payment_level.try('id')),
+                     { :include_blank => true } %>
       </p>
       <legend>Postal Address</legend>
 

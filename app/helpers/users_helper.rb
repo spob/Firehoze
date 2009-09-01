@@ -29,4 +29,7 @@ module UsersHelper
     image_tag cdn_avatar_url, options.merge({ :alt => user.full_name, :class => 'avatar' })
   end
 
+  def payment_levels_for_select
+    PaymentLevel.ascend_by_name.collect { |m| [m.name, m.id] }
+  end
 end

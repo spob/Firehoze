@@ -156,6 +156,24 @@ class UsersControllerTest < ActionController::TestCase
         end
       end
 
+      context "with a payment level defined" do
+        setup do
+          @payment_level = Factory.create(:payment_level, :default_payment_level => true)
+        end
+
+        context "on PUT to :update_instructor" do
+          setup { put :update_instructor, :id => @user,
+                      :user => { :payment_level => nil, :address1 => "aaa", :city => "yyy",
+                                 :state => "XX", :postal_code => "99999",
+                                 :country => "US" }  }
+
+          should_assign_to :user
+          should_respond_with :redirect
+          should_set_the_flash_to /successfully updated/
+          should_redirect_to("edit user") {edit_user_path(assigns(:user)) }
+        end
+      end
+
       context "on PUT to :update a profile screen with bad values" do
         setup { put :update, :id => @other_user, :user => Factory.attributes_for(:user, :last_name => "") }
 

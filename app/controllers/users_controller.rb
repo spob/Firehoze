@@ -79,11 +79,7 @@ class UsersController < ApplicationController
     @user.state = params[:user][:state]
     @user.postal_code = params[:user][:postal_code]
     @user.country = params[:user][:country]
-    if params[:user][:payment_level]
-      @user.payment_level = PaymentLevel.find(params[:user][:payment_level])
-    else
-      @user.payment_level = nil
-    end
+    @user.payment_level_id = params[:user][:payment_level]
 
     if @user.save!
       flash[:notice] = t 'account_settings.update_success'
