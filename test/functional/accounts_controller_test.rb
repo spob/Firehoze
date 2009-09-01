@@ -207,7 +207,7 @@ class AccountsControllerTest < ActionController::TestCase
             should_not_set_the_flash
             should_redirect_to("five wizard step") {instructor_wizard_step5_account_path(assigns(:user)) }
             should "be an instructor?" do
-              assert @user.is_instructor?
+              assert @user.verified_instructor?
             end
           end
 
@@ -229,7 +229,7 @@ class AccountsControllerTest < ActionController::TestCase
             should_set_the_flash_to /successfully updated/
             should_redirect_to("edit account") {edit_account_path(assigns(:user)) }
             should "be an instructor?" do
-              assert @user.is_instructor?
+              assert @user.verified_instructor?
             end
           end
 
@@ -251,7 +251,7 @@ class AccountsControllerTest < ActionController::TestCase
             should_set_the_flash_to :confirm_address
             should_redirect_to("three wizard step") {instructor_wizard_step4_account_path(assigns(:user)) }
             should "not be an instructor?" do
-              assert !@user.is_instructor?
+              assert !@user.verified_instructor?
             end
           end
 

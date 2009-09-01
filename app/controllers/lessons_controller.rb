@@ -59,7 +59,7 @@ class LessonsController < ApplicationController
   end
 
   def new
-    if current_user.is_instructor?
+    if current_user.verified_instructor?
       @lesson = Lesson.new
     else
       flash[:error] = t 'lesson.must_be_instructor'
@@ -68,7 +68,7 @@ class LessonsController < ApplicationController
   end
 
   def create
-    if current_user.is_instructor?
+    if current_user.verified_instructor?
       video_param = params[:lesson].delete("video")
       video = nil
       @lesson = Lesson.new(params[:lesson])

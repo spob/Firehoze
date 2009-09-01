@@ -82,7 +82,7 @@ class LessonsControllerTest < ActionController::TestCase
     context "when an instructor" do
       setup do
         set_instructor
-        assert @user.is_instructor?
+        assert @user.verified_instructor?
       end
 
       context "on GET to :new" do
@@ -110,7 +110,7 @@ class LessonsControllerTest < ActionController::TestCase
     context "on POST to :create with bad values" do
       setup do
         set_instructor
-        assert @user.is_instructor?
+        assert @user.verified_instructor?
         post :create, :lesson => Factory.attributes_for(:lesson, :title => "")
       end
 
