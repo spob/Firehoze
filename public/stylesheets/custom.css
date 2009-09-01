@@ -314,3 +314,15 @@ div.lesson_comment .actions .button-to {
     margin:0;
     padding:3px 3px 5px 0;
 }
+
+/* USER AGREEMENT */
+
+#instructor_agreement {
+    padding: 20px;
+    margin: 20px 0;
+    border:solid 1px #ccc;
+    height: 250px;
+    overflow: auto;
+}
+
+
