@@ -34,7 +34,8 @@ ActionController::Routing::Routes.draw do |map|
                         :list => :get,
                         :tabbed => :get,
                         :ajaxed => :get,
-                        :list_admin => :get
+                        :list_admin => :get,
+                        :tagged_with => :get
                 }
   map.resources :lessons, :has_many => :lesson_comments, :shallow => true,
                 :member => {
