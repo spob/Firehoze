@@ -1,6 +1,36 @@
 <% form_for(:user, :url => update_instructor_user_path(@user), :html => { :method => :put, :id => "author" }) do |f| %>
     <%= f.error_messages %>
     <fieldset>
+      <legend>Instructor Status</legend>
+      <p>
+        This user is <%= (@user.verified_instructor? ? "" : "not ") %>an instructor:
+      </p>
+      <ul>
+        <li>
+          <% if @user.author_agreement_accepted_on %>
+              Author agreement was accepted on <%= l @user.author_agreement_accepted_on %>
+          <% else %>
+              Author agreement has not been accepted
+          <% end %>
+        </li>
+        <li>
+          <% if @user.payment_level %>
+              Payment level is <%= @user.payment_level.name %>
+          <% else %>
+              Payment level (exclusivity) has not been chosen
+          <% end %>
+        </li>
+        <li>
+          Address has <%= (@user.address_provided? ? "" : "not ") %>been provided
+        </li>
+        <li>
+          <% if @user.verified_address_on %>
+              Address was verified on <%= l @user.verified_address_on %>
+          <% else %>
+              Address has not been verified
+          <% end %>
+        </li>
+      </ul>
       <legend>Payment Level</legend>
       <p>
         <%= f.select :payment_level,
