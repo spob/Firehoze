@@ -7,8 +7,8 @@ class LessonsController < ApplicationController
   verify :method => :post, :only => [ :create, :convert, :unreject ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update, :conversion_notify ], :redirect_to => :home_path
   before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :show, :update, :watch, :unreject ]
-  before_filter :set_per_page, :only => [ :index, :list, :ajaxed, :tabbed ]
-  before_filter :set_collection, :only => [ :list, :ajaxed, :tabbed ]
+  before_filter :set_per_page, :only => [ :ajaxed, :index, :list, :tabbed, :tagged_with ]
+  before_filter :set_collection, :only => [ :ajaxed, :list, :tabbed ]
 
   LIST_COLLECTIONS = %w(newest most_popular highest_rated tagged_with recently_browsed)
 
@@ -47,11 +47,14 @@ class LessonsController < ApplicationController
                 else
                   Lesson.ready.highest_rated.paginate(:per_page => @per_page, :page => params[:page])
                 end
-              when 'tagged_with'
-                @lesson_format = 'narrow'
-                @tag = params[:tag]
-                Lesson.ready.find_tagged_with(@tag).paginate(:page => params[:page], :per_page => @per_page)
             end
+  end
+
+  def tagged_with
+    @tag = params[:tag]
+    @collection = 'tagged_with'
+    @lesson_format = 'narrow'
+    @lessons =  Lesson.ready.find_tagged_with(@tag).paginate(:page => params[:page], :per_page => @per_page)
   end
 
   def list_admin
@@ -173,7 +176,6 @@ class LessonsController < ApplicationController
                   Lesson.ready.highest_rated.all(:limit => @per_page)
                 end
             end
-    # render :layout => 'content_in_tab'
   end
 
   # SUPPORTING AJAX PAGINATION (keeping this around for a little while, just in case we need it later)
@@ -199,15 +201,12 @@ class LessonsController < ApplicationController
                 else
                   Lesson.ready.highest_rated.ready.paginate(:per_page => @per_page, :page => params[:page])
                 end
+                when 'tagged_with'
+                  @lesson_format = 'narrow'
+                  @tag = params[:tag]
+                  Lesson.ready.find_tagged_with(@tag).paginate(:page => params[:page], :per_page => @per_page)
             end
   end
-
-  # FIXME -- testing purposes here ...
-  #def list_recently_browsed
-  #  me = User.find 2
-  #  @lessons = me.visited_lessons.latest.paginate :page => params[:page], :per_page => @per_page
-  #  render :layout => 'content_in_tab'
-  #end
 
   def watch
     if current_user
