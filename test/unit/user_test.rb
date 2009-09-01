@@ -131,7 +131,7 @@ class UserTest < ActiveSupport::TestCase
         @user.state = "MA"
         @user.postal_code = "01984"
         @user.country = "US"
-        assert !@user.is_instructor?
+        assert !@user.verified_instructor?
       end
 
       should "validate address" do
@@ -141,14 +141,14 @@ class UserTest < ActiveSupport::TestCase
       context "while testing if an instructor" do
         setup do
           @user.verified_address_on = Time.now
-          assert !@user.is_instructor?
+          assert !@user.verified_instructor?
           @user.author_agreement_accepted_on = Time.now
-          assert !@user.is_instructor?
+          assert !@user.verified_instructor?
           @user.payment_level = Factory.create(:payment_level)
         end
 
         should "be an instructor" do
-          assert @user.is_instructor?
+          assert @user.verified_instructor?
         end
       end
     end
