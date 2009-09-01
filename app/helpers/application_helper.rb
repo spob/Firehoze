@@ -90,6 +90,12 @@ module ApplicationHelper
             link_to_command(100, refresh_url, false)
   end
 
+  def about_link
+    unless params[:controller] == 'high_voltage/pages' and params[:action] == 'show' and params[:id] == 'about'
+        link_to "About Firehoze", page_path("about") 
+    end
+  end
+
   private
 
   def link_to_command per_page, refresh_url, append_space=true
