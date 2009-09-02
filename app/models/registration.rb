@@ -16,10 +16,11 @@ class Registration < ActiveUrl::Base
   # Used to verify if a registration is authorized (when restricting registrations)
 
   validate :additional_validation
+  validates_format_of :username, :with => /^[\w]+$/ix, :allow_nil => true
   validates_format_of :email, :with => /^[\w\.=-]+@[\w\.-]+\.[a-zA-Z]{2,4}$/ix, :allow_nil => true
   validates_presence_of :email, :username
   validates_length_of       :email, :maximum => 100, :allow_nil => true
-  validates_length_of       :username, :maximum => 25, :allow_nil => true
+  validates_length_of       :username, :within => 3..25, :allow_nil => true
 
   after_save :send_registration_email
 
