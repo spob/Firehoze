@@ -32,33 +32,30 @@
             <li><a href="#tabs-1"><%= t 'user.about_me' %></a></li>
           <% end %>
 
-          <% unless @reviews.empty? %>
-            <li><a href="#tabs-2"><%= t 'user.reviews' %></a></li>
-          <% end %>
-
-          <li><a href="#tabs-3"><%= t 'user.wishlist' %></a></li>
-
           <% unless @lessons.empty? %>
-            <li><a href="#tabs-4"><%= t 'user.instructor_of' %></a></li>
+            <li><a href="#tabs-2"><%= t 'user.instructor_of' %></a></li>
           <% end %>
+
+          <% unless @reviews.empty? %>
+            <li><a href="#tabs-3"><%= t 'user.reviews' %></a></li>
+          <% end %>
+          <li><a href="#tabs-4"><%= t 'user.wishlist' %></a></li>
         </ul>
 
         <% unless @user.bio.blank? %>
           <div id="tabs-1"><%= show_bio %></div>
         <% end %>
 
-        <% unless @reviews.empty? %>
-          <div id="tabs-2"><%= render :partial => "reviews/review_with_lesson", :collection => @reviews %></div>
-        <% end %>
-
-        <div id="tabs-3">Wishlist placeholder</div>
-
         <% unless @lessons.empty? %>
-          <div id="tabs-4"><%= render :partial => "lessons/lesson_narrow", :collection => @lessons %></div>
+          <div id="tabs-2"><%= render :partial => "lessons/lesson_narrow", :collection => @lessons %></div>
         <% end %>
 
+        <% unless @reviews.empty? %>
+          <div id="tabs-3"><%= render :partial => "reviews/review_with_lesson", :collection => @reviews %></div>
+        <% end %>
+
+        <div id="tabs-4">Wishlist placeholder</div>
       </div>
     </div>
-
   </div>
 </div>
