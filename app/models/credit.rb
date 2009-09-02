@@ -40,6 +40,12 @@ class Credit < ActiveRecord::Base
                                                        warned_before] }
               }
 
+
+  named_scope :unpaid_credits,
+              lambda{ |user| { :conditions => { :lesson_id => user.instructed_lessons.collect(&:id) + [-1],
+                                                :payment_id => nil } }
+              }
+  
   # Find credits which haven't been used in a long time and are about to expire. Specifically, look for credits
   # for which the associated user hasn't logged in to the system for a long time (e.g., a year) where the credits
   # are at least that old.

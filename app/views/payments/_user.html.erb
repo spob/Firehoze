@@ -1,0 +1,17 @@
+<tr>
+  <td>
+    <%= link_to_profile user %>
+  </td>
+  <td>
+    <%= number_to_currency(user.payments.sum(:amount)) %>
+  </td>
+  <td>
+    <%= number_to_currency(user.payments.last.try(:amount)) %>
+  </td>
+  <td>
+    <%= l(user.payments.last.created_at) if user.payments.last %>
+  </td>
+  <td>
+    <%= link_to number_to_currency(user.unpaid_credits_amount), show_unpaid_payment_path(user) %>
+  </td>
+</tr>

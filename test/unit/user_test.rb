@@ -40,6 +40,7 @@ class UserTest < ActiveSupport::TestCase
     should_have_many                 :lesson_visits
     should_have_many                 :visited_lessons
     should_have_many                 :instructed_lessons
+    should_have_many                 :payments
     should_belong_to                 :payment_level
     should_have_and_belong_to_many   :wishes
 

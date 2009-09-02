@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   has_many :instructed_lessons, :class_name => 'Lesson', :foreign_key => 'instructor_id', :order => 'rating_average desc, id'
   # Lessons represents lessons that this user has "bought"
   has_many :lessons, :through => :credits
+  has_many :payments, :order => 'id DESC'
   has_many :reviews, :order => 'score desc, id', :dependent => :destroy
   has_many :helpfuls, :dependent => :destroy
   belongs_to :payment_level
@@ -47,6 +48,20 @@ class User < ActiveRecord::Base
               :joins => [:roles],
               :conditions => { :roles => {:name => 'admin'}},
               :order => :email
+
+  sql = %Q{
+    address1 is not null and
+    city is not null and
+    state is not null and
+    postal_code is not null and
+    country is not null and
+    verified_address_on is not null and
+    author_agreement_accepted_on is not null and
+    payment_level_id is not null
+  }
+
+  named_scope :instructors,
+              :conditions => sql
 
   # Used to verify current password during password changes
   attr_accessor :current_password
@@ -213,6 +228,14 @@ class User < ActiveRecord::Base
   def can_contact?(user)
     allow_contact == USER_ALLOW_CONTACT_ANYONE or
             (allow_contact == USER_ALLOW_CONTACT_STUDENTS_ONLY and student_of?(user))
+  end
+
+  def unpaid_credits
+    Credit.unpaid_credits(self)
+  end
+
+  def unpaid_credits_amount
+    Credit.unpaid_credits(self).sum(:price)
   end
 
   private

@@ -26,6 +26,20 @@ class CreditTest < ActiveSupport::TestCase
         assert @credit.rolled_up_at.nil?
       end
 
+      context "and one that has been redeemed" do
+        setup do
+          @lesson = Factory.create(:lesson)
+          @credit2 = Factory.create(:credit, :user => @lesson.instructor, :lesson => @lesson)
+          assert_not_nil @credit2.user
+        end
+
+        should "return unpaid credits" do
+          assert_equal 1, Credit.unpaid_credits(@credit2.user).count
+          assert Credit.unpaid_credits(@credit2.user).include?(@credit2)
+          assert !Credit.unpaid_credits(@credit2.user).include?(@credit)
+        end
+      end
+
       should "retrieve available rows" do
         assert_equal 1, Credit.available.count
       end
@@ -47,7 +61,7 @@ class CreditTest < ActiveSupport::TestCase
         end
       end
 
-      should "retrieve rows for which a warning hasn't been issues" do
+      should "retrieve rows for which a warning hasn't been issued" do
         assert_equal 1, Credit.unwarned.count
       end
 

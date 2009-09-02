@@ -1,0 +1,25 @@
+<h1>Payments</h1>
+<table>
+  <tr>
+    <th>
+      User
+    </th>
+    <th>
+      Total Payments
+    </th>
+    <th>
+      Last Payment
+    </th>
+    <th>
+      Last Paid On
+    </th>
+    <th>
+      Outstanding balance
+    </th>
+  </tr>
+  <%= render :partial => 'user', :collection => @users %>
+</table>
+
+<%= will_paginate @users %>
+<br/>
+Rows to Display Per Page: <%= per_page_select(payments_path) %>

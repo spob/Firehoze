@@ -4,7 +4,7 @@
                 (credit.expired_at.nil? and credit.redeemed_at.nil?)) %>
   </td>
   <td>
-    <%= italics(strike_through(h(credit.sku.description), credit.expired_at), (credit.expired_at.nil? and credit.redeemed_at.nil?)) if credit.sku %>     
+    <%= italics(strike_through(h(credit.sku.description), credit.expired_at), (credit.expired_at.nil? and credit.redeemed_at.nil?)) if credit.sku %>
   </td>
   <td>
     <%= italics(strike_through(number_to_currency(credit.price), credit.expired_at),
@@ -16,9 +16,11 @@
   <td>
     <%= link_to h(credit.lesson.title), lesson_path(credit.lesson) if credit.redeemed_at %>
   </td>
-  <td>
-    <%= italics(strike_through(l(credit.will_expire_at), credit.expired_at),
-                (credit.expired_at.nil? and credit.redeemed_at.nil?)) unless credit.redeemed_at or credit.expired_at %>
-    <%= strike_through(l(credit.expired_at), credit.expired_at) if credit.expired_at %>
-  </td>
+  <% unless hide_expiration %>
+      <td>
+        <%= italics(strike_through(l(credit.will_expire_at), credit.expired_at),
+                    (credit.expired_at.nil? and credit.redeemed_at.nil?)) unless credit.redeemed_at or credit.expired_at %>
+        <%= strike_through(l(credit.expired_at), credit.expired_at) if credit.expired_at %>
+      </td>
+  <% end %>
 </tr>
