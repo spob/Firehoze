@@ -1,20 +1,21 @@
 <%= render :partial => "shared/infield_head_content" %>
 
-<%= javascript 'jquery.simplyCountable', 'validate/lesson.create' %>
+<%= stylesheet 'validation' %>
+<%= javascript 'jquery.simplyCountable', 'validate/jquery.validate', 'validate/lesson.validate' %>
 
-<% form_for(:lesson, :url => lessons_path, :html => { :multipart => true, :class => "create_lesson", :id => "inline" }) do |f| %>
+<% form_for(:lesson, :url => lessons_path, :html => { :multipart => true, :id => "lesson" }) do |f| %>
   <%= f.error_messages %>
   <fieldset>
     <legend>Create Lesson</legend>
     <p>
       <%= f.label :title %><br />
-      <%= f.text_field :title, :maxlength => "50" %>
+      <%= f.text_field :title, :maxlength => "50", :class => "required"  %>
       <div class="counter"><span id="lesson_title_counter"></span> characters left</div>
     </p>
 
     <p>
       <%= f.label :synopsis %><br />
-      <%= f.text_area :synopsis, :maxlength => "500" %>
+      <%= f.text_area :synopsis, :maxlength => "500", :class => "required"  %>
       <div class="counter"><span id="lesson_synopsis_counter"></span> characters left</div>
     </p>
   
@@ -32,7 +33,7 @@
 
     <div>
       <%= f.label :video %>
-      <%= f.file_field :video %>
+      <%= f.file_field :video, :class => "required"  %>
     </div>
 
     <div>
@@ -47,7 +48,7 @@
   </fieldset>
 
   <p>
-    <%= f.submit "Create lesson", :disable_with => translate('general.disable_with') %>
+    <%= f.submit "Create lesson" %>
     <%= link_to "Cancel", lessons_path %>
   </p>
   <% end %>

@@ -9,12 +9,12 @@
     <legend>Edit your Review of: <%= link_to @review.lesson.title, lesson_path(@review.lesson) %></legend>
     <p>
       <%= f.label :headline %><br />
-      <%= f.text_field :headline, :maxlength => "100", :style => "width:520px;", :class => "required" %>
+      <%= f.text_field :headline, :maxlength => "100", :class => "required" %>
     <div class="counter"><span id="headline_counter"></span> characters left</div>
   </p>
   <p>
     <%= f.label :body %><br />
-    <%= f.text_area :body, :style => "width:520px;", :class => "required" %>
+    <%= f.text_area :body, :class => "required" %>
     <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
   </p>
   </fieldset>

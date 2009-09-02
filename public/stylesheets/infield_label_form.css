@@ -1,5 +1,5 @@
 /* FORMS: In-field labels */
-form#inline, form#review, form#lesson_comment {
+form#inline, form#review,form#lesson,form#edit_lesson,form#lesson_comment {
     padding: 30px 40px 15px 40px;
     background-color: #eee;
     border:solid 10px #ccc;
@@ -47,8 +47,7 @@ form, form legend a, form fieldset input, form fieldset textarea, form label   {
 
 form legend a {
   font-size: inherit;
-	
-}
+	}
 
 form p { position: relative; margin: 10px 0;}
 form p label { position: absolute; top: 0; left: 0;}
@@ -69,9 +68,15 @@ form fieldset p textarea {
 }
 
 /* deviate on create lesson width */
-form.create_lesson fieldset p input,
-form.create_lesson fieldset p textarea {
-    width: 865px;
+#lesson fieldset p input, #edit_lesson fieldset p input,
+#lesson fieldset p textarea, #edit_lesson fieldset p textarea {
+    width: 530px;
+}
+
+/* deviate on create lesson width */
+#review fieldset p input, #review fieldset p input,
+#review fieldset p textarea, #review fieldset p textarea {
+    width: 530px;
 }
 
 form fieldset p label {
@@ -87,8 +92,8 @@ form fieldset p textarea {
 }
 
 /* deviate on create lesson width */
-form.create_lesson fieldset p textarea {
-    width: 869px;
+form.lesson fieldset p textarea {
+    width: 530px;
 }
 
 form fieldset p textarea,
