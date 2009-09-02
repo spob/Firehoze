@@ -211,15 +211,21 @@ en:
     logout_success: Logout successful
 
   user:
+    about_me: About me
     account_details_for: Account Details for
     account_settings: Account Settings
     account_reg_success: Account registered
     account_update_success: Account updated
     account_update_failure: Account not updated
+    address_incomplete: The address you entered appears to be incomplete
     avatar: Avatar
     author_info: Instructor Information
     credit_history: Credit History
+    done: Completed
+    inactive_cannot_show: This user's account has been deactivated and cannot be displayed
+    instructor_of: I teach
     login_required: Username can't be empty
+    not_done: Not Completed
     password: Password
     profile: Profile
     not_permitted_to_view: Sorry, you were not authorized to view that page
@@ -230,10 +236,8 @@ en:
     registration_no_longer_valid: Registration no longer valid
     roles: Roles
     rejected_bio: This user's bio has been flagged for inappropriate content and thus cannot be displayed
-    inactive_cannot_show: This user's account has been deactivated and cannot be displayed
-    done: Completed
-    not_done: Not Completed
-    address_incomplete: The address you entered appears to be incomplete
+    reviews: Reviews
+    wishlist: Wishlist
 
   wish:
     create_success: Lesson added to your wish list

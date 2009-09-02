@@ -11,6 +11,7 @@ $(function() {
             duration: 300
         }
     });
+
     $('#lesson_show_tabs').tabs(
     {
         cache: true,
@@ -23,6 +24,15 @@ $(function() {
             duration: 300
         }
     });
+
+    $('#user_show_tabs').tabs(
+    {
+        fx: { 
+            opacity: 'toggle',
+            duration: 300
+        }
+    });
+
     $('#account_settings_tabs').tabs(
     {
         cookie: { 
@@ -34,6 +44,7 @@ $(function() {
             duration: 300
         },
     });
+
     $('#admin_user_tabs').tabs(
     {
         cookie: { 

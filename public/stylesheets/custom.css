@@ -177,13 +177,25 @@ img.lesson_tn {
 }
 
 /* USER SHOW */
-
-#public_user_accordion {
-    height:400px;
+#user_show {
+    margin:0;
+    padding:0;
 }
 
-#public_user_accordion .ui-accordion-content {
-    padding:0 2px 15px 15px;
+#user_show #name_plate {
+    border: solid 1px #999;
+    background-color: #efefef;
+		padding: 10px 0;
+}
+
+#user_show #name {
+	padding: 0 0 0 10px;
+}
+
+#user_show #avatar {
+  border: solid 1px #999;
+	height:227px;
+	width:227px;
 }
 
 /* FORMS */

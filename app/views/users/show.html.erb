@@ -1,59 +1,64 @@
 <% content_for :head do -%>
-    <%= stylesheet_link_tag 'jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" %>
-    <%= javascript_include_tag 'accordian.js' %>
+  <%= javascript_include_tag 'jquery-ui-1.7.2.custom.min.js' %>
+  <%= stylesheet_link_tag 'jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" %>
+  <%= javascript_include_tag 'tabs.js', 'jquery.cookie.js' %>
+  <%= javascript_include_tag 'accordian.js' %>
 <% end %>
 
-<p>
-  <%= avatar_tag @user, :size => :medium %>
-</p>
+<div id="user_show">
+  <div class="clear span-40 last append-bottom" id="name_plate">
+    <span class="h3" id="name"><%= link_to_profile(@user) %></span>
+  </div>
 
-<p>
-  <b>Username:</b>
-  <%= h @user.login %>
-</p>
+  <div class="span-40 last">
 
-<p>
-  <b>Email:</b>
-  <%= h @user.email %>
-</p>
+    <div class="span-10">
+      <div id="avatar"><%= avatar_tag @user, :size => :large %></div>
+      <div class="prepend-top">
+        <% if @user.can_contact? current_user %>
+          <div><%= link_to 'Contact This User', new_contact_user_path(:id => @user.id) %></div>
+        <% end %>
+        <% if @user.can_edit? current_user %>
+          <div><%= link_to "Edit", edit_user_path(@user) %></div>
+        <% end %>
+        <div><%= flag_link @user %></div>
+      </div>
+    </div>
 
-<% if current_user.try("is_moderator?") or current_user.try("is_admin?") or @user.show_real_name %>
-    <p>
-      <b>Name:</b>
-      <%= h @user.full_name %>
-    </p>
-<% end %>
+    <div class="span-30 last">
+      <div id="user_show_tabs">
+        <ul>
+          <% unless @user.bio.blank? %>
+            <li><a href="#tabs-1"><%= t 'user.about_me' %></a></li>
+          <% end %>
 
-<p>
-  <b>Bio:</b>
-  <%= show_bio %>
-</p>
+          <% unless @reviews.empty? %>
+            <li><a href="#tabs-2"><%= t 'user.reviews' %></a></li>
+          <% end %>
 
-<% if @user.can_contact? current_user %>
-    <%= link_to 'Contact This User', new_contact_user_path(:id => @user.id) %> |
-<% end %>
+          <li><a href="#tabs-3"><%= t 'user.wishlist' %></a></li>
 
-<% if @user.can_edit? current_user %>
-    <%= link_to "Edit", edit_user_path(@user) %> |
-<% end %>
-<%= flag_link @user %>
+          <% unless @lessons.empty? %>
+            <li><a href="#tabs-4"><%= t 'user.instructor_of' %></a></li>
+          <% end %>
+        </ul>
 
-<div class="clear span-40 last prepend-top">
-  <div id="public_user_accordion">
-    <% unless @lessons.empty? %>
-        <h3><a href="#">Lesson by this Instructor</a></h3>
+        <% unless @user.bio.blank? %>
+          <div id="tabs-1"><%= show_bio %></div>
+        <% end %>
 
-        <div>
-          <%= render :partial => "lessons/lesson_wide", :collection => @lessons %>
-        </div>
-    <% end %>
+        <% unless @reviews.empty? %>
+          <div id="tabs-2"><%= render :partial => "reviews/review_with_lesson", :collection => @reviews %></div>
+        <% end %>
 
-    <% unless @reviews.empty? %>
-        <h3><a href="#">Reviews by this User</a></h3>
+        <div id="tabs-3">Wishlist placeholder</div>
 
-        <div>
-          <%= render :partial => "reviews/review_with_lesson", :collection => @reviews %>
-        </div>
-    <% end %>
+        <% unless @lessons.empty? %>
+          <div id="tabs-4"><%= render :partial => "lessons/lesson_narrow", :collection => @lessons %></div>
+        <% end %>
+
+      </div>
+    </div>
+
   </div>
 </div>
