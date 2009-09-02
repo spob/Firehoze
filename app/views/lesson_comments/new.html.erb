@@ -6,7 +6,7 @@
 <% form_for(:lesson_comment, :url => lesson_lesson_comments_url(@lesson), :html => { :class => "lesson_comment", :id => "lesson_comment" }) do |f| %>
   <%= f.error_messages %>
   <fieldset>
-    <legend>Leave a comment for: <%= link_to @lesson.title, lesson_path(@lesson) %></legend>
+    <legend>Join the discussion for: <%= link_to @lesson.title, lesson_path(@lesson) %></legend>
   <p>
     <%= f.label :body %><br />
     <%= f.text_area :body, :style => "width:530px;", :class => "required" %>
