@@ -155,7 +155,7 @@ class User < ActiveRecord::Base
 
   def name_or_username
     return 'Firehoze member' if username.blank? and username.blank?
-    if current_user.try("is_moderator?") or current_user.try("is_admin?") or self.show_real_name
+    if self.show_real_name
       full_name
     else
       username
