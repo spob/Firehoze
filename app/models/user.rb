@@ -170,12 +170,11 @@ class User < ActiveRecord::Base
 
   def name_or_username
     return 'Firehoze member' if username.blank? and username.blank?
-    full_name || username
-  end
-
-  def username_or_name
-    return 'Firehoze member' if username.blank? and username.blank?
-    username || full_name
+    if current_user.try("is_moderator?") or current_user.try("is_admin?") or self.show_real_name
+      full_name
+    else
+      username
+    end
   end
 
   def username
