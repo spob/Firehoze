@@ -1,26 +1,44 @@
-<h1>Edit Lesson</h1>
+<%= render :partial => "shared/infield_head_content" %>
 
-<% form_for(:lesson, :url => lesson_path(@lesson), :html => { :method => :put }) do |f| %>
-    <%= f.error_messages %>
+<%= stylesheet 'validation' %>
+<%= javascript 'jquery.simplyCountable', 'validate/jquery.validate', 'validate/lesson.validate' %>
 
-    <%= f.label :title %>:
-    <%= f.text_field :title %><br />
-    <br/>
-    <%= f.label :synopsis %>:
-    <%= f.text_area :synopsis %><br />
-    <br/>
-    <%= f.label :notes %>:
+<% form_for(:lesson, :url => lesson_path(@lesson), :html => { :method => :put, :id => "edit_lesson" }) do |f| %>
+<%= f.error_messages %>
+<fieldset>
+  <legend>Edit Lesson</legend>
+  <p>
+    Title:
+    <%= f.text_field :title, :maxlength => "50", :class => "required" %>
+    <div class="counter"><span id="lesson_title_counter"></span> characters left</div>
+  </p>
+
+  <p>
+    Synopsis:
+    <%= f.text_area :synopsis, :maxlength => "500", :class => "required" %>
+    <div class="counter"><span id="lesson_synopsis_counter"></span> characters left</div>
+  </p>
+
+  <p>
+    Notes:
     <%= f.text_area :notes %>
-      <br/>
-      (Format using *<b>bold</b>* and _<i>italics</i>_ text)<br />
-    <br/>
-    <%= f.label :tags %>:
-    <%= f.text_field :tag_list %><br />
-    <br/>
-    <%= f.label :language %>:
-    <%= f.select :language, User.supported_languages %><br/>
-    <br/>
+    <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
+  </p>
 
-    <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
-    <%= link_to "Cancel", lesson_path(@lesson) %>
+  <p>
+    Tags:
+    <%= f.text_field :tag_list %>
+    <span class="help">(use commas to separate multiple tags)</span>
+  </p>
+
+  <div>
+    Language:
+    <%= f.select :language, User.supported_languages %>
+  </div>
+</fieldset>
+
+<p>
+  <%= f.submit "Create lesson" %>
+  <%= link_to "Cancel", lesson_path(@lesson) %>
+</p>
 <% end %>

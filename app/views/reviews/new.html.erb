@@ -4,22 +4,25 @@
 <%= javascript 'jquery.simplyCountable', 'validate/jquery.validate', 'validate/review.validate' %>
 
 <% form_for(:review, :url => lesson_reviews_url(@lesson), :html => { :class => "review", :id => "review" }) do |f| %>
-  <%= f.error_messages %>
-  <fieldset>
-    <legend>Write a review for: <%= link_to @lesson.title, lesson_path(@lesson) %></legend>
-    <p>
-      <%= f.label :headline %><br />
-      <%= f.text_field :headline, :maxlength => "100", :style => "width:530px;", :class => "required" %>
+<%= f.error_messages %>
+<fieldset>
+  <legend>Write a review for: <%= link_to @lesson.title, lesson_path(@lesson) %></legend>
+
+  <p>
+    <%= f.label :headline %><br />
+    <%= f.text_field :headline, :maxlength => "100", :class => "required" %>
     <div class="counter"><span id="headline_counter"></span> characters left</div>
   </p>
+
   <p>
     <%= f.label :body %><br />
-    <%= f.text_area :body, :style => "width:530px;", :class => "required" %>
+    <%= f.text_area :body, :class => "required" %>
     <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
   </p>
-  </fieldset>
-  <p>
-    <%= f.submit "Create review", :class => "submit" %>
-    <%= link_to "Cancel", lesson_path(@lesson) %>
-  </p>
+</fieldset>
+
+<p>
+  <%= f.submit "Create review", :class => "submit" %>
+  <%= link_to "Cancel", lesson_path(@lesson) %>
+</p>
 <% end %>
