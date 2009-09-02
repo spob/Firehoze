@@ -12,7 +12,13 @@
       <b>Email:</b>
       <%= h @user.email %>
     </p>
-
+    <br/>
+    <%= form.label :password %>:
+    <%= form.password_field :password %><br />
+    <br/>
+    <%= form.label :password_confirmation %>:
+    <%= form.password_field :password_confirmation %><br />
+    <br/>
 
     <%= form.label :first_name %>:
     <%= form.text_field :first_name %><br />
@@ -31,14 +37,6 @@
     <br/>
     <%= form.label :language %>:
     <%= form.select :language, User.supported_languages %>
-    <br/>
-
-
-    <%= form.label :password %>:
-    <%= form.password_field :password %><br />
-    <br/>
-    <%= form.label :password_confirmation %>:
-    <%= form.password_field :password_confirmation %><br />
     <br/>
     <%= form.submit "Register", :disable_with => translate('general.disable_with') %>
 <% end %>

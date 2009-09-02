@@ -1,4 +1,5 @@
 module AccountsHelper
+  require 'application_helper'
 
   def instructor_wizard_breadcrumbs(step)
     link_text("Instructor Agreement", 1, step,
