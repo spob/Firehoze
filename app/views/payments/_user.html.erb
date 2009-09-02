@@ -6,12 +6,17 @@
     <%= number_to_currency(user.payments.sum(:amount)) %>
   </td>
   <td>
-    <%= number_to_currency(user.payments.last.try(:amount)) %>
+    <% if user.payments.last %>
+        <%= link_to number_to_currency(user.payments.last.try(:amount)), payment_path(user.payments.last) %>
+    <% end %>
   </td>
   <td>
     <%= l(user.payments.last.created_at) if user.payments.last %>
   </td>
   <td>
     <%= link_to number_to_currency(user.unpaid_credits_amount), show_unpaid_payment_path(user) %>
+  </td>
+  <td>
+    <%= link_to "Create Payment", payments_path(:id => user), html_options = {:method => :post} if user.unpaid_credits_amount > 0 %>
   </td>
 </tr>

@@ -149,6 +149,9 @@ en:
     order_placed: Your order has been placed
     no_access: You can only view orders that you placed
 
+  payment:
+    create_success: Payment created successfully
+
   payment_level:
     create_success: Payment level has been created
     update_success: Payment level updated

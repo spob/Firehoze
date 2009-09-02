@@ -53,7 +53,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :passwords
   map.resources :password_resets, :only => [ :create, :new, :edit, :update ]
   map.resources :payment_levels
-  map.resources :payments, :member => { :show_unpaid => :get }, :only => [:index, :show, :show_unpaid]
+  map.resources :payments, :member => { :show_unpaid => :get }, :only => [:index, :show, :show_unpaid, :create]
   map.resources :per_pages, :collection => { :set => :post }, :only => [ :set ]
   map.resources :periodic_jobs, :member => { :rerun => :post }
   map.resources :store, :only => :show
