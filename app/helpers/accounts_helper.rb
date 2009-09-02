@@ -22,11 +22,12 @@ module AccountsHelper
   end
 
   def formatted_address newline_character = "\n"
-    "#{@user.address1}#{newline_character}#{@user.address2 + newline_character unless (@user.address2.nil? or @user.address2.empty?)}#{@user.city}, #{@user.state} #{@user.postal_code}#{newline_character}#{I18n.t(@user.country, :scope => 'countries')}"
+    user_formatted_address(@user,
+                          newline_character)
   end
 
   private
-  
+
   def link_text text, text_step, step, enabled, url
     if text_step == step or !enabled
       bold(italics(text, text_step < step), text_step == step)

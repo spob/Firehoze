@@ -1,0 +1,42 @@
+class PaymentsController < ApplicationController
+  before_filter :require_user
+
+  # Admins only
+  permit ROLE_ADMIN
+
+  layout 'admin'
+
+  verify :method => :post, :only => [:create ], :redirect_to => :home_path
+  #verify :method => :put, :only => [:update ], :redirect_to => :home_path
+  #verify :method => :destroy, :only => [:delete ], :redirect_to => :home_path
+
+  def index
+    @users = User.instructors.sort_by{|user| user.unpaid_credits_amount * -1}.paginate :page => params[:page],
+                                                                                       :per_page => (session[:per_page] || ROWS_PER_PAGE)
+  end
+
+  def show
+    @payment = Payment.find(params[:id])
+  end
+
+  def show_unpaid
+    @user = User.find(params[:id])
+  end
+
+  def create
+    @user = User.find(params[:id])
+    Payment.transaction do
+      @payment = Payment.create(:user => @user, :amount => 0)
+      @user.unpaid_credits.each do |credit|
+        @payment.credits << credit
+        @payment.amount = @payment.amount + credit.price
+      end
+      if @payment.save
+        flash[:notice] = t 'payment.create_success'
+        redirect_to payment_path(@payment)
+      else
+        redirect_to payments_path
+      end
+    end
+  end
+end

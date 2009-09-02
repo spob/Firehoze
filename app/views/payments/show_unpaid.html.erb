@@ -1,0 +1,22 @@
+<h1>Show Unpaid Credits for <%= link_to_profile @user %></h1>
+
+<table>
+  <tr>
+    <th>
+      Credit Acquired At
+    </th>
+    <th>
+      Credit Type
+    </th>
+    <th>
+      Price Paid
+    </th>
+    <th>
+      Credit Redeemed At
+    </th>
+    <th>
+      Lesson
+    </th>
+  </tr>
+  <%= render :partial => 'users/forms/credit', :collection => @user.unpaid_credits.descend_by_price, :locals => { :hide_expiration => true } %>
+</table>

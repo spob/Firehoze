@@ -63,6 +63,20 @@ module ApplicationHelper
     end
   end
 
+  def user_formatted_address user, newline_character = "\n"
+    std_formatted_address(user.address1,
+                          user.address2,
+                          user.city,
+                          user.state,
+                          user.postal_code,
+                          user.country,
+                          newline_character)
+  end
+
+  def std_formatted_address address1, address2, city, state, postal_code, country, newline_character = "\n"
+    "#{address1}#{newline_character}#{address2 + newline_character unless (address2.nil? or address2.empty?)}#{city}, #{state} #{postal_code}#{newline_character}#{I18n.t(country, :scope => 'countries')}"
+  end
+
   def flag_link flaggable
     msg = nil
     if current_user
