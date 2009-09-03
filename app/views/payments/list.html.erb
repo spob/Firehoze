@@ -1,15 +1,10 @@
-<h1>Payment History for <%= link_to_profile @user %></h1>
+<%= stylesheet 'tables' %>
+<h3>Payment History for <%= link_to_profile @user %></h3>
 <table>
   <tr>
-    <th>
-      Payment #
-    </th>
-    <th>
-      Paid On
-    </th>
-    <th>
-      Amount
-    </th>
+    <th>Payment #</th>
+    <th>Paid On</th>
+    <th>Amount</th>
   </tr>
   <%= render @payments %>
 </table>
