@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [ :new, :create ]
-  before_filter :require_user, :except => [ :new, :create, :show ]
+  before_filter :require_user, :except => [ :new, :create, :show, :user_agreement ]
   before_filter :find_user, :only => [ :clear_avatar, :edit, :show, :show_admin, :private, :reset_password, :update,
                                        :update_instructor, :update_privacy, :update_avatar, :update_roles ]
 
@@ -37,9 +37,10 @@ class UsersController < ApplicationController
     # Populate the user record based upon the values in the registration record and passed in via params,
     # as appropriate
     @user = populate_user_from_registration_and_params
+    @user.user_agreement_accepted_on = Time.now if params[:accept_agreement]
     if @user.save
       flash[:notice] = t 'user.account_reg_success'
-      redirect_back_or_default user_path(@user)
+      redirect_back_or_default home_path
     else
       render :action => :new
     end
@@ -198,6 +199,10 @@ class UsersController < ApplicationController
       flash[:error] = t 'account_settings.update_error'
     end
     redirect_to edit_user_path(@user)
+  end
+
+  def user_agreement
+    render :layout => 'content_in_tab'
   end
 
   private

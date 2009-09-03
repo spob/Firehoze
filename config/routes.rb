@@ -67,7 +67,8 @@ ActionController::Routing::Routes.draw do |map|
                              :update_instructor => :put,
                              :update_avatar => :put,
                              :update_roles => :put },
-                :collection => { :list => :get }
+                :collection => { :list => :get,
+                                 :user_agreement => :get }
   map.resources :user_logons
   map.resources :wish_lists, :only => [ :create, :destroy ]
   map.resources :registrations, :only => [ :new, :create ] do |registration|

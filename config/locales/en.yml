@@ -11,6 +11,14 @@ en:
     attributes:
       user:
          login: Username
+         user_agreement_accepted_on: Accept user agreement
+    errors:
+      models:
+        user:
+          attributes:
+            user_agreement_accepted_on:
+              blank: "must be selected in order to complete the registration"
+
   
   authlogic:
 #  error_messages:

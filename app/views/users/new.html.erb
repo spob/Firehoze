@@ -38,5 +38,17 @@
     <%= form.label :language %>:
     <%= form.select :language, User.supported_languages %>
     <br/>
+    <br/>
+    <b>Author Agreement</b>
+    <p>
+      <%= link_to "Printer Friendly", user_agreement_users_path, :popup => true %>
+    </p>
+    <div id="instructor_agreement">
+      <%= render :partial => 'users/forms/user_agreement' %>
+    </div>
+    By checking this box I hereby agreement to be bound by the terms of this agreement
+    <%= check_box_tag :accept_agreement %>
+    <br/>
+    <br/>
     <%= form.submit "Register", :disable_with => translate('general.disable_with') %>
 <% end %>
