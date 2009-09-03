@@ -1,26 +1,32 @@
-<H1>Flag Inappropriate Content</H1>
+<%= render :partial => "shared/infield_head_content" %>
+<%= stylesheet 'validation' %>
+<%= javascript 'validate/jquery.validate', 'validate/flag.validate' %>
 
-
-<% form_for :flag, :url => flags_url(@flag, :flagger_type => @flag.flaggable.class.to_s, :flagger_id =>@flag.flaggable.id) do |f| %>
-    <%= f.error_messages %>
-    <p>
-      <b><%= @flag.flaggable.class.to_s %></b>:
+<% form_for :flag, :url => flags_url(@flag, :flagger_type => @flag.flaggable.class.to_s, :flagger_id =>@flag.flaggable.id),  :html => { :class => "flag", :id => "flag" } do |f| %>
+  <%= f.error_messages %>
+  <fieldset>
+    <legend>Flag Inappropriate Content:</legend>
+    <p class="sublegend"><%= @flag.flaggable.class.to_s %>:
       <%= link_to h(@flag.friendly_flagger_name), flaggable_show_path(@flag) %>
       <% unless @flag.flaggable.class == User %>
-          by <%= link_to_profile(offending_user) %>
+        by <%= link_to_profile(offending_user) %>
       <% end %>
     </p>
+
     <p>
-      <b>Reason</b>: <%= f.select(:reason_type, reason_select_list, :prompt => "Please choose...") %>
+      <%= f.label :reason_type, "Reason", :style => "display:none" %>
+      <%= f.select(:reason_type, reason_select_list, :prompt => "Select Reason...") %>
     </p>
+
     <p>
-      <%= f.label :comments %>:
-      <%= f.text_area :comments %>
-      <br/>
-      (Format using *<b>bold</b>* and _<i>italics</i>_ text)
+      <%= f.label :comments %><br />
+      <%= f.text_area :comments, :class => "required" %>
+      <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
     </p>
-    <p>
-      <%= f.submit "Submit", :disable_with => translate('general.disable_with') %>
-      <%= link_to "Cancel", flaggable_show_path(@flag) %>
-    </p>
+  </fieldset>
+
+  <p>
+    <%= f.submit "Submit" %>
+    <%= link_to "Cancel", flaggable_show_path(@flag) %>
+  </p>
 <% end %>

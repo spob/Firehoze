@@ -1,53 +1,71 @@
 /* FORMS: In-field labels */
-form#inline, form#review,form#lesson,form#edit_lesson,form#lesson_comment {
+form#inline,
+form#flag,
+form#review,
+form#lesson,
+form#edit_lesson,
+form#lesson_comment {
     padding: 30px 40px 15px 40px;
     background-color: #eee;
     border:solid 10px #ccc;
     margin-bottom:20px;
 }
 
-form#profile, form#avatar_form, form#roles, #password {
+form#profile,
+form#avatar_form,
+form#roles,
+#password {
     padding: 30px 40px 15px 30px;
     background-color: #eee;
     border:solid 1px #ccc;
     margin-top:10px;
 }
 
-form#profile p input, form#profile p textarea {
+form#profile p input,
+form#profile p textarea {
     margin:0 0 20px 0;
 }
 
-form.login, form.register, form.password_reset {
+form.login,
+form.register,
+form.password_reset {
     width:420px;
 }
 
-form fieldset  {
+form fieldset {
     border: none;
     padding: 0;
     margin:0;
 }
 
-form legend {
+form legend,
+form .sublegend {
+    line-height:2em;
     color: #333;
     padding: 0;
     margin:0;
     text-transform: uppercase;
 }
 
-#password h3  { 
-  margin: 0 0 15px 0;
-  text-transform: uppercase;
-	font-weight: bold; 
-	}
+#password h3  {
+    margin: 0 0 15px 0;
+    text-transform: uppercase;
+    font-weight: bold;
+}
 
-form, form legend a, form fieldset input, form fieldset textarea, form label   {
+form,
+form legend a,
+form fieldset input,
+form fieldset textarea,
+form label {
     font-family: Helvetica, Arial;
     font-size: 12pt;
 }
 
-form legend a {
-  font-size: inherit;
-	}
+form legend a,
+form .sublegend a {
+    font-size: inherit;
+}
 
 form p { position: relative; margin: 10px 0;}
 form p label { position: absolute; top: 0; left: 0;}
@@ -73,9 +91,15 @@ form fieldset p textarea {
     width: 530px;
 }
 
-/* deviate on create lesson width */
+/* deviate on create review width */
 #review fieldset p input, #review fieldset p input,
 #review fieldset p textarea, #review fieldset p textarea {
+    width: 530px;
+}
+
+/* deviate on create review width */
+#flag fieldset p input, #flag fieldset p input,
+#flag fieldset p textarea, #flag fieldset p textarea {
     width: 530px;
 }
 
@@ -97,7 +121,7 @@ form.lesson fieldset p textarea {
 }
 
 form fieldset p textarea,
-form fieldset p input { 
+form fieldset p input {
     border: solid 1px #ccc;
 }
 
@@ -121,7 +145,7 @@ form a {
     font-size: 12px;
 }
 
-form input { 
+form input {
     font-size: 12pt;
 }
 
