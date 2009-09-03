@@ -15,6 +15,12 @@ class PaymentsController < ApplicationController
                                                                                        :per_page => (session[:per_page] || ROWS_PER_PAGE)
   end
 
+  def list
+    @user = User.find(params[:id])
+    @payments = @user.payments.paginate :page => params[:page],
+                                        :per_page => (session[:per_page] || ROWS_PER_PAGE)
+  end
+
   def show
     @payment = Payment.find(params[:id])
     unless current_user.is_admin? or current_user == @payment.user
