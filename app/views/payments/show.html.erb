@@ -1,57 +1,28 @@
+<%= stylesheet 'tables' %>
+
 <h3>Payment #<%= @payment.id %></h3>
 <p>Paid to:</p>
 <b><%= @payment.user.full_name %></b>
-<br/>
-<%= user_formatted_address(@payment.user, "<BR/>") %>
-<br/>
-<br/>
+<p><%= user_formatted_address(@payment.user, "<BR/>") %></p>
 <% @balance = 0.0 %>
 <table>
   <tr>
-    <th>
-      Download Credit Redeemed At
-    </th>
-    <th>
-      Download Credit Type
-    </th>
-    <th>
-      Redeemed for Lesson
-    </th>
-    <th>
-      Price Paid
-    </th>
-    <th>
-      Credit
-    </th>
-    <th>
-      Debit
-    </th>
-    <th>
-      Account Balance
-    </th>
+    <th>Download Credit Redeemed At</th>
+    <th>Download Credit Type</th>
+    <th>Redeemed for Lesson</th>
+    <th>Price Paid</th>
+    <th>Credit</th>
+    <th>Debit</th>
+    <th>Account Balance</th>
   </tr>
   <%= render :partial => 'credit', :collection => @payment.credits.descend_by_price, :locals => { :user => nil } %>
   <tr>
-    <td>
-      <%= l @payment.created_at %>
-    </td>
-    <td>
-      Payment #<%= @payment.id %>
-    </td>
-    <td>
-      
-    </td>
-    <td>
-
-    </td>
-    <td>
-
-    </td>
-    <td>
-       <%= number_to_currency(@payment.amount * -1) %>
-    </td>
-    <td>
-       <%= number_to_currency(0 * -1) %>
-    </td>
+    <td><%= l @payment.created_at %></td>
+    <td>Payment #<%= @payment.id %></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><%= number_to_currency(@payment.amount * -1) %></td>
+    <td><%= number_to_currency(0 * -1) %></td>
   </tr>
 </table>
