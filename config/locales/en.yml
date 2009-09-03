@@ -159,6 +159,7 @@ en:
 
   payment:
     create_success: Payment created successfully
+    cannot_view: You do not have permissions to view that payment
 
   payment_level:
     create_success: Payment level has been created

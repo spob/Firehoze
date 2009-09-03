@@ -14,7 +14,7 @@
     <%= l(user.payments.last.created_at) if user.payments.last %>
   </td>
   <td>
-    <%= link_to number_to_currency(user.unpaid_credits_amount), show_unpaid_payment_path(user) %>
+    <%= link_to_unless user.unpaid_credits.empty?, number_to_currency(user.unpaid_credits_amount), show_unpaid_payment_path(user) %>
   </td>
   <td>
     <%= link_to "Create Payment", payments_path(:id => user), html_options = {:method => :post} if user.unpaid_credits_amount > 0 %>

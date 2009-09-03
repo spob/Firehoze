@@ -2,7 +2,7 @@ class PaymentsController < ApplicationController
   before_filter :require_user
 
   # Admins only
-  permit ROLE_ADMIN
+  permit ROLE_ADMIN, :except => 'show'
 
   layout 'admin'
 
@@ -17,10 +17,18 @@ class PaymentsController < ApplicationController
 
   def show
     @payment = Payment.find(params[:id])
+    unless current_user.is_admin? or current_user == @payment.user
+      flash[:error] = t 'payment.cannot_view'
+      redirect_to home_path
+    end
   end
 
   def show_unpaid
     @user = User.find(params[:id])
+    unless current_user.is_admin? or current_user == @user
+      flash[:error] = t 'payment.cannot_view'
+      redirect_to home_path
+    end
   end
 
   def create
