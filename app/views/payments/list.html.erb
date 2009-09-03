@@ -1,0 +1,19 @@
+<h1>Payment History for <%= link_to_profile @user %></h1>
+<table>
+  <tr>
+    <th>
+      Payment #
+    </th>
+    <th>
+      Paid On
+    </th>
+    <th>
+      Amount
+    </th>
+  </tr>
+  <%= render @payments %>
+</table>
+
+<%= will_paginate @payments %>
+<br/>
+Rows to Display Per Page: <%= per_page_select(list_payment_path(@user)) %>

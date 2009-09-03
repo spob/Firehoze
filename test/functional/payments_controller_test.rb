@@ -17,6 +17,37 @@ class PaymentsControllerTest < ActionController::TestCase
         UserSession.create @user
       end
 
+      context "as a regular user" do
+        context "on GET to show_unpaid" do
+          setup { get :show_unpaid, :id => @lesson.instructor }
+
+          should_assign_to :user
+          should_respond_with :redirect
+          should_set_the_flash_to /not have permissions/
+        end
+
+        context "on GET to show" do
+          setup do
+            @payment = @lesson.instructor.generate_payment
+            @payment.save
+            get :show, :id => @payment
+          end
+
+          should_assign_to :payment
+          should_respond_with :redirect
+          should_set_the_flash_to /not have permissions/
+        end
+
+        context "on GET to list" do
+          setup { get :list, :id => @lesson.instructor }
+
+          should_assign_to :user
+          should_not_assign_to :payments
+          should_respond_with :redirect
+          should_set_the_flash_to /not have permissions/
+        end
+      end
+
       context "as an admin" do
         setup { @user.is_admin }
 
@@ -27,6 +58,16 @@ class PaymentsControllerTest < ActionController::TestCase
           should_respond_with :success
           should_not_set_the_flash
           should_render_template "index"
+        end
+
+        context "on GET to list" do
+          setup { get :list, :id => @lesson.instructor }
+
+          should_assign_to :user
+          should_assign_to :payments
+          should_respond_with :success
+          should_not_set_the_flash
+          should_render_template "list"
         end
 
         context "on GET to show_unpaid" do
@@ -93,9 +134,10 @@ class PaymentsControllerTest < ActionController::TestCase
         context "on GET to show_unpaid" do
           setup { get :show_unpaid, :id => @lesson.instructor }
 
-          should_not_assign_to :user
-          should_respond_with :redirect
-          should_set_the_flash_to /Permission denied/
+          should_assign_to :user
+          should_respond_with :success
+          should_not_set_the_flash
+          should_render_template "show_unpaid"
         end
 
         context "on GET to show" do
