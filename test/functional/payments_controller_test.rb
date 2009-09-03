@@ -48,8 +48,8 @@ class PaymentsControllerTest < ActionController::TestCase
         end
       end
 
-      context "as an admin" do
-        setup { @user.is_admin }
+      context "as a payment mgr" do
+        setup { @user.is_paymentmgr }
 
         context "on GET to index" do
           setup { get :index }

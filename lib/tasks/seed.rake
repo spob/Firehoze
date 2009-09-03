@@ -36,12 +36,8 @@ namespace :db do
 
   desc "Seed the database with roles"
   task :seed_roles => :environment do
-    role = Role.find_by_name(ROLE_MODERATOR)
-    if role
-      puts "Role #{role.name} already exists"
-    else
-      Role.create! :name => ROLE_MODERATOR
-    end
+    create_role(ROLE_PAYMENT_MGR)
+    create_role(ROLE_MODERATOR)
   end
 
   desc "Seed the database with periodic jobs"
@@ -84,5 +80,15 @@ def create_payment_level(code, name, rate, default_payment_level)
   else
     PaymentLevel.create!(:code => code, :name => name, :rate => rate, :default_payment_level => default_payment_level)
     puts "Created payment level #{code}"
+  end
+end
+
+def create_role(role_name)
+  role = Role.find_by_name(role_name)
+  if role
+    puts "Role #{role.name} already exists"
+  else
+    role = Role.create! :name => role_name
+    puts "Created role #{role.name}"
   end
 end

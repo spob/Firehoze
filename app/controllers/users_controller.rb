@@ -5,11 +5,11 @@ class UsersController < ApplicationController
                                        :update_instructor, :update_privacy, :update_avatar, :update_roles ]
 
   permit ROLE_ADMIN, :only => [ :clear_avatar, :show_admin, :private, :reset_password, :update_avatar,
-                                :update_privacy, :update_roles, :update_instructor, :index ]
+                                :update_privacy, :update_roles, :update_instructor, :index, :list ]
   permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [ :edit, :update]
 
-  verify :method => :post, :only => [:create, :clear_avatar, :reset_password, :update_roles ], :redirect_to => :home_path
-  verify :method => :put, :only => [ :update, :update_privacy, :update_avatar, :update_instructor ], :redirect_to => :home_path
+  verify :method => :post, :only => [:create, :clear_avatar, :reset_password ], :redirect_to => :home_path
+  verify :method => :put, :only => [ :update, :update_privacy, :update_avatar, :update_roles, :update_instructor ], :redirect_to => :home_path
 
   layout :layout_for_action
 

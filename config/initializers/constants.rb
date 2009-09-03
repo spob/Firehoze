@@ -8,6 +8,7 @@ COMMENTS_ON_LESSON_SHOW_PER_PAGE = 5
 # Roles
 ROLE_ADMIN = 'admin'
 ROLE_MODERATOR = 'moderator'
+ROLE_PAYMENT_MGR = 'paymentmgr'
 
 # Skus
 CREDIT_SKU = 'CREDIT'
