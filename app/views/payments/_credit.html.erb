@@ -1,31 +1,19 @@
-<tr>
-  <td>
-    <%= l(credit.redeemed_at) %>
-  </td>
-  <td>
-    <%= h(credit.sku.description) if credit.sku %>
-  </td>
-  <td>
-    <%= link_to h(credit.lesson.title), lesson_path(credit.lesson) if credit.redeemed_at %>
-  </td>
-  <td>
-    <%= number_to_currency(credit.price) %>
-  </td>
+<tr class="<%= cycle("even", "odd") -%>">
+  <td><%= l(credit.redeemed_at) %></td>
+  <td><%= h(credit.sku.description) if credit.sku %></td>
+  <td><%= link_to h(credit.lesson.title), lesson_path(credit.lesson) if credit.redeemed_at %></td>
+  <td><%= number_to_currency(credit.price) %></td>
   <% if user %>
-      <td>
-        <% @balance = @balance + (credit.price * user.payment_level.rate) %>
-        <%= number_to_currency(round_to_penny(credit.price * user.payment_level.rate)) %>
-      </td>
+    <td>
+      <% @balance = @balance + (credit.price * user.payment_level.rate) %>
+      <%= number_to_currency(round_to_penny(credit.price * user.payment_level.rate)) %>
+    </td>
   <% else %>
-      <td>
-        <% @balance = @balance + credit.commission_paid %>
-        <%= number_to_currency(credit.commission_paid) %>
-      </td>
-      <td>
-
-      </td>
+    <td>
+      <% @balance = @balance + credit.commission_paid %>
+      <%= number_to_currency(credit.commission_paid) %>
+    </td>
+    <td></td>
   <% end %>
-  <td>
-    <%= number_to_currency(round_to_penny(@balance)) %>
-  </td>
+  <td><%= number_to_currency(round_to_penny(@balance)) %></td>
 </tr>

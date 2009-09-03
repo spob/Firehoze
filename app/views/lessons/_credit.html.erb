@@ -1,4 +1,4 @@
-<tr>
+<tr class="<%= cycle("even", "odd") -%>">
   <td><%= l credit.redeemed_at if credit.redeemed_at %></td>
   <% if current_user.try("is_admin?") %>
     <td><%= h credit.user.login %></td>
