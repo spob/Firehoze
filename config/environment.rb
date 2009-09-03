@@ -84,6 +84,10 @@ Rails::Initializer.run do |config|
   # Search Logic
   config.gem "searchlogic"
 
+  # Shoulda
+  config.gem "thoughtbot-shoulda", :lib => "shoulda", :source => "http://gems.github.com"
+
+
   # The following gems are required for interacting with flix cloud. Yeah, Rich, I know you'd like
   # all the gems to be alphabetically ordered, but at least for now I'd like to keep these grouped
   # together
