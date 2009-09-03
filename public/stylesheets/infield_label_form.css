@@ -1,24 +1,38 @@
 /* FORMS: In-field labels */
 form#inline,
-form#flag,
-form#review,
-form#lesson,
 form#edit_lesson,
-form#lesson_comment {
+form#flag,
+form#lesson,
+form#lesson_comment,
+form#review
+{
     padding: 30px 40px 15px 40px;
     background-color: #eee;
     border:solid 10px #ccc;
     margin-bottom:20px;
 }
 
-form#profile,
+/* Account forms */
 form#avatar_form,
 form#roles,
-#password {
+#password,
+form#privacy,
+form#profile
+{
     padding: 30px 40px 15px 30px;
     background-color: #eee;
     border:solid 1px #ccc;
     margin-top:10px;
+}
+
+form#privacy ul {
+    list-style: none;
+}
+
+form#privacy li label {
+    margin-left:5px;
+    font-size: 12px;
+    padding-top:5px;
 }
 
 form#profile p input,
@@ -75,7 +89,7 @@ form p br {display: none;}
 form fieldset select  {
     font-size: 12pt;
     color: #3F3F3F;
-}
+`}
 
 form fieldset p input,
 form fieldset p textarea {
