@@ -1,4 +1,4 @@
-<tr>
+<tr class="<%= cycle("even", "odd") -%>">
   <td>
     <%= italics(strike_through(l(credit.acquired_at), credit.expired_at),
                 (credit.expired_at.nil? and credit.redeemed_at.nil?)) %>
