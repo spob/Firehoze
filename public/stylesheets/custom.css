@@ -185,17 +185,17 @@ img.lesson_tn {
 #user_show #name_plate {
     border: solid 1px #999;
     background-color: #efefef;
-		padding: 10px 0;
+    padding: 10px 0;
 }
 
 #user_show #name {
-	padding: 0 0 0 10px;
+    padding: 0 0 0 10px;
 }
 
 #user_show #avatar {
-  border: solid 1px #999;
-	height:227px;
-	width:227px;
+    border: solid 1px #999;
+    height:227px;
+    width:227px;
 }
 
 /* FORMS */
