@@ -2,13 +2,20 @@
 <h3>User Logons</h3>
 <div>
   <% form_for(@search, :html => { :class => "search_box" }) do |f| %>
-    <%= f.label :user_login_like, "Username" %>
-    <%= f.text_field :user_login_like %>
-    <%= f.label :user_email_like, "Email" %>
-    <%= f.text_field :user_email_like %>
-    <%= f.submit "Search" %>
+    <div class="span-18">
+      <%= f.label :user_login_like, "Username" %>
+      <%= f.text_field :user_login_like, :style => "width:370px;" %>
+    </div>
+    <div class="span-18">
+      <%= f.label :user_email_like, "Email" %>
+      <%= f.text_field :user_email_like, :style => "width:390px;" %>
+    </div>
+    <div class="last" style="padding-top:5px;text-align:left">
+      <%= f.submit "Search" %>
+    </div>
   <% end %>
 </div>
+
 <table>
   <tr>
     <th>User</th>
