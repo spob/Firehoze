@@ -1,4 +1,4 @@
-<tr>
+<tr class="<%= cycle("even", "odd") -%>">
   <td><%= periodic_job.id %></td>
   <td><%= h periodic_job.class.to_s %></td>
   <td><%= h periodic_job.name %></td>

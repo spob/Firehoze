@@ -1,17 +1,18 @@
-<% form_for @search do |f| %>
-    <p>
-      <%= f.label :login_like, "Username" %>
-      <%= f.text_field :login_like %>
-      <%= f.label :email_like, "Email" %>
-      <%= f.text_field :email_like %>
-      
-      <b>Order by:</b>
-      <%= order @search, :by => :login, :as => "Username" %>&nbsp;
-      <%= order @search, :by => :email %>
+<%= stylesheet 'tables' %>
+<h3>Users</h3>
 
-      <%= f.submit "Search" %>
-    </p>
-<% end %>
+<div>
+  <% form_for(@search, :html => { :class => "search_box" }) do |f| %>
+    <%= f.label :login_like, "Username" %>
+    <%= f.text_field :login_like %>
+    <%= f.label :email_like, "Email" %>
+    <%= f.text_field :email_like %>
+    <b>Order by:</b>
+    <%= order @search, :by => :login, :as => "Username" %>&nbsp;
+    <%= order @search, :by => :email %>
+    <%= f.submit "Search" %>
+  <% end %>
+</div>
 
 <table>
   <tr>

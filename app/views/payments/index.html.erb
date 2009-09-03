@@ -1,24 +1,13 @@
-<h1>Payments</h1>
+<%= stylesheet 'tables' %>
+<h3>Payments</h3>
 <table>
   <tr>
-    <th>
-      User
-    </th>
-    <th>
-      Total Payments
-    </th>
-    <th>
-      Last Payment
-    </th>
-    <th>
-      Last Paid On
-    </th>
-    <th>
-      Outstanding balance
-    </th>
-    <th>
-      Action
-    </th>
+    <th>User</th>
+    <th>Total Payments</th>
+    <th>Last Payment</th>
+    <th>Last Paid On</th>
+    <th>Outstanding balance</th>
+    <th>Action</th>
   </tr>
   <%= render :partial => 'user', :collection => @users %>
 </table>

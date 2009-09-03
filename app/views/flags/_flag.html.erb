@@ -1,4 +1,4 @@
-<tr>
+<tr class="<%= cycle("even", "odd") -%>">
   <td><%= h flag.flaggable.class.to_s %></td>
   <td><%= link_to h(flag.friendly_flagger_name), flaggable_show_path(flag) %></td>
   <td><%= h flag.status.capitalize %></td>

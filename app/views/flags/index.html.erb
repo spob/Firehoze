@@ -1,17 +1,17 @@
+<%= stylesheet 'tables' %>
+<h3>Flags</h3>
 <table>
-    <tr>
-      <th>Item Type</th>
-      <th>Flagged Item</th>
-      <th>Flag Status</th>
-      <th>Reported By</th>
-      <th>Reason</th>
-      <th>Comments</th>
-      <th>Action</th>
-    </tr>
-    
-    <%= render :partial => 'flag', :collection => @flags %>
-    
-  </table>
+  <tr>
+    <th>Item Type</th>
+    <th>Flagged Item</th>
+    <th>Flag Status</th>
+    <th>Reported By</th>
+    <th>Reason</th>
+    <th>Comments</th>
+    <th>Action</th>
+  </tr>
+  <%= render :partial => 'flag', :collection => @flags %>
+</table>
 <%= will_paginate @flags %>
 <br/>
 Rows to Display Per Page: <%= per_page_select(flags_path) %>

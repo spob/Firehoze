@@ -1,13 +1,13 @@
-<tr>
- <td><%= link_to "#{user.login}", show_admin_user_path(user) %></td>
- <td><%= user.email %></td>
- <td><%= "#{user.first_name} " unless user.first_name.nil? %><%= user.last_name %></td>
- <td><%= user.active %></td>
- <td><%= user.time_zone %></td>
- <td align="center"><%= user.login_count %>/<%= user.failed_login_count %></td>
- <td><%= l user.last_login_at if user.last_login_at %></td>
- <td><%= user.last_login_ip %></td>
- <td><%= l user.current_login_at if user.current_login_at %></td>
- <td><%= user.current_login_ip %></td>
- <td><%= link_to "Edit", edit_user_path(user) %>&nbsp;<%= link_to "Public", user_path(user) %></td>
+<tr class="<%= cycle("even", "odd") -%>">
+  <td><%= link_to "#{user.login}", show_admin_user_path(user) %></td>
+  <td><%= user.email %></td>
+  <td><%= "#{user.first_name} " unless user.first_name.nil? %><%= user.last_name %></td>
+  <td><%= user.active %></td>
+  <td><%= user.time_zone %></td>
+  <td align="center"><%= user.login_count %>/<%= user.failed_login_count %></td>
+  <td><%= l user.last_login_at if user.last_login_at %></td>
+  <td><%= user.last_login_ip %></td>
+  <td><%= l user.current_login_at if user.current_login_at %></td>
+  <td><%= user.current_login_ip %></td>
+  <td><%= link_to "Edit", edit_user_path(user) %>&nbsp;<%= link_to "Public", user_path(user) %></td>
 </tr>

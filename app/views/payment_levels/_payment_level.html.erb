@@ -1,4 +1,4 @@
-<tr>
+<tr class="<%= cycle("even", "odd") -%>">
   <td><%= h payment_level.name %></td>
   <td><%= number_to_percentage(100 * payment_level.rate, :precision => 1) %></td>
   <td><%= payment_level.default_payment_level %></td>

@@ -1,15 +1,18 @@
+<%= stylesheet 'tables' %>
+
+<h3>Payment Levels</h3>
 <%= link_to "New Payment Level", new_payment_level_path %>
 <table>
-    <tr>
-      <th>Name</th>
-      <th>Payment Rate</th>
-      <th>Default</th>
-      <th>Action</th>
-    </tr>
-    
-    <%= render :partial => @payment_levels %>
+  <tr>
+    <th>Name</th>
+    <th>Payment Rate</th>
+    <th>Default</th>
+    <th>Action</th>
+  </tr>
 
-  </table>
+  <%= render :partial => @payment_levels %>
+
+</table>
 <%= will_paginate @payment_levels %>
 <br/>
 Rows to Display Per Page: <%= per_page_select(payment_levels_path) %>

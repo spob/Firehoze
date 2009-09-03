@@ -1,10 +1,9 @@
-<tr>
+<tr class="<%= cycle("even", "odd") -%>">
   <td><%= h sku.sku %></td>
   <td><%= h sku.description %></td>
   <td>
     <%= link_to 'edit', edit_sku_path(sku) if sku.can_edit? current_user %>
-    <%= link_to 'delete', sku_path(sku),
-            html_options = {:confirm => 'Are you sure?', :method => :delete}  if sku.can_delete? current_user %>
+    <%= link_to 'delete', sku_path(sku), html_options = {:confirm => 'Are you sure?', :method => :delete}  if sku.can_delete? current_user %>
     <%= link_to "Discounts", sku_discounts_path(sku) %>
   </td>
 </tr>

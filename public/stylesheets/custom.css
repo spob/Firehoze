@@ -337,4 +337,9 @@ div.lesson_comment .actions .button-to {
     overflow: auto;
 }
 
-
+/* ADMIN */
+.search_box {
+    border: solid 1px #ccc;
+    background-color: #efefef;
+    padding: 10px;
+}
