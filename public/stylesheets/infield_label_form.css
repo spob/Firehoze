@@ -13,7 +13,9 @@ form#review
 }
 
 /* Account forms */
+
 form#avatar_form,
+form#author,
 form#roles,
 #password,
 form#privacy,
