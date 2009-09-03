@@ -2,14 +2,14 @@ table, td { font:100% Arial, Helvetica, sans-serif;}
 table { width:100%;border-collapse:collapse;margin:1em 0;}
 th, td{ text-align:left;padding:.5em;border:1px solid #fff;}
 th {
-    background-color:#328aa4;
+    background-color:#3E7E8F;
     color:#fff;
 }
-td { background:#e5f1f4; }
+td { background:#efefef; }
 
 /* tablecloth styles */
 
-tr.even td{background:#e5f1f4;}
+tr.even td{background:#eee;}
 tr.odd td{background:#f8fbfc;}
 
 th.over, tr.even th.over, tr.odd th.over{background:#4a98af;}
