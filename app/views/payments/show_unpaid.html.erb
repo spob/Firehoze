@@ -1,22 +1,29 @@
 <h1>Show Unpaid Credits for <%= link_to_profile @user %></h1>
 
+<p>
+User Payment Rate: <%= number_to_percentage(@user.payment_level.rate * 100, :precision => 1) %>
+</p>
+<% @balance = 0.0 %>
 <table>
   <tr>
     <th>
-      Credit Acquired At
+      Download Credit Redeemed At
     </th>
     <th>
-      Credit Type
+      Download Credit Type
+    </th>
+    <th>
+      Redeemed for Lesson
     </th>
     <th>
       Price Paid
     </th>
     <th>
-      Credit Redeemed At
+      Commission Earned
     </th>
     <th>
-      Lesson
+      Account Balance
     </th>
   </tr>
-  <%= render :partial => 'users/forms/credit', :collection => @user.unpaid_credits.descend_by_price, :locals => { :hide_expiration => true } %>
+  <%= render :partial => 'credit', :collection => @user.unpaid_credits.descend_by_price, :locals => { :user => @user } %>
 </table>

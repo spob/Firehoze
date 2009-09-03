@@ -112,17 +112,15 @@ class Lesson < ActiveRecord::Base
       WHERE status = ?
         AND l.instructor_id <> ?
         AND EXISTS (
-        SELECT null
-        FROM lesson_buy_pairs AS pairs
-        INNER JOIN credits AS c ON c.lesson_id = pairs.lesson_id
-        WHERE c.user_id = ?
-          AND l.id = pairs.lesson_id
-          AND NOT EXISTS
-          (SELECT null
-           FROM credits
-           WHERE user_id = c.user_id
-             AND lesson_id = pairs.other_lesson_id))
-      ORDER BY l.rating_average DESC
+            SELECT null
+            FROM lesson_buy_pairs AS pairs
+            WHERE l.id = pairs.lesson_id)
+        AND NOT EXISTS (
+            SELECT null
+            FROM credits
+            WHERE user_id = ?
+            AND lesson_id = l.id)
+            ORDER BY l.rating_average DESC
       LIMIT ?
 END
     lessons1 = Lesson.ready.find_by_sql([sql, VIDEO_STATUS_READY, user.id, user.id, limit])

@@ -5,17 +5,20 @@
 <%= user_formatted_address(@payment.user, "<BR/>") %>
 <br/>
 <br/>
-
+<% @balance = 0.0 %>
 <table>
   <tr>
     <th>
-      Date
+      Download Credit Redeemed At
     </th>
     <th>
-      Item
+      Download Credit Type
     </th>
     <th>
-      Description
+      Redeemed for Lesson
+    </th>
+    <th>
+      Price Paid
     </th>
     <th>
       Credit
@@ -23,8 +26,11 @@
     <th>
       Debit
     </th>
+    <th>
+      Account Balance
+    </th>
   </tr>
-  <%= render :partial => 'credit', :collection => @payment.credits.descend_by_price %>
+  <%= render :partial => 'credit', :collection => @payment.credits.descend_by_price, :locals => { :user => nil } %>
   <tr>
     <td>
       <%= l @payment.created_at %>
@@ -39,7 +45,13 @@
 
     </td>
     <td>
+
+    </td>
+    <td>
        <%= number_to_currency(@payment.amount * -1) %>
+    </td>
+    <td>
+       <%= number_to_currency(0 * -1) %>
     </td>
   </tr>
 </table>

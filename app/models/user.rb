@@ -160,6 +160,12 @@ class User < ActiveRecord::Base
     self == lesson.instructor
   end
 
+  def generate_payment
+    payment = Payment.create(:user => self, :amount => 0)
+    payment.apply_unpaid_credits
+    payment
+  end
+
   def verified_instructor?
     address_provided? and verified_address_on and author_agreement_accepted_on and payment_level
   end
@@ -234,10 +240,19 @@ class User < ActiveRecord::Base
   end
 
   def unpaid_credits_amount
-    Credit.unpaid_credits(self).sum(:price)
+    amount = 0
+    Credit.unpaid_credits(self).each do |credit|
+      amount = amount + round_to_penny(credit.price * self.payment_level.rate)
+    end
+    amount
   end
 
   private
+
+  def round_to_penny amount
+    amount = (amount * 100.0).floor
+    amount/100.0
+  end
 
   def persist_user_logon
     if login_count > login_count_was

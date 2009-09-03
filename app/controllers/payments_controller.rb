@@ -34,11 +34,7 @@ class PaymentsController < ApplicationController
   def create
     @user = User.find(params[:id])
     Payment.transaction do
-      @payment = Payment.create(:user => @user, :amount => 0)
-      @user.unpaid_credits.each do |credit|
-        @payment.credits << credit
-        @payment.amount = @payment.amount + credit.price
-      end
+      @payment = @user.generate_payment
       if @payment.save
         flash[:notice] = t 'payment.create_success'
         redirect_to payment_path(@payment)
