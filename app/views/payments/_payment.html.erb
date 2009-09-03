@@ -1,0 +1,11 @@
+<tr>
+  <td>
+    <%= link_to payment.id, payment_path(payment) %>
+  </td>
+  <td>
+    <%= l payment.created_at %>
+  </td>
+  <td>
+    <%= number_to_currency(payment.amount) %>
+  </td>
+</tr>

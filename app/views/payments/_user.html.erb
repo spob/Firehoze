@@ -3,7 +3,7 @@
     <%= link_to_profile user %>
   </td>
   <td>
-    <%= number_to_currency(user.payments.sum(:amount)) %>
+    <%= link_to_unless user.payments.empty?, number_to_currency(user.payments.sum(:amount)), list_payment_path(user) %>
   </td>
   <td>
     <% if user.payments.last %>

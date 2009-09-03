@@ -2,7 +2,8 @@ class PaymentsController < ApplicationController
   before_filter :require_user
 
   # Admins only
-  permit ROLE_ADMIN, :except => 'show'
+  # TODO: change this to payment manager
+  permit ROLE_ADMIN, :except => [:show, :list, :show_unpaid]
 
   layout 'admin'
 
@@ -17,8 +18,13 @@ class PaymentsController < ApplicationController
 
   def list
     @user = User.find(params[:id])
-    @payments = @user.payments.paginate :page => params[:page],
-                                        :per_page => (session[:per_page] || ROWS_PER_PAGE)
+    if current_user.is_admin? or current_user == @user
+      @payments = @user.payments.paginate :page => params[:page],
+                                          :per_page => (session[:per_page] || ROWS_PER_PAGE)
+    else
+      flash[:error] = t 'payment.cannot_view'
+      redirect_to home_path
+    end
   end
 
   def show
