@@ -167,7 +167,7 @@ class User < ActiveRecord::Base
   end
 
   def verified_instructor?
-    address_provided? and verified_address_on and author_agreement_accepted_on and payment_level
+    (address_provided? and verified_address_on and author_agreement_accepted_on and payment_level)
   end
 
   def city_and_state
