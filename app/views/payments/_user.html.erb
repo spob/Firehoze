@@ -2,11 +2,11 @@
   <td><%= link_to_profile user %></td>
   <td><%= link_to_unless user.payments.empty?, number_to_currency(user.payments.sum(:amount)), list_payment_path(user) %></td>
   <td>
-    <% if user.payments.last %>
-      <%= link_to number_to_currency(user.payments.last.try(:amount)), payment_path(user.payments.last) %>
+    <% if user.payments.first %>
+      <%= link_to number_to_currency(user.payments.first.try(:amount)), payment_path(user.payments.last) %>
     <% end %>
   </td>
-  <td><%= l(user.payments.last.created_at) if user.payments.last %></td>
+  <td><%= l(user.payments.first.created_at) if user.payments.first %></td>
   <td><%= link_to_unless user.unpaid_credits.empty?, number_to_currency(user.unpaid_credits_amount), show_unpaid_payment_path(user) %></td>
   <td><%= link_to "Create Payment", payments_path(:id => user), html_options = { :confirm => 'Are you sure?', :method => :post } if user.unpaid_credits_amount > 0 %></td>
 </tr>

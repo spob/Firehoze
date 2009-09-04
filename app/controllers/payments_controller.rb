@@ -33,10 +33,6 @@ class PaymentsController < ApplicationController
     end
   end
 
-  def show_personal
-    show
-  end
-
   def show_unpaid
     @user = User.find(params[:id])
     unless current_user.is_paymentmgr? or current_user == @user
@@ -62,6 +58,4 @@ class PaymentsController < ApplicationController
   def layout_for_action
     current_user.is_paymentmgr? ? 'admin' : 'application'
   end
-
-
 end
