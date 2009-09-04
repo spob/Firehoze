@@ -3,7 +3,7 @@ class AdminConsolesController < ApplicationController
 
   def index
     if current_user.is_admin?
-      redirect_to list_users_path
+      redirect_to list_users_path('search[order]' => 'ascend_by_login')
     elsif current_user.is_moderator?
       redirect_to flags_path
     elsif current_user.is_paymentmgr?
