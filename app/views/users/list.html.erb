@@ -6,17 +6,16 @@
       <%= f.label :login_like, "Username" %>
       <%= f.text_field :login_like, :style => "width:290px;" %>
     </div>
-    <div class="span-15">
+    <div class="span-14">
       <%= f.label :email_like, "Email" %>
       <%= f.text_field :email_like, :style => "width:290px;" %>
     </div>
-    <div class="last" style="padding-top:5px;">
+    <div class="last" style="padding-top:5px;text-align:left">
       <b>Order by:</b>
       <%= order @search, :by => :login, :as => "Username" %>&nbsp;
       <%= order @search, :by => :email %>
       <%= f.submit "Search" %>
     </div>
-    <!-- <div class="clear"></div> -->
   <% end %>
 </div>
 
