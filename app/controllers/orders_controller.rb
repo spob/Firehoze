@@ -14,7 +14,12 @@ class OrdersController < ApplicationController
     @order ||= Order.new(:first_name => current_user.first_name,
                          :last_name => current_user.last_name,
                          :billing_name => current_user.full_name,
-                         :country => 'US')
+                         :address1 => current_user.address1,
+                         :address2 => current_user.address2,
+                         :city => current_user.city,
+                         :state => current_user.state,
+                         :zip => current_user.postal_code,
+                         :country => current_user.country || 'US')
   end
 
   def create
