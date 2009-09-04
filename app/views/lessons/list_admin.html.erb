@@ -3,25 +3,24 @@
 <h3>Lessons</h3>
 <div>
   <% form_for(@search, :html => { :class => "search_box" }) do |f| %>
-      <div class="span-15">
+      <div class="span-10">
         <%= f.label :title_like, "Title" %>
-        <%= f.text_field :title_like, :style => "width:200px;" %>
+        <%= f.text_field :title_like, :style => "width:195px;" %>
       </div>
-      <div class="span-15">
+      <div class="span-12">
         <%= f.label :instructor_login_like, "Instructor Login" %>
-        <%= f.text_field :instructor_login_like, :style => "width:100px;" %>
+        <%= f.text_field :instructor_login_like, :style => "width:185px;" %>
       </div>
-      <div class="span-15">
+      <div class="span-6">
         <%= f.label :status_like, "Status" %>
        <%= f.select(:status_like, Lesson.lesson_statuses, :include_blank => true) %>
       </div>
-      <div class="last" style="padding-top:5px;">
+      <div class="last" style="padding-top:5px;text-align:right">
         <b>Order by:</b>
         <%= order @search, :by => :title %>&nbsp;
         <%= order @search, :by => :instructor_login %>
         <%= f.submit "Search" %>
       </div>
-      <!-- <div class="clear"></div> -->
   <% end %>
 </div>
 <table>
