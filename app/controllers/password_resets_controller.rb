@@ -22,7 +22,7 @@ class PasswordResetsController < ApplicationController
       flash[:notice] = t 'password_reset.reset_email_msg'
       redirect_to root_url
     else
-      flash[:notice] = t 'password_reset.no_user_found_with_email_addr'
+      flash[:error] = t 'password_reset.no_user_found_with_email_addr'
       render :action => :new
     end
   end
