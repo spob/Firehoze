@@ -343,3 +343,12 @@ div.lesson_comment .actions .button-to {
     background-color: #efefef;
     padding: 10px;
 }
+
+/* CART */
+#line_items  td.price {
+	text-align:center;
+}
+
+#line_items th {
+	text-align:center;
+}
