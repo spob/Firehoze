@@ -4,7 +4,8 @@ class PaymentsController < ApplicationController
   # Admins only
   permit ROLE_PAYMENT_MGR, :except => [:show, :list, :show_unpaid]
 
-  layout 'admin'
+  layout 'admin', :except => [:show_personal, :show_unpaid_personal]
+  layout 'application', :only => [:show_personal, :show_unpaid_personal]
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   #verify :method => :put, :only => [:update ], :redirect_to => :home_path
@@ -32,6 +33,10 @@ class PaymentsController < ApplicationController
       flash[:error] = t 'payment.cannot_view'
       redirect_to home_path
     end
+  end
+
+  def show_personal
+    show
   end
 
   def show_unpaid

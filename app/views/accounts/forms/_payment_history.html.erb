@@ -9,5 +9,5 @@ Current Earnings Owed To You:
     <th>Paid On</th>
     <th>Amount</th>
   </tr>
-  <%= render :partial => 'payments/payment', :collection => current_user.payments %>
+  <%= render :partial => 'accounts/forms/payment', :collection => current_user.payments %>
 </table>

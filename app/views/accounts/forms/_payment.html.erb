@@ -1,0 +1,5 @@
+<tr class="<%= cycle("even", "odd") -%>">
+  <td><%= link_to payment.id, show_personal_payment_path(payment) %></td>
+  <td><%= l payment.created_at %></td>
+  <td><%= number_to_currency(payment.amount) %></td>
+</tr>
