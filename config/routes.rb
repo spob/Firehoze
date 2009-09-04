@@ -15,6 +15,7 @@ ActionController::Routing::Routes.draw do |map|
                               :update_privacy => :put },
                  :collection => { :instructor_agreement => :get }
   map.resources :acquire_lessons, :only => [ :create, :new ]
+  map.resources :admin_consoles, :only => [ :index ]
   map.resources :carts, :only => [ :show ]
   map.resources :contact_users, :only => [ :create, :new ]
   map.resources :credits

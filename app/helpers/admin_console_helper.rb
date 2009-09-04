@@ -1,0 +1,2 @@
+module AdminConsoleHelper
+end
