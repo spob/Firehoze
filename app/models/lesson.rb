@@ -95,6 +95,13 @@ class Lesson < ActiveRecord::Base
               lambda{ |user| { :conditions => ["lessons.id not in (?)", user.lessons.collect(&:id) + [-1]] }
               }
 
+  @@lesson_statuses = [
+          LESSON_STATUS_PENDING,
+          LESSON_STATUS_CONVERTING,
+          LESSON_STATUS_FAILED,
+          LESSON_STATUS_READY,
+          LESSON_STATUS_REJECTED ]
+
   @@flag_reasons = [
           FLAG_LEWD,
           FLAG_SPAM,
@@ -104,6 +111,10 @@ class Lesson < ActiveRecord::Base
 
   def self.flag_reasons
     @@flag_reasons
+  end
+
+  def self.lesson_statuses
+    @@lesson_statuses
   end
 
   def self.lesson_recommendations(user, limit=5)

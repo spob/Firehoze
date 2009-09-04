@@ -1,13 +1,36 @@
 <%= stylesheet 'tables' %>
 
 <h3>Lessons</h3>
+<div>
+  <% form_for(@search, :html => { :class => "search_box" }) do |f| %>
+      <div class="span-15">
+        <%= f.label :title_like, "Title" %>
+        <%= f.text_field :title_like, :style => "width:200px;" %>
+      </div>
+      <div class="span-15">
+        <%= f.label :instructor_login_like, "Instructor Login" %>
+        <%= f.text_field :instructor_login_like, :style => "width:100px;" %>
+      </div>
+      <div class="span-15">
+        <%= f.label :status_like, "Status" %>
+       <%= f.select(:status_like, Lesson.lesson_statuses, :include_blank => true) %>
+      </div>
+      <div class="last" style="padding-top:5px;">
+        <b>Order by:</b>
+        <%= order @search, :by => :title %>&nbsp;
+        <%= order @search, :by => :instructor_login %>
+        <%= f.submit "Search" %>
+      </div>
+      <!-- <div class="clear"></div> -->
+  <% end %>
+</div>
 <table>
   <tr>
     <th>Title</th>
     <th>Instructor</th>
     <th>Created At</th>
     <% if current_user.try("is_admin?") %>
-      <th>State</th>
+        <th>State</th>
     <% end %>
     <th>Average Rating</th>
     <th>Owned?</th>

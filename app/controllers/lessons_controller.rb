@@ -1,7 +1,8 @@
 class LessonsController < ApplicationController
 
   before_filter :require_user, :only => [:new, :create, :edit, :update, :unreject]
-  permit ROLE_ADMIN, :only => [:convert, :list_admin]
+  permit ROLE_ADMIN, :only => [:convert]
+  permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [:list_admin]
   permit ROLE_MODERATOR, :only => [:unreject]
 
   verify :method => :post, :only => [ :create, :convert, :unreject ], :redirect_to => :home_path
@@ -57,7 +58,8 @@ class LessonsController < ApplicationController
   end
 
   def list_admin
-    @lessons = Lesson.all.paginate :page => params[:page], :per_page => session[:per_page] || ROWS_PER_PAGE
+    @search = Lesson.search(params[:search])
+    @lessons = @search.paginate :page => params[:page], :per_page => session[:per_page] || ROWS_PER_PAGE
   end
 
   def new

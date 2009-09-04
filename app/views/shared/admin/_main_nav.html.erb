@@ -1,7 +1,7 @@
 <ul>
   <li><%= link_to "Public Site", home_path %></li>
   <li><%= link_to "Users", list_users_path('search[order]' => 'ascend_by_login') if current_user.is_admin? %></li>
-  <li><%= link_to "Lessons", list_admin_lessons_path if current_user.is_admin? %></li>
+  <li><%= link_to "Lessons", list_admin_lessons_path('search[order]' => 'ascend_by_title') if current_user.is_admin? or current_user.is_moderator? %></li>
   <li><%= link_to "Flags", flags_path if current_user.is_moderator?  %></li>
   <li><%= link_to "Jobs", periodic_jobs_path if current_user.is_admin? %></li>
   <li><%= link_to "Logons", user_logons_path  if current_user.is_admin?  %></li>
