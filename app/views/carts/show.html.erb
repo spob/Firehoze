@@ -1,5 +1,6 @@
-Shopping Cart
+<%= stylesheet 'tables' %>
 
+<h3>Shopping Cart</h3>
 <table id="line_items">
   <tr>
     <th>Item</th>
@@ -14,18 +15,11 @@ Shopping Cart
   <% for line_item in @cart.line_items %>
   <% end %>
   <tr>
-    <td align="right"><strong>Total</strong></td>
-    <td/>
-    <td/>
-    <td class="total price">
-      <%= number_to_currency @cart.total_full_price %>
-    </td>
-    <td class="total price">
-     <%= number_to_currency @cart.total_full_price - @cart.total_discounted_price %>
-    </td>
-    <td class="total price">
-      <%= number_to_currency @cart.total_discounted_price %>
-    </td>
+    <td align="right" colspan="3"><strong>Total</strong></td>
+    <td class="total price"><%= number_to_currency @cart.total_full_price %></td>
+    <td class="total price"><%= number_to_currency @cart.total_full_price - @cart.total_discounted_price %></td>
+    <td class="total price"><%= number_to_currency @cart.total_discounted_price %></td>
+    <td></td>
   </tr>
 </table>
 
