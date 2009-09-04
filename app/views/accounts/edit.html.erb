@@ -1,9 +1,9 @@
 <% content_for :head do -%>
-  <%= javascript_include_tag 'jquery-ui-1.7.2.custom.min.js' %>
-  <%= stylesheet_link_tag 'jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" %>
-  <%= stylesheet_link_tag 'tables', :media => "screen, projection" %>
-  <%= javascript_include_tag 'tabs.js','jquery.cookie.js' %>
-  <%= javascript_include_tag 'validate/jquery.validate.js', 'validate/account.setting.validate.js' %>
+    <%= javascript_include_tag 'jquery-ui-1.7.2.custom.min.js' %>
+    <%= stylesheet_link_tag 'jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" %>
+    <%= stylesheet_link_tag 'tables', :media => "screen, projection" %>
+    <%= javascript_include_tag 'tabs.js', 'jquery.cookie.js' %>
+    <%= javascript_include_tag 'validate/jquery.validate.js', 'validate/account.setting.validate.js' %>
 <% end %>
 
 <%= render :partial => "shared/infield_head_content" %>
@@ -18,6 +18,9 @@
     <li><a href="#tabs-5"><%= t 'user.privacy' %></a></li>
     <li><a href="#tabs-6"><%= t 'user.credit_history' %></a></li>
     <li><a href="#tabs-7"><%= t 'user.order_history' %></a></li>
+    <% if current_user.verified_instructor? %>
+        <li><a href="#tabs-8"><%= t 'user.payment_history' %></a></li>
+    <% end %>
   </ul>
   <div id="tabs-1"><%= render :partial => "accounts/forms/profile" %></div>
   <div id="tabs-2"><%= render :partial => "accounts/forms/password" %></div>
@@ -26,4 +29,7 @@
   <div id="tabs-5"><%= render :partial => "accounts/forms/privacy" %></div>
   <div id="tabs-6"><%= render :partial => "accounts/forms/credit_history" %></div>
   <div id="tabs-7"><%= render :partial => "accounts/forms/order_history" %></div>
+  <% if current_user.verified_instructor? %>
+      <div id="tabs-8"><%= render :partial => "accounts/forms/payment_history" %></div>
+  <% end %>
 </div>

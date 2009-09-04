@@ -1,0 +1,13 @@
+<%= stylesheet 'tables' %>
+
+Current Earnings Owed To You:
+<%= link_to_if current_user.unpaid_credits_amount > 0, number_to_currency(current_user.unpaid_credits_amount), show_unpaid_payment_path(current_user) %>
+
+<table>
+  <tr>
+    <th>Payment #</th>
+    <th>Paid On</th>
+    <th>Amount</th>
+  </tr>
+  <%= render :partial => 'payments/payment', :collection => current_user.payments %>
+</table>

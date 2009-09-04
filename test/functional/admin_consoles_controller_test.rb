@@ -25,7 +25,7 @@ class AdminConsolesControllerTest < ActionController::TestCase
 
         should_respond_with :redirect
         should_not_set_the_flash
-        should_redirect_to("home page")  { list_users_path }
+        should_redirect_to("home page")  { list_users_path('search[order]' => 'ascend_by_login') }
       end
     end
 
