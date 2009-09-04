@@ -330,10 +330,11 @@ div.lesson_comment .actions .button-to {
 /* USER AGREEMENT */
 
 #instructor_agreement {
+		font-size: 11px;
     padding: 20px;
     margin: 20px 0;
     border:solid 1px #ccc;
-    height: 250px;
+    height: 200px;
     overflow: auto;
 }
 

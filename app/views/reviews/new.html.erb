@@ -7,7 +7,6 @@
 <%= f.error_messages %>
 <fieldset>
   <legend>Write a review for: <%= link_to @lesson.title, lesson_path(@lesson) %></legend>
-
   <p>
     <%= f.label :headline %><br />
     <%= f.text_field :headline, :maxlength => "100", :class => "required" %>

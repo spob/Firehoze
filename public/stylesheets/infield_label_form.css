@@ -4,6 +4,7 @@ form#edit_lesson,
 form#flag,
 form#lesson,
 form#lesson_comment,
+form#new_user,
 form#review
 {
     padding: 30px 40px 15px 40px;
@@ -13,7 +14,6 @@ form#review
 }
 
 /* Account forms */
-
 form#avatar_form,
 form#author,
 form#roles,
@@ -103,7 +103,9 @@ form fieldset p textarea {
 
 /* deviate on create lesson width */
 #lesson fieldset p input, #edit_lesson fieldset p input,
-#lesson fieldset p textarea, #edit_lesson fieldset p textarea {
+#lesson fieldset p textarea, #edit_lesson fieldset p textarea, 
+#new_user fieldset p input, #new_user fieldset p input,
+#new_user fieldset p textarea, #new_user fieldset p textarea {
     width: 530px;
 }
 

@@ -4,6 +4,7 @@ form.edit_user label.error {
 
 form#lesson label.error, 
 form#flag label.error, 
+form#new_user label.error, 
 form#review label.error, 
 form#lesson_comment label.error {
 	margin:0 0 0 580px;

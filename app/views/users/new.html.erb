@@ -1,57 +1,65 @@
+<%= render :partial => "shared/infield_head_content" %>
 
+<%= stylesheet 'validation' %>
+<%= javascript 'validate/jquery.validate', 'validate/user.validate' %>
 
+<% form_for([ @registration, @user ], :html => { :class => "new_user", :id => "new_user" }) do |f| %>
+  <%= f.error_messages %>
+  <fieldset>
+    <legend>Your email address has been confirmed.</legend>
 
-<% form_for [ @registration, @user ] do |form| %>
-    <%= form.error_messages %>
-
-    Your email address has been confirmed. Please provide the following information to create your account:
-    <br/><br/>
+    <span class="help">
+      <p>Please provide the following information to create your account:</p>
+      <p>Username: <%= h @user.login %></p>
+      <p>Email: <%= h @user.email %></p>
+    </span>
     <p>
-      <b>Username:</b>
-      <%= h @user.login %>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
     </p>
 
     <p>
-      <b>Email:</b>
-      <%= h @user.email %>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
     </p>
-    <br/>
-    <%= form.label :password %>:
-    <%= form.password_field :password %><br />
-    <br/>
-    <%= form.label :password_confirmation %>:
-    <%= form.password_field :password_confirmation %><br />
-    <br/>
 
-    <%= form.label :first_name %>:
-    <%= form.text_field :first_name %><br />
-    <br/>
-    <%= form.label :last_name %>:
-    <%= form.text_field :last_name %><br />
-    <br/>
-    <%= form.label :bio %>:
-    <%= form.text_area :bio %>
-    <br/>
-    (Format using *<b>bold</b>* and _<i>italics</i>_ text)
-    <br/>
-    <br/>
-    <%= form.label :time_zone %>:
-    <%= form.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
-    <br/>
-    <%= form.label :language %>:
-    <%= form.select :language, User.supported_languages %>
-    <br/>
-    <br/>
+    <p>
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+    </p>
+
+    <p>
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, :class => "required" %>
+    </p>
+
+    <p>
+      <%= f.label :bio %><br />
+      <%= f.text_area :bio %>
+      <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
+    </p>
+
+    <div>
+      <%= f.label :time_zone %>
+      <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
+    </div>
+
+    <div>
+      <%= f.label :language %>
+      <%= f.select :language, User.supported_languages %>
+    </div>
+
     <b>Author Agreement</b>
-    <p>
-      <%= link_to "Printer Friendly", user_agreement_users_path, :popup => true %>
-    </p>
+    <p><%= link_to "Printer Friendly", user_agreement_users_path, :popup => true %></p>
+
     <div id="instructor_agreement">
       <%= render :partial => 'users/forms/user_agreement' %>
     </div>
-    By checking this box I hereby agreement to be bound by the terms of this agreement
-    <%= check_box_tag :accept_agreement %>
-    <br/>
-    <br/>
-    <%= form.submit "Register", :disable_with => translate('general.disable_with') %>
+
+    <div>
+      <%= check_box_tag :accept_agreement %> By checking this box I hereby agreement to be bound by the terms of this agreement
+    </div>
+
+  </fieldset>
+  <p><%= f.submit "Register" %></p>
 <% end %>
