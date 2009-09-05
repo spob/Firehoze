@@ -1,8 +1,7 @@
 <tr class="<%= cycle("even", "odd") -%>">
   <td><%= l credit.redeemed_at if credit.redeemed_at %></td>
-  <% if current_user.try("is_admin?") %>
-    <td><%= h credit.user.login %></td>
-  <% end %>
+  <td><%= link_to_profile credit.user %></td>
   <td><%= number_to_currency(credit.price) %></td>
+  <td><%= number_to_currency(credit.commission_paid) if credit.commission_paid %></td>
   <td><%= credit.sku.description unless credit.sku.nil? %></td>
 </tr>

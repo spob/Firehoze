@@ -1,5 +1,6 @@
 <tr class="<%= cycle("even", "odd") -%>">
   <td><%= l(credit.redeemed_at) %></td>
+  <td><%= link_to_profile credit.user %></td>
   <td><%= h(credit.sku.description) if credit.sku %></td>
   <td><%= link_to h(credit.lesson.title), lesson_path(credit.lesson) if credit.redeemed_at %></td>
   <td><%= number_to_currency(credit.price) %></td>

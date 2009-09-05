@@ -7,6 +7,7 @@
 <table>
   <tr>
     <th>Download Credit Redeemed At</th>
+    <th>Redeemed By</th>
     <th>Download Credit Type</th>
     <th>Redeemed for Lesson</th>
     <th>Price Paid</th>
@@ -17,6 +18,7 @@
   <%= render :partial => 'credit', :collection => @payment.credits.descend_by_price, :locals => { :user => nil } %>
   <tr>
     <td><%= l @payment.created_at %></td>
+    <td></td>
     <td>Payment #<%= @payment.id %></td>
     <td></td>
     <td></td>
