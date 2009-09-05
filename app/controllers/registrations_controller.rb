@@ -1,7 +1,7 @@
 # Allow a user to request a new account
 class RegistrationsController < ApplicationController
   before_filter :require_no_user
-  
+
   def new
     @registration = Registration.new
   end
@@ -16,12 +16,17 @@ class RegistrationsController < ApplicationController
     # flag to true so that the confirmation will go out in this case, but not on subsequent updates to the
     # registration record
     @registration.send_email = true
-    if @registration.save
-      flash[:notice] = t 'registration.check_email_for_registration'
-      redirect_to root_path 
+    if verify_recaptcha()
+      if @registration.save
+        flash[:notice] = t 'registration.check_email_for_registration'
+        redirect_to root_path
+      else
+        #@registration.errors.each { |attr,msg| puts "#{attr} - #{msg}" }
+        render :action => "new"
+      end
     else
-      #@registration.errors.each { |attr,msg| puts "#{attr} - #{msg}" }
+      @registration.errors.add_to_base(I18n.t('registration.human_test_failed'))
       render :action => "new"
     end
-  end  
+  end
 end

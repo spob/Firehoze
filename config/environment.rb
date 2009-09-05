@@ -16,6 +16,10 @@ require File.join(File.dirname(__FILE__), 'boot')
 # Can be 'object roles' or 'hardwired'
 AUTHORIZATION_MIXIN = "object roles"
 
+# Define keys required for reCaptcha
+ENV['RECAPTCHA_PUBLIC_KEY'] = '6LffJggAAAAAAAZDR-8NsAbRZwT4034wmADYPoK2'
+ENV['RECAPTCHA_PRIVATE_KEY'] = '6LffJggAAAAAAJLVsi53vgHumqwttTkpAdfTruC6'
+
 # NOTE : If you use modular controllers like '/admin/products' be sure
 # to redirect to something like '/sessions' controller (with a leading slash)
 # as shown in the example below or you will not get redirected properly

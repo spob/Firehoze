@@ -194,6 +194,7 @@ en:
     check_email_for_registration: Please check your email to complete the registration
     already_used: is already in use
     invalid_reg_code: is invalid. Contact support for a valid code.
+    human_test_failed: Human test failed. Are you sure you are not a robot?
 
   review:
     add_your_review: Add Your Review of the Lesson

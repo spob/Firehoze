@@ -1,30 +1,34 @@
 <%= render :partial => "shared/infield_head_content" %>
 
 <% form_for(:registration, :url => registrations_path, :html => { :id => "inline", :class => "register" }) do |f| %>
-  <%= f.error_messages %>
-  <fieldset>
-    <legend>Sign Up</legend>
-    <div class="help">In order to request an account, you first must verify your email information:</div>
-    <p>
-      <%= f.label :username, :Username %>
-      <%= f.text_field :username %>
-    </p>
-
-    <p>
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-    </p>
-
-    <% if APP_CONFIG[CONFIG_RESTRICT_REGISTRATION] %>
+    <%= f.error_messages %>
+    <fieldset>
+      <legend>Sign Up</legend>
+      <div class="help">In order to request an account, you first must verify your email information:</div>
       <p>
-        <%= f.label :registration_code %>:
-        <%= f.text_field :registration_code %>
+        <%= f.label :username, :Username %>
+        <%= f.text_field :username %>
       </p>
-    <% end %>
-  </fieldset>
 
-  <p>
-    <%= f.submit "Register", :disable_with => translate('general.disable_with') %>
-    <%= link_to "Already have an account?", login_path %>
-  </p>
+      <p>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+      </p>
+
+      <% if APP_CONFIG[CONFIG_RESTRICT_REGISTRATION] %>
+          <p>
+            <%= f.label :registration_code %>:
+            <%= f.text_field :registration_code %>
+          </p>
+      <% end %>
+      <p>
+        <%= f.label :captcha, "Please verify that you are human:" %>
+        <%= recaptcha_tags %>
+      </p>
+    </fieldset>
+
+    <p>
+      <%= f.submit "Register", :disable_with => translate('general.disable_with') %>
+      <%= link_to "Already have an account?", login_path %>
+    </p>
 <% end %>
