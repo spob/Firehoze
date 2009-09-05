@@ -49,6 +49,17 @@ class Notifier < ActionMailer::Base
   end
 
   # Receipt for an order
+  def payment_notification(payment_id)
+    payment = Payment.find(payment_id)
+    subject    "The check is in the mail!"
+    recipients  payment.user.email
+    from        APP_CONFIG[CONFIG_ADMIN_EMAIL]
+
+    body       :payment => payment,
+               :url => payment_url(payment)
+  end
+
+  # Receipt for an order
   def receipt_for_order(order)
     subject    "Receipt for order ##{order.id}"
     recipients order.user.email

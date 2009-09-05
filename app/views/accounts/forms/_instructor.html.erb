@@ -1,4 +1,4 @@
-<% if @user.instructor_status == AUTHOR_STATUS_OK %>
+<% if @user.verified_instructor? %>
     <%= render :partial => "accounts/forms/update_instructor" %>
 <% else %>
     <%= render :partial => "accounts/forms/enroll_instructor" %>
