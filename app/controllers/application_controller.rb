@@ -108,5 +108,4 @@ class ApplicationController < ActionController::Base
   def set_user_language
     I18n.locale = current_user.try(:language) || 'en'
   end
-
 end
