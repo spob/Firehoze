@@ -11,7 +11,7 @@ namespace :db do
     else
       admin = User.new :password => "changeme", :password_confirmation => "changeme",
                        :first_name => "sys", :last_name => "admin", :password_salt => 'as;fdaslkjasdfn',
-                       :time_zone =>Time.zone.name
+                       :time_zone =>Time.zone.name, :user_agreement_accepted_on => Time.now
       admin.login = 'admin'
       admin.email = 'admin@firehoze.com'
       admin.save!

@@ -1,6 +1,15 @@
+if ENV['DEPLOY'] == 'PRODUCTION'
+  puts "*** Deploying to the \033[1;41m  PRODUCTION  \033[0m servers!"
+  set :domain, '208.88.124.16'
+  set :user, 'root'
+  set :base_dir, 'www'
+else
+  puts "*** Deploying to the \033[1;42m  STAGING  \033[0m server!"
+  set :domain, '208.88.125.156'
+  set :user, 'root'
+  set :base_dir, 'rails'
+end
 set :application, 'Firehoze'
-set :user, 'root'
-set :domain, '208.88.125.156'
 set :rails_env, 'production'
 set :server_hostname, domain
 set :keep_releases, 8
@@ -27,9 +36,21 @@ set :deploy_via, :remote_cache
 set :git_shallow_clone, 1
 set :git_enable_submodules, 1
 set :use_sudo, false
-set :deploy_to, "/var/rails/#{application}"
+set :deploy_to, "/var/#{base_dir}/#{application}"
 
 after 'deploy:update', 'deploy:finishing_touches', 'deploy:migrate', 'task_server:restart'
+
+task :after_cold, :roles => [:app, :web, :db] do
+  if ENV['DEPLOY'] == 'PRODUCTION'
+    run "chown -R www-data:www-data /var/#{base_dir}/#{application}"
+  end
+end
+
+task :after_deploy, :roles => [:app, :web, :db] do
+  if ENV['DEPLOY'] == 'PRODUCTION'
+    run "chown -R www-data:www-data /var/#{base_dir}/#{application}"
+  end
+end
 
 namespace :deploy do
   task :finishing_touches, :roles => :app do
