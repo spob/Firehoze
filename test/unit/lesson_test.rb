@@ -277,7 +277,7 @@ class LessonTest < ActiveSupport::TestCase
       end
 
       context "and trigger a conversion" do
-        setup { @job = @lesson.trigger_conversion }
+        setup { @job = @lesson.trigger_conversion "http://some/url" }
 
         should "create a job" do
           assert_equal "ConvertVideo", @job.name

@@ -7,11 +7,12 @@ class ProcessedVideo < Video
   validates_numericality_of :video_file_size, :greater_than => 0, :allow_nil => true
 
   # Call out to flixcloud to trigger a conversion process
-  def convert
+  def convert notify_path
     self.update_attributes!(:s3_key => "#{self.s3_root_dir}/videos/#{self.id}/#{self.video_file_name}.flv",
                             :thumbnail_s3_path => thumbnail_s3_path)
     job = FlixCloud::Job.new(:api_key => FLIX_API_KEY,
                              :recipe_id => flix_recipe_id,
+                             :notification_url => notify_path,
                              :input_url => self.converted_from_video.s3_path,
                              :output_url => output_ftp_path,
                              :output_user => APP_CONFIG[CONFIG_FTP_CDN_USER],

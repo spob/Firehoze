@@ -83,7 +83,7 @@ class LessonsController < ApplicationController
         if @lesson.save
           video = OriginalVideo.new({ :lesson => @lesson, :video => video_param})
           video.save!
-          @lesson.trigger_conversion
+          @lesson.trigger_conversion(conversion_notify_lessons_url)
           flash[:notice] = t 'lesson.created'
           redirect_to lesson_path(@lesson)
         else
@@ -243,7 +243,7 @@ class LessonsController < ApplicationController
   # Trigger a conversion to occur at flixcloud. This will normally be triggered to occur
   # automatically when a new file is uploaded...but the admin can trigger it manually
   def convert
-    @lesson.trigger_conversion
+    @lesson.trigger_conversion conversion_notify_lessons_url
     flash[:notice] = t('lesson.conversion_triggered')
     redirect_to lesson_path(@lesson)
   end

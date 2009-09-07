@@ -201,9 +201,9 @@ END
   end
 
   # Create a periodic job to trigger a conversion in the background
-  def trigger_conversion
+  def trigger_conversion notify_url
     RunOncePeriodicJob.create!(:name => 'ConvertVideo',
-                               :job => "OriginalVideo.convert_video #{self.original_video.id}")
+                               :job => "OriginalVideo.convert_video #{self.original_video.id}, '#{notify_url}'")
   end
 
   def consume_free_credit user

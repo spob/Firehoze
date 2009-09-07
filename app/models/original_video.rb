@@ -38,7 +38,7 @@ class OriginalVideo < Video
   end
 
   # Call out to flixcloud to trigger a conversion process
-  def trigger_convert(clazz)
+  def trigger_convert(clazz, notify_url)
     processed_video = clazz.find(:first, :conditions => { :lesson_id => self.lesson })
     unless processed_video
       processed_video = clazz.create!(:lesson_id => self.lesson.id,
@@ -55,19 +55,19 @@ class OriginalVideo < Video
       processed_video.change_status(VIDEO_STATUS_FAILED, e.message)
       raise e
     end
-    processed_video.convert
+    processed_video.convert(notify_url)
   end
 
   # First call out to Amazon S3 to grant permissions to flixcloud to view the raw video,
   # then trigger a video conversion at flixcloud itself
-  def self.convert_video video_id
+  def self.convert_video video_id, notify_url
     video = OriginalVideo.find(video_id)
 
-    unless video.trigger_convert(FullProcessedVideo)
+    unless video.trigger_convert(FullProcessedVideo, notify_url)
       raise "Starting flash conversion failed"
     end
 
-    unless video.trigger_convert(PreviewProcessedVideo)
+    unless video.trigger_convert(PreviewProcessedVideo, notify_url)
       raise "Starting flash preview conversion failed"
     end
 
