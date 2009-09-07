@@ -1,14 +1,12 @@
 if ENV['DEPLOY'] == 'PRODUCTION'
   puts "*** Deploying to the \033[1;41m  PRODUCTION  \033[0m servers!"
   set :domain, '208.88.124.16'
-  set :user, 'root'
-  set :base_dir, 'www'
 else
   puts "*** Deploying to the \033[1;42m  STAGING  \033[0m server!"
   set :domain, '208.88.125.156'
-  set :user, 'root'
-  set :base_dir, 'rails'
 end
+set :user, 'root'
+set :base_dir, 'rails'
 set :application, 'Firehoze'
 set :rails_env, 'production'
 set :server_hostname, domain
