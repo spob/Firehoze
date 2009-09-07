@@ -24,6 +24,7 @@ div {
 
 /* FOOTER */
 #footer #content {
+    text-align:center;
     border: solid 1px #ccc;
     background-color: #efefef;
     padding: 10px;
