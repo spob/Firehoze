@@ -26,25 +26,34 @@
       </div>
     <% end %>
 
-    <div class="container <%#= "showgrid" if current_user and current_user.login == "rich" %>">
+    <!-- start container -->
+    <div id="container" class="container">
 
-      <div class="span-40 last" id="top_nav"> 
-        <%= render "shared/admin/top_nav" %>
+      <!-- start header -->
+      <div id="header">
+        <div class="span-40 last" id="top_nav"> 
+          <%= render "shared/admin/top_nav" %>
+        </div>
+
+        <div class="clear span-40 last" id="branding">
+          <%= link_to image_tag("general/firehoze_logo_small.jpg", :alt => 'Firehoze'), "/admin" %>
+        </div>
+
+        <div class="clear span-40 last" id="main_nav">
+          <%= render "shared/admin/main_nav" %>
+        </div>
       </div>
+      <!-- end header -->
 
-      <div class="clear span-40 last" id="branding">
-        <%= link_to image_tag("general/firehoze_logo_small.jpg", :alt => 'Firehoze'), "/admin" %>
+      <!-- start main -->
+      <div id="main">
+        <div class="clear span-40 last" id="main_content">
+          <%= yield %>
+        </div>
       </div>
+      <!-- end main -->
 
-      <div class="clear span-40 last" id="main_nav">
-        <%= render "shared/admin/main_nav" %>
-      </div>
-
-      <div class="clear span-40 last" id="main_content">
-        <%= yield %>
-      </div>
-
-      <div class="clear span-40 last" id="footer"> </div>
     </div>
+    <!-- end container -->
   </body>
 </html>

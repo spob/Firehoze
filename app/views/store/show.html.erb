@@ -1,4 +1,5 @@
-<h1>Online Store</h1>
+<%= javascript 'always_at_bottom', 'footer' %>
+<h3>Online Store</h3>
 <%= link_to "Buy #{pluralize(APP_CONFIG['min_credit_purchase'].to_i, 'Credit')}",
             line_items_path(:sku => CreditSku.find_by_sku(CREDIT_SKU).try(:sku),
                             :quantity => APP_CONFIG['min_credit_purchase']), :method => :post %>

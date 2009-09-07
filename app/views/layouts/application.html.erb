@@ -9,11 +9,11 @@
     <%= stylesheet_link_tag 'blueprint/print', :media => "print" %>
     <%= stylesheet_link_tag 'custom', :media => "screen, projection" %>
     <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag 'flash' %>
     <%= ajaxful_rating_style %>
     <!--[if lt IE 8]>
     <%= stylesheet_link_tag 'blueprint/ie', :media => "screen, projection" %>
-      <![endif]-->
-    <%= javascript_include_tag 'flash.js' %>
+    <![endif]-->
     <%= yield :head %>
   </head>
   <body>
@@ -26,28 +26,40 @@
       </div>
     <% end %>
 
-    <div class="container <%#= "showgrid" if current_user and current_user.login == "rich" %>">
+    <!-- start container -->
+    <div id="container" class="container">
 
-      <div class="span-40 last" id="top_nav"> 
-        <%= render "shared/top_nav" %>
+      <!-- start header -->
+      <div id="header">
+        <div class="span-40 last" id="top_nav"> 
+          <%= render "shared/top_nav" %>
+        </div>
+
+        <div class="clear span-40 last" id="branding">
+          <%= link_to image_tag("general/firehoze_logo_small.jpg", :alt => 'Firehoze'), "/" %>
+        </div>
+
+        <div class="clear span-40 last" id="main_nav">
+          <%= render "shared/main_nav" %>
+        </div>
       </div>
+      <!-- end header -->
 
-      <div class="clear span-40 last" id="branding">
-        <%= link_to image_tag("general/firehoze_logo_small.jpg", :alt => 'Firehoze'), "/" %>
+      <!-- start main -->
+      <div id="main">
+        <div class="clear span-40 last" id="main_content">
+          <%= yield %>
+        </div>
       </div>
+      <!-- end main -->
 
-      <div class="clear span-40 last" id="main_nav">
-        <%= render "shared/main_nav" %>
+      <!-- start footer -->
+      <div class="span-40 last" id="footer"> 
+        <%= render "shared/footer" %>
       </div>
+      <!-- end footer -->
 
-
-      <div class="clear span-40 last" id="main_content">
-        <%= yield %>
-      </div>
-
-      <div class="clear span-40 last" id="footer">
-        <%= about_link %>
-      </div>
     </div>
+    <!-- end container -->
   </body>
 </html>

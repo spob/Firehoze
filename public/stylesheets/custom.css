@@ -22,6 +22,13 @@ div {
     clear:both;
 }
 
+/* FOOTER */
+#footer #content {
+    border: solid 1px #ccc;
+    background-color: #efefef;
+    padding: 10px;
+    margin:0 0 10px 0;
+}
 
 /* TOP NAV */
 #top_nav_links {
@@ -330,7 +337,7 @@ div.lesson_comment .actions .button-to {
 /* USER AGREEMENT */
 
 #instructor_agreement {
-		font-size: 11px;
+    font-size: 11px;
     padding: 20px;
     margin: 20px 0;
     border:solid 1px #ccc;
@@ -347,9 +354,9 @@ div.lesson_comment .actions .button-to {
 
 /* CART */
 #line_items  td.price {
-	text-align:center;
+    text-align:center;
 }
 
 #line_items th {
-	text-align:center;
+    text-align:center;
 }
