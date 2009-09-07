@@ -33,11 +33,11 @@
           <% end %>
 
           <% unless @lessons.empty? %>
-            <li><a href="#tabs-2"><%= t 'user.instructor_of' %></a></li>
+            <li><a href="#tabs-2"><%= t 'user.instructor_of', :user => @user.name_or_username %></a></li>
           <% end %>
 
           <% unless @reviews.empty? %>
-            <li><a href="#tabs-3"><%= t 'user.reviews' %></a></li>
+            <li><a href="#tabs-3"><%= t 'user.reviews_of', :user => @user.name_or_username %></a></li>
           <% end %>
         </ul>
 
