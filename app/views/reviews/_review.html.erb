@@ -2,7 +2,7 @@
 
 <div class="review">
   <div class="span-5">
-    <div class="instructor_avatar"><%= avatar_tag reviewer, :size => :medium %></div>
+    <div class="instructor_avatar"><%= link_to avatar_tag(reviewer, :size => :medium), user_path(reviewer) %></div>
     <div><%= link_to_profile(reviewer) %></div>
     <div>Member Since:<br/><%= l(reviewer.created_at.to_date) %></div>
   </div>

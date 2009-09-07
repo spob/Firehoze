@@ -2,7 +2,7 @@
 
 <div class="lesson_comment">
   <div class="span-5">
-    <div class="coommenter_avatar"><%= avatar_tag commenter, :size => :medium %></div>
+    <div class="coommenter_avatar"><%= link_to avatar_tag(commenter, :size => :medium), user_path(commenter) %></div>
     <div><%= link_to_profile(commenter) %></div>
     <div>Member Since:<br/><%= l(commenter.created_at.to_date) %></div>
   </div>

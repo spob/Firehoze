@@ -10,7 +10,7 @@
 </div>
 
 <div class="span-5 last lesson_right">
-  <div class="lesson_instructor_avatar"><%= avatar_tag lesson.instructor, :size => :medium %></div>
+  <div class="lesson_instructor_avatar"><%= link_to avatar_tag(lesson.instructor, :size => :medium), user_path(lesson.instructor) %></div>
   <div><%= link_to_profile(lesson.instructor) %></div>
   <div>Member Since:<br/><%= l(lesson.instructor.created_at.to_date) %></div>
 </div>
