@@ -12,7 +12,7 @@ module UsersHelper
       if @user.rejected_bio
         "<i>" + t('user.rejected_bio') + "</i>"
       else
-        textilize(@user.bio)
+        @user.bio
       end
     end
   end
