@@ -16,7 +16,7 @@ div {
 }
 
 .spacer {
-    border-top: solid 1px #CFCFCF;
+    border-top: solid 1px #cfcfcf;
     margin: 20px 0;
     padding:0;
     clear:both;
@@ -73,6 +73,17 @@ div {
 
 /* LESSONS */
 
+#marketing_fpo {
+    text-align:center;
+    padding:100px 0;
+    border: solid 2px #ccc;
+    background-color: #efefef;
+}
+
+#marketing_fpo h1 {
+    color: #777;
+}
+
 /* lesson_collections */
 .lesson_container, .more, .lesson_left, .lesson_center, .lesson_right {
     font-size: 11px;
@@ -82,13 +93,13 @@ div {
 
 .tag_cloud {
     padding:14px;
-    border: solid 1px #CFCFCF;
+    border: solid 1px #cfcfcf;
 }
 
 #lesson_list_collection {
     padding-top:20px;
     background-color: #fff;
-    border: solid 1px #CFCFCF;
+    border: solid 1px #cfcfcf;
 }
 
 /* styled like an <h4> */
@@ -105,13 +116,13 @@ div {
 .lesson_instructor_avatar {
     margin: 0;
     padding:0;
-    border: solid 1px #CFCFCF;
+    border: solid 1px #cfcfcf;
     height: 110px;
     width: 110px;
 }
 
 img.lesson_tn {
-    border: solid 1px #CFCFCF;
+    border: solid 1px #cfcfcf;
     height: 91px;
     width: 136px;
 }
@@ -279,7 +290,7 @@ div.review .timestamp {
 div.review .instructor_avatar {
     margin: 0;
     padding:0;
-    border: solid 1px #CFCFCF;
+    border: solid 1px #cfcfcf;
     height: 110px;
     width: 110px;
 }
@@ -324,7 +335,7 @@ div.lesson_comment .private {
 div.lesson_comment .commenter_avatar {
     margin: 0;
     padding:0;
-    border: solid 1px #CFCFCF;
+    border: solid 1px #cfcfcf;
     height: 110px;
     width: 110px;
 }

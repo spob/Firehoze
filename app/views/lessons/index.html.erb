@@ -1,13 +1,14 @@
 <% content_for :head do -%>
   <%= javascript_include_tag 'jquery-ui-1.7.2.custom.min.js' %>
   <%= stylesheet_link_tag 'jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" %>
-  <%= javascript_include_tag 'tabs.js', 'jquery.cookie.js' %>
+  <%= javascript_include_tag 'tabs', 'jquery.cookie', 'cornerz', 'rounders' %>
 <% end %>
-
+<div class="clear last append-bottom" id="marketing_fpo">
+  <h1>FPO</h1>
+</div>
 
 <div class="clear span-40 last" id="lesson_tabs">
-
-  <div id="lessons_tabs">
+  <div id="lessons_tabs" >
     <ul>
       <li><%= link_to t('lesson.most_popular'), tabbed_lessons_path(:collection => 'most_popular') %></li>
       <li><%= link_to t('lesson.highest_rated'), tabbed_lessons_path(:collection => 'highest_rated') %></li>
