@@ -7,7 +7,9 @@
     <%= hidden_field_tag :step, "1" %>
     <fieldset>
       <legend>Author Agreement</legend>
-      <%= render :partial => 'accounts/forms/instructor_agreement' %>
+      <div id="instructor_agreement">
+        <%= render :partial => 'pages/policies/instructor_agreement' %>
+      </div>
       <p>
         <b>
           <% if @user.author_agreement_accepted_on.nil? %>

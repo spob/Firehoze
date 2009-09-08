@@ -337,9 +337,18 @@ div.lesson_comment .actions .button-to {
 
 /* USER AGREEMENT */
 
+#user_agreement {
+    font-size: 11px;
+    padding: 0 20px;
+    margin: 20px 0;
+    border:solid 1px #ccc;
+    height: 200px;
+    overflow: auto;
+}
+
 #instructor_agreement {
     font-size: 11px;
-    padding: 20px;
+    padding: 0 20px;
     margin: 20px 0;
     border:solid 1px #ccc;
     height: 200px;
