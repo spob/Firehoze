@@ -79,9 +79,6 @@ Rails::Initializer.run do |config|
   config.gem 'thoughtbot-paperclip', :lib => 'paperclip', :source => 'http://gems.github.com', :version => '2.3.1'
   config.gem 'aws-s3', :lib => 'aws/s3'
 
-  # For text formatting
-  config.gem 'RedCloth'
-
   # For interacting with AWS
   config.gem 'right_aws'
 
