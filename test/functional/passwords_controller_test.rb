@@ -10,14 +10,14 @@ class PasswordsControllerTest < ActionController::TestCase
     end
 
 
-    context "on GET to :edit" do
-      setup { get :edit, :id => Factory(:user).id }
-
-      should_assign_to :user
-      should_respond_with :success
-      should_not_set_the_flash
-      should_render_template "edit"
-    end
+    #context "on GET to :edit" do
+    #  setup { get :edit, :id => Factory(:user).id }
+    #
+    #  should_assign_to :user
+    #  should_respond_with :success
+    #  should_not_set_the_flash
+    #  should_render_template "edit"
+    #end
 
     context "on PUT to :update" do
       setup { put :update, :id => Factory(:user).id,
