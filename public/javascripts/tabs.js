@@ -1,15 +1,27 @@
 $(function() {
-    $('#lessons_tabs').tabs(
+
+    $('#account_settings_tabs').tabs(
     {
-        cache: true,
-        cookie: { 
+        cookie: {
             expires: 30,
-            name: 'lessons_tabs'
+            name: 'account_settings_tabs'
         },
-        fx: { 
+        fx: {
             opacity: 'toggle',
             duration: 300
-        }
+        },
+    });
+
+    $('#admin_user_tabs').tabs(
+    {
+        cookie: {
+            expires: 30,
+            name: 'admin_user_tabs'
+        },
+        fx: {
+            opacity: 'toggle',
+            duration: 300
+        },
     });
 
     $('#lesson_show_tabs').tabs(
@@ -25,6 +37,27 @@ $(function() {
         }
     });
 
+    $('#lessons_tabs').tabs(
+    {
+        cache: true,
+        cookie: { 
+            expires: 30,
+            name: 'lessons_tabs'
+        },
+        fx: { 
+            opacity: 'toggle',
+            duration: 300
+        }
+    });
+
+    $('#policy_tabs').tabs(
+    {
+        fx: { 
+            opacity: 'toggle',
+            duration: 300
+        }
+    });
+
     $('#user_show_tabs').tabs(
     {
         fx: { 
@@ -33,27 +66,4 @@ $(function() {
         }
     });
 
-    $('#account_settings_tabs').tabs(
-    {
-        cookie: { 
-            expires: 30,
-            name: 'account_settings_tabs'
-        },
-        fx: { 
-            opacity: 'toggle',
-            duration: 300
-        },
-    });
-
-    $('#admin_user_tabs').tabs(
-    {
-        cookie: { 
-            expires: 30,
-            name: 'admin_user_tabs'
-        },
-        fx: { 
-            opacity: 'toggle',
-            duration: 300
-        },
-    });
 });
