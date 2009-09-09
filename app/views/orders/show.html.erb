@@ -1,24 +1,22 @@
-<p>
-  Order #: <%= @order.id %>
-</p>
-<p>
-  Order Date: <%= l @order.cart.purchased_at %>
-</p>
-<p>
-  Ordered By: <%= h(@order.user.full_name) %>
-</p>
-<b>Billing Information:</b>
-<p>
-  Name: <%= h @order.first_name %> <%= h @order.last_name %>
-</p>
-<p>
-  Address:<br/>
-  <%= @order.formatted_billing_address("<br/>") %>
-</p>
-<p>
-  Credit Card Type: <%= Order.user_friend_card_type(@order.card_type) %>
-</p>
-Items:
+<h3>Thank you for your order</h3>
+<div class="span-40 last" style="border:solid 1px #999; background-color:#eee;margin:0 0 20px 0; padding:20px 0 0 0;">
+  <div class="push-1 span-19">
+    <strong>Order Information:</strong><br />
+    <%= h(@order.user.full_name) %><br />
+    Order #: <%= @order.id %><br />
+    Purchase date: <%= l @order.cart.purchased_at %><br />
+    Purchaser: <%= h(@order.user.full_name) %><br />
+    Credit Card Type: <%= Order.user_friend_card_type(@order.card_type) %>
+  </div>
+
+  <div class="span-19 last">
+    <strong>Billing Information:</strong><br />
+    <%= h @order.first_name %> <%= h @order.last_name %><br />
+    <%= @order.formatted_billing_address("<br/>") %><br />
+  </div>
+</div>
+
+<strong>You Purchased:</strong>
 <table>
   <tr>
     <th>SKU</th>
@@ -35,14 +33,8 @@ Items:
     <td align="right"><strong>Total</strong></td>
     <td/>
     <td/>
-    <td class="total price">
-      <%= number_to_currency @order.cart.total_full_price %>
-    </td>
-    <td class="total price">
-      <%= number_to_currency @order.cart.total_full_price - @order.cart.total_discounted_price %>
-    </td>
-    <td class="total price">
-      <%= number_to_currency @order.cart.total_discounted_price %>
-    </td>
+    <td class="total price"><%= number_to_currency @order.cart.total_full_price %></td>
+    <td class="total price"><%= number_to_currency @order.cart.total_full_price - @order.cart.total_discounted_price %></td>
+    <td class="total price"><%= number_to_currency @order.cart.total_discounted_price %></td>
   </tr>
 </table>
