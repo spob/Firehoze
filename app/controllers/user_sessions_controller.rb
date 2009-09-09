@@ -4,7 +4,7 @@ class UserSessionsController < ApplicationController
   
   before_filter :require_no_user, :only => [:new, :create]
   before_filter :require_user, :only => :destroy
-  ssl_required :create unless ENV["RAILS_ENV"] =~ /development/
+  ssl_required :create if ENV["RAILS_ENV"] =~ /production/
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :delete, :only => [ :destroy ], :redirect_to => :home_path

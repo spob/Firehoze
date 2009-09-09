@@ -1,4 +1,4 @@
-SECURE_PROTOCOL = (ENV["RAILS_ENV"] =~ /development/ ? "http" : "https")
+SECURE_PROTOCOL = (ENV["RAILS_ENV"] =~ /production/ ? "https" : "http")
 
 LANGUAGES = [['English', 'en'],['Wookie', 'wk']]
 
