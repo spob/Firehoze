@@ -1,7 +1,10 @@
 # Controller to allow a user to change their password when they are logged in
 class PasswordsController < ApplicationController
+  include SslRequirement
+  
   before_filter :require_user
   before_filter :find_user
+  ssl_required :edit, :update if ENV["RAILS_ENV"] =~ /production/
 
   verify :method => :put, :only => [ :update ], :redirect_to => :home_path
 

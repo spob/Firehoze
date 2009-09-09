@@ -1,5 +1,9 @@
 class OrdersController < ApplicationController
+  include SslRequirement
+
   before_filter :require_user
+  
+  ssl_required :new, :create, :update, :show if ENV["RAILS_ENV"] =~ /production/
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path

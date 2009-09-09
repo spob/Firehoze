@@ -1,4 +1,5 @@
 class LessonsController < ApplicationController
+  include SslRequirement
 
   before_filter :require_user, :only => [:new, :create, :edit, :update, :unreject]
   permit ROLE_ADMIN, :only => [:convert]

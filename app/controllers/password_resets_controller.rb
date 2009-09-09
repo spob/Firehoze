@@ -1,7 +1,11 @@
 # Controller to allow the user to reset their password if they've forgotten their password
 class PasswordResetsController < ApplicationController
+  include SslRequirement
+  
   before_filter :load_user_using_perishable_token, :only => [:edit, :update]
   before_filter :require_no_user
+
+  ssl_required :update if ENV["RAILS_ENV"] =~ /production/
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update ], :redirect_to => :home_path

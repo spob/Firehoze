@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  include SslRequirement
 
   before_filter :require_user
 

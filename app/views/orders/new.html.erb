@@ -1,6 +1,6 @@
 New Order
 
-<% form_for @order do |f| %>
+<% form_for @order, :protocol => SECURE_PROTOCOL do |f| %>
     <%= f.error_messages %>
     <p>
       <%= f.label :first_name %><br/>
