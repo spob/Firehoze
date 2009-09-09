@@ -1,23 +1,37 @@
-<h1>Create Sku</h1>
+<%= render :partial => "shared/infield_head_content" %>
 
-<% form_for(:sku, :url => skus_path) do |f| %>
-    <%= f.error_messages %>
-    
-    <%= f.label :sku %>:
-    <%= f.text_field :sku %><br />
-    <br/>
-    <%= f.label :type %>:
-    <%= f.select :type, SkusController.types, { :prompt => "Please select..." } %><br />
-    <br/>
-    <%= f.label :num_credits %>:
-    <%= f.text_field :num_credits %><br />
-    <br/>
-    <%= f.label :price %>:
-    <%= f.text_field :price %><br />
-    <br/>
-	<%= f.label :description %>:
-    <%= f.text_field :description %><br />
-    <br/>
+<% form_for(:sku, :url => skus_path, :html => { :id => "sku" }) do |f| %>
+  <%= f.error_messages %>
+  <fieldset>
+    <legend>Create Sku</legend>
+    <p>
+      <%= f.label :sku %>
+      <%= f.text_field :sku %>
+    </p>
+
+    <div>
+      <%= f.label :type %>
+      <%= f.select :type, SkusController.types, { :prompt => "Please select..." } %>
+    </div>
+
+    <p>
+      <%= f.label :num_credits %>
+      <%= f.text_field :num_credits %>
+    </p>
+
+    <p>
+      <%= f.label :price %>
+      <%= f.text_field :price %>
+    </p>
+
+    <p>
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+    </p>
+  </fieldset>
+
+  <div>
     <%= f.submit "Save", :disable_with => translate('general.disable_with') %>
     <%= link_to 'Cancel', skus_path %>
+  </div>
 <% end %>
