@@ -1,4 +1,5 @@
+<% path = current_user.present? ? home_path : "/" %>
 <ul>
-  <li><%= link_to "Home", home_path %></li>
-  <li><%= link_to "Create Lesson", new_lesson_path %></li>
+  <%= content_tag(:li, "#{link_to t('general.home'), path}") %>
+  <%= content_tag(:li, "#{link_to t('lesson.create_lesson'), new_lesson_path}") if current_user.present? %>
 </ul> 
