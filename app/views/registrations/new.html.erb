@@ -1,6 +1,6 @@
 <%= render :partial => "shared/infield_head_content" %>
 
-<% form_for(:registration, :url => registrations_path, :html => { :id => "inline", :class => "register" }) do |f| %>
+<% form_for(:registration, :url => registrations_path, :html => {'accept-charset' => "utf-8", :id => "inline", :class => "register" }) do |f| %>
     <%= f.error_messages %>
     <fieldset>
       <legend>Sign Up</legend>
@@ -21,10 +21,11 @@
             <%= f.text_field :registration_code %>
           </p>
       <% end %>
-      <p>
-        <%= f.label :captcha, "Please verify that you are human:" %>
-        <%= recaptcha_tags %>
-      </p>
+
+        <p style="padding:0 0 5px 0;">
+          <%= f.label :captcha, "Please verify that you are human:" %>
+        </p>
+        <%= recaptcha_tags :display => {:theme => 'clean', :tabindex => 3 } %>
     </fieldset>
 
     <p>

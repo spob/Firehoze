@@ -22,6 +22,10 @@ div {
     clear:both;
 }
 
+.recaptchatable * {
+  background-color: #fff;
+}
+
 /* FOOTER */
 #footer #content {
     text-align:center;
