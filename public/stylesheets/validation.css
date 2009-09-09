@@ -15,3 +15,10 @@ form#edit_lesson label.error {
 	margin:25px 0 0 580px;
 	width: 290px;
 }
+
+form#order label.error {
+	margin:0 0 0 430px;
+	width: 450px;
+}
+
+.error { padding: .3em; margin-bottom: 2em; border: 2px solid #ddd; }

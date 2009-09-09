@@ -5,6 +5,7 @@ form#flag,
 form#lesson,
 form#lesson_comment,
 form#new_user,
+form#order,
 form#review
 {
     padding: 30px 40px 15px 40px;
