@@ -1,20 +1,17 @@
-<h3>Edit SKU</h3>
+<%= render :partial => "shared/infield_head_content" %>
 
-<% form_for(:sku, :url => sku_path(@sku), :html => { :method => :put }) do |f| %>
-    <%= f.error_messages %>
+<% form_for(:sku, :url => sku_path(@sku), :html => { :method => :put, :id => "sku" }) do |f| %>
+  <%= f.error_messages %>
+  <fieldset>
+    <legend>Edit Sku</legend>
+    <p>SKU: <%= f.text_field :sku %></p>
+    <p>Number of credits: <%= f.text_field :num_credits %></p>
+    <p>Price: <%= f.text_field :price %></p>
+    <p>Description:<%= f.text_field :description %></p>
+  </fieldset>
 
-    <%= f.label :sku %>:
-    <%= f.text_field :sku %><br />
-    <br/>
-    <%= f.label :num_credits %>:
-    <%= f.text_field :num_credits %><br />
-    <br/>
-    <%= f.label :price %>:
-    <%= f.text_field :price %><br />
-    <br/>
-	<%= f.label :description %>:
-    <%= f.text_field :description %><br />
-    <br/>
+  <div>
     <%= f.submit "Update", :disable_with => translate('general.disable_with')%>
     <%= link_to "Cancel", skus_path %>
+  </div>
 <% end %>
