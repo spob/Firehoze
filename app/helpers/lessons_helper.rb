@@ -88,10 +88,6 @@ module LessonsHelper
     end
   end
 
-  def link_to_wishes
-    link_to t('lesson.wishlist'), list_lessons_path(:collection => :wishlist )
-  end
-
   def button_to_edit(lesson)
     if lesson.instructed_by?(current_user) or current_user.try("is_admin?")
       button_to t('lesson.edit'), edit_lesson_path(lesson), :method => :get
