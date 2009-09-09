@@ -2,7 +2,7 @@
 <%= render :partial => "shared/infield_head_content" %>
 
 <div class="span-23">
-  <% form_for @user_session, :url => user_session_path, :html => {'accept-charset' => "utf-8", :id => "inline", :class => "login" } do |f| %>
+  <% form_for @user_session, :url => user_session_url(:protocol => SECURE_PROTOCOL), :html => {'accept-charset' => "utf-8", :id => "inline", :class => "login" } do |f| %>
     <%= f.error_messages %>
     <fieldset>
       <legend>Sign In</legend>

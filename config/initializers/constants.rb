@@ -1,3 +1,5 @@
+SECURE_PROTOCOL = (ENV["RAILS_ENV"] =~ /development/ ? "http" : "https")
+
 LANGUAGES = [['English', 'en'],['Wookie', 'wk']]
 
 ROWS_PER_PAGE = 10
