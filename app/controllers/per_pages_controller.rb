@@ -1,4 +1,6 @@
 class PerPagesController < ApplicationController
+  include SslRequirement
+  
   verify :method => :post, :only => [:set ], :redirect_to => :home_path
 
   def set

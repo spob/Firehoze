@@ -1,4 +1,6 @@
 class FlagsController < ApplicationController
+  include SslRequirement
+  
   before_filter :require_user, :except => :new
   before_filter :find_flaggable, :only => [ :new, :create ]
   before_filter :find_flag, :only => [ :show, :update, :edit ]

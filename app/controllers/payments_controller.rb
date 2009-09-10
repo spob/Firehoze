@@ -1,4 +1,6 @@
 class PaymentsController < ApplicationController
+  include SslRequirement
+  
   before_filter :require_user
   before_filter :layout_for_action
   layout :layout_for_action

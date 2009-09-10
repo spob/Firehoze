@@ -1,5 +1,11 @@
 # The accounts controller allows the user to update personal information on their account
 class AccountsController < ApplicationController
+  include SslRequirement
+
+  ssl_required :edit, :update, :show, :instructor_signup_wizard, :instructor_wizard_step1,
+               :instructor_wizard_step2, :instructor_wizard_step3, :instructor_wizard_step4,
+               :instructor_wizard_step5, :clear_avatar, :update_avatar, :update_instructor,
+               :update_instructor_wizard, :update_privacy if ENV["RAILS_ENV"] =~ /production/
   before_filter :require_user, :except => [:instructor_agreement]
   before_filter :find_user
 

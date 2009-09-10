@@ -1,5 +1,7 @@
 # This controller is a nested resource. It will generally be invoked from the lesson controller
 class LessonCommentsController < ApplicationController
+  include SslRequirement
+  
   before_filter :require_user, :except => [:index, :new]
   # Since this controller is nested, in most cases we'll need to retrieve the lesson first, so I made it a
   # before filter
