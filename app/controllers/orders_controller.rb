@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   include SslRequirement
 
   before_filter :require_user
-  
+
   ssl_required :new, :create, :update, :show if ENV["RAILS_ENV"] =~ /production/
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
   def create
     Order.transaction do
       if current_cart.order
-        # Order was created in a previous attempt the failed
+        # Order was created in a previous attempt that failed
         @order = current_cart.order
         @order.update_attributes(params[:order])
       else
@@ -38,6 +38,16 @@ class OrdersController < ApplicationController
       end
       @order.ip_address = request.remote_ip
       @order.user = current_user
+
+      if params[:default_address]
+        user = User.find(current_user.id)
+        user.address1 = @order.address1
+        user.address2 = @order.address2
+        user.city = @order.city
+        user.state = @order.state
+        user.country = @order.country
+        user.save!
+      end
       # Saving the order will charge the credit card itself using the ActiveMerchant plugin. If this succeeds,
       # the credit card was charged.
       if @order.save
