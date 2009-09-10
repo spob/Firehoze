@@ -2,7 +2,7 @@
 <%= instructor_wizard_breadcrumbs 4 %>
 <br/>
 <br/>
-<% form_for(:user, :url => update_instructor_wizard_account_path(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
+<% form_for(:user, :url => update_instructor_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
     <%= f.error_messages %>
     <%= hidden_field_tag :step, "4" %>
     <fieldset>
