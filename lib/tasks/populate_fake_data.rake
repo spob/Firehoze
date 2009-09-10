@@ -68,6 +68,13 @@ namespace :db do
         user.failed_login_count = 0
         user.active = true
         user.user_agreement_accepted_on = Date.today
+        
+        # insane why I need to specify these for my PC dev instance -- oh well
+        user.rejected_bio = false
+        user.show_real_name = true
+        user.allow_contact = true
+        user.instructor_status = "NO"
+        user.withold_taxes = true
         puts "User created: #{user.first_name} #{user.last_name}"
       end
       puts "- done -"
@@ -94,7 +101,7 @@ namespace :db do
         else
           lesson.save!
           OriginalVideo.create!(:lesson => lesson,
-                                :video => File.open(RAILS_ROOT + dummy_video_path))
+            :video => File.open(RAILS_ROOT + dummy_video_path))
           lesson.trigger_conversion("http://some/url")
           puts "#{i}: #{lesson.original_video.video_file_name} uploaded [instructor: #{lesson.instructor.full_name} | file size:#{lesson.original_video.video_file_size}]"
         end
