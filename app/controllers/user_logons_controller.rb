@@ -1,5 +1,7 @@
 # Allow an admin to see a history of user logons
 class UserLogonsController < ApplicationController
+  include SslRequirement
+  
   before_filter :require_user
 
   # admins only

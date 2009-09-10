@@ -2,10 +2,9 @@
 <div class="span-40 last" style="border:solid 1px #999; background-color:#eee;margin:0 0 20px 0; padding:20px 0 0 0;">
   <div class="push-1 span-19">
     <strong>Order Information:</strong><br />
-    <%= h(@order.user.full_name) %><br />
     Order #: <%= @order.id %><br />
     Purchase date: <%= l @order.cart.purchased_at %><br />
-    Purchaser: <%= h(@order.user.full_name) %><br />
+    Purchased by: <%= h(@order.user.full_name) %><br />
     Credit Card Type: <%= Order.user_friend_card_type(@order.card_type) %>
   </div>
 

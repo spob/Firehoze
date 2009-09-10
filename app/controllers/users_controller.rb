@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  include SslRequirement
+
+  ssl_required  :new, :create, :edit, :update if ENV["RAILS_ENV"] =~ /production/
   before_filter :require_no_user, :only => [ :new, :create ]
   before_filter :require_user, :except => [ :new, :create, :show, :user_agreement ]
   before_filter :find_user, :only => [ :clear_avatar, :edit, :show, :show_admin, :private, :reset_password, :update,

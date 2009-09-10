@@ -1,4 +1,6 @@
 class WishListsController < ApplicationController
+  include SslRequirement
+  
   before_filter :require_user, :except => :create
   before_filter :find_lesson
 

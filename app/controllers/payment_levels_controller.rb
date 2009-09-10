@@ -1,4 +1,6 @@
 class PaymentLevelsController < ApplicationController
+  include SslRequirement
+  
   before_filter :require_user
   before_filter :find_payment_level, :only => [ :edit, :update, :destroy ]
 

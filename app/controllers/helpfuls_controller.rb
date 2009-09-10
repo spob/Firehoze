@@ -1,4 +1,6 @@
 class HelpfulsController < ApplicationController
+  include SslRequirement
+  
   before_filter :require_user
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path

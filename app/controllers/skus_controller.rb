@@ -1,4 +1,6 @@
 class SkusController < ApplicationController
+  include SslRequirement
+  
   before_filter :require_user
 
   # Admins only

@@ -1,4 +1,6 @@
 class PeriodicJobsController < ApplicationController
+  include SslRequirement
+  
   before_filter :require_user
   permit ROLE_ADMIN
 

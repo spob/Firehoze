@@ -1,4 +1,4 @@
-<% form_for(:user, :url => account_path(@user), :html => { :method => :put, :id => "profile" }) do |f| %>
+<% form_for(:user, :url => account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "profile" }) do |f| %>
 <%= f.error_messages %>
 <fieldset>
   <% unless params[:action] == "edit_admin" -%> 

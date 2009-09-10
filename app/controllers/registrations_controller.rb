@@ -1,5 +1,7 @@
 # Allow a user to request a new account
 class RegistrationsController < ApplicationController
+  include SslRequirement
+  
   before_filter :require_no_user
 
   def new
