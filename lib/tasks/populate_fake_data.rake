@@ -29,6 +29,7 @@ namespace :db do
         admin.login = dev[1].downcase
         admin.first_name = dev[1]
         admin.last_name = dev[2]
+        admin.user_agreement_accepted_on = Date.today
         admin.save!
         admin.has_role ROLE_ADMIN
         puts "Admin created: #{admin.full_name}"
@@ -66,6 +67,7 @@ namespace :db do
         user.login_count = 0
         user.failed_login_count = 0
         user.active = true
+        user.user_agreement_accepted_on = Date.today
         puts "User created: #{user.first_name} #{user.last_name}"
       end
       puts "- done -"
@@ -82,7 +84,7 @@ namespace :db do
       (1..count.to_i).each do |i|
         lesson = Lesson.new
         lesson.instructor = User.first(:order => 'RAND()')
-        lesson.title = Faker::Company.catch_phrase.titleize
+        lesson.title = Faker::Company.catch_phrase.titleize[0..49]
         lesson.synopsis = Populator.sentences(2..4)
         lesson.notes = Populator.paragraphs(2..6)
         lesson.status = VIDEO_STATUS_PENDING
@@ -93,7 +95,7 @@ namespace :db do
           lesson.save!
           OriginalVideo.create!(:lesson => lesson,
                                 :video => File.open(RAILS_ROOT + dummy_video_path))
-          lesson.trigger_conversion
+          lesson.trigger_conversion("http://some/url")
           puts "#{i}: #{lesson.original_video.video_file_name} uploaded [instructor: #{lesson.instructor.full_name} | file size:#{lesson.original_video.video_file_size}]"
         end
       end
@@ -202,6 +204,7 @@ namespace :db do
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE free_credits;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE gift_certificates;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE payments;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE line_items;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE order_transactions;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE orders;")
@@ -236,7 +239,7 @@ namespace :db do
   private
 
   def developers_personal_info
-    [["sys@firehoze.com", "sys", "admin"], ["rich@firehoze.com", "Rich", "Sturim"], ["bob@firehoze.com", "Bob", "Sturim"]]
+    [["sys@firehoze.com", "admin", "person"], ["rich@firehoze.com", "Rich", "Sturim"], ["bob@firehoze.com", "Bob", "Sturim"]]
   end
 
   def developers
