@@ -43,6 +43,7 @@ namespace :db do
   desc "Seed the database with periodic jobs"
   task :seed_jobs => :environment do
     create_job RunIntervalPeriodicJob, 'SessionCleaner', 'SessionCleaner.clean', 3600 * 24  #once a day
+    create_job RunIntervalPeriodicJob, 'SessionExpiry', 'SessionCleaner.sweep', 1800  #once every 30 minutes
     create_job RunIntervalPeriodicJob, 'PeriodicJobCleanup', 'PeriodicJob.cleanup', 3600  #once an hour
     create_job RunIntervalPeriodicJob, 'CreditExpiration', 'Credit.expire_unused_credits', 3600 * 24  #once a day
     create_job RunIntervalPeriodicJob, 'LessonBuyPattern', 'LessonBuyPattern.rollup_buy_patterns', 3600  #once an hour
