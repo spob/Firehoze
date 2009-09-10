@@ -3,7 +3,7 @@
 <%= stylesheet 'validation' %>
 <%= javascript 'validate/jquery.validate', 'validate/user.validate' %>
 
-<% form_for([ @registration, @user ], :html => { :class => "new_user", :id => "new_user" }) do |f| %>
+<% form_for([ @registration, @user ], :protocol => SECURE_PROTOCOL, :html => { :class => "new_user", :id => "new_user" }) do |f| %>
   <%= f.error_messages %>
   <fieldset>
     <legend>Your email address has been confirmed.</legend>
