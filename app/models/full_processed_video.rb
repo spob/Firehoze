@@ -3,16 +3,12 @@ class FullProcessedVideo < ProcessedVideo
     FLIX_FULL_RECIPE_ID
   end
 
-  def thumbnail_suffix
-    ""
+  def thumbnail_size
+    "large"
   end
 
   def output_ftp_path
     "ftp://#{APP_CONFIG[CONFIG_FTP_CDN_PATH]}/#{self.s3_root_dir}/videos/#{self.id.to_s}.flv"
-  end
-
-  def thumbnail_path
-    thumbnail = "http://#{APP_CONFIG[CONFIG_CDN_THUMBS_SERVER]}/#{self.s3_root_dir}/thumbs/#{id.to_s}/thumb_0001.png"
   end
 
   def update_lesson_attributes(job)
