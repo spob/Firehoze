@@ -298,6 +298,10 @@ END
     raise e unless ENV['RAILS_ENV'] == 'test'
   end
 
+  def sized_thumbnail_url(size=:large)
+    self.thumbnail_rule.gsub(/<size>/, size.to_s) 
+  end
+
   def s3_connect()
     RightAws::S3.new(APP_CONFIG[CONFIG_AWS_ACCESS_KEY_ID],
                      APP_CONFIG[CONFIG_AWS_SECRET_ACCESS_KEY])

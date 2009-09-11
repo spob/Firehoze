@@ -129,8 +129,8 @@ class ProcessedVideo < Video
     out_string
   end
   
-  def thumbnail_path
-    thumbnail = "http://#{APP_CONFIG[CONFIG_CDN_THUMBS_SERVER]}/#{self.s3_root_dir}/thumbs/#{lesson.id.to_s}/#{thumbnail_size}/thumb_0001.png"
+  def thumbnail_path(size=thumbnail_size)
+    thumbnail = "http://#{APP_CONFIG[CONFIG_CDN_THUMBS_SERVER]}/#{self.s3_root_dir}/thumbs/#{lesson.id.to_s}/#{size}/thumb_0001.png"
   end
 
   private
