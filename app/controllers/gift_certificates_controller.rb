@@ -4,7 +4,7 @@ class GiftCertificatesController < ApplicationController
   before_filter :require_user
   before_filter :find_gift_certificate, :only => [:redeem, :give, :pregive, :confirm_give]
 
-  ssl_required :redeem if ENV["RAILS_ENV"] =~ /production/
+  ssl_required :redeem if Rails.env.production?
 
   verify :method => :post, :only => [ :create, :redeem, :give, :confirm_give ], :redirect_to => :home_path
 

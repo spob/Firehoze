@@ -7,7 +7,7 @@ module ActiveSupport
   #
   # you can call this:
   #
-  #   Rails.env.production?
+  #   if Rails.env.production?
   #
   class StringInquirer < String
     def method_missing(method_name, *arguments)
