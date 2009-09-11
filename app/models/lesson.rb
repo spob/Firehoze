@@ -252,7 +252,7 @@ END
   end
 
   def sized_thumbnail_url(size=:large)
-    self.thumbnail_rule.gsub(/<size>/, size.to_s)
+    self.thumbnail_url.gsub(/<size>/, size.to_s)
   end
 
   private
