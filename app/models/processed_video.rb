@@ -132,7 +132,7 @@ class ProcessedVideo < Video
   private
 
   def thumbnail_s3_path
-    "s3://#{APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET]}/#{self.s3_root_dir}/thumbs/#{self.id.to_s}"
+    "s3://#{APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET]}/#{self.s3_root_dir}/thumbs#{thumbnail_suffix}/#{self.id.to_s}"
   end
 
   def set_video_status

@@ -3,6 +3,10 @@ class PreviewProcessedVideo < ProcessedVideo
     FLIX_PREVIEW_RECIPE_ID
   end
 
+  def thumbnail_suffix
+    ""
+  end
+
   def output_ftp_path
     "ftp://#{APP_CONFIG[CONFIG_FTP_CDN_PATH]}/#{self.s3_root_dir}/previews/#{self.id.to_s}.flv"
   end
