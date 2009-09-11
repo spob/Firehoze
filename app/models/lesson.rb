@@ -251,6 +251,10 @@ END
     self.status = LESSON_STATUS_REJECTED
   end
 
+  def sized_thumbnail_url(size=:large)
+    self.thumbnail_rule.gsub(/<size>/, size.to_s)
+  end
+
   private
 
   Tag.destroy_unused = true
@@ -296,10 +300,6 @@ END
   rescue ActiveRecord::RecordNotFound => e
     # test environment is not seeded with SKU's
     raise e unless ENV['RAILS_ENV'] == 'test'
-  end
-
-  def sized_thumbnail_url(size=:large)
-    self.thumbnail_rule.gsub(/<size>/, size.to_s) 
   end
 
   def s3_connect()
