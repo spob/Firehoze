@@ -15,8 +15,9 @@
       </div>
       <div class="last" style="padding-top:5px;text-align:right">
         <b>Order by:</b>
-        <%= order @search, :by => :title %>&nbsp;
+        <%= order @search, :by => :created_at %>&nbsp;
         <%= order @search, :by => :instructor_login %>
+        <%= order @search, :by => :title %>&nbsp;
         <%= f.submit "Search" %>
       </div>
   <% end %>
