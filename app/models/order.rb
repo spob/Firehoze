@@ -75,10 +75,6 @@ class Order < ActiveRecord::Base
     response.success?
   end
 
-  def formatted_billing_address newline_character = "\n"
-    "#{address1}#{newline_character}#{address2 + newline_character unless (address2.nil? or address2.empty?)}#{city}, #{state} #{zip}#{newline_character}#{country}"
-  end
-
   def email_receipt
     RunOncePeriodicJob.create(
             :name => 'Email Receipt',

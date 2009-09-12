@@ -6,7 +6,7 @@
 <% form_for :review, :url => review_path(@review), :html => { :method => :put, :id => "review" } do |f| %>
   <%= f.error_messages %>
   <fieldset>
-    <legend>Edit your Review of: <%= link_to @review.lesson.title, lesson_path(@review.lesson) %></legend>
+    <legend>Edit your Review of: <%= link_to h(@review.lesson.title), lesson_path(@review.lesson) %></legend>
     <p>
       <%= f.label :headline %><br />
       <%= f.text_field :headline, :maxlength => "100", :class => "required" %>
