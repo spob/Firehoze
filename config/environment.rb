@@ -70,7 +70,7 @@ Rails::Initializer.run do |config|
   config.gem "hpricot", :source => "http://code.whytheluckystiff.net"
 
   # Safe ERB lets you make sure that the string written by "<%= %>" in your rhtml template is escaped correctly
-  config.gem "emk-safe_erb", :version => '0.1.2', :lib => 'safe_erb', :source => 'http://gems.github.com'
+  # config.gem "emk-safe_erb", :version => '0.1.2', :lib => 'safe_erb', :source => 'http://gems.github.com'
 
   # Gem for secret url (for user signup requests)
   config.gem "mholling-active_url", :lib => "active_url", :source => "http://gems.github.com"
