@@ -26,7 +26,7 @@ module UsersHelper
     size = options[:size] || :medium
     avatar_url = user.avatar.file? ? user.avatar.url(size) : User.default_avatar_url(size)
     cdn_avatar_url = User.convert_avatar_url_to_cdn(avatar_url)
-    image_tag cdn_avatar_url, options.merge({ :alt => user.full_name, :class => 'avatar' })
+    image_tag cdn_avatar_url, options.merge({ :alt => h(user.full_name), :class => 'avatar' })
   end
 
   def payment_levels_for_select

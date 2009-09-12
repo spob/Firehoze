@@ -1,4 +1,4 @@
-New Discount for SKU <%= @sku.sku %>
+New Discount for SKU <%= h @sku.sku %>
 
 <% form_for :discount, :url => sku_discounts_url(@sku) do |f| %>
     <%= f.error_messages %>

@@ -3,7 +3,7 @@
         <%= h line_item.sku.description %>
         <% if line_item.sku.class == GiftCertificateSku and !line_item.gift_certificates.empty? %>
         <br/>
-        <%= line_item.gift_certificates.first.formatted_code %>
+        <%= h line_item.gift_certificates.first.formatted_code %>
         <% end %>
     </td>
     <td class="price"><%= number_to_currency(line_item.unit_price) %></td>

@@ -1,4 +1,4 @@
-Edit Discount for SKU <%= @discount.sku.sku %>
+Edit Discount for SKU <%= h @discount.sku.sku %>
 
 <% form_for :discount, :url => discount_path(@discount), :html => { :method => :put } do |f| %>
   <%= f.error_messages %>

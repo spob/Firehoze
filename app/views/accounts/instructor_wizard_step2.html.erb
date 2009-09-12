@@ -28,7 +28,7 @@
 
       <p>
         <% if @user.payment_level and !@user.instructed_lessons.empty? %>
-            <%= @user.payment_level.name %>
+            <%= h(@user.payment_level.name) %>
             (pays at <%= number_to_percentage(100 * @user.payment_level.rate, :precision => 1) %>)
         <% else %>
             <%= f.select :payment_level, options_from_collection_for_select(PaymentLevel.all, 'id', 'name',
