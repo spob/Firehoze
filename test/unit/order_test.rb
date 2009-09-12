@@ -27,15 +27,6 @@ class OrderTest < ActiveSupport::TestCase
       assert @order.valid?
     end
 
-    context "with a billing address with address 2 populated" do
-      setup { @order.address2 = "Apartment 2A" }
-
-      should "format the billing address" do
-        assert_equal "123 Main St.\nApartment 2A\nNew York, NY 10001\nUS", @order.formatted_billing_address
-        assert_equal "123 Main St.<br/>Apartment 2A<br/>New York, NY 10001<br/>US", @order.formatted_billing_address("<br/>")
-      end
-    end
-
     context "with a valid credit card number" do
       setup do
         # a value of 1 in the credit_card signals to the bogus gateway to successfully process the transaction
