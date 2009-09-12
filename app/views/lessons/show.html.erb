@@ -48,9 +48,9 @@
         <%= l @lesson.created_at %><br />
         <% if current_user.try("is_admin?") or @lesson.instructor == current_user %>
           <b>State:</b>
-          <%= translate("lesson.#{@lesson.status}") %><br />
+          <%=h translate("lesson.#{@lesson.status}") %><br />
         <% end %>
-        <%= number_of_students_phrase(@lesson) %><br />
+        <%=h number_of_students_phrase(@lesson) %><br />
         <%= content_tag(:p, free_remaining_text(@lesson)) if @lesson.has_free_credits? %>
       </div>
 
@@ -150,8 +150,8 @@
           <tr>
             <td><b>TOTAL</b></td>
             <td>&nbsp;</td>
-            <td><b><%= number_to_currency(@lesson.credits.sum(:price)) %></b></td>
-            <td><b><%= number_to_currency(@lesson.credits.sum(:commission_paid)) %></b></td>
+            <td><b><%=h number_to_currency(@lesson.credits.sum(:price)) %></b></td>
+            <td><b><%=h number_to_currency(@lesson.credits.sum(:commission_paid)) %></b></td>
             <td>&nbsp;</td>
           </tr>
         </table>
