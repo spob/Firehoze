@@ -3,6 +3,12 @@ class LessonComment < Comment
   validates_presence_of :lesson
   has_many :flags, :as => :flaggable, :dependent => :destroy
 
+  # Display the option of public versus private to the user
+  def self.show_public_private_option?(user)
+    return false unless user
+    user.is_admin? or user.is_moderator?
+  end
+
 # Basic paginated listing finder
   def self.list(lesson, page, current_user=nil)
     paginate :page => page,
@@ -23,12 +29,12 @@ class LessonComment < Comment
   end
 
   def can_edit? user
-    super or (self.last_public_comment? and self.user == user)
+    (super or (self.last_public_comment? and self.user == user)) and (self.public or LessonComment.show_public_private_option?(user))
   end
 
   def self.list_conditions(lesson, current_user)
     conditions = { :lesson_id => lesson }
-    conditions = conditions.merge!({:public => true, :status => COMMENT_STATUS_ACTIVE}) unless (current_user and current_user.is_moderator?)
+    conditions = conditions.merge!({:public => true, :status => COMMENT_STATUS_ACTIVE}) unless show_public_private_option?(current_user)
     conditions
   end
 end
