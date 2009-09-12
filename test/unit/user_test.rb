@@ -169,7 +169,7 @@ class UserTest < ActiveSupport::TestCase
     end
 
     context "and several expected languages" do
-      setup { @expected_lang =  [['English', 'en'], ['Wookie', 'wk'] ] }
+      setup { @expected_lang =  [['English', 'en'] ] }
 
       should "support English and Wookie" do
         l = User.supported_languages

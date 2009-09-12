@@ -13,12 +13,12 @@ class LessonCommentsController < ApplicationController
   verify :method => :destroy, :only => [:delete ], :redirect_to => :home_path
 
   def index
-    @lesson_comments = LessonComment.list @lesson, params[:page]
+    @lesson_comments = LessonComment.list @lesson, params[:page], current_user
     render :layout => 'content_in_tab'
   end
 
   def index
-    @lesson_comments = LessonComment.list @lesson, params[:page]
+    @lesson_comments = LessonComment.list @lesson, params[:page], current_user
     @style = params[:style]
     render :layout => 'content_in_tab' if @style == 'tab'
   end
@@ -26,6 +26,7 @@ class LessonCommentsController < ApplicationController
   def new
     if current_user
       @lesson_comment = @lesson.comments.build
+      @lesson_comment.public = true
     else
       store_location new_lesson_lesson_comment_path(@lesson)
       flash[:error] = t('lesson.must_logon')

@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class LessonCommentTest < ActiveSupport::TestCase
   context "given an existing record for a lesson comment" do
@@ -57,6 +57,32 @@ class LessonCommentTest < ActiveSupport::TestCase
         should "allow editing for author" do
           assert @public_comment.can_edit?(@public_comment.user)
           assert !@public_comment.can_edit?(@nobody_user)
+        end
+      end
+    end
+  end
+
+  context "testing whether to show or hide public/private comments" do
+    context "with a user" do
+      setup { @user = Factory.create(:user) }
+
+      should "not see the option" do
+        assert !LessonComment.show_public_private_option?(@user)
+      end
+
+      context "who is an admin" do
+        setup { @user.is_admin }
+
+        should "see the option" do
+          assert LessonComment.show_public_private_option?(@user)
+        end
+      end
+
+      context "who is a moderator" do
+        setup { @user.is_moderator }
+
+        should "see the option" do
+          assert LessonComment.show_public_private_option?(@user)
         end
       end
     end

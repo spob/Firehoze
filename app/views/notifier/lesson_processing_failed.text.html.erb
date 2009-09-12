@@ -1,9 +1,9 @@
 <p>
-  Hi <%= @video.lesson.instructor.full_name %>,
+  Hi <%= h @video.lesson.instructor.full_name %>,
 </p>
 <p>
-  Your lesson "<%= @video.lesson.title %>" failed processing with the following error:
-  <%= @video.video_transcoding_error %>
+  Your lesson "<%= h @video.lesson.title %>" failed processing with the following error:
+  <%= h @video.video_transcoding_error %>
 </p>
 <p>
   Firehoze system adminstrators have been notified of this issue and are looking into the problem.

@@ -1,5 +1,5 @@
 <p>
-  Hi <%= @to_user.full_name %>,
+  Hi <%= h @to_user.full_name %>,
 </p>
 <p>
   A Firehoze user has sent you a message:
@@ -8,7 +8,7 @@
   <%= simple_format @msg %>
 </p>
 <p>
-  Sincerely, <%= @from_user.full_name %>
+  Sincerely, <%= h @from_user.full_name %>
 </p>
 <p>
   <%= link_to 'Sign In', @url %>
