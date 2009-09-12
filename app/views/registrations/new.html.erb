@@ -1,10 +1,10 @@
 <%= render :partial => "shared/infield_head_content" %>
 
-<% form_for(:registration, :url => registrations_path, :html => {'accept-charset' => "utf-8", :id => "inline", :class => "register" }) do |f| %>
+<div class="span-22">
+  <% form_for(:registration, :url => registrations_path, :html => {'accept-charset' => "utf-8", :id => "inline", :class => "register" }) do |f| %>
     <%= f.error_messages %>
     <fieldset>
       <legend>Sign Up</legend>
-      <div class="help">In order to request an account, you first must verify your email information:</div>
       <p>
         <%= f.label :username, :Username %>
         <%= f.text_field :username %>
@@ -16,21 +16,32 @@
       </p>
 
       <% if APP_CONFIG[CONFIG_RESTRICT_REGISTRATION] %>
-          <p>
-            <%= f.label :registration_code %>
-            <%= f.text_field :registration_code %>
-            <%= link_to "Request a Registration Code", "http://www.firehoze.com" %>
-          </p>
+        <p>
+          <%= f.label :registration_code %>
+          <%= f.text_field :registration_code %>
+        </p>
       <% end %>
 
-        <p style="padding:0 0 5px 0;">
-          <%= f.label :captcha, "Please verify that you are human:" %>
-        </p>
-        <%= recaptcha_tags :display => {:theme => 'clean', :tabindex => 3 } %>
+      <p style="padding:0 0 5px 0;">
+        <%= f.label :captcha, "Please verify that you are human:" %>
+      </p>
+      <%= recaptcha_tags :display => {:theme => 'clean', :tabindex => 3 } %>
     </fieldset>
 
     <p>
       <%= f.submit "Register", :disable_with => translate('general.disable_with') %>
       <%= link_to "Already have an account?", login_path %>
     </p>
+  <% end %>
+</div>
+
+<% if APP_CONFIG[CONFIG_RESTRICT_REGISTRATION] %>
+  <div class="span-18 last">
+    <div class="info">
+      <h3>Early Registration Request</h3>
+      <p>Can't wait for the public release?</p>
+      <p>For a limited time we're offering early access to the Firehoze site.</p>
+      <p><%= link_to "Request your Registration Code", "http://www.firehoze.com" %> now!</p>
+    </div>
+  </div>
 <% end %>
