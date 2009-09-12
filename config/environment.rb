@@ -75,6 +75,9 @@ Rails::Initializer.run do |config|
   # Gem for pagination functionality
   config.gem 'mislav-will_paginate', :version => '~> 2.3.8', :lib => 'will_paginate', :source => 'http://gems.github.com'
 
+  # Gem performance monitoring
+  config.gem 'newrelic_rpm'
+
   # For attaching files
   config.gem 'thoughtbot-paperclip', :lib => 'paperclip', :source => 'http://gems.github.com', :version => '2.3.1'
   config.gem 'aws-s3', :lib => 'aws/s3'
