@@ -1,0 +1,97 @@
+
+/*
+	root element for the scrollable.
+	when scrolling occurs this element stays still.
+*/
+
+div.demowrap {
+/*	margin: 10px -15px;*/
+}
+
+.scrollable {
+
+	/* required settings */
+	position:relative;
+	overflow:hidden;
+/*	width: 531px;*/
+	width:603px;
+/*	height:120px;*/
+	height:190px;
+
+	/* custom decorations */
+	border:1px solid #ccc;
+	background:url(../../../images/scrollable/h300.png) repeat-x;
+}
+
+/*
+	root element for scrollable items. Must be absolutely positioned
+	and it should have a extremely large width to accomodate scrollable items.
+	it's enough that you set the width and height for the root element and
+	not for this element.
+*/
+.scrollable .items {
+	/* this cannot be too large */
+	width:20000em;
+	position:absolute;
+	clear:both;
+}
+
+
+.scrollable .item_container {
+	float:left;
+	/*border:1px solid red;*/
+/*	height:175px;*/
+	margin:20px 0px 20px 20px;
+
+}
+
+
+
+
+/* single scrollable item */
+.scrollable img {
+/*	float:left;*/
+/*	margin:20px 5px 20px 21px;*/
+	background-color:#fff;
+	padding:2px;
+	border:1px solid #ccc;
+	cursor:pointer;
+/*	width:100px;*/	
+	/*height:75px;*/
+	width:120px;
+	height:90px;
+	
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	}
+
+.item_container	.tn {
+		position:relative;
+}
+
+.item_container	.duration {
+	padding: 0 3px;
+	background: #333;
+	color: #fff;
+	font-weight: bold;
+		position:absolute;
+		bottom:4px;
+		right:4px;
+}
+
+.transparent {
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+}
+
+
+/* active item */
+.scrollable .active {
+	border:2px solid #999;
+	z-index:9999;
+	position:relative;
+}
+
+

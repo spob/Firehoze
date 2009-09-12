@@ -81,6 +81,14 @@ div {
 }
 
 /* LESSONS */
+
+#bought_this_video_also_bought {
+	padding:24px;
+	border: solid 1px #AFAFAF;
+/*	background-color: #efefef;*/
+}
+
+
 #marketing_fpo {
     text-align:center;
     padding:100px 0;
