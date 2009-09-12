@@ -32,6 +32,7 @@ module ApplicationHelper
   end
 
   def rbs_formatter(text)
+    text = h(text)
     return text if text.blank?
     # process bold and italics
     text = text.gsub(/\*(\S.+?)\*/, '<b>\1</b>').gsub(/_(.+?)_/, '<i>\1</i>')
@@ -57,9 +58,9 @@ module ApplicationHelper
 
   def link_to_profile(user)
     if current_user.try("is_moderator?") or current_user.try("is_admin?") or user.try("show_real_name")
-      link_to_unless_current "#{user.full_name} (#{user.login})", user_path(user)
+      link_to_unless_current "#{h user.full_name} (#{h user.login})", user_path(user)
     else
-      link_to_unless_current user.name_or_username, user_path(user)
+      link_to_unless_current h(user.name_or_username), user_path(user)
     end
   end
 

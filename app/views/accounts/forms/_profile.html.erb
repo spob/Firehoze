@@ -1,48 +1,50 @@
 <% form_for(:user, :url => account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "profile" }) do |f| %>
-<%= f.error_messages %>
-<fieldset>
-  <% unless params[:action] == "edit_admin" -%> 
-    <legend>Update Your Profile</legend>
-    <div class="help">View your public profile <%= link_to 'here', user_path(current_user) %></div>
-  <% end -%>
-  <p>
-    Username:
-    <%= f.text_field :login, :disabled => true %>
-  </p>
+    <%= f.error_messages %>
+    <fieldset>
+      <% unless params[:action] == "edit_admin" -%>
+          <legend>Update Your Profile</legend>
+          <div class="help">View your public profile <%= link_to 'here', user_path(current_user) %></div>
+      <% end -%>
+      <p>
+        Username:
+        <%= f.text_field :login, :disabled => true %>
+      </p>
 
-  <p>
-    Email:
-    <%= f.text_field :email %>
-  </p>
+      <p>
+        Email:
+        <%= f.text_field :email %>
+      </p>
 
-  <p>
-    First name:
-    <%= f.text_field :first_name %>
-  </p>
+      <p>
+        First name:
+        <%= f.text_field :first_name %>
+      </p>
 
-  <p>
-    Last name:
-    <%= f.text_field :last_name %>
-  </p>
+      <p>
+        Last name:
+        <%= f.text_field :last_name %>
+      </p>
 
-  <p>
-    Bio:
-    <%= f.text_area :bio %>
-  </p>
+      <p>
+        Bio:
+        <%= f.text_area :bio %>
+        <br/>
+        (Format using *<b>bold</b>* and _<i>italics</i>_ text)
+      </p>
 
-  <p>
-    Time Zone:
-    <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
-  </p>
+      <p>
+        Time Zone:
+        <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
+      </p>
 
-  <p>
-    Language:
-    <%= f.select :language, User.supported_languages %>
-  </p>
-</fieldset>
+      <p>
+        Language:
+        <%= f.select :language, User.supported_languages %>
+      </p>
+    </fieldset>
 
-<p>
-  <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
-  <%= link_to 'Cancel', home_path %>
-</p>
+    <p>
+      <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
+      <%= link_to 'Cancel', home_path %>
+    </p>
 <% end %>

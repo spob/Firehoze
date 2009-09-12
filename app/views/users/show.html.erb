@@ -31,16 +31,16 @@
           <% end %>
 
           <% unless @lessons.empty? %>
-            <li><a href="#tabs-2"><%= t 'user.instructor_of', :user => @user.name_or_username %></a></li>
+            <li><a href="#tabs-2"><%= t 'user.instructor_of', :user => h(@user.name_or_username) %></a></li>
           <% end %>
 
           <% unless @reviews.empty? %>
-            <li><a href="#tabs-3"><%= t 'user.reviews_of', :user => @user.name_or_username %></a></li>
+            <li><a href="#tabs-3"><%= t 'user.reviews_of', :user => h(@user.name_or_username) %></a></li>
           <% end %>
         </ul>
 
         <% unless @user.bio.blank? %>
-          <div id="tabs-1"><%= show_bio %></div>
+          <div id="tabs-1"><%= rbs_formatter show_bio %></div>
         <% end %>
 
         <% unless @lessons.empty? %>

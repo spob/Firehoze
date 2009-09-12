@@ -17,3 +17,4 @@ tmp
 script/s3.rb
 coverage
 coverage.data
+vendor/plugins/safe_erb

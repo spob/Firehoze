@@ -55,7 +55,7 @@ module LessonsHelper
   def img_tag_lesson_tn(lesson)
     #TODO: We should move the placeholder into a config property
     img_src = lesson.thumbnail_url ? lesson.sized_thumbnail_url(:large) : "videos/video_placeholder.jpg"
-    link_to(image_tag(img_src, :class => :lesson_tn, :alt => lesson.title), lesson_path(lesson))
+    link_to(image_tag(img_src, :class => :lesson_tn, :alt => h(lesson.title)), lesson_path(lesson))
   end
 
   def number_of_students_phrase(lesson)

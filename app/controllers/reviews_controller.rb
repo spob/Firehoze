@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
   before_filter :require_user, :except => [:index]
   # Since this controller is nested, in most cases we'll need to retrieve the lesson first, so I made it a
   # before filter
-  before_filter :find_lesson, :except => [ :edit, :update, :destroy, :show ]
+  before_filter :find_lesson, :except => [ :edit, :update, :show ]
   before_filter :find_review, :only => [ :edit, :update, :show ]
 
 
@@ -13,7 +13,7 @@ class ReviewsController < ApplicationController
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
-  verify :method => :destroy, :only => [:delete ], :redirect_to => :home_path
+  #verify :method => :destroy, :only => [:delete ], :redirect_to => :home_path
 
   def index
     @reviews = Review.list @lesson, params[:page], current_user, params[:per_page]
@@ -50,7 +50,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
 
     respond_to do |format|
-      format.html {
+      format.html do
         if @review.save
           flash[:notice] = t 'review.create_success'
           redirect_to lesson_reviews_path(@lesson)
@@ -58,14 +58,14 @@ class ReviewsController < ApplicationController
           flash[:error] = t 'review.create_failure'
           render :action => 'new'
         end
-      }
-      format.js {
+      end
+      format.js do
         if @review.save
           flash[:notice] = t 'review.create_success'
         else
           flash[:error] = t 'review.create_failure'
         end
-      }
+      end
     end
   end
 

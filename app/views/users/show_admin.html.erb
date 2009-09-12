@@ -25,7 +25,7 @@
 
 <p>
     <b>Bio:</b>
-    <%= @user.bio unless @user.bio.blank? %>
+    <%= rbs_formatter(@user.bio) unless @user.bio.blank? %>
 </p>
 
 <p>

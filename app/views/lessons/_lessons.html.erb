@@ -16,6 +16,6 @@ title = @collection.humanize.titleize
   <% if @lessons.is_a?(WillPaginate::Collection) %>
     <%= will_paginate @lessons %>
   <% else %>
-    <%= link_to "View all &quot;#{@collection.humanize.titleize} Lessons&quot;", list_lessons_path(:collection => @collection) %>
+    <%= link_to "View all &quot;#{h @collection.humanize.titleize} Lessons&quot;", list_lessons_path(:collection => @collection) %>
   <% end %>
 </div>

@@ -6,7 +6,7 @@
 <% form_for(:review, :url => lesson_reviews_url(@lesson), :html => { :class => "review", :id => "review" }) do |f| %>
 <%= f.error_messages %>
 <fieldset>
-  <legend>Write a review for: <%= link_to @lesson.title, lesson_path(@lesson) %></legend>
+  <legend>Write a review for: <%= link_to h(@lesson.title), lesson_path(@lesson) %></legend>
   <p>
     <%= f.label :headline %><br />
     <%= f.text_field :headline, :maxlength => "100", :class => "required" %>
