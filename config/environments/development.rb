@@ -18,6 +18,9 @@ config.action_controller.perform_caching             = false
 # See http://www.iterasi.net/openviewer.aspx?sqrlitid=3aldcskoqekerxaw4xbz7g
 config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
 
+# Safe ERB lets you make sure that the string written by "<%= %>" in your rhtml template is escaped correctly
+config.gem "emk-safe_erb", :version => '0.1.2', :lib => 'safe_erb', :source => 'http://gems.github.com'
+
 # Yes, raise errors if can't send email
 config.action_mailer.raise_delivery_errors = true
 config.action_mailer.default_content_type = "text/html"
