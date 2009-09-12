@@ -1,8 +1,8 @@
-<h4> Review for Lesson: <%= link_to @review.lesson.title, lesson_path(@review.lesson) %></h4>
+<h4> Review for Lesson: <%= link_to h(@review.lesson.title), lesson_path(@review.lesson) %></h4>
 
 <p>
   <%= label :headline, "headline" %><br/>
-  <%= @review.headline %>
+  <%= h(@review.headline) %>
 </p>
 
 <p>

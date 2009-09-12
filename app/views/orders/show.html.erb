@@ -11,7 +11,7 @@
   <div class="span-19 last">
     <strong>Billing Information:</strong><br />
     <%= h @order.first_name %> <%= h @order.last_name %><br />
-    <%= @order.formatted_billing_address("<br/>") %><br />
+    <%= order_formatted_address(@order, "<br/>") %><br />
   </div>
 </div>
 

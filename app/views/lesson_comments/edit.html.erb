@@ -6,7 +6,7 @@
 <% form_for :lesson_comment, :url => lesson_comment_path(@lesson_comment), :html => { :method => :put, :id => "lesson_comment" } do |f| %>
   <%= f.error_messages %>
   <fieldset>
-    <legend>Edit you comment of: <%= link_to @lesson_comment.lesson.title, lesson_path(@lesson_comment.lesson) %></legend>
+    <legend>Edit you comment of: <%= link_to h(@lesson_comment.lesson.title), lesson_path(@lesson_comment.lesson) %></legend>
     <% if current_user.is_moderator? %>
       Public: <%= f.check_box :public %>
     <% end %>
