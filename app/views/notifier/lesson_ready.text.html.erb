@@ -1,8 +1,8 @@
 <p>
-  Hi <%= @lesson.instructor.full_name %>,
+  Hi <%= h @lesson.instructor.full_name %>,
 </p>
 <p>
-  Your lesson "<%= @lesson.title %>" has been successfully processed and is ready for viewing.
+  Your lesson "<%= h @lesson.title %>" has been successfully processed and is ready for viewing.
 </p>
 <p>
   <%= link_to 'Sign In', @url %>
