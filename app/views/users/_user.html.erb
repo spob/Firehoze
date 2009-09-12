@@ -9,6 +9,6 @@
   <td><%= l user.last_login_at if user.last_login_at %></td>
   <td><%= h user.last_login_ip %></td>
   <td><%= l user.current_login_at if user.current_login_at %></td>
-  <td><%= user.current_login_ip %></td>
+  <td><%= h user.current_login_ip %></td>
   <td><%= link_to "Edit", edit_user_path(user) %>&nbsp;<%= link_to "Public", user_path(user) %></td>
 </tr>

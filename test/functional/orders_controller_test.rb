@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class OrdersControllerTest < ActionController::TestCase
   context "when logged on" do
