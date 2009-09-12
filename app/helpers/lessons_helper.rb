@@ -60,7 +60,7 @@ module LessonsHelper
 
   def number_of_students_phrase(lesson)
     if lesson.credits_count
-      "<span class='ui-icon ui-icon-person adjacent_icon'></span>#{t('lesson.students')}: #{lesson.credits_count}"
+      "<span class='ui-icon ui-icon-person adjacent_icon'></span>#{h(t('lesson.students'))}: #{lesson.credits_count}"
     elsif lesson.created_at > 7.days.ago
       t('lesson.new_release')
     end
