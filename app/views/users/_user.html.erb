@@ -4,7 +4,7 @@
   <td><%= "#{h(user.first_name)} " unless user.first_name.nil? %><%= h(user.last_name) %></td>
   <td><%= user.active ? "Yes" : "No" %></td>
   <td><%= user.verified_instructor? ? "Yes" : "No" %></td>
-  <td><%= user.time_zone %></td>
+  <td><%= h user.time_zone %></td>
   <td align="center"><%= user.login_count %>/<%= user.failed_login_count %></td>
   <td><%= l user.last_login_at if user.last_login_at %></td>
   <td><%= user.last_login_ip %></td>
