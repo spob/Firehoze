@@ -146,7 +146,7 @@
             <th>Commission Paid</th>
             <th>Description</th>
           </tr>
-          <%= render :partial => 'lessons/credit', :collection => @lesson.credits %>
+          <%= render :partial => 'lessons/credit', :collection => @lesson.credits.descend_by_redeemed_at %>
           <tr>
             <td><b>TOTAL</b></td>
             <td>&nbsp;</td>
