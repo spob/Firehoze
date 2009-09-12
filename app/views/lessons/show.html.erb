@@ -50,7 +50,7 @@
           <b>State:</b>
           <%=h translate("lesson.#{@lesson.status}") %><br />
         <% end %>
-        <%=h number_of_students_phrase(@lesson) %><br />
+        <%= number_of_students_phrase(@lesson) %><br />
         <%= content_tag(:p, free_remaining_text(@lesson)) if @lesson.has_free_credits? %>
       </div>
 
