@@ -1,8 +1,3 @@
-<% content_for :head do -%>
-  <%= javascript_include_tag 'tabs.js', 'jquery.cookie.js' %>
-  <%= javascript_include_tag 'accordian.js' %>
-<% end %>
-
 <div id="user_show">
   <div class="clear span-40 last append-bottom" id="name_plate">
     <span class="h3" id="name"><%= link_to_profile(@user) %></span>

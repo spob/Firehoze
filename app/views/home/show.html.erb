@@ -1,11 +1,5 @@
-<% content_for :head do -%>
-  <%= javascript_include_tag 'tabs', 'jquery.cookie' %>
-  <%= javascript_include_tag 'accordian' %>
-<% end %>
-
 <%= javascript 'jquerytools/jquery.tools.min', 'jquerytools/scrollable' %>
 <%= stylesheet 'jquerytools/scrollable','jquerytools/scrollable-navig' %>
-
 
 <%= render :partial => 'lessons/scrollable_lessons' %>
 
