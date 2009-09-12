@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../../test_helper'
 
 class ApplicationHelperTest < ActionView::TestCase
   context "with raw text" do

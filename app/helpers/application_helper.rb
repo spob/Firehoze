@@ -75,7 +75,7 @@ module ApplicationHelper
   end
 
   def std_formatted_address address1, address2, city, state, postal_code, country, newline_character = "\n"
-    "#{h(address1)}#{h(newline_character)}#{h(address2) + newline_character unless (address2.nil? or address2.empty?)}#{h(city)}, #{h(state)} #{h(postal_code)}#{newline_character}#{I18n.t(country, :scope => 'countries')}"
+    "#{h(address1)}#{newline_character}#{h(address2) + newline_character unless (address2.nil? or address2.empty?)}#{h(city)}, #{h(state)} #{h(postal_code)}#{newline_character}#{I18n.t(country, :scope => 'countries')}"
   end
 
   def flag_link flaggable
