@@ -3,14 +3,18 @@
   <%= javascript_include_tag 'accordian' %>
 <% end %>
 
+<%= javascript 'jquerytools/jquery.tools.min', 'jquerytools/scrollable' %>
+<%= stylesheet 'jquerytools/scrollable','jquerytools/scrollable-navig' %>
+
+
 <%= render :partial => 'lessons/scrollable_lessons' %>
 
 <div class="clear append-0 span-29" id="lesson_tabs">
   <div id="lessons_tabs">
     <ul>
-      <li><%= link_to t('lesson.most_popular'), tabbed_lessons_path(:collection => 'most_popular') %></li>
-      <li><%= link_to t('lesson.highest_rated'), tabbed_lessons_path(:collection => 'highest_rated') %></li>
-      <li><%= link_to t('lesson.newest'), tabbed_lessons_path(:collection => 'newest') %></li>
+      <li><%= link_to h(t('lesson.most_popular')), tabbed_lessons_path(:collection => 'most_popular') %></li>
+      <li><%= link_to h(t('lesson.highest_rated')), tabbed_lessons_path(:collection => 'highest_rated') %></li>
+      <li><%= link_to h(t('lesson.newest')), tabbed_lessons_path(:collection => 'newest') %></li>
     </ul>
     <div style="display:block"></div>
   </div>
@@ -19,7 +23,7 @@
 <div class="span-11 last">
   <div id="user_accordion_container">
     <div id="user_accordion">
-      <h3><a href="#"><%= t 'lesson.lessons_you_own' %></a></h3>
+      <h3><a href="#"><%= h(t('lesson.lessons_you_own')) %></a></h3>
 
       <div class="content">
         <%= render :partial => "lessons/owned", :locals => { :lesson_format => :brief } %>
@@ -33,13 +37,13 @@
         </div>
       <% end %>
 
-      <h3><a href="#"><%= t 'lesson.wishlist' %></a></h3>
+      <h3><a href="#"><%=h(t('lesson.wishlist')) %></a></h3>
 
       <div class="content">
         <%= render :partial => "lessons/wishlist", :locals => { :lesson_format => :brief } %>
       </div>
 
-      <h3><a href="#"><%= t 'lesson.recently_browsed' %></a></h3>
+      <h3><a href="#"><%= h(t('lesson.recently_browsed')) %></a></h3>
 
       <div class="content">
         <%= render :partial => "lessons/recently_browsed", :locals => { :lesson_format => :brief } %>
