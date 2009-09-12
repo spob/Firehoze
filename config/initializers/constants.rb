@@ -1,6 +1,6 @@
 SECURE_PROTOCOL = (ENV["RAILS_ENV"] =~ /production/ ? "https" : "http")
 
-LANGUAGES = [['English', 'en'],['Wookie', 'wk']]
+LANGUAGES = [['English', 'en']]
 
 ROWS_PER_PAGE = 10
 LESSONS_PER_PAGE = 10
