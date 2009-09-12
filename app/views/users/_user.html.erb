@@ -1,7 +1,7 @@
 <tr class="<%= cycle("even", "odd") -%>">
-  <td><%= link_to "#{user.login}", show_admin_user_path(user) %></td>
+  <td><%= link_to "#{h(user.login)}", show_admin_user_path(user) %></td>
   <td><%= mail_to user.email %></td>
-  <td><%= "#{user.first_name} " unless user.first_name.nil? %><%= user.last_name %></td>
+  <td><%= "#{h(user.first_name)} " unless user.first_name.nil? %><%= h(user.last_name) %></td>
   <td><%= user.active ? "Yes" : "No" %></td>
   <td><%= user.verified_instructor? ? "Yes" : "No" %></td>
   <td><%= user.time_zone %></td>

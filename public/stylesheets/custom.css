@@ -23,7 +23,7 @@ div {
 }
 
 .recaptchatable * {
-  background-color: #fff;
+    background-color: #fff;
 }
 
 /* FOOTER */
@@ -47,7 +47,6 @@ div {
 }
 
 /* MAIN NAVIGATION */
-
 #main_nav ul {
     padding-left: 0;
     margin-left: 0;
@@ -74,9 +73,14 @@ div {
     color: #fff;
 }
 
+/* LOGIN and REGISTRATION */
+.info {
+    border: solid 1px #ccc;
+    background-color: #efefef;
+    padding: 24px;
+}
 
 /* LESSONS */
-
 #marketing_fpo {
     text-align:center;
     padding:100px 0;
@@ -159,7 +163,6 @@ img.lesson_tn {
 }
 
 .tags_lesson_show {
-    width:520px;
     margin:10px 0 0 0;
     border: solid 1px #999;
     background-color: #e3e3e3;
