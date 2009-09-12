@@ -33,8 +33,10 @@ class User < ActiveRecord::Base
            :order => "id"
   # Instructed represents lessons that this user has instructed
   has_many :instructed_lessons, :class_name => 'Lesson', :foreign_key => 'instructor_id', :order => 'rating_average desc, id'
+  has_many :instructed_lesson_ids, :class_name => 'Lesson', :select => 'id', :foreign_key => 'instructor_id', :order => 'rating_average desc, id'
   # Lessons represents lessons that this user has "bought"
   has_many :lessons, :through => :credits
+  has_many :lesson_ids, :select => 'lessons.id', :source => 'lesson', :through => :credits
   has_many :payments, :order => 'id DESC'
   has_many :reviews, :order => 'score desc, id', :dependent => :destroy
   has_many :helpfuls, :dependent => :destroy

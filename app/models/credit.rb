@@ -42,7 +42,7 @@ class Credit < ActiveRecord::Base
 
 
   named_scope :unpaid_credits,
-              lambda{ |user| { :conditions => { :lesson_id => user.instructed_lessons.collect(&:id) + [-1],
+              lambda{ |user| { :conditions => { :lesson_id => user.instructed_lesson_ids.collect(&:id) + [-1],
                                                 :payment_id => nil } }
               }
   

@@ -34,6 +34,8 @@ class UserTest < ActiveSupport::TestCase
     should_have_many                 :reviews
     should_have_many                 :orders
     should_have_many                 :flags
+    should_have_many                 :lessons
+    should_have_many                 :lesson_ids
     should_have_many                 :lesson_comments
     should_have_many                 :flaggings
     should_have_many                 :user_logons
@@ -41,6 +43,7 @@ class UserTest < ActiveSupport::TestCase
     should_have_many                 :lesson_visits
     should_have_many                 :visited_lessons
     should_have_many                 :instructed_lessons
+    should_have_many                 :instructed_lesson_ids
     should_have_many                 :payments
     should_belong_to                 :payment_level
     should_have_and_belong_to_many   :wishes

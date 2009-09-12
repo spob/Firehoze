@@ -92,7 +92,7 @@ class Lesson < ActiveRecord::Base
   # Credits which have been warned to be about to expire
   # Note...add -1 to lesson collection to ensure that never that case where it will return NULL 
   named_scope :not_owned_by,
-              lambda{ |user| { :conditions => ["lessons.id not in (?)", user.lessons.collect(&:id) + [-1]] }
+              lambda{ |user| { :conditions => ["lessons.id not in (?)", user.lesson_ids.collect(&:id) + [-1]] }
               }
 
   @@lesson_statuses = [
@@ -140,7 +140,7 @@ END
     lessons2 = Lesson.ready.find(:all, :conditions => ["instructor_id <> ? and id not in (?) and id not in (?)",
                                                        user.id,
                                                        lessons1.collect(&:id) + [-1],
-                                                       user.lessons.collect(&:id) + [-1]],
+                                                       user.lesson_ids + [-1]],
                                  :limit => tmp_limit,
                                  :order => "rating_average DESC")
     all = lessons1 + lessons2
