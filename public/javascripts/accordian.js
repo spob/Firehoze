@@ -5,6 +5,5 @@ $(function() {
     });
     $("#lesson_stats_accordion").accordion({
         active: -1,
-        fillSpace: true
     });
 });

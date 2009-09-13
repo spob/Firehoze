@@ -1,0 +1,58 @@
+<% lesson = object %>
+<% if current_user.try("is_admin?") or @lesson.instructor == current_user or current_user.try("is_paymentmgr?") -%>
+<div class="clear span-40 last prepend-top">
+  <div id="lesson_stats_accordion">
+    <% if @lesson.credits.size > 0 and (current_user.try("is_admin?") or current_user.try("is_paymentmgr?") or @lesson.instructor == current_user) -%>
+      <h3><a href="#">Lesson Purchases</a></h3>
+
+      <div>
+        <table>
+          <tr>
+            <th>Purchased At</th>
+            <th>User</th>
+            <th>Price Paid</th>
+            <th>Commission Paid</th>
+            <th>Description</th>
+          </tr>
+          <%= render :partial => 'lessons/credit', :collection => @lesson.credits.descend_by_redeemed_at -%>
+          <tr>
+            <td><b>TOTAL</b></td>
+            <td>&nbsp;</td>
+            <td><b><%=h number_to_currency(@lesson.credits.sum(:price)) -%></b></td>
+            <td><b><%=h number_to_currency(@lesson.credits.sum(:commission_paid)) -%></b></td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+      </div>
+    <% end -%>
+
+    <% if current_user.try("is_admin?") or @lesson.instructor == current_user -%>
+      <h3><a href="#">Videos</a></h3>
+
+      <div>
+        <table>
+          <tr>
+            <th>Video</th>
+            <th>Status</th>
+            <% if current_user.try("is_admin?") -%>
+              <th>Size</th>
+              <th>Dimensions</th>
+              <th>Filename</th>
+              <th>File Type</th>
+              <th>Conversion Costs<br/>Input/Output</th>
+              <th>Log</th>
+              <th>Action</th>
+            <% end -%>
+          </tr>
+          <%= render :partial => "video", :collection => @lesson.videos -%>
+        </table>
+      </div>
+    <% elsif current_user == @lesson.instructor -%>
+      <h3><a href="#">State</a></h3>
+      <div>
+        <%= h @lesson.status -%>
+      </div>
+    <% end -%>
+  </div>
+</div>
+<% end %>
