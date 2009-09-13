@@ -3,6 +3,7 @@ config/initializers/action_mailer_settings.rb
 db/schema.rb
 config/locomotive.yml
 config/environments/development.yml
+config/environments/development.db
 *.log
 config/mongrel_cluster.yml
 config/thin.yml
