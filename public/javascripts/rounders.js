@@ -7,4 +7,8 @@ $(function() {
     $('#bought_this_video_also_bought').cornerz({
         radius: 5,
     });
+
+    $('#tag_cloud').cornerz({
+        radius: 5,
+    });
 });

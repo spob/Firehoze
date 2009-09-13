@@ -3,9 +3,10 @@
 <% unless lesson.lesson_buy_pairs.ready.empty? %>
   <%= javascript 'jquerytools/scrollable.navigator' %>
   <%= stylesheet 'jquerytools/scrollable-buttons', 'jquerytools/scrollable-horizontal', 'jquerytools/scrollable-navigator' %>
-  <div class="span-30 last prepend-top">
+  <div class="prepend-top">
     <div id="bought_this_video_also_bought">
       <h3>Students who bought this video also bought...</h3>
+
       <!-- wrapper for navigator elements -->
       <div class="navi"></div>
 
@@ -20,6 +21,7 @@
             <div class="item_container">
               <div class="tn">
                 <%= img_tag_lesson_tn(buy_pair.other_lesson) %>
+                <%#FIXME %>
                 <div class="duration transparent">(2:56)</div>
               </div>
               <div class="title"><%= link_to truncate(h(buy_pair.other_lesson.title), :length => 40), lesson_path(buy_pair.other_lesson) %></div>

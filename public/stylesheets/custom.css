@@ -111,9 +111,9 @@ div {
     padding:0;
 }
 
-.tag_cloud {
+#tag_cloud {
     padding:14px;
-    border: solid 1px #cfcfcf;
+    border: solid 1px #AFAFAF;
 }
 
 #lesson_list_collection {
@@ -293,7 +293,7 @@ div.review .helpful_phrase {
 
 div.review .headline {
     color: #6F6F6F;
-    margin:8px 0;
+/*    margin:8px 0;*/
 }
 
 div.review .timestamp {
