@@ -6,6 +6,6 @@
     <%= l(order.cart.purchased_at) %>
   </td>
   <td>
-    <%= number_to_currency(order.cart.total_discounted_price) %>
+    <%= h number_to_currency(order.cart.total_discounted_price) %>
   </td>
 </tr>

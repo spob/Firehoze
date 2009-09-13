@@ -4,18 +4,18 @@
 
 <%= render :partial => "shared/infield_head_content" %>
 
-<h3><%= t 'user.account_settings' %></h3>
+<h3><%= h(t('user.account_settings')) %></h3>
 <div id="account_settings_tabs">
   <ul>
-    <li><a href="#tabs-1"><%= t 'user.profile' %></a></li>
-    <li><a href="#tabs-2"><%= t 'user.password' %></a></li>
-    <li><a href="#tabs-3"><%= t 'user.author_info' %></a></li>
-    <li><a href="#tabs-4"><%= t 'user.avatar' %></a></li>
-    <li><a href="#tabs-5"><%= t 'user.privacy' %></a></li>
-    <li><a href="#tabs-6"><%= t 'user.credit_history' %></a></li>
-    <li><a href="#tabs-7"><%= t 'user.order_history' %></a></li>
+    <li><a href="#tabs-1"><%= h(t('user.profile')) %></a></li>
+    <li><a href="#tabs-2"><%= h(t('user.password')) %></a></li>
+    <li><a href="#tabs-3"><%= h(t('user.author_info')) %></a></li>
+    <li><a href="#tabs-4"><%= h(t('user.avatar')) %></a></li>
+    <li><a href="#tabs-5"><%= h(t('user.privacy')) %></a></li>
+    <li><a href="#tabs-6"><%= h(t('user.credit_history')) %></a></li>
+    <li><a href="#tabs-7"><%= h(t('user.order_history')) %></a></li>
     <% if current_user.verified_instructor? %>
-        <li><a href="#tabs-8"><%= t 'user.payment_history' %></a></li>
+        <li><a href="#tabs-8"><%= t'user.payment_history' %></a></li>
     <% end %>
   </ul>
   <div id="tabs-1"><%= render :partial => "accounts/forms/profile" %></div>

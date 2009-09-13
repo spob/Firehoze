@@ -7,7 +7,7 @@
     <%= italics(strike_through(h(credit.sku.description), credit.expired_at), (credit.expired_at.nil? and credit.redeemed_at.nil?)) if credit.sku %>
   </td>
   <td>
-    <%= italics(strike_through(number_to_currency(credit.price), credit.expired_at),
+    <%= italics(h(strike_through(number_to_currency(credit.price), credit.expired_at)),
                 (credit.expired_at.nil? and credit.redeemed_at.nil?)) %>
   </td>
   <td>
