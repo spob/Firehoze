@@ -1,9 +1,5 @@
-You have not yet acquired this lesson (<%= h @lesson.title %>).
-<br/>
-Would you like to apply one of your credits to watch this video?
+<p>Looks like you're ready to purchase the &quot;<%= h @lesson.title %>&quot; lesson!</p>
 
-<br/><br/>
-<%= link_to "Acquire Lesson", acquire_lessons_url(:id => @lesson, :protocol => SECURE_PROTOCOL),
-            :method => :post, :disable_with => translate('general.disable_with') %>
+<%= link_to "Apply Credit Now", acquire_lessons_url(:id => @lesson, :protocol => SECURE_PROTOCOL),:method => :post, :disable_with => translate('general.disable_with') %>
 &nbsp;
 <%= link_to "Cancel", lesson_path(@lesson) %>
