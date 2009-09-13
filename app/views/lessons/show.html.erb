@@ -55,9 +55,7 @@
   </div>
 </div>
 
-
 <div class="clear prepend-top span-40 last">
-
   <div class="span-30">
     <% # LESSON TABS -%>
     <div id="lesson_tabs">
@@ -79,71 +77,7 @@
     <% #TAG CLOUD -%>
     <%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts -%>
   </div>
-
 </div>
 
-
-<% # LESSON ACCORDIAN FOR INSTRUCTOR AND ADMINS -%>
-<div class="clear span-40 last prepend-top">
-  <div id="lesson_stats_accordion">
-    <% if @lesson.credits.size > 0 and (current_user.try("is_admin?") or current_user.try("is_paymentmgr?") or @lesson.instructor == current_user) -%>
-      <h3><a href="#">Lesson Purchases</a></h3>
-
-      <div>
-        <table>
-          <tr>
-            <th>Purchased At</th>
-            <th>User</th>
-            <th>Price Paid</th>
-            <th>Commission Paid</th>
-            <th>Description</th>
-          </tr>
-          <%= render :partial => 'lessons/credit', :collection => @lesson.credits.descend_by_redeemed_at -%>
-          <tr>
-            <td><b>TOTAL</b></td>
-            <td>&nbsp;</td>
-            <td><b><%=h number_to_currency(@lesson.credits.sum(:price)) -%></b></td>
-            <td><b><%=h number_to_currency(@lesson.credits.sum(:commission_paid)) -%></b></td>
-            <td>&nbsp;</td>
-          </tr>
-        </table>
-      </div>
-    <% end -%>
-
-    <% if current_user.try("is_admin?") or @lesson.instructor == current_user -%>
-      <h3><a href="#">Videos</a></h3>
-
-      <div>
-        <table>
-          <tr>
-            <th>Video</th>
-            <th>Status</th>
-            <% if current_user.try("is_admin?") -%>
-              <th>Size</th>
-              <th>Dimensions</th>
-              <th>Filename</th>
-              <th>File Type</th>
-              <th>Conversion Costs<br/>Input/Output</th>
-              <th>Log</th>
-              <th>Action</th>
-            <% end -%>
-          </tr>
-          <%= render :partial => "video", :collection => @lesson.videos -%>
-        </table>
-      </div>
-    <% elsif current_user == @lesson.instructor -%>
-      <h3><a href="#">State</a></h3>
-      <div>
-        <%= h @lesson.status -%>
-      </div>
-    <% end -%>
-  </div>
-</div>
-
-<% # MISC ACTIONS -%>
-<div class="clear span-40 last prepend-top">
-  <% if @lesson.can_edit? current_user -%>
-    <%= link_to 'Edit', edit_lesson_path(@lesson) -%> |
-  <% end -%>
-  <%= flag_link @lesson -%>
-</div>
+<% # LESSON STATS (ACCORDIAN FOR INSTRUCTOR AND ADMINS ONLY) -%>
+<%= render :partial => 'lesson_stats', :object => @lesson -%>

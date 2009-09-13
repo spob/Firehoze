@@ -1,8 +1,12 @@
 <%
 lesson = object
 %>
-
 <%= button_to_buy(lesson) %>
 <%= button_to_wish(lesson) %>
 <%= button_to_edit(lesson) %>
 <%= button_to_unreject(lesson) %>
+
+<% if @lesson.can_edit? current_user -%>
+  <%= link_to 'Edit', edit_lesson_path(@lesson) -%> |
+<% end -%>
+<%= flag_link @lesson -%>

@@ -180,7 +180,7 @@ img.lesson_tn {
 }
 
 #lesson_stats_accordion {
-    height:400px;
+    /*height:400px;*/
 }
 
 #lesson_stats_accordion .ui-accordion-content {
