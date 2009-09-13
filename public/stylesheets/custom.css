@@ -107,7 +107,6 @@ div {
 
 /* lesson_collections */
 .lesson_container, .more, .lesson_left, .lesson_center, .lesson_right {
-    font-size: 11px;
     margin:0;
     padding:0;
 }
@@ -125,8 +124,6 @@ div {
 
 /* styled like an <h4> */
 .lesson_title_link {
-    font-size: 1.2em;
-    line-height: 1.25;
 }
 
 .lesson_center div {
@@ -204,7 +201,6 @@ img.lesson_tn {
 }
 
 #user_accordion .content * {
-    font-size: 11px;
 }
 
 #user_accordion .lesson_brief .title {

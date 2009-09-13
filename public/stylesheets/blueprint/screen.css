@@ -44,9 +44,9 @@ a img { border: none; }
 -------------------------------------------------------------- */
 
 /* Default font settings. 
-   The font-size percentage is of 16px. (0.625 * 16px = 10px) */
+   The font-size percentage is of 16px. (0.75 * 16px = 12px) */
 body { 
-  font-size: 62.5%;
+  font-size: 75%;
   color: #222; 
   background: #fff;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;

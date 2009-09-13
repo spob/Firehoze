@@ -134,7 +134,7 @@
             </div>
             <div class="title"><%= link_to truncate(h(buy_pair.other_lesson.title), :length => 40), lesson_path(buy_pair.other_lesson) %></div>
             <div class="created_at"><%= h time_ago_in_words(@lesson.created_at) %> ago</div>
-            <div class="instructor"><%= link_to(truncate(h @lesson.instructor.login), @lesson.instructor) %></div>
+            <div class="instructor"><%= link_to(truncate(h(@lesson.instructor.login)), @lesson.instructor) %></div>
           </div>
           <% end %>
         </div>

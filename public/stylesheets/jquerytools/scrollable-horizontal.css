@@ -13,12 +13,8 @@ div.demowrap {
     /* required settings */
     position:relative;
     overflow:hidden;
-    /*	width: 531px;*/
     width:603px;
-    /*	height:120px;*/
     height:190px;
-
-    /* custom decorations */
     border:1px solid #ccc;
     background:url(../../../images/scrollable/h300.png) repeat-x;
 }
@@ -38,6 +34,7 @@ div.demowrap {
 
 .scrollable .item_container {
     float:left;
+    padding: 2px;
     margin:20px 0px 20px 20px;
     width:126px;
 }
@@ -75,7 +72,7 @@ div.demowrap {
 
 /* active item */
 .scrollable .active {
-    border:2px solid #999;
+    border:1px solid #ccc;
     z-index:9999;
     position:relative;
 }

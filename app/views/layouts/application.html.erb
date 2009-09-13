@@ -5,11 +5,6 @@
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
     <title><%= h controller.controller_name %>: <%= h controller.action_name %></title>
-    <%= javascript_include_tag :defaults %>
-    <%= javascript_include_tag 'flash' %>
-    <%= javascript_include_tag 'accordian', 'tabs', 'jquery.cookie', 'cornerz', 'rounders' %>
-    <%= ajaxful_rating_style %>
-
     <%= stylesheet_link_tag 'blueprint/screen', :media => "screen, projection" %>
     <%= stylesheet_link_tag 'blueprint/print', :media => "print" %>
     <%= stylesheet_link_tag 'custom', :media => "screen, projection" %>
@@ -19,6 +14,10 @@
     <!--[if lt IE 8]>
     <%= stylesheet_link_tag 'blueprint/ie', :media => "screen, projection" %>
     <![endif]-->
+    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag 'flash' %>
+    <%= javascript_include_tag 'accordian', 'tabs', 'jquery.cookie', 'cornerz', 'rounders' %>
+    <%= ajaxful_rating_style %>
     <%= yield :head %>
   </head>
   <body>
