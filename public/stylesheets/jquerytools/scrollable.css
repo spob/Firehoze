@@ -21,11 +21,11 @@
 }
 
 .scrollable #thumbs img.lesson_tn  {
-    border: solid 1px #777;
-    padding: 5px;
     display:block;
     margin:auto;
-    margin-top:15px;
+    border:none;
+    width: 224px;
+    height: 126px; /* 4:3 aspect ratio */
 }
 
 /* root element for the whole scrollable setup */
@@ -58,7 +58,7 @@ a.prev, a.next {
     float:left;
     width:224px;
     height:300px;
-    background:#333 url(../../../images/scrollable/h150.png) repeat-x 0 146px;
+    background:#333 url(../../../images/scrollable/h150.png) repeat-x 0 158px;
     color:#fff;
     border-left:1px solid #333;
     cursor:pointer;

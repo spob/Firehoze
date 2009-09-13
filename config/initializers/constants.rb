@@ -69,7 +69,7 @@ LESSON_STATUS_READY = VIDEO_STATUS_READY
 LESSON_STATUS_REJECTED = 'Rejected'
 
 # Lesson video player
-# Actual video size should be 4:3 480 X 360
+# Actual video size should be 4:3 480 X 360 (standard definition)
 PLAYER_MENU_BAR = 36
 PLAYER_WIDTH = 480
 PLAYER_HEIGHT = 360 + PLAYER_MENU_BAR # Play size is taller due to player controls 480 X 396  ==> 480 X 360 + 36px  
