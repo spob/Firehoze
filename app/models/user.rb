@@ -98,6 +98,8 @@ class User < ActiveRecord::Base
 
   attr_protected :email, :login, :rejected_bio, :instructor_status, :address1, :address2, :city, :state,
                  :postal_code, :country, :author_agreement_accepted_on, :withold_taxes, :payment_level_id
+  attr_protected :user_logons, :credits, :gift_certificates, :orders, :lesson_visits,
+                 :flags, :flaggings, :lesson_comments, :instructed_lessons, :payments, :reviews, :helpfuls, :wishes
 
   @@flag_reasons = [
           FLAG_LEWD,
@@ -117,7 +119,7 @@ class User < ActiveRecord::Base
   def self.convert_avatar_url_to_cdn(url)
     regex = Regexp.new("//.*#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}")
     regex2 = Regexp.new("https")
-    url.gsub(regex, "//" + APP_CONFIG[CONFIG_CDN_OUTPUT_SERVER]) .gsub(regex2, "http")
+    url.gsub(regex, "//" + APP_CONFIG[CONFIG_CDN_OUTPUT_SERVER]).gsub(regex2, "http")
   end
 
   def self.supported_languages
