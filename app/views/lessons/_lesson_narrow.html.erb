@@ -12,7 +12,7 @@
 <div class="span-5 last lesson_right">
   <div class="lesson_instructor_avatar"><%= link_to avatar_tag(lesson.instructor, :size => :medium), user_path(lesson.instructor) %></div>
   <div><%= link_to_profile(lesson.instructor) %></div>
-  <div>Member Since:<br/><%= l(lesson.instructor.created_at.to_date) %></div>
+  <div>Member Since:<br/><%= h(l(lesson.instructor.created_at.to_date)) %></div>
 </div>
 <!-- <div class="clear span-16 prepend-6 append-6 last lesson_footer">some base content</div> -->
 <hr/>

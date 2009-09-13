@@ -3,6 +3,6 @@ lesson = object
  %>
 
 <% if current_user.try("is_admin?") or lesson.instructed_by?(current_user) %>
-  <%= content_tag(:div, "<span class='ui-icon ui-icon-info adjacent_icon'></span>Updated: #{time_ago_in_words(lesson.updated_at)} ago") if lesson.updated_at != lesson.created_at %>
-  <div><span class='ui-icon ui-icon-info adjacent_icon'></span>Status: <%= t("lesson.#{lesson.status}") %></div>
+  <%= content_tag(:div, "<span class='ui-icon ui-icon-info adjacent_icon'></span>Updated: #{h(time_ago_in_words(lesson.updated_at))} ago") if lesson.updated_at != lesson.created_at %>
+  <div><span class='ui-icon ui-icon-info adjacent_icon'></span>Status: <%= h(t("lesson.#{lesson.status}")) %></div>
 <% end %>
