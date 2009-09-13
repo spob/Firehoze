@@ -15,9 +15,9 @@
   <% end %>
   <tr>
     <td align="right" colspan="3"><strong>Total</strong></td>
-    <td class="total price"><%= number_to_currency @cart.total_full_price %></td>
-    <td class="total price"><%= number_to_currency @cart.total_full_price - @cart.total_discounted_price %></td>
-    <td class="total price"><%= number_to_currency @cart.total_discounted_price %></td>
+    <td class="total price"><%= h(number_to_currency @cart.total_full_price) %></td>
+    <td class="total price"><%= h(number_to_currency @cart.total_full_price - @cart.total_discounted_price) %></td>
+    <td class="total price"><%= h(number_to_currency @cart.total_discounted_price) %></td>
     <td></td>
   </tr>
 </table>
