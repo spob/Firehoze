@@ -16,7 +16,13 @@
     <![endif]-->
     <%= javascript_include_tag :defaults %>
     <%= javascript_include_tag 'flash' %>
-    <%= javascript_include_tag 'accordian', 'tabs', 'jquery.cookie', 'cornerz', 'rounders' %>
+<%# JQueryUI libraries -%>
+    <%= javascript_include_tag 'accordian', 'tabs', 'jquery.cookie' %>
+<%# Cornerz for rounding -%>
+    <%= javascript_include_tag 'cornerz', 'rounders' %>
+<%# JQueryUI libraries -%>
+    <%= javascript_include_tag 'jquerytools/jquery.tools.min' %>
+
     <%= ajaxful_rating_style %>
     <%= yield :head %>
   </head>

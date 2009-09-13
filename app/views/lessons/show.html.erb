@@ -1,8 +1,4 @@
-<% content_for :head do -%>
-  <%= javascript_include_tag 'swfobject' %>
-  <%= javascript_include_tag 'jquerytools/jquery.tools.min', 'jquerytools/scrollable.navigator' %>
-  <%= stylesheet_link_tag 'jquerytools/scrollable-buttons', 'jquerytools/scrollable-horizontal', 'jquerytools/scrollable-navigator' %>
-<% end %>
+<%= javascript 'swfobject' %>
 
 <div id="lesson_container">
 <%# TITLE BAR %>
@@ -111,42 +107,9 @@
   </div>
 <% end %>
 
-<!-- *************** #TODO MOVE TO PARTIAL ********************************************************************* -->
-<% unless @lesson.lesson_buy_pairs.ready.empty? %>
-  <div class="span-30 last prepend-top">
-    <div id="bought_this_video_also_bought">
-      <h3>Students who bought this video also bought...</h3>
-      <!-- wrapper for navigator elements -->
-      <div class="navi"></div>
+<!-- Students who bought this video also bought... -->
+<%= render :partial => 'lesson_buy_pairs', :object => @lesson %>
 
-      <!-- "previous page" action -->
-      <a class="prevPage browse left"></a>
-
-      <!-- root element for scrollable -->
-      <div class="scrollable" id="browsable">
-        <!-- root element for the items -->
-        <div class="items">
-          <% for buy_pair in @lesson.lesson_buy_pairs.ready[0..APP_CONFIG[CONFIG_NUMBER_OF_BUY_PATTERNS_TO_SHOW]] %>
-          <div class="item_container">
-            <div class="tn">
-              <%= img_tag_lesson_tn(buy_pair.other_lesson) %>
-              <div class="duration transparent">(2:56)</div>
-            </div>
-            <div class="title"><%= link_to truncate(h(buy_pair.other_lesson.title), :length => 40), lesson_path(buy_pair.other_lesson) %></div>
-            <div class="created_at"><%= h time_ago_in_words(@lesson.created_at) %> ago</div>
-            <div class="instructor"><%= link_to(truncate(h(@lesson.instructor.login)), @lesson.instructor) %></div>
-          </div>
-          <% end %>
-        </div>
-      </div>
-
-      <!-- "next page" action -->
-      <a class="nextPage browse right"></a>
-      <br clear="all" />
-    </div>
-  </div>
-<% end %>
-<!-- ******************************************************************************************************** -->
 
 <%# LESSON ACCORDIAN FOR INSTRUCTOR AND ADMINS %>
 <div class="clear span-40 last prepend-top">
@@ -206,7 +169,7 @@
   </div>
 </div>
 
-<% # MISC ACTIONS       %>
+<% # MISC ACTIONS %>
 <div class="clear span-40 last prepend-top">
   <% if @lesson.can_edit? current_user %>
     <%= link_to 'Edit', edit_lesson_path(@lesson) %> |
