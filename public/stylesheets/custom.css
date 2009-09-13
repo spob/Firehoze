@@ -89,11 +89,6 @@ div {
 
 /* LESSONS */
 
-#bought_this_video_also_bought {
-    padding:24px;
-    border: solid 1px #AFAFAF;
-}
-
 #marketing_fpo {
     text-align:center;
     padding:100px 0;
@@ -141,12 +136,39 @@ div {
 
 img.lesson_tn {
     border: solid 1px #cfcfcf;
-    height: 91px;
+    height: 102px; /* 4:3 aspect ratio */
     width: 136px;
 }
 
-/* lesson_show */
 
+#bought_this_video_also_bought {
+    padding:24px;
+    border: solid 1px #AFAFAF;
+}
+
+#what_do_students_ultimately {
+    padding:24px;
+    border: solid 1px #AFAFAF;
+}
+
+#what_do_students_ultimately .lesson {
+    background:url(../../../images/scrollable/h300.png) repeat-x;
+    padding:5px;
+}
+
+#what_do_students_ultimately .lesson_tn  {
+    border: solid 1px #cfcfcf;
+    height: 75px; /* 4:3 aspect ratio */
+    width: 100px;
+}
+
+#what_do_students_ultimately .even  {
+}
+
+#what_do_students_ultimately .odd  {
+}
+
+/* LESSON_SHOW */
 #lesson_container #banner {
     padding: 10px 0;
     border: solid 1px #999;
@@ -293,7 +315,7 @@ div.review .helpful_phrase {
 
 div.review .headline {
     color: #6F6F6F;
-/*    margin:8px 0;*/
+    /*    margin:8px 0;*/
 }
 
 div.review .timestamp {
