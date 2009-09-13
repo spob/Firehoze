@@ -4,7 +4,7 @@ if current_user then
 end
 %>
 <% if wishlist.empty? %>
-  <div class="content">You have no items in your wishlist</div>
+  <div class="content">You have no items in your wishlist.</div>
 <% else %>
   <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => wishlist %>
 <% end %>
