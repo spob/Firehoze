@@ -281,7 +281,6 @@ img.lesson_tn {
 
 /* Reviews */
 div.review {
-    font-size: 12px;
     margin:0;
     padding:0;
 }
@@ -351,7 +350,6 @@ div.lesson_comment .private {
     margin-bottom:8px;
 }
 
-
 div.lesson_comment .commenter_avatar {
     margin: 0;
     padding:0;
@@ -369,7 +367,6 @@ div.lesson_comment .actions .button-to {
 /* USER AGREEMENT */
 
 #user_agreement {
-    font-size: 11px;
     padding: 0 20px;
     margin: 20px 0;
     border:solid 1px #ccc;
@@ -378,7 +375,6 @@ div.lesson_comment .actions .button-to {
 }
 
 #instructor_agreement {
-    font-size: 11px;
     padding: 0 20px;
     margin: 20px 0;
     border:solid 1px #ccc;
