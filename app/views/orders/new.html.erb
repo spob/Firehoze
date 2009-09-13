@@ -4,82 +4,85 @@
 <%= javascript 'jquery.simplyCountable', 'validate/jquery.validate', 'validate/order.validate' %>
 
 <% form_for(@order, :protocol => SECURE_PROTOCOL, :html => { :id => "order" }) do |f| %>
-    <%= f.error_messages %>
-    <fieldset>
-      <legend>Checkout</legend>
-      <p>
-        <%= f.label :first_name %><br/>
-        <%= f.text_field :first_name, :class => "required" %>
-      </p>
+  <%= f.error_messages %>
+  <fieldset>
+    <legend>Checkout</legend>
+    <p>
+      <%= f.label :first_name %><br/>
+      <%= f.text_field :first_name, :class => "required" %>
+    </p>
 
-      <p>
-        <%= f.label :last_name %><br/>
-        <%= f.text_field :last_name, :class => "required" %>
-      </p>
+    <p>
+      <%= f.label :last_name %><br/>
+      <%= f.text_field :last_name, :class => "required" %>
+    </p>
 
-      <p>Billing Address</p>
+    <p>Billing Address</p>
 
-      <p>
-        <%= f.label :billing_name %><br/>
-        <%= f.text_field :billing_name, :class => "required" %>
-      </p>
+    <p>
+      <%= f.label :billing_name %><br/>
+      <%= f.text_field :billing_name, :class => "required" %>
+    </p>
 
-      <p>
-        <%= f.label :address1 %><br/>
-        <%= f.text_field :address1, :class => "required" %>
-      </p>
+    <p>
+      <%= f.label :address1 %><br/>
+      <%= f.text_field :address1, :class => "required" %>
+    </p>
 
-      <p>
-        <%= f.label :address2 %><br/>
-        <%= f.text_field :address2 %>
-      </p>
+    <p>
+      <%= f.label :address2 %><br/>
+      <%= f.text_field :address2 %>
+    </p>
 
-      <p>
-        <%= f.label :city %><br/>
-        <%= f.text_field :city, :class => "required" %>
-      </p>
+    <p>
+      <%= f.label :city %><br/>
+      <%= f.text_field :city, :class => "required" %>
+    </p>
 
-      <p>
-        <%= f.label :state %><br/>
-        <%= f.text_field :state, :class => "required" %>
-      </p>
+    <p>
+      <%= f.label :state %><br/>
+      <%= f.text_field :state, :class => "required" %>
+    </p>
 
-      <p>
-        <%= f.label :zip %><br/>
-        <%= f.text_field :zip, :class => "required" %>
-      </p>
-      <% unless current_user.verified_address_on %>
-          <p>
-            <%= check_box_tag :default_address %> Save this address for future orders
-          </p>
-      <% end %>
+    <p>
+      <%= f.label :zip %><br/>
+      <%= f.text_field :zip, :class => "required" %>
+    </p>
+
+    <div>
+      <%= f.label :country %>
+      <br/>
+      <%= localized_country_select(:order, :country, []) %>
+    </div>
+
+    <% unless current_user.verified_address_on %>
       <div>
-        <%= f.label :country %>
-        <br/>
-        <%= localized_country_select(:order, :country, []) %>
+        <%= check_box_tag :default_address %> Save this address for future orders.
       </div>
-      <div>
-        <%= f.label :card_type %>
-        <br/>
-        <%= f.select :card_type, Order.card_types, :prompt => 'Please select...', :value => "", :class => "required" %>
-      </div>
-      <p>
-        <%= f.label :card_number %><br/>
-        <%= f.text_field :card_number, :class => "required" %>
-      </p>
+    <% end %>
 
-      <p>
-        <%= f.label :card_verification, "Card Verification (CVV)" %><br/>
-        <%= f.text_field :card_verification, :class => "required" %>
-      </p>
+    <div>
+      <%= f.label :card_type %>
+      <br/>
+      <%= f.select :card_type, Order.card_types, :prompt => 'Please select...', :value => "", :class => "required" %>
+    </div>
+    <p>
+      <%= f.label :card_number %><br/>
+      <%= f.text_field :card_number, :class => "required" %>
+    </p>
 
-      <div>
-        <%= f.label :card_expires_on %>
-        <br/>
-        <%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year,
-                          :end_year => Date.today.year + 10, :add_month_numbers => true %>
-      </div>
-    </fieldset>
+    <p>
+      <%= f.label :card_verification, "Card Verification (CVV)" %><br/>
+      <%= f.text_field :card_verification, :class => "required" %>
+    </p>
 
-    <p><%= f.submit "Submit" %></p>
+    <div>
+      <%= f.label :card_expires_on %>
+      <br/>
+      <%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year,
+        :end_year => Date.today.year + 10, :add_month_numbers => true %>
+    </div>
+  </fieldset>
+
+  <p><%= f.submit "Submit" %></p>
 <% end %>
