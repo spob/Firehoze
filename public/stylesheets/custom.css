@@ -90,8 +90,8 @@ div {
 /* LESSONS */
 
 #bought_this_video_also_bought {
-	padding:24px;
-	border: solid 1px #AFAFAF;
+    padding:24px;
+    border: solid 1px #AFAFAF;
 }
 
 #marketing_fpo {
@@ -363,9 +363,11 @@ div.lesson_comment .actions .button-to {
 /* USER AGREEMENT */
 
 #user_agreement {
+    font-size:0.83em;  /* 0.83em == 10px */
+    background-color: #fff;
     padding: 0 20px;
     margin: 20px 0;
-    border:solid 1px #ccc;
+    border:solid 1px #555;
     height: 200px;
     overflow: auto;
 }
