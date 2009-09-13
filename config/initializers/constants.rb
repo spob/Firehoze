@@ -53,7 +53,7 @@ FLIX_CLOUD_AWS_ID = '99293b905e1e3610f938fccb8405c4d56e913c2f0acf7bf1b74af1fdc10
 FLIX_API_KEY = 'b997:klpibn:0:8x72:gsvz'
 FLIX_FULL_RECIPE_ID = 582
 FLIX_PREVIEW_RECIPE_ID = 581
-WATERMARK_URL = 's3://assets.firehoze.com/watermark.png'
+WATERMARK_URL = 'http://amazonassets.simplecdn.net/images/videos/watermark.png'
 
 # Video statuses
 VIDEO_STATUS_PENDING = "Pending"
