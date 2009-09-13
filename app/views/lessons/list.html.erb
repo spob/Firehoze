@@ -2,9 +2,9 @@
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
     <% %w(most_popular highest_rated newest).each do | collection | %>
       <% if collection == @collection %>
-        <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-1"><%= t("lesson.#{collection}") %></a></li>
+        <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-1"><%= h(t("lesson.#{collection}")) %></a></li>
       <% else %>
-        <li class="ui-state-default ui-corner-top"><%= link_to t("lesson.#{collection}"), list_lessons_path(:collection => collection) %></li>
+        <li class="ui-state-default ui-corner-top"><%= link_to h(t("lesson.#{collection}")), list_lessons_path(:collection => collection) %></li>
       <% end %>
     <% end %>
   </ul>
