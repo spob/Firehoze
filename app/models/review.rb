@@ -11,7 +11,7 @@ class Review < ActiveRecord::Base
   validates_length_of :headline, :maximum => 100, :allow_nil => true
   validate :validate_reviewer
 
-  attr_protected :status
+  attr_protected :status, :helpfuls, :flags
 
   named_scope :helpful, :conditions => "score > 0"
   named_scope   :ready, :conditions => {:status => REVIEW_STATUS_ACTIVE }

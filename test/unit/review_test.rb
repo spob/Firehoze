@@ -39,7 +39,7 @@ class ReviewTest < ActiveSupport::TestCase
       should_allow_values_for    :status, "active", "rejected"
       should_validate_uniqueness_of :user_id, :scoped_to => :lesson_id
       should_ensure_length_in_range :headline, (0..100)
-      should_not_allow_mass_assignment_of :status
+      should_not_allow_mass_assignment_of :status, :helpfuls, :flags
 
       should "return records" do
         assert_equal 1, Review.list(@review.lesson, 1, @user, REVIEWS_ON_LESSON_SHOW_PER_PAGE).size
