@@ -1,7 +1,7 @@
 <% lesson = object %>
 
 <div class="span-7 lesson_left">
-  <div><%= img_tag_lesson_tn(lesson) %></div>
+  <div><%= img_tag_lesson_tn(lesson, :small) %></div>
   <div><%= ratings_for(lesson, :static) %></div>
   <%= content_tag(:div, free_remaining_text(lesson)) if lesson.has_free_credits? %>
   <div><%= number_of_students_phrase(lesson) %></div>

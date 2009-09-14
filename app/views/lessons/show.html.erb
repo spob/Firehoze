@@ -39,7 +39,6 @@
         <% if @lesson.finished_video_duration -%>
           <b>Duration:</b>
           <%= ChronicDuration.output(@lesson.finished_video_duration/1000, :format => :long) -%><br />
-          <%= ChronicDuration.output(@lesson.finished_video_duration/100, :format => :chrono) -%><br />
         <% end -%>
         <b>Released on:</b>
         <%= l @lesson.created_at -%><br />

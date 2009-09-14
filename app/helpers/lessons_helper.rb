@@ -52,12 +52,11 @@ module LessonsHelper
     end
   end
 
-  def img_tag_lesson_tn(lesson, options={})
+  def img_tag_lesson_tn(lesson, size ,options={})
     tn_options = { :class => :lesson_tn, :alt => h(lesson.title) }
     tn_options.merge!(options)
-    
-    #TODO: We should move the placeholder into a config property
-    img_src = lesson.thumbnail_url ? lesson.sized_thumbnail_url(:large) : "videos/video_placeholder.jpg"
+
+    img_src = lesson.thumbnail_url ? lesson.sized_thumbnail_url(size) : "videos/video_placeholder.jpg"
     link_to(image_tag(img_src, tn_options), lesson_path(lesson))
   end
 

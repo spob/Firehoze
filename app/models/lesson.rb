@@ -251,7 +251,7 @@ END
     self.status = LESSON_STATUS_REJECTED
   end
 
-  def sized_thumbnail_url(size=:large)
+  def sized_thumbnail_url(size = :large)
     self.thumbnail_url.gsub(/<size>/, size.to_s)
   end
 
