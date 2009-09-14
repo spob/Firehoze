@@ -92,7 +92,7 @@ module LessonsHelper
   end
 
   def button_to_edit(lesson)
-    if lesson.instructed_by?(current_user) or current_user.try("is_admin?")
+    if lesson.can_edit?(current_user)
       button_to t('lesson.edit'), edit_lesson_path(lesson), :method => :get
     end
   end
