@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_timezone
   before_filter :set_user_language
 
-  protect_from_forgery :secret => 'lkj23;5h3h3245' #:only => [:update, :delete, :create]
+  protect_from_forgery #:only => [:update, :delete, :create]
 
   def available_locales; AVAILABLE_LOCALES; end
 
