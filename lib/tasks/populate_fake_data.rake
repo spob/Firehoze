@@ -82,9 +82,11 @@ namespace :db do
 
     desc "Generate some lessons"
     task :lessons => :environment do
+      APP_CONFIG[CONFIG_S3_DIRECTORY] = ENV['s3_dir']
       puts "=== Generating Lessons ==="
       require 'populator'
       require 'faker'
+      puts "S3 root directory: #{APP_CONFIG[CONFIG_S3_DIRECTORY]}"
       blow_away_lessons
       count = ENV['count'] ? ENV['count'] : 11
 
