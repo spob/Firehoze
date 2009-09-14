@@ -83,8 +83,14 @@ namespace :db do
     desc "Generate some lessons"
     task :lessons => :environment do
       puts "=== Generating Lessons ==="
+      puts "=== Generating Lessons ===#{APP_CONFIG[CONFIG_S3_DIRECTORY]}"
       require 'populator'
       require 'faker'
+
+#FIXME
+      APP_CONFIG[CONFIG_S3_DIRECTORY] = env['s3_dir']
+      raise
+
       blow_away_lessons
       count = ENV['count'] ? ENV['count'] : 11
 
@@ -219,6 +225,7 @@ namespace :db do
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE helpfuls;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE video_status_changes;")
+      ActiveRecord::Base.connection.execute("DELETE FROM VIDEOS WHERE converted_from_video_id IS NOT NULL;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE videos;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_visits;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE skus;")
