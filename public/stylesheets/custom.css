@@ -111,6 +111,22 @@ div {
     border: solid 1px #AFAFAF;
 }
 
+#other_lessons_by {
+    border: solid 1px #AFAFAF;
+}
+
+#other_lessons_by .header {
+    margin:0;
+    padding:4px 4px 4px 14px;
+}
+
+#other_lessons_by #inner {
+    padding:4px 0 4px 14px;
+    border-top: solid 1px #eee;
+    height: 300px;
+    overflow: auto;
+}
+
 #lesson_list_collection {
     padding-top:20px;
     background-color: #fff;
