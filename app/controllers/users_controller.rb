@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   include SslRequirement
 
-  protect_from_forgery :except => :create  
+  skip_before_filter :verify_authenticity_token
 
   ssl_required  :create, :update if Rails.env.production?
   before_filter :require_no_user, :only => [ :new, :create ]
