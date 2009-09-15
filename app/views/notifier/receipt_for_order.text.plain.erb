@@ -5,7 +5,12 @@ Ordered By: <%= h(@order.user.full_name) %>
 Billing Information:
 Name: <%= h @order.first_name %> <%= h @order.last_name %>
 Address:
-<%= @order.formatted_billing_address("\n") %>
+<%= @order.address1 %>
+<% if @order.address2 %>
+<%= @order.address1 %>
+<% end %>
+<%= @order.city %>, <%= @order.state %> <%= @order.zip %>
+<%= I18n.t(@order.country, :scope => 'countries') %>
 
 Credit Card Type: <%= Order.user_friend_card_type(@order.card_type) %>
 
@@ -13,11 +18,11 @@ Items:
 SKU                      Unit Price  Qty      Extended Price  Discount        Price
 ======================== =========== ======== =============== =============== ==============
 <% for line_item in @order.cart.line_items %>
-<%= ljust(h(line_item.sku.description), 23) %> <%= rjust(number_to_currency(line_item.unit_price), 11) %> <%= rjust(line_item.quantity, 8) %> <%= rjust(number_to_currency(line_item.total_full_price), 15) %> <%= rjust(number_to_percentage(100 * line_item.discount.percent_discount, :precision => 1), 13) unless line_item.discount.nil? %>  <%= number_to_currency(line_item.total_discounted_price) %>
+<%= h(line_item.sku.description.ljust(23)) %> <%= number_to_currency(line_item.unit_price).rjust(11) %> <%= line_item.quantity.to_s.rjust(8) %> <%= number_to_currency(line_item.total_full_price).rjust(15) %> <%= number_to_percentage(100 * line_item.discount.percent_discount, :precision => 1).rjust(13) unless line_item.discount.nil? %>  <%= number_to_currency(line_item.total_discounted_price) %>
     <% if line_item.sku.class == GiftCertificateSku and !line_item.gift_certificates.empty? %>
 <%= line_item.gift_certificates.first.formatted_code %>
     <% end %>
 <% end %>
 
-TOTAL                    <%= rjust(number_to_currency @order.cart.total_full_price, 11) %> <%= rjust(number_to_currency(@order.cart.total_full_price - @order.cart.total_discounted_price), 8) %> <%= rjust(number_to_currency(@order.cart.total_discounted_price), 46) %>
+TOTAL                    <%= number_to_currency(@order.cart.total_full_price).rjust(11) %> <%= number_to_currency(@order.cart.total_full_price - @order.cart.total_discounted_price).rjust(8) %> <%= number_to_currency(@order.cart.total_discounted_price).rjust(46) %>
     

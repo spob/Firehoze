@@ -13,7 +13,12 @@
 </p>
 <p>
   Address:<br/>
-  <%= @order.formatted_billing_address("<br/>") %>
+  <%= @order.address1 %><br/>
+  <% if @order.address2 %>
+      <%= @order.address1 %><br/>
+  <% end %>
+  <%= @order.city %>, <%= @order.state %> <%= @order.zip %><br/>
+  <%= I18n.t(@order.country, :scope => 'countries') %>
 </p>
 <p>
   Credit Card Type: <%= Order.user_friend_card_type(@order.card_type) %>
