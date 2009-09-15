@@ -3,7 +3,8 @@ class OrdersController < ApplicationController
 
   before_filter :require_user
 
-  ssl_required :show, :create, :update if Rails.env.production?
+  ssl_required :new, :create, :update if Rails.env.production?
+  ssl_allowed  :show
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
