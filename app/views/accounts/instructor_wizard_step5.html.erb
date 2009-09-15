@@ -12,10 +12,15 @@
       </p>
 
       <p>
-        One last thing...Uncle Sam requires that you pay your taxes. You have two choices.
+        One last thing...Uncle Sam requires that you pay your taxes. You have two choices:
       <ol>
-        <li>Do nothing...we'll automatically withold taxes from your sales and pay the required taxes</li>
-        <li>Work with us to file a XYZ form. In doing so, you are taking responsibilty for paying any required
+        <li>
+          Do nothing...we'll automatically withold the required taxes from your sales and pay the required taxes
+          directly to the IRS.
+        </li>
+        <li>
+          Fill out the IRS <%= link_to "W9 form", "http://www.irs.gov/pub/irs-pdf/fw9.pdf" %>, sign it and email to
+          <%= mail_to "W9@Firehoze.com" %> or fax it to 1.208.728.9313. In doing so, you are taking responsibilty for paying any required
           taxes, and Firehoze will not withold any taxes from the money owed to you.
         </li>
       </ol>
