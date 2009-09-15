@@ -2,7 +2,7 @@
     /* required settings */
     position:relative;
     overflow:hidden;
-    width:603px;
+    width:577px;
     height:190px;
     border:1px solid #ccc;
     background:url(../../../images/scrollable/h300.png) repeat-x;
@@ -18,7 +18,7 @@
 .scrollable .item_container {
     float:left;
     padding: 0px;
-    margin:20px 0px 20px 20px;
+    margin:15px 0px 20px 15px;
     width:126px;
 }
 
