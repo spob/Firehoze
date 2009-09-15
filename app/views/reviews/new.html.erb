@@ -3,10 +3,17 @@
 <%= stylesheet 'validation' %>
 <%= javascript 'jquery.simplyCountable', 'validate/jquery.validate', 'validate/review.validate' %>
 
+
 <% form_for(:review, :url => lesson_reviews_url(@lesson), :html => { :class => "review", :id => "review" }) do |f| %>
 <%= f.error_messages %>
 <fieldset>
   <legend>Write a review for: <%= link_to h(@lesson.title), lesson_path(@lesson) %></legend>
+
+  <div id="rating_container">
+    <%= lesson_rating_for(@lesson, current_user) -%>
+    <div id="rating_average">Average Rating: <span id="<%= dom_id(@lesson) -%>_average" class="average"><%= current_average(@lesson) -%></span> (<span id="<%= dom_id(@lesson) -%>_count"><%= vote_counts_phrase(@lesson) -%></span>)</div>
+  </div>
+
   <p>
     <%= f.label :headline %><br />
     <%= f.text_field :headline, :maxlength => "100", :class => "required" %>

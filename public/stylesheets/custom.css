@@ -382,6 +382,20 @@ div.review .banner .rating .stars {
     float: left; margin-right: .3em;
 }
 
+#rating_container {
+    position:relative;
+    margin:0;
+    padding:0;
+}
+
+#rating_average {
+    position:absolute;
+    top:6px;
+    left:140px;
+    font-size:12px;
+}
+
+
 /* LESSON COMMENTS */
 div.lesson_comment .timestamp {
     color: #8F8F8F;
