@@ -111,7 +111,7 @@ div {
     border: solid 1px #AFAFAF;
 }
 
-#other_lessons_by {
+/*#other_lessons_by {
     border: solid 1px #AFAFAF;
 }
 
@@ -126,7 +126,7 @@ div {
     height: 300px;
     overflow: auto;
 }
-
+*/
 #lesson_list_collection {
     padding-top:20px;
     background-color: #fff;
@@ -216,8 +216,20 @@ img.lesson_tn {
     padding: 10px;
 }
 
-#lesson_stats_accordion {
-    /*height:400px;*/
+#instructor_accordion_container {
+    height: 300px;
+}
+
+#instructor_accordion .ui-accordion-content {
+    padding:0 8px 15px 15px;
+}
+
+#instructor_accordion .lesson_brief .title {
+    font-style:italic;
+}
+
+#instructor_accordion .lesson_brief .synopsis {
+    margin:0 0 10px 0;
 }
 
 #lesson_stats_accordion .ui-accordion-content {

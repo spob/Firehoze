@@ -72,20 +72,22 @@
     </div>
   </div>
 
-  <div class="span-10 last">
-
+  <div class="span-11 last">
     <% # LESSON BY THIS INSTRUCTOR %>
-    <% if @lesson.instructor.instructed_lessons.present? %>
-      <div id="other_lessons_by" class="append-bottom">
-          <div class="h4 header">Other Lessons By <%= link_to(truncate(h(@lesson.instructor.login)), @lesson.instructor) %></div>
-          <div id="inner">
-          <%= render :partial => "lessons/lesson_brief", :collection => (@lesson.instructor.instructed_lessons.reject{ |lesson| lesson == @lesson }) %>
+    <% if @lesson.instructor.instructed_lessons.size > 1 %>
+      <div id="instructor_accordion_container" class="append-bottom">
+        <div id="instructor_accordion">
+          <h3><a href="#">Lessons by <%= truncate(h(@lesson.instructor.login), 27) %></a></h3>
+          <div class="content">
+            <%= render :partial => "lessons/lesson_brief", :collection => (@lesson.instructor.instructed_lessons.reject{ |lesson| lesson == @lesson }) %>
+          </div>
         </div>
       </div>
     <% end %>
-
+    
     <% #TAG CLOUD -%>
     <%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts -%>
+
   </div>
 </div>
 
