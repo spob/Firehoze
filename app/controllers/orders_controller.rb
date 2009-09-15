@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
 
   before_filter :require_user
 
-  ssl_required :create, :update if Rails.env.production?
+  ssl_required :show, :create, :update if Rails.env.production?
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
@@ -55,7 +55,7 @@ class OrdersController < ApplicationController
         if @order.purchase
           @order.email_receipt
           flash[:notice] = t 'order.order_placed'
-          redirect_to order_path(@order)
+          redirect_to order_path(@order, :protocol => SECURE_PROTOCOL)
         else
           flash[:error] = @order.last_transaction.first.message
           render :action => 'new'
