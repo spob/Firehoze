@@ -3,17 +3,18 @@
 
 class ApplicationController < ActionController::Base
   include SslRequirement
-  
+
   helper :all
   helper_method :current_user_session, :current_user
-  filter_parameter_logging :password, :password_confirmation, :current_password
-  filter_parameter_logging :card_number, :card_verification
+  filter_parameter_logging :password, :password_confirmation, :current_password, :card_number, :card_verification
   before_filter :set_timezone
   before_filter :set_user_language
 
   protect_from_forgery #:only => [:update, :delete, :create]
 
-  def available_locales; AVAILABLE_LOCALES; end
+  def available_locales;
+    AVAILABLE_LOCALES;
+  end
 
   # The currently logged on user, or nil if no user is logged on
   def current_user
@@ -95,7 +96,7 @@ class ApplicationController < ActionController::Base
   # store the location that the user navigated to...used so that, if we need to redirect to
   # the login page, we can continue on to this location after the user authenticates
   def store_location uri=request.request_uri
-    session[:return_to] = uri 
+    session[:return_to] = uri
   end
 
   # redirect back to where the user was trying to get to if, for example, we needed to first redirect
