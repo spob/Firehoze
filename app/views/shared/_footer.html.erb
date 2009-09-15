@@ -1,6 +1,7 @@
 <div id="content">
-  <%= link_to_unless_current "About Firehoze", page_path("about")  %> | 
+  <%= link_to_unless_current "About Firehoze", page_path("about")  %> |
   <%= link_to_unless_current "Contact Us", 'mailto:support@firehoze.com'  %> |
   <%= link_to_unless_current "FAQs", page_path("faqs")  %> | 
-  <%= link_to_unless_current "Policies", page_path("policies")  %> 
+  <%= link_to_unless_current "Policies", page_path("policies")  %> |
+  © 2009 Firehoze, Inc (<%= FirehozeVersion::VERSION %>)
 </div>
