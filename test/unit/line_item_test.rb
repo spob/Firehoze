@@ -52,7 +52,7 @@ class LineItemTest < ActiveSupport::TestCase
 
       should "have no discount" do
         assert_nil @line_item.discount
-        assert_equal @line_item.total_full_price, @line_item.total_discounted_price
+        assert_equal @line_item.total_full_price.to_s, @line_item.total_discounted_price.to_s
       end
     end
 
