@@ -16,11 +16,11 @@ class LineItem < ActiveRecord::Base
   validates_numericality_of :quantity, :greater_than => 0, :only_integer => true, :allow_nil => true
 
   named_scope :by_cart,
-          lambda{|cart_id|{:conditions => { :cart_id => cart_id }}
-          }
+              lambda{|cart_id|{:conditions => { :cart_id => cart_id }}
+              }
   named_scope :by_sku,
-          lambda{|sku_id|{:conditions => { :sku_id => sku_id }}
-          }
+              lambda{|sku_id|{:conditions => { :sku_id => sku_id }}
+              }
 
   def total_full_price
     unit_price * quantity
@@ -38,7 +38,10 @@ class LineItem < ActiveRecord::Base
     self.discounted_unit_price = self.unit_price
     unless sku.nil? # sku can only be null if the user entered a bad value
       self.discount = self.sku.discounts.max_discount_by_volume(self.quantity).first unless self.sku.discounts.nil?
-      self.discounted_unit_price = self.unit_price *  (1 - self.discount.percent_discount) if self.discount
+      if self.discount
+        self.discounted_unit_price = self.unit_price *  (1 - self.discount.percent_discount)
+        #self.discounted_unit_price = ((self.discounted_unit_price * 100).floor) * 0.01 # round down
+      end
     end
   end
 end

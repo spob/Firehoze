@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class LineItemTest < ActiveSupport::TestCase
   context "given an existing record" do
@@ -57,7 +57,10 @@ class LineItemTest < ActiveSupport::TestCase
     end
 
     context "and a line item with quantity equal to the first price break" do
-      setup { @line_item = Factory.create(:line_item, :quantity => 5, :sku => @sku) }
+      setup do
+        @line_item = Factory.build(:line_item, :quantity => 5, :sku => @sku)
+        @line_item.save!
+      end
 
       should "create a line with a 5% discount" do
         verify_discount @line_item, 0.05

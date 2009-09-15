@@ -36,7 +36,7 @@ class CreditSku < Sku
     Credit.transaction do
       line_item.quantity.times do
         Credit.create!(:sku => self,
-                       :price => price/num_credits,
+                       :price => line_item.discounted_unit_price,
                        :user => user,
                        :acquired_at => Time.zone.now,
                        :line_item => line_item)
