@@ -27,11 +27,11 @@ module ActiveRecord
     end
 
     def message
-      generate_message(@message, default_options)
+      generate_message(@message, options.dup)
     end
 
     def full_message
-      attribute.to_s == 'base' ? message : generate_full_message(message, default_options)
+      attribute.to_s == 'base' ? message : generate_full_message(message, options.dup)
     end
 
     alias :to_s :message
@@ -72,7 +72,12 @@ module ActiveRecord
         keys << @type unless @type == message
         keys.compact!
 
-        options.merge!(:default => keys)
+        options.reverse_merge! :default => keys,
+                               :scope => [:activerecord, :errors],
+                               :model => @base.class.human_name,
+                               :attribute => @base.class.human_attribute_name(attribute.to_s),
+                               :value => value
+
         I18n.translate(keys.shift, options)
       end
 
@@ -104,23 +109,15 @@ module ActiveRecord
       #           title:
       #             blank: This title is screwed!
       def generate_full_message(message, options = {})
-        keys = [
-          :"full_messages.#{@message}",
-          :'full_messages.format',
-          '{{attribute}} {{message}}'
-        ]
+        options.reverse_merge! :message => self.message,
+                               :model => @base.class.human_name,
+                               :attribute => @base.class.human_attribute_name(attribute.to_s),
+                               :value => value
 
-        options.merge!(:default => keys, :message => self.message)
-        I18n.translate(keys.shift, options)
-      end
+        key = :"full_messages.#{@message}"
+        defaults = [:'full_messages.format', '{{attribute}} {{message}}']
 
-      # Return user options with default options.
-      #
-      def default_options
-        options.reverse_merge :scope => [:activerecord, :errors],
-                              :model => @base.class.human_name,
-                              :attribute => @base.class.human_attribute_name(attribute.to_s),
-                              :value => value
+        I18n.t(key, options.merge(:default => defaults, :scope => [:activerecord, :errors]))
       end
   end
 
@@ -137,8 +134,7 @@ module ActiveRecord
     end
 
     def initialize(base) # :nodoc:
-      @base = base
-      clear
+      @base, @errors = base, {}
     end
 
     # Adds an error to the base object instead of any particular attribute. This is used
@@ -287,7 +283,7 @@ module ActiveRecord
 
     # Removes all errors that have been added.
     def clear
-      @errors = ActiveSupport::OrderedHash.new
+      @errors = {}
     end
 
     # Returns the total number of errors added. Two errors added to the same attribute will be counted as such.
@@ -325,7 +321,7 @@ module ActiveRecord
     end
 
     def generate_message(attribute, message = :invalid, options = {})
-      ActiveSupport::Deprecation.warn("ActiveRecord::Errors#generate_message has been deprecated. Please use ActiveRecord::Error.new().to_s.")
+      ActiveSupport::Deprecation.warn("ActiveRecord::Errors#generate_message has been deprecated. Please use ActiveRecord::Error#generate_message.")
       Error.new(@base, attribute, message, options).to_s
     end
   end

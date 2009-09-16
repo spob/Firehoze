@@ -38,31 +38,16 @@ module ActiveSupport
     end
     
     private
-      if "foo".respond_to?(:bytesize)
-        # constant-time comparison algorithm to prevent timing attacks
-        # > 1.8.6 friendly version
-        def secure_compare(a, b)
-          if a.bytesize == b.bytesize
-            result = 0
-            j = b.each_byte
-            a.each_byte { |i| result |= i ^ j.next }
-            result == 0
-          else
-            false
+      # constant-time comparison algorithm to prevent timing attacks
+      def secure_compare(a, b)
+        if a.length == b.length
+          result = 0
+          for i in 0..(a.length - 1)
+            result |= a[i] ^ b[i]
           end
-        end
-      else
-        # For <= 1.8.6
-        def secure_compare(a, b)
-          if a.length == b.length
-            result = 0
-            for i in 0..(a.length - 1)
-              result |= a[i] ^ b[i]
-            end
-            result == 0
-          else
-            false
-          end
+          result == 0
+        else
+          false
         end
       end
 
