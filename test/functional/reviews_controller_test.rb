@@ -28,6 +28,17 @@ class ReviewsControllerTest < ActionController::TestCase
         should_render_template :new
       end
 
+
+      context "on GET to :new" do
+        setup { get :new, :lesson_id => @lesson }
+
+        should_assign_to :review
+        should_assign_to :lesson
+        should_respond_with :success
+        should_not_set_the_flash
+        should_render_template "new"
+      end
+
       context "which the user has already rated" do
         setup do
           assert @lesson.rates.empty?
@@ -46,16 +57,6 @@ class ReviewsControllerTest < ActionController::TestCase
           should_respond_with :success
           should_not_set_the_flash
           should_render_template "index"
-        end
-
-        context "on GET to :new" do
-          setup { get :new, :lesson_id => @lesson }
-
-          should_assign_to :review
-          should_assign_to :lesson
-          should_respond_with :success
-          should_not_set_the_flash
-          should_render_template "new"
         end
 
         context "on POST to :create" do
