@@ -8,7 +8,7 @@ class LessonsController < ApplicationController
 
   verify :method => :post, :only => [ :create, :convert, :unreject ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update, :conversion_notify ], :redirect_to => :home_path
-  before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :show, :update, :watch, :unreject ]
+  before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :update, :watch, :unreject ]
   before_filter :set_per_page, :only => [ :ajaxed, :index, :list, :tabbed, :tagged_with ]
   before_filter :set_collection, :only => [ :ajaxed, :list, :tabbed ]
 
@@ -105,6 +105,7 @@ class LessonsController < ApplicationController
   end
 
   def show
+    @lesson = Lesson.find(params[:id], :include => [:instructor, :reviews])
     if @lesson.ready? or @lesson.instructed_by?(current_user) or (current_user and current_user.is_moderator?)
       LessonVisit.touch(@lesson, current_user, request.session.session_id)
     else

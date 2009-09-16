@@ -12,8 +12,8 @@ class LessonComment < Comment
 # Basic paginated listing finder
   def self.list(lesson, page, current_user=nil)
     paginate :page => page,
-             :conditions => list_conditions(lesson, current_user), :order => 'id desc',
-             :per_page => ROWS_PER_PAGE
+             :conditions => list_conditions(lesson, current_user), :include => [:user, :lesson],
+             :order => 'id desc', :per_page => ROWS_PER_PAGE
   end
 
   def self.list_count(lesson, current_user)

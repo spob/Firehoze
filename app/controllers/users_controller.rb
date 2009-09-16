@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   ssl_required  :new, :create, :update if Rails.env.production?
   before_filter :require_no_user, :only => [ :new, :create ]
   before_filter :require_user, :except => [ :new, :create, :show, :user_agreement ]
-  before_filter :find_user, :only => [ :clear_avatar, :edit, :show, :show_admin, :private, :reset_password, :update,
+  before_filter :find_user, :only => [ :clear_avatar, :edit, :show_admin, :private, :reset_password, :update,
                                        :update_instructor, :update_privacy, :update_avatar, :update_roles ]
 
   permit ROLE_ADMIN, :only => [ :clear_avatar, :show_admin, :private, :reset_password, :update_avatar,
@@ -50,16 +50,17 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find params[:id]
     unless @user.active or (current_user and (current_user.is_moderator? or !current_user.is_admin?))
       flash[:error] = t 'user.inactive_cannot_show'
       redirect_to lessons_path
     end
     if current_user.try("is_moderator?") or current_user.try("is_admin?")
-      @lessons = @user.instructed_lessons
-      @reviews = @user.reviews
+      @lessons = @user.instructed_lessons.all(:include => [:instructor, :tags])
+      @reviews = @user.reviews.all(:include => [:user, :lesson])
     else
-      @lessons = @user.instructed_lessons.ready
-      @reviews = @user.reviews.ready
+      @lessons = @user.instructed_lessons.ready.all(:include => [:instructor, :tags])
+      @reviews = @user.reviews.ready.all(:include => [:user, :lesson])
     end
   end
 
