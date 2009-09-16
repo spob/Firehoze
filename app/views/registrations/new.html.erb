@@ -1,10 +1,20 @@
 <%= render :partial => "shared/infield_head_content" %>
+<% restricted = APP_CONFIG[CONFIG_RESTRICT_REGISTRATION]  %>
+<% if restricted == true %>
+  <div class="span-17 append-1">
+    <div class="info">
+      <h3>1. Request a Registration Code</h3>
+      <p>Can't wait for the public release?<br />For a limited time get early access to the Firehoze site.</p>
+      <p><strong><%= link_to "Request", "http://www.firehoze.com" %> your Registration Code now!</strong></p>
+    </div>
+  </div>
+<% end %>
 
-<div class="span-22">
+<div class="span-22 last">
   <% form_for(:registration, :url => registrations_path, :html => {'accept-charset' => "utf-8", :id => "inline", :class => "register" }) do |f| %>
     <%= f.error_messages %>
     <fieldset>
-      <legend>Sign Up</legend>
+      <legend><%= restricted == true ? "2. Sign Up" : "Sign Up"  %></legend>
       <p>
         <%= f.label :username, :Username %>
         <%= f.text_field :username %>
@@ -35,14 +45,3 @@
   <% end %>
 </div>
 
-<% if APP_CONFIG[CONFIG_RESTRICT_REGISTRATION] %>
-  <div class="span-18 last">
-    <div class="info">
-      <h2>Have you done this yet?</h2>
-      <h3>Early Registration Request</h3>
-      <p>Can't wait for the public release?</p>
-      <p>For a limited time we're offering early access to the Firehoze site.</p>
-      <p><%= link_to "Request your Registration Code", "http://www.firehoze.com" %> now!</p>
-    </div>
-  </div>
-<% end %>

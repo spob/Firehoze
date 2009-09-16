@@ -33,6 +33,16 @@ div {
     background-color: #fff;
 }
 
+.header {
+    margin:0;
+    padding:0;
+}
+
+.main_nav {
+    margin:0;
+    padding:0;
+}
+
 /* FOOTER */
 #footer #content {
     text-align:center;
@@ -62,6 +72,8 @@ div {
     float: left;
     width: 100%;
     font-family: arial, helvetica, sans-serif;
+    margin-bottom:0;
+    padding-bottom:0;
 }
 
 #main_nav ul li { display: inline; }
@@ -82,36 +94,58 @@ div {
 
 /* LOGIN and REGISTRATION */
 .info {
-    border: solid 1px #ccc;
+    border: solid 10px #ccc;
     background-color: #efefef;
-    padding: 24px;
+    padding: 37px 20px 10px 20px;
+}
+
+.info h3 {
+    text-transform: uppercase;
+    color: #333;
+    font-weight: bold;
+}
+
+.info p {
+    font-size: 14px;
 }
 
 /* LESSONS */
 
 /* marketing upsell text */
+#marketing_banner h2 {
+    color:#333;
+    padding:6px 0 6px 5px;
+    margin:0;
+    border-top:solid 2px #ccc;
+    border-bottom:solid 2px #ccc;
+}
+
 #marketing_fpo {
+    width:980px;
     color: #777;
     border: solid 2px #ccc;
     background-color: #efefef;
+}
+
+#marketing_fpo_left h2, 
+#marketing_fpo_right h2 {
+    text-align:center;
+    color:#333;
+}
+
+#marketing_fpo p {
     font-size:16px;
 }
 
-#marketing_fpo h2 {
-    color:#444;
-}
-
-#marketing_fpo_left h2, #marketing_fpo_right h2 {
-    text-align:center;
-}
 
 #marketing_fpo_left {
-    padding: 40px 40px 10px 40px;
+    padding: 30px 30px 10px 30px;
     border-right: solid 2px #ccc;
 }
 
 #marketing_fpo_right {
-    padding: 40px 40px 10px 40px;
+    padding: 30px 30px 10px 30px;
+    border: 0;
 }
 
 
