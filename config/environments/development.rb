@@ -20,6 +20,7 @@ config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.gith
 
 # bullet for testing memory in development mode
 config.gem 'flyerhzm-bullet', :lib => 'bullet', :source => 'http://gems.github.com'
+config.gem 'ruby-growl'
 
 # Safe ERB lets you make sure that the string written by "<%= %>" in your rhtml template is escaped correctly
 # config.gem "emk-safe_erb", :version => '0.1.2', :lib => 'safe_erb', :source => 'http://gems.github.com'
@@ -45,4 +46,15 @@ config.after_initialize do
           :password => "1245091911",
           :signature => "ANWT4eqvfe9CDpkyiOnsmpFaGBiSALD1SnzflEmQNt7ccAFqMc9Pj0.K"
   )
+
+  # Configure the bullet memory checking gem http://github.com/flyerhzm/bullet
+  Bullet.enable = true
+  Bullet.alert = true
+  Bullet.bullet_logger = true
+  Bullet.console = true
+  Bullet.growl = true
+  Bullet.rails_logger = true
+  Bullet.disable_browser_cache = true
+
+
 end
