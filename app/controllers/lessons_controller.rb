@@ -159,21 +159,21 @@ class LessonsController < ApplicationController
     @lessons = case @collection
     when 'most_popular'
       if current_user
-        Lesson.ready.most_popular.not_owned_by(current_user).all(:limit => @per_page)
+        Lesson.ready.most_popular.not_owned_by(current_user).all(:include => [:instructor, :tags], :limit => @per_page)
       else
-        Lesson.ready.most_popular.all(:limit => @per_page)
+        Lesson.ready.most_popular.all(:include => [:instructor, :tags], :limit => @per_page)
       end
     when 'newest'
       if current_user
-        Lesson.ready.newest.not_owned_by(current_user).all(:limit => @per_page)
+        Lesson.ready.newest.not_owned_by(current_user).all(:include => [:instructor, :tags], :limit => @per_page)
       else
-        Lesson.ready.newest.all(:limit => @per_page)
+        Lesson.ready.newest.all(:include => [:instructor, :tags], :limit => @per_page)
       end
     when 'highest_rated'
       if current_user
-        Lesson.ready.highest_rated.not_owned_by(current_user).all(:limit => @per_page)
+        Lesson.ready.highest_rated.not_owned_by(current_user).all(:include => [:instructor, :tags], :limit => @per_page)
       else
-        Lesson.ready.highest_rated.all(:limit => @per_page)
+        Lesson.ready.highest_rated.all(:include => [:instructor, :tags], :limit => @per_page)
       end
     end
   end
