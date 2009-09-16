@@ -91,6 +91,7 @@ div {
 
 /* marketing upsell text */
 #marketing_fpo {
+		width:980px;
     color: #777;
     border: solid 2px #ccc;
     background-color: #efefef;
@@ -106,12 +107,13 @@ div {
 }
 
 #marketing_fpo_left {
-    padding: 40px 40px 10px 40px;
+    padding: 30px 30px 10px 30px;
     border-right: solid 2px #ccc;
 }
 
 #marketing_fpo_right {
-    padding: 40px 40px 10px 40px;
+  padding: 30px 30px 10px 30px;
+    border: 0;
 }
 
 
