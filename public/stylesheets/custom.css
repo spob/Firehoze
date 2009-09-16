@@ -89,16 +89,31 @@ div {
 
 /* LESSONS */
 
+/* marketing upsell text */
 #marketing_fpo {
-    text-align:center;
-    padding:100px 0;
+    color: #777;
     border: solid 2px #ccc;
     background-color: #efefef;
+    font-size:16px;
 }
 
-#marketing_fpo h1 {
-    color: #777;
+#marketing_fpo h2 {
+    color:#444;
 }
+
+#marketing_fpo_left h2, #marketing_fpo_right h2 {
+    text-align:center;
+}
+
+#marketing_fpo_left {
+    padding: 40px 40px 10px 40px;
+    border-right: solid 2px #ccc;
+}
+
+#marketing_fpo_right {
+    padding: 40px 40px 10px 40px;
+}
+
 
 /* lesson_collections */
 .lesson_container, .more, .lesson_left, .lesson_center, .lesson_right {

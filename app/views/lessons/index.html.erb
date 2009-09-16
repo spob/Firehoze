@@ -1,5 +1,17 @@
-<div class="clear last append-bottom" id="marketing_fpo">
-  <h1>FPO</h1>
+<div class="clear span-40  last append-bottom last" id="marketing_fpo">
+  <div class="span-20">
+    <div id="marketing_fpo_left">
+      <h2>Get started learning</h2>
+      <p>Learn at your own pace. Invest in your learning where it makes sense and focus on what you want to learn.</p>
+      <p style="text-align:right"><%= link_to 'Take a Tour', "#" %> | <%= link_to 'Sign Up for Free', new_registration_path %></p>
+    </div>
+  </div>
+  <div class="span-20 last">
+    <div id="marketing_fpo_right">
+      <h2>Get started teaching</h2>
+      <p>Reach beyond your institution and the classroom ... and get paid for what you do best.</p>
+    </div>
+  </div>
 </div>
 
 <div class="clear span-40 last" id="lesson_tabs">
@@ -11,7 +23,6 @@
     </ul>
     <div style="display:block"></div>
   </div>
-
 </div>
 
 <%= render :partial => "tag_cloud", :object => Lesson.tag_counts if current_user %>
