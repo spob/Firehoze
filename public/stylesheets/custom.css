@@ -82,16 +82,26 @@ div {
 
 /* LOGIN and REGISTRATION */
 .info {
-    border: solid 1px #ccc;
+    border: solid 10px #ccc;
     background-color: #efefef;
-    padding: 24px;
+    padding: 37px 20px 10px 20px;
+}
+
+.info h3 {
+    text-transform: uppercase;
+    color: #333;
+    font-weight: bold;
+}
+
+.info p {
+    font-size: 14px;
 }
 
 /* LESSONS */
 
 /* marketing upsell text */
 #marketing_fpo {
-		width:980px;
+    width:980px;
     color: #777;
     border: solid 2px #ccc;
     background-color: #efefef;
@@ -112,7 +122,7 @@ div {
 }
 
 #marketing_fpo_right {
-  padding: 30px 30px 10px 30px;
+    padding: 30px 30px 10px 30px;
     border: 0;
 }
 
