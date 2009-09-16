@@ -6,7 +6,7 @@
       <h3>What Do Students Ultimately Buy After Browsing This Item?</h3>
 
       <div class="span-28 last">
-        <% for buy_pattern in lesson.lesson_buy_patterns.ready[0..APP_CONFIG[CONFIG_NUMBER_OF_BUY_PATTERNS_TO_SHOW]] -%>
+        <% for buy_pattern in lesson.lesson_buy_patterns.ready.all(:include => [:purchased_lesson])[0..APP_CONFIG[CONFIG_NUMBER_OF_BUY_PATTERNS_TO_SHOW]] -%>
           <div class="lesson <%= cycle("even", "odd") -%>">
             <div class="span-5">
               <%= img_tag_lesson_tn(buy_pattern.purchased_lesson, :small) -%>

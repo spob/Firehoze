@@ -17,7 +17,7 @@
       <div class="scrollable" id="browsable">
         <!-- root element for the items -->
         <div class="items">
-          <% for buy_pair in lesson.lesson_buy_pairs.ready[0..APP_CONFIG[CONFIG_NUMBER_OF_BUY_PATTERNS_TO_SHOW]] %>
+          <% for buy_pair in lesson.lesson_buy_pairs.ready.all(:include => [:other_lesson])[0..APP_CONFIG[CONFIG_NUMBER_OF_BUY_PATTERNS_TO_SHOW]] %>
             <div class="item_container">
               <div class="tn">
                 <%= img_tag_lesson_tn(buy_pair.other_lesson, :small) %>
