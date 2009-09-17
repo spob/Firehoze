@@ -1,4 +1,5 @@
 class ProcessedVideo < Video
+  belongs_to :lesson, :counter_cache => true
   before_validation_on_create :set_video_status
 
   belongs_to :converted_from_video, :class_name => 'OriginalVideo'

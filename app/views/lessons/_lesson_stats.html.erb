@@ -44,7 +44,7 @@
               <th>Action</th>
             <% end -%>
           </tr>
-          <%= render :partial => "video", :collection => @lesson.videos -%>
+          <%= render :partial => "video", :collection => @lesson.videos.all(:include => (current_user.try("is_admin?") ? [:video_status_changes, :lesson] : [])) -%>
         </table>
       </div>
     <% elsif current_user == @lesson.instructor -%>
