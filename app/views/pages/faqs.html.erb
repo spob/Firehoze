@@ -1,7 +1,127 @@
 <%= javascript 'always_at_bottom', 'footer' %>
-<h3>FAQ Placeholder</h3>
+<h3>Frequently Asked Questions</h3>
 
-<h4><em>Placeholder Page</em></h4>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h4>Payment/Exclusivity</h4>
+<h5>How much does a instructor make?</h5>
+<p>Firehoze pays a base royalty rate of 50% from the revenue of each lesson purchased for Exclusive instructors and 25% for Non-exclusive instructors.</p>
+
+<h5>How do I get paid and how often?</h5>
+<p>Firehoze mails checks monthly on balances over $50. You may request a payment even if your balance is less than $50, but a $2 handling fee will be assessed. Please allow 1-2 weeks for processing.</p>
+
+<h5>How long am I committed?</h5>
+<p>Don't worry, if you change your mind, just let us know anytime before you've received 30 days in advance by email (<a href="javascript:location='mailto:\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d';void 0"><script type="text/javascript">document.write('\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d')</script></a>) and we'll change your commission structure.</p>
+
+<h5>What does it mean to be an Exclusive instructor?</h5>
+<p>Exclusivity means your lessons and the associated content may not be sold or given away for free to other sites or businesses including on the instructor's site.</p>
+
+<h5>How can I see how much money I've made?</h5>
+<p>You can find this information in your account information. Click on the '<%= link_to "Account Settings", edit_account_path(current_user) %>' link at the top of the page. Then go to the 'Payment History' tab to see the lessons of yours that have been purchased by other Firehoze users and how much you've made from them.</p>
+
+<h4>Privacy</h4>
+<h5>Do you share emails addresses?</h5>
+<p>Nope, never.  Even if you choose to allow other Firehoze users to contact you via email, those users will never see your actual email address.</p>
+
+<h5>Do you sell information?</h5>
+<p>Only if they offer us a lot of money. Okay, kidding, we don't...we hate having our information sold too.</p>
+
+<h5>Can people contact me directly?</h5>
+<p>Only if you want them to. The default is 'no' but to change this setting go to '<%= link_to "Account Settings", edit_account_path(current_user) %>' at the top of the page and click on the 'Privacy' tab to make your selection.</p>
+
+<h5>How can I see what my public profile is?</h5>
+<p>You can look at this by going into your '<%= link_to "Account Settings", edit_account_path(current_user) %>', clicking on the 'Profile' tab. At the top of the page you'll see a link with the option 'view your public profile here'.</p>
+
+
+<h4>Beta Site</h4>
+<h5>Is this really the final site?</h5>
+<p>Ahh...no. Are you kidding?! It's pretty ugg-leey. But the functionality should be working so if any functionality doesn't seem to work, definitely let us know. You can do this a few ways – email us directly or go to the 'Feedback' tab and let us know there.</p>
+
+<h5>So, why doesn’t your site look very spiffy?</h5>
+<p>Well, prioritization...and while we have superstar developers, they're still stuck by physics and that darn 24 hour day. So top priority is getting great content loaded and tagged so we wanted to get something into your hands so you only had to load content once.</p>
+
+<h5>Why is English my only choice in the language drop-down?</h5>
+<p>English is just the beginning...but we're still in 'beginning' stage. Want to influence what the next languages should be? Go to our 'Feedback' button on the right of the page and vote on what you'd like to see next. And if you'd be interested in helping us translate the site into another language, we'd love to know that as well.</p>
+
+<h5>What browsers are supported?</h5>
+<p>The big ones at the moment but more to come. Firefox 3.0 and higher, IE 7.x and higher, Safari, Chrome. Other browsers and versions may work just fine, but we don't guarantee it. If there's a browser you think we should support but don't, we'd love to hear from you.</p>
+
+
+<h4>Contributing/Uploading Lessons</h4>
+<h5>How do I become an instructor ?</h5>
+<p>Easily...</p>
+<ol>
+  <li>Go to '<%= link_to "Account Settings", edit_account_path(current_user) %>'.</li>
+<li>Select the Instructor tab and click the button to walk through the Instructor Signup Wizard.</li>
+<li>Complete all steps in the wizard.</li>
+<li>Start teaching!</li>
+</ol>
+
+<h5>Why give me the option to provide free downloads when I post a lesson?</h5>
+<p>Free downloads give you the chance to build up some ratings and reviews before users have to purchase your lesson. It can be a good way to your reputation, activity and traction on the site.</p>
+
+<h5>How do I pull or delete a lesson?</h5>
+<p>Shoot us an email (<a href="javascript:location='mailto:\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d';void 0"><script type="text/javascript">document.write('\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d')</script></a>) providing your user name and the title of the tutorial you'd like pulled. When we delete you're lesson, we will also delete all of the associated content including the lesson video, synopsis, notes, tags, reviews and ratings.</p>
+
+<h5>What happens when I request a lesson to be pulled? What happens to my ratings and reviews when I pull a lesson?</h5>
+<p>We'll pull the lesson l and all of the associated content including the lesson video, synopsis, notes, tags, reviews, discussion comments and ratings.</p>
+
+<h5>What are the specs required for lesson videos to be uploaded?</h5>
+<p>Files must be less than 500 MB. We support the following file formats:</p>
+<ul>
+  <li>MPEG-1, MPEG-2, H.263, H.264</li>
+<li>All MPEG-4 implementations (Xvid, 3vix, etc.)</li>
+<li>AVI</li>
+<li>.MOV</li>
+  <li>MP4</li>
+<li>.MPG, .VOB (unencrypted VOBs only)</li>
+<li>Windows Media/VC-1</li>
+<li>3GP/3G2</li>
+<li>Ogg Theora</li>
+<li>MJPEG</li>
+</ul>
+
+
+<h4>Recording</h4>
+<h5>How do I save my videos as an mp4 with Camtasia.</h5>
+<p>Click on 'Share', 'Export' and save the video with your desired title.</p>
+
+<h4>Buying Lessons/Credits</h4>
+<h5>How do I purchase lessons from your site?</h5>
+<p>All you need to do is by one or more credit(s) to purchase tutorials. You can easily purchase credits by clicking on the 'Purchase Credits' link in the upper right hand of your screen.</p>
+
+<h5>Why do you use credits?</h5>
+
+<p>To make your browsing and buying experience easier. It would be a pain to have to do a full shopping cart checkout and specify your credit card each time you want to watch a lesson. Buying a bunch of credits makes it easier to quickly view lessons when you find one you want.</p>
+
+<p>Oh yeah, also, if all credit card transactions were 99 cents each, the credit card companies would kill us on fees and we'd have to charge more for the lessons.</p>
+
+<h5>Where are my receipts/download history?</h5>
+<p>You can find all of this information in your account information. Click on the '<%= link_to "Account Settings", edit_account_path(current_user) %>' link at the top of the page. Then go to the 'Order History' tab to see them.</p>
+
+<h5>How can I give credits to someone else?</h5>
+<p>A gift certificate is the best and easiest way to do this.</p>
+
+<h5>Where are my receipts/download history?</h5>
+<p>Your download history is stored in your account information. Click on the ‘<%= link_to "Account Settings", edit_account_path(current_user) %>’  at the top of the site. Then click the ‘Credit History’ tab.</p>
+
+<h5>Do credits expire?</h5>
+<p>Credits will expire within a year if you don't log into Firehoze. All you have to do to keep your credits from expiring is log on at least once a year. Pretty simple, right?</p>
+<p>If you have credits that are about to expire, we'll warn you via email 30 days before they expire, just to remind you to log on to keep them alive.</p>
+
+<h4>Managing My Account</h4>
+<h5>Where can I find a record of lessons I've purchased?</h5>
+<p>Your download history is stored in your account information. Click on the ‘<%= link_to "Account Settings", edit_account_path(current_user) %>’  at the top of the site. Then click the ‘Credit History’ tab to see a list of all the download credits you've purchased and which ones you've redeemed for lessons.</p>
+
+<h5>Where can I see how many credits I have left?</h5>
+<p>You can find your remaining credits in the upper right hand of your screen.</p>
+
+<h5>How do I change my user name?</h5>
+<p>If you would like to change your user name, please contact us at <a href="javascript:location='mailto:\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d';void 0"><script type="text/javascript">document.write('\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d')</script></a> with your existing user name and the new user name you would like to use.</p>
+
+<h5>How can I change my password?</h5>
+<p>To change your password, click on the ‘<%= link_to "Account Settings", edit_account_path(current_user) %>’ link at the top of the site. Then go to the ‘Password’ tab.</p>
+
+<h5>How do I edit my email information?</h5>
+<p>To change your address or contact information, click on the ‘<%= link_to "Account Settings", edit_account_path(current_user) %>’ link at the top of the site, then click on the 'Profile' tab.</p>
+
+<h5>How can I retrieve my password and/or member name?</h5>
+<p>Just click on the 'Forgot password 'link on the login page.</p>
