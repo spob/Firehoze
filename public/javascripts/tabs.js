@@ -51,12 +51,17 @@ $(function() {
     });
 
     $('#policy_tabs').tabs(
-    {
-        fx: { 
-            opacity: 'toggle',
-            duration: 300
-        }
-    });
+	    {
+	        cache: true,
+	        cookie: { 
+	            expires: 30,
+	            name: 'policy_tabs'
+	        },
+	        fx: { 
+	            opacity: 'toggle',
+	            duration: 300
+	        }
+	    });
 
     $('#user_show_tabs').tabs(
     {

@@ -507,3 +507,10 @@ div.lesson_comment .actions .button-to {
 #line_items th {
     text-align:center;
 }
+
+/* POLICIES */
+.policies blockquote {
+    color:#222;
+    text-decoration:none;
+    font-style:normal;
+}
