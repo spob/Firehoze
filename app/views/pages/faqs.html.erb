@@ -1,6 +1,8 @@
 <%= javascript 'always_at_bottom', 'footer' %>
-<h3>Frequently Asked Questions</h3>
 
+<% account_settings_link = current_user ? (link_to "Account Settings", edit_account_path(current_user)) : "Account Settings"  %>
+
+<h3>Frequently Asked Questions</h3>
 <h4>Payment/Exclusivity</h4>
 <h5>How much does a instructor make?</h5>
 <p>Firehoze pays a base royalty rate of 50% from the revenue of each lesson purchased for Exclusive instructors and 25% for Non-exclusive instructors.</p>
@@ -15,7 +17,7 @@
 <p>Exclusivity means your lessons and the associated content may not be sold or given away for free to other sites or businesses including on the instructor's site.</p>
 
 <h5>How can I see how much money I've made?</h5>
-<p>You can find this information in your account information. Click on the '<%= link_to "Account Settings", edit_account_path(current_user) %>' link at the top of the page. Then go to the 'Payment History' tab to see the lessons of yours that have been purchased by other Firehoze users and how much you've made from them.</p>
+<p>You can find this information in your account information. Click on the '<%= account_settings_link %>' link at the top of the page. Then go to the 'Payment History' tab to see the lessons of yours that have been purchased by other Firehoze users and how much you've made from them.</p>
 
 <h4>Privacy</h4>
 <h5>Do you share emails addresses?</h5>
@@ -25,10 +27,10 @@
 <p>Only if they offer us a lot of money. Okay, kidding, we don't...we hate having our information sold too.</p>
 
 <h5>Can people contact me directly?</h5>
-<p>Only if you want them to. The default is 'no' but to change this setting go to '<%= link_to "Account Settings", edit_account_path(current_user) %>' at the top of the page and click on the 'Privacy' tab to make your selection.</p>
+<p>Only if you want them to. The default is 'no' but to change this setting go to '<%= account_settings_link %>' at the top of the page and click on the 'Privacy' tab to make your selection.</p>
 
 <h5>How can I see what my public profile is?</h5>
-<p>You can look at this by going into your '<%= link_to "Account Settings", edit_account_path(current_user) %>', clicking on the 'Profile' tab. At the top of the page you'll see a link with the option 'view your public profile here'.</p>
+<p>You can look at this by going into your '<%= account_settings_link %>', clicking on the 'Profile' tab. At the top of the page you'll see a link with the option 'view your public profile here'.</p>
 
 
 <h4>Beta Site</h4>
@@ -49,7 +51,7 @@
 <h5>How do I become an instructor ?</h5>
 <p>Easily...</p>
 <ol>
-  <li>Go to '<%= link_to "Account Settings", edit_account_path(current_user) %>'.</li>
+  <li>Go to '<%= account_settings_link %>'.</li>
 <li>Select the Instructor tab and click the button to walk through the Instructor Signup Wizard.</li>
 <li>Complete all steps in the wizard.</li>
 <li>Start teaching!</li>
@@ -95,13 +97,13 @@
 <p>Oh yeah, also, if all credit card transactions were 99 cents each, the credit card companies would kill us on fees and we'd have to charge more for the lessons.</p>
 
 <h5>Where are my receipts/download history?</h5>
-<p>You can find all of this information in your account information. Click on the '<%= link_to "Account Settings", edit_account_path(current_user) %>' link at the top of the page. Then go to the 'Order History' tab to see them.</p>
+<p>You can find all of this information in your account information. Click on the '<%= account_settings_link %>' link at the top of the page. Then go to the 'Order History' tab to see them.</p>
 
 <h5>How can I give credits to someone else?</h5>
 <p>A gift certificate is the best and easiest way to do this.</p>
 
 <h5>Where are my receipts/download history?</h5>
-<p>Your download history is stored in your account information. Click on the ‘<%= link_to "Account Settings", edit_account_path(current_user) %>’  at the top of the site. Then click the ‘Credit History’ tab.</p>
+<p>Your download history is stored in your account information. Click on the ‘<%= account_settings_link %>’  at the top of the site. Then click the ‘Credit History’ tab.</p>
 
 <h5>Do credits expire?</h5>
 <p>Credits will expire within a year if you don't log into Firehoze. All you have to do to keep your credits from expiring is log on at least once a year. Pretty simple, right?</p>
@@ -109,7 +111,7 @@
 
 <h4>Managing My Account</h4>
 <h5>Where can I find a record of lessons I've purchased?</h5>
-<p>Your download history is stored in your account information. Click on the ‘<%= link_to "Account Settings", edit_account_path(current_user) %>’  at the top of the site. Then click the ‘Credit History’ tab to see a list of all the download credits you've purchased and which ones you've redeemed for lessons.</p>
+<p>Your download history is stored in your account information. Click on the ‘<%= account_settings_link %>’  at the top of the site. Then click the ‘Credit History’ tab to see a list of all the download credits you've purchased and which ones you've redeemed for lessons.</p>
 
 <h5>Where can I see how many credits I have left?</h5>
 <p>You can find your remaining credits in the upper right hand of your screen.</p>
@@ -118,10 +120,10 @@
 <p>If you would like to change your user name, please contact us at <a href="javascript:location='mailto:\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d';void 0"><script type="text/javascript">document.write('\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d')</script></a> with your existing user name and the new user name you would like to use.</p>
 
 <h5>How can I change my password?</h5>
-<p>To change your password, click on the ‘<%= link_to "Account Settings", edit_account_path(current_user) %>’ link at the top of the site. Then go to the ‘Password’ tab.</p>
+<p>To change your password, click on the ‘<%= account_settings_link %>’ link at the top of the site. Then go to the ‘Password’ tab.</p>
 
 <h5>How do I edit my email information?</h5>
-<p>To change your address or contact information, click on the ‘<%= link_to "Account Settings", edit_account_path(current_user) %>’ link at the top of the site, then click on the 'Profile' tab.</p>
+<p>To change your address or contact information, click on the ‘<%= account_settings_link %>’ link at the top of the site, then click on the 'Profile' tab.</p>
 
 <h5>How can I retrieve my password and/or member name?</h5>
 <p>Just click on the 'Forgot password 'link on the login page.</p>
