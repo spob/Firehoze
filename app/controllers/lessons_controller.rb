@@ -60,7 +60,7 @@ class LessonsController < ApplicationController
 
   def list_admin
     @search = Lesson.search(params[:search])
-    @lessons = @search.paginate :page => params[:page], :per_page => session[:per_page] || ROWS_PER_PAGE
+    @lessons = @search.paginate :include => [:instructor], :page => params[:page], :per_page => session[:per_page] || ROWS_PER_PAGE
   end
 
   def new

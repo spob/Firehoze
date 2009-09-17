@@ -74,13 +74,13 @@ class FlagsController < ApplicationController
   end
 
   def index
-    @flags = Flag.pending(:order_by => object_id).paginate :page => params[:page],
+    @flags = Flag.pending(:order_by => object_id).all(:include => [:flaggable, :user]).paginate :page => params[:page],
                                                            :per_page => session[:per_page] || ROWS_PER_PAGE
   end
 
   def flaggable_show_path(flag)
     if flag.flaggable.class == LessonComment
-      lesson_lesson_comments_path(flag.flaggable.lesson, :anchor => "LessonComment#{flag.flaggable.id}")
+      lesson_lesson_comments_path(flag.flaggable(:include => [:lesson]).lesson, :anchor => "LessonComment#{flag.flaggable.id}")
     else
       show_url flag.flaggable.class, flag.flaggable.id
     end

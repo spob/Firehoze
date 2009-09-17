@@ -13,7 +13,7 @@ class Credit < ActiveRecord::Base
   validates_presence_of     :user, :acquired_at, :price
   validates_numericality_of :price, :greater_than_or_equal_to => 0, :allow_nil => true
 
-  belongs_to :sku, :class_name => "CreditSku"
+  belongs_to :sku, :counter_cache => true, :class_name => "CreditSku"
   belongs_to :user
   belongs_to :lesson, :counter_cache => true
   belongs_to :line_item
