@@ -1,6 +1,6 @@
 <%= javascript 'always_at_bottom', 'footer' %>
 
-<% account_settings_link = current_user ? (link_to "Account Settings", edit_account_path(current_user)) : "Account Settings"  %>
+<% account_settings_link = current_user ? (link_to "Account Settings", edit_account_path(current_user)) : "&apos;Account Settings&apos;"  %>
 
 <h3>Frequently Asked Questions</h3>
 <h4>Payment/Exclusivity</h4>
@@ -17,7 +17,7 @@
 <p>Exclusivity means your lessons and the associated content may not be sold or given away for free to other sites or businesses including on the instructor's site.</p>
 
 <h5>How can I see how much money I've made?</h5>
-<p>You can find this information in your account information. Click on the '<%= account_settings_link %>' link at the top of the page. Then go to the 'Payment History' tab to see the lessons of yours that have been purchased by other Firehoze users and how much you've made from them.</p>
+<p>You can find this information in your account information. Click on the <%= account_settings_link %> link at the top of the page. Then go to the 'Payment History' tab to see the lessons of yours that have been purchased by other Firehoze users and how much you've made from them.</p>
 
 <h4>Privacy</h4>
 <h5>Do you share emails addresses?</h5>
@@ -27,10 +27,10 @@
 <p>Only if they offer us a lot of money. Okay, kidding, we don't...we hate having our information sold too.</p>
 
 <h5>Can people contact me directly?</h5>
-<p>Only if you want them to. The default is 'no' but to change this setting go to '<%= account_settings_link %>' at the top of the page and click on the 'Privacy' tab to make your selection.</p>
+<p>Only if you want them to. The default is 'no' but to change this setting go to <%= account_settings_link %> at the top of the page and click on the 'Privacy' tab to make your selection.</p>
 
 <h5>How can I see what my public profile is?</h5>
-<p>You can look at this by going into your '<%= account_settings_link %>', clicking on the 'Profile' tab. At the top of the page you'll see a link with the option 'view your public profile here'.</p>
+<p>You can look at this by going into your <%= account_settings_link %>, clicking on the 'Profile' tab. At the top of the page you'll see a link with the option 'view your public profile here'.</p>
 
 
 <h4>Beta Site</h4>
@@ -51,7 +51,7 @@
 <h5>How do I become an instructor ?</h5>
 <p>Easily...</p>
 <ol>
-  <li>Go to '<%= account_settings_link %>'.</li>
+  <li>Go to <%= account_settings_link %>.</li>
 <li>Select the Instructor tab and click the button to walk through the Instructor Signup Wizard.</li>
 <li>Complete all steps in the wizard.</li>
 <li>Start teaching!</li>
@@ -97,7 +97,7 @@
 <p>Oh yeah, also, if all credit card transactions were 99 cents each, the credit card companies would kill us on fees and we'd have to charge more for the lessons.</p>
 
 <h5>Where are my receipts/download history?</h5>
-<p>You can find all of this information in your account information. Click on the '<%= account_settings_link %>' link at the top of the page. Then go to the 'Order History' tab to see them.</p>
+<p>You can find all of this information in your account information. Click on the <%= account_settings_link %> link at the top of the page. Then go to the 'Order History' tab to see them.</p>
 
 <h5>How can I give credits to someone else?</h5>
 <p>A gift certificate is the best and easiest way to do this.</p>
