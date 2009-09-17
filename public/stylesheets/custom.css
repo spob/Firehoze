@@ -479,17 +479,33 @@ div.lesson_comment .actions .button-to {
     background-color: #fff;
     padding: 0 20px;
     margin: 20px 0;
-    border:solid 1px #555;
+	  border:solid 1px #999;
     height: 200px;
     overflow: auto;
 }
 
 #instructor_agreement {
-    padding: 0 20px;
-    margin: 20px 0;
-    border:solid 1px #ccc;
-    height: 200px;
-    overflow: auto;
+  font-size:0.83em;  /* 0.83em == 10px */
+  background-color: #fff;
+  padding: 0 20px;
+  margin: 20px 0;
+  border:solid 1px #999;
+  height: 200px;
+  overflow: auto;
+}
+
+#author #instructor_agreement .policies h3 {
+    font-weight:bold;
+    color:#333;
+    font-size: 12px;
+}
+
+#author #instructor_agreement .policies {
+    color:#333;
+    font-size: 11px;
+}
+
+#author legend {
 }
 
 /* ADMIN */

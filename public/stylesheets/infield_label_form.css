@@ -16,8 +16,9 @@ form#sku
 }
 
 /* Account forms */
-form#avatar_form,
+div#enroll_instructor,
 form#author,
+form#avatar_form,
 form#roles,
 #password,
 form#privacy,
@@ -28,6 +29,23 @@ form#profile
     border:solid 1px #ccc;
     margin-top:10px;
 }
+
+/* enroll instructor */
+div#enroll_instructor {
+    padding: 30px 40px 15px 30px;
+    background-color: #eee;
+    border:solid 1px #ccc;
+    margin-top:10px;
+}
+
+div #enroll_instructor h3 {
+  text-transform: uppercase;
+  font-weight: bold;
+  line-height:2em;
+  color: #333;  
+}
+
+
 
 form#privacy ul {
     list-style: none;
@@ -94,7 +112,6 @@ form fieldset select  {
     font-size: 12pt;
     color: #3F3F3F;
 `}
-
 form fieldset p input,
 form fieldset p textarea {
     display: block;

@@ -1,4 +1,5 @@
-<fieldset>
-  <legend>Become an Instructor</legend>
+<%= render :partial => "shared/infield_head_content" %>
+<div id="enroll_instructor">
+  <h3>Become an Instructor</h3>
   <%= button_to "Instructor Signup Wizard", instructor_signup_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :method => :get %>
-</fieldset>
+</div>
