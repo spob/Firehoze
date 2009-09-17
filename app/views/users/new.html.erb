@@ -49,12 +49,12 @@
       <%= f.select :language, User.supported_languages %>
     </div>
 
-    <b>Firehoze User Agreement</b>
+    <b>Firehoze Terms of Use</b>
 
     <div id="user_agreement">
-      <%= render :partial => 'pages/policies/user_agreement' %>
+      <%= render :partial => 'pages/policies/terms_of_use' %>
     </div>
-    <p><%= link_to "Printer Friendly Version", user_agreement_users_path, :popup => true %></p>
+    <p><%= link_to "Printer Friendly Version", page_path('terms_of_use'), :popup => true %></p>
 
     <div>
       <%= check_box_tag :accept_agreement %> By checking this box I hereby agreement to be bound by the terms of this agreement
