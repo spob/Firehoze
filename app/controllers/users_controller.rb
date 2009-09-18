@@ -101,6 +101,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user.login = params[:user][:login].try(:strip)
     @user.active = params[:user][:active] || false
     @user.rejected_bio = params[:user][:rejected_bio] || false
     @user.email = params[:user][:email].try(:strip)
