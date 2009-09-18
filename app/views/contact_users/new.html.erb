@@ -1,17 +1,22 @@
-<h3>Contact <%= link_to_profile(@to_user) %></h3>
-<% form_tag(contact_users_path) do -%>
+<%= render :partial => "shared/infield_head_content" %>
+
+<% form_tag contact_users_path, :class => "contact_user", :id => "contact_user"  do -%>
   <%= hidden_field_tag 'id', @to_user.id %>
-  <p>
-    Subject:
-    <br/>
-    <%= text_field_tag 'subject' %>
-  </p>
-  <p>
-    Message:
-    <br/>
-    <%= text_area_tag 'msg' %>
-  </p>
+  <fieldset>
+    <legend>Contact <%= link_to_profile(@to_user) %></legend>
+    <p>
+      Subject:
+      <br/>
+      <%= text_field_tag 'subject' %>
+    </p>
+    <p>
+      Message:
+      <br/>
+      <%= text_area_tag 'msg' %>
+    </p>
+  </fieldset>
   <p>
     <%= submit_tag 'Send Email' %>
   </p>
 <% end %>
+  
