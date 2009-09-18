@@ -26,7 +26,6 @@ class UserSessionsController < ApplicationController
   def destroy
     current_user_session.destroy
     flash[:notice] = t 'login.logout_success'
-    flash[:notice] = t 'registration.check_email_for_registration'
     if APP_CONFIG[CONFIG_ALLOW_UNRECOGNIZED_ACCESS]
       redirect_to root_path
     else
