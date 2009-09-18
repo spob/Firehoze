@@ -82,7 +82,7 @@ class CreditTest < ActiveSupport::TestCase
         assert @credit.lesson.nil?
         # Credit2 should be ready to expire
         @credit2 = Factory.create(:credit, :redeemed_at => nil, :lesson => nil,
-                                  :expiration_warning_issued_at => 11.days.ago)
+                                  :expiration_warning_issued_at => 31.days.ago)
         @credit2.update_attribute(:will_expire_at, 1.days.ago)
         @credit2 = Credit.find(@credit2)
         assert @credit2.redeemed_at.nil?
