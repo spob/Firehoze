@@ -221,7 +221,7 @@ namespace :db do
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE helpfuls;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE video_status_changes;")
-      ActiveRecord::Base.connection.execute("DELETE FROM VIDEOS WHERE converted_from_video_id IS NOT NULL;")
+      ActiveRecord::Base.connection.execute("DELETE FROM videos WHERE converted_from_video_id IS NOT NULL;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE videos;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_visits;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE skus;")
