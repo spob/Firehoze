@@ -175,7 +175,7 @@ class UsersControllerTest < ActionController::TestCase
       end
 
       context "on PUT to :update a profile screen with bad values" do
-        setup { put :update, :id => @other_user, :user => Factory.attributes_for(:user, :last_name => "") }
+        setup { put :update, :id => @other_user, :user => Factory.attributes_for(:user, :login => @other_user.login, :last_name => "") }
 
         should_respond_with :redirect
         should_set_the_flash_to :update_error
