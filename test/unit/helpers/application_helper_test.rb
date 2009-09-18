@@ -6,7 +6,7 @@ class ApplicationHelperTest < ActionView::TestCase
 
     should "italics text" do
       assert_equal @raw_text, italics(@raw_text, false)
-      assert_equal "<i>#{@raw_text}</i>", italics(@raw_text, true)
+      assert_equal "<em>#{@raw_text}</em>", italics(@raw_text, true)
     end
 
     should "strike_through text" do
