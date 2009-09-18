@@ -73,3 +73,6 @@ cdn_video_bucket: output
 # If true, then users must enter a security code in order to register. This is used for beta instances
 # which we don't want to open to the general public
 restrict_registration: false
+
+# Can users browse the site without logging in
+allow_unrecognized_access: true

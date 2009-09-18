@@ -1,7 +1,11 @@
 class WishListsController < ApplicationController
   include SslRequirement
-  
-  before_filter :require_user, :except => :create
+
+  if APP_CONFIG[CONFIG_ALLOW_UNRECOGNIZED_ACCESS]
+    before_filter :require_user, :except => :create
+  else
+    before_filter :require_user
+  end
   before_filter :find_lesson
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path

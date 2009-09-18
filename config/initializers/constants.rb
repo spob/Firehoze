@@ -44,6 +44,7 @@ CONFIG_FTP_CDN_USER = 'ftp_cdn_user'
 CONFIG_FTP_CDN_PASSWORD = 'ftp_cdn_password'
 CONFIG_CDN_VIDEO_BUCKET = 'cdn_video_bucket'
 CONFIG_RESTRICT_REGISTRATION = 'restrict_registration'
+CONFIG_ALLOW_UNRECOGNIZED_ACCESS  = 'allow_unrecognized_access'
 
 # Configuration properties in the s3.yml file
 CONFIG_AWS_ACCESS_KEY_ID = 'access_key_id'

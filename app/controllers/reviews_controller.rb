@@ -1,8 +1,12 @@
 # This controller is a nested resource. It will generally be invoked from the lesson controller
 class ReviewsController < ApplicationController
   include SslRequirement
-  
-  before_filter :require_user, :except => [:index]
+
+  if APP_CONFIG[CONFIG_ALLOW_UNRECOGNIZED_ACCESS]
+    before_filter :require_user, :except => [:index]
+  else
+    before_filter :require_user
+  end
   # Since this controller is nested, in most cases we'll need to retrieve the lesson first, so I made it a
   # before filter
   before_filter :find_lesson, :except => [ :edit, :update, :show ]
@@ -92,9 +96,9 @@ class ReviewsController < ApplicationController
   def find_lesson
     @lesson = Lesson.find(params[:lesson_id])
   end
-  
-  def find_review 
+
+  def find_review
     @review = Review.find(params[:id])
   end
-  
+
 end
