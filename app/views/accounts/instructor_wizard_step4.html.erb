@@ -1,41 +1,43 @@
+<%= render :partial => "shared/infield_head_content" %>
+
 <h2>Instructor Enrollment Wizard</h2>
-<%= instructor_wizard_breadcrumbs 4 %>
-<br/>
-<br/>
+<%= render :partial => 'breadcrumbs', :locals => { :step => 4 } %>
 <% form_for(:user, :url => update_instructor_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
-    <%= f.error_messages %>
-    <%= hidden_field_tag :step, "4" %>
-    <fieldset>
-      <legend>Confirm Contact Information</legend>
-      <p>
-        At the risk of being anal, let's just confirm one last time that you've got your contact information correct.
-        After all, you want to make sure that your check will reach you, and that you'll be able to cash it!
-      </p>
-
-      <p>
-        Payments will be sent to:
-      </p>
-
-      <p>
-        <b>
-          <%= h @user.full_name %>
-          <br/>
-          <%= formatted_address("<br/>") %>
-        </b>
-      </p>
-
-      <p>
-        <% if @user.verified_address_on %>
-            You confirmed your address on: <%= l @user.verified_address_on %>
-        <% else %>
-            I confirm that this information is correct
-            <%= check_box_tag :confirm_contact %>
-        <% end %>
-      </p>
-    </fieldset>
+  <%= f.error_messages %>
+  <%= hidden_field_tag :step, "4" %>
+  <fieldset>
+    <legend>Confirm Contact Information</legend>
     <p>
-      <%= f.submit "Next", :disable_with => translate('general.disable_with') %>
+      At the risk of being anal, let's just confirm one last time that you've got your contact information correct.
+      After all, you want to make sure that your check will reach you, and that you'll be able to cash it!
+    </p>
+
+    <p>
+      Payments will be sent to:
+    </p>
+
+    <div>
+      <b>
+        <%= h @user.full_name %>
+        <br/>
+        <%= formatted_address("<br/>") %>
+      </b>
+    </div>
+
+    <p>
+      <% if @user.verified_address_on %>
+        You confirmed your address on: <%= l @user.verified_address_on %>
+      <% else %>
+        I confirm that this information is correct
+        <%= check_box_tag :confirm_contact %>
+      <% end %>
+    </p>
+  </fieldset>
+  <p>
+    <%= f.submit "Next", :disable_with => translate('general.disable_with') %>
+    <span  class="actions">
       <%= link_to "Back", instructor_wizard_step3_account_path(current_user) %>
       <%= link_to 'Cancel', edit_account_path(current_user) %>
-    </p>
+    </span>
+  </p>
 <% end %>

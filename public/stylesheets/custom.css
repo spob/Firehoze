@@ -479,19 +479,19 @@ div.lesson_comment .actions .button-to {
     background-color: #fff;
     padding: 0 20px;
     margin: 20px 0;
-	  border:solid 1px #999;
+    border:solid 1px #999;
     height: 200px;
     overflow: auto;
 }
 
 #instructor_agreement {
-  font-size:0.83em;  /* 0.83em == 10px */
-  background-color: #fff;
-  padding: 0 20px;
-  margin: 20px 0;
-  border:solid 1px #999;
-  height: 200px;
-  overflow: auto;
+    font-size:0.83em;  /* 0.83em == 10px */
+    background-color: #fff;
+    padding: 0 20px;
+    margin: 20px 0;
+    border:solid 1px #999;
+    height: 200px;
+    overflow: auto;
 }
 
 #author #instructor_agreement .policies h3 {
@@ -529,4 +529,50 @@ div.lesson_comment .actions .button-to {
     color:#222;
     text-decoration:none;
     font-style:normal;
+}
+
+/* INSTRUCTOR WIZARD */
+#author .actions, #author .actions a {
+    padding:0 4px;
+}
+
+/* BREADCRUMB */
+#breadcrumb {
+    font: 12px Arial, Helvetica, sans-serif;
+    background-image:url('images/breadcrumbs/bc_bg.png');
+    background-repeat:repeat-x;
+    height:30px;
+    line-height:30px;
+    color:#9b9b9b;
+    border:solid 1px #cacaca;
+    width:100%;
+    overflow:hidden;
+    margin:0px;
+    padding:0px;
+}
+
+#breadcrumb li {
+    list-style-type:none;
+    float:left;
+    padding-left:10px;
+    background-image:url('images/breadcrumbs/bc_separator.png');
+    background-repeat:no-repeat;
+    background-position:right;
+    padding-right: 15px;
+}
+
+#breadcrumb a {
+    height:30px;
+    display:block;
+    text-decoration: none;
+    color:#454545;
+}
+
+.home {
+    border:none;
+    margin: 8px 0px;
+}
+
+#breadcrumb a:hover {
+    color:#35acc5;
 }

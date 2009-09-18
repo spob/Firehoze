@@ -1,7 +1,7 @@
 <%= render :partial => "shared/infield_head_content" %>
 
 <h3>Instructor Enrollment Wizard</h3>
-<p><%= instructor_wizard_breadcrumbs 1 %></p>
+<%= render :partial => 'breadcrumbs', :locals => { :step => 1 } %>
 <% form_for(:user, :url => update_instructor_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
   <%= f.error_messages %>
   <fieldset>
@@ -20,7 +20,7 @@
       Accepted on: <%= l @user.author_agreement_accepted_on %>
     <% end %>
   </fieldset>
-  <p>
+  <p class="actions">
     <% if @user.author_agreement_accepted_on %>
       <%= link_to "Next", instructor_wizard_step2_account_path(current_user) %>
     <% else %>

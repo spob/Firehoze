@@ -22,12 +22,12 @@ module ApplicationHelper
   end
 
   def italics(text, condition)
-    return "<i>#{text}</i>" if condition
+    return "<em>#{text}</em>" if condition
     text
   end
 
   def bold(text, condition)
-    return "<b>#{text}</b>" if condition
+    return "<strong>#{text}</strong>" if condition
     text
   end
 
