@@ -1,7 +1,7 @@
 <%= render :partial => "shared/infield_head_content" %>
 
 <h2>Instructor Enrollment Wizard</h2>
-<p><%= instructor_wizard_breadcrumbs 3 %></p>
+<%= render :partial => 'breadcrumbs', :locals => { :step => 3 } %>
 <% form_for(:user, :url => update_instructor_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
   <%= f.error_messages %>
   <%= hidden_field_tag :step, "3" %>
