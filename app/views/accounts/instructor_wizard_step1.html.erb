@@ -20,7 +20,7 @@
       Accepted on: <%= l @user.author_agreement_accepted_on %>
     <% end %>
   </fieldset>
-  <p>
+  <p class="actions">
     <% if @user.author_agreement_accepted_on %>
       <%= link_to "Next", instructor_wizard_step2_account_path(current_user) %>
     <% else %>

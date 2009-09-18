@@ -479,19 +479,19 @@ div.lesson_comment .actions .button-to {
     background-color: #fff;
     padding: 0 20px;
     margin: 20px 0;
-	  border:solid 1px #999;
+    border:solid 1px #999;
     height: 200px;
     overflow: auto;
 }
 
 #instructor_agreement {
-  font-size:0.83em;  /* 0.83em == 10px */
-  background-color: #fff;
-  padding: 0 20px;
-  margin: 20px 0;
-  border:solid 1px #999;
-  height: 200px;
-  overflow: auto;
+    font-size:0.83em;  /* 0.83em == 10px */
+    background-color: #fff;
+    padding: 0 20px;
+    margin: 20px 0;
+    border:solid 1px #999;
+    height: 200px;
+    overflow: auto;
 }
 
 #author #instructor_agreement .policies h3 {
@@ -529,4 +529,9 @@ div.lesson_comment .actions .button-to {
     color:#222;
     text-decoration:none;
     font-style:normal;
+}
+
+/* INSTRUCTOR WIZARD */
+#author .actions, #author .actions a {
+    padding:0 4px;
 }

@@ -22,9 +22,8 @@ module AccountsHelper
                       instructor_wizard_step5_account_path(@user))
   end
 
-  def formatted_address newline_character = "\n"
-    user_formatted_address(@user,
-                          newline_character)
+  def formatted_address(newline_character = "\n")
+    user_formatted_address(@user, newline_character)
   end
 
   private
