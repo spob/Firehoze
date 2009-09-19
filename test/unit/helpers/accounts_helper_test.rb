@@ -12,4 +12,15 @@ class AccountsHelperTest < ActionView::TestCase
                    formatted_address
     end
   end
+
+  context "testing instructor_wizard_breadcrumbs" do
+    setup do
+      @user = Factory.create(:user)
+    end
+
+    should "calculate the text" do
+      assert "<li>Instructor Agreement</li>\n<li>Exclusivity</li>\n<li>Postal Address</li>\n<li>Confirm Contact Information</li>\n<li>Tax Witholding</li>",
+             instructor_wizard_breadcrumbs(1)
+    end
+  end
 end
