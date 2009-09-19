@@ -23,8 +23,8 @@ class ReviewTest < ActiveSupport::TestCase
 
     context "given an existing review" do
       setup do
-        @rate = @lesson.rates.create!(:user_id => @user.id)
-        # I have no idea why the user id isn't set above RBS'
+        @rate = @lesson.rates.create!
+        # user id isn't set above because of protection from mass assignment
         @rate.update_attribute(:user_id, @user.id)
         assert_equal @lesson, @lesson.rates.first.rateable
         assert_equal @user, @lesson.rates.first.user
