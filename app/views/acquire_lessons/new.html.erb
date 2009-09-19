@@ -1,3 +1,5 @@
+<% title "Purchase #{@lesson.title}" -%>
+
 <p>Looks like you're ready to purchase the &quot;<%= h @lesson.title %>&quot; lesson!</p>
 
 <%= link_to "Apply Credit Now", acquire_lessons_url(:id => @lesson, :protocol => SECURE_PROTOCOL),:method => :post, :disable_with => translate('general.disable_with') %>
