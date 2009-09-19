@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
                     :path => "#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/users/:attachment/:id/:style/:basename.:extension",
                     :bucket => APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]
 
-  validates_attachment_size :avatar, :less_than => 3.megabytes, :message => "All uploaded images must be less then 3 megabytes"
+  validates_attachment_size :avatar, :less_than => 1.megabytes, :message => "All uploaded images must be less then 1 megabyte"
   validates_attachment_content_type :avatar, :content_type => [ 'image/gif', 'image/png', 'image/x-png', 'image/jpeg', 'image/pjpeg', 'image/jpg' ]
 
   attr_protected :email, :login, :rejected_bio, :instructor_status, :address1, :address2, :city, :state,
