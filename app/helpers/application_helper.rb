@@ -2,6 +2,10 @@
 module ApplicationHelper
   include TagsHelper
 
+  def title(page_title)
+    content_for(:title) { page_title }
+  end
+
   def show_cart?
     if current_user
       if session[:cart_id]

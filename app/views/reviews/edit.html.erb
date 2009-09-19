@@ -1,5 +1,6 @@
-<%= render :partial => "shared/infield_head_content" %>
+<% title "Edit review of &quot;#{h(@review.lesson.title)}&quot;" -%>
 
+<%= render :partial => "shared/infield_head_content" %>
 <%= stylesheet 'validation' %>
 <%= javascript 'jquery.simplyCountable', 'validate/jquery.validate', 'validate/review.validate' %>
 

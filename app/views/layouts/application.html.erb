@@ -4,7 +4,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
-    <title><%= h controller.controller_name -%>: <%= h controller.action_name -%></title>
+    <meta http-equiv="Content-Language" content="en" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="ROBOTS" content="ALL" />
+    <meta name="Copyright" content="(c) <%= Time.now.year %> Firehoze, Inc. All rights reserved." />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="Rating" content="General" />
+    <meta name="description" content="Firehoze offers a community-generated catalog of video tutorials designed to allow students find the classroom help they need." />
+    <meta name="keywords" content="firehoze, education, tutorials, instruction" />
+    <link rel="home" href="/" />
+    <link rel="copyright" href="#copyright" />
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
+    <title>Firehoze - <%= truncate(yield(:title), :length => 75) || "You're on Fire, We Can Help" %></title>
     <%= stylesheet_link_tag 'blueprint/screen', :media => "screen, projection" -%>
     <%= stylesheet_link_tag 'blueprint/print', :media => "print" -%>
     <%= stylesheet_link_tag 'print', :media => "print" -%>

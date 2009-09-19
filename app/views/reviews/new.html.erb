@@ -1,8 +1,8 @@
-<%= render :partial => "shared/infield_head_content" %>
+<% title "Write a review for &quot;#{h(@lesson.title)}&quot;" -%>
 
+<%= render :partial => "shared/infield_head_content" %>
 <%= stylesheet 'validation' %>
 <%= javascript 'jquery.simplyCountable', 'validate/jquery.validate', 'validate/review.validate' %>
-
 
 <% form_for(:review, :url => lesson_reviews_url(@lesson), :html => { :class => "review", :id => "review" }) do |f| %>
 <%= f.error_messages %>

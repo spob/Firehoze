@@ -1,3 +1,5 @@
+<% title "Comments" -%>
+
 <%= content_tag(:h3, "Discussion for Lesson: #{ link_to h(@lesson.title), lesson_path(@lesson) }")  unless @style == 'tab' %>
 
 <% if @lesson_comments.empty? %>
