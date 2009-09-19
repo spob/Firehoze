@@ -193,6 +193,14 @@ class LessonsControllerTest < ActionController::TestCase
           should_redirect_to("lesson page") { lesson_path(@lesson) }
           should_set_the_flash_to /Video conversion started/
         end
+
+        context "on GET to :list_admin" do
+          setup { post :list_admin }
+
+          should_assign_to :lessons
+          should_render_template 'list'
+          should_not_set_the_flash
+        end
       end
 
       context "on GET to :edit" do
