@@ -1,3 +1,5 @@
+<% title "Edit SKU &quot;#{h(@sku.sku)}&quot;" -%>
+
 <%= render :partial => "shared/infield_head_content" %>
 
 <% form_for(:sku, :url => sku_path(@sku), :html => { :method => :put, :id => "sku" }) do |f| %>

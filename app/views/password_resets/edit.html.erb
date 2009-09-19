@@ -1,4 +1,6 @@
-<h1>Change My Password</h1>
+<% title "Change My Password" -%>
+
+<h3>Change My Password</h3>
 
 <% form_for @user, :url => password_reset_url(:protocol => SECURE_PROTOCOL), :method => :put do |f| %>
   <%= f.error_messages %>

@@ -1,3 +1,5 @@
+<% title "Review for &quot;#{h(@lesson.title)}&quot;" -%>
+
 <%= content_tag(:h3, "Reviews for Lesson: #{ link_to h(@lesson.title), lesson_path(@lesson) }")  unless @style == 'tab' %>
 
 <% if @lesson.reviews.empty? and !@lesson.reviewed_by?(current_user) and @lesson.owned_by?(current_user) %>

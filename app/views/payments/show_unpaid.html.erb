@@ -1,3 +1,5 @@
+<% title "Show Unpaid Credits for #{@user.name_or_username}" -%>
+
 <h3>Show Unpaid Credits for <%= link_to_profile @user %></h3>
 <p>User Payment Rate: <%= number_to_percentage(@user.payment_level.rate * 100, :precision => 1) %></p>
 <% @balance = 0.0 %>
