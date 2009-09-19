@@ -18,7 +18,7 @@
       Exclusive providers earn
       <%= number_to_percentage(100 * PaymentLevel.find_by_default_payment_level(true).rate, :precision => 1) %>
       of each sale. 
-      <%= if PaymentLevel.find_by_default_payment_level(false) %>
+      <% if PaymentLevel.find_by_default_payment_level(false) %>
       While non-exclusive providers earn
       <%= number_to_percentage(100 * PaymentLevel.find_by_default_payment_level(false).rate, :precision => 1) %>
       of each sale.
