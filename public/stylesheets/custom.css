@@ -325,7 +325,7 @@ img.lesson_tn {
     padding: 0 0 0 10px;
 }
 
-#user_show #avatar {
+#user_show #avatar img {
     border: solid 1px #999;
     width:227px;
     height:227px;
