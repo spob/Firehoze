@@ -6,6 +6,7 @@
   <li><%= link_to "Jobs", periodic_jobs_path if current_user.is_admin? %></li>
   <li><%= link_to "Logons", user_logons_path  if current_user.is_admin?  %></li>
   <li><%= link_to "SKUs", skus_path  if current_user.is_admin?  %></li>
+  <li><%= link_to "Orders", orders_path  if current_user.is_admin?  %></li>
   <li><%= link_to "Payment Levels", payment_levels_path  if current_user.is_admin?  %></li>
   <li><%= link_to "Payments", payments_path  if current_user.is_paymentmgr?  %></li>
 </ul> 

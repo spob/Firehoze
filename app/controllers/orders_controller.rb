@@ -3,6 +3,8 @@ class OrdersController < ApplicationController
 
   before_filter :require_user
 
+  permit ROLE_MODERATOR, :only => [ :index ]
+
   ssl_required :new, :show, :create, :update if Rails.env.production?
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
@@ -24,6 +26,11 @@ class OrdersController < ApplicationController
                          :state => current_user.state,
                          :zip => current_user.postal_code,
                          :country => current_user.country || 'US')
+  end
+
+  def index
+    @search = Order.descend_by_id.search(params[:search])
+    @orders = @search.paginate(:page => params[:page], :per_page => (session[:per_page] || ROWS_PER_PAGE)) 
   end
 
   def create
