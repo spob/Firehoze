@@ -38,9 +38,7 @@ class UsersControllerTest < ActionController::TestCase
     end
 
     context "with admin access" do
-      setup do
-        @user.has_role 'admin'
-      end
+      setup { @user.has_role 'admin' }
 
       context "on GET to :list" do
         setup { get :list }

@@ -2,8 +2,9 @@ class OrdersController < ApplicationController
   include SslRequirement
 
   before_filter :require_user
+  layout :layout_for_action
 
-  permit ROLE_MODERATOR, :only => [ :index ]
+  permit "#{ROLE_ADMIN} or #{ROLE_PAYMENT_MGR}", :only => [ :index ]
 
   ssl_required :new, :show, :create, :update if Rails.env.production?
 
@@ -83,5 +84,11 @@ class OrdersController < ApplicationController
       flash[:error] = t("order.no_access")
       redirect_to home_path
     end
+  end
+
+  private
+  
+  def layout_for_action
+    %w(index).include?(params[:action]) || (params[:action] == 'show' and current_user.is_admin?) ? 'admin' : 'application'
   end
 end

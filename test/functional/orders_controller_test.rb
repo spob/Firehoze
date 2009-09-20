@@ -35,6 +35,29 @@ class OrdersControllerTest < ActionController::TestCase
       should_render_template "show"
     end
 
+    context "on GET to :index" do
+      setup { get :index }
+
+      should_not_assign_to :orders
+      should_respond_with :redirect
+      should_set_the_flash_to /Permission denied/
+    end
+
+    context "as an admin" do
+      setup do
+        @user.has_role 'admin'
+        assert @user.is_admin?
+      end
+
+      context "on GET to :index" do
+        setup { get :index }
+
+        should_assign_to :orders
+        should_respond_with :success
+        should_not_set_the_flash
+      end
+    end
+
     context "on POST to :create" do
       setup do
         assert PeriodicJob.all.empty?
