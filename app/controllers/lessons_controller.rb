@@ -4,7 +4,7 @@ class LessonsController < ApplicationController
   if APP_CONFIG[CONFIG_ALLOW_UNRECOGNIZED_ACCESS]
     before_filter :require_user, :only => [:new, :create, :edit, :update, :unreject]
   else
-    before_filter :require_user
+    before_filter :require_user, :except => [:conversion_notify]
   end
     permit ROLE_ADMIN, :only => [:convert]
     permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [:list_admin]
