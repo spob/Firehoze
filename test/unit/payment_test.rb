@@ -2,9 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class PaymentTest < ActiveSupport::TestCase
   context "given a payment" do
-    setup do
-      @payment = Factory.create(:payment)
-    end
+    setup  { @payment = Factory.create(:payment) }
 
     should_belong_to :user
     should_have_many :credits

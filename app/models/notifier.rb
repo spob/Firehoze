@@ -112,7 +112,7 @@ class Notifier < ActionMailer::Base
     from         APP_CONFIG[CONFIG_ADMIN_EMAIL]
 
     body       :video => video,
-               :url => lesson_url(lesson)
+               :url => lesson_url(video.lesson)
   end
 
   # Notify the admin that a video never completed their transcoding

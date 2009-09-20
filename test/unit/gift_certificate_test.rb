@@ -1,10 +1,8 @@
 require 'test_helper'
 
 class GiftCertificateTest < ActiveSupport::TestCase
-  context "given an existing record" do
-    setup do
-      @gift_certificate = Factory.create(:gift_certificate)
-    end
+  context "given an gift certificate" do
+    setup{ @gift_certificate = Factory.create(:gift_certificate) }
 
     should_belong_to                 :user
     should_belong_to                 :gift_certificate_sku

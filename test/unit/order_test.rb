@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class OrderTest < ActiveSupport::TestCase
-  context "given an existing record" do
+  context "given an existing order" do
     setup { @order = Factory.create(:order) }
 
     should_belong_to :user
