@@ -1,7 +1,7 @@
 <% 
 lesson = object
 %>
-<% if lesson.owned_by?(current_user) or lesson.instructed_by?(current_user) %>
+<% if lesson.owned_by?(current_user) or lesson.can_edit?(current_user) %>
   <%= player({:image => lesson.thumbnail_url ? h(lesson.sized_thumbnail_url(:large)) : "videos/video_placeholder.jpg", :streamer => "rtmp://e1f1.simplecdn.net/play", :file => h(lesson.full_processed_video.try("output_rtmp_path")), :skin => 'dangdang', :autostart => false}, {:width => PLAYER_WIDTH, :height => PLAYER_HEIGHT }) %>
 <% else %>
   <%= player({:image => lesson.thumbnail_url ? h(lesson.sized_thumbnail_url(:large)) : "videos/video_placeholder.jpg", :streamer => "rtmp://e1f1.simplecdn.net/play", :file => h(lesson.preview_processed_video.try("output_rtmp_path")), :skin => 'dangdang', :logo => 'http://amazonassets.simplecdn.net/images/videos/preview.png'}, {:width => PLAYER_WIDTH, :height => PLAYER_HEIGHT}) %>

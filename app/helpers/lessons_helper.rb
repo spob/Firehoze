@@ -1,13 +1,13 @@
 module LessonsHelper
-  def watch_text(lesson)
-    if current_user.nil? or current_user.owns_lesson?(lesson) or current_user == lesson.instructor
-      t('lesson.watch')
-    elsif lesson.free_credits.available.size > 0
-      t('lesson.watch_for_free')
-    else
-      t('lesson.buy')
-    end
-  end
+  #def watch_text(lesson)
+  #  if current_user.nil? or current_user.owns_lesson?(lesson) or current_user == lesson.instructor
+  #    t('lesson.watch')
+  #  elsif lesson.free_credits.available.size > 0
+  #    t('lesson.watch_for_free')
+  #  else
+  #    t('lesson.buy')
+  #  end
+  #end
 
   # Not sure how to handle this with i18n???
   def free_remaining_text lesson
@@ -76,7 +76,7 @@ module LessonsHelper
 
   def button_to_buy(lesson)
     if lesson.ready?
-      if lesson.owned_by?(current_user) or current_user == lesson.instructor
+      if lesson.owned_by?(current_user) or lesson.can_edit?(current_user)
         return
       end
 
