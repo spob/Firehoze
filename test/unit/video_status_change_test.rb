@@ -1,8 +1,9 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class VideoStatusChangeTest < ActiveSupport::TestCase
 
-  context "given an existing lesson_state_change record" do
+  fast_context "given an existing lesson_state_change record" do
     setup { @video_status_change = Factory.create(:video_status_change) }
                                                                  
     should_validate_presence_of :lesson

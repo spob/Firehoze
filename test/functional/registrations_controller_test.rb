@@ -1,10 +1,10 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class RegistrationsControllerTest < ActionController::TestCase
 
-  context "while not logged on" do
-
-    context "on GET to :new" do
+  fast_context "while not logged on" do
+    fast_context "on GET to :new" do
       setup { get :new }
 
       should_assign_to :registration
@@ -13,7 +13,7 @@ class RegistrationsControllerTest < ActionController::TestCase
       should_render_template "new"
     end
 
-    context "on POST to :create" do
+    fast_context "on POST to :create" do
       setup do
         post :create, :registration => Factory.attributes_for(:registration)
       end
@@ -23,7 +23,7 @@ class RegistrationsControllerTest < ActionController::TestCase
       should_redirect_to("root  page") { root_path }
     end
 
-    context "on POST to :create with bad value" do
+    fast_context "on POST to :create with bad value" do
       setup do
         post :create, :registration => Factory.attributes_for(:registration, :email => "")
       end
@@ -34,7 +34,7 @@ class RegistrationsControllerTest < ActionController::TestCase
     end
   end
 
-  context "Computing hashes" do
+  fast_context "Computing hashes" do
     setup do
       @hash1 =  Registration.formatted_hash("test@example.com")
       @hash2 =  Registration.formatted_hash("test@example.com", "xxx", "yyy")

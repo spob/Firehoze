@@ -1,15 +1,17 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
+
 
 class HomeControllerTest < ActionController::TestCase
 
-  context "when logged on" do
+  fast_context "when logged on" do
     setup do
       activate_authlogic
       @user = Factory(:user)
       UserSession.create @user
     end
 
-    context "on GET to :show" do
+    fast_context "on GET to :show" do
       setup { get :show, :id => @user }
 
       should_assign_to :user

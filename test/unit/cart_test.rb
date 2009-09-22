@@ -1,13 +1,14 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class CartTest < ActiveSupport::TestCase
-  context "given an existing record for a cart" do
+  fast_context "given an existing record for a cart" do
     setup { @cart = Factory.create(:line_item).cart }
 
     should_belong_to :user
     should_validate_presence_of      :user
 
-    context "with multiple lines" do
+    fast_context "with multiple lines" do
       setup do
         line_item_new = LineItem.new(:quantity => 11, :unit_price => 1.25,
                                      :discounted_unit_price => 1.15)
@@ -28,21 +29,21 @@ class CartTest < ActiveSupport::TestCase
       end
     end
 
-    context "with a defined user" do
+    fast_context "with a defined user" do
       setup { @user = Factory(:user) }
 
       should "have a user" do
         assert_not_nil @user
       end
 
-      context "and the order has not yet been purchased" do
+      fast_context "and the order has not yet been purchased" do
         setup { @cart.purchased_at = nil }
 
         should "have a blank purchased_at date" do
           assert_nil @cart.purchased_at
         end
 
-        context "after purchasing the cart" do
+        fast_context "after purchasing the cart" do
           setup {  @cart.execute_order_on_cart @user }
 
           before_should "start with zero credtis for the user" do

@@ -1,9 +1,10 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class PaymentLevelsControllerTest < ActionController::TestCase
 
-  context "when not logged on" do
-    context "on GET to :new" do
+  fast_context "when not logged on" do
+    fast_context "on GET to :new" do
       setup { get :new }
 
       should_not_assign_to :payment_level
@@ -13,20 +14,20 @@ class PaymentLevelsControllerTest < ActionController::TestCase
     end
   end
 
-  context "when logged on" do
+  fast_context "when logged on" do
     setup do
       activate_authlogic
       @user = Factory(:user)
       UserSession.create @user
     end
 
-    context "with admin access" do
+    fast_context "with admin access" do
       setup do
         @user.has_role 'admin'
         @payment_level = Factory.create(:payment_level)
       end
 
-      context "on GET to :index" do
+      fast_context "on GET to :index" do
         setup { get :index }
 
         should_assign_to :payment_levels
@@ -35,7 +36,7 @@ class PaymentLevelsControllerTest < ActionController::TestCase
         should_render_template "index"
       end
 
-      context "on GET to :new" do
+      fast_context "on GET to :new" do
         setup { get :new }
 
         should_assign_to :payment_level
@@ -44,7 +45,7 @@ class PaymentLevelsControllerTest < ActionController::TestCase
         should_render_template "new"
       end
 
-      context "on POST to :create" do
+      fast_context "on POST to :create" do
         setup do
           PaymentLevel.delete_all
           post :create, :payment_level => Factory.attributes_for(:payment_level)
@@ -56,14 +57,14 @@ class PaymentLevelsControllerTest < ActionController::TestCase
         should_redirect_to("Payment levels index page") { payment_levels_url }
       end
 
-      context "with at least one existing payment level" do
+      fast_context "with at least one existing payment level" do
         setup do
           PaymentLevel.delete_all
           assert PaymentLevel.all.empty?
           @payment_level = Factory.create(:payment_level)
         end
 
-        context "on GET to :edit" do
+        fast_context "on GET to :edit" do
           setup { get :edit, :id => @payment_level }
           should_assign_to :payment_level
           should_respond_with :success
@@ -71,7 +72,7 @@ class PaymentLevelsControllerTest < ActionController::TestCase
           should_render_template "edit"
         end
 
-        context "on PUT to :update" do
+        fast_context "on PUT to :update" do
           setup { put :update, :id => @payment_level.id, :payment_level => Factory.attributes_for(:payment_level) }
 
           should_set_the_flash_to :payment_level_update_success
@@ -82,8 +83,8 @@ class PaymentLevelsControllerTest < ActionController::TestCase
       end
     end
 
-    context "without admin access" do
-      context "on GET to :index" do
+    fast_context "without admin access" do
+      fast_context "on GET to :index" do
         setup { get :index }
 
         should_not_assign_to :payment_levels

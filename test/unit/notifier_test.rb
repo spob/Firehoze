@@ -1,7 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class NotifierTest < ActiveSupport::TestCase
-  context "given a payment" do
+  fast_context "given a payment" do
     setup do
       @payment = Factory.create(:payment)
     end
@@ -13,7 +14,7 @@ class NotifierTest < ActiveSupport::TestCase
     end
   end
 
-  context "given an existing order" do
+  fast_context "given an existing order" do
     setup { @order = Factory.create(:completed_order) }
 
     should "not fail when sending notification" do
@@ -25,7 +26,7 @@ class NotifierTest < ActiveSupport::TestCase
     end
   end
 
-  context "given an gift certificate" do
+  fast_context "given an gift certificate" do
     setup { @gift_certificate = Factory.create(:gift_certificate) }
 
     should "not fail when sending notification" do
@@ -35,7 +36,7 @@ class NotifierTest < ActiveSupport::TestCase
     end
   end
 
-  context "test contact user" do
+  fast_context "test contact user" do
     setup do
       @user1 = Factory.create(:user)
       @user2 = Factory.create(:user)
@@ -48,13 +49,13 @@ class NotifierTest < ActiveSupport::TestCase
     end
   end
 
-  context "with some admins defined" do
+  fast_context "with some admins defined" do
     setup do
       @user = Factory.create(:user)
       @user.has_role 'admin'
     end
 
-    context "given a video" do
+    fast_context "given a video" do
       setup { @video = Factory.create(:full_processed_video) }
 
       should "not fail when sending notification" do
@@ -64,7 +65,7 @@ class NotifierTest < ActiveSupport::TestCase
       end
     end
 
-    context "given a lesson" do
+    fast_context "given a lesson" do
       setup { @lesson = Factory.create(:lesson) }
 
       should "not fail when sending notification" do

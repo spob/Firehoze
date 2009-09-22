@@ -1,14 +1,15 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class OrdersControllerTest < ActionController::TestCase
-  context "when logged on" do
+  fast_context "when logged on" do
     setup do
       activate_authlogic
       @user = Factory(:user)
       UserSession.create @user
     end
 
-    context "on GET to :new" do
+    fast_context "on GET to :new" do
       setup { get :new }
 
       should_assign_to :order
@@ -17,7 +18,7 @@ class OrdersControllerTest < ActionController::TestCase
       should_render_template "new"
     end
 
-    context "on GET to :show when not the owner" do
+    fast_context "on GET to :show when not the owner" do
       setup { get :show, :id => Factory.create(:completed_order) }
 
       should_assign_to :order
@@ -26,7 +27,7 @@ class OrdersControllerTest < ActionController::TestCase
       should_redirect_to("home page") { home_url }
     end
 
-    context "on GET to :show" do
+    fast_context "on GET to :show" do
       setup { get :show, :id => Factory.create(:completed_order, :user => @user) }
 
       should_assign_to :order
@@ -35,7 +36,7 @@ class OrdersControllerTest < ActionController::TestCase
       should_render_template "show"
     end
 
-    context "on GET to :index" do
+    fast_context "on GET to :index" do
       setup { get :index }
 
       should_not_assign_to :orders
@@ -43,13 +44,13 @@ class OrdersControllerTest < ActionController::TestCase
       should_set_the_flash_to /Permission denied/
     end
 
-    context "as an admin" do
+    fast_context "as an admin" do
       setup do
         @user.has_role 'admin'
         assert @user.is_admin?
       end
 
-      context "on GET to :index" do
+      fast_context "on GET to :index" do
         setup { get :index }
 
         should_assign_to :orders
@@ -58,7 +59,7 @@ class OrdersControllerTest < ActionController::TestCase
       end
     end
 
-    context "on POST to :create" do
+    fast_context "on POST to :create" do
       setup do
         assert PeriodicJob.all.empty?
         post :create, :order => Factory.attributes_for(:order, :card_number => "1")
@@ -76,7 +77,7 @@ class OrdersControllerTest < ActionController::TestCase
       end
     end
 
-    context "on POST to :create that will fail" do
+    fast_context "on POST to :create that will fail" do
       setup do
         post :create, :order => Factory.attributes_for(:order, :card_number => "2")
       end

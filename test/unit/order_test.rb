@@ -1,4 +1,5 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class OrderTest < ActiveSupport::TestCase
   context "given an existing order" do
@@ -27,7 +28,7 @@ class OrderTest < ActiveSupport::TestCase
       assert @order.valid?
     end
 
-    context "with a valid credit card number" do
+    fast_context "with a valid credit card number" do
       setup do
         # a value of 1 in the credit_card signals to the bogus gateway to successfully process the transaction
         @order.card_number = "1"
@@ -45,7 +46,7 @@ class OrderTest < ActiveSupport::TestCase
     assert_nil Order.user_friend_card_type("xxx")
   end
 
-  context "email order receipt" do
+  fast_context "email order receipt" do
     setup do
       assert PeriodicJob.all.empty?
       Factory.create(:order).email_receipt

@@ -1,8 +1,9 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class LessonTest < ActiveSupport::TestCase
 
-  context "given an existing lesson with initial_free_download_count" do
+  fast_context "given an existing lesson with initial_free_download_count" do
     setup do
       @sku = Factory.create(:credit_sku, :sku => FREE_CREDIT_SKU)
       @lesson = Factory.create(:lesson, :initial_free_download_count => 5)
@@ -25,11 +26,11 @@ class LessonTest < ActiveSupport::TestCase
       assert @lesson.original_video
     end
 
-    context "testing lesson_recommendations" do
+    fast_context "testing lesson_recommendations" do
       setup do
         @lesson.status = LESSON_STATUS_READY
         @lesson.save!
-        assert @lesson.ready? 
+        assert @lesson.ready?
         @lessons = Lesson.lesson_recommendations(Factory.create(:user), 5)
       end
 
@@ -38,7 +39,7 @@ class LessonTest < ActiveSupport::TestCase
       end
     end
 
-    context "when rejecting" do
+    fast_context "when rejecting" do
       setup do
         assert_equal LESSON_STATUS_PENDING, @lesson.status
         @lesson.reject
@@ -50,7 +51,7 @@ class LessonTest < ActiveSupport::TestCase
       end
     end
 
-    context "with processed videos" do
+    fast_context "with processed videos" do
       setup do
         @full_processed_video = Factory.create(:full_processed_video, :lesson => @lesson)
         @preview_processed_video = Factory.create(:ready_preview_processed_video, :lesson => @lesson)
@@ -61,7 +62,7 @@ class LessonTest < ActiveSupport::TestCase
         assert @lesson.preview_processed_video
       end
 
-      context "with both pending" do
+      fast_context "with both pending" do
         setup do
           @full_processed_video.update_attribute(:status, VIDEO_STATUS_PENDING)
           @preview_processed_video.update_attribute(:status, VIDEO_STATUS_PENDING)
@@ -73,7 +74,7 @@ class LessonTest < ActiveSupport::TestCase
         end
       end
 
-      context "with one converting" do
+      fast_context "with one converting" do
         setup do
           @full_processed_video.update_attribute(:status, VIDEO_STATUS_PENDING)
           @preview_processed_video.update_attribute(:status, VIDEO_STATUS_CONVERTING)
@@ -85,7 +86,7 @@ class LessonTest < ActiveSupport::TestCase
         end
       end
 
-      context "with one ready" do
+      fast_context "with one ready" do
         setup do
           @full_processed_video.update_attribute(:status, VIDEO_STATUS_READY)
           @preview_processed_video.update_attribute(:status, VIDEO_STATUS_CONVERTING)
@@ -97,7 +98,7 @@ class LessonTest < ActiveSupport::TestCase
         end
       end
 
-      context "with both ready" do
+      fast_context "with both ready" do
         setup do
           @full_processed_video.update_attribute(:status, VIDEO_STATUS_READY)
           @preview_processed_video.update_attribute(:status, VIDEO_STATUS_READY)
@@ -109,7 +110,7 @@ class LessonTest < ActiveSupport::TestCase
         end
       end
 
-      context "with one failed" do
+      fast_context "with one failed" do
         setup do
           @full_processed_video.update_attribute(:status, VIDEO_STATUS_READY)
           @preview_processed_video.update_attribute(:status, VIDEO_STATUS_FAILED)
@@ -122,7 +123,7 @@ class LessonTest < ActiveSupport::TestCase
       end
     end
 
-    context "and several more lessons owned by a user" do
+    fast_context "and several more lessons owned by a user" do
       setup do
         @lesson2 = Factory.create(:lesson)
         @lesson3 = Factory.create(:lesson)
@@ -150,7 +151,7 @@ class LessonTest < ActiveSupport::TestCase
         assert !@lesson.instructor.student_of?(@user)
       end
 
-      context "and instructor is allow_contact NONE" do
+      fast_context "and instructor is allow_contact NONE" do
         setup do
           @lesson2.instructor.update_attribute(:allow_contact, USER_ALLOW_CONTACT_NONE)
           @lesson2 = Lesson.find(@lesson2)
@@ -164,7 +165,7 @@ class LessonTest < ActiveSupport::TestCase
         end
       end
 
-      context "and instructor is allow_contact ANYONE" do
+      fast_context "and instructor is allow_contact ANYONE" do
         setup do
           @lesson2.instructor.update_attribute(:allow_contact, USER_ALLOW_CONTACT_ANYONE)
           @lesson2 = Lesson.find(@lesson2)
@@ -178,7 +179,7 @@ class LessonTest < ActiveSupport::TestCase
         end
       end
 
-      context "and instructor is allow_contact STUDENTS_ONLY" do
+      fast_context "and instructor is allow_contact STUDENTS_ONLY" do
         setup do
           @lesson2.instructor.update_attribute(:allow_contact, USER_ALLOW_CONTACT_STUDENTS_ONLY)
           @lesson2 = Lesson.find(@lesson2)
@@ -215,7 +216,7 @@ class LessonTest < ActiveSupport::TestCase
       assert !@lesson.ready?
     end
 
-    context "with buy patterns" do
+    fast_context "with buy patterns" do
       setup do
         @buy_pattern1 = Factory.create(:lesson_buy_pattern, :lesson => @lesson, :counter => 1)
         @buy_pattern2 = Factory.create(:lesson_buy_pattern, :lesson => @lesson, :counter => 2)
@@ -232,7 +233,7 @@ class LessonTest < ActiveSupport::TestCase
       assert @lesson.tags.empty?
     end
 
-    context "and then receives tags" do
+    fast_context "and then receives tags" do
       setup do
         @lesson.tag_list = "Foo, Bar, Baz"
         @lesson.save!
@@ -249,6 +250,7 @@ class LessonTest < ActiveSupport::TestCase
         assert_equal @lesson, Lesson.find_tagged_with('Foo').first
       end
 
+      # note this fails if you use fast_context
       context "which is processing" do
         setup do
           # notifier needs at least one admin
@@ -259,7 +261,7 @@ class LessonTest < ActiveSupport::TestCase
         end
       end
 
-      context "which is ready" do
+      fast_context "which is ready" do
         setup { @lesson.update_attribute(:status, LESSON_STATUS_READY) }
 
         should "be ready" do
@@ -276,7 +278,7 @@ class LessonTest < ActiveSupport::TestCase
         assert !@lesson.consume_free_credit(Factory.create(:user))
       end
 
-      context "and trigger a conversion" do
+      fast_context "and trigger a conversion" do
         setup { @job = @lesson.trigger_conversion "http://some/url" }
 
         should "create a job" do
@@ -284,7 +286,7 @@ class LessonTest < ActiveSupport::TestCase
         end
       end
 
-      context "and a couple more records" do
+      fast_context "and a couple more records" do
         setup do
           # and let's create a couple more
           @lesson2 = Factory.create(:lesson)
@@ -298,7 +300,7 @@ class LessonTest < ActiveSupport::TestCase
           assert !@lesson.reviewed_by?(Factory.create(:user))
         end
 
-        context "with a user defined" do
+        fast_context "with a user defined" do
           setup { @user = Factory.create(:user) }
 
           should "return less records" do
@@ -307,7 +309,7 @@ class LessonTest < ActiveSupport::TestCase
             assert_equal 3, Lesson.list(1, @lesson.instructor).size
           end
 
-          context "who is an admin" do
+          fast_context "who is an admin" do
             setup { @user.has_role 'admin' }
 
             should "return less records" do
@@ -317,7 +319,7 @@ class LessonTest < ActiveSupport::TestCase
         end
       end
 
-      context "and lessons by two different authors" do
+      fast_context "and lessons by two different authors" do
         setup do
           @user1 = Factory.create(:user)
           @user2 = Factory.create(:user)

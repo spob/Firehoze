@@ -1,8 +1,9 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class PaymentsControllerTest < ActionController::TestCase
 
-  context "with unpaid credits" do
+  fast_context "with unpaid credits" do
     setup do
       activate_authlogic
       @lesson = Factory.create(:lesson)
@@ -11,14 +12,14 @@ class PaymentsControllerTest < ActionController::TestCase
       assert_not_nil @credit.user
     end
 
-    context "when logged in" do
+    fast_context "when logged in" do
       setup do
         @user = Factory(:user)
         UserSession.create @user
       end
 
-      context "as a regular user" do
-        context "on GET to show_unpaid" do
+      fast_context "as a regular user" do
+        fast_context "on GET to show_unpaid" do
           setup { get :show_unpaid, :id => @lesson.instructor }
 
           should_assign_to :user
@@ -26,7 +27,7 @@ class PaymentsControllerTest < ActionController::TestCase
           should_set_the_flash_to /not have permissions/
         end
 
-        context "on GET to show" do
+        fast_context "on GET to show" do
           setup do
             @payment = @lesson.instructor.generate_payment
             @payment.save
@@ -38,7 +39,7 @@ class PaymentsControllerTest < ActionController::TestCase
           should_set_the_flash_to /not have permissions/
         end
 
-        context "on GET to list" do
+        fast_context "on GET to list" do
           setup { get :list, :id => @lesson.instructor }
 
           should_assign_to :user
@@ -48,10 +49,10 @@ class PaymentsControllerTest < ActionController::TestCase
         end
       end
 
-      context "as a payment mgr" do
+      fast_context "as a payment mgr" do
         setup { @user.is_paymentmgr }
 
-        context "on GET to index" do
+        fast_context "on GET to index" do
           setup { get :index }
 
           should_assign_to :users
@@ -60,7 +61,7 @@ class PaymentsControllerTest < ActionController::TestCase
           should_render_template "index"
         end
 
-        context "on GET to list" do
+        fast_context "on GET to list" do
           setup { get :list, :id => @lesson.instructor }
 
           should_assign_to :user
@@ -70,7 +71,7 @@ class PaymentsControllerTest < ActionController::TestCase
           should_render_template "list"
         end
 
-        context "on GET to show_unpaid" do
+        fast_context "on GET to show_unpaid" do
           setup { get :show_unpaid, :id => @lesson.instructor }
 
           should_assign_to :user
@@ -79,7 +80,7 @@ class PaymentsControllerTest < ActionController::TestCase
           should_render_template "show_unpaid"
         end
 
-        context "on POST to create" do
+        fast_context "on POST to create" do
           setup do
             assert_equal 0.25,  @lesson.instructor.payment_level.rate
             post :create, :id => @lesson.instructor
@@ -100,7 +101,7 @@ class PaymentsControllerTest < ActionController::TestCase
           end
         end
 
-        context "on GET to show" do
+        fast_context "on GET to show" do
           setup do
             @payment = @lesson.instructor.generate_payment
             @payment.save
@@ -117,13 +118,13 @@ class PaymentsControllerTest < ActionController::TestCase
         end
       end
 
-      context "as an instructor" do
+      fast_context "as an instructor" do
         setup do
           @user = @lesson.instructor
           UserSession.create @user
         end
 
-        context "on GET to index" do
+        fast_context "on GET to index" do
           setup { get :index }
 
           should_not_assign_to :users
@@ -131,7 +132,7 @@ class PaymentsControllerTest < ActionController::TestCase
           should_set_the_flash_to /Permission denied/
         end
 
-        context "on GET to show_unpaid" do
+        fast_context "on GET to show_unpaid" do
           setup { get :show_unpaid, :id => @lesson.instructor }
 
           should_assign_to :user
@@ -140,7 +141,7 @@ class PaymentsControllerTest < ActionController::TestCase
           should_render_template "show_unpaid"
         end
 
-        context "on GET to show" do
+        fast_context "on GET to show" do
           setup do
             @payment = @lesson.instructor.generate_payment
             @payment.save

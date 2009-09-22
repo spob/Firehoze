@@ -1,7 +1,8 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class GiftCertificateTest < ActiveSupport::TestCase
-  context "given an gift certificate" do
+  fast_context "given an gift certificate" do
     setup{ @gift_certificate = Factory.create(:gift_certificate) }
 
     should_belong_to                 :user
@@ -20,7 +21,7 @@ class GiftCertificateTest < ActiveSupport::TestCase
     should_not_allow_values_for      :credit_quantity,  2.12, "a",
                                      :message => I18n.translate('activerecord.errors.messages.not_a_number')
 
-    context ", testing the formatted code" do
+    fast_context ", testing the formatted code" do
       setup do
         @gift_certificate.code = "aaaabbbbccccdddd"
       end
@@ -28,7 +29,7 @@ class GiftCertificateTest < ActiveSupport::TestCase
         assert_equal "aaaa-bbbb-cccc-dddd", @gift_certificate.formatted_code
       end
 
-      context "and giving the gift certificate to another user" do
+      fast_context "and giving the gift certificate to another user" do
         setup do
           @old_user = @gift_certificate.user
           @new_user = Factory.create(:user)
@@ -45,7 +46,7 @@ class GiftCertificateTest < ActiveSupport::TestCase
       end
     end
 
-    context "and a couple more, some redeemed" do
+    fast_context "and a couple more, some redeemed" do
       setup do
         @gift_certificate2 = Factory.create(:gift_certificate)
         @gift_certificate3 = Factory.create(:redeemed_gift_certificate)
@@ -62,14 +63,14 @@ class GiftCertificateTest < ActiveSupport::TestCase
         assert !certs.include?(@gift_certificate4)
       end
 
-      context "invoking the list method" do
+      fast_context "invoking the list method" do
         setup { @gifts = GiftCertificate.list(1, @gift_certificate2.user) }
 
         should "return 1 lessons" do
           assert_equal 1, @gifts.size
         end
 
-        context "as an admin user" do
+        fast_context "as an admin user" do
           setup do
             @gift_certificate2.user.has_role 'admin'
             @gifts = GiftCertificate.list(1, @gift_certificate2.user)
@@ -82,7 +83,7 @@ class GiftCertificateTest < ActiveSupport::TestCase
       end
     end
 
-    context "on redeem" do
+    fast_context "on redeem" do
       setup { assert @gift_certificate.user.credits.available.empty? }
 
       should "redeem increase credits" do

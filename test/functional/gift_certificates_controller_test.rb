@@ -1,22 +1,23 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class GiftCertificatesControllerTest < ActionController::TestCase
 
-  context "when logged on" do
+  fast_context "when logged on" do
     setup do
       activate_authlogic
       @user = Factory(:user)
       UserSession.create @user
     end
 
-    context "on GET to :new" do
+    fast_context "on GET to :new" do
       setup { get :new }
 
       should_not_set_the_flash
       should_render_template 'new'
     end
 
-    context "with a gift_certificate" do
+    fast_context "with a gift_certificate" do
       setup { @gift_certificate = Factory.create(:gift_certificate, :user => @user) }
 
       context "on POST to :redeem" do
@@ -28,7 +29,7 @@ class GiftCertificatesControllerTest < ActionController::TestCase
         should_redirect_to("account page") { account_path(@user) }
       end
 
-      context "on POST to :create" do
+      fast_context "on POST to :create" do
         setup { post :create, :gift_certificate => { :code => @gift_certificate.code }}
 
         should_not_assign_to :gift_certificate
@@ -37,19 +38,19 @@ class GiftCertificatesControllerTest < ActionController::TestCase
         should_redirect_to("account page") { account_path(@user) }
       end
 
-      context "on GET to :pregive" do
+      fast_context "on GET to :pregive" do
         setup { get :pregive, :id => @gift_certificate }
 
         should_not_set_the_flash
         should_render_template 'pregive'
       end
 
-      context "on POST to :confirm_give" do
+      fast_context "on POST to :confirm_give" do
         setup do
           @to_user = Factory.create(:user)
         end
 
-        context "specifying the username" do
+        fast_context "specifying the username" do
           setup { post :confirm_give, :id => @gift_certificate, :to_user => @to_user.login, :comments => 'hello' }
 
           should_assign_to :gift_certificate
@@ -58,7 +59,7 @@ class GiftCertificatesControllerTest < ActionController::TestCase
           should_render_template 'confirm_give'
         end
 
-        context "specifying the email" do
+        fast_context "specifying the email" do
           setup { post :confirm_give, :id => @gift_certificate, :to_user_email => @to_user.email, :comments => 'hello' }
 
           should_assign_to :gift_certificate
@@ -67,7 +68,7 @@ class GiftCertificatesControllerTest < ActionController::TestCase
           should_render_template 'confirm_give'
         end
 
-        context "with a bogus user" do
+        fast_context "with a bogus user" do
           setup do
             post :confirm_give, :id => @gift_certificate, :to_user => 'xyz'
           end
@@ -78,7 +79,7 @@ class GiftCertificatesControllerTest < ActionController::TestCase
         end
       end
 
-      context "on POST to :give" do
+      fast_context "on POST to :give" do
         setup { @to_user = Factory.create(:user)}
 
         context "on a gift certificate you don't own" do
@@ -92,7 +93,7 @@ class GiftCertificatesControllerTest < ActionController::TestCase
           should_render_template 'pregive'
         end
 
-        context "specifying user" do
+        fast_context "specifying user" do
           setup { post :give, :id => @gift_certificate, :to_user_id => @to_user, :comments => 'hello' }
 
           should "update gift certificate" do

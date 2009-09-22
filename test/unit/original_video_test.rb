@@ -1,14 +1,15 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class OriginalVideoTest < ActiveSupport::TestCase
-  context "Given an existing original video" do
+  fast_context "Given an existing original video" do
     setup { @original_video = Factory.create(:original_video) }
 
     should_validate_presence_of      :lesson
     should_have_attached_file        :video
     should_have_class_methods        :convert_video
 
-    context "when setting the url" do
+    fast_context "when setting the url" do
       setup { @original_video.set_url }
       
       should "set the url" do

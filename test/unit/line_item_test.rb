@@ -1,4 +1,5 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class LineItemTest < ActiveSupport::TestCase
   context "given an existing record" do
@@ -39,7 +40,7 @@ class LineItemTest < ActiveSupport::TestCase
     end
   end
 
-  context "given a range of discounts" do
+  fast_context "given a range of discounts" do
     setup do
       @sku = Factory.create(:credit_sku)
       @discount5 = Factory.create(:discount_by_volume, :minimum_quantity => 5, :percent_discount => 0.05, :sku => @sku)
@@ -47,7 +48,7 @@ class LineItemTest < ActiveSupport::TestCase
       @discount20 = Factory.create(:discount_by_volume, :minimum_quantity => 20, :percent_discount => 0.20, :sku => @sku)
     end
 
-    context "and a line item with quantity less than the first price break" do
+    fast_context "and a line item with quantity less than the first price break" do
       setup { @line_item = Factory.create(:line_item, :quantity => 3, :sku => @sku) }
 
       should "have no discount" do
@@ -56,7 +57,7 @@ class LineItemTest < ActiveSupport::TestCase
       end
     end
 
-    context "and a line item with quantity equal to the first price break" do
+    fast_context "and a line item with quantity equal to the first price break" do
       setup do
         @line_item = Factory.build(:line_item, :quantity => 5, :sku => @sku)
         @line_item.save!
@@ -67,7 +68,7 @@ class LineItemTest < ActiveSupport::TestCase
       end
     end
 
-    context "and a line item with quantity slightly greater than the first price break" do
+    fast_context "and a line item with quantity slightly greater than the first price break" do
       setup { @line_item = Factory.create(:line_item, :quantity => 7, :sku => @sku) }
 
       should "create a line with a 5% discount" do
@@ -75,7 +76,7 @@ class LineItemTest < ActiveSupport::TestCase
       end
     end
 
-    context "and a line item with quantity greater than the second price break" do
+    fast_context "and a line item with quantity greater than the second price break" do
       setup { @line_item = Factory.create(:line_item, :quantity => 12, :sku => @sku) }
 
       should "create a line with a 10% discount" do
@@ -83,7 +84,7 @@ class LineItemTest < ActiveSupport::TestCase
       end
     end
 
-    context "and a line item with quantity equal to the third price break" do
+    fast_context "and a line item with quantity equal to the third price break" do
       setup { @line_item = Factory.create(:line_item, :quantity => 20, :sku => @sku) }
 
       should "create a line with a 20% discount" do
@@ -91,7 +92,7 @@ class LineItemTest < ActiveSupport::TestCase
       end
     end
 
-    context "and a line item with quantity greater than the third price break" do
+    fast_context "and a line item with quantity greater than the third price break" do
       setup { @line_item = Factory.create(:line_item, :quantity => 999, :sku => @sku) }
 
       should "create a line with a 20% discount" do

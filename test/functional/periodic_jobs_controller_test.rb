@@ -1,20 +1,22 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class PeriodicJobsControllerTest < ActionController::TestCase
-  context "when logged on" do
+  
+  fast_context "when logged on" do
     setup do
       activate_authlogic
       @user = Factory(:user)
       UserSession.create @user
     end
 
-    context "with admin access" do
+    fast_context "with admin access" do
       setup do
         @user.has_role 'admin'
         @job = Factory(:run_once_periodic_job)
       end
 
-      context "on GET to :index" do
+      fast_context "on GET to :index" do
         setup { get :index }
 
         should_assign_to :periodic_jobs
@@ -23,7 +25,7 @@ class PeriodicJobsControllerTest < ActionController::TestCase
         should_render_template "index"
       end
 
-      context "on POST to :rerun" do
+      fast_context "on POST to :rerun" do
         setup { post :rerun, :id => @job }
 
         should_respond_with :redirect
@@ -32,8 +34,8 @@ class PeriodicJobsControllerTest < ActionController::TestCase
       end
     end
 
-    context "without admin access" do
-      context "on GET to :index" do
+    fast_context "without admin access" do
+      fast_context "on GET to :index" do
         setup { get :index }
 
         should_not_assign_to :user_logons

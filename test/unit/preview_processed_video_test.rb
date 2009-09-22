@@ -1,7 +1,8 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class PreviewProcessedVideoTest < ActiveSupport::TestCase
-  context "Given an existing processed video" do
+  fast_context "Given an existing processed video" do
     setup { @processed_video = Factory.create(:ready_preview_processed_video)}
 
     should "populate a video" do

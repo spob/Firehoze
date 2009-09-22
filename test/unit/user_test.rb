@@ -1,9 +1,10 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class UserTest < ActiveSupport::TestCase
   CHARSET = "utf-8"
 
-  context "given an existing record" do
+  fast_context "given an existing record" do
     setup { @user = Factory.create(:user) }
 
     should_validate_uniqueness_of    :email
@@ -49,7 +50,7 @@ class UserTest < ActiveSupport::TestCase
     should_belong_to                 :payment_level
     should_have_and_belong_to_many   :wishes
 
-    context "when rejecting" do
+    fast_context "when rejecting" do
       setup do
         assert !@user.rejected_bio
         @user.reject
@@ -61,7 +62,7 @@ class UserTest < ActiveSupport::TestCase
       end
     end
 
-    context "and an item on the wish list" do
+    fast_context "and an item on the wish list" do
       setup do
         @lesson = Factory.create(:lesson)
         @lesson2 = Factory.create(:lesson)
@@ -74,7 +75,7 @@ class UserTest < ActiveSupport::TestCase
       end
     end
 
-    context "and a couple more records" do
+    fast_context "and a couple more records" do
       setup do
         # and let's create a couple more
         @user2 = Factory.create(:user)
@@ -103,7 +104,7 @@ class UserTest < ActiveSupport::TestCase
       end
     end
 
-    context "and password reset requests" do
+    fast_context "and password reset requests" do
       setup do
         ActionMailer::Base.delivery_method = :test
         ActionMailer::Base.perform_deliveries = true
@@ -130,7 +131,7 @@ class UserTest < ActiveSupport::TestCase
       assert !@user.address_provided?
     end
 
-    context "with address specified" do
+    fast_context "with address specified" do
       setup do
         @user.address1 = "135 Larch Row"
         @user.city = "Wenham"
@@ -144,7 +145,7 @@ class UserTest < ActiveSupport::TestCase
         assert @user.address_provided?
       end
 
-      context "while testing if an instructor" do
+      fast_context "while testing if an instructor" do
         setup do
           @user.verified_address_on = Time.now
           assert !@user.verified_instructor?
@@ -169,7 +170,7 @@ class UserTest < ActiveSupport::TestCase
       assert_equal @user.full_name, "#{ln}"
     end
 
-    context "and several expected languages" do
+    fast_context "and several expected languages" do
       setup { @expected_lang =  [['English', 'en'] ] }
 
       should "support English and Wookie" do
@@ -178,14 +179,14 @@ class UserTest < ActiveSupport::TestCase
       end
     end
 
-    context "and a lesson" do
+    fast_context "and a lesson" do
       setup { @lesson = Factory.create(:lesson) }
 
       should "not have the user owning that lesson" do
         assert !@user.owns_lesson?(@lesson)
       end
 
-      context "which the user owns" do
+      fast_context "which the user owns" do
         setup do
           @user.credits.create(:price => 0.99, :acquired_at => 2.days.ago)
           @credit = @user.credits.first
@@ -202,14 +203,14 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  context "given an avator url" do
+  fast_context "given an avator url" do
     should "convert to a cdn url" do
       assert_equal "http://cdn.firehoze.com/staging/users/avatars/2/medium/DSC_0043_Small.png?1249443866",
                    User.convert_avatar_url_to_cdn("http://s3.amazonaws.com/images.firehoze.com/staging/users/avatars/2/medium/DSC_0043_Small.png?1249443866")
     end
   end
 
-  context "Given lesson visits" do
+  fast_context "Given lesson visits" do
     setup { @lesson_visit = Factory.create(:lesson_visit) }
 
     should "retrieve lessons and visits" do

@@ -1,15 +1,16 @@
-require File.dirname(__FILE__) + '/../test_helper' 
+require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class HelpfulsControllerTest < ActionController::TestCase
 
-  context "when logged on" do
+  fast_context "when logged on" do
     setup do
       activate_authlogic
       @user = Factory(:user)
       UserSession.create @user
     end
 
-    context "with a review" do
+    fast_context "with a review" do
       setup do
         @lesson = Factory.create(:lesson)
         assert @lesson.rates.empty?
@@ -25,7 +26,7 @@ class HelpfulsControllerTest < ActionController::TestCase
         @review = Factory.create(:review, :user => @user, :lesson => @lesson)
       end
 
-      context "on POST to :create" do
+      fast_context "on POST to :create" do
         setup do
           post :create, :review_id => @review
         end
@@ -36,9 +37,9 @@ class HelpfulsControllerTest < ActionController::TestCase
         should_redirect_to("Review page") { lesson_reviews_url(@review.lesson) }
       end
 
-      context "as the author" do
+      fast_context "as the author" do
         setup { UserSession.create(@review.lesson.instructor) }
-        context "on POST to :create" do
+        fast_context "on POST to :create" do
           setup { post :create, :review_id => @review }
 
           should_assign_to :review

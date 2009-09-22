@@ -1,14 +1,15 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class PeriodicJobTest < ActiveSupport::TestCase
 
-  context "given a job running" do
+  fast_context "given a job running" do
     setup do
       @job = Factory.create(:run_once_periodic_job, :last_run_at => 1.days.ago,
               :last_run_result => 'Running')
     end
 
-    context "which has been running too long" do
+    fast_context "which has been running too long" do
       setup do
         @job.update_attribute(:next_run_at, nil)
       end
@@ -19,7 +20,7 @@ class PeriodicJobTest < ActiveSupport::TestCase
       end
     end
 
-    context "which has not been running too long" do
+    fast_context "which has not been running too long" do
       setup do
         @job.update_attribute(:next_run_at, nil)
         @job.update_attribute(:last_run_at, 5.seconds.ago)
@@ -32,7 +33,7 @@ class PeriodicJobTest < ActiveSupport::TestCase
     end
   end
 
-  context "given a job ready to run" do
+  fast_context "given a job ready to run" do
     setup do
       @job = Factory.create(:run_once_periodic_job)
       @job.update_attribute(:next_run_at, 1.days.ago)
@@ -44,7 +45,7 @@ class PeriodicJobTest < ActiveSupport::TestCase
     end
   end
 
-  context "given there are jobs ready to run" do
+  fast_context "given there are jobs ready to run" do
     setup do
       @run_once_job_null_next_run = Factory.create(:run_once_periodic_job, :last_run_at => 1.days.ago)
       @run_once_job_null_next_run.update_attribute(:next_run_at, nil)
@@ -72,7 +73,7 @@ class PeriodicJobTest < ActiveSupport::TestCase
       PeriodicJob.cleanup
     end
 
-    context "when executing list method" do
+    fast_context "when executing list method" do
       should "return rows" do
         assert PeriodicJob.list(1, 10).present?
       end
@@ -85,7 +86,7 @@ class PeriodicJobTest < ActiveSupport::TestCase
     end
   end
 
-  context "given a job that errors when running" do
+  fast_context "given a job that errors when running" do
     setup do
       @job = Factory.create(:run_once_periodic_job, :job => "1/0")
       @job.update_attribute(:next_run_at, 5.seconds.ago)
@@ -104,7 +105,7 @@ class PeriodicJobTest < ActiveSupport::TestCase
 
 
 
-  context "testing run date calculations" do
+  fast_context "testing run date calculations" do
     should "return nil next run date" do
       assert_nil PeriodicJob.new.calc_next_run
     end
@@ -118,7 +119,7 @@ class PeriodicJobTest < ActiveSupport::TestCase
     end
   end
 
-  context "given an interval job that runs every 30 minutes" do
+  fast_context "given an interval job that runs every 30 minutes" do
     setup do
       @job = Factory.create(:run_interval_periodic_job, :last_run_at => 5.minutes.ago)
       @job.update_attribute(:next_run_at, nil)
@@ -134,7 +135,7 @@ class PeriodicJobTest < ActiveSupport::TestCase
     end
   end
 
-  context "given a run at job" do
+  fast_context "given a run at job" do
     setup do
       @job = Factory.create(:run_at_periodic_job)
       # set current time to 13:00 PM
@@ -142,7 +143,7 @@ class PeriodicJobTest < ActiveSupport::TestCase
       @job.set_now @now
     end
 
-    context "which is yet to run today" do
+    fast_context "which is yet to run today" do
       setup do
         # set job to run at 13:30 AM
         @job.update_attribute(:run_at_minutes, 13*60+30)
@@ -158,7 +159,7 @@ class PeriodicJobTest < ActiveSupport::TestCase
       end
     end
 
-    context "which has already run today" do
+    fast_context "which has already run today" do
       setup do
         # set job to run at 12:30 PM
         @job.update_attribute(:run_at_minutes, 12 * 60 + 30)

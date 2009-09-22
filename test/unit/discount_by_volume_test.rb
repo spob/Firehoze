@@ -1,7 +1,8 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class DiscountByVolumeTest < ActiveSupport::TestCase
-  context "given an existing record" do
+  fast_context "given an existing record" do
     setup do
       @discount = Factory.create(:discount_by_volume)
     end
@@ -20,7 +21,7 @@ class DiscountByVolumeTest < ActiveSupport::TestCase
     should_not_allow_values_for      :minimum_quantity,  2.12, "a", :message => I18n.translate('activerecord.errors.messages.not_a_number')
   end
 
-  context "given a range of discounts" do
+  fast_context "given a range of discounts" do
     setup do
       @discount5 = Factory.create(:discount_by_volume, :minimum_quantity => 5, :percent_discount => 0.05)
       @discount10 = Factory.create(:discount_by_volume, :minimum_quantity => 10, :percent_discount => 0.10)

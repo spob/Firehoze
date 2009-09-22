@@ -1,14 +1,14 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class PasswordResetsControllerTest < ActionController::TestCase
 
-
-  context "when not logged in" do
+  fast_context "when not logged in" do
     setup do
       Factory(:user)
     end
 
-    context "on GET to :new" do
+    fast_context "on GET to :new" do
       setup { get :new }
 
       should_respond_with :success
@@ -16,7 +16,7 @@ class PasswordResetsControllerTest < ActionController::TestCase
       should_render_template "new"
     end
 
-    #context "on GET to :edit" do
+    #fast_context "on GET to :edit" do
     #  setup { get :edit }
     #
     #  should_respond_with :success
@@ -24,7 +24,7 @@ class PasswordResetsControllerTest < ActionController::TestCase
     #  should_render_template "edit"
     #end
 
-    context "on POST to :create" do
+    fast_context "on POST to :create" do
       setup { post :create, :email => Factory(:user).email }
 
       should_assign_to :user
@@ -33,13 +33,13 @@ class PasswordResetsControllerTest < ActionController::TestCase
       should_redirect_to("login page") { root_url }
     end
 
-    context "and needing to reset the password" do
+    fast_context "and needing to reset the password" do
       setup do
         url = edit_password_reset_url( Factory(:user).perishable_token)
         @id = url.split('/')[url.split('/').size - 2]
       end
 
-      context "on PUT to :update" do
+      fast_context "on PUT to :update" do
         setup do
           put :update, :id => @id,
               :user => { :password => 'xxxxx',
@@ -51,7 +51,7 @@ class PasswordResetsControllerTest < ActionController::TestCase
         should_redirect_to("my account page") { account_url assigns(:user) }
       end
 
-      context "on PUT to :update with bad password confirmation" do
+      fast_context "on PUT to :update with bad password confirmation" do
         setup do
           put :update, :id => @id,
               :user => { :password => 'xxxxx',
@@ -63,7 +63,7 @@ class PasswordResetsControllerTest < ActionController::TestCase
         should_render_template "edit"
       end
 
-      context "on PUT to :update with bad secret url" do
+      fast_context "on PUT to :update with bad secret url" do
         setup do
           put :update, :id => "blah",
               :user => { :password => 'xxxxx',

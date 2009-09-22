@@ -1,4 +1,5 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class ProcessedVideoTest < ActiveSupport::TestCase
   context "Given an existing processed video" do
@@ -21,7 +22,7 @@ class ProcessedVideoTest < ActiveSupport::TestCase
       end
     end
 
-    context "that changed state" do
+    fast_context "that changed state" do
       setup do
         assert_equal 1, @processed_video.video_status_changes.count
         assert_nil @processed_video.video_status_changes.last.from_status
@@ -40,7 +41,7 @@ class ProcessedVideoTest < ActiveSupport::TestCase
       end
     end
 
-    context "and a response job" do
+    fast_context "and a response job" do
       setup do
         @job = FlixCloud::Notification.new(@processed_video.build_flix_response)
         assert !@job.nil?
@@ -52,7 +53,7 @@ class ProcessedVideoTest < ActiveSupport::TestCase
       end
     end
 
-    context "when searching for zombies" do
+    fast_context "when searching for zombies" do
       setup { ProcessedVideo.detect_zombie_video(@processed_video.id, @processed_video.lesson.id) }
 
       # should verify an email was sent but not sure how

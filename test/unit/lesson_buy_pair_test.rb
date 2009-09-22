@@ -1,14 +1,15 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class LessonBuyPairTest < ActiveSupport::TestCase
-  context "given an existing record" do
+  fast_context "given an existing record" do
     setup { @lesson_buy_pair = Factory.create(:lesson_buy_pair) }
 
     should_belong_to :lesson, :other_lesson
     should_validate_presence_of :lesson, :other_lesson, :counter
   end
 
-  context "given multiple credits" do
+  fast_context "given multiple credits" do
     setup do
       @user1 = Factory.create(:user)
       @user2 = Factory.create(:user)

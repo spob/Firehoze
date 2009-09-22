@@ -1,15 +1,16 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class AcquireLessonsControllerTest < ActionController::TestCase
 
-  context "when logged in" do
+  fast_context "when logged in" do
     setup do
       activate_authlogic
       @user = Factory(:user)
       UserSession.create @user
     end
 
-    context "with a lesson" do
+    fast_context "with a lesson" do
       setup { @lesson = Factory.create(:lesson) }
 
       context "on GET to :new" do
@@ -21,14 +22,14 @@ class AcquireLessonsControllerTest < ActionController::TestCase
         should_render_template "new"
       end
 
-      context "and no available credits" do
+      fast_context "and no available credits" do
         setup { post :create, :id => @lesson }
 
         should_set_the_flash_to I18n.t('lesson.need_credits')
         should_redirect_to("online store") { store_path(1) }
       end
 
-      context "with available credits" do
+      fast_context "with available credits" do
         setup do
           @user.wishes << @lesson
           assert @user.on_wish_list?(@lesson)

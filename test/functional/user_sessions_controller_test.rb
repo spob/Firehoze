@@ -1,14 +1,16 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 require "authlogic/test_case"
 
 class UserSessionsControllerTest < ActionController::TestCase
-  context "given a user" do
+  
+  fast_context "given a user" do
     setup do
       @user = Factory.create(:user)
       activate_authlogic
     end
 
-    context "on GET to :new" do
+    fast_context "on GET to :new" do
       setup { get :new }
       should_assign_to :user_session
       should_respond_with :success
@@ -16,7 +18,7 @@ class UserSessionsControllerTest < ActionController::TestCase
       should_render_template "new"
     end
 
-    context "on POST to :create with valid credentials" do
+    fast_context "on POST to :create with valid credentials" do
       logons = UserLogon.count
       setup { post :create, :user_session => { :login => @user.login, :password => "xxxxx" } }
 
@@ -32,7 +34,7 @@ class UserSessionsControllerTest < ActionController::TestCase
       end
     end
 
-    context "on POST to :create with invalid credentials" do
+    fast_context "on POST to :create with invalid credentials" do
       setup { post :create, :user_session => { :email => @user.email, :password => "badpassword" } }
 
       should_assign_to :user_session
@@ -43,7 +45,7 @@ class UserSessionsControllerTest < ActionController::TestCase
       end
     end
 
-    context "on DELETE to :destroy" do
+    fast_context "on DELETE to :destroy" do
       setup { delete :destroy }
 
       should_redirect_to("login page") { new_user_session_path }

@@ -1,14 +1,15 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class FlagsControllerTest < ActionController::TestCase
-  context "when logged on" do
+  fast_context "when logged on" do
     setup do
       activate_authlogic
       @user = Factory(:user)
       UserSession.create @user
     end
 
-    context "without moderator access" do
+    fast_context "without moderator access" do
       context "on GET to :index" do
         setup { get :index }
 
@@ -18,10 +19,10 @@ class FlagsControllerTest < ActionController::TestCase
       end
     end
 
-    context "with moderator access" do
+    fast_context "with moderator access" do
       setup { @user.has_role 'moderator' }
 
-      context "with several existing flags" do
+      fast_context "with several existing flags" do
         setup do
           @lesson_comment = Factory.create(:lesson_comment)
           @flag1 = @lesson_comment.flags.create!(:status => FLAG_STATUS_PENDING, :reason_type => "Smut", :comments => "Some comments",
@@ -35,7 +36,7 @@ class FlagsControllerTest < ActionController::TestCase
           assert !@flag3.nil?
         end
 
-        context "on PUT to :update to upon the flag with status pending" do
+        fast_context "on PUT to :update to upon the flag with status pending" do
           setup do
             put :update, :id => @flag1, :flag => { :response => "Some reason", :status => FLAG_STATUS_PENDING}
             @flag1 = Flag.find(@flag1.id)
@@ -61,7 +62,7 @@ class FlagsControllerTest < ActionController::TestCase
           end
         end
 
-        context "on PUT to :update to upon the flag with status rejected" do
+        fast_context "on PUT to :update to upon the flag with status rejected" do
           setup do
             put :update, :id => @flag1, :flag => { :response => "Some reason", :status => FLAG_STATUS_REJECTED }
             @flag1 = Flag.find(@flag1.id)
@@ -87,7 +88,7 @@ class FlagsControllerTest < ActionController::TestCase
           end
         end
 
-        context "on PUT to :update to upon the flag with status resolved manually" do
+        fast_context "on PUT to :update to upon the flag with status resolved manually" do
           setup do
             put :update, :id => @flag1, :flag => { :response => "Some reason", :status => FLAG_STATUS_RESOLVED_MANUALLY }
             @flag1 = Flag.find(@flag1.id)
@@ -113,7 +114,7 @@ class FlagsControllerTest < ActionController::TestCase
           end
         end
 
-        context "on PUT to :update to upon the flag with status resolved automatically" do
+        fast_context "on PUT to :update to upon the flag with status resolved automatically" do
           setup do
             put :update, :id => @flag1, :flag => { :response => "Some reason", :status => FLAG_STATUS_RESOLVED }
             @flag1 = Flag.find(@flag1.id)
@@ -140,7 +141,7 @@ class FlagsControllerTest < ActionController::TestCase
         end
       end
 
-      context "on GET to :index" do
+      fast_context "on GET to :index" do
         setup { get :index }
 
         should_assign_to :flags
@@ -150,7 +151,7 @@ class FlagsControllerTest < ActionController::TestCase
       end
     end
 
-    context "given an existing lesson" do
+    fast_context "given an existing lesson" do
       setup do
         @lesson = Factory.create(:lesson)
       end
@@ -165,13 +166,13 @@ class FlagsControllerTest < ActionController::TestCase
         should_render_template "new"
       end
 
-      context "with an existing pending flag" do
+      fast_context "with an existing pending flag" do
         setup do
           @lesson.flags.create!(:status => FLAG_STATUS_PENDING, :reason_type => "Smut", :comments => "Some comments",
                                 :user => @user)
         end
 
-        context "on GET to :new" do
+        fast_context "on GET to :new" do
           setup { get :new, :flagger_type => 'Lesson', :flagger_id => @lesson }
 
           should_assign_to :flag
@@ -180,14 +181,14 @@ class FlagsControllerTest < ActionController::TestCase
           should_set_the_flash_to :user_flagging_pending
         end
 
-        context "and an existing rejected flag" do
+        fast_context "and an existing rejected flag" do
           setup do
             @lesson.flags.create!(:status => FLAG_STATUS_REJECTED, :reason_type => "Smut", :comments => "Some comments",
                                   :user => @user)
             get :new, :flagger_type => 'Lesson', :flagger_id => @lesson
           end
 
-          context "on GET to :new" do
+          fast_context "on GET to :new" do
             setup { get :new, :flagger_type => 'Lesson', :flagger_id => @lesson }
 
             should_assign_to :flag
@@ -198,7 +199,7 @@ class FlagsControllerTest < ActionController::TestCase
         end
       end
 
-      context "on POST to :create" do
+      fast_context "on POST to :create" do
         setup do
           assert Flag.all.empty?
           @new_flag_attr = Factory.attributes_for(:flag, :flaggable_id => @lesson.id)
@@ -213,7 +214,7 @@ class FlagsControllerTest < ActionController::TestCase
         end
         #should_redirect_to("Show lessons page") { '"url_for(:controller => 'Lessons', :action => 'show', :id => id)"' }
 
-        context "and try to flag a second time" do
+        fast_context "and try to flag a second time" do
           setup do
             post :create, :flag => @new_flag_attr, :flagger_type => 'Lesson', :flagger_id => @lesson
           end
@@ -225,7 +226,7 @@ class FlagsControllerTest < ActionController::TestCase
       end
     end
 
-    context "given an existing review" do
+    fast_context "given an existing review" do
       setup do
         @credit = Factory.create(:credit, :user => @user)
         @rate = @credit.lesson.rates.create!(:user_id => @user.id)
@@ -237,7 +238,7 @@ class FlagsControllerTest < ActionController::TestCase
         assert @credit.lesson.reviewed_by?(@user)
       end
 
-      context "on GET to :new" do
+      fast_context "on GET to :new" do
         setup { get :new, :flagger_type => 'Review', :flagger_id => @review }
 
         should_assign_to :flag
@@ -247,7 +248,7 @@ class FlagsControllerTest < ActionController::TestCase
         should_render_template "new"
       end
 
-      context "on POST to :create" do
+      fast_context "on POST to :create" do
         setup do
           assert Flag.all.empty?
           @new_flag_attr = Factory.attributes_for(:flag, :flaggable_id => @review.id)
@@ -262,7 +263,7 @@ class FlagsControllerTest < ActionController::TestCase
         end
         #should_redirect_to("Show lessons page") { '"url_for(:controller => 'Lessons', :action => 'show', :id => id)"' }
 
-        context "and try to flag a second time" do
+        fast_context "and try to flag a second time" do
           setup do
             post :create, :flag => @new_flag_attr, :flagger_type => 'Review', :flagger_id => @review
           end
@@ -274,12 +275,12 @@ class FlagsControllerTest < ActionController::TestCase
       end
     end
 
-    context "given an existing lesson comment" do
+    fast_context "given an existing lesson comment" do
       setup do
         @lesson_comment = Factory.create(:lesson_comment)
       end
 
-      context "on GET to :new" do
+      fast_context "on GET to :new" do
         setup { get :new, :flagger_type => 'LessonComment', :flagger_id => @lesson_comment }
 
         should_assign_to :flag
@@ -289,7 +290,7 @@ class FlagsControllerTest < ActionController::TestCase
         should_render_template "new"
       end
 
-      context "on POST to :create" do
+      fast_context "on POST to :create" do
         setup do
           assert Flag.all.empty?
           @new_flag_attr = Factory.attributes_for(:flag, :flaggable_id => @lesson_comment.id)
@@ -304,7 +305,7 @@ class FlagsControllerTest < ActionController::TestCase
         end
         #should_redirect_to("Show lessons page") { '"url_for(:controller => 'Lessons', :action => 'show', :id => id)"' }
 
-        context "and try to flag a second time" do
+        fast_context "and try to flag a second time" do
           setup do
             post :create, :flag => @new_flag_attr, :flagger_type => 'LessonComment', :flagger_id => @lesson_comment
           end
@@ -316,12 +317,12 @@ class FlagsControllerTest < ActionController::TestCase
       end
     end
 
-    context "given an existing user" do
+    fast_context "given an existing user" do
       setup do
         @profile_user = Factory.create(:user)
       end
 
-      context "on GET to :new" do
+      fast_context "on GET to :new" do
         setup { get :new, :flagger_type => 'User', :flagger_id => @profile_user }
 
         should_assign_to :flag
@@ -331,7 +332,7 @@ class FlagsControllerTest < ActionController::TestCase
         should_render_template "new"
       end
 
-      context "on POST to :create" do
+      fast_context "on POST to :create" do
         setup do
           assert Flag.all.empty?
           @new_flag_attr = Factory.attributes_for(:flag, :flaggable_id => @profile_user.id)
@@ -346,7 +347,7 @@ class FlagsControllerTest < ActionController::TestCase
         end
         #should_redirect_to("Show lessons page") { '"url_for(:controller => 'Lessons', :action => 'show', :id => id)"' }
 
-        context "and try to flag a second time" do
+        fast_context "and try to flag a second time" do
           setup do
             post :create, :flag => @new_flag_attr, :flagger_type => 'User', :flagger_id => @profile_user
           end

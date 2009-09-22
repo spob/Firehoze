@@ -1,7 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class HelpfulTest < ActiveSupport::TestCase
-  context "given an existing helpful record" do
+  fast_context "given an existing helpful record" do
     setup do
       @user = Factory.create(:user)
       @lesson = Factory.create(:lesson)
@@ -19,7 +20,7 @@ class HelpfulTest < ActiveSupport::TestCase
     should_belong_to                 :review
     should_belong_to                 :user
 
-    context "where the author of the review also provides feedback" do
+    fast_context "where the author of the review also provides feedback" do
       setup do
         assert_valid @helpful
         @helpful.user = @helpful.review.user
@@ -32,7 +33,7 @@ class HelpfulTest < ActiveSupport::TestCase
       end
     end
 
-    context "and another that is helpful and one that is not" do
+    fast_context "and another that is helpful and one that is not" do
       setup do
         @helpful1 = Factory.create(:helpful, :review => @review)
         @helpful2 = Factory.create(:helpful, :review => @review, :helpful => false)
@@ -44,7 +45,7 @@ class HelpfulTest < ActiveSupport::TestCase
         assert_equal 1, Helpful.helpful_no.size
       end
 
-      context "and testing score" do
+      fast_context "and testing score" do
         setup do
           @review.helpfuls.create!(:helpful => true, :user => Factory.create(:user))
           assert_equal 3, @review.helpfuls.helpful_yes.size

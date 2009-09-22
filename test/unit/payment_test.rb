@@ -1,7 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class PaymentTest < ActiveSupport::TestCase
-  context "given a payment" do
+  fast_context "given a payment" do
     setup  { @payment = Factory.create(:payment) }
 
     should_belong_to :user

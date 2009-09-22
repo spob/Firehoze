@@ -1,7 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class SkuTest < ActiveSupport::TestCase
-  context "given an existing record" do
+  fast_context "given an existing record" do
     setup do
       @sku = Factory.create(:credit_sku)
     end
@@ -20,7 +21,7 @@ class SkuTest < ActiveSupport::TestCase
             :message => I18n.translate('activerecord.errors.messages.too_long', :count => 150)
     should_allow_values_for          :sku, "a", "sku123"
 
-    context "and a couple more records" do
+    fast_context "and a couple more records" do
       setup do
         Factory.create(:credit_sku)
         Factory.create(:credit_sku)
@@ -31,7 +32,7 @@ class SkuTest < ActiveSupport::TestCase
       end
     end
 
-    context "and a non-admin user" do
+    fast_context "and a non-admin user" do
       setup { @user = Factory(:user) }
 
       should "not be able to delete or edit" do
@@ -39,7 +40,7 @@ class SkuTest < ActiveSupport::TestCase
         assert !@sku.can_delete?(@user)
       end
 
-      context "with admin access" do
+      fast_context "with admin access" do
         setup { @user.has_role 'admin' }
 
         should "be able to delete or edit" do

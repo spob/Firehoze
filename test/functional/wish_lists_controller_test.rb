@@ -1,17 +1,18 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class WishListsControllerTest < ActionController::TestCase
-  context "with an existing lesson" do
+  fast_context "with an existing lesson" do
     setup { @lesson = Factory.create(:lesson) }
 
-    context "and when logged on" do
+    fast_context "and when logged on" do
       setup do
         activate_authlogic
         @user = Factory(:user)
         UserSession.create(@user)
       end
 
-      context "on POST to :create" do
+      fast_context "on POST to :create" do
         setup do
           post :create, :id => @lesson
         end
@@ -26,7 +27,7 @@ class WishListsControllerTest < ActionController::TestCase
         end
       end
 
-      context "on POST to :create when already owned" do
+      fast_context "on POST to :create when already owned" do
         setup do
           @user.credits.create!(:price => 0.99, :lesson => @lesson, :acquired_at => Time.now,
                                 :line_item => Factory.create(:line_item))
@@ -44,7 +45,7 @@ class WishListsControllerTest < ActionController::TestCase
         end
       end
 
-      context "on POST to :create when you are the author" do
+      fast_context "on POST to :create when you are the author" do
         setup do
           @lesson2 = Factory.create(:lesson, :instructor => @user)
           assert @lesson2.instructor == @user
@@ -61,7 +62,7 @@ class WishListsControllerTest < ActionController::TestCase
         end
       end
 
-      context "on POST to :create when already on the wish list" do
+      fast_context "on POST to :create when already on the wish list" do
         setup do
           @user.wishes << @lesson
           assert @user.on_wish_list?(@lesson)
@@ -78,7 +79,7 @@ class WishListsControllerTest < ActionController::TestCase
         end
       end
 
-      context "on DELETE to :destroy" do
+      fast_context "on DELETE to :destroy" do
         setup do
           @user.wishes << @lesson
           assert @user.on_wish_list?(@lesson)
@@ -94,7 +95,7 @@ class WishListsControllerTest < ActionController::TestCase
         end
       end
 
-      context "on DELETE to :destroy when not on the wait list already" do
+      fast_context "on DELETE to :destroy when not on the wait list already" do
         setup do
           assert !@user.on_wish_list?(@lesson)
           delete :destroy, :id => @lesson

@@ -1,14 +1,15 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class LessonBuyPatternTest < ActiveSupport::TestCase
-  context "given an existing record" do
+  fast_context "given an existing record" do
     setup { @lesson_buy_pattern = Factory.create(:lesson_buy_pattern) }
 
     should_belong_to :lesson, :purchased_lesson
     should_validate_presence_of :lesson, :purchased_lesson, :counter
   end
 
-  context "given multiple visit records" do
+  fast_context "given multiple visit records" do
     setup do
       @lesson = Factory.create(:lesson)
       @visit1 = Factory.create(:lesson_visit)
@@ -40,7 +41,7 @@ class LessonBuyPatternTest < ActiveSupport::TestCase
       assert_equal 1, @pattern5.counter
     end
 
-    context "with existing buy pattern records" do
+    fast_context "with existing buy pattern records" do
       setup do
         @visit6 = Factory.create(:lesson_visit, :lesson => @visit4.lesson, :session_id => '2342')
         @visit7 = Factory.create(:lesson_visit, :lesson => @visit5.lesson, :session_id => '2342',

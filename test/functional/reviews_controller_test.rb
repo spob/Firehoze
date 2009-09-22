@@ -1,15 +1,16 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class ReviewsControllerTest < ActionController::TestCase
 
-  context "when logged on" do
+  fast_context "when logged on" do
     setup do
       activate_authlogic
       @user = Factory(:user)
       UserSession.create @user
     end
 
-    context "with a lesson defined" do
+    fast_context "with a lesson defined" do
       setup do
         @lesson = Factory.create(:lesson)
         @user.credits.create!(:price => 0.99, :lesson => @lesson, :acquired_at => Time.now,
@@ -17,7 +18,7 @@ class ReviewsControllerTest < ActionController::TestCase
         assert @user.owns_lesson?(@lesson)
       end
 
-      context "on POST to :create when not yet rated" do
+      fast_context "on POST to :create when not yet rated" do
         setup do
           @new_review_attrs = Factory.attributes_for(:review)
           post :create, :review => @new_review_attrs, :lesson_id => @lesson
@@ -29,7 +30,7 @@ class ReviewsControllerTest < ActionController::TestCase
       end
 
 
-      context "on GET to :new" do
+      fast_context "on GET to :new" do
         setup { get :new, :lesson_id => @lesson }
 
         should_assign_to :review
@@ -39,7 +40,7 @@ class ReviewsControllerTest < ActionController::TestCase
         should_render_template "new"
       end
 
-      context "which the user has already rated" do
+      fast_context "which the user has already rated" do
         setup do
           assert @lesson.rates.empty?
           @rate = @lesson.rates.create!(:user_id => @user.id)
@@ -49,7 +50,7 @@ class ReviewsControllerTest < ActionController::TestCase
           assert_equal @user, @lesson.rates.first.user
         end
 
-        context "on GET to :index" do
+        fast_context "on GET to :index" do
           setup { get :index, :lesson_id => @lesson }
 
           should_assign_to :reviews
@@ -59,7 +60,7 @@ class ReviewsControllerTest < ActionController::TestCase
           should_render_template "index"
         end
 
-        context "on POST to :create" do
+        fast_context "on POST to :create" do
           setup do
             @new_review_attrs = Factory.attributes_for(:review)
             post :create, :review => @new_review_attrs, :lesson_id => @lesson
@@ -71,7 +72,7 @@ class ReviewsControllerTest < ActionController::TestCase
           should_redirect_to("Reviews index page") { lesson_reviews_url(@lesson) }
         end
 
-        context "on GET to :new when already reviewed" do
+        fast_context "on GET to :new when already reviewed" do
           setup do
             @lesson2 = Factory.create(:lesson)
             @credit = Factory.create(:credit, :user => @user, :lesson => @lesson2)
@@ -92,7 +93,7 @@ class ReviewsControllerTest < ActionController::TestCase
           should_redirect_to("Reviews index page") { lesson_reviews_url(@credit.lesson) }
         end
 
-        context "on GET to :new when not owned" do
+        fast_context "on GET to :new when not owned" do
           setup do
             @lesson2 = Factory.create(:lesson)
             get :new, :lesson_id => @lesson2
@@ -105,7 +106,7 @@ class ReviewsControllerTest < ActionController::TestCase
           should_redirect_to("Reviews index page") { lesson_reviews_url(@lesson2) }
         end
 
-        context "on GET to :show with a rejected review" do
+        fast_context "on GET to :show with a rejected review" do
           setup do
             @review = Factory.create(:review, :user => @user, :lesson => @lesson)
             @review.update_attribute(:status, REVIEW_STATUS_REJECTED)
@@ -117,13 +118,13 @@ class ReviewsControllerTest < ActionController::TestCase
           should_set_the_flash_to /not available/
         end
 
-        context "with moderator access" do
+        fast_context "with moderator access" do
           setup do
             @user.has_role 'moderator'
             assert @user.is_moderator?
           end
 
-          context "on GET to :edit" do
+          fast_context "on GET to :edit" do
             setup do
               @review = Factory.create(:review, :user => @user, :lesson => @lesson)
               get :edit, :id => @review
@@ -135,7 +136,7 @@ class ReviewsControllerTest < ActionController::TestCase
             should_render_template "edit"
           end
 
-          context "on PUT to :update" do
+          fast_context "on PUT to :update" do
             setup do
               @review = Factory.create(:review, :user => @user, :lesson => @lesson)
               put :update, :id => @review, :lesson => @review.lesson
@@ -147,7 +148,7 @@ class ReviewsControllerTest < ActionController::TestCase
             should_redirect_to("Reviews index page") { review_path(@review) }
           end
 
-          context "on GET to :show" do
+          fast_context "on GET to :show" do
             setup do
               @review = Factory.create(:review, :user => @user, :lesson => @lesson)
               get :show, :id => @review
@@ -160,12 +161,12 @@ class ReviewsControllerTest < ActionController::TestCase
           end
         end
 
-        context "without moderator access" do
+        fast_context "without moderator access" do
           setup do
             @user.has_no_role 'moderator'
           end
 
-          context "on GET to :edit" do
+          fast_context "on GET to :edit" do
             setup do
               assert !@user.is_moderator?
               @review = Factory.create(:review, :user => @user, :lesson => @lesson)
@@ -179,7 +180,7 @@ class ReviewsControllerTest < ActionController::TestCase
             should_redirect_to("Lessons index") { lessons_path }
           end
 
-          context "on PUT to :update" do
+          fast_context "on PUT to :update" do
             setup do
               @review = Factory.create(:review, :user => @user, :lesson => @lesson)
               assert @user.owns_lesson?(@lesson)

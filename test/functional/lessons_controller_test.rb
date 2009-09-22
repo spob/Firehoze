@@ -1,10 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class LessonsControllerTest < ActionController::TestCase
 
-  context "while not logged in" do
+  fast_context "while not logged in" do
 
-    context "on GET to :index" do
+    fast_context "on GET to :index" do
       setup { get :index }
 
       should_assign_to :lessons
@@ -13,7 +14,7 @@ class LessonsControllerTest < ActionController::TestCase
       should_render_template "index"
     end
 
-    context "on GET to :show in a not-ready state" do
+    fast_context "on GET to :show in a not-ready state" do
       setup do
         assert LessonVisit.all.empty?
         @lesson = Factory.create(:lesson)
@@ -29,7 +30,7 @@ class LessonsControllerTest < ActionController::TestCase
       end
     end
 
-    context "on GET to :show with a lesson in the ready state" do
+    fast_context "on GET to :show with a lesson in the ready state" do
       setup do
         assert LessonVisit.all.empty?
         @lesson = Factory.create(:lesson)
@@ -47,7 +48,7 @@ class LessonsControllerTest < ActionController::TestCase
       end
     end
 
-    context "on GET to :new when not an instructor" do
+    fast_context "on GET to :new when not an instructor" do
       setup { get :new }
 
       should_not_assign_to :lesson
@@ -57,20 +58,20 @@ class LessonsControllerTest < ActionController::TestCase
     end
   end
 
-  context "when logged in" do
+  fast_context "when logged in" do
     setup do
       activate_authlogic
       @user = Factory(:user)
       UserSession.create @user
     end
 
-    context "on GET to :index" do
+    fast_context "on GET to :index" do
       setup { get :index }
       should_respond_with :redirect
       should_redirect_to("home page") { home_path }
     end
 
-    context "on GET to :new when not an instructor" do
+    fast_context "on GET to :new when not an instructor" do
       setup { get :new }
 
       should_not_assign_to :lesson
@@ -79,13 +80,13 @@ class LessonsControllerTest < ActionController::TestCase
       should_redirect_to("first wizard step") {instructor_signup_wizard_account_path(@user) }
     end
 
-    context "when an instructor" do
+    fast_context "when an instructor" do
       setup do
         set_instructor
         assert @user.verified_instructor?
       end
 
-      context "on GET to :new" do
+      fast_context "on GET to :new" do
         setup { get :new }
 
         should_assign_to :lesson
@@ -96,7 +97,7 @@ class LessonsControllerTest < ActionController::TestCase
     end
 
     # Don't know how to mock this up with a paperclip file attachment'
-    #context "on POST to :create" do
+    #fast_context "on POST to :create" do
     #setup do
     #  post :create, :lesson => Factory.attributes_for(:lesson)
     #end
@@ -107,7 +108,7 @@ class LessonsControllerTest < ActionController::TestCase
     #should_redirect_to("lessons index page") { lesson_url(assigns(:lesson)) }
     #end
 
-    context "on POST to :create with bad values" do
+    fast_context "on POST to :create with bad values" do
       setup do
         set_instructor
         assert @user.verified_instructor?
@@ -119,7 +120,7 @@ class LessonsControllerTest < ActionController::TestCase
       should_not_set_the_flash
     end
 
-    context "with at least one existing lesson" do
+    fast_context "with at least one existing lesson" do
       setup do
         Factory.create(:user)
         @lesson = Factory.create(:lesson)
@@ -130,10 +131,10 @@ class LessonsControllerTest < ActionController::TestCase
         assert @lesson.original_video
       end
 
-      context "as a moderator" do
+      fast_context "as a moderator" do
         setup { @user.has_role 'moderator'}
 
-        context "on POST to :unreject" do
+        fast_context "on POST to :unreject" do
           setup do
             @status = @lesson.status
             assert @lesson
@@ -150,10 +151,10 @@ class LessonsControllerTest < ActionController::TestCase
           end
         end
 
-        context "with lesson in rejected status" do
+        fast_context "with lesson in rejected status" do
           setup { @lesson.update_attribute(:status, LESSON_STATUS_REJECTED) }
 
-          context "on POST to :unreject" do
+          fast_context "on POST to :unreject" do
             setup do
               @status = @lesson.status
               post :unreject, :id => @lesson.id
@@ -171,8 +172,8 @@ class LessonsControllerTest < ActionController::TestCase
         end
       end
 
-      context "and not an admin" do
-        context "on POST to :convert" do
+      fast_context "and not an admin" do
+        fast_context "on POST to :convert" do
           setup { post :convert, :id => @lesson }
 
           should_not_assign_to :lesson
@@ -181,12 +182,12 @@ class LessonsControllerTest < ActionController::TestCase
         end
       end
 
-      context "with admin access" do
+      fast_context "with admin access" do
         setup do
           @user.has_role 'admin'
         end
 
-        context "on POST to :convert" do
+        fast_context "on POST to :convert" do
           setup { post :convert, :id => @lesson }
 
           should_assign_to :lesson
@@ -194,7 +195,7 @@ class LessonsControllerTest < ActionController::TestCase
           should_set_the_flash_to /Video conversion started/
         end
 
-        context "on GET to :list_admin" do
+        fast_context "on GET to :list_admin" do
           setup { post :list_admin }
 
           should_assign_to :lessons
@@ -203,7 +204,7 @@ class LessonsControllerTest < ActionController::TestCase
         end
       end
 
-      context "on GET to :edit" do
+      fast_context "on GET to :edit" do
         setup { get :edit, :id => @lesson }
         should_assign_to :lesson
         should_respond_with :success
@@ -211,7 +212,7 @@ class LessonsControllerTest < ActionController::TestCase
         should_render_template "edit"
       end
 
-      context "on PUT to :update" do
+      fast_context "on PUT to :update" do
         setup { put :update, :id => @lesson.id, :lesson => Factory.attributes_for(:lesson) }
 
         should_set_the_flash_to :lesson_updated
@@ -220,7 +221,7 @@ class LessonsControllerTest < ActionController::TestCase
         should_redirect_to("lesson page") { lesson_path(@lesson) }
       end
 
-      context "on PUT to :update with bad values" do
+      fast_context "on PUT to :update with bad values" do
         setup { put :update, :id => @lesson.id, :lesson => Factory.attributes_for(:lesson, :title => "") }
 
         should_not_set_the_flash
@@ -229,20 +230,20 @@ class LessonsControllerTest < ActionController::TestCase
         should_render_template :edit
       end
 
-      context "which was authored by a different user" do
+      fast_context "which was authored by a different user" do
         setup do
           @lesson.instructor = Factory.create(:user, :email => 'some@other.com')
           @lesson.save!
         end
 
-        context "on GET to :edit" do
+        fast_context "on GET to :edit" do
           setup { get :edit, :id => @lesson }
           should_assign_to :lesson
           should_redirect_to("lesson page") { lesson_path(@lesson) }
           should_set_the_flash_to /do not have access/
         end
 
-        context "on PUT to :update" do
+        fast_context "on PUT to :update" do
           setup { put :update, :id => @lesson.id, :lesson => Factory.attributes_for(:lesson) }
           should_assign_to :lesson
           should_redirect_to("lesson page") { lesson_path(@lesson) }
@@ -250,7 +251,7 @@ class LessonsControllerTest < ActionController::TestCase
         end
       end
     end
-    context "with a lesson with free credits" do
+    fast_context "with a lesson with free credits" do
       setup do
         @sku = Factory.create(:credit_sku, :sku => FREE_CREDIT_SKU)
         @lesson = Factory.create(:lesson, :initial_free_download_count => 5)
@@ -273,12 +274,12 @@ class LessonsControllerTest < ActionController::TestCase
       end
     end
 
-    context "with a lesson" do
+    fast_context "with a lesson" do
       setup do
         @lesson = Factory.create(:lesson)
       end
 
-      context "which the user already owns" do
+      fast_context "which the user already owns" do
         setup do
           @lesson.update_attribute(:status, LESSON_STATUS_READY)
           @lesson = assign_video(@lesson)
@@ -295,7 +296,7 @@ class LessonsControllerTest < ActionController::TestCase
         should_render_template "show"
       end
 
-      context "for which the user is the instructor" do
+      fast_context "for which the user is the instructor" do
         setup do
           @lesson.update_attribute(:status, LESSON_STATUS_READY)
           @lesson = assign_video(@lesson)
@@ -310,7 +311,7 @@ class LessonsControllerTest < ActionController::TestCase
         should_render_template "show"
       end
 
-      context "with no available credits" do
+      fast_context "with no available credits" do
         setup do
           @lesson.update_attribute(:status, LESSON_STATUS_READY)
           get :watch, :id => @lesson
@@ -320,7 +321,7 @@ class LessonsControllerTest < ActionController::TestCase
         should_redirect_to("online store") { store_path(1) }
       end
 
-      context "with available credits" do
+      fast_context "with available credits" do
         setup do
           @user.credits.create!(:price => 0.99)
           assert !@user.available_credits.empty?
@@ -335,7 +336,7 @@ class LessonsControllerTest < ActionController::TestCase
         should_redirect_to("redeem credit confirmation screen") { new_acquire_lesson_path(:id => @lesson) }
       end
 
-      context "and credit is not ready" do
+      fast_context "and credit is not ready" do
         setup do
           get :watch, :id => @lesson
         end

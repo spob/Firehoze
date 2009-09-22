@@ -1,8 +1,9 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class ReviewTest < ActiveSupport::TestCase
 
-  context "given a user and a credit" do
+  fast_context "given a user and a credit" do
     setup do
       @user = Factory.create(:user)
       @lesson = Factory.create(:lesson)
@@ -10,7 +11,7 @@ class ReviewTest < ActiveSupport::TestCase
                             :line_item => Factory.create(:line_item))
     end
 
-    context "and a review with no rating" do
+    fast_context "and a review with no rating" do
       setup do
         @review = Factory.build(:review, :user => @user, :lesson => @lesson)
       end
@@ -21,6 +22,7 @@ class ReviewTest < ActiveSupport::TestCase
       end
     end
 
+    # cannot use fast_context
     context "given an existing review" do
       setup do
         @rate = @lesson.rates.create!
@@ -51,7 +53,7 @@ class ReviewTest < ActiveSupport::TestCase
         assert_nil @review.helpful?(Factory.create(:user))
       end
 
-      context "when rejecting" do
+      fast_context "when rejecting" do
         setup do
           assert_equal @review.status, REVIEW_STATUS_ACTIVE
           @review.reject
@@ -63,7 +65,7 @@ class ReviewTest < ActiveSupport::TestCase
         end
       end
 
-      context "that was marked as helpful by a user" do
+      fast_context "that was marked as helpful by a user" do
         setup do
           @user2 = Factory.create(:user)
           @review.helpfuls.create!(:user => @user2, :helpful => true)
@@ -73,7 +75,7 @@ class ReviewTest < ActiveSupport::TestCase
           assert @review.helpful?(@user2)
         end
 
-        context "that was marked as not helpful by a user" do
+        fast_context "that was marked as not helpful by a user" do
           setup do
             @user2 = Factory.create(:user)
             @review.helpfuls.create(:user => @user2, :helpful => false)
@@ -86,7 +88,7 @@ class ReviewTest < ActiveSupport::TestCase
       end
     end
 
-    context "give a lesson and user" do
+   fast_context "give a lesson and user" do
       setup do
         @user = Factory.create(:user)
         @lesson = Factory.create(:lesson, :instructor => @user)

@@ -1,8 +1,9 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class AccountsControllerTest < ActionController::TestCase
 
-  context "when logged on" do
+  fast_context "when logged on" do
     setup do
       activate_authlogic
       @user = Factory.create(:user)
@@ -12,7 +13,7 @@ class AccountsControllerTest < ActionController::TestCase
       @payment_level2 = Factory.create(:payment_level, :code => "xxx", :default_payment_level => false)
     end
 
-    context "on GET to :show" do
+    fast_context "on GET to :show" do
       setup { get :show, :id => @user }
 
       should_assign_to :user
@@ -21,7 +22,7 @@ class AccountsControllerTest < ActionController::TestCase
       should_render_template "show"
     end
 
-    context "on POST to clear_avatar" do
+    fast_context "on POST to clear_avatar" do
       setup { post :clear_avatar, :id => @user }
 
       should_assign_to :user
@@ -30,7 +31,7 @@ class AccountsControllerTest < ActionController::TestCase
       should_redirect_to("edit account page") { edit_account_path(assigns(:user)) }
     end
 
-    context "on GET to :edit" do
+    fast_context "on GET to :edit" do
       setup { get :edit, :id => Factory(:user).id }
 
       should_assign_to :user
@@ -39,7 +40,7 @@ class AccountsControllerTest < ActionController::TestCase
       should_render_template "edit"
     end
 
-    context "on PUT to :update" do
+    fast_context "on PUT to :update" do
       setup { put :update, :id => @user, :user => Factory.attributes_for(:user) }
 
       should_assign_to :user
@@ -48,7 +49,7 @@ class AccountsControllerTest < ActionController::TestCase
       should_redirect_to("edit account page") { edit_account_path(assigns(:user)) }
     end
 
-    context "on PUT to :update_privacy" do
+    fast_context "on PUT to :update_privacy" do
       setup do
         assert !@user.show_real_name
         put :update_privacy, :id => @user, :user => { :show_real_name => true }
@@ -64,7 +65,7 @@ class AccountsControllerTest < ActionController::TestCase
       end
     end
 
-    context "on PUT to :update with bad value" do
+    fast_context "on PUT to :update with bad value" do
       setup { put :update, :id => @user, :user => Factory.attributes_for(:user, :last_name => "") }
 
       should_assign_to :user
@@ -73,7 +74,7 @@ class AccountsControllerTest < ActionController::TestCase
       should_redirect_to("edit account screen") { edit_account_path(assigns(:user)) }
     end
 
-    context "on GET to :instructor_signup_wizard" do
+    fast_context "on GET to :instructor_signup_wizard" do
       setup { get :instructor_signup_wizard, :id => @user }
 
       should_assign_to :user
@@ -82,7 +83,7 @@ class AccountsControllerTest < ActionController::TestCase
       should_redirect_to("first wizard step") {instructor_wizard_step1_account_path(assigns(:user)) }
     end
 
-    context "on PUT to :update_instructor_wizard" do
+    fast_context "on PUT to :update_instructor_wizard" do
       setup { put :update_instructor_wizard, :id => @user, :step => 1, :accept_agreement => 1  }
 
       should_assign_to :user
@@ -91,7 +92,7 @@ class AccountsControllerTest < ActionController::TestCase
       should_redirect_to("second wizard step") {instructor_wizard_step2_account_path(assigns(:user)) }
     end
 
-    context "on GET to :instructor_wizard_step2 when jumping ahead" do
+    fast_context "on GET to :instructor_wizard_step2 when jumping ahead" do
       setup { get :instructor_wizard_step2, :id => @user }
 
       should_assign_to :user
@@ -100,12 +101,12 @@ class AccountsControllerTest < ActionController::TestCase
       should_redirect_to("first wizard step") {instructor_wizard_step1_account_path(assigns(:user)) }
     end
 
-    context "when having accepted user agreement" do
+    fast_context "when having accepted user agreement" do
       setup do
         @user.update_attribute(:author_agreement_accepted_on, Time.now)
       end
 
-      context "on GET to :instructor_signup_wizard" do
+      fast_context "on GET to :instructor_signup_wizard" do
         setup { get :instructor_signup_wizard, :id => @user }
 
         should_assign_to :user
@@ -114,7 +115,7 @@ class AccountsControllerTest < ActionController::TestCase
         should_redirect_to("first wizard step") {instructor_wizard_step2_account_path(assigns(:user)) }
       end
 
-      context "on GET to :instructor_wizard_step3 when jumping ahead" do
+      fast_context "on GET to :instructor_wizard_step3 when jumping ahead" do
         setup { get :instructor_wizard_step3, :id => @user }
 
         should_assign_to :user
@@ -123,7 +124,7 @@ class AccountsControllerTest < ActionController::TestCase
         should_redirect_to("second wizard step") {instructor_wizard_step2_account_path(assigns(:user)) }
       end
 
-      context "on PUT to :update_instructor_wizard" do
+      fast_context "on PUT to :update_instructor_wizard" do
         setup { put :update_instructor_wizard, :id => @user, :step => 2, :user => { :payment_level => PaymentLevel.first }  }
 
         should_assign_to :user
@@ -132,12 +133,12 @@ class AccountsControllerTest < ActionController::TestCase
         should_redirect_to("third wizard step") {instructor_wizard_step3_account_path(assigns(:user)) }
       end
 
-      context "when having selected payment level" do
+      fast_context "when having selected payment level" do
         setup do
           @user.update_attribute(:payment_level, PaymentLevel.first)
         end
 
-        context "on GET to :instructor_signup_wizard" do
+        fast_context "on GET to :instructor_signup_wizard" do
           setup { get :instructor_signup_wizard, :id => @user }
 
           should_assign_to :user
@@ -146,7 +147,7 @@ class AccountsControllerTest < ActionController::TestCase
           should_redirect_to("first wizard step") {instructor_wizard_step3_account_path(assigns(:user)) }
         end
 
-        context "on GET to :instructor_wizard_step4 when jumping ahead" do
+        fast_context "on GET to :instructor_wizard_step4 when jumping ahead" do
           setup { get :instructor_wizard_step4, :id => @user }
 
           should_assign_to :user
@@ -155,7 +156,7 @@ class AccountsControllerTest < ActionController::TestCase
           should_redirect_to("second wizard step") {instructor_wizard_step3_account_path(assigns(:user)) }
         end
 
-        context "on PUT to :update_instructor_wizard" do
+        fast_context "on PUT to :update_instructor_wizard" do
           setup { put :update_instructor_wizard, :id => @user, :step => 3,
                       :user => { :address1 => "aaa", :city => "yyy", :state => "XX", :postal_code => "99999",
                                  :country => "US" }  }
@@ -177,7 +178,7 @@ class AccountsControllerTest < ActionController::TestCase
             assert @user.address_provided?
           end
 
-          context "on GET to :instructor_signup_wizard" do
+          fast_context "on GET to :instructor_signup_wizard" do
             setup { get :instructor_signup_wizard, :id => @user }
 
             should_assign_to :user
@@ -186,7 +187,7 @@ class AccountsControllerTest < ActionController::TestCase
             should_redirect_to("fourth wizard step") {instructor_wizard_step4_account_path(assigns(:user)) }
           end
 
-          context "on GET to :instructor_wizard_step4 when jumping ahead" do
+          fast_context "on GET to :instructor_wizard_step4 when jumping ahead" do
             setup { get :instructor_wizard_step5, :id => @user }
 
             should_assign_to :user
@@ -195,7 +196,7 @@ class AccountsControllerTest < ActionController::TestCase
             should_redirect_to("fourth wizard step") {instructor_wizard_step4_account_path(assigns(:user)) }
           end
 
-          context "on PUT to :update_instructor_wizard" do
+          fast_context "on PUT to :update_instructor_wizard" do
             setup do
               put :update_instructor_wizard, :id => @user, :step => 4,
                   :confirm_contact => 1
@@ -211,7 +212,7 @@ class AccountsControllerTest < ActionController::TestCase
             end
           end
 
-          context "on PUT to :update_instructor with no change" do
+          fast_context "on PUT to :update_instructor with no change" do
             setup do
               @user.update_attribute(:verified_address_on, Time.now)
               put :update_instructor, :id => @user, :step => 3,
@@ -233,7 +234,7 @@ class AccountsControllerTest < ActionController::TestCase
             end
           end
 
-          context "on PUT to :update_instructor with a change" do
+          fast_context "on PUT to :update_instructor with a change" do
             setup do
               @user.update_attribute(:verified_address_on, Time.now)
               put :update_instructor, :id => @user, :step => 3,
@@ -255,7 +256,7 @@ class AccountsControllerTest < ActionController::TestCase
             end
           end
 
-          context "when having confirmed the address" do
+          fast_context "when having confirmed the address" do
             setup do
               @user.verified_address_on = Time.now
               @user.save!

@@ -1,14 +1,15 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class CreditSkuTest < ActiveSupport::TestCase
-  context "give a sku for multiple credits" do
+  fast_context "give a sku for multiple credits" do
     setup do
       @sku = Factory.create(:credit_sku, :price => 9, :num_credits => 10)
     end
 
     should_have_many :credits
 
-    context "when executing an order for the sku" do
+    fast_context "when executing an order for the sku" do
       setup { @user = Factory.create(:user) }
 
       should "generates credits for the user" do
@@ -20,7 +21,7 @@ class CreditSkuTest < ActiveSupport::TestCase
     end
   end
 
-  context "given an existing record" do
+  fast_context "given an existing record" do
     setup { Factory.create(:credit_sku) }
 
     should_validate_presence_of      :price, :num_credits
@@ -39,7 +40,7 @@ class CreditSkuTest < ActiveSupport::TestCase
             :message => I18n.translate('activerecord.errors.messages.greater_than', :count => 0)
     should_have_many :credits
 
-    context "and a couple more sku's" do
+    fast_context "and a couple more sku's" do
       setup do
         Factory.create(:credit_sku, :num_credits => 5)
         Factory.create(:credit_sku, :num_credits => 10)

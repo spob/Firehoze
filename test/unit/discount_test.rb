@@ -1,4 +1,5 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class DiscountTest < ActiveSupport::TestCase
   context "given an existing record" do
@@ -17,13 +18,13 @@ class DiscountTest < ActiveSupport::TestCase
       assert_equal 1, Discount.list(@discount.sku, 1).size
     end
 
-    context "not referenced by line items" do
+    fast_context "not referenced by line items" do
       should "allow delete" do
         assert @discount.can_delete?
       end
     end
 
-    context "referenced by line items" do
+    fast_context "referenced by line items" do
       setup do
         @li = Factory.create(:line_item, :quantity => 20, :sku => @discount.sku)
       end

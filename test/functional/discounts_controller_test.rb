@@ -1,25 +1,26 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class DiscountsControllerTest < ActionController::TestCase
 
-  context "when logged on" do
+  fast_context "when logged on" do
     setup do
       activate_authlogic
       @user = Factory(:user)
       UserSession.create @user
     end
 
-    context "with a sku defined" do
+    fast_context "with a sku defined" do
       setup { @sku = Factory.create(:credit_sku) }
 
-      context "and a range of discounts" do
+      fast_context "and a range of discounts" do
         setup do
           @discount5 = Factory.create(:discount_by_volume, :minimum_quantity => 5, :percent_discount => 0.05, :sku => @sku)
           @discount10 = Factory.create(:discount_by_volume, :minimum_quantity => 10, :percent_discount => 0.10, :sku => @sku)
           @discount20 = Factory.create(:discount_by_volume, :minimum_quantity => 20, :percent_discount => 0.20, :sku => @sku)
         end
 
-        context "without admin access" do
+        fast_context "without admin access" do
           context "on GET to :index" do
             setup { get :index, :sku_id => @sku }
 
@@ -29,13 +30,13 @@ class DiscountsControllerTest < ActionController::TestCase
           end
         end
 
-        context "with admin access" do
+        fast_context "with admin access" do
           setup do
             @user.has_role 'admin'
             @sku = Factory.create(:credit_sku)
           end
 
-          context "on GET to :index" do
+          fast_context "on GET to :index" do
             setup { get :index, :sku_id => @sku }
 
             should_assign_to :discounts
@@ -44,7 +45,7 @@ class DiscountsControllerTest < ActionController::TestCase
             should_render_template "index"
           end
 
-          context "on GET to :new" do
+          fast_context "on GET to :new" do
             setup { get :new, :sku_id => @sku }
 
             should_assign_to :discount
@@ -53,7 +54,7 @@ class DiscountsControllerTest < ActionController::TestCase
             should_render_template "new"
           end
 
-          context "on POST to :create" do
+          fast_context "on POST to :create" do
             setup do
               discount_attrs = Factory.attributes_for(:discount_by_volume).merge!(:type => 'DiscountByVolume')
               post :create, :discount => discount_attrs, :sku_id => @sku
@@ -65,7 +66,7 @@ class DiscountsControllerTest < ActionController::TestCase
             should_redirect_to("Discounts index page") { sku_discounts_url(@sku) }
           end
 
-          context "on POST to :create with bad value" do
+          fast_context "on POST to :create with bad value" do
             setup do
               discount_attrs = Factory.attributes_for(:discount_by_volume,
                                                       :minimum_quantity => -1).merge!(:type => 'DiscountByVolume')
@@ -77,7 +78,7 @@ class DiscountsControllerTest < ActionController::TestCase
             should_not_set_the_flash
           end
 
-          context "on GET to :edit" do
+          fast_context "on GET to :edit" do
             setup { get :edit, :id => @discount5 }
 
             should_assign_to :discount
@@ -86,7 +87,7 @@ class DiscountsControllerTest < ActionController::TestCase
             should_render_template "edit"
           end
 
-          context "on PUT to :update" do
+          fast_context "on PUT to :update" do
             setup { put :update, :id => @discount5, :discount => @discount5.attributes }
 
             should_set_the_flash_to /Successfully updated discount/
@@ -95,7 +96,7 @@ class DiscountsControllerTest < ActionController::TestCase
             should_redirect_to("Discounts index page") { sku_discounts_url(@discount5.sku) }
           end
 
-          context "on PUT to :update with bad value" do
+          fast_context "on PUT to :update with bad value" do
             setup do
               @discount5.update_attribute(:minimum_quantity, -1)
               put :update, :id => @discount5, :discount => @discount5.attributes
@@ -106,7 +107,7 @@ class DiscountsControllerTest < ActionController::TestCase
             should_render_template('edit')
           end
 
-          context "on DELETE to :destroy" do
+          fast_context "on DELETE to :destroy" do
             setup { delete :destroy, :id => @discount5 }
 
             should_set_the_flash_to /Successfully destroyed discount/

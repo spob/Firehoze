@@ -1,7 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class AdminConsolesControllerTest < ActionController::TestCase
-  context "when logged in" do
+  fast_context "when logged in" do
     setup do
       activate_authlogic
       @user = Factory(:user)
@@ -9,7 +10,7 @@ class AdminConsolesControllerTest < ActionController::TestCase
       UserSession.create @user
     end
 
-    context "on GET to :index" do
+    fast_context "on GET to :index" do
       setup { get :index }
 
       should_respond_with :redirect
@@ -17,7 +18,7 @@ class AdminConsolesControllerTest < ActionController::TestCase
       should_redirect_to("home page")  { list_users_path }
     end
 
-    context "as an admin" do
+    fast_context "as an admin" do
       setup { @user.is_admin }
 
       context "on GET to :index" do
@@ -29,7 +30,7 @@ class AdminConsolesControllerTest < ActionController::TestCase
       end
     end
 
-    context "as an moderator" do
+    fast_context "as an moderator" do
       setup { @user.is_moderator }
 
       context "on GET to :index" do
@@ -41,7 +42,7 @@ class AdminConsolesControllerTest < ActionController::TestCase
       end
     end
 
-    context "as a payment mgr" do
+    fast_context "as a payment mgr" do
       setup { @user.is_paymentmgr }
 
       context "on GET to :index" do

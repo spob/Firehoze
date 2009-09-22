@@ -1,14 +1,15 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class LessonCommentTest < ActiveSupport::TestCase
-  context "given an existing record for a lesson comment" do
+  fast_context "given an existing record for a lesson comment" do
     setup { @lesson_comment = Factory.create(:lesson_comment) }
 
     should_belong_to :lesson
     should_validate_presence_of      :lesson
     should_have_many :flags
 
-    context "and another private record" do
+    fast_context "and another private record" do
       setup do
         assert !@lesson_comment.nil?
         assert !@lesson_comment.lesson.nil?
@@ -33,7 +34,7 @@ class LessonCommentTest < ActiveSupport::TestCase
         assert_equal 1, LessonComment.list_count(@lesson_comment.lesson, nil)
       end
 
-      context "and a user who is a moderator" do
+      fast_context "and a user who is a moderator" do
         setup { @user.is_moderator }
 
         should "retrieve public and private records" do
@@ -47,7 +48,7 @@ class LessonCommentTest < ActiveSupport::TestCase
         end
       end
 
-      context "and one more comment which is public" do
+      fast_context "and one more comment which is public" do
         setup do
           @nobody_user = Factory.create(:user)
           assert !@nobody_user.is_moderator?
@@ -62,15 +63,15 @@ class LessonCommentTest < ActiveSupport::TestCase
     end
   end
 
-  context "testing whether to show or hide public/private comments" do
-    context "with a user" do
+  fast_context "testing whether to show or hide public/private comments" do
+    fast_context "with a user" do
       setup { @user = Factory.create(:user) }
 
       should "not see the option" do
         assert !LessonComment.show_public_private_option?(@user)
       end
 
-      context "who is an admin" do
+      fast_context "who is an admin" do
         setup { @user.is_admin }
 
         should "see the option" do
@@ -78,7 +79,7 @@ class LessonCommentTest < ActiveSupport::TestCase
         end
       end
 
-      context "who is a moderator" do
+      fast_context "who is a moderator" do
         setup { @user.is_moderator }
 
         should "see the option" do

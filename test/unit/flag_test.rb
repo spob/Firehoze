@@ -1,7 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class FlagTest < ActiveSupport::TestCase
-  context "given an existing record" do
+  fast_context "given an existing record" do
     setup do
       @lesson = Factory.create(:lesson)
       @lesson.flags.create!(:status => FLAG_STATUS_PENDING, :reason_type => "Smut", :comments => "Some comments",
@@ -11,7 +12,7 @@ class FlagTest < ActiveSupport::TestCase
       assert !Flag.pending.empty?
     end
 
-    context "when calling user.has_flaggable?" do
+    fast_context "when calling user.has_flaggable?" do
       should "find flaggable" do
         assert !@lesson.flags.first .nil?
         assert @lesson.flags.first.user.has_flagged?(@lesson)
@@ -19,7 +20,7 @@ class FlagTest < ActiveSupport::TestCase
       end
     end
 
-    context "and invoking the by_flaggable scope" do
+    fast_context "and invoking the by_flaggable scope" do
       should "return rows appropriately" do
         assert !@lesson.flags.first.user.flaggings.empty?
         assert !@lesson.flags.first.user.flaggings.by_flaggable_type(Lesson).empty?

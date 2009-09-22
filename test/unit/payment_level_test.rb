@@ -1,7 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class PaymentLevelTest < ActiveSupport::TestCase
-  context "given a payment level" do
+  fast_context "given a payment level" do
     setup do
       @payment_level = Factory.create(:payment_level, :code => Time.now.to_i.to_s, :default_payment_level => true)
     end
@@ -18,7 +19,7 @@ class PaymentLevelTest < ActiveSupport::TestCase
     should_not_allow_values_for      :rate, 1, 2, :message => I18n.translate('activerecord.errors.messages.less_than', :count => 1)
     should_not_allow_values_for      :rate, "a", :message => I18n.translate('activerecord.errors.messages.not_a_number')
 
-    context "and creating a new default payment level" do
+    fast_context "and creating a new default payment level" do
       setup do
         assert @payment_level.default_payment_level
         @new_payment_level = Factory.build(:payment_level, :name => 'new', :default_payment_level => true)
@@ -34,7 +35,7 @@ class PaymentLevelTest < ActiveSupport::TestCase
       end
     end
 
-    context "and creating a new non-default payment level" do
+    fast_context "and creating a new non-default payment level" do
       setup do
         assert @payment_level.default_payment_level
         @new_payment_level = Factory.build(:payment_level, :name => 'new',

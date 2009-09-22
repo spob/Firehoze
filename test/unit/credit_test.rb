@@ -1,7 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class CreditTest < ActiveSupport::TestCase
-  context "given an existing record" do
+  fast_context "given an existing record" do
     setup { @credit = Factory.create(:credit) }
 
     # acquired_at is set in the callback so can't be tested to fail when nil'
@@ -17,7 +18,7 @@ class CreditTest < ActiveSupport::TestCase
     should_belong_to :sku
     should_belong_to :payment
 
-    context "that has not yet been redeemed" do
+    fast_context "that has not yet been redeemed" do
       setup do
         @credit.update_attributes(:redeemed_at => nil, :lesson => nil)
         @credit = Credit.find(@credit)
@@ -26,7 +27,7 @@ class CreditTest < ActiveSupport::TestCase
         assert @credit.rolled_up_at.nil?
       end
 
-      context "and one that has been redeemed" do
+      fast_context "and one that has been redeemed" do
         setup do
           @lesson = Factory.create(:lesson)
           @credit2 = Factory.create(:credit, :user => @lesson.instructor, :lesson => @lesson)
@@ -52,7 +53,7 @@ class CreditTest < ActiveSupport::TestCase
         assert Credit.used.empty?
       end
 
-      context "with one used credit" do
+      fast_context "with one used credit" do
         setup { @credit2 = Factory.create(:credit) }
 
         should "retrieve one used credit" do
@@ -65,7 +66,7 @@ class CreditTest < ActiveSupport::TestCase
         assert_equal 1, Credit.unwarned.count
       end
 
-      context "but has been warned" do
+      fast_context "but has been warned" do
         setup { Credit.update_all(:expiration_warning_issued_at => Time.zone.now)}
 
         should "retrieve return no rows" do
@@ -74,7 +75,7 @@ class CreditTest < ActiveSupport::TestCase
       end
     end
 
-    context "and a second record ready to be expired" do
+    fast_context "and a second record ready to be expired" do
       setup do
         @credit.update_attributes(:redeemed_at => nil, :lesson => nil)
         @credit = Credit.find(@credit)
@@ -106,7 +107,7 @@ class CreditTest < ActiveSupport::TestCase
         assert_equal 1, Credit.available.to_expire(Time.zone.now).warned(5.days.ago).count
       end
 
-      context "after invoking expire_unused_credits" do
+      fast_context "after invoking expire_unused_credits" do
         setup do
           Credit.expire_unused_credits
           @credit = Credit.find(@credit.id)
@@ -124,7 +125,7 @@ class CreditTest < ActiveSupport::TestCase
     end
   end
 
-  context "given multiple records some of which should be warned" do
+  fast_context "given multiple records some of which should be warned" do
     setup do
       @warning_days = APP_CONFIG['warn_before_credit_expiration_days'].to_i
       # should not get warning since this is redeemed

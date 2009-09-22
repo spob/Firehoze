@@ -1,7 +1,8 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class FreeCreditTest < ActiveSupport::TestCase
-  context "given an existing record" do
+  fast_context "given an existing record" do
     setup { @credit = Factory.create(:free_credit) }
 
     should_belong_to :user
@@ -13,7 +14,7 @@ class FreeCreditTest < ActiveSupport::TestCase
       assert !FreeCredit.available.empty?
     end
 
-    context "that has been redeemed" do
+    fast_context "that has been redeemed" do
       setup { @credit.update_attribute(:redeemed_at, Time.now) }
 
       should "retrieve no rows" do

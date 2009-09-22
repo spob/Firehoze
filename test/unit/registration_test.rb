@@ -1,8 +1,9 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class RegistrationTest < ActiveSupport::TestCase
 
-  context "Computing hashes" do
+  fast_context "Computing hashes" do
     setup do
       @hash1 =  Registration.formatted_hash("test@example.com")
       @hash2 =  Registration.formatted_hash("test@example.com", "xxx", "yyy")
