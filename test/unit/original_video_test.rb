@@ -20,4 +20,5 @@ class OriginalVideoTest < ActiveSupport::TestCase
       end
     end
   end
+  subject { @original_video }
 end

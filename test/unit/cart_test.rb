@@ -4,6 +4,7 @@ require 'fast_context'
 class CartTest < ActiveSupport::TestCase
   fast_context "given an existing record for a cart" do
     setup { @cart = Factory.create(:line_item).cart }
+    subject { @cart }
 
     should_belong_to :user
     should_validate_presence_of      :user

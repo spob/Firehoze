@@ -4,6 +4,7 @@ require 'fast_context'
 class LessonBuyPairTest < ActiveSupport::TestCase
   fast_context "given an existing record" do
     setup { @lesson_buy_pair = Factory.create(:lesson_buy_pair) }
+    subject { @lesson_buy_pair }
 
     should_belong_to :lesson, :other_lesson
     should_validate_presence_of :lesson, :other_lesson, :counter

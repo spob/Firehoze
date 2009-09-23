@@ -6,7 +6,8 @@ class PaymentLevelTest < ActiveSupport::TestCase
     setup do
       @payment_level = Factory.create(:payment_level, :code => Time.now.to_i.to_s, :default_payment_level => true)
     end
-
+    subject { @payment_level }
+    
     should_have_many                 :users
     should_validate_presence_of      :rate, :name, :code
     should_validate_uniqueness_of    :name

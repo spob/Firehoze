@@ -16,6 +16,8 @@ class HelpfulTest < ActiveSupport::TestCase
       @helpful = Factory.create(:helpful, :review => @review)
     end
 
+    subject { @helpful }
+
     should_validate_presence_of      :review, :user
     should_belong_to                 :review
     should_belong_to                 :user

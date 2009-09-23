@@ -6,6 +6,8 @@ class LineItemTest < ActiveSupport::TestCase
     setup do
       @line_item = Factory.create(:line_item)
     end
+    subject { @line_item }
+
 
     should_belong_to                 :discount
     should_have_many                 :gift_certificates

@@ -17,6 +17,8 @@ class LessonTest < ActiveSupport::TestCase
     end
   end
 
+  subject { @lesson }
+
   context "given an existing lesson" do
     setup do
       @sku = Factory.create(:credit_sku, :sku => FREE_CREDIT_SKU)

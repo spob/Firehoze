@@ -4,6 +4,7 @@ require 'fast_context'
 class GiftCertificateTest < ActiveSupport::TestCase
   fast_context "given an gift certificate" do
     setup{ @gift_certificate = Factory.create(:gift_certificate) }
+    subject { @gift_certificate }
 
     should_belong_to                 :user
     should_belong_to                 :gift_certificate_sku

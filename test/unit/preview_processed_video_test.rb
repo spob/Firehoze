@@ -4,6 +4,7 @@ require 'fast_context'
 class PreviewProcessedVideoTest < ActiveSupport::TestCase
   fast_context "Given an existing processed video" do
     setup { @processed_video = Factory.create(:ready_preview_processed_video)}
+    subject { @processed_video }
 
     should "populate a video" do
       assert @processed_video

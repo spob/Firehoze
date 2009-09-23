@@ -6,6 +6,8 @@ class UserTest < ActiveSupport::TestCase
 
   fast_context "given an existing record" do
     setup { @user = Factory.create(:user) }
+    subject { @user }
+    
 
     should_validate_uniqueness_of    :email
     should_validate_uniqueness_of    :login

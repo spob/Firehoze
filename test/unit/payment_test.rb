@@ -4,6 +4,7 @@ require 'fast_context'
 class PaymentTest < ActiveSupport::TestCase
   fast_context "given a payment" do
     setup  { @payment = Factory.create(:payment) }
+    subject { @payment }
 
     should_belong_to :user
     should_have_many :credits

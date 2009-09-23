@@ -11,6 +11,7 @@ class ReviewTest < ActiveSupport::TestCase
                             :line_item => Factory.create(:line_item))
     end
 
+
     fast_context "and a review with no rating" do
       setup do
         @review = Factory.build(:review, :user => @user, :lesson => @lesson)
@@ -33,6 +34,7 @@ class ReviewTest < ActiveSupport::TestCase
         @review = Factory.create(:review, :user => @user, :lesson => @lesson)
         assert @user.owns_lesson?(@lesson)
       end
+      subject { @review }
 
       should_belong_to :user
       should_belong_to :lesson

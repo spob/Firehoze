@@ -4,6 +4,7 @@ require 'fast_context'
 class OrderTest < ActiveSupport::TestCase
   context "given an existing order" do
     setup { @order = Factory.create(:order) }
+    subject { @order }
 
     should_belong_to :user
     should_belong_to :cart

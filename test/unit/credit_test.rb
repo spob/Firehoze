@@ -4,7 +4,8 @@ require 'fast_context'
 class CreditTest < ActiveSupport::TestCase
   fast_context "given an existing record" do
     setup { @credit = Factory.create(:credit) }
-
+    subject { @credit }
+    
     # acquired_at is set in the callback so can't be tested to fail when nil'
     should_validate_presence_of      :price, :price
     should_allow_values_for          :price, 0, 1, 22.23

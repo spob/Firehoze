@@ -6,6 +6,7 @@ class SkuTest < ActiveSupport::TestCase
     setup do
       @sku = Factory.create(:credit_sku)
     end
+    subject { @sku }
 
     should_have_many                 :line_items
     should_validate_uniqueness_of    :sku

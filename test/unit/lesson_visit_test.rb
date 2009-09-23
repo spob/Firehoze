@@ -4,6 +4,7 @@ require 'fast_context'
 class LessonVisitTest < ActiveSupport::TestCase
   fast_context "given an existing record" do
     setup { @lesson_visit = Factory.create(:lesson_visit, :purchased_this_visit => true) }
+    subject { @lesson_visit }
 
     should_belong_to :user
     should_belong_to :lesson

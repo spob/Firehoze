@@ -6,6 +6,7 @@ class DiscountTest < ActiveSupport::TestCase
     setup do
       @discount = Factory.create(:discount_by_volume)
     end
+    subject { @discount }
 
     should_have_many                 :line_items
     should_validate_presence_of      :sku

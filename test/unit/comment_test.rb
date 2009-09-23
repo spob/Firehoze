@@ -4,6 +4,7 @@ require 'fast_context'
 class CommentTest < ActiveSupport::TestCase
   fast_context "given an existing record for a comment" do
     setup { @comment = Factory.create(:comment) }
+    subject { @comment }
 
     should_belong_to :user
     should_validate_presence_of      :user, :body
