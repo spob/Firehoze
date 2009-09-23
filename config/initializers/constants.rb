@@ -109,3 +109,6 @@ USER_ALLOW_CONTACT_STUDENTS_ONLY = 'STUDENTS_ONLY'
 AUTHOR_STATUS_NO = "NO"
 AUTHOR_STATUS_INPROGRESS = "INPROGRESS"
 AUTHOR_STATUS_OK = "OK"
+
+# Firehoze Policies
+POLICIES = %w(membership_agreement instructor_agreement content_license_agreement terms_of_use privacy copyright)
