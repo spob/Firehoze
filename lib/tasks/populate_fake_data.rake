@@ -209,6 +209,9 @@ namespace :db do
 
     desc "truncates tables"
     task :truncate => :environment do
+      
+      
+      
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE periodic_jobs;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE free_credits;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
@@ -224,6 +227,7 @@ namespace :db do
       ActiveRecord::Base.connection.execute("DELETE FROM videos WHERE converted_from_video_id IS NOT NULL;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE videos;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_visits;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE discounts;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE skus;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_buy_pairs;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_buy_patterns;")
