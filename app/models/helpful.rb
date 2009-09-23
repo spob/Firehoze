@@ -4,7 +4,7 @@
 class Helpful < ActiveRecord::Base
   belongs_to :user
   belongs_to :review
-  before_create :calculate_review_score
+  after_create :calculate_review_score
 
   validates_presence_of :user, :review
   validate :not_author

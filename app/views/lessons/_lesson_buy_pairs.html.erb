@@ -1,6 +1,6 @@
 <% lesson = object %>
 
-<% unless lesson.lesson_buy_pairs.ready.empty? %>
+<% unless lesson.lesson_buy_pairs.ready.all(:select => ["lesson_buy_pairs.id"]).empty? %>
   <%= javascript 'jquerytools/scrollable.navigator' %>
   <%= stylesheet 'jquerytools/scrollable-buttons', 'jquerytools/scrollable-horizontal', 'jquerytools/scrollable-navigator' %>
   <div class="prepend-top">

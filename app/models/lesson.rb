@@ -179,7 +179,7 @@ END
   end
 
   def owned_by?(user)
-    !self.credits.scoped_by_user_id(user).first.nil?
+    !self.credits.scoped_by_user_id(user).first(:select => [:id]).nil?
   end
 
   def instructed_by?(user)
@@ -193,7 +193,7 @@ END
 
   # Has this user reviewed this lesson already?
   def reviewed_by? user
-    !Review.scoped_by_user_id(user).scoped_by_lesson_id(self).empty?
+    !Review.scoped_by_user_id(user).scoped_by_lesson_id(self).all(:select => [:id]).empty?
   end
 
   def has_free_credits?
