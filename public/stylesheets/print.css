@@ -1,3 +1,4 @@
 #header, #footer, #navigation { display:none; }
 #fdbk_tab { display:none; }
 .printer_friendly_link { display:none; }
+.ui-tabs-nav { display:none; }

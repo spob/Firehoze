@@ -1,0 +1,16 @@
+<h3>Firehoze Policies</h3>
+
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+    <% %w(membership_agreement instructor_agreement content_license_agreement terms_of_use privacy copyright).each do | policy | %>
+      <% if policy == tab or (tab == "policies" and policy == @default_page) %>
+        <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-1"><%= policy.humanize.titleize %></a></li>
+      <% else %>
+        <li class="ui-state-default ui-corner-top"><%= link_to "#{policy.humanize.titleize}", page_path(policy) %></li>
+      <% end %>
+    <% end %>
+  </ul>
+  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-1">
+    <%= render :partial => "pages/policies/#{tab}" %>
+  </div>
+</div>
