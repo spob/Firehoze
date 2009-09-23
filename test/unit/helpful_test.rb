@@ -33,7 +33,7 @@ class HelpfulTest < ActiveSupport::TestCase
       end
     end
 
-    fast_context "and another that is helpful and one that is not" do
+    context "and another that is helpful and one that is not" do
       setup do
         @helpful1 = Factory.create(:helpful, :review => @review)
         @helpful2 = Factory.create(:helpful, :review => @review, :helpful => false)
@@ -45,7 +45,7 @@ class HelpfulTest < ActiveSupport::TestCase
         assert_equal 1, Helpful.helpful_no.size
       end
 
-      fast_context "and testing score" do
+      context "and testing score" do
         setup do
           @review.helpfuls.create!(:helpful => true, :user => Factory.create(:user))
           assert_equal 3, @review.helpfuls.helpful_yes.size
