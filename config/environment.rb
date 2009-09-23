@@ -88,6 +88,9 @@ Rails::Initializer.run do |config|
   # Search Logic
   config.gem "searchlogic"
 
+  # Query optimization
+  #config.gem 'methodmissing-scrooge', :source => "http://gems.github.com"
+
   # Shoulda
   config.gem "thoughtbot-shoulda", :lib => "shoulda", :source => "http://gems.github.com"
 
