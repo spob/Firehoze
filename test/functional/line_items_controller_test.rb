@@ -75,7 +75,7 @@ class LineItemsControllerTest < ActionController::TestCase
       fast_context "on DELETE to :destroy" do
         setup { delete :destroy, :id => @line_item }
 
-        should_change "LineItem.count", :from => 1, :to => 0
+        should_change(:from => 1, :to => 0) {LineItem.count}
         should_respond_with :redirect
         should_set_the_flash_to /removed/
         should_redirect_to("cart page") { '/cart' }
@@ -84,26 +84,26 @@ class LineItemsControllerTest < ActionController::TestCase
       fast_context "on PUT to :update to increment" do
         setup { put :update, :id => @line_item, :qty_change => 1 }
 
-        should_change "LineItem.find(@line_item).quantity", :from => 5, :to => 6
+        should_change(:from => 5, :to => 6) { LineItem.find(@line_item).quantity }
         should_set_the_flash_to /Updated line item/
 
         fast_context "and another PUT to :update to increment" do
           setup { put :update, :id => @line_item, :qty_change => 1 }
 
-          should_change "LineItem.find(@line_item).quantity", :from => 6, :to => 7
+          should_change(:from => 6, :to => 7) { LineItem.find(@line_item).quantity }
           should_set_the_flash_to /Updated line item/
         end
 
         fast_context "and another PUT to :update to decrement" do
           setup { put :update, :id => @line_item, :qty_change => -1 }
 
-          should_change "LineItem.find(@line_item).quantity", :from => 6, :to => 5
+          should_change(:from => 6, :to => 5) { LineItem.find(@line_item).quantity }
           should_set_the_flash_to /Updated line item/
 
           fast_context "and another PUT to :update to decrement" do
             setup { put :update, :id => @line_item, :qty_change => -1 }
 
-            should_not_change "LineItem.find(@line_item).quantity"
+            should_not_change("The line item quantity") { LineItem.find(@line_item).quantity }
             should_set_the_flash_to /You must buy at least/
           end
         end
