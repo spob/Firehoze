@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   acts_as_authorized_user
 
   before_save :persist_user_logon
+  before_validation :strip_fields
 
   acts_as_authentic  do |c|
     c.logged_in_timeout = 30.minutes # log out after 30 minutes of inactivity
@@ -252,6 +253,10 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def strip_fields
+    self.login = self.login.strip if self.login
+  end
 
   def round_to_penny amount
     amount = (amount * 100.0).floor
