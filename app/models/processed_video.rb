@@ -18,7 +18,7 @@ class ProcessedVideo < Video
                              :output_url => output_ftp_path,
                              :output_user => APP_CONFIG[CONFIG_FTP_CDN_USER],
                              :output_password => APP_CONFIG[CONFIG_FTP_CDN_PASSWORD],
-                             #:watermark_url => WATERMARK_URL,
+                             :watermark_url => WATERMARK_URL,
                              :thumbnails_url => thumbnail_s3_path)
     if job.save
       change_status(VIDEO_STATUS_CONVERTING, " (##{job.id})")
