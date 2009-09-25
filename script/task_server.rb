@@ -32,6 +32,16 @@ RAILS_ENV = options[:environment] || 'development'
 
 require File.dirname(__FILE__) + '/../config/environment.rb'
 
+# Load environment-specific values
+path = "#{File.dirname(__FILE__)}/../config/environments/#{RAILS_ENV}.yml"
+if File.exists?(path) && (env_config = YAML.load_file(path))
+  puts "loading: #{path}"
+  APP_CONFIG.merge!(env_config)
+end
+# parse in the Amazon s3 parameters
+s3_path =  "#{File.dirname(__FILE__)}/../config/s3.yml"
+APP_CONFIG.merge!(YAML.load_file(s3_path))
+
 if RAILS_ENV == "development" or RAILS_ENV == "test"
   SLEEP_TIME = 10
 else
