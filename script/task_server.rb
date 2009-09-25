@@ -21,14 +21,16 @@ options = {}
 ARGV.options do |opts|
 
   opts.on( "-e", "--environment ENVIRONMENT", String,
-    "The Rails Environment to run under." ) do |environment|
+           "The Rails Environment to run under." ) do |environment|
     options[:environment] = environment
   end
 
   opts.parse!
 end
 
-RAILS_ENV = options[:environment] || 'development'  
+RAILS_ENV = options[:environment] || 'development'
+
+TaskServerLogger.instance.info("Running in #{RAILS_ENV}")
 
 require File.dirname(__FILE__) + '/../config/environment.rb'
 
