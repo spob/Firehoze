@@ -35,7 +35,7 @@ require File.dirname(__FILE__) + '/../config/environment.rb'
 # Load environment-specific values
 path = "#{File.dirname(__FILE__)}/../config/environments/#{RAILS_ENV}.yml"
 if File.exists?(path) && (env_config = YAML.load_file(path))
-  puts "loading: #{path}"
+  TaskServerLogger.instance.info "loading: #{path}"
   APP_CONFIG.merge!(env_config)
 end
 # parse in the Amazon s3 parameters
