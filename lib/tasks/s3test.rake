@@ -1,7 +1,7 @@
 require 'net/ftp'
 
 namespace :cdn do
-  desc "test stuff"
+  desc "Run in a loop updating an s3 file so that simplecdn can test their cache expiration"
   task :test => :environment do
     for x in 1..999999 do
       s3_connection = RightAws::S3.new(APP_CONFIG[CONFIG_AWS_ACCESS_KEY_ID],
