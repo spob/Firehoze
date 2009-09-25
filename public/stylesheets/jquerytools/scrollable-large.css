@@ -22,10 +22,11 @@
 
 .scrollable #thumbs img.lesson_tn  {
     display:block;
-    margin:auto;
-    border:none;
-    width: 224px;
-    height: 126px; /* 4:3 aspect ratio */
+    width: 146px;
+    height: 110px; /* 4:3 aspect ratio */
+    margin:20px 30px;
+    padding: 5px;
+    border: solid 1px #888;
 }
 
 /* root element for the whole scrollable setup */
