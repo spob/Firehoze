@@ -1,10 +1,12 @@
 # Email notifications
 class Notifier < ActionMailer::Base
-  default_url_options.update :protocol => APP_CONFIG[CONFIG_PROTOCOL]
-  default_url_options.update :host => APP_CONFIG[CONFIG_HOST]
-  default_url_options.update :port => APP_CONFIG[CONFIG_PORT]
+  #default_url_options.update :protocol => APP_CONFIG[CONFIG_PROTOCOL]
+  #default_url_options.update :host => APP_CONFIG[CONFIG_HOST]
+  #default_url_options.update :port => APP_CONFIG[CONFIG_PORT]
 
-#  default_url_options[:host] = "www.braindump.com"
+  default_url_options[:protocol] = APP_CONFIG[CONFIG_PROTOCOL]
+  default_url_options[:host] = APP_CONFIG[CONFIG_HOST]
+  default_url_options[:port] = APP_CONFIG[CONFIG_PORT]
 
   # Sent when a user requests a new password
   def password_reset_instructions(user)
