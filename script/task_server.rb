@@ -30,8 +30,6 @@ end
 
 RAILS_ENV = options[:environment] || 'development'
 
-TaskServerLogger.instance.info("Running in #{RAILS_ENV}")
-
 require File.dirname(__FILE__) + '/../config/environment.rb'
 
 # Load environment-specific values
@@ -49,6 +47,8 @@ if RAILS_ENV == "development" or RAILS_ENV == "test"
 else
   SLEEP_TIME = 30
 end
+
+TaskServerLogger.instance.info("Started in #{RAILS_ENV}")
 
 loop do
   # Find all jobs waiting to run and run them
