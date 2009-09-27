@@ -59,6 +59,10 @@ en:
     update_success: Successfully updated discount
     destroyed_success: Successfully destroyed discount
 
+  category:
+    create_success: Successfully created category
+    delete_success: Successfully deleted {{name}}
+
   flag:
     review: review
     user: user

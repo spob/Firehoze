@@ -17,7 +17,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :acquire_lessons, :only => [ :create, :new ]
   map.resources :admin_consoles, :only => [ :index ]
   map.resources :carts, :only => [ :show ]
-  map.resources :categories, :only => [ :index ]
+  map.resources :categories, :only => [ :index, :create, :destroy ]
   map.resources :contact_users, :only => [ :create, :new ]
   map.resources :credits
   map.resources :flags, :only => [ :new, :create, :index, :show, :update, :edit ]

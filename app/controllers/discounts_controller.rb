@@ -12,7 +12,7 @@ class DiscountsController < ApplicationController
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
-  verify :method => :destroy, :only => [:delete ], :redirect_to => :home_path
+  verify :method => :delete, :only => [:destroy ], :redirect_to => :home_path
   
   def index
     @discounts = Discount.list @sku, params[:page]

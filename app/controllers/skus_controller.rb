@@ -10,7 +10,7 @@ class SkusController < ApplicationController
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
-  verify :method => :destroy, :only => [:delete ], :redirect_to => :home_path
+  verify :method => :delete, :only => [:destroy ], :redirect_to => :home_path
 
   # These are the values displayed in the html select in the UI to define which type of SKU to create. For  now,
   # there is only one type

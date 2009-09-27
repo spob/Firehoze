@@ -1,12 +1,34 @@
 <% title "Categories" -%>
 
 <h3>Categories</h3>
+<%= error_messages_for 'category' %>
 <table>
   <tr>
     <th>Name</th>
     <th>Parent Category</th>
     <th>Sort Order</th>
     <th>Action</th>
+  </tr>
+  <tr>
+    <% form_for :category, :url => categories_url(@category) do |f| %>
+        <td>
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+        </td>
+
+        <td>
+          <%= f.label :parent_category %> <br/>
+          <%= f.collection_select(:parent_category_id, Category.by_parent_sort_value, :id,
+                                  :name, {:include_blank => true, :selected => nil}) %>
+        </td>
+
+        <td>
+          <%= f.label :sort_value %> <br/>
+          <%= f.text_field :sort_value %>
+        </td>
+
+        <td><%= f.submit "Create", :disable_with => translate('general.disable_with') %></td>
+    <% end %>
   </tr>
   <%= render @categories %>
 </table>

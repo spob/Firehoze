@@ -30,6 +30,7 @@ class CategoriesControllerTest < ActionController::TestCase
           setup { get :index }
 
           should_assign_to :categories
+          should_assign_to :category
           should_respond_with :success
           should_not_set_the_flash
           should_render_template "index"
