@@ -61,6 +61,7 @@ en:
 
   category:
     create_success: Successfully created category
+    create_failed: Category creation failed '{{msg}}'
     delete_success: Successfully deleted {{name}}
 
   flag:

@@ -21,8 +21,11 @@ class CategoriesController < ApplicationController
       flash[:notice] = t('category.create_success')
       redirect_to categories_path
     else
+      error_msg = ""
+      @category.errors.each { |attr,msg| error_msg = error_msg + "#{error_msg == "" ? "" : ", "}#{attr} #{msg}" }
+      flash[:error] = t('category.create_failed', :msg => error_msg)
       index
-      render :action => "index"
+      redirect_to categories_path
     end
   end
 
