@@ -86,7 +86,7 @@ Rails::Initializer.run do |config|
   config.gem 'right_aws'
 
   # Search Logic
-  config.gem "searchlogic"
+  config.gem "searchlogic", :version => '~> 2.3.5'
 
   # Query optimization
   #config.gem 'methodmissing-scrooge', :source => "http://gems.github.com"

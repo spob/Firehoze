@@ -8,7 +8,18 @@ class CategoryTest < ActiveSupport::TestCase
 
     should_belong_to :parent_category
     should_have_many :child_categories
-    should_validate_presence_of      :name
-    should_validate_uniqueness_of    :name
+    should_validate_presence_of :name
+    should_validate_uniqueness_of :name
+
+    fast_context "testing list method" do
+      setup { @categories = Category.list 1, 10 }
+      subject { @categories }
+
+      should "retrieve a value" do
+        assert_equal 2, @categories.size
+        assert @categories.include?(@category)
+        assert @categories.include?(@category.parent_category)
+      end
+    end
   end
 end

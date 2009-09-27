@@ -1,0 +1,15 @@
+<% title "Categories" -%>
+
+<h3>Categories</h3>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Parent Category</th>
+    <th>Sort Order</th>
+    <th>Action</th>
+  </tr>
+  <%= render @categories %>
+</table>
+<%= will_paginate @categories %>
+<br/>
+Rows to Display Per Page: <%= per_page_select(categories_path) %>
