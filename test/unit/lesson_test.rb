@@ -7,6 +7,7 @@ class LessonTest < ActiveSupport::TestCase
     setup do
       @sku = Factory.create(:credit_sku, :sku => FREE_CREDIT_SKU)
       @lesson = Factory.create(:lesson, :initial_free_download_count => 5)
+      assert !@lesson.nil?
       @lesson = Lesson.find(@lesson)
     end
 
@@ -23,6 +24,7 @@ class LessonTest < ActiveSupport::TestCase
     setup do
       @sku = Factory.create(:credit_sku, :sku => FREE_CREDIT_SKU)
       @lesson = Factory.create(:lesson)
+      assert !@lesson.nil?
       @original_video = Factory.create(:original_video, :lesson => @lesson)
       @lesson = Lesson.find(@lesson)
       assert @lesson.original_video
@@ -196,7 +198,7 @@ class LessonTest < ActiveSupport::TestCase
       end
     end
 
-    should_validate_presence_of      :title, :instructor, :synopsis
+    should_validate_presence_of      :title, :instructor, :synopsis, :category
     should_allow_values_for          :title, "blah blah blah"
     should_ensure_length_in_range    :title, (0..50)
     should_ensure_length_in_range    :synopsis, (0..500)
@@ -207,6 +209,7 @@ class LessonTest < ActiveSupport::TestCase
     # See associated comments on the model as to why this are commented out RBS
     #should_have_one                  :last_comment
     #should_have_one                  :last_public_comment
+    should_belong_to                 :category
     should_have_one                  :original_video
     should_have_one                  :full_processed_video
     should_have_one                  :preview_processed_video
@@ -288,7 +291,7 @@ class LessonTest < ActiveSupport::TestCase
         end
       end
 
-      fast_context "and a couple more records" do
+      context "and a couple more records" do
         setup do
           # and let's create a couple more
           @lesson2 = Factory.create(:lesson)

@@ -49,6 +49,7 @@ class Lesson < ActiveRecord::Base
   @@per_page = LESSONS_PER_PAGE
 
   belongs_to :instructor, :class_name => "User", :foreign_key => "instructor_id"
+  belongs_to :category
   has_many :reviews, :dependent => :destroy
   has_many :video_status_changes, :order => "id", :dependent => :destroy
   has_many :credits, :dependent => :destroy
@@ -69,7 +70,7 @@ class Lesson < ActiveRecord::Base
   has_one  :full_processed_video
   has_one  :preview_processed_video
   has_and_belongs_to_many :lesson_wishers, :join_table => 'wishes', :class_name => 'User'
-  validates_presence_of :instructor, :title, :status, :synopsis
+  validates_presence_of :instructor, :title, :status, :synopsis, :category
   validates_length_of :title, :maximum => 50, :allow_nil => true
   validates_length_of :synopsis, :maximum => 500, :allow_nil => true
 
@@ -308,6 +309,8 @@ END
   end
 
   def set_status_on_create
+    # TODO: temporary fix to set category to a dummy value
+    self.category = Category.first
     self.status = VIDEO_STATUS_PENDING
   end
 
