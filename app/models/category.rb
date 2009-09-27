@@ -16,6 +16,6 @@ class Category < ActiveRecord::Base
   end
 
   def can_delete?
-    self.child_categories.empty?
+    self.child_categories.empty? and self.lessons.empty?
   end
 end

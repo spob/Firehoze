@@ -10,7 +10,7 @@ class CategoryTest < ActiveSupport::TestCase
     should_have_many :child_categories, :lessons
     should_validate_presence_of :name
     should_validate_uniqueness_of :name
-    should_validate_numericality_of  :sort_value
+    should_validate_numericality_of :sort_value
 
     fast_context "testing list method" do
       setup { @categories = Category.list 1, 10 }
@@ -27,6 +27,20 @@ class CategoryTest < ActiveSupport::TestCase
       should "check can delete" do
         assert @category.can_delete?
         assert !@category.parent_category.can_delete?
+      end
+
+      context "with a lesson defined" do
+        setup do
+          @lesson = Factory.create(:lesson)
+          @lesson.update_attribute(:category, @category)
+          @category = Category.find(@category.id)
+          assert_equal @category, @lesson.category
+        end
+
+        should "not be albe to delete" do
+          assert !@category.can_delete?
+          assert !@category.parent_category.can_delete?
+        end
       end
     end
   end
