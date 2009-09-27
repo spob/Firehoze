@@ -11,6 +11,7 @@ private/images/*
 public/cache/*
 .DS_Store
 .idea
+.idea/dictionaries/bob.xml
 .project
 public/assets
 nbproject

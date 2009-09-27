@@ -9,12 +9,12 @@ class LessonCommentsController < ApplicationController
   end
   # Since this controller is nested, in most cases we'll need to retrieve the lesson first, so I made it a
   # before filter
-  before_filter :find_lesson, :except => [ :edit, :update, :destroy ]
+  before_filter :find_lesson, :except => [ :edit, :update ]
   before_filter :find_lesson_comment, :only => [ :edit, :update ]
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
-  verify :method => :destroy, :only => [:delete ], :redirect_to => :home_path
+#  verify :method => :destroy, :only => [:delete ], :redirect_to => :home_path
 
   def index
     @lesson_comments = LessonComment.list @lesson, params[:page], current_user
@@ -73,7 +73,7 @@ class LessonCommentsController < ApplicationController
 
   private
 
-  # Called by thebefore filter to retrieve the lesson based on the lesson_id that
+  # Called by the before filter to retrieve the lesson based on the lesson_id that
   # was passed in as a parameter
   def find_lesson
     @lesson = Lesson.find(params[:lesson_id])
