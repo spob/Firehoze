@@ -43,5 +43,24 @@ class CategoryTest < ActiveSupport::TestCase
         end
       end
     end
+
+    fast_context "and a second sub category" do
+      setup do
+        @category2 = Factory.create(:category, :parent_category => @category.parent_category)
+        assert_equal 3, Category.count
+        assert_equal 2, @category.parent_category.child_categories.size
+      end
+
+      fast_context "testing exploding" do
+        setup do
+          Category.explode
+          @exploded_categories = ExplodedCategory.all
+        end
+
+        should "have explode values" do
+          assert_equal 5, @exploded_categories.size
+        end
+      end
+    end
   end
 end
