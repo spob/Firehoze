@@ -1,4 +1,5 @@
 class Category < ActiveRecord::Base
+  acts_as_tree :order => "sort_value ASC", :foreign_key => "parent_category_id"
   belongs_to :parent_category, :class_name => 'Category'
   has_many :lessons
   has_many :child_categories, :class_name => 'Category', :foreign_key => 'parent_category_id', :dependent => :destroy
@@ -23,6 +24,8 @@ class Category < ActiveRecord::Base
   def self.explode
     Category.transaction do
       ExplodedCategory.delete_all
+      AncestorCategory.delete_all
+
       Category.root.each do |category|
         category.explode category, 1
       end
@@ -30,12 +33,23 @@ class Category < ActiveRecord::Base
   end
 
   def explode root_category, level
-    ExplodedCategory.create!(:category => self, :base_category => root_category,
-                             :name => self.name, :base_name => root_category.name,
-                             :level => level)
+    unless ExplodedCategory.find(:first, :conditions => { :category_id => self.id, :base_category_id => root_category.id})
+      ExplodedCategory.create!(:category => self, :base_category => root_category,
+                               :name => self.name, :base_name => root_category.name,
+                               :level => level)
+    end
     self.child_categories.each do |child|
       child.explode root_category, level + 1
       child.explode child, 1
+    end
+    i = 1
+    self.ancestors.each do |ancestor|
+      unless AncestorCategory.find(:first, :conditions => { :category_id => self.id, :ancestor_category_id => ancestor.id})
+        AncestorCategory.create!(:category => self, :ancestor_category => ancestor,
+                                 :name => self.name, :ancestor_name => ancestor.name,
+                                 :generation => i)
+      end
+      i = i + 1
     end
   end
 end

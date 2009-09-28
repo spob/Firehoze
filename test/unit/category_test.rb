@@ -55,10 +55,12 @@ class CategoryTest < ActiveSupport::TestCase
         setup do
           Category.explode
           @exploded_categories = ExplodedCategory.all
+          @ancestor_categories = AncestorCategory.all
         end
 
         should "have explode values" do
           assert_equal 5, @exploded_categories.size
+          assert_equal 2, @ancestor_categories.size
         end
       end
     end
