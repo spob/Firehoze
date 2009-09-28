@@ -1,0 +1,24 @@
+<% title "Edit Category" -%>
+
+<h3>Edit Category</h3>
+
+<% form_for :category, :url => category_path(@category), :html => { :method => :put } do |f| %>
+    <%= f.error_messages %>
+    <p>
+      <%= f.label :name %><br/>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :parent_category %><br/>
+      <%= f.collection_select(:parent_category_id, Category.by_parent_sort_value, :id,
+                              :name, { :include_blank => true }) %>
+    </p>
+    <p>
+      <%= f.label :sort_value %> <br/>
+      <%= f.text_field :sort_value %>
+    </p>
+    <p><%= f.submit "Submit", :disable_with => translate('general.disable_with') %></p>
+<% end %>
+
+
+<p><%= link_to "Cancel", categories_path %></p>

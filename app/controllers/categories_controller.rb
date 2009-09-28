@@ -42,7 +42,12 @@ class CategoriesController < ApplicationController
   end
 
   def update
-
+    if @category.update_attributes(params[:category])
+      flash[:notice] = t 'category.update_success'
+      redirect_to categories_path
+    else
+      render :action => 'edit'
+    end
   end
 
   private

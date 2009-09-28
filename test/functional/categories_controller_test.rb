@@ -43,6 +43,35 @@ class CategoriesControllerTest < ActionController::TestCase
           should_respond_with :redirect
           should_redirect_to("Categories index page") { categories_url }
         end
+
+        fast_context "on GET to :edit" do
+          setup { get :edit, :id => @category }
+
+          should_assign_to :category
+          should_respond_with :success
+          should_not_set_the_flash
+          should_render_template "edit"
+        end
+
+        fast_context "on PUT to :update" do
+          setup { put :update, :id => @category, :category => @category.attributes }
+
+          should_set_the_flash_to /Successfully updated category/
+          should_assign_to :category
+          should_respond_with :redirect
+          should_redirect_to("Category index page") { categories_url }
+        end
+
+        fast_context "on PUT to :update with bad value" do
+          setup do
+            @category.sort_value = nil
+            put :update, :id => @category, :category => @category.attributes
+          end
+
+          should_not_set_the_flash
+          should_assign_to :category
+          should_render_template('edit')
+        end
       end
 
       fast_context "on POST to :create" do
