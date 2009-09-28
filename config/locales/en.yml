@@ -64,6 +64,7 @@ en:
     create_failed: Category creation failed '{{msg}}'
     update_success: Successfully updated category
     delete_success: Successfully deleted {{name}}
+    explosion_started: Started exploding categories
 
   flag:
     review: review

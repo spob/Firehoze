@@ -1,13 +1,13 @@
 class CategoriesController < ApplicationController
   before_filter :require_user
-  before_filter :find_category, :except => [:index, :create]
+  before_filter :find_category, :except => [:index, :create, :explode]
 
   # Admins only
   permit ROLE_ADMIN
 
   layout 'admin'
 
-  verify :method => :post, :only => [:create ], :redirect_to => :home_path
+  verify :method => :post, :only => [:create, :explode], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
   verify :method => :delete, :only => [:destroy ], :redirect_to => :home_path
 
@@ -48,6 +48,14 @@ class CategoriesController < ApplicationController
     else
       render :action => 'edit'
     end
+  end
+
+  def explode
+    RunOncePeriodicJob.create!(
+            :name => 'Explode Categories',
+            :job => "Category.explode")
+    flash[:notice] = t 'category.explosion_started'
+    redirect_to categories_path
   end
 
   private

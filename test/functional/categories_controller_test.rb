@@ -94,6 +94,20 @@ class CategoriesControllerTest < ActionController::TestCase
         should_redirect_to("Categories index page") { categories_url }
         should_set_the_flash_to /failed/
       end
+
+      fast_context "on POST to :explode" do
+        setup do
+          @count = PeriodicJob.count
+          post :explode
+        end
+
+        should_respond_with :redirect
+        should_set_the_flash_to /Started exploding categories/
+        should_redirect_to("Categories index page") { categories_url }
+        should "create job" do
+          assert_equal @count + 1, PeriodicJob.count
+        end
+      end
     end
   end
 end
