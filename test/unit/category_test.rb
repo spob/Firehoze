@@ -37,7 +37,7 @@ class CategoryTest < ActiveSupport::TestCase
           assert_equal @category, @lesson.category
         end
 
-        should "not be albe to delete" do
+        should "not be able to delete" do
           assert !@category.can_delete?
           assert !@category.parent_category.can_delete?
         end

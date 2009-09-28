@@ -3,6 +3,7 @@
   <td><%= h category.parent_category.try(:name) %></td>
   <td><%= category.sort_value %></td>             
   <td>
-    <%= link_to 'delete', category_path(category.id), :confirm => 'Are you sure?', :method => :delete if category.can_delete? %>    
+    <%= link_to 'edit', edit_category_path(category) %>
+    <%= link_to 'delete', category_path(category), :confirm => 'Are you sure?', :method => :delete if category.can_delete? %>
   </td>
 </tr>

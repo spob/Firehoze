@@ -35,6 +35,35 @@ class CategoriesControllerTest < ActionController::TestCase
           should_not_set_the_flash
           should_render_template "index"
         end
+
+        fast_context "on DELETE to :destroy" do
+          setup { delete :destroy, :id => @category }
+
+          should_set_the_flash_to /Successfully deleted/
+          should_respond_with :redirect
+          should_redirect_to("Categories index page") { categories_url }
+        end
+      end
+
+      fast_context "on POST to :create" do
+        setup do
+          post :create, :category => Factory.attributes_for(:category)
+        end
+
+        should_assign_to :category
+        should_respond_with :redirect
+        should_set_the_flash_to /Successfully created category/
+        should_redirect_to("Categories index page") { categories_url }
+      end
+
+      fast_context "on POST to :create with bad value" do
+        setup do
+          post :create, :category => Factory.attributes_for(:category, :sort_value => "aaa")
+        end
+
+        should_assign_to :category
+        should_redirect_to("Categories index page") { categories_url }
+        should_set_the_flash_to /failed/
       end
     end
   end
