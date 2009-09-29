@@ -17,8 +17,8 @@
         </td>
 
         <td>
-          <%= f.collection_select(:parent_category_id, Category.by_parent_sort_value, :id,
-                                  :name, {:include_blank => true, :selected => nil}) %>
+          <%= f.collection_select(:parent_category_id, Category.ascend_by_compiled_sort, :id,
+                                  :formatted_name, {:include_blank => true, :selected => nil}) %>
         </td>
 
         <td>

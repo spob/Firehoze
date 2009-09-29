@@ -10,7 +10,7 @@ class CategoryTest < ActiveSupport::TestCase
     should_have_many :child_categories, :lessons
     should_validate_presence_of :name
     should_validate_uniqueness_of :name
-    should_validate_numericality_of :sort_value
+    should_validate_numericality_of :sort_value, :level
 
     fast_context "testing list method" do
       setup { @categories = Category.list 1, 10 }

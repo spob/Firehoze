@@ -6,14 +6,16 @@ class Category < ActiveRecord::Base
 
   validates_presence_of :name, :sort_value
   validates_uniqueness_of :name
-  validates_numericality_of :sort_value, :allow_nil => true
+  validates_numericality_of :sort_value, :level, :allow_nil => true
 
   named_scope :by_parent_sort_value, :include => [:parent_category],
               :order => 'parent_categories_categories.sort_value ASC, categories.sort_value ASC'
   named_scope :root, :conditions => { :parent_category_id => nil }
 
+  @@counter = 0
+
   def self.list(page, per_page)
-    Category.by_parent_sort_value.paginate(:page => page,
+    Category.ascend_by_compiled_sort.paginate(:page => page,
                                            :per_page => per_page)
   end
 
@@ -22,6 +24,7 @@ class Category < ActiveRecord::Base
   end
 
   def self.explode
+    @@counter = 0
     Category.transaction do
       ExplodedCategory.delete_all
       AncestorCategory.delete_all
@@ -34,6 +37,9 @@ class Category < ActiveRecord::Base
 
   def explode root_category, level
     unless ExplodedCategory.find(:first, :conditions => { :category_id => self.id, :base_category_id => root_category.id})
+      @@counter = @@counter + 1
+      self.update_attributes(:level => self.ancestors.size,
+                             :compiled_sort => @@counter)
       ExplodedCategory.create!(:category => self, :base_category => root_category,
                                :name => self.name, :base_name => root_category.name,
                                :level => level)
@@ -51,5 +57,14 @@ class Category < ActiveRecord::Base
       end
       i = i + 1
     end
+  end
+
+  def formatted_name
+    self.level = self.ancestors.size unless self.level
+    buffer = ""
+    self.level.times do
+      buffer = buffer + "."
+    end
+    buffer + self.name
   end
 end
