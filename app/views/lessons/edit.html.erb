@@ -34,13 +34,19 @@
   </p>
 
   <div>
+    Category:
+          <%= f.collection_select(:category_id, Category.ascend_by_compiled_sort, :id,
+                                  :formatted_name) %>
+  </div>
+
+  <div>
     Language:
     <%= f.select :language, User.supported_languages %>
   </div>
 </fieldset>
 
 <p>
-  <%= f.submit "Create lesson" %>
+  <%= f.submit "Update Lesson" %>
   <%= link_to "Cancel", lesson_path(@lesson) %>
 </p>
 <% end %>
