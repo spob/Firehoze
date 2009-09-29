@@ -3,6 +3,10 @@ class Category < ActiveRecord::Base
   belongs_to :parent_category, :class_name => 'Category'
   has_many :lessons
   has_many :child_categories, :class_name => 'Category', :foreign_key => 'parent_category_id', :dependent => :destroy
+  has_many :exploded_categories, :dependent => :destroy
+  has_many :base_exploded_categories, :class_name => 'ExplodedCategory', :foreign_key => 'base_category_id', :dependent => :destroy
+  has_many :ancestor_categories, :dependent => :destroy
+  has_many :early_ancestor_categories, :class_name => 'AncestorCategory', :foreign_key => 'ancestor_category_id', :dependent => :destroy
 
   validates_presence_of :name, :sort_value
   validates_uniqueness_of :name

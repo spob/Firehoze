@@ -138,7 +138,7 @@ namespace :db do
       create_sku GiftCertificateSku, GIFT_CERTIFICATE_SKU, 'Gift Certificate', 1, 0.99
     end
 
-    #Not sure I neeed this any more
+    #Not sure I need this any more
     desc "Generate some line_items and carts"
     task :carts => :environment do
       sku = Sku.first
@@ -149,6 +149,19 @@ namespace :db do
         line_item.cart = cart
         line_item.save!
       end
+    end
+
+    #Not sure I neeed this any more
+    desc "Generate some categories"
+    task :categories => :environment do
+      math = Category.create!(:name => "Math", :parent_category => nil, :sort_value => 10)
+      Category.create!(:name => "Trigonometry", :parent_category => math, :sort_value => 10)
+      Category.create!(:name => "Calculus", :parent_category => math, :sort_value => 20)
+      Category.create!(:name => "Geometry", :parent_category => math, :sort_value => 30)
+      science = Category.create!(:name => "Science", :parent_category => nil, :sort_value => 30)
+      Category.create!(:name => "Chemistry", :parent_category => science, :sort_value => 10)
+      Category.create!(:name => "Physics", :parent_category => science, :sort_value => 20)
+      Category.create!(:name => "Biology", :parent_category => science, :sort_value => 30)
     end
 
     desc "Generate some credits"
