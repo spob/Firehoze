@@ -11,7 +11,7 @@ namespace :db do
   namespace :populate do
 
     desc "Bootstraps the application"
-    task :all => [ :truncate, :admins, :users, :seed_skus, :lessons, :tags, :credits, :acquire_lessons, :reviews, :reset_passwords] do
+    task :all => [ :truncate, :admins, :users, :seed_skus, :categories, :lessons, :tags, :credits, :acquire_lessons, :reviews, :reset_passwords] do
       puts "***** ALL COMPLETE *****"
     end
 
