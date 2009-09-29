@@ -309,8 +309,6 @@ END
   end
 
   def set_status_on_create
-    # TODO: temporary fix to set category to a dummy value
-    self.category = Category.first
     self.status = VIDEO_STATUS_PENDING
   end
 

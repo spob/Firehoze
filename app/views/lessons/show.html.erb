@@ -44,7 +44,9 @@
         <b>Released on:</b>
         <%= l @lesson.created_at -%><br />
         <% if current_user.try("is_admin?") or @lesson.instructor == current_user -%>
-          <b>State:</b>
+          <b>Category:</b>
+          <%=h @lesson.category.bread_crumb -%><br />
+          <b>Status:</b>
           <%=h translate("lesson.#{@lesson.status}") -%><br />
         <% end -%>
         <%= number_of_students_phrase(@lesson) -%><br />

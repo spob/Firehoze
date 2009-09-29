@@ -67,4 +67,12 @@ class Category < ActiveRecord::Base
     end
     buffer + self.name
   end
+
+  def bread_crumb
+    buffer = ""
+    AncestorCategory.category_id_equals(self.id).descend_by_generation(:select => [:ancestor_name]).each do |cat|
+      buffer = buffer + cat.ancestor_name + " > "
+    end
+    buffer = buffer + self.name
+  end
 end

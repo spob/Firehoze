@@ -51,6 +51,19 @@ class CategoryTest < ActiveSupport::TestCase
         assert_equal 2, @category.parent_category.child_categories.size
       end
 
+      fast_context "testing bread crumb" do
+        setup do
+          @category3 = Factory.create(:category, :parent_category => @category)
+          Category.explode
+        end
+
+        should "calc breadcrumb" do
+          assert_equal @category.parent_category.name, @category.parent_category.bread_crumb
+          assert_equal "#{@category.parent_category.name} > #{@category.name}", @category.bread_crumb
+          assert_equal "#{@category.parent_category.name} > #{@category.name} > #{@category3.name}", @category3.bread_crumb
+        end
+      end
+
       fast_context "testing exploding" do
         setup do
           Category.explode
