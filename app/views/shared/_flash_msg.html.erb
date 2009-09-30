@@ -1,0 +1,17 @@
+<% if flash[:notice] -%>
+  <div id="notice" class="flash">
+    <div id="centered">
+      <span class="h4">SUCCESS!</span>
+      <p><%= h(flash[:notice]) -%></p>
+    </div>
+  </div>
+<% end -%>
+
+<% if flash[:error] -%>
+  <div id="error" class="flash">
+    <div id="centered">
+      <span class="h4">Oops</span>
+      <p><%= h(flash[:error]) -%></p>
+    </div>
+  </div>
+<% end -%>

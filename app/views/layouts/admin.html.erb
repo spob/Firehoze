@@ -27,14 +27,7 @@
     <%= yield :head -%>
   </head>
   <body>
-    <% if flash[:notice] or flash[:error] -%>
-      <div class="flash">
-        <div id="centered_flash">
-          <%= content_tag(:p, flash[:notice], :class => "notice_msg")  if flash[:notice] -%>
-          <%= content_tag(:p, flash[:error], :class => "error_msg") if flash[:error] -%>
-        </div>
-      </div>
-    <% end -%>
+    <%= render "shared/flash_msg" -%>
 
     <!-- start container -->
     <div id="container" class="container">
