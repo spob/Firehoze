@@ -144,6 +144,7 @@ class LessonTest < ActiveSupport::TestCase
 
       should "retrieve unowned videos" do
         assert_equal 2, @lessons.size
+        assert_equal 4, Lesson.not_owned_by(nil).size
         assert @lessons.include?(@lesson)
         assert !@lessons.include?(@lesson2)
         assert @lessons.include?(@lesson3)
@@ -153,6 +154,20 @@ class LessonTest < ActiveSupport::TestCase
       should "computer whether user is a student of this instructor" do
         assert @lesson2.instructor.student_of?(@user)
         assert !@lesson.instructor.student_of?(@user)
+      end
+
+      fast_context "and testing by_category named_scope" do
+        setup { Category.explode }
+
+        should "filter by category" do
+          assert_equal Lesson.all.size, Lesson.by_category(nil).size
+
+          assert_equal 1, Lesson.by_category(@lesson.category).size
+          assert_equal @lesson2, Lesson.by_category(@lesson2.category).first
+
+          assert_equal 1, Lesson.by_category(@lesson.category.parent_category).size
+          assert_equal @lesson2, Lesson.by_category(@lesson2.category.parent_category).first
+        end
       end
 
       fast_context "and instructor is allow_contact NONE" do

@@ -66,9 +66,9 @@ class Lesson < ActiveRecord::Base
   has_many :lesson_buy_pairs, :order => "counter DESC", :dependent => :destroy
   has_many :flags, :as => :flaggable, :dependent => :destroy
   has_many :rates, :as => :rateable, :dependent => :destroy
-  has_one  :original_video
-  has_one  :full_processed_video
-  has_one  :preview_processed_video
+  has_one :original_video
+  has_one :full_processed_video
+  has_one :preview_processed_video
   has_and_belongs_to_many :lesson_wishers, :join_table => 'wishes', :class_name => 'User'
   validates_presence_of :instructor, :title, :status, :synopsis, :category
   validates_length_of :title, :maximum => 50, :allow_nil => true
@@ -79,21 +79,26 @@ class Lesson < ActiveRecord::Base
   attr_protected :status
 
   before_validation_on_create :set_status_on_create
-  after_create  :create_free_credits
+  after_create :create_free_credits
 
   # I added the id to the sort criteria so that the videos would be sorted in the same order every time, even in the
   # event of a tie in the primary sort criteria RBS
-  named_scope   :most_popular, :order => "credits_count DESC, id DESC"
-  named_scope   :highest_rated, :order => "rating_average DESC, id DESC"
-  named_scope   :newest, :order => "id DESC"
-  named_scope   :ready, :conditions => {:status => LESSON_STATUS_READY }
-  named_scope   :pending, :conditions => {:status => LESSON_STATUS_PENDING }
-  named_scope   :failed, :conditions => {:status => LESSON_STATUS_FAILED }
-  named_scope   :rejected, :conditions => {:status => LESSON_STATUS_REJECTED }
+  named_scope :most_popular, :order => "credits_count DESC, id DESC"
+  named_scope :highest_rated, :order => "rating_average DESC, id DESC"
+  named_scope :newest, :order => "id DESC"
+  named_scope :ready, :conditions => {:status => LESSON_STATUS_READY }
+  named_scope :pending, :conditions => {:status => LESSON_STATUS_PENDING }
+  named_scope :failed, :conditions => {:status => LESSON_STATUS_FAILED }
+  named_scope :rejected, :conditions => {:status => LESSON_STATUS_REJECTED }
+  named_scope :by_category,
+              lambda{ |category_id| return {} if category_id.nil?;
+                {:joins => {:category => :exploded_categories},
+                 :conditions => { :exploded_categories => {:base_category_id => category_id}}}}
   # Credits which have been warned to be about to expire
   # Note...add -1 to lesson collection to ensure that never that case where it will return NULL 
   named_scope :not_owned_by,
-              lambda{ |user| { :conditions => ["lessons.id not in (?)", user.lesson_ids.collect(&:id) + [-1]] }
+              lambda{ |user| return {} if user.nil?;
+                { :conditions => ["lessons.id not in (?)", user.lesson_ids.collect(&:id) + [-1]] }
               }
 
   @@lesson_statuses = [
@@ -168,7 +173,7 @@ END
   def self.list(page, user=nil, lessons_per_page=per_page)
     conditions = {}
     conditions = ["status = ? or instructor_id = ?",
-                  LESSON_STATUS_READY, user]  unless (user and user.try(:is_admin?))
+                  LESSON_STATUS_READY, user] unless (user and user.try(:is_admin?))
     paginate :page => page,
              :conditions => conditions,
              :order => 'id desc',
