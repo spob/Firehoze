@@ -8,6 +8,6 @@ class AddProcessedVideosCounterCache < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :lessons, :credits_count
+    remove_column :lessons, :processed_videos_count
   end
 end
