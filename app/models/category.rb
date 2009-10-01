@@ -33,7 +33,7 @@ class Category < ActiveRecord::Base
       ExplodedCategory.delete_all
       AncestorCategory.delete_all
 
-      Category.root.each do |category|
+      Category.root.ascend_by_sort_value.each do |category|
         category.explode category, 1
       end
     end
