@@ -5,6 +5,7 @@
   <% if current_user.try("is_admin?") %>
     <td><%= h lesson.status %></td>
   <% end %>
+  <td><%= h lesson.category.name %></td>
   <td><%= lesson.rating_average %></td>
   <td><%= (current_user ? current_user.owns_lesson?(lesson) : false) %></td>
   <td><%= link_to "View", lesson_path(lesson) %>&nbsp;
