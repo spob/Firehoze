@@ -5,7 +5,7 @@ class AddCategoryToLesson < ActiveRecord::Migration
   
   def self.up
     Category.reset_column_information
-    @category = Category.create!(:name => 'dummy', :sort_value => 10)
+    @category = Category.create!(:name => 'Uncategorized', :sort_value => 10)
     add_column :lessons, :category_id, :integer, :null => true
 
 
