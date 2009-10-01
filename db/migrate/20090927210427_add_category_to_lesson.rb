@@ -18,7 +18,7 @@ class AddCategoryToLesson < ActiveRecord::Migration
 
   def self.down
     remove_foreign_key(:lessons, :category_id) 
-    Category.find_by_name("dummy").delete
+    Category.find_by_name("Uncategorized").delete
 
     change_table :lessons do |t|
       t.remove :category_id
