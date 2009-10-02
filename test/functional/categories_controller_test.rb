@@ -26,6 +26,32 @@ class CategoriesControllerTest < ActionController::TestCase
         setup { @category = Factory.create(:category) }
         subject { @category }
 
+        fast_context "on GET to :browse" do
+          setup { get :browse, :id => @category, :return_path => root_url }
+
+          should "set the category in the session" do
+            assert_equal @category.id, session[:browse_category_id]
+          end
+          should_respond_with :redirect
+          should_not_set_the_flash
+          should_redirect_to("Root pagee") { root_url }
+        end
+
+        fast_context "on GET to :browse to reset the category" do
+          setup do
+            session[:browse_category_id] = @category.id
+            assert_equal @category.id, session[:browse_category_id]
+            get :browse, :id => -1, :return_path => root_url
+          end
+
+          should "unset the category in the session" do
+            assert_nil session[:browse_category_id]
+          end
+          should_respond_with :redirect
+          should_not_set_the_flash
+          should_redirect_to("Root pagee") { root_url }
+        end
+
         fast_context "on GET to :index" do
           setup { get :index }
 
