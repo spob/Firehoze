@@ -1,9 +1,9 @@
 class CategoriesController < ApplicationController
-  before_filter :require_user
-  before_filter :find_category, :except => [:index, :create, :explode]
+  before_filter :require_user, :except => [ :browse ]
+  before_filter :find_category, :except => [:index, :create, :explode, :browse]
 
   # Admins only
-  permit ROLE_ADMIN
+  permit ROLE_ADMIN, :except => [ :browse ]
 
   layout 'admin'
 
@@ -39,6 +39,17 @@ class CategoriesController < ApplicationController
 
   def edit
 
+  end
+
+  def browse
+    id = params[:id]
+    if id == "-1"
+      session[:browse_category_id] = nil
+    else
+      @category = Category.find(id)
+      session[:browse_category_id] = @category.id
+    end
+    redirect_to params[:return_path]
   end
 
   def update
