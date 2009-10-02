@@ -3,7 +3,7 @@
     <%= link_to order.id, order_path(order) %>
   </td>
   <td>
-    <%= l(order.cart.purchased_at) %>
+    <%= l(order.cart.purchased_at) if order.cart.purchased_at %>
   </td>
   <td>
     <%= h number_to_currency(order.cart.total_discounted_price) %>
