@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   before_filter :require_user
 
-  verify :method => :put, :only => [ :update ], :redirect_to => :home_path
+#  verify :method => :put, :only => [ :update ], :redirect_to => :home_path
 
   before_filter :set_per_page, :only => [ :show ]
 

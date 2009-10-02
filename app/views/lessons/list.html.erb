@@ -1,5 +1,7 @@
 <% title "#{@collection.humanize} lessons" -%>
 
+<%= browse_category_navigation list_lessons_path(:collection => @collection) %>           
+
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
   <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
     <% %w(most_popular highest_rated newest).each do | collection | %>

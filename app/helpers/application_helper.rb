@@ -114,6 +114,28 @@ module ApplicationHelper
     end
   end
 
+  def browse_category_navigation return_path
+    @category = Category.find(session[:browse_category_id]) if session[:browse_category_id]
+    buf = link_to "All", browse_category_path(-1, :return_path => return_path)
+    if @category
+      AncestorCategory.category_id_equals(@category.id).descend_by_generation(:select => [:ancestor_name]).each do |cat|
+        buf = buf + " > " + link_to(cat.ancestor_name, browse_category_path(cat.ancestor_category, :return_path => return_path))
+      end
+      buf = buf + " > " + @category.name
+    end
+
+    @categories = []
+    if session[:browse_category_id]
+      @categories = Category.parent_category_id_equals(session[:browse_category_id])
+    else
+      @categories = Category.root
+    end
+    @categories.each do |category|
+      buf = buf + "<br/>#{link_to category.name, browse_category_path(category, :return_path => return_path)}"
+    end
+    buf
+  end
+
   private
 
   def link_to_command per_page, refresh_url, append_space=true

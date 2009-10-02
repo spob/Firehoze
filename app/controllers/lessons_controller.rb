@@ -33,14 +33,15 @@ class LessonsController < ApplicationController
 
   def list
     @lesson_format = 'wide'
+    @category_id = session[:browse_category_id].to_i if session[:browse_category_id]
     @lessons =
             case @collection
               when 'most_popular'
-                Lesson.ready.most_popular.not_owned_by(current_user).by_category(nil).paginate(:per_page => @per_page, :page => params[:page])
+                Lesson.ready.most_popular.not_owned_by(current_user).by_category(@category_id).paginate(:per_page => @per_page, :page => params[:page])
               when 'newest'
-                Lesson.ready.newest.not_owned_by(current_user).by_category(nil).paginate(:per_page => @per_page, :page => params[:page])
+                Lesson.ready.newest.not_owned_by(current_user).by_category(@category_id).paginate(:per_page => @per_page, :page => params[:page])
               when 'highest_rated'
-                Lesson.ready.highest_rated.not_owned_by(current_user).by_category(nil).paginate(:per_page => @per_page, :page => params[:page])
+                Lesson.ready.highest_rated.not_owned_by(current_user).by_category(@category_id).paginate(:per_page => @per_page, :page => params[:page])
             end
   end
 
@@ -150,26 +151,15 @@ class LessonsController < ApplicationController
   # SUPPORTING AJAX TABS
   def tabbed
     @lesson_format = current_user ? 'narrow' : 'wide'
+    @category_id = session[:browse_category_id].to_i if session[:browse_category_id]
     @lessons =
             case @collection
               when 'most_popular'
-                if current_user
-                  Lesson.ready.most_popular.not_owned_by(current_user).all(:include => [:instructor, :tags], :limit => @per_page)
-                else
-                  Lesson.ready.most_popular.all(:include => [:instructor, :tags], :limit => @per_page)
-                end
+                Lesson.ready.most_popular.not_owned_by(current_user).by_category(@category_id).all(:include => [:instructor, :tags], :limit => @per_page)
               when 'newest'
-                if current_user
-                  Lesson.ready.newest.not_owned_by(current_user).all(:include => [:instructor, :tags], :limit => @per_page)
-                else
-                  Lesson.ready.newest.all(:include => [:instructor, :tags], :limit => @per_page)
-                end
+                Lesson.ready.newest.not_owned_by(current_user).by_category(@category_id).all(:include => [:instructor, :tags], :limit => @per_page)
               when 'highest_rated'
-                if current_user
-                  Lesson.ready.highest_rated.not_owned_by(current_user).all(:include => [:instructor, :tags], :limit => @per_page)
-                else
-                  Lesson.ready.highest_rated.all(:include => [:instructor, :tags], :limit => @per_page)
-                end
+                Lesson.ready.highest_rated.not_owned_by(current_user).by_category(@category_id).all(:include => [:instructor, :tags], :limit => @per_page)
             end
   end
 
