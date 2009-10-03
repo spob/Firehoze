@@ -132,11 +132,11 @@ module LessonsHelper
     end
   end
 
-  def bread_crumb
+  def bread_crumb category
     buffer = ""
-    AncestorCategory.category_id_equals(@lesson.category.id).descend_by_generation(:select => [:ancestor_name]).each do |cat|
+    AncestorCategory.category_id_equals(category.id).descend_by_generation(:select => [:ancestor_name]).each do |cat|
       buffer = buffer + link_to(h(cat.ancestor_name), category_path(cat.ancestor_category)) + " > "
     end
-    buffer = buffer + h(@lesson.category.name)
+    buffer = buffer + h(category.name)
   end
 end
