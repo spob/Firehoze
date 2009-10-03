@@ -17,11 +17,13 @@ class Category < ActiveRecord::Base
               :order => 'parent_categories_categories.sort_value ASC, categories.sort_value ASC'
   named_scope :root, :conditions => { :parent_category_id => nil }
 
+  after_save :set_lesson_delta_flag
+
   @@counter = 0
 
   def self.list(page, per_page)
     Category.ascend_by_compiled_sort.paginate(:page => page,
-                                           :per_page => per_page)
+                                              :per_page => per_page)
   end
 
   def can_delete?
@@ -71,5 +73,13 @@ class Category < ActiveRecord::Base
       buffer = buffer + "."
     end
     buffer + self.name
+  end
+
+  private
+
+  def set_lesson_delta_flag
+    self.lessons.each do |lesson|
+      lesson.update_attribute(:delta, true)
+    end
   end
 end

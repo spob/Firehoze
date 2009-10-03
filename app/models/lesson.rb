@@ -50,6 +50,9 @@ class Lesson < ActiveRecord::Base
     indexes notes
     indexes instructor.login, :as => :instructor
     indexes category.name, :as => :category
+    set_property :delta => true
+    where "status = 'Ready'"
+    group_by "instructor_id"
   end
 
   ajaxful_rateable :stars => 5
@@ -57,7 +60,7 @@ class Lesson < ActiveRecord::Base
   @@per_page = LESSONS_PER_PAGE
 
   belongs_to :instructor, :class_name => "User", :foreign_key => "instructor_id"
-  belongs_to :category, :counter_cache => true 
+  belongs_to :category, :counter_cache => true
   has_many :reviews, :dependent => :destroy
   has_many :video_status_changes, :order => "id", :dependent => :destroy
   has_many :credits, :dependent => :destroy
@@ -100,13 +103,13 @@ class Lesson < ActiveRecord::Base
   named_scope :rejected, :conditions => {:status => LESSON_STATUS_REJECTED }
   named_scope :by_category,
               lambda{ |category_id| return {} if category_id.nil?;
-                {:joins => {:category => :exploded_categories},
-                 :conditions => { :exploded_categories => {:base_category_id => category_id}}}}
+              {:joins => {:category => :exploded_categories},
+               :conditions => { :exploded_categories => {:base_category_id => category_id}}}}
   # Credits which have been warned to be about to expire
   # Note...add -1 to lesson collection to ensure that never that case where it will return NULL 
   named_scope :not_owned_by,
               lambda{ |user| return {} if user.nil?;
-                { :conditions => ["lessons.id not in (?)", user.lesson_ids.collect(&:id) + [-1]] }
+              { :conditions => ["lessons.id not in (?)", user.lesson_ids.collect(&:id) + [-1]] }
               }
 
   @@lesson_statuses = [
