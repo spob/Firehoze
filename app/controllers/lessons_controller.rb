@@ -24,6 +24,10 @@ class LessonsController < ApplicationController
   @@free_download_counts = [ 0, 5, 10, 25 ]
 
   def index
+    if params[:reset] == "y"
+      # clear category browsing
+      session[:browse_category_id] = nil
+    end               
     if current_user
       redirect_to home_path
     else
