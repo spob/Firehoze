@@ -2,7 +2,7 @@
 <%= javascript 'swfobject' %>
 
 <div id="lesson_container">
-  <% # TITLE BAR -%>
+  <% # TITLE BAR  -%>
   <div class="clear span-40 last" id="banner">
     <div class="span-25" id="banner_title">
       <%= h @lesson.title -%> by <%= link_to_profile(@lesson.instructor) -%>
@@ -20,15 +20,15 @@
     </div>
   </div>
 
-  <% # LESSON SUMMARY -%>
+  <% # LESSON SUMMARY  -%>
   <div class="clear prepend-top span-40 last" id="lesson_summary_container">
     <!-- VIDEO -->
     <div class="span-20" id="lesson_container">
       <%= render :partial => 'lessons/player', :object => @lesson -%>
-      <%= render :partial => "lessons/tag_links_for", :object => @lesson, :locals => { :options => { :css_classes =>  "tags_lesson_show" } } -%>
+      <%= render :partial => "lessons/tag_links_for", :object => @lesson, :locals => { :options => { :css_classes => "tags_lesson_show" } } -%>
     </div>
 
-    <% # LESSON DESCRIPTION -%>
+    <% # LESSON DESCRIPTION  -%>
     <div class="span-19 last" id="lesson_description">
       <div class="span-19 last"><%= render :partial => "lessons/actions", :object => @lesson -%></div>
       <div>
@@ -36,20 +36,26 @@
       </div>
       <div>
         <b>Language:</b>
-        <%= h language_value(@lesson.language) -%><br />
+        <%= h language_value(@lesson.language) -%>
+        <br/>
         <% if @lesson.finished_video_duration -%>
-          <b>Duration:</b>
-          <%= ChronicDuration.output(@lesson.finished_video_duration/1000, :format => :long) -%><br />
+            <b>Duration:</b>
+            <%= ChronicDuration.output(@lesson.finished_video_duration/1000, :format => :long) -%>
+            <br/>
         <% end -%>
         <b>Released on:</b>
-        <%= l @lesson.created_at -%><br />
+        <%= l @lesson.created_at -%>
+        <br/>
+        <b>Category:</b>
+        <%= h @lesson.category.bread_crumb -%>
+        <br/>
         <% if current_user.try("is_admin?") or @lesson.instructor == current_user -%>
-          <b>Category:</b>
-          <%=h @lesson.category.bread_crumb -%><br />
-          <b>Status:</b>
-          <%=h translate("lesson.#{@lesson.status}") -%><br />
+            <b>Status:</b>
+            <%= h translate("lesson.#{@lesson.status}") -%>
+            <br/>
         <% end -%>
-        <%= number_of_students_phrase(@lesson) -%><br />
+        <%= number_of_students_phrase(@lesson) -%>
+        <br/>
         <%= content_tag(:p, free_remaining_text(@lesson)) if @lesson.has_free_credits? -%>
       </div>
     </div>
@@ -58,40 +64,41 @@
 
 <div class="clear prepend-top span-40 last">
   <div class="span-29">
-    <% # LESSON TABS -%>
+    <% # LESSON TABS  -%>
     <div id="lesson_tabs">
       <%= render :partial => 'tabs' -%>
     </div>
 
-    <% # STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT... -%>
+    <% # STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT...  -%>
     <div>
       <%= render :partial => 'lesson_buy_pairs', :object => @lesson -%>
     </div>
 
-    <% # WHAT DO STUDENTS ULTIMATELY BUY AFTER BROWSING THIS ITEM? -%>
+    <% # WHAT DO STUDENTS ULTIMATELY BUY AFTER BROWSING THIS ITEM?  -%>
     <div>
       <%= render :partial => 'lesson_buy_patterns', :object => @lesson -%>
     </div>
   </div>
 
   <div class="span-11 last">
-    <% # LESSON BY THIS INSTRUCTOR %>
+    <% # LESSON BY THIS INSTRUCTOR  %>
     <% if @lesson.instructor.instructed_lessons.size > 1 %>
-      <div id="instructor_accordion_container" class="append-bottom">
-        <div id="instructor_accordion">
-          <h3><a href="#">Lessons by <%= truncate(h(@lesson.instructor.login), 27) %></a></h3>
-          <div class="content">
-            <%= render :partial => "lessons/lesson_brief", :collection => (@lesson.instructor.instructed_lessons.reject{ |lesson| lesson == @lesson }) %>
+        <div id="instructor_accordion_container" class="append-bottom">
+          <div id="instructor_accordion">
+            <h3><a href="#">Lessons by <%= truncate(h(@lesson.instructor.login), 27) %></a></h3>
+
+            <div class="content">
+              <%= render :partial => "lessons/lesson_brief", :collection => (@lesson.instructor.instructed_lessons.reject{ |lesson| lesson == @lesson }) %>
+            </div>
           </div>
         </div>
-      </div>
     <% end %>
 
-    <% #TAG CLOUD -%>
+    <% #TAG CLOUD  -%>
     <%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts -%>
 
   </div>
 </div>
 
-<% # LESSON STATS (ACCORDIAN FOR INSTRUCTOR AND ADMINS ONLY) -%>
+<% # LESSON STATS (ACCORDIAN FOR INSTRUCTOR AND ADMINS ONLY)  -%>
 <%= render :partial => 'lesson_stats', :object => @lesson -%>
