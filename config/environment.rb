@@ -91,6 +91,8 @@ Rails::Initializer.run do |config|
   # Query optimization
   #config.gem 'methodmissing-scrooge', :source => "http://gems.github.com"
 
+  config.gem 'freelancing-god-thinking-sphinx', :lib => 'thinking_sphinx', :version => '1.1.12'
+
   # Shoulda
   config.gem "thoughtbot-shoulda", :lib => "shoulda", :source => "http://gems.github.com"
 
