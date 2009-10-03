@@ -44,17 +44,6 @@
 class Lesson < ActiveRecord::Base
   acts_as_taggable
 
-  define_index do
-    indexes title
-    indexes synopsis
-    indexes notes
-    indexes instructor.login, :as => :instructor
-    indexes category.name, :as => :category
-    set_property :delta => true
-    where "status = 'Ready'"
-    group_by "instructor_id"
-  end
-
   ajaxful_rateable :stars => 5
   cattr_reader :per_page
   @@per_page = LESSONS_PER_PAGE
@@ -91,6 +80,19 @@ class Lesson < ActiveRecord::Base
 
   before_validation_on_create :set_status_on_create
   after_create :create_free_credits
+
+  # From the thinking sphinx doc: Don’t forget to place this block below your associations,
+  # otherwise any references to them for fields and attributes will not work.
+  define_index do
+    indexes title
+    indexes synopsis
+    indexes notes
+    indexes instructor.login, :as => :instructor
+    indexes category.name, :as => :category
+    set_property :delta => true
+    where "status = 'Ready'"
+    group_by "instructor_id"
+  end
 
   # I added the id to the sort criteria so that the videos would be sorted in the same order every time, even in the
   # event of a tie in the primary sort criteria RBS
