@@ -110,7 +110,7 @@ module ApplicationHelper
 
   def about_link
     unless params[:controller] == 'high_voltage/pages' and params[:action] == 'show' and params[:id] == 'about'
-        link_to "About Firehoze", page_path("about") 
+      link_to "About Firehoze", page_path("about")
     end
   end
 
@@ -131,7 +131,9 @@ module ApplicationHelper
       @categories = Category.root.ascend_by_sort_value
     end
     @categories.each do |category|
-      buf = buf + "<br/>#{link_to category.name, category_path(category, :return_path => return_path)}"
+      unless category.lessons.empty?
+        buf = buf + "<br/>#{link_to category.name, category_path(category, :return_path => return_path)}"
+      end
     end
     buf
   end
