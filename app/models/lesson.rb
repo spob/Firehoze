@@ -44,6 +44,14 @@
 class Lesson < ActiveRecord::Base
   acts_as_taggable
 
+  define_index do
+    indexes title
+    indexes synopsis
+    indexes notes
+    indexes instructor.login, :as => :instructor
+    indexes category.name, :as => :category
+  end
+
   ajaxful_rateable :stars => 5
   cattr_reader :per_page
   @@per_page = LESSONS_PER_PAGE
