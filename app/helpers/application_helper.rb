@@ -114,7 +114,7 @@ module ApplicationHelper
     end
   end
 
-  def browse_category_navigation return_path
+  def browse_category_navigation return_path=nil
     @category = Category.find(session[:browse_category_id]) if session[:browse_category_id]
     buf = link_to "All", category_path(-1, :return_path => return_path)
     if @category
