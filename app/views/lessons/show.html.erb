@@ -47,7 +47,7 @@
         <%= l @lesson.created_at -%>
         <br/>
         <b>Category:</b>
-        <%= h @lesson.category.bread_crumb -%>
+        <%= bread_crumb -%>
         <br/>
         <% if current_user.try("is_admin?") or @lesson.instructor == current_user -%>
             <b>Status:</b>
