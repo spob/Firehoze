@@ -44,7 +44,7 @@ class CategoriesController < ApplicationController
   def show
     return_path = params[:return_path].nil? ? root_path : params[:return_path]
     id = params[:id]
-    if id == "-1"
+    if id == "all"
       session[:browse_category_id] = nil
     else
       @category = Category.find(id)

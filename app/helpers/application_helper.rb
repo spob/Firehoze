@@ -116,7 +116,7 @@ module ApplicationHelper
 
   def browse_category_navigation return_path=nil
     @category = Category.find(session[:browse_category_id]) if session[:browse_category_id]
-    buf = link_to "All", category_path(-1, :return_path => return_path)
+    buf = link_to "All", category_path("all", :return_path => return_path)
     if @category
       AncestorCategory.category_id_equals(@category.id).descend_by_generation(:select => [:ancestor_name]).each do |cat|
         buf = buf + " > " + link_to(cat.ancestor_name, category_path(cat.ancestor_category, :return_path => return_path))
