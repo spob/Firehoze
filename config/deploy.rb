@@ -1,9 +1,11 @@
 if ENV['DEPLOY'] == 'PRODUCTION'
   puts "*** Deploying to the \033[1;41m  PRODUCTION  \033[0m servers!"
   set :domain, '208.88.124.16'
+  set :branch, "master"
 else
   puts "*** Deploying to the \033[1;42m  STAGING  \033[0m server!"
   set :domain, '208.88.125.156'
+  set :branch, "phase2"
 end
 set :user, 'root'
 set :base_dir, 'rails'
@@ -29,7 +31,6 @@ set :scm, :git
 #set :user, user
 
 ssh_options[:forward_agent] = true
-set :branch, "master"
 set :deploy_via, :remote_cache
 set :git_shallow_clone, 1
 set :git_enable_submodules, 1
