@@ -49,7 +49,7 @@ class Lesson < ActiveRecord::Base
   @@per_page = LESSONS_PER_PAGE
 
   belongs_to :instructor, :class_name => "User", :foreign_key => "instructor_id"
-  belongs_to :category
+  belongs_to :category, :counter_cache => true 
   has_many :reviews, :dependent => :destroy
   has_many :video_status_changes, :order => "id", :dependent => :destroy
   has_many :credits, :dependent => :destroy

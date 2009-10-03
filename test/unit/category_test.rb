@@ -33,10 +33,10 @@ class CategoryTest < ActiveSupport::TestCase
 
       context "with a lesson defined" do
         setup do
-          @lesson = Factory.create(:lesson)
-          @lesson.update_attribute(:category, @category)
+          @lesson = Factory.create(:lesson, :category => @category)
           @category = Category.find(@category.id)
           assert_equal @category, @lesson.category
+          assert !@category.lessons.empty?
         end
 
         should "not be able to delete" do
