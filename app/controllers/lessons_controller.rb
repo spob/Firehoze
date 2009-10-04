@@ -27,7 +27,7 @@ class LessonsController < ApplicationController
     if params[:reset] == "y"
       # clear category browsing
       session[:browse_category_id] = nil
-    end               
+    end
     if current_user
       redirect_to home_path
     else
@@ -50,11 +50,15 @@ class LessonsController < ApplicationController
   end
 
   def search
-    @search =params[:search]
+    @search_lesson_criteria = params[:search_lesson_criteria]
     @lesson_format = 'narrow'
     @collection = 'tagged_with'
     # using paginate to set a maximum # of rows returned
-    @lessons = Lesson.search @search, :include => :instructor, :page => 1, :per_page => 25
+    @lessons = Lesson.search @search_lesson_criteria,
+                             :conditions => { :status => 'Ready'},
+                             :include => :instructor,
+                             :page => 1,
+                             :per_page => 25
   end
 
   def tagged_with
@@ -65,7 +69,7 @@ class LessonsController < ApplicationController
   end
 
   def list_admin
-    @search = Lesson.search(params[:search])
+    @search = Lesson.searchlogic(params[:search])
     @lessons = @search.paginate :include => [:instructor, :category], :page => params[:page], :per_page => session[:per_page] || ROWS_PER_PAGE
   end
 
