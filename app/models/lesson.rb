@@ -89,6 +89,7 @@ class Lesson < ActiveRecord::Base
     indexes notes
     indexes instructor.login, :as => :instructor
     indexes category.name, :as => :category
+    has created_at
     set_property :delta => true
     where "status = 'Ready'"
     group_by "instructor_id"
