@@ -53,7 +53,8 @@ class LessonsController < ApplicationController
     @search =params[:search]
     @lesson_format = 'narrow'
     @collection = 'tagged_with'
-    @lessons = Lesson.search(@search)
+    # using paginate to set a maximum # of rows returned
+    @lessons = Lesson.search @search, :include => :instructor, :page => 1, :per_page => 25
   end
 
   def tagged_with
