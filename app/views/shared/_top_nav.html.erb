@@ -12,3 +12,8 @@
       <li><%= link_to "Shopping Cart", cart_path(@current_cart) if show_cart? %></li>
   <% end %>
 </ul>
+
+<% form_tag search_lessons_path, :method => :get do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
