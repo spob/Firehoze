@@ -8,6 +8,5 @@
     <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-1">
       <%= render :partial => "lessons", :object => @lessons, :locals => { :lesson_format => @lesson_format, :collection => @collection } %>
     </div>
-    <%= render :partial => "lessons/pagination", :object => @lessons, :locals => { :collection => :tagged_with  } %>
   </div>
 </div>

@@ -53,6 +53,7 @@ module LessonsHelper
   end
 
   def img_tag_lesson_tn(lesson, size ,options={})
+    return if lesson.nil?
     tn_options = { :class => :lesson_tn, :alt => h(lesson.title) }
     tn_options.merge!(options)
 

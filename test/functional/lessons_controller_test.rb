@@ -48,6 +48,25 @@ class LessonsControllerTest < ActionController::TestCase
       end
     end
 
+#    context "with a lesson defined" do
+#      setup do
+#        @lesson = Factory.create(:lesson)
+#        assert !@lesson.nil?
+#      end
+#
+#      context "on GET to :search" do
+#        setup { get :search, :search_lesson_criteria => "test" }
+#
+#        should_assign_to :lessons
+#        should_respond_with :success
+#        should "retrieve a lesson" do
+#          assert_equal 1, assigns(:lessons).size
+#        end
+#        should_not_set_the_flash
+#        should_render_template "search"
+#      end
+#    end
+
     fast_context "on GET to :new when not an instructor" do
       setup { get :new }
 

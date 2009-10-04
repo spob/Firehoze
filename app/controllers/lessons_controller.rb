@@ -52,7 +52,7 @@ class LessonsController < ApplicationController
   def search
     @search_lesson_criteria = params[:search_lesson_criteria]
     @lesson_format = 'narrow'
-    @collection = 'tagged_with'
+    @collection = 'search'
     # using paginate to set a maximum # of rows returned
     @lessons = Lesson.search @search_lesson_criteria,
                              :conditions => { :status => 'Ready'},
