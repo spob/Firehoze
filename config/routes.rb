@@ -30,23 +30,27 @@ ActionController::Routing::Routes.draw do |map|
                         :lesson_notes => :get,
                         :rate => :post,
                         :watch => :get,
-                        :unreject => :post },
+                        :unreject => :post
+                },
                 :collection => {
                         :conversion_notify => :put,
                         :list => :get,
                         :tabbed => :get,
                         :ajaxed => :get,
                         :list_admin => :get,
-                        :tagged_with => :get
+                        :tagged_with => :get,
+                        :search => :get
                 }
   map.resources :lessons, :has_many => :lesson_comments, :shallow => true,
                 :member => {
                         :watch => :get,
                         :convert => :post,
-                        :rate => :post },
+                        :rate => :post
+                },
                 :collection => {
                         :conversion_notify => :put,
-                        :list => :get
+                        :list => :get,
+                        :search => :get
                 }
   map.resources :line_items, :only => [ :create, :destroy, :update ]
   map.resources :orders

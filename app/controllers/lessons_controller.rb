@@ -16,7 +16,7 @@ class LessonsController < ApplicationController
   before_filter :set_per_page, :only => [ :ajaxed, :index, :list, :tabbed, :tagged_with ]
   before_filter :set_collection, :only => [ :ajaxed, :list, :tabbed ]
 
-  LIST_COLLECTIONS = %w(newest most_popular highest_rated tagged_with recently_browsed)
+  LIST_COLLECTIONS = %w(newest most_popular highest_rated tagged_with recently_browsed tagged_with)
 
   layout :layout_for_action
 
@@ -47,6 +47,13 @@ class LessonsController < ApplicationController
               when 'highest_rated'
                 Lesson.ready.highest_rated.not_owned_by(current_user).by_category(@category_id).paginate(:per_page => @per_page, :page => params[:page])
             end
+  end
+
+  def search
+    @search =params[:search]
+    @lesson_format = 'narrow'
+    @collection = 'tagged_with'
+    @lessons = Lesson.search(@search)
   end
 
   def tagged_with
