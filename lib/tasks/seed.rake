@@ -48,17 +48,19 @@ namespace :db do
     create_job RunIntervalPeriodicJob, 'CreditExpiration', 'Credit.expire_unused_credits', 3600 * 24  #once a day
     create_job RunIntervalPeriodicJob, 'LessonBuyPattern', 'LessonBuyPattern.rollup_buy_patterns', 3600  #once an hour
     create_job RunIntervalPeriodicJob, 'LessonBuyPair', 'LessonBuyPair.rollup_buy_patterns', 3600  #once an hour
+    create_job RunAtPeriodicJob, 'RebuildIndex', 'system("rake thinking_sphinx:index")', nil, 180  # 3AM
   end
 end
 
-def create_job(job_class, name, job_command, interval)
+def create_job(job_class, name, job_command, interval=nil, run_at=nil)
   job = PeriodicJob.find_by_name(name)
   if job
     puts "Periodic job #{job.name} already exists"
   else
     job_class.create!(:name => name,
                       :job => job_command,
-                      :interval => interval)
+                      :interval => interval,
+                      :run_at_minutes => run_at)
     puts "Created job #{name}"
   end
 end
