@@ -5,6 +5,7 @@ class Review < ActiveRecord::Base
   belongs_to :lesson, :counter_cache => true
   has_many :helpfuls, :dependent => :destroy
   has_many :flags, :as => :flaggable, :dependent => :destroy
+  has_many :activities, :as => :trackable, :dependent => :destroy
   validates_presence_of :user, :headline, :body, :lesson, :status
   validates_inclusion_of :status, :in => %w{ active rejected }
   validates_uniqueness_of :user_id, :scope => :lesson_id
@@ -54,6 +55,13 @@ class Review < ActiveRecord::Base
 
   def reject
     self.status = REVIEW_STATUS_REJECTED
+  end
+
+  def compile_activity
+    self.activities.create!(:actor_user => self.user,
+                            :actee_user => self.lesson.instructor,
+                            :acted_upon_at => self.created_at)
+    self.update_attribute(:activity_compiled_at, Time.now)
   end
 
   private
