@@ -10,5 +10,17 @@ class Activity < ActiveRecord::Base
         lesson.compile_activity
       end
     end
+
+    Review.activity_compiled_at_null(:lock => true).each do |review|
+      Review.transaction do
+        review.compile_activity
+      end
+    end
+
+    LessonComment.activity_compiled_at_null(:lock => true).each do |comment|
+      LessonComment.transaction do
+        comment.compile_activity
+      end
+    end
   end
 end

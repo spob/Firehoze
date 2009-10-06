@@ -37,4 +37,11 @@ class LessonComment < Comment
     conditions = conditions.merge!({:public => true, :status => COMMENT_STATUS_ACTIVE}) unless show_public_private_option?(current_user)
     conditions
   end
+
+  def compile_activity
+    self.activities.create!(:actor_user => self.user,
+                            :actee_user => self.lesson.instructor,
+                            :acted_upon_at => self.created_at)
+    self.update_attribute(:activity_compiled_at, Time.now)
+  end
 end

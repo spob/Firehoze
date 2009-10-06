@@ -38,7 +38,7 @@ class ReviewTest < ActiveSupport::TestCase
 
       should_belong_to :user
       should_belong_to :lesson
-      should_have_many :helpfuls, :flags
+      should_have_many :helpfuls, :flags, :activities
       should_validate_presence_of :user, :headline, :body, :lesson
       should_allow_values_for    :status, "active", "rejected"
       should_validate_uniqueness_of :user_id, :scoped_to => :lesson_id
