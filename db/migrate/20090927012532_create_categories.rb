@@ -9,6 +9,7 @@ class CreateCategories < ActiveRecord::Migration
       t.integer    :parent_category_id, :null => true
       t.integer    :sort_value, :null => true
       t.integer    :level
+      t.boolean    :delta, :default => true, :null => false
       t.timestamps
     end
     add_foreign_key(:categories, :parent_category_id, :categories)
