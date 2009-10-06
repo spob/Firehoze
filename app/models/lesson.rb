@@ -65,6 +65,7 @@ class Lesson < ActiveRecord::Base
   has_many :lesson_buy_patterns, :order => "counter DESC", :dependent => :destroy
   has_many :lesson_buy_pairs, :order => "counter DESC", :dependent => :destroy
   has_many :flags, :as => :flaggable, :dependent => :destroy
+  has_many :activities, :as => :trackable, :dependent => :destroy
   has_many :rates, :as => :rateable, :dependent => :destroy
   has_one :original_video
   has_one :full_processed_video
@@ -273,6 +274,13 @@ END
 
   def sized_thumbnail_url(size = :large)
     self.thumbnail_url.gsub(/<size>/, size.to_s)
+  end
+
+  def compile_activity
+    self.activities.create!(:actor_user => self.instructor,
+                            :actee_user => nil,
+                            :acted_upon_at => self.created_at)
+    self.update_attribute(:activity_compiled_at, Time.now)
   end
 
   private
