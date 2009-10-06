@@ -131,9 +131,7 @@ module ApplicationHelper
       @categories = Category.root.ascend_by_sort_value
     end
     @categories.each do |category|
-      unless category.lessons.empty?
-        buf = buf + "<br/>#{link_to category.name, category_path(category, :return_path => return_path)}"
-      end
+      buf = buf + "<br/>#{link_to category.name, category_path(category, :return_path => return_path)}"
     end
     buf
   end
