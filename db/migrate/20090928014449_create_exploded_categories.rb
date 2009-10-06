@@ -17,9 +17,11 @@ class CreateExplodedCategories < ActiveRecord::Migration
   end
 
   def self.down
-    remove_foreign_key(:exploded_categories, :category_id)
-    remove_foreign_key(:exploded_categories, :base_category_id) 
-
     drop_table :exploded_categories
+#    ExplodedCategory.delete_all
+#
+#    remove_foreign_key(:exploded_categories, :category_id)
+#    remove_foreign_key(:exploded_categories, :base_category_id) 
+
   end
 end
