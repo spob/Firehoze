@@ -164,6 +164,16 @@ namespace :db do
       Category.create!(:name => "Biology", :parent_category => science, :sort_value => 30)
     end
 
+    desc "assign some categories"
+    task :assign_categories => :environment do
+      Lesson.all.each do |lesson|
+        category = Category.first(:order => "RAND()")
+        lesson.category = category
+        lesson.save!
+        puts "#{lesson.id} assigned to category #{category.name}"
+      end
+    end
+
     desc "Generate some credits"
     task :credits => :environment do
       puts "=== Generating Credits ==="
