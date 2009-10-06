@@ -5,7 +5,7 @@ class Activity < ActiveRecord::Base
   validates_presence_of :actor_user, :acted_upon_at
 
   def self.compile
-    Lesson.activity_compiled_at_null(:lock => true).each do |lesson|
+    Lesson.ready.activity_compiled_at_null(:lock => true).each do |lesson|
       Lesson.transaction do
         lesson.compile_activity
       end
