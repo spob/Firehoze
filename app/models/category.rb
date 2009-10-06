@@ -81,5 +81,8 @@ class Category < ActiveRecord::Base
     self.lessons.each do |lesson|
       lesson.update_attribute(:delta, true)
     end
-  end
-end
+  rescue ActiveRecord::StatementInvalid
+    # Won't work if run during migration - column is added later, so swallow it
+    raise unless ActiveRecord::Migrator.current_version.to_i <= 20090927012532
+  end 
+end                                  
