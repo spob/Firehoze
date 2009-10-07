@@ -1,9 +1,9 @@
 class CategoriesController < ApplicationController
-  before_filter :require_user, :except => [ :show ]
-  before_filter :find_category, :except => [:index, :create, :explode, :show]
+  before_filter :require_user, :except => [ :show, :index ]
+  before_filter :find_category, :except => [:index, :list_admin, :create, :explode, :show]
 
   # Admins only
-  permit ROLE_ADMIN, :except => [ :show ]
+  permit ROLE_ADMIN, :except => [ :show, :index ]
 
   layout :layout_for_action
 
@@ -11,7 +11,7 @@ class CategoriesController < ApplicationController
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
   verify :method => :delete, :only => [:destroy ], :redirect_to => :home_path
 
-  def index
+  def list_admin
     @category ||= Category.new(:sort_value => 10)
     @categories = Category.list params[:page], session[:per_page] || ROWS_PER_PAGE
   end
@@ -20,13 +20,13 @@ class CategoriesController < ApplicationController
     @category = Category.new(params[:category])
     if @category.save
       flash[:notice] = t('category.create_success')
-      redirect_to categories_path
+      redirect_to list_admin_categories_path
     else
       error_msg = ""
       @category.errors.each { |attr, msg| error_msg = error_msg + "#{error_msg == "" ? "" : ", "}#{attr} #{msg}" }
       flash[:error] = t('category.create_failed', :msg => error_msg)
       index
-      redirect_to categories_path
+      redirect_to list_admin_categories_path
     end
   end
 
@@ -34,19 +34,21 @@ class CategoriesController < ApplicationController
     name = @category.name
     @category.destroy
     flash[:notice] = t 'category.delete_success', :name => name
-    redirect_to categories_path
+    redirect_to list_admin_categories_path
   end
 
   def edit
 
   end
 
+  def index
+      @categories = Category.root.ascend_by_sort_value
+  end
+
   def show
     id = params[:id]
-    if id == "all" or (id.nil? and session[:browse_category_id].nil?)
-      @categories = Category.root.ascend_by_sort_value
-      session[:browse_category_id] = nil
-      render 'roundup'
+    if id == "all"
+      redirect_to categories_path
     else
       @category = Category.find(id)
       category_id = @category.id
@@ -68,7 +70,7 @@ class CategoriesController < ApplicationController
   def update
     if @category.update_attributes(params[:category])
       flash[:notice] = t 'category.update_success'
-      redirect_to categories_path
+      redirect_to list_admin_categories_path
     else
       render :action => 'edit'
     end
@@ -79,13 +81,13 @@ class CategoriesController < ApplicationController
             :name => 'Explode Categories',
             :job => "Category.explode")
     flash[:notice] = t 'category.explosion_started'
-    redirect_to categories_path
+    redirect_to list_admin_categories_path
   end
 
   private
 
   def layout_for_action
-    if %w(index edit).include?(params[:action])
+    if %w(list_admin edit).include?(params[:action])
       'admin'
     else
       'application'

@@ -1,35 +1,8 @@
-<% title "Categories" -%>
+<% title "Browse by Categories" -%>
 
-<h3>Categories</h3>
-<%= link_to "Explode", explode_categories_path, :method => :post %>
-<%= error_messages_for 'category' %>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Parent Category</th>
-    <th>Sort Order</th>
-    <th>Action</th>
-  </tr>
-  <tr>
-    <% form_for :category, :url => categories_url(@category) do |f| %>
-        <td>
-          <%= f.text_field :name %>
-        </td>
+<h3>Browse by Categories</h3>
 
-        <td>
-          <%= f.collection_select(:parent_category_id, Category.ascend_by_compiled_sort, :id,
-                                  :formatted_name, {:include_blank => true, :selected => nil}) %>
-        </td>
-
-        <td>
-          <%= f.text_field :sort_value %>
-        </td>
-
-        <td><%= f.submit "Create", :disable_with => translate('general.disable_with') %></td>
-    <% end %>
-  </tr>
-  <%= render @categories %>
-</table>
-<%= will_paginate @categories %>
-<br/>
-Rows to Display Per Page: <%= per_page_select(categories_path) %>
+<% for category in @categories %>
+    <%= link_to category.name, category_path(category) %>
+    <br/><br/>
+<% end %>
