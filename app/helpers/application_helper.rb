@@ -115,7 +115,6 @@ module ApplicationHelper
   end
 
   def browse_category_navigation
-    @category = Category.find(session[:browse_category_id]) if session[:browse_category_id]
     buf = link_to "All", category_path("all")
     if @category
       AncestorCategory.category_id_equals(@category.id).descend_by_generation(:select => [:ancestor_name]).each do |cat|
@@ -127,8 +126,8 @@ module ApplicationHelper
     buf = buf + "<br/>"
 
     @categories = []
-    if session[:browse_category_id]
-      @categories = Category.parent_category_id_equals(session[:browse_category_id]).ascend_by_sort_value
+    if @category
+      @categories = Category.parent_category_id_equals(@category.id).ascend_by_sort_value
     else
       @categories = Category.root.ascend_by_sort_value
     end

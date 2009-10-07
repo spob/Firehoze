@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
   # Admins only
   permit ROLE_ADMIN, :except => [ :show ]
 
-  layout 'admin'
+  layout :layout_for_action
 
   verify :method => :post, :only => [:create, :explode], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
@@ -83,6 +83,14 @@ class CategoriesController < ApplicationController
   end
 
   private
+
+  def layout_for_action
+    if %w(index edit).include?(params[:action])
+      'admin'
+    else
+      'application'
+    end
+  end
 
   def find_category
     @category = Category.find params[:id]
