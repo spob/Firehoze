@@ -2,6 +2,12 @@
 
 <%= browse_category_navigation %>
 
+<% form_tag category_path(@category ? @category : 'all'), :method => :get do %>
+<div>
+  Sort By:
+  <%= select_tag :sort_by, options_for_select(CategoriesController.sort_by, session[:browse_sort]), { :onchange => "submit();"} %>
+</div>
+<% end %>
 <div class="clear append-0 span-29" id="tagged_with_tabs">
   <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
     <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">

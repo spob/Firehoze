@@ -11,6 +11,16 @@ class CategoriesController < ApplicationController
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
   verify :method => :delete, :only => [:destroy ], :redirect_to => :home_path
 
+  # These are the values displayed in the html select in the UI to define which type of SKU to create. For  now,
+  # there is only one type
+  @@sort_by = [ [ 'Most Popular', 'most_popular' ],
+                [ 'Highest Rated', 'highest_rated' ],
+                [ 'Newest', 'newest'] ]
+
+  def self.sort_by
+    @@sort_by
+  end
+
   def list_admin
     @category ||= Category.new(:sort_value => 10)
     @categories = Category.list params[:page], session[:per_page] || ROWS_PER_PAGE
@@ -42,10 +52,11 @@ class CategoriesController < ApplicationController
   end
 
   def index
-      @categories = Category.root.ascend_by_sort_value
+    @categories = Category.root.ascend_by_sort_value
   end
 
   def show
+    session[:browse_sort] = params[:sort_by] if params[:sort_by]
     id = params[:id]
     if id == "all"
       redirect_to categories_path
@@ -55,15 +66,16 @@ class CategoriesController < ApplicationController
 
       @lesson_format = 'wide'
       @lessons =
-              case @collection
+              case session[:browse_sort]
                 when 'most_popular'
                   Lesson.ready.most_popular.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
                 when 'highest_rated'
                   Lesson.ready.highest_rated.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
                 else
-                  @collection = 'newest'
+                  session[:browse_sort] = 'newest'
                   Lesson.ready.newest.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
               end
+      @collection = session[:browse_sort]
     end
   end
 
