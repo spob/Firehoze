@@ -114,15 +114,17 @@ module ApplicationHelper
     end
   end
 
-  def browse_category_navigation return_path=nil
+  def browse_category_navigation
     @category = Category.find(session[:browse_category_id]) if session[:browse_category_id]
-    buf = link_to "All", category_path("all", :return_path => return_path)
+    buf = link_to "All", category_path("all")
     if @category
       AncestorCategory.category_id_equals(@category.id).descend_by_generation(:select => [:ancestor_name]).each do |cat|
-        buf = buf + " > " + link_to(cat.ancestor_name, category_path(cat.ancestor_category, :return_path => return_path))
+        buf = buf + " > " + link_to(cat.ancestor_name, category_path(cat.ancestor_category))
       end
       buf = buf + " > " + @category.name
     end
+
+    buf = buf + "<br/>"
 
     @categories = []
     if session[:browse_category_id]
@@ -131,7 +133,7 @@ module ApplicationHelper
       @categories = Category.root.ascend_by_sort_value
     end
     @categories.each do |category|
-      buf = buf + "<br/>#{link_to category.name, category_path(category, :return_path => return_path)}"
+      buf = buf + "<br/>#{link_to category.name, category_path(category)}"
     end
     buf
   end

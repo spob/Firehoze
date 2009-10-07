@@ -42,15 +42,26 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    return_path = params[:return_path].nil? ? root_path : params[:return_path]
     id = params[:id]
     if id == "all"
-      session[:browse_category_id] = nil
+      @categories = Category.root.ascend_by_sort_value
+      render 'roundup'
     else
       @category = Category.find(id)
       session[:browse_category_id] = @category.id
+
+      @lesson_format = 'wide'
+      @lessons =
+              case @collection
+                when 'most_popular'
+                  Lesson.ready.most_popular.not_owned_by(current_user).by_category(session[:browse_category_id]).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+                when 'highest_rated'
+                  Lesson.ready.highest_rated.not_owned_by(current_user).by_category(session[:browse_category_id]).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+                else
+                  @collection = 'newest'
+                  Lesson.ready.newest.not_owned_by(current_user).by_category(session[:browse_category_id]).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+              end
     end
-    redirect_to return_path
   end
 
   def update
