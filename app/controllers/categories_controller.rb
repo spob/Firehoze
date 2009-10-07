@@ -43,23 +43,24 @@ class CategoriesController < ApplicationController
 
   def show
     id = params[:id]
-    if id == "all"
+    if id == "all" or (id.nil? and session[:browse_category_id].nil?)
       @categories = Category.root.ascend_by_sort_value
+      session[:browse_category_id] = nil
       render 'roundup'
     else
       @category = Category.find(id)
-      session[:browse_category_id] = @category.id
+      category_id = @category.id
 
       @lesson_format = 'wide'
       @lessons =
               case @collection
                 when 'most_popular'
-                  Lesson.ready.most_popular.not_owned_by(current_user).by_category(session[:browse_category_id]).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+                  Lesson.ready.most_popular.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
                 when 'highest_rated'
-                  Lesson.ready.highest_rated.not_owned_by(current_user).by_category(session[:browse_category_id]).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+                  Lesson.ready.highest_rated.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
                 else
                   @collection = 'newest'
-                  Lesson.ready.newest.not_owned_by(current_user).by_category(session[:browse_category_id]).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+                  Lesson.ready.newest.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
               end
     end
   end

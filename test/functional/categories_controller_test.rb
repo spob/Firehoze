@@ -28,22 +28,14 @@ class CategoriesControllerTest < ActionController::TestCase
 
         fast_context "on GET to :show" do
           setup { get :show, :id => @category }
-
-          should "set the category in the session" do
-            assert_equal @category.id, session[:browse_category_id]
-          end
+          
           should_respond_with :success
           should_not_set_the_flash
           should_render_template 'show'
         end
 
         fast_context "on GET to :show with all" do
-          setup do
-            session[:browse_category_id] = @category.id
-            assert_equal @category.id, session[:browse_category_id]
-            get :show, :id => "all"
-          end
-
+          setup { get :show, :id => "all" }
           should_respond_with :success
           should_not_set_the_flash
           should_render_template 'roundup'
