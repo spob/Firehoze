@@ -1,6 +1,6 @@
 class GiftCertificatesController < ApplicationController
   include SslRequirement
-  
+
   before_filter :require_user
   before_filter :find_gift_certificate, :only => [:redeem, :give, :pregive, :confirm_give]
 
@@ -12,13 +12,17 @@ class GiftCertificatesController < ApplicationController
     @gift_certificates = GiftCertificate.list(params[:page], current_user)
   end
 
+  def list_admin
+    @gift_certificates = GiftCertificate.redeemed_at_null.ascend_by_id
+  end
+
   def new
     @gift_certificate = GiftCertificate.new
   end
 
   def create
     code = params[:gift_certificate][:code]
-    code = code.strip.gsub("-", "") unless code.nil?  # strip dashes
+    code = code.strip.gsub("-", "") unless code.nil? # strip dashes
     gift_certificate = GiftCertificate.find_by_code(code)
     if gift_certificate.nil?
       flash[:error] = t('gift_certificate.invalid_gift_certificate', :code => code)
