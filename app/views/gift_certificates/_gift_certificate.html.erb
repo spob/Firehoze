@@ -2,9 +2,6 @@
   <td>
     <%= h gift_certificate.formatted_code %>
   </td>
-    <% if current_user.try('is_admin?') %>
-        <td><%= link_to_profile(gift_certificate.user) %></td>
-    <% end %>
   <td>
     <%= gift_certificate.credit_quantity %>
   </td>

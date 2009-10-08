@@ -1,0 +1,20 @@
+<tr>
+  <td>
+    <%= h gift_certificate_admin.formatted_code %>
+  </td>
+  <td>
+    <%= link_to_profile(gift_certificate_admin.user) %>
+  </td>
+  <td>
+    <%= gift_certificate_admin.credit_quantity %>
+  </td>
+  <td>
+    <%= l(gift_certificate_admin.redeemed_at) if gift_certificate_admin.redeemed_at %>
+  </td>
+  <td>
+    <%= l(gift_certificate_admin.expires_at) if gift_certificate_admin.expires_at %>
+  </td>
+  <td>
+    <%= h gift_certificate_admin.comments %>
+  </td>
+</tr>

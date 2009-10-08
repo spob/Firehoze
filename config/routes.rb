@@ -22,6 +22,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :credits
   map.resources :flags, :only => [ :new, :create, :index, :show, :update, :edit ]
   map.resources :gift_certificates,
+                :collection => { :list_admin => :get },
                 :member => { :redeem => :post, :give => :post, :pregive => :get, :confirm_give => :post }
   map.resources :helpfuls, :only => [ :create ]
   map.resources :lessons, :has_many => :reviews, :shallow => true,

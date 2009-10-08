@@ -5,6 +5,8 @@ class GiftCertificatesController < ApplicationController
   before_filter :find_gift_certificate, :only => [:redeem, :give, :pregive, :confirm_give]
 
   ssl_required :redeem if Rails.env.production?
+  
+  layout :layout_for_action
 
   verify :method => :post, :only => [ :create, :redeem, :give, :confirm_give ], :redirect_to => :home_path
 
@@ -13,7 +15,8 @@ class GiftCertificatesController < ApplicationController
   end
 
   def list_admin
-    @gift_certificates = GiftCertificate.redeemed_at_null.ascend_by_id
+    @gift_certificates = GiftCertificate.redeemed_at_null.ascend_by_id.paginate(:per_page => (session[:per_page] || ROWS_PER_PAGE),
+            :page => params[:page])
   end
 
   def new
@@ -77,6 +80,10 @@ class GiftCertificatesController < ApplicationController
   end
 
   private
+
+  def layout_for_action
+    %w(list_admin).include?(params[:action]) ? 'admin' : 'application'
+  end
 
   def find_gift_certificate
     @gift_certificate = GiftCertificate.find(params[:id])

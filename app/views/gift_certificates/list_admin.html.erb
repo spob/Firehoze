@@ -1,0 +1,18 @@
+<% title "Gift Certificates" -%>
+
+<h3>Gift Certificates</h3>
+<table>
+  <tr>
+    <th>Code</th>
+    <th>Belongs To</th>
+    <th>Credits</th>
+    <th>Redeemed At</th>
+    <th>Expires At</th>
+    <th>Comments</th>
+  </tr>
+  <%= render :partial => 'gift_certificate_admin', :collection => @gift_certificates %>
+</table>
+
+<%= will_paginate @gift_certificates %>
+<br/>
+Rows to Display Per Page: <%= per_page_select(list_admin_gift_certificates_path) %>
