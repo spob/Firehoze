@@ -1,30 +1,30 @@
-<mockup version="1.0" skin="sketch" measuredW="1109" measuredH="648" mockupW="1036" mockupH="617">
+<mockup version="1.0" skin="sketch" measuredW="1134" measuredH="651" mockupW="1089" mockupH="638">
   <controls>
-    <control controlID="129" controlTypeID="com.balsamiq.mockups::Link" x="75" y="227" w="-1" h="-1" measuredW="78" measuredH="19" zOrder="3" locked="false" isInGroup="-1">
+    <control controlID="129" controlTypeID="com.balsamiq.mockups::Link" x="75" y="203" w="-1" h="-1" measuredW="78" measuredH="19" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <text>My%20Public%20Page</text>
         <size>10</size>
       </controlProperties>
     </control>
-    <control controlID="130" controlTypeID="com.balsamiq.mockups::Link" x="75" y="249" w="-1" h="-1" measuredW="44" measuredH="19" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="130" controlTypeID="com.balsamiq.mockups::Link" x="75" y="225" w="-1" h="-1" measuredW="44" measuredH="19" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Settings</text>
         <size>10</size>
       </controlProperties>
     </control>
-    <control controlID="131" controlTypeID="com.balsamiq.mockups::Link" x="75" y="270" w="-1" h="-1" measuredW="36" measuredH="19" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="131" controlTypeID="com.balsamiq.mockups::Link" x="75" y="246" w="-1" h="-1" measuredW="46" measuredH="19" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Logout</text>
+        <text>Sign%20Out</text>
         <size>10</size>
       </controlProperties>
     </control>
-    <control controlID="132" controlTypeID="com.balsamiq.mockups::Icon" x="123" y="182" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="132" controlTypeID="com.balsamiq.mockups::Icon" x="123" y="158" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
         <icon>CursorIcon%7Csmall</icon>
       </controlProperties>
     </control>
-    <control controlID="133" controlTypeID="com.balsamiq.mockups::Canvas" x="512" y="196" w="104" h="44" measuredW="100" measuredH="70" zOrder="7" locked="false" isInGroup="-1"/>
-    <control controlID="134" controlTypeID="__group__" x="433" y="156" w="-1" h="-1" measuredW="308" measuredH="45" zOrder="8" locked="false" isInGroup="-1">
+    <control controlID="133" controlTypeID="com.balsamiq.mockups::Canvas" x="512" y="172" w="104" h="44" measuredW="100" measuredH="70" zOrder="9" locked="false" isInGroup="-1"/>
+    <control controlID="134" controlTypeID="__group__" x="433" y="132" w="-1" h="-1" measuredW="308" measuredH="45" zOrder="10" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="3" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="308" h="45" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="9"/>
         <control controlID="8" controlTypeID="__group__" x="17" y="9" w="278" h="25" measuredW="278" measuredH="25" zOrder="1" locked="false" isInGroup="9">
@@ -48,7 +48,7 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="9" controlTypeID="__group__" x="63" y="154" w="-1" h="-1" measuredW="308" measuredH="45" zOrder="1" locked="false" isInGroup="-1">
+    <control controlID="9" controlTypeID="__group__" x="63" y="130" w="-1" h="-1" measuredW="308" measuredH="45" zOrder="3" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="3" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="308" h="45" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="9"/>
         <control controlID="8" controlTypeID="__group__" x="17" y="9" w="278" h="25" measuredW="278" measuredH="25" zOrder="1" locked="false" isInGroup="9">
@@ -72,19 +72,19 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="139" controlTypeID="com.balsamiq.mockups::Icon" x="559" y="182" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="9" locked="false" isInGroup="-1">
+    <control controlID="139" controlTypeID="com.balsamiq.mockups::Icon" x="559" y="158" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <icon>CursorIcon%7Csmall</icon>
       </controlProperties>
     </control>
-    <control controlID="141" controlTypeID="com.balsamiq.mockups::Link" x="522" y="206" w="-1" h="-1" measuredW="65" measuredH="19" zOrder="10" locked="false" isInGroup="-1">
+    <control controlID="141" controlTypeID="com.balsamiq.mockups::Link" x="522" y="182" w="-1" h="-1" measuredW="65" measuredH="19" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Create%20lesson</text>
         <size>10</size>
       </controlProperties>
     </control>
-    <control controlID="142" controlTypeID="com.balsamiq.mockups::Canvas" x="936" y="196" w="133" h="166" measuredW="100" measuredH="70" zOrder="11" locked="false" isInGroup="-1"/>
-    <control controlID="143" controlTypeID="__group__" x="791" y="156" w="-1" h="-1" measuredW="308" measuredH="45" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="142" controlTypeID="com.balsamiq.mockups::Canvas" x="936" y="172" w="133" h="152" measuredW="100" measuredH="70" zOrder="13" locked="false" isInGroup="-1"/>
+    <control controlID="143" controlTypeID="__group__" x="791" y="132" w="-1" h="-1" measuredW="308" measuredH="45" zOrder="14" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="3" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="308" h="45" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="9"/>
         <control controlID="8" controlTypeID="__group__" x="17" y="9" w="278" h="25" measuredW="278" measuredH="25" zOrder="1" locked="false" isInGroup="9">
@@ -108,68 +108,125 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="144" controlTypeID="com.balsamiq.mockups::Icon" x="965" y="182" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="144" controlTypeID="com.balsamiq.mockups::Icon" x="965" y="158" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <icon>CursorIcon%7Csmall</icon>
       </controlProperties>
     </control>
-    <control controlID="145" controlTypeID="com.balsamiq.mockups::Link" x="950" y="235" w="-1" h="-1" measuredW="58" measuredH="19" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="145" controlTypeID="com.balsamiq.mockups::Link" x="950" y="211" w="-1" h="-1" measuredW="58" measuredH="19" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Help%20Center</text>
         <size>10</size>
       </controlProperties>
     </control>
-    <control controlID="146" controlTypeID="com.balsamiq.mockups::Link" x="950" y="208" w="-1" h="-1" measuredW="73" measuredH="19" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="146" controlTypeID="com.balsamiq.mockups::Link" x="950" y="184" w="-1" h="-1" measuredW="73" measuredH="19" zOrder="17" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Firehoze%20Basics</text>
         <size>10</size>
       </controlProperties>
     </control>
-    <control controlID="147" controlTypeID="com.balsamiq.mockups::Link" x="950" y="261" w="-1" h="-1" measuredW="104" measuredH="19" zOrder="16" locked="false" isInGroup="-1">
+    <control controlID="147" controlTypeID="com.balsamiq.mockups::Link" x="950" y="237" w="-1" h="-1" measuredW="104" measuredH="19" zOrder="18" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Community%20Guidelines</text>
         <size>10</size>
       </controlProperties>
     </control>
-    <control controlID="148" controlTypeID="com.balsamiq.mockups::Link" x="950" y="288" w="-1" h="-1" measuredW="56" measuredH="19" zOrder="17" locked="false" isInGroup="-1">
+    <control controlID="148" controlTypeID="com.balsamiq.mockups::Link" x="950" y="264" w="-1" h="-1" measuredW="56" measuredH="19" zOrder="19" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Contact%20Us</text>
         <size>10</size>
       </controlProperties>
     </control>
-    <control controlID="149" controlTypeID="com.balsamiq.mockups::Link" x="950" y="314" w="-1" h="-1" measuredW="81" measuredH="19" zOrder="18" locked="false" isInGroup="-1">
+    <control controlID="149" controlTypeID="com.balsamiq.mockups::Link" x="950" y="290" w="-1" h="-1" measuredW="81" measuredH="19" zOrder="20" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Get%20Satisfaction</text>
         <size>10</size>
       </controlProperties>
     </control>
-    <control controlID="150" controlTypeID="com.balsamiq.mockups::Label" x="419" y="21" w="-1" h="-1" measuredW="303" measuredH="41" zOrder="19" locked="false" isInGroup="-1">
+    <control controlID="150" controlTypeID="com.balsamiq.mockups::Label" x="419" y="3" w="-1" h="-1" measuredW="303" measuredH="41" zOrder="21" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Top%20Nav%20Bar%20Variations</text>
         <size>28</size>
       </controlProperties>
     </control>
-    <control controlID="151" controlTypeID="com.balsamiq.mockups::Label" x="69" y="386" w="-1" h="-1" measuredW="225" measuredH="37" zOrder="20" locked="false" isInGroup="-1">
+    <control controlID="151" controlTypeID="com.balsamiq.mockups::Label" x="69" y="376" w="-1" h="-1" measuredW="225" measuredH="37" zOrder="22" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Un-Recognized%20User</text>
         <size>24</size>
       </controlProperties>
     </control>
-    <control controlID="152" controlTypeID="com.balsamiq.mockups::Label" x="507" y="511" w="-1" h="-1" measuredW="155" measuredH="41" zOrder="22" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>coming%20soon</text>
-        <size>28</size>
-      </controlProperties>
-    </control>
-    <control controlID="153" controlTypeID="com.balsamiq.mockups::Canvas" x="69" y="442" w="1004" h="196" measuredW="100" measuredH="70" zOrder="21" locked="false" isInGroup="-1"/>
-    <control controlID="154" controlTypeID="com.balsamiq.mockups::Label" x="67" y="99" w="-1" h="-1" measuredW="186" measuredH="37" zOrder="23" locked="false" isInGroup="-1">
+    <control controlID="154" controlTypeID="com.balsamiq.mockups::Label" x="67" y="75" w="-1" h="-1" measuredW="186" measuredH="37" zOrder="23" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Recognized%20User</text>
         <size>24</size>
       </controlProperties>
     </control>
-    <control controlID="126" controlTypeID="com.balsamiq.mockups::Canvas" x="64" y="194" w="104" h="108" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="-1"/>
-    <control controlID="127" controlTypeID="com.balsamiq.mockups::Link" x="75" y="206" w="-1" h="-1" measuredW="59" measuredH="19" zOrder="2" locked="false" isInGroup="-1">
+    <control controlID="180" controlTypeID="__group__" x="69" y="426" w="-1" h="-1" measuredW="369" measuredH="193" zOrder="24" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="172" controlTypeID="__group__" x="0" y="0" w="369" h="45" measuredW="369" measuredH="45" zOrder="0" locked="false" isInGroup="180">
+          <groupChildrenDescriptors>
+            <control controlID="163" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="369" h="45" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="172"/>
+            <control controlID="165" controlTypeID="com.balsamiq.mockups::SearchBox" x="263" y="9" w="93" h="-1" measuredW="93" measuredH="25" zOrder="1" locked="false" isInGroup="172">
+              <controlProperties>
+                <text>search</text>
+              </controlProperties>
+            </control>
+            <control controlID="168" controlTypeID="com.balsamiq.mockups::VRule" x="135" y="0" w="-1" h="43" measuredW="5" measuredH="100" zOrder="2" locked="false" isInGroup="172"/>
+            <control controlID="166" controlTypeID="com.balsamiq.mockups::LinkBar" x="149" y="11" w="-1" h="-1" measuredW="99" measuredH="23" zOrder="3" locked="false" isInGroup="172">
+              <controlProperties>
+                <text>Sign%20In%2C%20Help</text>
+              </controlProperties>
+            </control>
+            <control controlID="171" controlTypeID="com.balsamiq.mockups::Link" x="13" y="8" w="-1" h="-1" measuredW="111" measuredH="29" zOrder="4" locked="false" isInGroup="172">
+              <controlProperties>
+                <text>join%20firehoze</text>
+                <size>18</size>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="173" controlTypeID="com.balsamiq.mockups::Canvas" x="207" y="41" w="133" h="152" measuredW="100" measuredH="70" zOrder="1" locked="false" isInGroup="180"/>
+        <control controlID="174" controlTypeID="com.balsamiq.mockups::Link" x="221" y="80" w="-1" h="-1" measuredW="58" measuredH="19" zOrder="2" locked="false" isInGroup="180">
+          <controlProperties>
+            <text>Help%20Center</text>
+            <size>10</size>
+          </controlProperties>
+        </control>
+        <control controlID="175" controlTypeID="com.balsamiq.mockups::Link" x="221" y="53" w="-1" h="-1" measuredW="73" measuredH="19" zOrder="3" locked="false" isInGroup="180">
+          <controlProperties>
+            <text>Firehoze%20Basics</text>
+            <size>10</size>
+          </controlProperties>
+        </control>
+        <control controlID="176" controlTypeID="com.balsamiq.mockups::Link" x="221" y="106" w="-1" h="-1" measuredW="104" measuredH="19" zOrder="4" locked="false" isInGroup="180">
+          <controlProperties>
+            <text>Community%20Guidelines</text>
+            <size>10</size>
+          </controlProperties>
+        </control>
+        <control controlID="177" controlTypeID="com.balsamiq.mockups::Link" x="221" y="133" w="-1" h="-1" measuredW="56" measuredH="19" zOrder="5" locked="false" isInGroup="180">
+          <controlProperties>
+            <text>Contact%20Us</text>
+            <size>10</size>
+          </controlProperties>
+        </control>
+        <control controlID="178" controlTypeID="com.balsamiq.mockups::Link" x="221" y="159" w="-1" h="-1" measuredW="81" measuredH="19" zOrder="6" locked="false" isInGroup="180">
+          <controlProperties>
+            <text>Get%20Satisfaction</text>
+            <size>10</size>
+          </controlProperties>
+        </control>
+        <control controlID="179" controlTypeID="com.balsamiq.mockups::Icon" x="231" y="29" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="7" locked="false" isInGroup="180">
+          <controlProperties>
+            <icon>CursorIcon%7Csmall</icon>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="181" controlTypeID="com.balsamiq.mockups::Canvas" x="35" y="60" w="1089" h="287" measuredW="100" measuredH="70" zOrder="1" locked="false" isInGroup="-1"/>
+    <control controlID="182" controlTypeID="com.balsamiq.mockups::Canvas" x="35" y="354" w="1089" h="287" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="-1"/>
+    <control controlID="126" controlTypeID="com.balsamiq.mockups::Canvas" x="64" y="170" w="104" h="108" measuredW="100" measuredH="70" zOrder="2" locked="false" isInGroup="-1"/>
+    <control controlID="127" controlTypeID="com.balsamiq.mockups::Link" x="75" y="182" w="-1" h="-1" measuredW="59" measuredH="19" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
         <text>My%20Firehoze</text>
         <size>10</size>

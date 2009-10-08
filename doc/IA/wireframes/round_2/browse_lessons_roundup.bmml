@@ -88,15 +88,10 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="36" controlTypeID="com.balsamiq.mockups::TabBar" x="297" y="186" w="944" h="766" measuredW="282" measuredH="100" zOrder="2" locked="false" isInGroup="-1">
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::TabBar" x="297" y="186" w="944" h="766" measuredW="282" measuredH="100" zOrder="2" locked="true" isInGroup="-1">
       <controlProperties>
         <text>My%20Firehoze%2C%20Lessons%2C%20Teach</text>
         <selectedIndex>1</selectedIndex>
-      </controlProperties>
-    </control>
-    <control controlID="2" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="263" y="3" w="1000" h="1220" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Firehoze%0Ahttp%3A//www.firehoze.com/home</text>
       </controlProperties>
     </control>
     <control controlID="9" controlTypeID="__group__" x="927" y="89" w="-1" h="-1" measuredW="308" measuredH="45" zOrder="1" locked="false" isInGroup="-1">
@@ -123,45 +118,11 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="106" controlTypeID="__group__" x="654" y="612" w="-1" h="-1" measuredW="248" measuredH="70" zOrder="10" locked="false" isInGroup="-1">
-      <groupChildrenDescriptors>
-        <control controlID="104" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="248" h="70" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="106"/>
-        <control controlID="64" controlTypeID="com.balsamiq.mockups::Label" x="12" y="6" w="87" h="29" measuredW="87" measuredH="29" zOrder="1" locked="false" isInGroup="106">
-          <controlProperties>
-            <text>Economics</text>
-            <size>18</size>
-          </controlProperties>
-        </control>
-        <control controlID="88" controlTypeID="__group__" x="12" y="35" w="150" h="23" measuredW="150" measuredH="23" zOrder="2" locked="false" isInGroup="106">
-          <groupChildrenDescriptors>
-            <control controlID="83" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="44" measuredH="23" zOrder="0" locked="false" isInGroup="87">
-              <controlProperties>
-                <text>Lorem%2C</text>
-              </controlProperties>
-            </control>
-            <control controlID="84" controlTypeID="com.balsamiq.mockups::Link" x="47" y="0" w="-1" h="-1" measuredW="44" measuredH="23" zOrder="1" locked="false" isInGroup="87">
-              <controlProperties>
-                <text>Ipsum%2C</text>
-              </controlProperties>
-            </control>
-            <control controlID="85" controlTypeID="com.balsamiq.mockups::Link" x="94" y="0" w="-1" h="-1" measuredW="36" measuredH="23" zOrder="2" locked="false" isInGroup="87">
-              <controlProperties>
-                <text>Dolor</text>
-              </controlProperties>
-            </control>
-            <control controlID="86" controlTypeID="com.balsamiq.mockups::Link" x="133" y="0" w="-1" h="-1" measuredW="17" measuredH="23" zOrder="3" locked="false" isInGroup="87">
-              <controlProperties>
-                <text>...</text>
-              </controlProperties>
-            </control>
-          </groupChildrenDescriptors>
-        </control>
-        <control controlID="105" controlTypeID="com.balsamiq.mockups::Icon" x="207" y="23" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="3" locked="false" isInGroup="106">
-          <controlProperties>
-            <icon>GtIcon%7Csmall</icon>
-          </controlProperties>
-        </control>
-      </groupChildrenDescriptors>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::Label" x="313" y="93" w="-1" h="-1" measuredW="230" measuredH="82" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>firehoze</text>
+        <size>60</size>
+      </controlProperties>
     </control>
     <control controlID="107" controlTypeID="__group__" x="369" y="612" w="-1" h="-1" measuredW="248" measuredH="70" zOrder="11" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
@@ -207,15 +168,10 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="59" controlTypeID="__group__" x="369" y="518" w="248" h="70" measuredW="248" measuredH="70" zOrder="7" locked="false" isInGroup="-1">
-      <groupChildrenDescriptors>
-        <control controlID="47" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="248" h="70" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="52"/>
-        <control controlID="51" controlTypeID="com.balsamiq.mockups::Icon" x="207" y="23" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="1" locked="false" isInGroup="52">
-          <controlProperties>
-            <icon>GtIcon%7Csmall</icon>
-          </controlProperties>
-        </control>
-      </groupChildrenDescriptors>
+    <control controlID="123" controlTypeID="com.balsamiq.mockups::Canvas" x="297" y="983" w="938" h="197" measuredW="100" measuredH="70" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>15790322</color>
+      </controlProperties>
     </control>
     <control controlID="46" controlTypeID="com.balsamiq.mockups::FieldSet" x="340" y="467" w="600" h="440" measuredW="200" measuredH="170" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
@@ -283,31 +239,16 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="10" controlTypeID="com.balsamiq.mockups::Label" x="313" y="93" w="-1" h="-1" measuredW="230" measuredH="82" zOrder="3" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>firehoze</text>
-        <size>60</size>
-      </controlProperties>
-    </control>
-    <control controlID="115" controlTypeID="__group__" x="369" y="799" w="-1" h="-1" measuredW="248" measuredH="70" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="106" controlTypeID="__group__" x="654" y="612" w="-1" h="-1" measuredW="248" measuredH="70" zOrder="10" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
-        <control controlID="112" controlTypeID="__group__" x="0" y="0" w="248" h="70" measuredW="248" measuredH="70" zOrder="0" locked="false" isInGroup="115">
-          <groupChildrenDescriptors>
-            <control controlID="47" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="248" h="70" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="52"/>
-            <control controlID="51" controlTypeID="com.balsamiq.mockups::Icon" x="207" y="23" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="1" locked="false" isInGroup="52">
-              <controlProperties>
-                <icon>GtIcon%7Csmall</icon>
-              </controlProperties>
-            </control>
-          </groupChildrenDescriptors>
-        </control>
-        <control controlID="67" controlTypeID="com.balsamiq.mockups::Label" x="12" y="8" w="64" h="29" measuredW="64" measuredH="29" zOrder="1" locked="false" isInGroup="115">
+        <control controlID="104" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="248" h="70" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="106"/>
+        <control controlID="64" controlTypeID="com.balsamiq.mockups::Label" x="12" y="6" w="87" h="29" measuredW="87" measuredH="29" zOrder="1" locked="false" isInGroup="106">
           <controlProperties>
-            <text>History</text>
+            <text>Economics</text>
             <size>18</size>
           </controlProperties>
         </control>
-        <control controlID="93" controlTypeID="__group__" x="13" y="33" w="150" h="23" measuredW="150" measuredH="23" zOrder="2" locked="false" isInGroup="115">
+        <control controlID="88" controlTypeID="__group__" x="12" y="35" w="150" h="23" measuredW="150" measuredH="23" zOrder="2" locked="false" isInGroup="106">
           <groupChildrenDescriptors>
             <control controlID="83" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="44" measuredH="23" zOrder="0" locked="false" isInGroup="87">
               <controlProperties>
@@ -331,7 +272,17 @@
             </control>
           </groupChildrenDescriptors>
         </control>
+        <control controlID="105" controlTypeID="com.balsamiq.mockups::Icon" x="207" y="23" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="3" locked="false" isInGroup="106">
+          <controlProperties>
+            <icon>GtIcon%7Csmall</icon>
+          </controlProperties>
+        </control>
       </groupChildrenDescriptors>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="263" y="3" w="1000" h="1220" measuredW="450" measuredH="400" zOrder="0" locked="true" isInGroup="-1">
+      <controlProperties>
+        <text>Firehoze%0Ahttp%3A//www.firehoze.com/home</text>
+      </controlProperties>
     </control>
     <control controlID="122" controlTypeID="com.balsamiq.mockups::Accordion" x="978" y="296" w="222" h="368" measuredW="150" measuredH="113" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
@@ -357,6 +308,50 @@
           </controlProperties>
         </control>
         <control controlID="92" controlTypeID="__group__" x="11" y="35" w="150" h="23" measuredW="150" measuredH="23" zOrder="2" locked="false" isInGroup="110">
+          <groupChildrenDescriptors>
+            <control controlID="83" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="44" measuredH="23" zOrder="0" locked="false" isInGroup="87">
+              <controlProperties>
+                <text>Lorem%2C</text>
+              </controlProperties>
+            </control>
+            <control controlID="84" controlTypeID="com.balsamiq.mockups::Link" x="47" y="0" w="-1" h="-1" measuredW="44" measuredH="23" zOrder="1" locked="false" isInGroup="87">
+              <controlProperties>
+                <text>Ipsum%2C</text>
+              </controlProperties>
+            </control>
+            <control controlID="85" controlTypeID="com.balsamiq.mockups::Link" x="94" y="0" w="-1" h="-1" measuredW="36" measuredH="23" zOrder="2" locked="false" isInGroup="87">
+              <controlProperties>
+                <text>Dolor</text>
+              </controlProperties>
+            </control>
+            <control controlID="86" controlTypeID="com.balsamiq.mockups::Link" x="133" y="0" w="-1" h="-1" measuredW="17" measuredH="23" zOrder="3" locked="false" isInGroup="87">
+              <controlProperties>
+                <text>...</text>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="115" controlTypeID="__group__" x="369" y="799" w="-1" h="-1" measuredW="248" measuredH="70" zOrder="15" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="112" controlTypeID="__group__" x="0" y="0" w="248" h="70" measuredW="248" measuredH="70" zOrder="0" locked="false" isInGroup="115">
+          <groupChildrenDescriptors>
+            <control controlID="47" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="248" h="70" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="52"/>
+            <control controlID="51" controlTypeID="com.balsamiq.mockups::Icon" x="207" y="23" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="1" locked="false" isInGroup="52">
+              <controlProperties>
+                <icon>GtIcon%7Csmall</icon>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="67" controlTypeID="com.balsamiq.mockups::Label" x="12" y="8" w="64" h="29" measuredW="64" measuredH="29" zOrder="1" locked="false" isInGroup="115">
+          <controlProperties>
+            <text>History</text>
+            <size>18</size>
+          </controlProperties>
+        </control>
+        <control controlID="93" controlTypeID="__group__" x="13" y="33" w="150" h="23" measuredW="150" measuredH="23" zOrder="2" locked="false" isInGroup="115">
           <groupChildrenDescriptors>
             <control controlID="83" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="44" measuredH="23" zOrder="0" locked="false" isInGroup="87">
               <controlProperties>
@@ -426,10 +421,15 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="123" controlTypeID="com.balsamiq.mockups::Canvas" x="297" y="983" w="938" h="197" measuredW="100" measuredH="70" zOrder="17" locked="false" isInGroup="-1">
-      <controlProperties>
-        <color>15790322</color>
-      </controlProperties>
+    <control controlID="59" controlTypeID="__group__" x="369" y="518" w="248" h="70" measuredW="248" measuredH="70" zOrder="7" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="47" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="248" h="70" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="52"/>
+        <control controlID="51" controlTypeID="com.balsamiq.mockups::Icon" x="207" y="23" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="1" locked="false" isInGroup="52">
+          <controlProperties>
+            <icon>GtIcon%7Csmall</icon>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
     </control>
     <control controlID="124" controlTypeID="com.balsamiq.mockups::Label" x="728" y="1069" w="-1" h="-1" measuredW="42" measuredH="23" zOrder="18" locked="false" isInGroup="-1">
       <controlProperties>
