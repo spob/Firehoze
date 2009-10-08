@@ -10,6 +10,30 @@ class GiftCertificatesControllerTest < ActionController::TestCase
       UserSession.create @user
     end
 
+      fast_context "on GET to :list_admin" do
+        setup { get :list_admin }
+
+        should_not_assign_to :gift_certificates
+        should_respond_with :redirect
+        should_set_the_flash_to /denied/
+        should_redirect_to("Lesson index") { lessons_url }
+      end
+
+    fast_context "as a payment mgr" do
+      setup do
+        @user.is_admin
+      end
+
+      fast_context "on GET to :list_admin" do
+        setup { get :list_admin }
+
+        should_assign_to :gift_certificates
+        should_respond_with :success
+        should_not_set_the_flash
+      should_render_template 'list_admin'
+      end
+    end
+
     fast_context "on GET to :new" do
       setup { get :new }
 
