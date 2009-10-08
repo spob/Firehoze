@@ -19,6 +19,15 @@ class GiftCertificatesControllerTest < ActionController::TestCase
         should_redirect_to("Lesson index") { lessons_url }
       end
 
+      fast_context "on GET to :new_grant" do
+        setup { get :new_grant }
+
+        should_not_assign_to :gift_certificate
+        should_respond_with :redirect
+        should_set_the_flash_to /denied/
+        should_redirect_to("Lesson index") { lessons_url }
+      end
+
     fast_context "as a payment mgr" do
       setup do
         @user.is_paymentmgr
@@ -31,6 +40,15 @@ class GiftCertificatesControllerTest < ActionController::TestCase
         should_respond_with :success
         should_not_set_the_flash
       should_render_template 'list_admin'
+      end
+
+      fast_context "on GET to :new_grant" do
+        setup { get :new_grant }
+
+        should_assign_to :gift_certificate
+        should_respond_with :success
+        should_not_set_the_flash
+      should_render_template 'new_grant'
       end
     end
 
