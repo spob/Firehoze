@@ -21,7 +21,7 @@ class GiftCertificatesControllerTest < ActionController::TestCase
 
     fast_context "as a payment mgr" do
       setup do
-        @user.is_admin
+        @user.is_paymentmgr
       end
 
       fast_context "on GET to :list_admin" do

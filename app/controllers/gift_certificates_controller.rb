@@ -4,7 +4,7 @@ class GiftCertificatesController < ApplicationController
   before_filter :require_user
   before_filter :find_gift_certificate, :only => [:redeem, :give, :pregive, :confirm_give]
 
-  permit ROLE_PAYMENT_MGR, :only => [ :list_admin ]
+  permit ROLE_PAYMENT_MGR, :only => [ :list_admin, :new_grant ]
 
   ssl_required :redeem if Rails.env.production?
 
@@ -20,6 +20,10 @@ class GiftCertificatesController < ApplicationController
     @search = GiftCertificate.redeemed_at_null.search(params[:search])
     @gift_certificates = @search.paginate(:per_page => (session[:per_page] || ROWS_PER_PAGE),
                                           :page => params[:page])
+  end
+
+  def new_grant
+    new
   end
 
   def new
@@ -85,7 +89,7 @@ class GiftCertificatesController < ApplicationController
   private
 
   def layout_for_action
-    %w(list_admin).include?(params[:action]) ? 'admin' : 'application'
+    %w(list_admin new_grant).include?(params[:action]) ? 'admin' : 'application'
   end
 
   def find_gift_certificate
