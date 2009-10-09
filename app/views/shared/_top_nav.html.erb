@@ -4,7 +4,7 @@
       <%= content_tag(:li, "#{link_to "Admin Console", admin_consoles_path}") if current_user.is_admin? or current_user.is_paymentmgr? or current_user.is_moderator? %>
       <li><%= link_to_unless_current "Account Settings", edit_account_path(current_user) %></li>
       <!-- pass a dummy id to the following route since restful for show requires an id -->
-      <li><%= link_to "Buy Credits", store_path(1) %></li>
+      <li><%= link_to "Buy Credits", store_path(0) %></li>
       <li><%= "Available Credits (#{current_user.credits.available.count})" %></li>
       <% if current_user and !current_user.gift_certificates.active.empty? %>
           <li><%= link_to "Gift Certificates (#{current_user.gift_certificates.active.count})", gift_certificates_path %></li>

@@ -115,6 +115,7 @@ class LessonsController < ApplicationController
   end
 
   def show
+    session[:lesson_to_buy] = nil
     @lesson = Lesson.find(params[:id], :include => [:instructor, :reviews])
     if @lesson.ready? or @lesson.instructed_by?(current_user) or (current_user and current_user.is_moderator?)
       LessonVisit.touch(@lesson, current_user, request.session.session_id)
@@ -228,7 +229,7 @@ class LessonsController < ApplicationController
         elsif current_user.available_credits.empty?
           # User doesn't have enough credits...redirect them to the online store
           flash[:error] = t('lesson.need_credits')
-          redirect_to store_path(1)
+          redirect_to store_path(@lesson)
         else
           redirect_to new_acquire_lesson_path(:id => @lesson)
         end

@@ -30,8 +30,9 @@ class OrdersController < ApplicationController
   end
 
   def index
+    session[:lesson_to_buy] = nil
     @search = Order.cart_purchased_at_not_null.descend_by_id.search(params[:search])
-    @orders = @search.paginate(:page => params[:page], :per_page => (session[:per_page] || ROWS_PER_PAGE)) 
+    @orders = @search.paginate(:page => params[:page], :per_page => (session[:per_page] || ROWS_PER_PAGE))
   end
 
   def create
@@ -87,7 +88,7 @@ class OrdersController < ApplicationController
   end
 
   private
-  
+
   def layout_for_action
     %w(index).include?(params[:action]) || (params[:action] == 'show' and current_user.is_admin?) ? 'admin' : 'application'
   end

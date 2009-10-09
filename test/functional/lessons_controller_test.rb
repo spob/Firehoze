@@ -337,7 +337,7 @@ class LessonsControllerTest < ActionController::TestCase
         end
 
         should_set_the_flash_to I18n.t('lesson.need_credits')
-        should_redirect_to("online store") { store_path(1) }
+        should_redirect_to("online store") { store_path(@lesson) }
       end
 
       fast_context "with available credits" do

@@ -3,17 +3,22 @@
 <h3>Thank you for your order</h3>
 <div class="span-40 last" style="border:solid 1px #999; background-color:#eee;margin:0 0 20px 0; padding:20px 0 0 0;">
   <div class="push-1 span-19">
-    <strong>Order Information:</strong><br />
-    Order #: <%= @order.id %><br />
-    Purchase date: <%= l @order.cart.purchased_at %><br />
-    Purchased by: <%= h(@order.user.full_name) %><br />
+    <strong>Order Information:</strong><br/>
+    Order #: <%= @order.id %>
+    <br/>
+    Purchase date: <%= l @order.cart.purchased_at %>
+    <br/>
+    Purchased by: <%= h(@order.user.full_name) %>
+    <br/>
     Credit Card Type: <%= Order.user_friend_card_type(@order.card_type) %>
   </div>
 
   <div class="span-19 last">
-    <strong>Billing Information:</strong><br />
-    <%= h @order.first_name %> <%= h @order.last_name %><br />
-    <%= order_formatted_address(@order, "<br/>") %><br />
+    <strong>Billing Information:</strong><br/>
+    <%= h @order.first_name %> <%= h @order.last_name %>
+    <br/>
+    <%= order_formatted_address(@order, "<br/>") %>
+    <br/>
   </div>
 </div>
 
@@ -39,3 +44,5 @@
     <td class="total price"><%= number_to_currency @order.cart.total_discounted_price %></td>
   </tr>
 </table>
+<br/>
+<%= show_lesson_link %>
