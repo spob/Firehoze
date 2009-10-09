@@ -9,6 +9,9 @@
     <%= gift_certificate_admin.credit_quantity %>
   </td>
   <td>
+    <%= number_to_currency(gift_certificate_admin.line_item ? gift_certificate_admin.line_item.total_discounted_price : 0) %>
+  </td>
+  <td>
     <%= l(gift_certificate_admin.redeemed_at) if gift_certificate_admin.redeemed_at %>
   </td>
   <td>

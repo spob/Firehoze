@@ -21,7 +21,7 @@ class GrantGiftCertificatesController < ApplicationController
       flash[:notice] = t('gift_certificate.create_success')
       redirect_to list_admin_gift_certificates_path
     else
-      render :controller => :gift_certificates, :action => :new
+      render :action => :new
     end
   end
 end

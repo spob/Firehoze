@@ -30,7 +30,7 @@ class GiftCertificate < ActiveRecord::Base
 
   def redeem the_user
     self.credit_quantity.times do
-      Credit.create!(:sku => self.line_item.sku,
+      Credit.create!(:sku => self.line_item.try(:sku),
                      :price => self.price,
                      :user => the_user,
                      :acquired_at => Time.zone.now,
