@@ -13,7 +13,7 @@ class GrantGiftCertificatesController < ApplicationController
     @gift_certificate = GiftCertificate.new
   end
 
-  def create
+  def create      
     @gift_certificate = GiftCertificate.new(params[:gift_certificate])
     @gift_certificate.gift_certificate_sku = GiftCertificateSku.find_by_sku(GIFT_CERTIFICATE_SKU)
     @gift_certificate.price = 0.0
