@@ -1,19 +1,19 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.home 'home', :controller => 'home', :action => 'show'
-  map.resources  :accounts,
-                 :member => { :instructor_signup_wizard => :get,
-                              :instructor_wizard_step1 => :get,
-                              :instructor_wizard_step2 => :get,
-                              :instructor_wizard_step3 => :get,
-                              :instructor_wizard_step4 => :get,
-                              :instructor_wizard_step5 => :get,
-                              :clear_avatar => :post,
-                              :update_avatar => :put,
-                              :update_instructor => :put,
-                              :update_instructor_wizard => :put,
-                              :update_privacy => :put },
-                 :collection => { :instructor_agreement => :get }
+  map.resources :accounts,
+                :member => { :instructor_signup_wizard => :get,
+                             :instructor_wizard_step1 => :get,
+                             :instructor_wizard_step2 => :get,
+                             :instructor_wizard_step3 => :get,
+                             :instructor_wizard_step4 => :get,
+                             :instructor_wizard_step5 => :get,
+                             :clear_avatar => :post,
+                             :update_avatar => :put,
+                             :update_instructor => :put,
+                             :update_instructor_wizard => :put,
+                             :update_privacy => :put },
+                :collection => { :instructor_agreement => :get }
   map.resources :acquire_lessons, :only => [ :create, :new ]
   map.resources :admin_consoles, :only => [ :index ]
   map.resources :carts, :only => [ :show ]
@@ -22,8 +22,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :credits
   map.resources :flags, :only => [ :new, :create, :index, :show, :update, :edit ]
   map.resources :gift_certificates,
-                :collection => { :list_admin => :get, :new_grant => :get },
-                :member => { :redeem => :post, :give => :post, :pregive => :get, :confirm_give => :post }
+                :collection => { :list_admin => :get },
+                :member => { :redeem => :post,
+                             :give => :post,
+                             :pregive => :get,
+                             :confirm_give => :post }
+  map.resources :grant_gift_certificates, :only => [ :create, :new ]
   map.resources :helpfuls, :only => [ :create ]
   map.resources :lessons, :has_many => :reviews, :shallow => true,
                 :member => {
@@ -67,7 +71,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :periodic_jobs, :member => { :rerun => :post }
   map.resources :store, :only => :show
   map.resources :skus, :has_many => :discounts, :shallow => true
-  map.resource  :user_session, :only => [ :create, :destroy, :new ]
+  map.resource :user_session, :only => [ :create, :destroy, :new ]
   map.resources :users,
                 :member => { :show_admin => :get,
                              :clear_avatar => :post,

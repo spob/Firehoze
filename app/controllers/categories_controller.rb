@@ -33,7 +33,7 @@ class CategoriesController < ApplicationController
       redirect_to list_admin_categories_path
     else
       error_msg = ""
-      @category.errors.each { |attr, msg| error_msg = error_msg + "#{error_msg == "" ? "" : ", "}#{attr} #{msg}" }
+#      @category.errors.each { |attr, msg| error_msg = error_msg + "#{error_msg == "" ? "" : ", "}#{attr} #{msg}" }
       flash[:error] = t('category.create_failed', :msg => error_msg)
       index
       redirect_to list_admin_categories_path

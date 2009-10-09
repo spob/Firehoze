@@ -93,6 +93,7 @@ en:
     must_logon: Please log on or request an account in order to flag this {{item}}
 
   gift_certificate:
+    create_success: Successfully created gift certificate
     already_redeemed: The gift certificate '{{code}}' has already been redeemed
     invalid_gift_certificate: No such gift certificate '{{code}}'
     redeemed: Gift certificate '{{code}}' redeemed for {{num}} credits

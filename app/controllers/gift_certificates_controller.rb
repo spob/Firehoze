@@ -4,7 +4,7 @@ class GiftCertificatesController < ApplicationController
   before_filter :require_user
   before_filter :find_gift_certificate, :only => [:redeem, :give, :pregive, :confirm_give]
 
-  permit ROLE_PAYMENT_MGR, :only => [ :list_admin, :new_grant ]
+  permit ROLE_PAYMENT_MGR, :only => [ :list_admin ]
 
   ssl_required :redeem if Rails.env.production?
 
@@ -22,14 +22,11 @@ class GiftCertificatesController < ApplicationController
                                           :page => params[:page])
   end
 
-  def new_grant
-    new
-  end
-
   def new
     @gift_certificate = GiftCertificate.new
   end
 
+  # Redeem certificate
   def create
     code = params[:gift_certificate][:code]
     code = code.strip.gsub("-", "") unless code.nil? # strip dashes
@@ -89,7 +86,7 @@ class GiftCertificatesController < ApplicationController
   private
 
   def layout_for_action
-    %w(list_admin new_grant).include?(params[:action]) ? 'admin' : 'application'
+    %w(list_admin).include?(params[:action]) ? 'admin' : 'application'
   end
 
   def find_gift_certificate
