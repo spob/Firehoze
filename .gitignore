@@ -1,5 +1,6 @@
 *.sqlite3
 config/initializers/action_mailer_settings.rb
+config/development.sphinx.conf
 db/schema.rb
 config/locomotive.yml
 config/environments/development.yml
@@ -22,3 +23,5 @@ script/s3.rb
 coverage
 coverage.data
 vendor/plugins/safe_erb
+log/searchd.development.pid
+db/sphinx/
