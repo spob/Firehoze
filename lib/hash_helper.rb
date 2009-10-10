@@ -9,7 +9,7 @@ module HashHelper
 
   def match?(plain_text, code="", prefix="", suffix="")
     hash = code.strip.gsub("-", "")
-    hash == gen_hash(plain_text.downcase, prefix, suffix)
+    hash == gen_hash(plain_text.strip.downcase, prefix, suffix)
   end
 
   def gen_hash(plain_text, prefix, suffix)
