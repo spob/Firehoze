@@ -57,7 +57,7 @@ ActionController::Routing::Routes.draw do |map|
                         :list => :get,
                         :search => :get
                 }
-  map.resources :lessons, :has_many => :attachments, :shallow => true
+  map.resources :lessons, :has_many => :lesson_attachments, :shallow => true
   map.resources :line_items, :only => [ :create, :destroy, :update ]
   map.resources :orders
   map.login 'login',   :controller => 'user_sessions', :action => 'new'

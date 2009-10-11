@@ -99,6 +99,12 @@ module LessonsHelper
     end
   end
 
+  def link_to_add_attachment(lesson)
+    if lesson.can_edit?(current_user)
+      link_to "Add Attachment", new_lesson_lesson_attachment_path(lesson)
+    end
+  end
+
   def button_to_unreject(lesson)
     if current_user.try("is_moderator?") and lesson.status == LESSON_STATUS_REJECTED
       button_to t('lesson.unreject'), unreject_lesson_path(lesson), :method => :post
@@ -144,10 +150,16 @@ module LessonsHelper
   end
 
   def list_attachments
-    markaby do
-      ul do
-        @lesson.attachments.each do |a|
-          li a.id
+    unless @lesson.attachments.empty?
+      markaby do
+        b "Attachments:"
+        br
+        ul do
+          @lesson.attachments.each do |a|
+            li do
+              a a.title, :href => a.attachment.url
+            end
+          end
         end
       end
     end

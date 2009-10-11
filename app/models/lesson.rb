@@ -62,7 +62,7 @@ class Lesson < ActiveRecord::Base
   has_many :free_credits, :order => "id", :dependent => :destroy
   has_many :videos, :dependent => :destroy
   has_many :processed_videos, :order => "id"
-  has_many :attachments
+  has_many :attachments, :class_name => "LessonAttachment"
   has_many :lesson_buy_patterns, :order => "counter DESC", :dependent => :destroy
   has_many :lesson_buy_pairs, :order => "counter DESC", :dependent => :destroy
   has_many :flags, :as => :flaggable, :dependent => :destroy

@@ -12,11 +12,15 @@ class LessonAttachmentsController < ApplicationController
     @lesson = Lesson.find(params[:lesson_id])
     @attachment = LessonAttachment.new( params[:attachment] )
     @attachment.lesson = @lesson
-    if @lesson.save
+    if @attachment.save!
       redirect_to lesson_path(@lesson)
     else
       render :action => 'new'
     end
+  end
+
+  def destroy
+    
   end
 
   def new

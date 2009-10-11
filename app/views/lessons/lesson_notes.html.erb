@@ -1,3 +1,4 @@
 <% unless @lesson.notes.blank? %>
   <%= rbs_formatter(@lesson.notes) %>
 <% end %>
+<%= list_attachments %>
