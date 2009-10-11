@@ -1,3 +1,5 @@
+require 'markaby'
+
 module LessonsHelper
   #def watch_text(lesson)
   #  if current_user.nil? or current_user.owns_lesson?(lesson) or current_user == lesson.instructor
@@ -52,7 +54,7 @@ module LessonsHelper
     end
   end
 
-  def img_tag_lesson_tn(lesson, size ,options={})
+  def img_tag_lesson_tn(lesson, size, options={})
     return if lesson.nil?
     tn_options = { :class => :lesson_tn, :alt => h(lesson.title) }
     tn_options.merge!(options)
@@ -139,5 +141,21 @@ module LessonsHelper
       buffer = buffer + link_to(h(cat.ancestor_name), category_path(cat.ancestor_category)) + " > "
     end
     buffer = buffer + h(category.name)
+  end
+
+  def list_attachments
+    markaby do
+      ul do
+        @lesson.attachments.each do |a|
+          li a.id
+        end
+      end
+    end
+  end
+
+  private
+
+  def markaby(&block)
+    Markaby::Builder.new({}, self, &block)
   end
 end

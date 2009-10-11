@@ -72,6 +72,9 @@ Rails::Initializer.run do |config|
   # Gem for secret url (for user signup requests)
   config.gem "mholling-active_url", :lib => "active_url", :source => "http://gems.github.com"
 
+  # DSL for html
+  config.gem "markaby"
+
   # Gem for pagination functionality
   config.gem 'mislav-will_paginate', :version => '~> 2.3.8', :lib => 'will_paginate', :source => 'http://gems.github.com'
 

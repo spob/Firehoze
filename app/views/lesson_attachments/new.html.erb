@@ -1,0 +1,22 @@
+<% title "Add Attachment" -%>
+
+<%= render :partial => "shared/infield_head_content" %>
+<%= stylesheet 'validation' %>
+<%= javascript 'validate/jquery.validate', 'validate/flag.validate' %>
+                                  
+<% form_for :attachment, :url => lesson_attachments_url(@lesson), :html => { :multipart => true, :id => "edit_attachment" } do |form| %>
+    <%= form.error_messages %>
+    <fieldset>
+      <legend>Attach File to "<%= @lesson.title %>"</legend>
+      <p>
+        <%= form.label :title, "Title", :style => "display:none" %>
+        <%= form.text_field :title %>
+      </p>
+      <p>Attachment File:
+        <%= form.file_field :attachment %>
+      </p>
+    </fieldset>
+    <p>
+      <%= form.submit "Create Attachment" %>
+    </p>
+<% end %>

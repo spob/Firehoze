@@ -1,7 +1,7 @@
-class Attachment < ActiveRecord::Base
+class LessonAttachment < ActiveRecord::Base
   belongs_to :lesson
   validates_presence_of :attachment_file_name
-  validates_presence_of :lesson
+  validates_presence_of :lesson, :title
   validates_numericality_of :attachment_file_size, :greater_than => 0, :allow_nil => true
 
   has_attached_file :attachment,
