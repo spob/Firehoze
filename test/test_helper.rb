@@ -39,7 +39,6 @@ class ActiveSupport::TestCase
   # See http://giantrobots.thoughtbot.com/2008/6/3/testing-paperclip-with-shoulda
   # RBS
   def self.should_have_attached_file(attachment)
-    puts "==========================>#{attachment}"
     klass = self.name.gsub(/Test$/, '').constantize
 
     context "To support a paperclip attachment named #{attachment}, #{klass}" do
