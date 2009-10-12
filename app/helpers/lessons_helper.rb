@@ -149,25 +149,11 @@ module LessonsHelper
     buffer = buffer + h(category.name)
   end
 
-  def list_attachments
-    unless @lesson.attachments.empty?
-      markaby do
-        b "Attachments:"
-        br
-        ul do
-          @lesson.attachments.each do |a|
-            li do
-              a a.title, :href => a.attachment.url
-            end
-          end
-        end
-      end
-    end
-  end
-
   private
 
   def markaby(&block)
     Markaby::Builder.new({}, self, &block)
   end
 end
+
+# (#{h(number_to_human_size(a.attachment.size))})

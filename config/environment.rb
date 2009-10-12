@@ -73,7 +73,7 @@ Rails::Initializer.run do |config|
   config.gem "mholling-active_url", :lib => "active_url", :source => "http://gems.github.com"
 
   # DSL for html
-  config.gem "markaby"
+  # config.gem "markaby"
 
   # Gem for pagination functionality
   config.gem 'mislav-will_paginate', :version => '~> 2.3.8', :lib => 'will_paginate', :source => 'http://gems.github.com'
@@ -94,7 +94,7 @@ Rails::Initializer.run do |config|
   # Query optimization
   #config.gem 'methodmissing-scrooge', :source => "http://gems.github.com"
 
-  config.gem 'thinking-sphinx', :lib     => 'thinking_sphinx', :version => '1.2.12', :source => "http://gemcutter.org"
+  config.gem 'thinking-sphinx', :lib => 'thinking_sphinx', :version => '1.2.12', :source => "http://gemcutter.org"
 
 
   # Shoulda
@@ -135,7 +135,7 @@ Rails::Initializer.run do |config|
   #  no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
           :session_key => '_firehoze_session',
-          :secret      => 'j23jh4lkjhl536h3l45jhfdgh34563h6345h6l345jh63l45jhljkhlgdsfglwjrhl'
+          :secret => 'j23jh4lkjhl536h3l45jhfdgh34563h6345h6l345jh63l45jhljkhlgdsfglwjrhl'
   }
 
   path = "#{RAILS_ROOT}/config/environment.yml"
@@ -148,7 +148,7 @@ Rails::Initializer.run do |config|
     APP_CONFIG.merge!(env_config)
   end
   # parse in the Amazon s3 parameters
-  s3_path =  "#{RAILS_ROOT}/config/s3.yml"
+  s3_path = "#{RAILS_ROOT}/config/s3.yml"
   APP_CONFIG.merge!(YAML.load_file(s3_path)[RAILS_ENV])
 
   # Use the database for sessions instead of the cookie-based default,
@@ -162,6 +162,6 @@ Rails::Initializer.run do |config|
   # config.active_record.schema_format = :sql                       
 
   # Activate observers that should always be running
-   config.active_record.observers = :payment_observer
-           #:cacher, :garbage_collector
+  config.active_record.observers = :payment_observer
+  #:cacher, :garbage_collector
 end

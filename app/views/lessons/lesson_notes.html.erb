@@ -1,4 +1,18 @@
 <% unless @lesson.notes.blank? %>
-  <%= rbs_formatter(@lesson.notes) %>
+    <%= rbs_formatter(@lesson.notes) %>
 <% end %>
-<%= list_attachments %>
+
+<% unless @lesson.attachments.empty? %>
+    <b>Attachments:</b>
+    <br/>
+    <ul>
+      <% @lesson.attachments.each do |attachment| %>
+          <li>
+            <%= link_to attachment.title, attachment.attachment.url %>
+            (<%= number_to_human_size(attachment.attachment.size) %>)
+          </li>
+      <% end %>
+    </ul>
+<% end %>
+
+<%= link_to_add_attachment(@lesson) %>
