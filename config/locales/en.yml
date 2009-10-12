@@ -52,7 +52,9 @@ en:
 
   attachment:
     create_success: Successfully created attachment
+    update_success: Successfully updated attachment
     delete_success: Successfully deleted attachment {{name}}
+    access_message: You do not have access to edit this attachment
 
   contact_user:
     cannot_contact: This user's privacy settings prevent you from contacting him or her directly

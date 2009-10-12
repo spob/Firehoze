@@ -1,0 +1,19 @@
+<% title "Edit Attachment" -%>
+
+<%= render :partial => "shared/infield_head_content" %>
+<%= stylesheet 'validation' %>
+<%= javascript 'validate/jquery.validate', 'validate/flag.validate' %>
+
+<% form_for :attachment, :url => lesson_attachment_path(@attachment), :html => { :method => :put, :id => "edit_attachment" } do |form| %>
+    <%= form.error_messages %>
+    <fieldset>
+      <legend>Edit Attachment to "<%= @attachment.lesson.title %>"</legend>
+      <p>
+        <%= form.label :title, "Title", :style => "display:none" %>
+        <%= form.text_field :title %>
+      </p>
+    </fieldset>
+    <p>
+      <%= form.submit "Save Changes" %>
+    </p>
+<% end %>

@@ -10,7 +10,10 @@
           <li>
             <%= link_to attachment.title, attachment.attachment.url, :popup => true %>
             (<%= number_to_human_size(attachment.attachment.size) %>)
-            <%= link_to 'delete', lesson_attachment_path(attachment), :confirm => 'Are you sure?', :method => :delete if @lesson.can_edit?(current_user) %>
+            <% if @lesson.can_edit?(current_user) %>
+                <%= link_to 'edit', edit_lesson_attachment_path(attachment) %> |
+                <%= link_to 'delete', lesson_attachment_path(attachment), :confirm => 'Are you sure?', :method => :delete %>
+            <% end %>
           </li>
       <% end %>
     </ul>
