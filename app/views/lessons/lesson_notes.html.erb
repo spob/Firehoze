@@ -8,8 +8,9 @@
     <ul>
       <% @lesson.attachments.each do |attachment| %>
           <li>
-            <%= link_to attachment.title, attachment.attachment.url %>
+            <%= link_to attachment.title, attachment.attachment.url, :popup => true %>
             (<%= number_to_human_size(attachment.attachment.size) %>)
+            <%= link_to 'delete', lesson_attachment_path(attachment), :confirm => 'Are you sure?', :method => :delete if @lesson.can_edit?(current_user) %>
           </li>
       <% end %>
     </ul>

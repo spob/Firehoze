@@ -2,7 +2,7 @@ class LessonAttachmentsController < ApplicationController
   include SslRequirement
 
   before_filter :require_user
-  before_filter :find_lesson, :except => [ :edit, :update ]
+  before_filter :find_lesson, :except => [ :edit, :update, :destroy ]
 
   verify :method => :post, :only => [ :create ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update ], :redirect_to => :home_path
@@ -13,6 +13,7 @@ class LessonAttachmentsController < ApplicationController
     @attachment = LessonAttachment.new( params[:attachment] )
     @attachment.lesson = @lesson
     if @attachment.save!
+      flash[:notice] = t 'attachment.create_success'
       redirect_to lesson_path(@lesson)
     else
       render :action => 'new'
@@ -20,11 +21,16 @@ class LessonAttachmentsController < ApplicationController
   end
 
   def destroy
-    
+    @attachment = LessonAttachment.find(params[:id])
+    @lesson = @attachment.lesson
+    name = @attachment.title
+    @attachment.destroy
+    flash[:notice] = t 'attachment.delete_success', :name => name
+    redirect_to lesson_path(@lesson)
   end
 
   def new
-    
+
   end
 
   def edit
@@ -32,7 +38,7 @@ class LessonAttachmentsController < ApplicationController
   end
 
   def update
-    
+
   end
 
   private
