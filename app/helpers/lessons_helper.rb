@@ -1,4 +1,4 @@
-require 'markaby'
+#require 'markaby'
 
 module LessonsHelper
   #def watch_text(lesson)
