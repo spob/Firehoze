@@ -45,9 +45,44 @@ task :after_cold, :roles => [:app, :web, :db] do
   end
 end
 
+task :before_update, :roles => [:app] do
+  # Stop Thinking Sphinx before the update so it finds its configuration file.
+  thinking_sphinx.stop
+end
+
+task :after_update, :roles => [:app] do
+  symlink_sphinx_indexes
+  thinking_sphinx.configure
+  thinking_sphinx.start
+end
+
+desc "Link up Sphinx's indexes."
+task :symlink_sphinx_indexes, :roles => [:app] do
+  run "ln -nfs #{shared_path}/sphinx #{current_path}/db/sphinx"
+end
+
 task :after_deploy, :roles => [:app, :web, :db] do
   if ENV['DEPLOY'] == 'PRODUCTION'
     run "chown -R www-data:www-data /var/#{base_dir}/#{application}"
+  end
+end
+
+# Thinking Sphinx
+namespace :thinking_sphinx do
+  task :configure, :roles => [:app] do
+    run "cd #{current_path}; rake thinking_sphinx:configure RAILS_ENV=#{rails_env}"
+  end
+  task :index, :roles => [:app] do
+    run "cd #{current_path}; rake thinking_sphinx:index RAILS_ENV=#{rails_env}"
+  end
+  task :start, :roles => [:app] do
+    run "cd #{current_path}; rake thinking_sphinx:start RAILS_ENV=#{rails_env}"
+  end
+  task :stop, :roles => [:app] do
+    run "cd #{current_path}; rake thinking_sphinx:stop RAILS_ENV=#{rails_env}"
+  end
+  task :restart, :roles => [:app] do
+    run "cd #{current_path}; rake thinking_sphinx:restart RAILS_ENV=#{rails_env}"
   end
 end
 
@@ -55,6 +90,7 @@ namespace :deploy do
   task :finishing_touches, :roles => :app do
     run "cp -pf #{deploy_to}/to_copy/production.rb #{current_path}/config/environments/production.rb"
     run "cp -pf #{deploy_to}/to_copy/database.yml #{current_path}/config/database.yml"
+    run "cp -pf #{deploy_to}/to_copy/sphinx.yml #{current_path}/config/sphinx.yml"
     run "cp -pf #{deploy_to}/to_copy/production.yml #{current_path}/config/environments/production.yml"
     # run "rm #{current_path}/lib/tasks/populate_fake_data.rake"
     # preserve the assets directory which resides under shared
