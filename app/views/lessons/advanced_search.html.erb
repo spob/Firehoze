@@ -24,6 +24,13 @@
                               :formatted_name, {:include_blank => true, :selected => nil}) %>
       <br/>
 
+      <%= f.label :created_in, "Created in the" %>
+      <%= f.radio_button :created_in, "1" %> last day &nbsp;
+      <%= f.radio_button :created_in, "7" %> last week &nbsp;
+      <%= f.radio_button :created_in, "30" %> last 30 days &nbsp;
+      <%= f.radio_button :created_in, "90" %> last 90 days &nbsp;
+      <br/>
+
       <%= f.label :language %>
       <%= f.select :language, User.supported_languages,
                    {:include_blank => true} %>

@@ -117,12 +117,19 @@ class LessonsController < ApplicationController
   def advanced_search
     @advanced_search = AdvancedSearch.new
     @advanced_search.language = current_user.language if current_user
+    @advanced_search.created_in = 30
   end
 
   def perform_advanced_search
     conditions = params[:advanced_search]
     conditions[:status] = 'Ready'
+    with = {}
+    puts "===================================#{params[:advanced_search][:created_in]}"
+    puts "===================================#{params[:advanced_search][:created_in].to_i.days.ago}"
+    with[:created_at] = params[:advanced_search][:created_in].to_i.days.ago..Time.now if params[:advanced_search][:created_in]
+    params[:advanced_search].delete(:created_in)
     @lessons = Lesson.search :conditions => conditions,
+                             :with => with,
                              :include => :instructor,
                              :page => 1,
                              :per_page => 25
