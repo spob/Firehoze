@@ -24,10 +24,9 @@
                               :formatted_name, {:include_blank => true, :selected => nil}) %>
       <br/>
 
-      <%= @advanced_search.language %>
       <%= f.label :language %>
       <%= f.select :language, User.supported_languages,
-                   {:include_blank => true, :selected => nil} %>
+                   {:include_blank => true} %>
       <br/>
 
       <%= f.submit "Search" %>
