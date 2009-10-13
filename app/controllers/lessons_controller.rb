@@ -114,6 +114,23 @@ class LessonsController < ApplicationController
     render :action => :new
   end
 
+  def advanced_search
+    @advanced_search = AdvancedSearch.new
+    @advanced_search.language = current_user.language if current_user
+  end
+
+  def perform_advanced_search
+    conditions = params[:advanced_search]
+    conditions[:status] = 'Ready'
+    @lessons = Lesson.search :conditions => conditions,
+                             :include => :instructor,
+                             :page => 1,
+                             :per_page => 25
+    @lesson_format = 'narrow'
+    @collection = 'search'
+    render :action => :search
+  end
+
   def show
     session[:lesson_to_buy] = nil
     @lesson = Lesson.find(params[:id], :include => [:instructor, :reviews])
