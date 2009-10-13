@@ -90,6 +90,7 @@ class Lesson < ActiveRecord::Base
     indexes synopsis
     indexes notes
     indexes status
+    indexes language
     indexes instructor.login, :as => :instructor
     indexes category.name, :as => :category
     has created_at, :sortable => true

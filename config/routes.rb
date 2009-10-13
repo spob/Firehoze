@@ -44,7 +44,9 @@ ActionController::Routing::Routes.draw do |map|
                         :ajaxed => :get,
                         :list_admin => :get,
                         :tagged_with => :get,
-                        :search => :get
+                        :search => :get,
+                        :advanced_search => :get,
+                        :perform_advanced_search => :get
                 }
   map.resources :lessons, :has_many => :lesson_comments, :shallow => true,
                 :member => {
