@@ -124,8 +124,6 @@ class LessonsController < ApplicationController
     conditions = params[:advanced_search]
     conditions[:status] = 'Ready'
     with = {}
-    puts "===================================#{params[:advanced_search][:created_in]}"
-    puts "===================================#{params[:advanced_search][:created_in].to_i.days.ago}"
     with[:created_at] = params[:advanced_search][:created_in].to_i.days.ago..Time.now if params[:advanced_search][:created_in]
     params[:advanced_search].delete(:created_in)
     @lessons = Lesson.search :conditions => conditions,
