@@ -121,6 +121,13 @@ class LessonsController < ApplicationController
   end
 
   def perform_advanced_search
+    # Dynamically setup the advanced search object so the search criteria will show properly in the screen
+    @advanced_search = AdvancedSearch.new
+    AdvancedSearch.public_instance_methods(false).find_all{|item| item.ends_with? "="}.each do |a|
+      @advanced_search.send(a, params[:advanced_search][a.gsub(/=/, "")])
+    end
+
+    # now perform the search
     conditions = params[:advanced_search]
     conditions[:status] = 'Ready'
     with = {}
@@ -133,7 +140,7 @@ class LessonsController < ApplicationController
                              :per_page => 25
     @lesson_format = 'narrow'
     @collection = 'search'
-    render :action => :search
+    render :action => :advanced_search
   end
 
   def show
