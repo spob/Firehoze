@@ -149,6 +149,7 @@ class AccountsController < ApplicationController
   end
 
   def update
+    @user.login = params[:user][:login].try(:strip)
     @user.email = params[:user][:email].try(:strip)
     @user.first_name = params[:user][:first_name].try(:strip)
     @user.last_name = params[:user][:last_name].try(:strip)
@@ -163,7 +164,9 @@ class AccountsController < ApplicationController
       flash[:error] = t 'account_settings.update_error'
     end
 
-    redirect_to edit_account_path
+    # specify the id specifically because if the user updates the login, the user won't be
+    # found because of the slugging
+    redirect_to edit_account_path(@user.id)
 
   rescue Exception => e
     flash[:error] = e.message
