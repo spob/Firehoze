@@ -5,7 +5,7 @@
 <%= stylesheet 'validation' %>
 <%= javascript 'jquery.simplyCountable', 'validate/jquery.validate', 'validate/lesson.validate' %>
 
-<% form_for(:lesson, :url => lesson_path(@lesson, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "edit_lesson" }) do |f| %>
+<% form_for(:lesson, :url => lesson_path(@lesson), :html => { :method => :put, :id => "edit_lesson" }) do |f| %>
 <%= f.error_messages %>
 <fieldset>
   <legend>Edit Lesson</legend>
