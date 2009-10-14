@@ -39,4 +39,4 @@
 </table>
 <%= will_paginate @users %>
 <br/>
-Rows to Display Per Page: <%= per_page_select(list_users_path) %>
+Rows to Display Per Page: <%= per_page_select(list_users_path(:search => { :order => params[:search][:order]})) %>
