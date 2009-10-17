@@ -21,7 +21,7 @@ class Credit < ActiveRecord::Base
 
   before_create :set_acquired_at_and_will_expire_at
   before_validation :set_redeemed_at
-  after_save :remember_to_review
+  after_create :remember_to_review
 
   # Credits which have not yet been redeemed
   named_scope :available, :conditions => {:redeemed_at => nil, :expired_at => nil}
@@ -99,12 +99,24 @@ class Credit < ActiveRecord::Base
   def set_redeemed_at
     self.acquired_at = Time.now if self.acquired_at.nil?
     # Is the lesson set (indicating that the credit is being redeemed? If so, set the redeemed at date
-    self.redeemed_at = Time.now if self.redeemed_at.nil? and !self.lesson.nil?
+    if self.redeemed_at.nil? and !self.lesson.nil?
+      self.redeemed_at = Time.now
+      remember_to_review
+    end
   end
 
+  # When redeemed a free credit, the redeemed at date is set when the credit record is created...however,
+  # since the id is nil until after the safe, the remember_to_review method will be called in an after create
+  # call back (and that's the one case where redeemed_at is not nil.
+  #
+  # In all other cases, the redeemed_at field is set as an update, and will be called from the before_validation
+  # callback above
+  #
   def remember_to_review
-    RunOncePeriodicJob.create!(:name => 'RememberToReview',
-                               :job => "Credit.review_reminder(#{self.id})",
-                               :next_run_at => (7.days.from_now))  unless self.redeemed_at.nil?
+    if self.id and self.redeemed_at 
+      RunOncePeriodicJob.create!(:name => 'RememberToReview',
+                                 :job => "Credit.review_reminder(#{self.id})",
+                                 :next_run_at => (7.days.from_now)) unless self.redeemed_at.nil?
+    end
   end
 end
