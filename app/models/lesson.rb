@@ -92,7 +92,8 @@ class Lesson < ActiveRecord::Base
     indexes status
     indexes language
     indexes instructor.login, :as => :instructor
-    indexes tags.name, :as => :tag 
+    indexes tags.name, :as => :tag
+    has rating_average
     has category(:id), :as => :category_ids 
     has created_at, :sortable => true
     set_property :delta => true

@@ -23,6 +23,15 @@
       <%= f.text_field :tag %>
       <br/>
 
+      <%= f.label :rating_average, "Rating Greater than:" %>
+      <%= f.radio_button :rating_average, 0 %> 0
+      <%= f.radio_button :rating_average, 1 %> 1
+      <%= f.radio_button :rating_average, 2 %> 2
+      <%= f.radio_button :rating_average, 3 %> 3
+      <%= f.radio_button :rating_average, 4 %> 4
+      <br/>
+      <br/>
+
       <%= f.label :category %>
       <br/>
       <% Category.ascend_by_compiled_sort.each do |c| %>
