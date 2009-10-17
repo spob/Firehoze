@@ -50,6 +50,15 @@ class Notifier < ActionMailer::Base
                :url => periodic_jobs_url(url_options)
   end
 
+  def remember_review(credit)
+    subject     "#{credit.user.full_name}, please consider reviewing your purchase"
+    recipients   credit.user.email
+    from        APP_CONFIG[CONFIG_ADMIN_EMAIL]
+
+    body       :credit => credit,
+               :url => new_lesson_review_path(credit.lesson, url_options)
+  end
+
   # Receipt for an order
   def payment_notification(payment_id)
     payment = Payment.find(payment_id)

@@ -10,7 +10,7 @@
 #
 # Redeemed credits represents a history of which videos have been purchased by which users.
 class Credit < ActiveRecord::Base
-  validates_presence_of     :user, :acquired_at, :price
+  validates_presence_of :user, :acquired_at, :price
   validates_numericality_of :price, :greater_than_or_equal_to => 0, :allow_nil => true
 
   belongs_to :sku, :counter_cache => true, :class_name => "CreditSku"
@@ -45,7 +45,7 @@ class Credit < ActiveRecord::Base
               lambda{ |user| { :conditions => { :lesson_id => user.instructed_lesson_ids.collect(&:id) + [-1],
                                                 :payment_id => nil } }
               }
-  
+
   # Find credits which haven't been used in a long time and are about to expire. Specifically, look for credits
   # for which the associated user hasn't logged in to the system for a long time (e.g., a year) where the credits
   # are at least that old.
@@ -81,6 +81,13 @@ class Credit < ActiveRecord::Base
     end
   end
 
+  def self.review_reminder id
+    credit = Credit.find(id)
+    unless credit.lesson.reviewed_by? credit.user
+      Notifier.deliver_remember_review(credit)
+    end
+  end
+
   private
 
   def set_acquired_at_and_will_expire_at
@@ -91,6 +98,11 @@ class Credit < ActiveRecord::Base
   def set_redeemed_at
     self.acquired_at = Time.now if self.acquired_at.nil?
     # Is the lesson set (indicating that the credit is being redeemed? If so, set the redeemed at date
-    self.redeemed_at = Time.now if self.redeemed_at.nil? and !self.lesson.nil?
+    if self.redeemed_at.nil? and !self.lesson.nil?
+      self.redeemed_at = Time.now
+      RunOncePeriodicJob.create!(:name => 'RememberToReview',
+                                 :job => "Credit.review_reminder(#{self.id})",
+                                 :next_run_at => (7.days.from_now))
+    end
   end
 end

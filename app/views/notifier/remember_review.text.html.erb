@@ -1,0 +1,13 @@
+<p>
+  Hi <%= h @credit.user.full_name %>,
+</p>
+<p>
+  You recently purchased the lesson "<%= @credit.lesson.title %>" by <%= @credit.lesson.instructor.login %>. Help the
+  Firehoze community by writing a review for this lesson. It's easy--just click the "Write a Review" link below. 
+</p>
+<p>
+  <%= link_to 'Write a Review', @url %>
+</p>
+<p>
+  Sincerely, Firehoze
+</p>
