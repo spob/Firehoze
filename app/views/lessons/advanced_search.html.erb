@@ -19,6 +19,10 @@
       <%= f.text_field :instructor %>
       <br/>
 
+      <%= f.label :tag, "Tag" %>
+      <%= f.text_field :tag %>
+      <br/>
+
       <%= f.label :category %>
       <br/>
       <% Category.ascend_by_compiled_sort.each do |c| %>
