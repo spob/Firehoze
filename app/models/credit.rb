@@ -21,7 +21,7 @@ class Credit < ActiveRecord::Base
 
   before_create :set_acquired_at_and_will_expire_at
   before_validation :set_redeemed_at
-  after_validation :remember_to_review
+  after_save :remember_to_review
 
   # Credits which have not yet been redeemed
   named_scope :available, :conditions => {:redeemed_at => nil, :expired_at => nil}
