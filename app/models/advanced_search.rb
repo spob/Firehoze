@@ -1,3 +1,3 @@
 class AdvancedSearch
-  attr_accessor :title, :synopsis, :notes, :instructor, :category, :language, :created_in
+  attr_accessor :title, :synopsis, :notes, :instructor, :category, :language, :created_in, :categories
 end

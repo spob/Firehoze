@@ -92,7 +92,8 @@ class Lesson < ActiveRecord::Base
     indexes status
     indexes language
     indexes instructor.login, :as => :instructor
-    indexes category.name, :as => :category
+   # indexes category.name, :as => :category
+    has category(:id), :as => :category_ids 
     has created_at, :sortable => true
     set_property :delta => true
     group_by "instructor_id"

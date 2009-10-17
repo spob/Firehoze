@@ -118,6 +118,8 @@ class LessonsController < ApplicationController
     @advanced_search = AdvancedSearch.new
     @advanced_search.language = current_user.language if current_user
     @advanced_search.created_in = 30
+    @advanced_search.created_in = 9999
+    @advanced_search.categories ||= []
   end
 
   def perform_advanced_search
@@ -126,15 +128,20 @@ class LessonsController < ApplicationController
     AdvancedSearch.public_instance_methods(false).find_all{|item| item.ends_with? "="}.each do |a|
       @advanced_search.send(a, params[:advanced_search][a.gsub(/=/, "")])
     end
+    @advanced_search.categories = Category.find(:all, :conditions => { :id => params[:advanced_search][:category_ids]})
 
     # now perform the search
     conditions = params[:advanced_search]
     conditions[:status] = 'Ready'
     with = {}
     with[:created_at] = params[:advanced_search][:created_in].to_i.days.ago..Time.now if params[:advanced_search][:created_in]
+    with_all = {}
+    with[:category_ids] = @advanced_search.categories.collect(&:id) unless @advanced_search.categories.empty?
+    params[:advanced_search].delete(:category_ids)
     params[:advanced_search].delete(:created_in)
     @lessons = Lesson.search :conditions => conditions,
                              :with => with,
+                             :with_all => with_all,
                              :include => :instructor,
                              :page => 1,
                              :per_page => 25
