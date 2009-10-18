@@ -1,4 +1,5 @@
 <% title "Frequently Asked Questions" -%>
+<%= javascript 'swfobject' %>
 
 <%= javascript 'always_at_bottom', 'footer' %>
 <% account_settings_link = current_user ? (link_to "Account Settings", edit_account_path(current_user)) : "&apos;Account Settings&apos;" %>
@@ -187,8 +188,9 @@
   </ol>
 
   <h5>What tools are available for capturing videos?</h5>
+
   <p>
-  <strong><i>Jing Pro (<a href="http://www.jingproject.com/pro/">http://www.jingproject.com/pro/</a>)</i></strong>
+    <strong><i>Jing Pro (<a href="http://www.jingproject.com/pro/">http://www.jingproject.com/pro/</a>)</i></strong>
   </p>
 
   <p>Best for:</p>
@@ -264,6 +266,17 @@
     <li>Limited post-editing options</li>
     <li>No compression options</li>
   </ul>
+
+  <h5>Can I use a tool such as PowerPoint to create my lessons?</h5>
+
+  <p>
+    Yes. The following video walks you through the process.
+  </p>
+
+  <%= player({:image => "videos/video_placeholder.jpg", :streamer => "rtmp://e1f1.simplecdn.net/play",
+              :file => "output/mkt/HowTo1.flv", :skin => 'dangdang',
+              :autostart => false}, {:width => PLAYER_WIDTH, :height => PLAYER_HEIGHT }) %>
+  <br/>
 
   <h5>How do I save my videos as an mp4 with Camtasia?</h5>
 
