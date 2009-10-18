@@ -15,4 +15,17 @@ class LessonAttachment < ActiveRecord::Base
 
   validates_attachment_presence :attachment
   validates_attachment_size :attachment, :less_than => APP_CONFIG[CONFIG_MAX_ATTACHMENT_SIZE].megabytes
+  validates_attachment_content_type :attachment, :content_type => [ 'image/gif', 'image/png', 'image/x-png',
+                                                                    'image/jpeg', 'image/pjpeg', 'image/jpg',
+                                                                    "text/xml", "application/msword",
+                                                                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                                                                    "application/vnd.ms-powerpoint",
+                                                                    "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                                                                    "application/vnd.ms-excel",
+                                                                    "application/vnd.oasis.opendocument.text",
+                                                                    "application/vnd.oasis.opendocument.spreadsheet",
+                                                                    "application/pdf",
+                                                                    "application/vnd.oasis.opendocument.presentation",
+                                                                    "application/octet-stream",
+                                                                    "text/html" ]
 end
