@@ -1,0 +1,9 @@
+<%= javascript 'swfobject' %>
+
+<h3><%= link_to "Return to FAQs", page_path("faqs") %></h3>
+<br/>
+
+<%= player({:image => "videos/video_placeholder.jpg",
+            :streamer => "rtmp://e1f1.simplecdn.net/play",
+            :file => "output/mkt/HowTo1.flv", :skin => 'dangdang',
+            :autostart => false}, {:width => PLAYER_WIDTH, :height => PLAYER_HEIGHT }) %>
