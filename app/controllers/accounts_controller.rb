@@ -219,5 +219,4 @@ class AccountsController < ApplicationController
       @user = @current_user
     end
   end
-
 end
