@@ -1,4 +1,14 @@
 module UsersHelper
+  def follow_link user
+    if current_user
+      if user.followed_by?(current_user)
+        link_to "Stop Following", instructor_follow_path(user), :method => :delete
+      elsif user.verified_instructor?
+        link_to "Follow this instructor", instructor_follows_path(:id => user), :method => :post
+      end
+    end
+  end
+
   def signin_or_signout_link
     if current_user
       "Greetings, #{h(current_user.login)} (not #{signout_link(h(current_user.login))}?) #{signout_link("Sign Out")}"

@@ -112,6 +112,11 @@ en:
     cant_helpful_as_instructor: As an instructor, you cannot provide feedback on reviews for your lesson
     create_success: Your feedback has been recorded
 
+  instructor_follows:
+    create_success: Instructor {{instructor}} is being followed
+    delete_success: Instructor {{instructor}} is no longer being followed
+    not_an_instructor: The user {{user}} is not an instructor
+
   lesson:
     access_message: You do not have access to edit this lesson
     buy: Buy

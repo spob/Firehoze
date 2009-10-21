@@ -256,6 +256,10 @@ class User < ActiveRecord::Base
     amount
   end
 
+  def followed_by?(user)
+    self.followers.find_by_id(user, :select => [:id])
+  end
+
   private
 
   def strip_fields
