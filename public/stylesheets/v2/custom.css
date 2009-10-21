@@ -1,0 +1,68 @@
+body {
+    background-color:#ece8e8;
+}
+
+div {
+    text-align:justify
+}
+
+
+/* HEADER */
+#header {
+    height:132px;
+    background-color:#393D40;    /*dark grey*/
+    background-image:url('images/header_h_tile.png');
+    background-repeat:repeat-x;
+}
+#header #content {
+    position:relative;
+    background-image:url('images/back_bar_top.png');
+    background-repeat:no-repeat;
+    background-color:#393D40;
+    height:77px;
+    width:960px;
+}
+#header #vimeo_nav {
+    float:right;
+    background-image:url('images/vimeo.png');
+    background-repeat:no-repeat;
+    height:37px;
+    width:441px;
+}
+#header #logo {
+    position:absolute;
+    left:0;
+    top:8px;
+    border:0;
+    margin:0;
+    padding:0;
+}
+#header #tabbed_nav {
+    margin: 40px 0;
+    height:46px;
+}
+
+/* MAIN CONTENT AREA */
+#main_content {
+    background-image:url('images/shadow_box.png');
+    background-repeat:no-repeat;
+    padding: 16px 0 16px 0;
+    margin:-40px 0 0 0;
+}
+
+/* FOOTER */
+#footer {
+    /*border: dashed 2px red;*/
+    height:320px;
+    background-image:url('images/footer_h_tile.png');
+    background-repeat:repeat-x;
+}
+#footer #content {
+    /*border: dashed 1px lime;*/
+    color: #ccc;
+    position:relative;
+    height:320px;
+    background-image:url('/stylesheets/v2/images/brandings/watermark.png');
+    background-repeat:no-repeat;
+    background-position: right bottom;
+}

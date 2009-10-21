@@ -1,6 +1,7 @@
 class HighVoltage::PagesController < ApplicationController
   unloadable
   before_filter :ensure_valid
+  layout :layout_for_action
 
   def show
     render :template => current_page
@@ -22,5 +23,11 @@ class HighVoltage::PagesController < ApplicationController
     view_paths.find_template(path, response.template.template_format)
   rescue ActionView::MissingTemplate
     false
+  end
+
+  private
+
+  def layout_for_action
+    %w(concept).include?(params[:id]) ? 'application_v2' : 'application'
   end
 end

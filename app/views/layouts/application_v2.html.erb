@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+    <meta http-equiv="Content-Language" content="en" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="ROBOTS" content="ALL" />
+    <meta name="Copyright" content="(c) <%= Time.now.year %> Firehoze, Inc. All rights reserved." />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="Rating" content="General" />
+    <meta name="description" content="Firehoze offers a community-generated catalog of video tutorials designed to allow students find the classroom help they need." />
+    <meta name="keywords" content="firehoze, education, tutorials, instruction" />
+    <link rel="home" href="/" />
+    <link rel="copyright" href="#copyright" />
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
+    <title>Firehoze - <%= truncate(yield(:title), :length => 75) || "You're on Fire. We Can Help" %></title>
+    <%= stylesheet_link_tag 'v2/blueprint/screen', :media => "screen, projection" %>
+    <%= stylesheet_link_tag 'v2/blueprint/print', :media => "print" %>
+    <%= stylesheet_link_tag 'v2/base', :media => "print" %>
+    <%= stylesheet_link_tag 'v2/custom', :media => "screen, projection" %>
+    <!--[if IE]><link rel="stylesheet" href="v2/blueprint/ie" type="text/css" media="screen, projection"/><![endif]-->
+    <%= yield :head -%>
+  </head>
+  <body>
+    <%= render "shared/flash_msg" -%>
+
+    <div id="header">
+      <div class="container">
+        <div class="span-24 last" id="content">
+          <div id="logo"><%= image_tag '/stylesheets/v2/images/brandings/logo.png' %></div>
+          <div class="span-24 last" id="vimeo_nav"></div>
+          <div class="prepend-6 span-18 last" id="tabbed_nav">Tabbed Nav</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="clear span-24 last" id="main_content">
+        <div class="prepend-top append-1 prepend-1" id="content_wrapper">
+          <div class="span-14">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus. Morbi viverra, sem sed viverra egestas, urna nunc suscipit justo, at ultrices elit massa quis dolor. Fusce volutpat, justo vel facilisis lacinia, felis risus lacinia arcu, vel commodo dolor lectus id quam. Suspendisse malesuada diam erat. Duis vel arcu a enim aliquet ultrices. Cras cursus erat a ante porttitor vulputate. Ut eu lorem nibh. Morbi euismod diam imperdiet leo pharetra commodo. Nam tincidunt ipsum vel dolor aliquet nec egestas nisi congue. Suspendisse potenti.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus. Morbi viverra, sem sed viverra egestas, urna nunc suscipit justo, at ultrices elit massa quis dolor. Fusce volutpat, justo vel facilisis lacinia, felis risus lacinia arcu, vel commodo dolor lectus id quam. Suspendisse malesuada diam erat. Duis vel arcu a enim aliquet ultrices. Cras cursus erat a ante porttitor vulputate. Ut eu lorem nibh. Morbi euismod diam imperdiet leo pharetra commodo. Nam tincidunt ipsum vel dolor aliquet nec egestas nisi congue. Suspendisse potenti.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus. Morbi viverra, sem sed viverra egestas, urna nunc suscipit justo, at ultrices elit massa quis dolor. Fusce volutpat, justo vel facilisis lacinia, felis risus lacinia arcu, vel commodo dolor lectus id quam. Suspendisse malesuada diam erat. Duis vel arcu a enim aliquet ultrices. Cras cursus erat a ante porttitor vulputate. Ut eu lorem nibh. Morbi euismod diam imperdiet leo pharetra commodo. Nam tincidunt ipsum vel dolor aliquet nec egestas nisi congue. Suspendisse potenti.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus. Morbi viverra, sem sed viverra egestas, urna nunc suscipit justo, at ultrices elit massa quis dolor. Fusce volutpat, justo vel facilisis lacinia, felis risus lacinia arcu, vel commodo dolor lectus id quam. Suspendisse malesuada diam erat. Duis vel arcu a enim aliquet ultrices. Cras cursus erat a ante porttitor vulputate. Ut eu lorem nibh. Morbi euismod diam imperdiet leo pharetra commodo. Nam tincidunt ipsum vel dolor aliquet nec egestas nisi congue. Suspendisse potenti.</p>
+          </div>
+          <div class="span-8 last">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus. Morbi viverra, sem sed viverra egestas, urna nunc suscipit justo, at ultrices elit massa quis dolor. Fusce volutpat, justo vel facilisis lacinia, felis risus lacinia arcu, vel commodo dolor lectus id quam. Suspendisse malesuada diam erat. Duis vel arcu a enim aliquet ultrices. Cras cursus erat a ante porttitor vulputate. Ut eu lorem nibh. Morbi euismod diam imperdiet leo pharetra commodo. Nam tincidunt ipsum vel dolor aliquet nec egestas nisi congue. Suspendisse potenti.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus. Morbi viverra, sem sed viverra egestas, urna nunc suscipit justo, at ultrices elit massa quis dolor. Fusce volutpat, justo vel facilisis lacinia, felis risus lacinia arcu, vel commodo dolor lectus id quam. Suspendisse malesuada diam erat. Duis vel arcu a enim aliquet ultrices. Cras cursus erat a ante porttitor vulputate. Ut eu lorem nibh. Morbi euismod diam imperdiet leo pharetra commodo. Nam tincidunt ipsum vel dolor aliquet nec egestas nisi congue. Suspendisse potenti.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus. Morbi viverra, sem sed viverra egestas, urna nunc suscipit justo, at ultrices elit massa quis dolor. Fusce volutpat, justo vel facilisis lacinia, felis risus lacinia arcu, vel commodo dolor lectus id quam.</p>
+          </div>
+
+          <div class="span-22 last" style="background-color:aqua;">
+            <%= yield -%>
+          </div>
+
+          <!-- Two Columns -->
+          <div class="clear span-11">
+            <p>Column 1 of 2</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
+          </div>
+          <div class="span-11 last">
+            <p>Column 2 of 2</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <div class="container">
+        <div class="span-24 last" id="content">
+          <div class="prepend-top append-1 prepend-1" id="content_wrapper">
+
+            <!-- Four columns -->
+            <div class="clear span-6">
+              <p>Column 1 of 4</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
+            </div>
+            <div class="span-5">
+              <p>Column 2 of 4</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
+            </div>
+            <div class="span-5">
+              <p>Column 3 of 4</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
+            </div>
+            <div class="span-6 last">
+              <p>Column 4 of 4</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
+            </div>
+
+            <!-- Three Columns -->
+            <div class="clear span-8">
+              <p>Column 1 of 4</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
+            </div>
+            <div class="span-7">
+              <p>Column 2 of 4</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
+            </div>
+            <div class="span-7 last">
+              <p>Column 4 of 4</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </body>
+</html>
