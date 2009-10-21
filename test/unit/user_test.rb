@@ -51,6 +51,8 @@ class UserTest < ActiveSupport::TestCase
     should_have_many                 :payments
     should_belong_to                 :payment_level
     should_have_and_belong_to_many   :wishes
+    should_have_and_belong_to_many   :followers
+    should_have_and_belong_to_many   :followed_instructors
 
     fast_context "when rejecting" do
       setup do
