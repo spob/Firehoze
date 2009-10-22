@@ -3,7 +3,7 @@ module UsersHelper
     if current_user
       if user.followed_by?(current_user)
         link_to "Stop Following", instructor_follow_path(user), :method => :delete
-      elsif user.verified_instructor?
+      elsif user.verified_instructor? and user != current_user
         link_to "Follow this instructor", instructor_follows_path(:id => user), :method => :post
       end
     end
