@@ -10,11 +10,14 @@
     <div class="span-10">
       <div id="avatar"><%= avatar_tag @user, :size => :large %></div>
       <div class="prepend-top">
+        <% if @user.followers.size > 0 %>
+        <%= pluralize @user.followers.size, 'follower' %>
+        <% end %>
         <% if @user.can_contact? current_user %>
-          <div><%= link_to 'Contact This User', new_contact_user_path(:id => @user.id) %></div>
+            <div><%= link_to 'Contact This User', new_contact_user_path(:id => @user.id) %></div>
         <% end %>
         <% if @user.can_edit? current_user %>
-          <div><%= link_to "Edit", edit_user_path(@user) %></div>
+            <div><%= link_to "Edit", edit_user_path(@user) %></div>
         <% end %>
         <div><%= flag_link @user %></div>
         <div><%= follow_link @user %></div>
@@ -25,28 +28,28 @@
       <div id="user_show_tabs">
         <ul>
           <% unless @user.bio.blank? %>
-            <li><a href="#tabs-1"><%= t 'user.about_me' %></a></li>
+              <li><a href="#tabs-1"><%= t 'user.about_me' %></a></li>
           <% end %>
 
           <% unless @lessons.empty? %>
-            <li><a href="#tabs-2"><%= t 'user.instructor_of', :user => h(@user.name_or_username) %></a></li>
+              <li><a href="#tabs-2"><%= t 'user.instructor_of', :user => h(@user.name_or_username) %></a></li>
           <% end %>
 
           <% unless @reviews.empty? %>
-            <li><a href="#tabs-3"><%= t 'user.reviews_of', :user => h(@user.name_or_username) %></a></li>
+              <li><a href="#tabs-3"><%= t 'user.reviews_of', :user => h(@user.name_or_username) %></a></li>
           <% end %>
         </ul>
 
         <% unless @user.bio.blank? %>
-          <div id="tabs-1"><%= rbs_formatter show_bio %></div>
+            <div id="tabs-1"><%= rbs_formatter show_bio %></div>
         <% end %>
 
         <% unless @lessons.empty? %>
-          <div id="tabs-2"><%= render :partial => "lessons/lesson_narrow", :collection => @lessons %></div>
+            <div id="tabs-2"><%= render :partial => "lessons/lesson_narrow", :collection => @lessons %></div>
         <% end %>
 
         <% unless @reviews.empty? %>
-          <div id="tabs-3"><%= render :partial => "reviews/review_with_lesson", :collection => @reviews %></div>
+            <div id="tabs-3"><%= render :partial => "reviews/review_with_lesson", :collection => @reviews %></div>
         <% end %>
       </div>
     </div>
