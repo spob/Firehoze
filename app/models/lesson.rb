@@ -94,7 +94,7 @@ class Lesson < ActiveRecord::Base
     indexes instructor.login, :as => :instructor
     indexes tags.name, :as => :tag
     has rating_average
-    has category(:id), :as => :category_ids 
+    has category(:id), :as => :category_ids
     has created_at, :sortable => true
     set_property :delta => true
     group_by "instructor_id"
@@ -263,6 +263,7 @@ END
     elsif all_videos_match_by_status(LESSON_STATUS_READY)
       update_status_attribute(LESSON_STATUS_READY)
       Notifier.deliver_lesson_ready(self)
+      self.notify_followers
     else
       update_status_attribute("Unknown status")
     end
@@ -285,6 +286,20 @@ END
                             :actee_user => nil,
                             :acted_upon_at => self.created_at)
     self.update_attribute(:activity_compiled_at, Time.now)
+  end
+
+  def notify_followers
+    self.instructor.followers.each do |user|
+      RunOncePeriodicJob.create!(
+              :name => 'Notify Follower',
+              :job => "Lesson.notify_follower(#{user.id}, #{self.id})")
+    end
+  end
+
+  def self.notify_follower to_user_id, lesson_id
+    to_user = User.find(to_user_id)
+    lesson = Lesson.find(lesson_id)
+    Notifier.deliver_new_followed_lesson(to_user, lesson)
   end
 
   private

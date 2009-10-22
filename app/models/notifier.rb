@@ -104,6 +104,17 @@ class Notifier < ActionMailer::Base
                :url => lesson_url(lesson, url_options)
   end
 
+  # Notify a user that their video is ready for viewing
+  def new_followed_lesson(to_user, lesson)
+    subject    "An instructor you are following just posted a new lesson"
+    recipients to_user.email
+    from       APP_CONFIG[CONFIG_ADMIN_EMAIL]
+
+    body       :lesson => lesson,
+               :to_user => to_user,
+               :url => lesson_url(lesson, url_options)
+  end
+
   def contact_user(to_user, from_user, subject, msg)
     subject    "A message from a Firehoze user: #{subject}"
     recipients to_user.email
