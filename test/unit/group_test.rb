@@ -9,5 +9,10 @@ class GroupTest < ActiveSupport::TestCase
     should_validate_presence_of :name, :owner
     should_validate_uniqueness_of :name
     should_belong_to            :owner
+
+    should "test owned_by?" do
+      assert @group.owned_by?(@group.owner)
+      assert !@group.owned_by?( Factory.create(:user))
+    end
   end
 end
