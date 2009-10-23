@@ -107,6 +107,11 @@ en:
     given: You have successfully given the certificate '{{code}}' to {{user}}
     no_such_user: The user you entered ({{user}}) is not recognized
 
+  group:
+    create_success: Successfully created group
+    update_success: Successfully updated group
+    destroyed_success: Successfully destroyed group
+
   helpful:
     cant_feedback_own: You cannot provide feedback on a review you have written
     cant_helpful_as_instructor: As an instructor, you cannot provide feedback on reviews for your lesson

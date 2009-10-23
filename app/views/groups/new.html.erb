@@ -1,0 +1,19 @@
+<% title "Create Group" -%>
+
+<h3>Create Group</h3>
+
+<% form_for(:group, :url => groups_path) do |f| %>
+    <%= f.error_messages %>
+
+    <%= f.label :name %>:
+    <%= f.text_field :name %><br />
+    <br/>
+    <%= f.label :private %>:
+    <%= f.check_box :private %><br />
+    <br/>
+    <%= f.label :description %>:
+    <%= f.text_area :description %><br />
+    <br/>
+    <%= f.submit "Save", :disable_with => translate('general.disable_with') %>
+    <%= link_to 'Cancel', groups_path %>
+<% end %>

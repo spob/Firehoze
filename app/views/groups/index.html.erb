@@ -1,0 +1,15 @@
+<% title "Browse by Groups" -%>
+
+<h3>Groups</h3>
+
+<%= link_to "New Group", new_group_path(@sku) %>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Private</th>
+    <th>Action</th>
+  </tr>
+  <%= render @groups %>
+</table>
+
+<%= will_paginate @groups %>
