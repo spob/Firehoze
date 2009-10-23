@@ -1,18 +1,25 @@
+require "migration_helpers"
+
 class CreateGroups < ActiveRecord::Migration
+  extend MigrationHelpers
+  
   def self.up
     create_table :groups do |t|
       t.string  :name,       :null => false
       t.boolean :private,    :null => false
+      t.integer :owner_id,   :null => false
       t.text    :description
 
       t.timestamps
     end
 
+    add_foreign_key(:groups, :owner_id, :users)
     add_index(:groups, :name, :unique => true)
   end
 
   def self.down
     remove_index(:groups, :name)
+    remove_foreign_key(:groups, :owner_id)
     drop_table :groups
   end
 end

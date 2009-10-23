@@ -6,7 +6,8 @@ class GroupTest < ActiveSupport::TestCase
     setup { @group = Factory.create(:group) }
     subject { @group }
 
-    should_validate_presence_of :name
+    should_validate_presence_of :name, :owner
     should_validate_uniqueness_of :name
+    should_belong_to            :owner
   end
 end
