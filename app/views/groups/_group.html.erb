@@ -6,6 +6,9 @@
     <%= link_to_profile(group.owner) %>
   </td>
   <td>
+    <%= h group.group_members.size %>
+  </td>
+  <td>
     <%= h group.private %>
   </td>
   <td>
