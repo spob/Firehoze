@@ -10,4 +10,8 @@ class Group < ActiveRecord::Base
   def owned_by?(user)
     self.owner == user
   end
+
+  def includes_member?(user)
+    (user and !Group.first.users.find(:first, :conditions => {:id => user.id}).nil?)
+  end
 end

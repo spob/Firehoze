@@ -39,6 +39,9 @@ class GroupsControllerTest < ActionController::TestCase
         assert_equal @user, assigns(:group).owner
         assert assigns(:group).users.include?(@user)
         assert_equal OWNER, assigns(:group).group_members.first.member_type
+        
+        assert assigns(:group).includes_member?(assigns(:group).owner)
+        assert !assigns(:group).includes_member?(Factory(:user))
       end
     end
   end
