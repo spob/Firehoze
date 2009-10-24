@@ -12,6 +12,8 @@ class Group < ActiveRecord::Base
   end
 
   def includes_member?(user)
-    (user and !Group.first.users.find(:first, :conditions => {:id => user.id}).nil?)
+    if user
+      self.group_members.find(:first, :conditions => {:user_id => user.id})
+    end
   end
 end

@@ -111,7 +111,8 @@ en:
     create_success: Successfully created group
     update_success: Successfully updated group
     destroyed_success: Successfully destroyed group
-    added_membership: You have joined the group {{group}}
+    join: You have joined the group {{group}}
+    left: You have left the group {{group}}
 
   helpful:
     cant_feedback_own: You cannot provide feedback on a review you have written
