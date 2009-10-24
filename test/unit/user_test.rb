@@ -43,6 +43,8 @@ class UserTest < ActiveSupport::TestCase
     should_have_many                 :lesson_comments
     should_have_many                 :flaggings
     should_have_many                 :user_logons
+    should_have_many                 :group_members
+    should_have_many                 :groups
     should_have_many                 :helpfuls
     should_have_many                 :lesson_visits
     should_have_many                 :visited_lessons

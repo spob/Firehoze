@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
 
   has_many :user_logons, :order => "created_at DESC", :dependent => :destroy
   has_many :credits, :order => 'id', :dependent => :destroy
+  has_many :group_members, :dependent => :destroy
+  has_many :groups, :through => :group_members
   has_many :gift_certificates, :dependent => :destroy
   has_many :orders, :order => 'id DESC', :dependent => :destroy
   has_many :visited_lessons, :source => :lesson, :through => :lesson_visits, :order => 'visited_at DESC'
