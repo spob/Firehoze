@@ -9,7 +9,7 @@ class CreateGroups < ActiveRecord::Migration
       t.boolean :private,    :null => false
       t.integer :owner_id,   :null => false
       t.text    :description
-
+      t.integer :group_members_count, :default => 0
       t.timestamps
     end
 

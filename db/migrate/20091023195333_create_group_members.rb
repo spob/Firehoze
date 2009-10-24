@@ -11,9 +11,12 @@ class CreateGroupMembers < ActiveRecord::Migration
       t.timestamps
     end
     add_foreign_key(:group_members, :group_id, :groups)
+
+    add_column :users, :group_members_count, :integer, :default => 0
   end
 
   def self.down
+    remove_column :users, :group_members_count
     remove_foreign_key(:group_members, :group_id)
     drop_table :group_members
   end
