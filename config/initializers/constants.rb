@@ -113,3 +113,9 @@ AUTHOR_STATUS_OK = "OK"
 
 # Firehoze Policies
 POLICIES = %w(membership_agreement instructor_agreement content_license_agreement terms_of_use privacy copyright)
+
+# Group member types
+OWNER = 'OWNER'
+MODERATOR = 'MODERATOR'
+MEMBER = 'MEMBER'
+PENDING = 'PENDING'

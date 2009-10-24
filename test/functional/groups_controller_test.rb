@@ -35,6 +35,11 @@ class GroupsControllerTest < ActionController::TestCase
       should_assign_to :group
       should_respond_with :redirect
       should_redirect_to("Group index page") { groups_url }
+      should "populate members" do
+        assert_equal @user, assigns(:group).owner
+        assert assigns(:group).users.include?(@user)
+        assert_equal OWNER, assigns(:group).group_members.first.member_type
+      end
     end
   end
 end

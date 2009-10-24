@@ -25,11 +25,14 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(params[:group])
     @group.owner = current_user
-    if @group.save
-      flash[:notice] = t('group.create_success')
-      redirect_to groups_path
-    else
-      render :action => 'new'
+    Group.transaction do
+      if @group.save
+        @group_member = GroupMember.create!(:user => current_user, :group => @group, :member_type => OWNER)
+        flash[:notice] = t('group.create_success')
+        redirect_to groups_path
+      else
+        render :action => 'new'
+      end
     end
   end
 
