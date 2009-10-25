@@ -16,7 +16,7 @@ class GroupMembersController < ApplicationController
       @group_member.update_attribute(:member_type, MODERATOR)
       flash[:notice] = t('group.promote_success', :user => @group_member.user.login)
     else
-    flash[:error] = t('group.no_permissions')
+      flash[:error] = t('group.no_permissions')
     end
     redirect_to group_path(@group_member.group)
   end
@@ -26,7 +26,7 @@ class GroupMembersController < ApplicationController
       @group_member.update_attribute(:member_type, MEMBER)
       flash[:notice] = t('group.demote_success', :user => @group_member.user.login)
     else
-    flash[:error] = t('group.no_permissions')
+      flash[:error] = t('group.no_permissions')
     end
     redirect_to group_path(@group_member.group)
   end
@@ -49,6 +49,22 @@ class GroupMembersController < ApplicationController
     redirect_to group_path(@group)
   end
 
+  def new_private
+    # The invitation record is unmarshalled based upon the URL that was created by ActiveURL
+    # when the invitation was first created. If we get here, it means the user
+    # clicked on the link in their invitation email.
+    @invitation = GroupInvitation.find(params[:group_invitation_id])
+    unless @invitation.user == current_user
+      flash[:error] = t('group_invitation.wrong_user', :user => @invitation.user.login)
+      redirect_back_or_default home_path
+    end
+    # retrieve various fields for the @user record based upon the values stored in the registration
+#    @user = populate_user_from_registration_and_params
+  rescue ActiveUrl::RecordNotFound
+    flash[:error] = t 'group_invitation.invitation_no_longer_valid'
+    redirect_back_or_default home_path
+  end
+
   private
 
   def check_permissions(member, user)
@@ -61,5 +77,12 @@ class GroupMembersController < ApplicationController
 
   def find_group_member
     @group_member = GroupMember.find(params[:id])
+  end
+
+  def populate_invitation
+    invitation = GroupInvitation.new(params[:invitation])
+    invitation.user = @invitation.user
+    invitation.group = @invitation.group
+    invitation
   end
 end

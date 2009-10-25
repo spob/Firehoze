@@ -1,10 +1,8 @@
-<p>
-  Hi <%= h @invitation.user.full_name %>,
-</p>
+<% title "Invitation to Join Group #{ h @invitation.group.name}" -%>
 
+<h3>Invitation to Join Group <%= h @invitation.group.name %></h3>
 <p>
-  You have been invited to join the Firehoze Group <%= h @invitation.group.name %>
-  : <%= h @invitation.group.description %>
+  You have been invited to join the Firehoze Group "<%= h @invitation.group.name %>": <%= h @invitation.group.description %>
 </p>
 <% if @invitation.message and !@invitation.message.blank? %>
     <p>
@@ -14,7 +12,4 @@
 <p>
   Firehoze Groups are mini communities of users who share a common interest. Group members can share information, engage
   in online discussion, and suggestion lessons to their peers which would be of interest.
-</p>
-<p>
-<%= link_to "Join Group", @url %>
 </p>

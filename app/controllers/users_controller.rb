@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     @user = populate_user_from_registration_and_params
     @user.time_zone = APP_CONFIG[CONFIG_DEFAULT_USER_TIMEZONE]
   rescue ActiveUrl::RecordNotFound
-    flash[:notice] = t 'user.registration_no_longer_valid'
+    flash[:error] = t 'user.registration_no_longer_valid'
     redirect_back_or_default home_path
   end
 

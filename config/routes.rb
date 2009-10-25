@@ -32,6 +32,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :group_invitations, :only => [ :create, :new ]
   map.resources :group_members, :only => [ :create, :destroy ],
                 :member => { :remove => :delete, :promote => :post, :demote => :post }
+  map.resources :group_invitations, :only => [ :new_private, :create_private ] do |invitation|
+    invitation.resources :group_members, :only => [ :new_private, :create_private ],
+                         :collection => { :new_private => :get, :create_private => :post }
+  end
   map.resources :helpfuls, :only => [ :create ]
   map.resources :instructor_follows, :only => [ :create, :destroy ]
   map.resources :lessons, :has_many => :reviews, :shallow => true,
@@ -92,10 +96,6 @@ ActionController::Routing::Routes.draw do |map|
                                  :user_agreement => :get }
   map.resources :user_logons
   map.resources :wish_lists, :only => [ :create, :destroy ]
-  map.resources :group_invitations, :only => [ :new_private, :create_private ] do |invitation|
-    invitation.resources :group_members, :only => [ :new_private, :create_private ],
-                         :collection => { :new_private => :get, :create_private => :post }
-  end
   map.resources :registrations, :only => [ :new, :create ] do |registration|
     registration.resources :users, :only => [ :new, :create ]
   end
