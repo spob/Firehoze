@@ -1,6 +1,7 @@
 class GroupMembersController < ApplicationController
   before_filter :require_user
-  verify :method => :post, :only => [:create], :redirect_to => :home_path
+  before_filter :find_group_member, :only => [ :remove, :promote, :demote ]
+  verify :method => :post, :only => [:create, :promote, :demote ], :redirect_to => :home_path
   verify :method => :delete, :only => [:destroy, :remove ], :redirect_to => :home_path
 
   def create
@@ -10,12 +11,33 @@ class GroupMembersController < ApplicationController
     redirect_to group_path(@group)
   end
 
+  def promote
+    if @group_member.group.owned_by?(user) and @group_member.member_type == MEMBER
+      @group_member.update_attribute(:member_type, MODERATOR)
+      flash[:notice] = t('group.promote_success', :user => @group_member.user.login)
+    else
+    flash[:error] = t('group.no_permissions')
+    end
+    redirect_to group_path(@group)
+  end
+
+  def demote
+    if @group_member.group.owned_by?(user) and @group_member.member_type == MODERATOR
+      @group_member.update_attribute(:member_type, MEMBER)
+      flash[:notice] = t('group.demote_success', :user => @group_member.user.login)
+    else
+    flash[:error] = t('group.no_permissions')
+    end
+    redirect_to group_path(@group)
+  end
+
   def remove
-    @member = GroupMember.find(params[:id])
-    @user = @member.user
-    @group = @member.group
-    @member.destroy
-    flash[:notice] = t('group.remove_success', :user => @user.login)
+    @user = @group_member.user
+    @group = @group_member.group
+    if check_permissions(@group_member, current_user)
+      @group_member.destroy
+      flash[:notice] = t('group.remove_success', :user => @user.login)
+    end
     redirect_to group_path(@group)
   end
 
@@ -25,5 +47,19 @@ class GroupMembersController < ApplicationController
     @group.group_members.delete(@group_member)
     flash[:notice] = t('group.left', :group => @group.name)
     redirect_to group_path(@group)
+  end
+
+  private
+
+  def check_permissions(member, user)
+    if @group_member.can_edit?(user)
+      return true
+    end
+    flash[:error] = t('group.no_permissions')
+    false
+  end
+
+  def find_group_member
+    @group_member = GroupMember.find(params[:id])
   end
 end

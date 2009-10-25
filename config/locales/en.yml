@@ -120,7 +120,10 @@ en:
     no_such_user: The user you entered ({{user}}) is not recognized
     invitation_success: You have sent an invitation to {{user}}
     cannot_remove: You do not have permissions to remove that user from the group
+    no_permissions: You do not have permissions to perform that action
     remove_success: You have removed {{user}} from the group
+    promote_success: You have promoted {{user}} to the role of moderator for this group
+    demote_success: The user {{user}} is no longer a moderator for this group
 
   helpful:
     cant_feedback_own: You cannot provide feedback on a review you have written

@@ -19,11 +19,17 @@ module GroupsHelper
   end
 
   def show_remove_link(group_member)
-    if group_member.group.private
-      if group_member.group.owned_by?(current_user) or
-              (group_member.group.moderated_by?(current_user) and
-                      (group_member.member_type == MEMBER or group_member.member_type == PENDING))
-        link_to "Remove", remove_group_member_path(group_member), :method => :delete, :confirm => "Are you sure?"
+    if group_member.group.private and group_member.can_edit?(current_user)
+      link_to "Remove", remove_group_member_path(group_member), :method => :delete, :confirm => "Are you sure?"
+    end
+  end
+
+  def show_promote_demote_link(group_member)
+    if group_member.group.owned_by?(current_user)
+      if group_member.member_type == MEMBER
+      link_to "Promote to Moderator", promote_group_member_path(group_member), :method => :post
+      elsif group_member.member_type == MODERATOR
+      link_to "Demote", demote_group_member_path(group_member), :method => :post
       end
     end
   end
