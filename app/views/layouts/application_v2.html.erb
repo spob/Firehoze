@@ -21,6 +21,7 @@
     <%= stylesheet_link_tag 'v2/base', :media => "print" %>
     <%= stylesheet_link_tag 'v2/custom', :media => "screen, projection" %>
     <!--[if IE]><link rel="stylesheet" href="v2/blueprint/ie" type="text/css" media="screen, projection"/><![endif]-->
+    <%#= javascript_include_tag 'footer' %>
     <%= yield :head -%>
   </head>
   <body>
@@ -29,41 +30,37 @@
     <!-- start header -->
     <div id="header">
       <div class="container">
-        <div class="span-24 last" id="content">
+        <div class="span-12 last" id="content">
           <div id="logo"><%= image_tag '/stylesheets/v2/images/brandings/logo.png' %></div>
-          <div class="span-24 last" id="vimeo_nav"></div>
-          <div class="prepend-6 span-18 last" id="tabbed_nav">Tabbed Nav</div>
+          <div class="span-12 last" id="vimeo_nav"></div>
+          <div class="prepend-6 span-6 last" id="tabbed_nav">Tabbed Nav</div>
         </div>
       </div>
     </div>
     <!-- end footer -->
 
     <!-- start main_content -->
-    <div class="container">
-      <div class="clear span-24 last" id="main_content">
-        <div class="prepend-top append-1 prepend-1" id="content_wrapper">
-          <div class="span-14">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus. Morbi viverra, sem sed viverra egestas, urna nunc suscipit justo, at ultrices elit massa quis dolor. Fusce volutpat, justo vel facilisis lacinia, felis risus lacinia arcu, vel commodo dolor lectus id quam. Suspendisse malesuada diam erat. Duis vel arcu a enim aliquet ultrices. Cras cursus erat a ante porttitor vulputate. Ut eu lorem nibh. Morbi euismod diam imperdiet leo pharetra commodo. Nam tincidunt ipsum vel dolor aliquet nec egestas nisi congue. Suspendisse potenti.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus. Morbi viverra, sem sed viverra egestas, urna nunc suscipit justo, at ultrices elit massa quis dolor. Fusce volutpat, justo vel facilisis lacinia, felis risus lacinia arcu, vel commodo dolor lectus id quam. Suspendisse malesuada diam erat. Duis vel arcu a enim aliquet ultrices. Cras cursus erat a ante porttitor vulputate. Ut eu lorem nibh. Morbi euismod diam imperdiet leo pharetra commodo. Nam tincidunt ipsum vel dolor aliquet nec egestas nisi congue. Suspendisse potenti.</p>
+    <div class="container  showgrid">
+      <div class="clear span-12 last" id="main_content">
+        <div class="prepend-top" id="content_wrapper">
+          <div class="span-8">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus. Morbi viverra, sem sed viverra egestas, urna nunc suscipit justo, at ultrices elit massa quis dolor. Fusce volutpat, justo vel facilisis lacinia, felis risus lacinia arcu, vel commodo dolor lectus id quam. Suspendisse malesuada diam erat. Duis vel arcu a enim aliquet ultrices. Cras cursus erat a ante porttitor vulputate. Ut eu lorem nibh. Morbi euismod diam imperdiet leo pharetra commodo. Nam tincidunt ipsum vel dolor aliquet nec egestas nisi congue. Suspendisse potenti.</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus. Morbi viverra, sem sed viverra egestas, urna nunc suscipit justo, at ultrices elit massa quis dolor. Fusce volutpat, justo vel facilisis lacinia, felis risus lacinia arcu, vel commodo dolor lectus id quam. Suspendisse malesuada diam erat. Duis vel arcu a enim aliquet ultrices. Cras cursus erat a ante porttitor vulputate. Ut eu lorem nibh. Morbi euismod diam imperdiet leo pharetra commodo. Nam tincidunt ipsum vel dolor aliquet nec egestas nisi congue. Suspendisse potenti.</p>
           </div>
-          <div class="span-8 last">
+          <div class="span-4 last">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus. Morbi viverra, sem sed viverra egestas, urna nunc suscipit justo, at ultrices elit massa quis dolor. Fusce volutpat, justo vel facilisis lacinia, felis risus lacinia arcu, vel commodo dolor lectus id quam. Suspendisse malesuada diam erat. Duis vel arcu a enim aliquet ultrices. Cras cursus erat a ante porttitor vulputate. Ut eu lorem nibh. Morbi euismod diam imperdiet leo pharetra commodo. Nam tincidunt ipsum vel dolor aliquet nec egestas nisi congue. Suspendisse potenti.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus. Morbi viverra, sem sed viverra egestas, urna nunc suscipit justo, at ultrices elit massa quis dolor. Fusce volutpat, justo vel facilisis lacinia, felis risus lacinia arcu, vel commodo dolor lectus id quam. Suspendisse malesuada diam erat. Duis vel arcu a enim aliquet ultrices. Cras cursus erat a ante porttitor vulputate. Ut eu lorem nibh. Morbi euismod diam imperdiet leo pharetra commodo. Nam tincidunt ipsum vel dolor aliquet nec egestas nisi congue. Suspendisse potenti.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus. Morbi viverra, sem sed viverra egestas, urna nunc suscipit justo, at ultrices elit massa quis dolor. Fusce volutpat, justo vel facilisis lacinia, felis risus lacinia arcu, vel commodo dolor lectus id quam.</p>
           </div>
 
-          <div class="span-22 last" style="background-color:aqua;">
+          <div class="span-12 last" style="background-color:aqua;">
             <%= yield -%>
           </div>
 
           <!-- Two Columns -->
-          <div class="clear span-11">
+          <div class="clear span-6">
             <p>Column 1 of 2</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
           </div>
-          <div class="span-11 last">
+          <div class="span-6 last">
             <p>Column 2 of 2</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
           </div>
@@ -72,47 +69,32 @@
     </div>
     <!-- end main_content -->
 
-    <!-- start footer -->
+    <!-- Start footer -->
     <div id="footer">
       <div class="container">
-        <div class="span-24 last" id="content">
-          <div class="prepend-top append-1 prepend-1" id="content_wrapper">
-            <!-- Four columns -->
-            <div class="clear span-6">
-              <p>Column 1 of 4</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
-            </div>
-            <div class="span-5">
-              <p>Column 2 of 4</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
-            </div>
-            <div class="span-5">
-              <p>Column 3 of 4</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
-            </div>
-            <div class="span-6 last">
-              <p>Column 4 of 4</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
-            </div>
-
+        <div class="span-12 last" id="content">
+          <div id="upper" class="prepend-top">
             <!-- Three Columns -->
-            <div class="clear span-8">
-              <p>Column 1 of 4</p>
+            <div class="clear span-4">
+              <p>Column 1 of 3</p>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
             </div>
-            <div class="span-7">
-              <p>Column 2 of 4</p>
+            <div class="span-4">
+              <p>Column 2 of 3</p>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
             </div>
-            <div class="span-7 last">
-              <p>Column 4 of 4</p>
+            <div class="span-4 last">
+              <p>Column 3 of 3</p>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--End footer -->
+          </div><!--End upper -->
+
+          <div id="lower">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
+          </div><!--End lower -->
+        </div><!--end content -->
+      </div><!--end container -->
+    </div><!--end footer -->
 
   </body>
 </html>
