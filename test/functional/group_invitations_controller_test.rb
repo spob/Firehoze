@@ -49,6 +49,49 @@ class GroupInvitationsControllerTest < ActionController::TestCase
             should_not_set_the_flash
             should_render_template 'new'
           end
+
+          fast_context "on POST to :create via login" do
+            setup do
+              @to_user = Factory(:user)
+              post :create, :id => @group, :to_user => @to_user.login
+            end
+            should_set_the_flash_to /You have sent an invitation/
+            should_assign_to :group
+            should_assign_to :to_user
+            should_assign_to :group_member
+            should "set to pending" do
+              assert_equal PENDING, assigns(:group_member).member_type
+            end
+          end
+
+          fast_context "on POST to :create via email" do
+            setup do
+              @to_user = Factory(:user)
+              post :create, :id => @group, :to_user_email => @to_user.email
+            end
+            should_set_the_flash_to /You have sent an invitation/
+            should_assign_to :group
+            should_assign_to :to_user
+            should_assign_to :group_member
+            should "set to pending" do
+              assert_equal PENDING, assigns(:group_member).member_type
+            end
+
+
+            fast_context "and resend an invitation on POST to :create via email" do
+              setup do
+                @to_user = Factory(:user)
+                post :create, :id => @group, :to_user_email => @to_user.email
+              end
+              should_set_the_flash_to /You have sent an invitation/
+              should_assign_to :group
+              should_assign_to :to_user
+              should_assign_to :group_member
+              should "set to pending" do
+                assert_equal PENDING, assigns(:group_member).member_type
+              end
+            end
+          end
         end
       end
     end

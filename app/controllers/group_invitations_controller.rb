@@ -25,6 +25,10 @@ class GroupInvitationsController < ApplicationController
         invite.group = @group
         invite.message = params[:message]
         if invite.save
+          @group_member = @group.group_members.find(:first, :conditions => {:user_id => @to_user.id })
+          unless @group_member
+            @group_member = GroupMember.create!(:user => @to_user, :group => @group, :member_type => PENDING)
+          end
           flash[:notice] = t('group.invitation_success', :user => user_str)
           redirect_to group_path(@group)
         else

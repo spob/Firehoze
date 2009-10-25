@@ -30,7 +30,7 @@ class Group < ActiveRecord::Base
 
   def includes_member?(user)
     if user
-      self.group_members.find(:first, :conditions => {:user_id => user.id})
+      self.group_members.find(:first, :conditions => {:user_id => user.id, :member_type => [OWNER, MODERATOR, MEMBER]})
     end
   end
 end
