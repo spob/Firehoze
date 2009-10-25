@@ -11,4 +11,10 @@ module GroupsHelper
       link_to "Leave Group", group_member_path(group.id), :method => :delete
     end
   end
+
+  def show_invite_link(group)
+    if group.private and (group.owned_by?(current_user) or group.moderated_by(current_user))
+      link_to "Invite a User", new_group_invitation_path(:id => group)
+    end
+  end
 end

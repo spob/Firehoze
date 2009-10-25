@@ -1,0 +1,20 @@
+<% title "Create Group" -%>
+
+
+<h3>Invite a user to join "<%= @group.name %>"</h3>
+
+<% form_for(:group_invitation, :url => group_invitations_path, :html => {'accept-charset' => "utf-8", :id => "inline", :class => "register" }) do |f| %>
+    <%= f.error_messages %>
+    <%= hidden_field_tag :id, @group.id %>
+
+    Invitee Username:
+    <%= text_field_tag :to_user %> or
+    Invitee Email Address:
+    <%= text_field_tag :to_user_email %>
+    <br/>
+    Message:
+    <%= text_area_tag :message %>
+    <br/>
+    <%= f.submit "Invite", :disable_with => translate('general.disable_with') %>
+    <%= link_to "Cancel", group_path(@group) %>
+<% end %>

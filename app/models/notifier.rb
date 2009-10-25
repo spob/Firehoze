@@ -30,6 +30,17 @@ class Notifier < ActionMailer::Base
                :url => new_registration_user_url(registration, url_options)
   end
 
+  # An invitation to join a private user group
+  def group_invitation(invitation)
+    #asf
+    subject    "You are invited to join a user group"
+    recipients invitation.user.email
+    from       APP_CONFIG[CONFIG_ADMIN_EMAIL]
+
+    body       :invitation => invitation,
+               :url => new_private_group_invitation_group_members_url(invitation, url_options)
+  end
+
   # Notify a user that they have credits about to expire
   def credits_about_to_expire(user)
     subject    "You have credits about to expire"
