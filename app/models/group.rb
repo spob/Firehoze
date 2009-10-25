@@ -14,8 +14,8 @@ class Group < ActiveRecord::Base
               }
 
   def self.list user
-    owned_groups = user.groups
-    groups = Group.not_a_member(user).ascend_by_name(:include => :user) + owned_groups
+    owned_groups = user ? user.groups : []
+    groups = Group.public.not_a_member(user).ascend_by_name(:include => :user) + owned_groups
     groups.sort_by{|g| g.name}    
   end
   
