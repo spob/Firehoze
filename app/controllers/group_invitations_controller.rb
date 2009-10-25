@@ -41,7 +41,7 @@ class GroupInvitationsController < ApplicationController
   def can_invite(group)
     if !group.private
       flash[:error] = t('group.cannot_invite_public_group')
-    elsif !group.owned_by?(current_user) and !group.moderated_by(current_user)
+    elsif !group.owned_by?(current_user) and !group.moderated_by?(current_user)
       flash[:error] = t('group.must_be_owner_or_moderator')
     end
     flash[:error].nil?
