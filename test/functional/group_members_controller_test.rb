@@ -21,7 +21,7 @@ class GroupMembersControllerTest < ActionController::TestCase
         should_set_the_flash_to /joined/
         should_assign_to :group
         should_respond_with :redirect
-        should_redirect_to("Group index page") { groups_url }
+        should_redirect_to("Group page") { group_url(@group) }
         should "add user to group" do
           assert @group.includes_member?(@user)
         end
@@ -39,7 +39,7 @@ class GroupMembersControllerTest < ActionController::TestCase
           should_set_the_flash_to /left/
           should_assign_to :group
           should_respond_with :redirect
-          should_redirect_to("Group index page") { groups_url }
+        should_redirect_to("Group page") { group_url(@group) }
           should "removed user from group" do
             assert !@group.includes_member?(@user)
           end

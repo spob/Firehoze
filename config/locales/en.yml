@@ -113,6 +113,7 @@ en:
     destroyed_success: Successfully destroyed group
     join: You have joined the group {{group}}
     left: You have left the group {{group}}
+    moderator: moderator
 
   helpful:
     cant_feedback_own: You cannot provide feedback on a review you have written

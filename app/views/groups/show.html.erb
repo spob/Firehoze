@@ -1,0 +1,13 @@
+<% title "Group #{@group.name}" -%>
+
+<h2>Group <%= @group.name %></h2>
+<%= show_join_link(@group) %>
+<%= show_leave_link(@group) %>
+<br/>
+Owner: <%= link_to_profile(@group.owner) %>
+<br/>
+<br/>
+<h3>Members:</h3>
+<ul>
+  <%= render :partial => "member", :collection => (@group.group_members.reject{ |m| m.member_type == OWNER }) %>
+</ul>

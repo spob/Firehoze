@@ -7,8 +7,25 @@ class Group < ActiveRecord::Base
   validates_presence_of :name, :owner
   validates_uniqueness_of :name
 
+  named_scope :public, :conditions => { :private => false }
+  named_scope :not_a_member,
+              lambda{ |user| return {} if user.nil?;
+              { :conditions => ["groups.id not in (?)", user.groups.collect(&:id) + [-1]] }
+              }
+
+  def self.list user
+    owned_groups = user.groups
+    groups = Group.not_a_member(user).ascend_by_name(:include => :user) + owned_groups
+    groups.sort_by{|g| g.name}    
+  end
+  
   def owned_by?(user)
     self.owner == user
+  end
+
+  def moderated_by?(user)
+    group_member = includes_member?(user)
+    group_member.try(:member_type) == MODERATOR
   end
 
   def includes_member?(user)

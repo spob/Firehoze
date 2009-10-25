@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
 
 
   def index
-    @groups = Group.ascend_by_name(:include => :user).paginate(:per_page => ROWS_PER_PAGE, :page => params[:page])
+    @groups = Group.list(current_user).paginate(:per_page => ROWS_PER_PAGE, :page => params[:page])
   end
 
   def show

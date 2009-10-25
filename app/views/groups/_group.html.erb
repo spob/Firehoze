@@ -1,6 +1,6 @@
 <tr>
   <td>
-    <%= h group.name %>
+    <%= link_to(h(group.name), group_path(group)) %>
   </td>
   <td>
     <%= link_to_profile(group.owner) %>
@@ -10,9 +10,5 @@
   </td>
   <td>
     <%= h group.private %>
-  </td>
-  <td>
-    <%= show_join_link(group) %>
-    <%= show_leave_link(group) %>
   </td>
 </tr>
