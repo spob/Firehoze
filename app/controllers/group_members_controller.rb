@@ -12,23 +12,23 @@ class GroupMembersController < ApplicationController
   end
 
   def promote
-    if @group_member.group.owned_by?(user) and @group_member.member_type == MEMBER
+    if @group_member.group.owned_by?(current_user) and @group_member.member_type == MEMBER
       @group_member.update_attribute(:member_type, MODERATOR)
       flash[:notice] = t('group.promote_success', :user => @group_member.user.login)
     else
     flash[:error] = t('group.no_permissions')
     end
-    redirect_to group_path(@group)
+    redirect_to group_path(@group_member.group)
   end
 
   def demote
-    if @group_member.group.owned_by?(user) and @group_member.member_type == MODERATOR
+    if @group_member.group.owned_by?(current_user) and @group_member.member_type == MODERATOR
       @group_member.update_attribute(:member_type, MEMBER)
       flash[:notice] = t('group.demote_success', :user => @group_member.user.login)
     else
     flash[:error] = t('group.no_permissions')
     end
-    redirect_to group_path(@group)
+    redirect_to group_path(@group_member.group)
   end
 
   def remove
