@@ -114,10 +114,13 @@ en:
     join: You have joined the group {{group}}
     left: You have left the group {{group}}
     moderator: moderator
+    pending: invitation sent
     cannot_invite_public_group: You can only extend invitations to private groups
     must_be_owner_or_moderator: You must be either an owner or moderator for this group in order to extend invitations
     no_such_user: The user you entered ({{user}}) is not recognized
     invitation_success: You have sent an invitation to {{user}}
+    cannot_remove: You do not have permissions to remove that user from the group
+    remove_success: You have removed {{user}} from the group
 
   helpful:
     cant_feedback_own: You cannot provide feedback on a review you have written

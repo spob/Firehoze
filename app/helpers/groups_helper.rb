@@ -13,8 +13,18 @@ module GroupsHelper
   end
 
   def show_invite_link(group)
-    if group.private and (group.owned_by?(current_user) or group.moderated_by(current_user))
+    if group.private and (group.owned_by?(current_user) or group.moderated_by?(current_user))
       link_to "Invite a User", new_group_invitation_path(:id => group)
+    end
+  end
+
+  def show_remove_link(group_member)
+    if group_member.group.private
+      if group_member.group.owned_by?(current_user) or
+              (group_member.group.moderated_by?(current_user) and
+                      (group_member.member_type == MEMBER or group_member.member_type == PENDING))
+        link_to "Remove", remove_group_member_path(group_member), :method => :delete, :confirm => "Are you sure?"
+      end
     end
   end
 end

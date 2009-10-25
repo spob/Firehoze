@@ -26,7 +26,9 @@ class GroupInvitationsController < ApplicationController
         invite.message = params[:message]
         if invite.save
           @group_member = @group.group_members.find(:first, :conditions => {:user_id => @to_user.id })
-          unless @group_member
+          if @group_member
+            @group_member.touch
+          else
             @group_member = GroupMember.create!(:user => @to_user, :group => @group, :member_type => PENDING)
           end
           flash[:notice] = t('group.invitation_success', :user => user_str)
