@@ -13,3 +13,7 @@
   Firehoze Groups are mini communities of users who share a common interest. Group members can share information, engage
   in online discussion, and suggestion lessons to their peers which would be of interest.
 </p>
+<p>
+  <%= link_to "Join the Group!", create_private_group_member_path(@group_member, :join => 'yes'), :method => :post %> |
+  <%= link_to "No Thanks", create_private_group_member_path(@group_member, :join => 'no'), :method => :post %>
+</p>

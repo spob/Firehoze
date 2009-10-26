@@ -31,10 +31,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :groups
   map.resources :group_invitations, :only => [ :create, :new ]
   map.resources :group_members, :only => [ :create, :destroy ],
-                :member => { :remove => :delete, :promote => :post, :demote => :post }
+                :member => { :remove => :delete, :promote => :post, :demote => :post, :create_private => :post }
   map.resources :group_invitations, :only => [ :new_private, :create_private ] do |invitation|
     invitation.resources :group_members, :only => [ :new_private, :create_private ],
-                         :collection => { :new_private => :get, :create_private => :post }
+                         :collection => { :new_private => :get }
   end
   map.resources :helpfuls, :only => [ :create ]
   map.resources :instructor_follows, :only => [ :create, :destroy ]
