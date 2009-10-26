@@ -125,6 +125,7 @@ en:
     promote_success: You have promoted {{user}} to the role of moderator for this group
     demote_success: The user {{user}} is no longer a moderator for this group
     welcome: Welcome to the {{group}} group!
+    no_thanks: Okay, thanks. You have not joined the group
 
   group_invitation:
     invitation_no_longer_valid: Invitation no longer valid

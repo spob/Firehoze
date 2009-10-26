@@ -1,7 +1,7 @@
 class GroupMembersController < ApplicationController
   before_filter :require_user
-  before_filter :find_group_member, :only => [ :remove, :promote, :demote, :new_create ]
-  verify :method => :post, :only => [:create, :promote, :demote, :new_create ], :redirect_to => :home_path
+  before_filter :find_group_member, :only => [ :remove, :promote, :demote, :create_private ]
+  verify :method => :post, :only => [:create, :promote, :demote, :create_private ], :redirect_to => :home_path
   verify :method => :delete, :only => [:destroy, :remove ], :redirect_to => :home_path
 
   def create
@@ -73,17 +73,22 @@ class GroupMembersController < ApplicationController
     redirect_back_or_default home_path
   end
 
-  def new_create
-    if @group_member.nil? or @group_member.member_type != PENDING
+  def create_private
+    if @group_member.nil? or @group_member.member_type != PENDING or (params[:join] != 'yes' and params[:join] != 'no')
       flash[:error] = t 'group_invitation.invitation_no_longer_valid'
       redirect_back_or_default home_path
     elsif @group_member.user != current_user
       flash[:error] = t('group_invitation.wrong_user', :user => @group_member.user.login)
       redirect_back_or_default home_path
-    else
+    elsif params[:join] == 'yes'
       @group_member.update_attribute(:member_type, MEMBER)
       flash[:notice] = t('group.welcome', :group => @group_member.group.name)
       redirect_to group_path(@group_member.group)
+    else
+      @group = @group_member.group
+      @group_member.delete
+      flash[:notice] = t('group.no_thanks')
+      redirect_back_or_default home_path
     end
   end
 

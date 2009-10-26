@@ -49,9 +49,9 @@ class GroupMembersControllerTest < ActionController::TestCase
       fast_context "and the user as a pending member" do
         setup { @group_member = GroupMember.create!(:user => @user, :group => @group, :member_type => PENDING) }
 
-        fast_context "on POST to :new_create" do
+        fast_context "on POST to :create_private" do
           setup do
-            post :new_create, :id => @group_member
+            post :create_private, :id => @group_member, :join => 'yes'
           end
 
           should_set_the_flash_to /Welcome/
@@ -62,14 +62,30 @@ class GroupMembersControllerTest < ActionController::TestCase
             assert MEMBER, assigns(:group_member).member_type
           end
         end
+
+        fast_context "on POST to :create_private and selecting not to join" do
+          setup do
+            post :create_private, :id => @group_member, :join => 'no'
+          end
+
+          should_set_the_flash_to /You have not joined/
+          should_assign_to :group_member
+          should_respond_with :redirect
+          should_redirect_to("Home page") { home_url }
+          should "removed user to group" do
+            assert GroupMember.find_by_id(@group_member.id).nil?
+          end
+        end
       end
 
-      fast_context "and a wrong user as a pending member" do
-        setup { @group_member = GroupMember.create!(:user => Factory.create(:user), :group => @group, :member_type => PENDING) }
 
-        fast_context "on POST to :new_create" do
+      fast_context "and a wrong user as a pending member" do
+        setup { @group_member = GroupMember.create!(:user => Factory.create(:user), :group => @group,
+                                                    :member_type => PENDING) }
+
+        fast_context "on POST to :create_private" do
           setup do
-            post :new_create, :id => @group_member
+            post :create_private, :id => @group_member, :join => 'yes'
           end
 
           should_set_the_flash_to /You must be logged in as .* to view this invitation/
