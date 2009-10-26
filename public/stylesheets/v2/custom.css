@@ -1,5 +1,5 @@
 body {
-    background-color:#ece8e8;
+    background-color:#EFEFEF;
 }
 
 div {
@@ -15,7 +15,6 @@ div {
 #header #content {
     position:relative;
     background-repeat:no-repeat;
-    background-color:#302E2F;
     height:77px;
 }
 #header #vimeo_nav {
@@ -34,12 +33,23 @@ div {
     margin:0;
     padding:0;
 }
-#header #tabbed_nav {
-    margin: 40px 0;
-    height:46px;
+
+/* 224 x 134*/
+#header #logo a#home {
+    display: block; /* Change anchor to block element */
+    width: 224px; height: 67px; /* Specify width and height of the image. Height is value of each individual button graphic */
+    background-image: url(/stylesheets/v2/images/sprite-logo.png); /* Add the image as a background */
+    background-position: top; /* Set the position to the top */
+    text-indent: -9999px; /* Send the rendered HTML wording off screen */
+}
+#header #logo a#home:hover, #header #logo a#home:focus {
+    background-position: bottom; /* Set the position to the center */
+}
+#header #logo a#home:active {
+    background-position: bottom; /* Set the position to the bottom */
 }
 
-/* Shadowbox */
+/* SHADOWBOX */
 #shadowbox-top {
     background-image:url('images/shadow-box-top.png');
     background-repeat:no-repeat;
