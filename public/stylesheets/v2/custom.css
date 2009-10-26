@@ -8,6 +8,8 @@ div {
 
 /* HEADER */
 #header {
+    z-index:1;
+    position:relative;
     height:145px;
     background-image:url('images/header-bg-tile-tall.png');
     background-repeat:repeat-x;
@@ -51,9 +53,12 @@ div {
 
 /* SHADOWBOX */
 #shadowbox-top {
+    z-index:20;
+    position:relative;
     background-image:url('images/shadow-box-top.png');
     background-repeat:no-repeat;
-    margin:-50px 0 0;
+    margin:-50px 0 0 0;
+    padding:0;
     width:1000px;
     height:55px;
     margin-left: auto;
@@ -122,6 +127,7 @@ ul#main-navigation  {
     float: left;
     padding: 1px 20px 3px;
     color: #666;
+    text-decoration:none;
 }
 #main-navigation li a:hover,
 #main-navigation li a:focus {
