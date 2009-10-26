@@ -1,7 +1,7 @@
 class GroupMembersController < ApplicationController
   before_filter :require_user
-  before_filter :find_group_member, :only => [ :remove, :promote, :demote ]
-  verify :method => :post, :only => [:create, :promote, :demote ], :redirect_to => :home_path
+  before_filter :find_group_member, :only => [ :remove, :promote, :demote, :new_create ]
+  verify :method => :post, :only => [:create, :promote, :demote, :new_create ], :redirect_to => :home_path
   verify :method => :delete, :only => [:destroy, :remove ], :redirect_to => :home_path
 
   def create
@@ -58,11 +58,33 @@ class GroupMembersController < ApplicationController
       flash[:error] = t('group_invitation.wrong_user', :user => @invitation.user.login)
       redirect_back_or_default home_path
     end
+    @group_member = GroupMember.find_by_user_id_and_group_id(current_user.try(:id), @invitation.group)
+    if @group_member.nil?
+      flash[:error] = t('group_invitation.rescinded')
+      redirect_back_or_default home_path
+    elsif @group_member.member_type != PENDING
+      flash[:error] = t('group_invitation.already_member')
+      redirect_back_or_default home_path
+    end
     # retrieve various fields for the @user record based upon the values stored in the registration
 #    @user = populate_user_from_registration_and_params
   rescue ActiveUrl::RecordNotFound
     flash[:error] = t 'group_invitation.invitation_no_longer_valid'
     redirect_back_or_default home_path
+  end
+
+  def new_create
+    if @group_member.nil? or @group_member.member_type != PENDING
+      flash[:error] = t 'group_invitation.invitation_no_longer_valid'
+      redirect_back_or_default home_path
+    elsif @group_member.user != current_user
+      flash[:error] = t('group_invitation.wrong_user', :user => @group_member.user.login)
+      redirect_back_or_default home_path
+    else
+      @group_member.update_attribute(:member_type, MEMBER)
+      flash[:notice] = t('group.welcome', :group => @group_member.group.name)
+      redirect_to group_path(@group_member.group)
+    end
   end
 
   private

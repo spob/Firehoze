@@ -46,6 +46,42 @@ class GroupMembersControllerTest < ActionController::TestCase
         end
       end
 
+      fast_context "and the user as a pending member" do
+        setup { @group_member = GroupMember.create!(:user => @user, :group => @group, :member_type => PENDING) }
+
+        fast_context "on POST to :new_create" do
+          setup do
+            post :new_create, :id => @group_member
+          end
+
+          should_set_the_flash_to /Welcome/
+          should_assign_to :group_member
+          should_respond_with :redirect
+          should_redirect_to("Group page") { group_url(@group) }
+          should "added user to group" do
+            assert MEMBER, assigns(:group_member).member_type
+          end
+        end
+      end
+
+      fast_context "and a wrong user as a pending member" do
+        setup { @group_member = GroupMember.create!(:user => Factory.create(:user), :group => @group, :member_type => PENDING) }
+
+        fast_context "on POST to :new_create" do
+          setup do
+            post :new_create, :id => @group_member
+          end
+
+          should_set_the_flash_to /You must be logged in as .* to view this invitation/
+          should_assign_to :group_member
+          should_respond_with :redirect
+          should_redirect_to("Home Page") { home_url }
+          should "did not add user to group" do
+            assert PENDING, assigns(:group_member).member_type
+          end
+        end
+      end
+
       fast_context "and the user as a owner and another user as a member" do
         setup do
           @group.update_attribute(:owner, @user)

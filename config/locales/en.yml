@@ -124,15 +124,18 @@ en:
     remove_success: You have removed {{user}} from the group
     promote_success: You have promoted {{user}} to the role of moderator for this group
     demote_success: The user {{user}} is no longer a moderator for this group
+    welcome: Welcome to the {{group}} group!
 
   group_invitation:
     invitation_no_longer_valid: Invitation no longer valid
     wrong_user: You must be logged in as {{user}} to view this invitation
+    rescinded: Your invitation is not longer valid
 
   helpful:
     cant_feedback_own: You cannot provide feedback on a review you have written
     cant_helpful_as_instructor: As an instructor, you cannot provide feedback on reviews for your lesson
     create_success: Your feedback has been recorded
+    already_member: You are already a member of this group
 
   instructor_follows:
     create_success: Instructor {{instructor}} is being followed
