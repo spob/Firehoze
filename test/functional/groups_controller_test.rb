@@ -28,7 +28,9 @@ class GroupsControllerTest < ActionController::TestCase
 
     fast_context "on POST to :create" do
       setup do
-        post :create, :group => Factory.attributes_for(:group)
+        puts "=========================="
+        params = Factory.attributes_for(:group,:owner => Factory.create(:user), :category => Factory.create(:category))
+        post :create, :group => params
       end
 
       should_set_the_flash_to /Successfully created group/

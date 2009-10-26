@@ -3,6 +3,7 @@ class Category < ActiveRecord::Base
   has_friendly_id :name
   belongs_to :parent_category, :class_name => 'Category'
   has_many :lessons
+  has_many :groups
   has_many :child_categories, :class_name => 'Category', :foreign_key => 'parent_category_id', :dependent => :destroy
   has_many :exploded_categories, :dependent => :destroy
   has_many :base_exploded_categories, :class_name => 'ExplodedCategory', :foreign_key => 'base_category_id', :dependent => :destroy
