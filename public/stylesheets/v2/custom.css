@@ -76,7 +76,7 @@ div {
     margin-right: auto;
 }
 
-/* main-navigation */
+/* MAIN-NAVIGATION */
 #main-navigation {
     height: 40px;
     font: bold 13px/36px "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -150,6 +150,11 @@ ul#main-navigation  {
 
 /* MAIN CONTENT AREA */
 
+#side-box {
+    padding: 15px;
+    border: solid 2px #DFDFDF;
+    background-color: #F6F6F6;
+}
 
 /* FOOTER */
 #footer {
