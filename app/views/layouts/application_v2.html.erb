@@ -21,7 +21,7 @@
     <%= stylesheet_link_tag 'v2/base', :media => "print" %>
     <%= stylesheet_link_tag 'v2/custom', :media => "screen, projection" %>
     <!--[if IE]><link rel="stylesheet" href="v2/blueprint/ie" type="text/css" media="screen, projection"/><![endif]-->
-    <%#= javascript_include_tag 'footer' %>
+    <% #= javascript_include_tag 'footer' %>
     <%= yield :head -%>
   </head>
   <body>
@@ -33,16 +33,23 @@
         <div class="span-12 last" id="content">
           <div id="logo"><%= image_tag '/stylesheets/v2/images/brandings/logo.png' %></div>
           <div class="span-12 last" id="vimeo_nav"></div>
-          <div class="prepend-6 span-6 last" id="tabbed_nav">Tabbed Nav</div>
         </div>
       </div>
-    </div>
-    <!-- end footer -->
+    </div><!-- end header -->
+
+    <!-- main-navigation -->
+    <div id="shadowbox-top">
+      <ul id="main-navigation">
+        <li class="first "><a href="#">MyFirehoze</a></li>
+        <li class="selected"><a href="#">Lesson</a></li>
+        <li class=""><a href="#">Groups</a></li>
+      </ul><!-- main-navigation -->
+    </div><!-- end shadowbox-top -->
 
     <!-- start main_content -->
-    <div class="container  showgrid">
-      <div class="clear span-12 last" id="main_content">
-        <div class="prepend-top" id="content_wrapper">
+    <div id="shadowbox-middle">
+      <div class="container"> <!-- showgrid -->
+        <div class="clear span-12 last prepend-top">
           <div class="span-8">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus. Morbi viverra, sem sed viverra egestas, urna nunc suscipit justo, at ultrices elit massa quis dolor. Fusce volutpat, justo vel facilisis lacinia, felis risus lacinia arcu, vel commodo dolor lectus id quam. Suspendisse malesuada diam erat. Duis vel arcu a enim aliquet ultrices. Cras cursus erat a ante porttitor vulputate. Ut eu lorem nibh. Morbi euismod diam imperdiet leo pharetra commodo. Nam tincidunt ipsum vel dolor aliquet nec egestas nisi congue. Suspendisse potenti.</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus. Morbi viverra, sem sed viverra egestas, urna nunc suscipit justo, at ultrices elit massa quis dolor. Fusce volutpat, justo vel facilisis lacinia, felis risus lacinia arcu, vel commodo dolor lectus id quam. Suspendisse malesuada diam erat. Duis vel arcu a enim aliquet ultrices. Cras cursus erat a ante porttitor vulputate. Ut eu lorem nibh. Morbi euismod diam imperdiet leo pharetra commodo. Nam tincidunt ipsum vel dolor aliquet nec egestas nisi congue. Suspendisse potenti.</p>
@@ -50,11 +57,9 @@
           <div class="span-4 last">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus. Morbi viverra, sem sed viverra egestas, urna nunc suscipit justo, at ultrices elit massa quis dolor. Fusce volutpat, justo vel facilisis lacinia, felis risus lacinia arcu, vel commodo dolor lectus id quam. Suspendisse malesuada diam erat. Duis vel arcu a enim aliquet ultrices. Cras cursus erat a ante porttitor vulputate. Ut eu lorem nibh. Morbi euismod diam imperdiet leo pharetra commodo. Nam tincidunt ipsum vel dolor aliquet nec egestas nisi congue. Suspendisse potenti.</p>
           </div>
-
-          <div class="span-12 last" style="background-color:aqua;">
+          <div class="span-12 last">
             <%= yield -%>
           </div>
-
           <!-- Two Columns -->
           <div class="clear span-6">
             <p>Column 1 of 2</p>
@@ -65,36 +70,43 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
           </div>
         </div>
-      </div>
-    </div>
+      </div> <!-- container -->
+    </div><!-- shadowbox-middle -->
     <!-- end main_content -->
+    <div id="shadowbox-bottom"></div>
 
     <!-- Start footer -->
     <div id="footer">
       <div class="container">
         <div class="span-12 last" id="content">
-          <div id="upper" class="prepend-top">
-            <!-- Three Columns -->
-            <div class="clear span-4">
-              <p>Column 1 of 3</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
-            </div>
-            <div class="span-4">
-              <p>Column 2 of 3</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
-            </div>
-            <div class="span-4 last">
-              <p>Column 3 of 3</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
+          <div id="upper">
+            <div class="prepend-top">
+              <!-- Three Columns -->
+              <div class="clear span-4">
+                <p>Column 1 of 3</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
+              </div>
+              <div class="span-4">
+                <p>Column 2 of 3</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
+              </div>
+              <div class="span-4 last">
+                <p>Column 3 of 3</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
+              </div>
             </div>
           </div><!--End upper -->
 
           <div id="lower">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nec mauris eget ipsum vehicula tempus.</p>
+            <div id="inner"> 
+              About Firehoze | Contact Us | Support | FAQs | Policies | On Twitter | © 2009 Firehoze, Inc (B1.0.10)     
+            </div>
           </div><!--End lower -->
+
         </div><!--end content -->
       </div><!--end container -->
-    </div><!--end footer -->
+    </div>
+    <!--end footer -->
 
   </body>
 </html>
