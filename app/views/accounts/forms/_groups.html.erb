@@ -1,0 +1,11 @@
+<table>
+  <tr>
+    <th>
+      Group
+    </th>
+    <th>
+      Category
+    </th>
+  </tr>
+  <%= render :partial => 'categories/group', :collection => @user.groups.ascend_by_name %>
+</table>
