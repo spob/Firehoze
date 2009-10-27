@@ -18,6 +18,15 @@ class Group < ActiveRecord::Base
               {:joins => {:category => :exploded_categories},
                :conditions => { :exploded_categories => {:base_category_id => category_id}}}}
 
+  # From the thinking sphinx doc: Don’t forget to place this block below your associations,
+  # otherwise any references to them for fields and attributes will not work.
+  define_index do
+    indexes name
+    indexes description
+    has category(:id), :as => :category_ids
+    set_property :delta => true
+  end
+  
   def self.list user
     owned_groups = user ? user.groups : []
     groups = Group.public.not_a_member(user).ascend_by_name(:include => :user) + owned_groups
