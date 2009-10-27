@@ -108,6 +108,7 @@ en:
     no_such_user: The user you entered ({{user}}) is not recognized
 
   group:
+    groups: Groups
     create_success: Successfully created group
     update_success: Successfully updated group
     destroyed_success: Successfully destroyed group
