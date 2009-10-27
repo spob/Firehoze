@@ -28,9 +28,9 @@ class GroupsControllerTest < ActionController::TestCase
 
     fast_context "on POST to :create" do
       setup do
-        puts "=========================="
-        params = Factory.attributes_for(:group,:owner => Factory.create(:user), :category => Factory.create(:category))
-        post :create, :group => params
+        post :create,
+             :group => Factory.attributes_for(:group, :owner => Factory.create(:user),
+                                              :category => Factory.create(:category))
       end
 
       should_set_the_flash_to /Successfully created group/
@@ -41,7 +41,7 @@ class GroupsControllerTest < ActionController::TestCase
         assert_equal @user, assigns(:group).owner
         assert assigns(:group).users.include?(@user)
         assert_equal OWNER, assigns(:group).group_members.first.member_type
-        
+
         assert assigns(:group).includes_member?(assigns(:group).owner)
         assert !assigns(:group).includes_member?(Factory(:user))
       end

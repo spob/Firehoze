@@ -12,7 +12,11 @@ class Group < ActiveRecord::Base
   named_scope :not_a_member,
               lambda{ |user| return {} if user.nil?;
               { :conditions => ["groups.id not in (?)", user.groups.collect(&:id) + [-1]] }
-              }
+              }                 
+  named_scope :by_category,
+              lambda{ |category_id| return {} if category_id.nil?;
+              {:joins => {:category => :exploded_categories},
+               :conditions => { :exploded_categories => {:base_category_id => category_id}}}}
 
   def self.list user
     owned_groups = user ? user.groups : []
