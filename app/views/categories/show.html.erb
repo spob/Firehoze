@@ -19,3 +19,17 @@
     </div>
   </div>
 </div>
+
+
+<h3>Groups</h3>
+
+<%= link_to "New Group", new_group_path %>
+<table>
+  <tr>
+    <th>Group</th>
+    <th>Category</th>
+  </tr>
+  <%= render :partial => "categories/group", :collection => @groups %>
+</table>
+
+<%= will_paginate @groups %>

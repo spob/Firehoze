@@ -76,6 +76,8 @@ class CategoriesController < ApplicationController
                   Lesson.ready.newest.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
               end
       @collection = session[:browse_sort]
+
+      @groups = Group.public.by_category(category_id).ascend_by_name.paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
     end
   end
 
