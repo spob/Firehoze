@@ -360,6 +360,7 @@ img.lesson_tn {
 
 /* flash notice */
 #notice {
+    text-align:left;
     border-bottom: solid 3px #58941C;
     background-color: #DEF1CA;
 }
@@ -374,6 +375,7 @@ img.lesson_tn {
 
 /* flash error */
 #error {
+    text-align:left;
     border-bottom: solid 3px #6F2234;
     background-color: #FFFFE8;
 }
@@ -386,6 +388,25 @@ img.lesson_tn {
     background: transparent url(images/icons/32_warning.png) 0px 10px no-repeat;
 }
 
+/* IE6 */
+#ie6.flash {
+    display:none;
+}
+
+/* flash error */
+#ie6.flash {
+    border-bottom: solid 3px #6F2234;
+    background-color: #FFFFE8;
+}
+
+#ie6 a, #ie6 .h4,
+{
+    color: #6F2234;
+}
+
+#ie6 #centered {
+    background: transparent url(images/icons/32_warning.png) 0px 10px no-repeat;
+}
 
 /* REVIEWS */
 div.review {
