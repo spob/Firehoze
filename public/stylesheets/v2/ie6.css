@@ -1,0 +1,11 @@
+#shadowbox-middle {
+    margin-top: -4px;
+}
+#header #vimeo_nav {
+    left:505px;
+}
+
+#main-navigation li.selected.first a,
+#main-navigation li.selected.first a:hover {
+    background: transparent
+}

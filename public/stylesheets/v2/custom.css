@@ -17,14 +17,17 @@ div {
     background-repeat:repeat-x;
 }
 #header #content {
+    z-index:5;
     position:relative;
     background-repeat:no-repeat;
     height:77px;
-    /*		background: url('images/header-shine.png') no-repeat 50% 0;*/
+    /* background: url('images/header-shine.png') no-repeat 50% 0;*/
 }
 #header #vimeo_nav {
-    margin:0 -16px 0 0;
-    float:right;
+    z-index:10;
+    position:absolute;
+    top:0;
+    left:525px;
     background-image:url('images/vimeo-menu.png');
     background-repeat:no-repeat;
     height:37px;
@@ -39,7 +42,7 @@ div {
     padding:0;
 }
 
-/* 224 x 134*/
+/* 224 x 134 */
 #header #logo a#home {
     display: block; /* Change anchor to block element */
     width: 224px; height: 67px; /* Specify width and height of the image. Height is value of each individual button graphic */
