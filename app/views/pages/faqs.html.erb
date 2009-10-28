@@ -85,7 +85,7 @@
 
   <h5>What browsers are supported?</h5>
 
-  <p>The big ones at the moment but more to come. Firefox 3.0 and higher, IE 7.x and higher, Safari, Chrome. Other
+  <p>The big ones at the moment but more to come. Firefox 3.0 and higher, InternetExplorer 6.x and higher, Safari, Chrome. Other
     browsers and versions may work just fine, but we don't guarantee it. If there's a browser you think we should
     support but don't, we'd love to hear from you.</p>
 </div>
@@ -275,6 +275,17 @@
 
   <%= player({:image => "videos/video_placeholder.jpg", :streamer => "rtmp://e1f1.simplecdn.net/play",
               :file => "output/mkt/HowTo1.flv", :skin => 'dangdang',
+              :autostart => false}, {:width => PLAYER_WIDTH, :height => PLAYER_HEIGHT }) %>
+  <br/>
+
+  <h5>Can I use a tool such as Jing or a tablet device to create my lessons?</h5>
+
+  <p>
+    Yes. The following video walks you through the process.
+  </p>
+
+  <%= player({:image => "videos/video_placeholder.jpg", :streamer => "rtmp://e1f1.simplecdn.net/play",
+              :file => "output/mkt/HowTo2.flv", :skin => 'dangdang',
               :autostart => false}, {:width => PLAYER_WIDTH, :height => PLAYER_HEIGHT }) %>
   <br/>
 
