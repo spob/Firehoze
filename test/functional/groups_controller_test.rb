@@ -36,7 +36,7 @@ class GroupsControllerTest < ActionController::TestCase
       should_set_the_flash_to /Successfully created group/
       should_assign_to :group
       should_respond_with :redirect
-      should_redirect_to("Group index page") { groups_url }
+      should_redirect_to("Group show page") { group_url(assigns(:group)) }
       should "populate members" do
         assert_equal @user, assigns(:group).owner
         assert assigns(:group).users.include?(@user)
@@ -44,6 +44,28 @@ class GroupsControllerTest < ActionController::TestCase
 
         assert assigns(:group).includes_member?(assigns(:group).owner)
         assert !assigns(:group).includes_member?(Factory(:user))
+      end
+    end
+
+    fast_context "with a group defined" do
+      setup { @group = Factory.create(:group) }
+
+      fast_context "on GET to :edit" do
+        setup { get :edit, :id => @group }
+
+        should_assign_to :group
+        should_respond_with :success
+        should_not_set_the_flash
+        should_render_template "edit"
+      end
+
+      context "on PUT to :update" do
+        setup { put :update, :id => @group.id, :group => @group.attributes }
+
+        should_set_the_flash_to /Successfully updated group/
+        should_assign_to :group
+        should_respond_with :redirect
+        should_redirect_to("Group show page") { group_url(@group.id) }
       end
     end
   end
