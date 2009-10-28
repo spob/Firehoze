@@ -611,9 +611,7 @@ div.lesson_comment .actions .button-to {
     color:#35acc5;
 }
 
-
 /* FAQ SECTION */
-
 #faqs_section #questions {
     padding: 20px;
     border: solid 2px #999;
@@ -629,8 +627,6 @@ div.lesson_comment .actions .button-to {
     background-color: #DBDBDB;
     margin: 0 0 20px 0;
 }
-
-
 #faqs_section .answers .top {
     text-decoration:underline;
     color: navy;
@@ -640,5 +636,4 @@ div.lesson_comment .actions .button-to {
     text-decoration:none;
     color: inherit;
 }
-
-
+#faqs_section .anchor { }
