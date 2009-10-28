@@ -33,4 +33,10 @@ module GroupsHelper
       end
     end
   end
+
+  def show_edit_link(group)
+    if group.owned_by?(current_user)
+      link_to "Edit", edit_group_path(group)
+    end
+  end
 end

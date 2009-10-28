@@ -1,2 +1,23 @@
-<h1>Groups#edit</h1>
-<p>Find me in app/views/groups/edit.html.erb</p>
+<% title "Edit Group" -%>
+
+<h3>Edit Group</h3>
+
+<% form_for(:group, :url => group_path(@group), :html => { :method => :put }) do |f| %>
+    <%= f.error_messages %>
+
+    <%= f.label :name %>:
+    <%= f.text_field :name %><br />
+    <br/>
+    <%= f.check_box :private %>This group is by invitation only
+    <br/>
+    <br/>
+    <%= f.label :description %>:
+    <%= f.text_area :description %><br />
+    <br/>
+    <%= f.label :category %>
+    <%= f.collection_select(:category_id, Category.ascend_by_compiled_sort, :id,
+                            :formatted_name,  {:include_blank => 'Select...'}) %>
+    <br/>
+    <%= f.submit "Save", :disable_with => translate('general.disable_with') %>
+    <%= link_to 'Cancel', groups_path %>
+<% end %>

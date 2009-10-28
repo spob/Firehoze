@@ -29,7 +29,7 @@ class GroupsController < ApplicationController
       if @group.save
         @group_member = GroupMember.create!(:user => current_user, :group => @group, :member_type => OWNER)
         flash[:notice] = t('group.create_success')
-        redirect_to groups_path
+        redirect_to group_path(@group)
       else
         render :action => 'new'
       end
@@ -40,6 +40,12 @@ class GroupsController < ApplicationController
   end
 
   def update
+    if @group.update_attributes(params[:group])
+      flash[:notice] = t('group.update_success')
+      redirect_to group_path(@group.id)
+    else
+      render :action => 'edit'
+    end
   end
 
   def destroy
