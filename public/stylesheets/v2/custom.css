@@ -58,8 +58,7 @@ div {
 #shadowbox-top {
     z-index:20;
     position:relative;
-    background-image:url('images/shadow-box-top.png');
-    background-repeat:no-repeat;
+    background: transparent url(images/main-navigation-bg.png) no-repeat;
     margin:-50px 0 0 0;
     padding:0;
     width:1000px;
@@ -68,8 +67,7 @@ div {
     margin-right: auto;
 }
 #shadowbox-middle {
-    background-image:url('images/shadow-box-middle.png');
-    background-repeat:repeat-y;
+    background: transparent url('images/shadow-box-middle.png') repeat-y;
     width:1000px;
     margin-left: auto;
     margin-right: auto;
@@ -86,39 +84,25 @@ div {
 
 /* MAIN-NAVIGATION */
 #main-navigation {
+    background-color: green;
     height: 40px;
     font: bold 13px/36px "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-transform: lowercase;
-    background: #ccc url(images/main-navigation.png) repeat-x;
-    -webkit-border-top-right-radius: 7px;
-    -webkit-border-top-left-radius: 7px;
-    -moz-border-radius-topright: 7px;
-    -moz-border-radius-topleft: 7px;
-    border-top-right-radius: 7px;
-    border-top-left-radius: 7px;
-    /*    margin: -20px -20px 20px;*/
     width:980px;
     margin-left: auto;
     margin-right: auto;
 }
 ul#main-navigation  {
+    background-color: transparent;
     list-style-type: none;
 }
 #main-navigation li {
     padding-right: 2px;
     float: left;
-    background: url(images/main-navigation-li.png) no-repeat right 0;
+    background: url(images/main-navigation-li.png) no-repeat right;
 }
-#main-navigation li.first {
-    -webkit-border-top-left-radius: 7px;
-    -moz-border-radius-topleft: 7px;
-    border-top-left-radius: 7px;
-}
-#main-navigation li.last {
-    -webkit-border-top-right-radius: 7px;
-    -moz-border-radius-topright: 7px;
-    border-top-right-radius: 7px;
-}
+#main-navigation li.first { }
+#main-navigation li.last { }
 #main-navigation li.selected {
     background-color: #fff;
     margin-left: -1px;
@@ -143,7 +127,6 @@ ul#main-navigation  {
 }
 #main-navigation li.selected a,
 #main-navigation li.selected a:hover {
-    color: #39c;
     color: #f00;
     cursor: default;
     text-decoration: none;
@@ -152,6 +135,7 @@ ul#main-navigation  {
 #main-navigation li.selected.first a,
 #main-navigation li.selected.first a:hover {
     padding-left: 20px;
+    background: transparent url(images/main-navigation-li-first.png) no-repeat left;
 }
 #main-navigation li.selected a:focus {
     color: #069;
