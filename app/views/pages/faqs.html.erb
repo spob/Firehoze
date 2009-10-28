@@ -85,7 +85,8 @@
 
   <h5>What browsers are supported?</h5>
 
-  <p>The big ones at the moment but more to come. Firefox 3.0 and higher, InternetExplorer 6.x and higher, Safari, Chrome. Other
+  <p>The big ones at the moment but more to come. Firefox 3.0 and higher, InternetExplorer 6.x and higher, Safari,
+    Chrome. Other
     browsers and versions may work just fine, but we don't guarantee it. If there's a browser you think we should
     support but don't, we'd love to hear from you.</p>
 </div>
@@ -272,7 +273,6 @@
   <p>
     Yes. The following video walks you through the process.
   </p>
-
   <%= player({:image => "videos/video_placeholder.jpg", :streamer => "rtmp://e1f1.simplecdn.net/play",
               :file => "output/mkt/HowTo1.flv", :skin => 'dangdang',
               :autostart => false}, {:width => PLAYER_WIDTH, :height => PLAYER_HEIGHT }) %>
@@ -284,9 +284,19 @@
     Yes. The following video walks you through the process.
   </p>
 
-  <%= player({:image => "videos/video_placeholder.jpg", :streamer => "rtmp://e1f1.simplecdn.net/play",
-              :file => "output/mkt/HowTo2.flv", :skin => 'dangdang',
-              :autostart => false}, {:width => PLAYER_WIDTH, :height => PLAYER_HEIGHT }) %>
+  <div id="flashbanner">this will be replaced by the SWF.</div>
+  <script type="text/javascript">
+      var so1 = new SWFObject('/swf/player.swf', 'jw_player', '480', '396', '9');
+      so1.addParam('allowfullscreen', 'true');
+      so1.addParam('width', '480');
+      so1.addParam('play', 'true');
+      so1.addParam('flashvars', 'streamer=rtmp://e1f1.simplecdn.net/play&file=output/mkt/HowTo2.flv');
+      so1.addParam('quality', 'autohigh');
+      so1.addParam('menu', 'false');
+      so1.addParam('scale', 'default');
+      so1.addParam('height', '396');
+      so1.write('flashbanner');
+  </script>
   <br/>
 
   <h5>How do I save my videos as an mp4 with Camtasia?</h5>
