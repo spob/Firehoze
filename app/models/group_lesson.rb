@@ -3,4 +3,6 @@ class GroupLesson < ActiveRecord::Base
   belongs_to :user
   belongs_to :lesson
   belongs_to :group
+
+  named_scope :active, :conditions => { :active => true}
 end

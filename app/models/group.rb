@@ -4,6 +4,10 @@ class Group < ActiveRecord::Base
   belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"
   belongs_to :category
   has_many :group_members
+  has_many :group_lessons
+  has_many :lessons, :through => :group_lessons
+  has_many :active_lessons, :source => :lesson, :through => :group_lessons,
+           :conditions => { :group_lessons => { :active => true }}
   has_many :users, :through => :group_members
   validates_presence_of :name, :owner, :category
   validates_uniqueness_of :name
@@ -12,7 +16,7 @@ class Group < ActiveRecord::Base
   named_scope :not_a_member,
               lambda{ |user| return {} if user.nil?;
               { :conditions => ["groups.id not in (?)", user.groups.collect(&:id) + [-1]] }
-              }                 
+              }
   named_scope :by_category,
               lambda{ |category_id| return {} if category_id.nil?;
               {:joins => {:category => :exploded_categories},
@@ -26,13 +30,13 @@ class Group < ActiveRecord::Base
     has category(:id), :as => :category_ids
     set_property :delta => true
   end
-  
+
   def self.list user
     owned_groups = user ? user.groups : []
     groups = Group.public.not_a_member(user).ascend_by_name(:include => :user) + owned_groups
-    groups.sort_by{|g| g.name}    
+    groups.sort_by{|g| g.name}
   end
-  
+
   def owned_by?(user)
     self.owner == user
   end

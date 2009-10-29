@@ -219,7 +219,7 @@ class LessonTest < ActiveSupport::TestCase
     should_ensure_length_in_range    :synopsis, (0..500)
     should_have_many                 :reviews, :video_status_changes, :credits, :free_credits, :taggings, :flags,
                                      :videos, :processed_videos, :lesson_buy_patterns, :lesson_buy_pairs, :comments,
-                                     :rates, :activities, :attachments
+                                     :rates, :activities, :attachments, :group_lessons, :groups, :active_groups
     should_have_and_belong_to_many   :lesson_wishers
     # See associated comments on the model as to why this are commented out RBS
     #should_have_one                  :last_comment

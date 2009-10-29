@@ -13,6 +13,9 @@ class GroupTest < ActiveSupport::TestCase
     should_validate_uniqueness_of :name
     should_belong_to :owner, :category
     should_have_many :group_members
+    should_have_many :group_lessons
+    should_have_many :lessons
+    should_have_many :active_lessons
     should_have_many :users, :through => :group_members
 
     should "test owned_by?" do

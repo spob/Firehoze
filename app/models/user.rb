@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   has_many :credits, :order => 'id', :dependent => :destroy
   has_many :group_members, :dependent => :destroy
   has_many :groups, :through => :group_members
+  has_many :moderated_groups, :source => :group, :through => :group_members,
+           :conditions => { :group_members => { :member_type => [ OWNER, MODERATOR ] } }
   has_many :gift_certificates, :dependent => :destroy
   has_many :orders, :order => 'id DESC', :dependent => :destroy
   has_many :visited_lessons, :source => :lesson, :through => :lesson_visits, :order => 'visited_at DESC'

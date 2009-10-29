@@ -1,6 +1,6 @@
 require "migration_helpers"
 
-class GroupLesson < ActiveRecord::Migration
+class AddGroupLesson < ActiveRecord::Migration
   extend MigrationHelpers
 
   def self.up
@@ -9,6 +9,7 @@ class GroupLesson < ActiveRecord::Migration
       t.references :group,  :null => false
       t.references :user,   :null => false
       t.text       :notes
+      t.boolean    :active, :null => false, :default => true
       t.timestamps
     end
     add_column :lessons, :group_lessons_count, :integer, :default => 0
