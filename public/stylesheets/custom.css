@@ -137,7 +137,6 @@ div {
     font-size:16px;
 }
 
-
 #marketing_fpo_left {
     padding: 30px 30px 10px 30px;
     border-right: solid 2px #ccc;
@@ -611,3 +610,30 @@ div.lesson_comment .actions .button-to {
 #breadcrumb a:hover {
     color:#35acc5;
 }
+
+/* FAQ SECTION */
+#faqs_section #questions {
+    padding: 20px;
+    border: solid 2px #999;
+    background-color: #eee;
+    margin: 0 0 20px 0;
+}
+#faqs_section #questions h4 {
+    margin:0;
+    line-height: 1.5em;
+}
+#faqs_section .answers {
+    padding: 25px;
+    background-color: #DBDBDB;
+    margin: 0 0 20px 0;
+}
+#faqs_section .answers .top {
+    text-decoration:underline;
+    color: navy;
+    font-size: 12px;
+}
+#faqs_section .answers h4 a {
+    text-decoration:none;
+    color: inherit;
+}
+#faqs_section .anchor { }
