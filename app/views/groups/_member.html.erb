@@ -1,7 +1,6 @@
 <li>
   <%= link_to_profile(member.user) %>
   <%= "(#{t('group.moderator')})" if member.member_type == MODERATOR %>
-  <%= "(#{t('group.moderator')})" if member.member_type == MODERATOR %>
   <% if member.member_type == PENDING %>
       <%= "(#{t('group.pending')} #{l member.updated_at})" %>
   <% end %>
