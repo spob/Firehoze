@@ -48,7 +48,7 @@ class GroupsControllerTest < ActionController::TestCase
     end
 
     fast_context "with a group defined" do
-      setup { @group = Factory.create(:group) }
+      setup { @group = Factory.create(:group, :owner => @user) }
 
       fast_context "on GET to :edit" do
         setup { get :edit, :id => @group }

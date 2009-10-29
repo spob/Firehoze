@@ -19,5 +19,5 @@
                             :formatted_name,  {:include_blank => 'Select...'}) %>
     <br/>
     <%= f.submit "Save", :disable_with => translate('general.disable_with') %>
-    <%= link_to 'Cancel', groups_path %>
+    <%= link_to 'Cancel', group_path(@group) %>
 <% end %>
