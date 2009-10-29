@@ -11,7 +11,7 @@ namespace :db do
   namespace :populate do
 
     desc "Bootstraps the application"
-    task :all => [ :truncate, :admins, :users, :seed_skus, :categories, :lessons, :tags, :credits, :acquire_lessons, :reviews, :reset_passwords] do
+    task :all => [ :truncate, :admins, :users, :seed_skus, :categories, :lessons, :tags, :credits, :acquire_lessons, :reviews, :reset_passwords, :groups] do
       puts "***** ALL COMPLETE *****"
     end
 
@@ -22,7 +22,7 @@ namespace :db do
       require 'faker'
 
       [RolesUser, UserLogon].each(&:delete_all)
-      params =  { :active => true, :language => 'en', :password => "pa$$word", :password_confirmation => "pa$$word", :password_salt => 'as;fdaslkjasdfn', :time_zone =>Time.zone.name }
+      params = { :active => true, :language => 'en', :password => "pa$$word", :password_confirmation => "pa$$word", :password_salt => 'as;fdaslkjasdfn', :time_zone =>Time.zone.name }
       developers_personal_info.each do |dev|
         admin = User.new params
         admin.email = dev[0]
@@ -68,7 +68,7 @@ namespace :db do
         user.failed_login_count = 0
         user.active = true
         user.user_agreement_accepted_on = Date.today
-        
+
         # insane why I need to specify these for my PC dev instance -- oh well
         user.rejected_bio = false
         user.show_real_name = true
@@ -103,7 +103,7 @@ namespace :db do
         else
           lesson.save!
           OriginalVideo.create!(:lesson => lesson,
-            :video => File.open(RAILS_ROOT + dummy_video_path))
+                                :video => File.open(RAILS_ROOT + dummy_video_path))
           lesson.trigger_conversion("http://some/url")
           puts "#{i}: #{lesson.original_video.video_file_name} uploaded [instructor: #{lesson.instructor.full_name} | file size:#{lesson.original_video.video_file_size}]"
         end
@@ -136,6 +136,23 @@ namespace :db do
       create_sku CreditSku, CREDIT_SKU, 'Download Credit', 1, 0.99
       create_sku CreditSku, FREE_CREDIT_SKU, 'Free Lesson', 1, 0.0
       create_sku GiftCertificateSku, GIFT_CERTIFICATE_SKU, 'Gift Certificate', 1, 0.99
+    end
+
+    desc "Generate some public groups"
+    task :groups => :environment do
+      puts "=== Generating Public Groups ==="
+      require 'populator'
+      require 'faker'
+      
+      (1..15).each do |i|
+        group = Group.new
+        group.owner = User.first(:order => 'RAND()')
+        group.category = Category.first(:order => 'RAND()')
+        group.private = false
+        group.name = Populator.words(1..2)
+        group.description = Populator.sentences(2..4)
+        group.save!
+      end
     end
 
     #Not sure I need this any more
@@ -232,9 +249,8 @@ namespace :db do
 
     desc "truncates tables"
     task :truncate => :environment do
-      
-      
-      
+
+
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE periodic_jobs;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE free_credits;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
