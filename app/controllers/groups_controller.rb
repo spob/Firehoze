@@ -3,11 +3,10 @@ class GroupsController < ApplicationController
   before_filter :find_group, :except => [:index, :create, :new]
 
   # Admins only
-#  permit ROLE_ADMIN, :except => [ :show, :index ]
+  #  permit ROLE_ADMIN, :except => [ :show, :index ]
 
   verify :method => :post, :only => [:create], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
-  verify :method => :delete, :only => [:destroy ], :redirect_to => :home_path
 
 
   def index
@@ -37,23 +36,32 @@ class GroupsController < ApplicationController
   end
 
   def edit
+    can_edit?(@group)
   end
 
   def update
-    if @group.update_attributes(params[:group])
-      flash[:notice] = t('group.update_success')
-      redirect_to group_path(@group.id)
-    else
-      render :action => 'edit'
+    if can_edit?(@group)
+      if @group.update_attributes(params[:group])
+        flash[:notice] = t('group.update_success')
+        redirect_to group_path(@group.id)
+      else
+        render :action => 'edit'
+      end
     end
-  end
-
-  def destroy
   end
 
   private
 
   def find_group
     @group = Group.find params[:id]
+  end
+
+  def can_edit?(group)
+    unless current_user == group.owner
+      flash[:error] = t('group.no_permissions')
+      redirect_to group_path(group)
+      return false
+    end
+    true
   end
 end
