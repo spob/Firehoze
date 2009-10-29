@@ -199,7 +199,7 @@ en:
     wizard_jump_ahead: Hey, no fair jumping ahead
   
   registration:
-    check_email_for_registration: Please check your email to complete the registration
+    check_email_for_registration: You're almost done. Please check your email to complete the registration process.
     already_used: is already in use
     invalid_reg_code: is invalid. Contact support for a valid code.
     human_test_failed: Human test failed. Are you sure you are not a robot?
