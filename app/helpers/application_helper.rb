@@ -137,6 +137,30 @@ module ApplicationHelper
     buf
   end
 
+  def browser_name
+     @browser_name ||= begin
+
+       ua = request.env['HTTP_USER_AGENT']
+       return nil if ua.nil?
+       ua.downcase!
+
+       if ua.index('msie') && !ua.index('opera') && !ua.index('webtv')
+         'ie'+ua[ua.index('msie')+5].chr
+       elsif ua.index('gecko/')
+         'gecko'
+       elsif ua.index('opera')
+         'opera'
+       elsif ua.index('konqueror')
+         'konqueror'
+       elsif ua.index('applewebkit/')
+         'safari'
+       elsif ua.index('mozilla/')
+         'gecko'
+       end
+
+     end
+   end
+
   private
 
   def link_to_command per_page, refresh_url, append_space=true
