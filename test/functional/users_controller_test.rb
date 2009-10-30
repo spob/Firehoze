@@ -164,7 +164,7 @@ class UsersControllerTest < ActionController::TestCase
           setup { put :update_instructor, :id => @user,
                       :user => { :payment_level => nil, :address1 => "aaa", :city => "yyy",
                                  :state => "XX", :postal_code => "99999",
-                                 :country => "US" }  }
+                                 :country => "US" } }
 
           should_assign_to :user
           should_respond_with :redirect

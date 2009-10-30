@@ -84,7 +84,7 @@ class AccountsControllerTest < ActionController::TestCase
     end
 
     fast_context "on PUT to :update_instructor_wizard" do
-      setup { put :update_instructor_wizard, :id => @user, :step => 1, :accept_agreement => 1  }
+      setup { put :update_instructor_wizard, :id => @user, :step => 1, :accept_agreement => 1 }
 
       should_assign_to :user
       should_respond_with :redirect
@@ -125,7 +125,7 @@ class AccountsControllerTest < ActionController::TestCase
       end
 
       fast_context "on PUT to :update_instructor_wizard" do
-        setup { put :update_instructor_wizard, :id => @user, :step => 2, :user => { :payment_level => PaymentLevel.first }  }
+        setup { put :update_instructor_wizard, :id => @user, :step => 2, :user => { :payment_level => PaymentLevel.first } }
 
         should_assign_to :user
         should_respond_with :redirect
@@ -159,7 +159,7 @@ class AccountsControllerTest < ActionController::TestCase
         fast_context "on PUT to :update_instructor_wizard" do
           setup { put :update_instructor_wizard, :id => @user, :step => 3,
                       :user => { :address1 => "aaa", :city => "yyy", :state => "XX", :postal_code => "99999",
-                                 :country => "US" }  }
+                                 :country => "US" } }
 
           should_assign_to :user
           should_respond_with :redirect

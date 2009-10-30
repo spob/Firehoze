@@ -20,7 +20,7 @@ class GroupLessonsController < ApplicationController
         flash[:error] = t('group_lesson.already_added')
       end
     end
-    redirect_to lesson_path(@group.id)
+    redirect_to lesson_path(@lesson.id)
   end
 
   def destroy
@@ -35,7 +35,7 @@ class GroupLessonsController < ApplicationController
         flash[:notice] = t('group_lesson.lesson_removed', :group => @group.name)
       end
     end
-    redirect_to lesson_path(@group.id)
+    redirect_to lesson_path(@lesson.id)
   end
 
   private

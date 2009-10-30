@@ -36,8 +36,8 @@ class RegistrationsControllerTest < ActionController::TestCase
 
   fast_context "Computing hashes" do
     setup do
-      @hash1 =  Registration.formatted_hash("test@example.com")
-      @hash2 =  Registration.formatted_hash("test@example.com", "xxx", "yyy")
+      @hash1 = Registration.formatted_hash("test@example.com")
+      @hash2 = Registration.formatted_hash("test@example.com", "xxx", "yyy")
     end
 
     should "equate hashes" do

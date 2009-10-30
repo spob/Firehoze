@@ -3,7 +3,7 @@ require 'fast_context'
 require "authlogic/test_case"
 
 class UserSessionsControllerTest < ActionController::TestCase
-  
+
   fast_context "given a user" do
     setup do
       @user = Factory.create(:user)
@@ -26,7 +26,7 @@ class UserSessionsControllerTest < ActionController::TestCase
       should "should create user session" do
         assert_equal @user, UserSession.find.user
       end
-      should_redirect_to("home page")  { home_path }
+      should_redirect_to("home page") { home_path }
       should_respond_with :redirect
       should_set_the_flash_to :login_success
       should "persist a new user logon audit trail record" do

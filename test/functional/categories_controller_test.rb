@@ -28,7 +28,7 @@ class CategoriesControllerTest < ActionController::TestCase
 
         fast_context "on GET to :show" do
           setup { get :show, :id => @category }
-          
+
           should_respond_with :success
           should_not_set_the_flash
           should_render_template 'show'

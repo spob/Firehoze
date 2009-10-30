@@ -91,7 +91,7 @@ class PaymentsControllerTest < ActionController::TestCase
           should_assign_to :payment
           should_respond_with :redirect
           should_set_the_flash_to /created/
-          should_redirect_to("payment show page")  { payment_path(assigns(:payment)) }
+          should_redirect_to("payment show page") { payment_path(assigns(:payment)) }
           should "create payment properly" do
             assert !@credit.payment.nil?
             assert_equal 0.24, @credit.commission_paid

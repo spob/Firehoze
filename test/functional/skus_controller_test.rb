@@ -48,7 +48,7 @@ class SkusControllerTest < ActionController::TestCase
       fast_context "on POST to :create" do
         setup do
           sku_attrs = Factory.attributes_for(:credit_sku).merge!({:type => 'CreditSku'})
-            post :create, :sku => sku_attrs
+          post :create, :sku => sku_attrs
         end
 
         should_assign_to :sku
