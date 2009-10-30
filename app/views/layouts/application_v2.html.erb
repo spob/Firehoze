@@ -20,48 +20,45 @@
     <%= stylesheet_link_tag 'v2/blueprint/print', :media => "print" %>
     <%= stylesheet_link_tag 'v2/base', :media => "print" %>
     <%= stylesheet_link_tag 'v2/custom', :media => "screen, projection" %>
-
+    <%= stylesheet_link_tag 'v2/topnav', :media => "screen, projection" %>
     <!--[if IE]><%= stylesheet_link_tag 'v2/blueprint/ie', :media => "screen, projection" %><![endif]-->
 
     <%= google_jquery(:version => '1.3.2', :local => Rails.env.development?) %><%# JQuery %>
-    <%= javascript_include_tag 'jrails', 'application' %>
+
+    <%  #= javascript_include_tag 'jrails' %>
+    <%= javascript_include_tag  'application' %>
     <%= javascript_include_tag 'flash' %>
     <%= javascript_include_tag 'cornerz', 'rounders' %><%# Cornerz for rounding %>
     <%= javascript 'always_at_bottom', 'footer' %>
-    <!--[if IE 6]>
-    <%= stylesheet_link_tag 'v2/ie6', :media => "screen, projection" %>
-    <%= javascript_include_tag 'DD_belatedPNG_0.0.8a-min' %>
-    <%= javascript_include_tag 'menu_fix' %>
-    <![endif]-->
+    <%= javascript_include_tag 'topnav' %>
+
+    <!--[if IE 6]><%= javascript_include_tag 'DD_belatedPNG_0.0.8a-min' %><![endif]-->
+    <!--[if IE 7]><%= javascript_include_tag 'ie7/z-index-workaround' %><![endif]-->
     <%= yield :head -%>
   </head>
   <body>
     <%= render "shared/flash_msg" -%>
 
     <!-- start header -->
-    <!-- <div id="header-wrap"> -->
-
-      <div id="header">
-        <div class="container">
-          <div class="span-12 last" id="content">
-            <div id="logo"><a href="#" id="home">home</a></div>
-            <div id="vimeo_nav">
-              <%= render :partial => "shared/top_nav_v2" %>            
-            </div>
+    <div id="header">
+      <div class="container">
+        <div class="span-12 last" id="content">
+          <div id="logo"><a href="#" id="home">home</a></div>
+          <div id="topnav">
+            <%= render :partial => "shared/v2/topnav" %>
           </div>
         </div>
-      </div><!-- end header -->
+      </div>
+    </div><!-- end header -->
 
-      <!-- main-navigation -->
-      <div id="shadowbox-top">
-        <ul id="main-navigation">
-          <li class="first"><a href="#">MyFirehoze</a></li>
-          <li class="selected"><a href="#">Lessons</a></li>
-          <li><a href="#">Groups</a></li>
-        </ul><!-- main-navigation -->
-      </div><!-- end shadowbox-top -->
-    <!-- </div> --><!-- end header-wrap -->
-
+    <!-- main-navigation -->
+    <div id="shadowbox-top">
+      <ul id="main-navigation">
+        <li class="first"><a href="#">MyFirehoze</a></li>
+        <li class="selected"><a href="#">Lessons</a></li>
+        <li><a href="#">Groups</a></li>
+      </ul><!-- main-navigation -->
+    </div><!-- end shadowbox-top -->
 
     <!-- start main_content -->
     <div id="shadowbox-middle">
