@@ -58,7 +58,7 @@ class GroupsController < ApplicationController
 
   def can_edit?(group)
     unless current_user == group.owner
-      flash[:error] = t('group.no_permissions')
+      flash[:error] = t('general.no_permissions')
       redirect_to group_path(group)
       return false
     end

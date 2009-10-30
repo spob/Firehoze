@@ -8,7 +8,6 @@ class AddGroupLesson < ActiveRecord::Migration
       t.references :lesson, :null => false
       t.references :group,  :null => false
       t.references :user,   :null => false
-      t.text       :notes
       t.boolean    :active, :null => false, :default => true
       t.timestamps
     end

@@ -1,0 +1,16 @@
+<%
+   lesson = object
+   options ||= {}
+   css_classes = options[:css_classes]
+%>
+
+<% if lesson.owned_by?(current_user) or lesson.can_edit?(current_user) or lesson.owned_by?(current_user) %>
+    <div<%= " class='#{css_classes}'" unless css_classes.blank? -%>>
+      <b>Add/Remove Groups:</b>
+      <% current_user.groups.each do |group| %>
+          <br/>
+          <%= link_to h(group.name), group_path(group) %>&nbsp;&nbsp;
+          <%= link_to_add_remove_group lesson, group %>
+      <% end %>
+    </div>
+<% end %>

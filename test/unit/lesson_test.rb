@@ -213,23 +213,40 @@ class LessonTest < ActiveSupport::TestCase
       end
     end
 
-    should_validate_presence_of      :title, :instructor, :synopsis, :category
-    should_allow_values_for          :title, "blah blah blah"
-    should_ensure_length_in_range    :title, (0..50)
-    should_ensure_length_in_range    :synopsis, (0..500)
-    should_have_many                 :reviews, :video_status_changes, :credits, :free_credits, :taggings, :flags,
-                                     :videos, :processed_videos, :lesson_buy_patterns, :lesson_buy_pairs, :comments,
-                                     :rates, :activities, :attachments, :group_lessons, :groups, :active_groups
-    should_have_and_belong_to_many   :lesson_wishers
+    fast_context "and several groups" do
+      setup do
+        @group1 = Factory.create(:group)
+        @group2 = Factory.create(:group)
+        @group3 = Factory.create(:group)
+        @group_lesson1 = GroupLesson.create!(:user => Factory.create(:user), :lesson => @lesson, :group => @group1)
+        @group_lesson2 = GroupLesson.create!(:user => Factory.create(:user), :lesson => @lesson, :group => @group3,
+                                             :active => false)
+      end
+
+      should "determine when group belongs to a lesson" do
+        assert @lesson.belongs_to_group?(@group1)
+        assert !@lesson.belongs_to_group?(@group2)
+        assert !@lesson.belongs_to_group?(@group3)
+      end
+    end
+
+    should_validate_presence_of :title, :instructor, :synopsis, :category
+    should_allow_values_for :title, "blah blah blah"
+    should_ensure_length_in_range :title, (0..50)
+    should_ensure_length_in_range :synopsis, (0..500)
+    should_have_many :reviews, :video_status_changes, :credits, :free_credits, :taggings, :flags,
+                     :videos, :processed_videos, :lesson_buy_patterns, :lesson_buy_pairs, :comments,
+                     :rates, :activities, :attachments, :group_lessons, :groups, :active_groups
+    should_have_and_belong_to_many :lesson_wishers
     # See associated comments on the model as to why this are commented out RBS
     #should_have_one                  :last_comment
     #should_have_one                  :last_public_comment
-    should_belong_to                 :category
-    should_have_one                  :original_video
-    should_have_one                  :full_processed_video
-    should_have_one                  :preview_processed_video
-    should_have_class_methods        :list, :ready
-    should_have_instance_methods     :tag_list
+    should_belong_to :category
+    should_have_one :original_video
+    should_have_one :full_processed_video
+    should_have_one :preview_processed_video
+    should_have_class_methods :list, :ready
+    should_have_instance_methods :tag_list
     should_not_allow_mass_assignment_of :status
 
     should "not be ready" do
@@ -345,8 +362,8 @@ class LessonTest < ActiveSupport::TestCase
           @user2 = Factory.create(:user)
           @user3 = Factory.create(:user)
           @user3.is_admin
-          @lesson1 =  Factory.create(:lesson, :instructor => @user1)
-          @lesson2 =  Factory.create(:lesson, :instructor => @user2)
+          @lesson1 = Factory.create(:lesson, :instructor => @user1)
+          @lesson2 = Factory.create(:lesson, :instructor => @user2)
         end
 
         should "allow author to edit" do

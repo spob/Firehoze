@@ -26,6 +26,7 @@
     <div class="span-20" id="lesson_container">
       <%= render :partial => 'lessons/player', :object => @lesson -%>
       <%= render :partial => "lessons/tag_links_for", :object => @lesson, :locals => { :options => { :css_classes => "tags_lesson_show" } } -%>
+      <%= render :partial => 'lessons/groups', :object => @lesson, :locals => { :options => { :css_classes => "tags_lesson_show" } } %>
     </div>
 
     <% # LESSON DESCRIPTION  -%>

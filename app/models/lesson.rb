@@ -211,6 +211,10 @@ END
     !self.credits.scoped_by_user_id(user).first(:select => [:id]).nil?
   end
 
+  def belongs_to_group?(group)
+    !self.group_lessons.scoped_by_group_id(group).scoped_by_active(true).first(:select => [:id]).nil?
+  end
+
   def instructed_by?(user)
     instructor == user
   end

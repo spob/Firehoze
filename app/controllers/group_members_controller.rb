@@ -16,7 +16,7 @@ class GroupMembersController < ApplicationController
       @group_member.update_attribute(:member_type, MODERATOR)
       flash[:notice] = t('group.promote_success', :user => @group_member.user.login)
     else
-      flash[:error] = t('group.no_permissions')
+      flash[:error] = t('general.no_permissions')
     end
     redirect_to group_path(@group_member.group)
   end
@@ -26,7 +26,7 @@ class GroupMembersController < ApplicationController
       @group_member.update_attribute(:member_type, MEMBER)
       flash[:notice] = t('group.demote_success', :user => @group_member.user.login)
     else
-      flash[:error] = t('group.no_permissions')
+      flash[:error] = t('general.no_permissions')
     end
     redirect_to group_path(@group_member.group)
   end
@@ -98,7 +98,7 @@ class GroupMembersController < ApplicationController
     if @group_member.can_edit?(user)
       return true
     end
-    flash[:error] = t('group.no_permissions')
+    flash[:error] = t('general.no_permissions')
     false
   end
 

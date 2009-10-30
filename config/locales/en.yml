@@ -46,6 +46,7 @@ en:
     _yes: 'yes'
     _no: 'no'
     home: Home
+    no_permissions: You do not have permissions to perform that action
   security:
     you_must_be_logged_in: You must be logged in to access that page
     you_must_be_logged_out: You must not be logged in to access that page
@@ -121,7 +122,6 @@ en:
     no_such_user: The user you entered ({{user}}) is not recognized
     invitation_success: You have sent an invitation to {{user}}
     cannot_remove: You do not have permissions to remove that user from the group
-    no_permissions: You do not have permissions to perform that action
     remove_success: You have removed {{user}} from the group
     promote_success: You have promoted {{user}} to the role of moderator for this group
     demote_success: The user {{user}} is no longer a moderator for this group
@@ -133,6 +133,12 @@ en:
     wrong_user: You must be logged in as {{user}} to view this invitation
     rescinded: Your invitation is not longer valid
     already_member: You are already a member of this group
+
+  group_lesson:
+    lesson_added: Lesson successfully added to the {{group}}} group
+    already_added: Lesson is already associated to this group
+    lesson_removed: Lesson removed from the {{group}}} group
+    does_not_belong: Lesson is not a member of the {{group}} group
 
   helpful:
     cant_feedback_own: You cannot provide feedback on a review you have written
