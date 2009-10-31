@@ -13,6 +13,7 @@ class Group < ActiveRecord::Base
   validates_uniqueness_of :name
 
   named_scope :public, :conditions => { :private => false }
+  named_scope :private, :conditions => { :private => true }
   named_scope :not_a_member,
               lambda{ |user| return {} if user.nil?;
               { :conditions => ["groups.id not in (?)", user.groups.collect(&:id) + [-1]] }
@@ -21,6 +22,10 @@ class Group < ActiveRecord::Base
               lambda{ |category_id| return {} if category_id.nil?;
               {:joins => {:category => :exploded_categories},
                :conditions => { :exploded_categories => {:base_category_id => category_id}}}}
+  named_scope :a_member,
+              lambda{ |user| return {} if user.nil?;
+              { :conditions => ["groups.id in (?)", user.groups.collect(&:id) + [-1]] }
+              }
 
   # From the thinking sphinx doc: Don’t forget to place this block below your associations,
   # otherwise any references to them for fields and attributes will not work.

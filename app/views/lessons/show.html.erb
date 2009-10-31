@@ -2,7 +2,7 @@
 <%= javascript 'swfobject' %>
 
 <div id="lesson_container">
-  <% # TITLE BAR  -%>
+  <% # TITLE BAR   -%>
   <div class="clear span-40 last" id="banner">
     <div class="span-25" id="banner_title">
       <%= h @lesson.title -%> by <%= link_to_profile(@lesson.instructor) -%>
@@ -20,7 +20,7 @@
     </div>
   </div>
 
-  <% # LESSON SUMMARY  -%>
+  <% # LESSON SUMMARY   -%>
   <div class="clear prepend-top span-40 last" id="lesson_summary_container">
     <!-- VIDEO -->
     <div class="span-20" id="lesson_container">
@@ -29,7 +29,7 @@
       <%= render :partial => 'lessons/groups', :object => @lesson, :locals => { :options => { :css_classes => "tags_lesson_show" } } %>
     </div>
 
-    <% # LESSON DESCRIPTION  -%>
+    <% # LESSON DESCRIPTION   -%>
     <div class="span-19 last" id="lesson_description">
       <div class="span-19 last"><%= render :partial => "lessons/actions", :object => @lesson -%></div>
       <div>
@@ -55,6 +55,14 @@
             <%= h translate("lesson.#{@lesson.status}") -%>
             <br/>
         <% end -%>
+        <% @groups = @lesson.active_groups.public(:select => :name) + @lesson.active_groups.private(:select => :name) %>
+        <% unless @groups.empty? %>
+            <b>Groups:</b>
+            <% @groups.each do |group| %>
+              <%= link_to h(group.name), group_path(group) %>&nbsp;
+            <% end %>
+            <br/>
+        <% end %>
         <%= number_of_students_phrase(@lesson) -%>
         <br/>
         <%= content_tag(:p, free_remaining_text(@lesson)) if @lesson.has_free_credits? -%>
@@ -65,24 +73,24 @@
 
 <div class="clear prepend-top span-40 last">
   <div class="span-29">
-    <% # LESSON TABS  -%>
+    <% # LESSON TABS   -%>
     <div id="lesson_tabs">
       <%= render :partial => 'tabs' -%>
     </div>
 
-    <% # STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT...  -%>
+    <% # STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT...   -%>
     <div>
       <%= render :partial => 'lesson_buy_pairs', :object => @lesson -%>
     </div>
 
-    <% # WHAT DO STUDENTS ULTIMATELY BUY AFTER BROWSING THIS ITEM?  -%>
+    <% # WHAT DO STUDENTS ULTIMATELY BUY AFTER BROWSING THIS ITEM?   -%>
     <div>
       <%= render :partial => 'lesson_buy_patterns', :object => @lesson -%>
     </div>
   </div>
 
   <div class="span-11 last">
-    <% # LESSON BY THIS INSTRUCTOR  %>
+    <% # LESSON BY THIS INSTRUCTOR   %>
     <% if @lesson.instructor.instructed_lessons.size > 1 %>
         <div id="instructor_accordion_container" class="append-bottom">
           <div id="instructor_accordion">
@@ -95,11 +103,11 @@
         </div>
     <% end %>
 
-    <% #TAG CLOUD  -%>
+    <% #TAG CLOUD   -%>
     <%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts -%>
 
   </div>
 </div>
 
-<% # LESSON STATS (ACCORDIAN FOR INSTRUCTOR AND ADMINS ONLY)  -%>
+<% # LESSON STATS (ACCORDIAN FOR INSTRUCTOR AND ADMINS ONLY)   -%>
 <%= render :partial => 'lesson_stats', :object => @lesson -%>
