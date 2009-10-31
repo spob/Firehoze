@@ -8,11 +8,15 @@
     <%= f.label :name %>:
     <%= f.text_field :name %><br />
     <br/>
-    <%= f.label :rate %>:
+    <%= f.label :code %>:
+    <%= f.text_field :code %><br /><%= f.label :rate %>:
     <%= f.text_field :rate %> (enter 0.05 for 5%)<br />
     <br/>
     <%= f.label :default_payment_level %>:
     <%= f.check_box :default_payment_level %><br />
+    <br/>
+    <%= f.label :admin_only %>:
+    <%= f.check_box :admin_only %><br />
     <br/>
     <%= f.submit "Save", :disable_with => translate('general.disable_with') %>
     <%= link_to 'Cancel', payment_levels_path %>

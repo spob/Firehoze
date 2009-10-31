@@ -32,10 +32,10 @@
 
     <p>
       <% if @user.payment_level and !@user.instructed_lessons.empty? %>
-        <%= h(@user.payment_level.name) %>
+        <b>You have chosen "<%= h(@user.payment_level.name) %>"</b>
         (pays at <%= number_to_percentage(100 * @user.payment_level.rate, :precision => 1) %>)
       <% else %>
-        <%= f.select :payment_level, options_from_collection_for_select(PaymentLevel.all, 'id', 'name',
+        <%= f.select :payment_level, options_from_collection_for_select(PaymentLevel.admin_only_is(false).ascend_by_name, 'id', 'name',
           (@user.payment_level ? @user.payment_level.id : PaymentLevel.find_by_default_payment_level(true).id)) %>
       <% end %>
     </p>
