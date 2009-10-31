@@ -57,6 +57,9 @@ class OrdersController < ApplicationController
         user.country = @order.country
         user.postal_code = @order.zip
 
+        # Note this isn't really required for now because form doesn't allow you to select
+        # default address option is already verified...but added logic just in case we
+        # loosen this in the future
         if user.address1_changed? or user.address2_changed? or user.city_changed? or
                 user.state_changed? or user.postal_code_changed? or user.country_changed?
           user.verified_address_on = nil
