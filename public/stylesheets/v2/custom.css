@@ -48,7 +48,7 @@ div {
 #header div#topnav {
     position:absolute;
     top:0;
-    right:0;
+    right:-16px;
     font-size:11px;
 }
 
