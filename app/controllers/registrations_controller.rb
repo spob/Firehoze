@@ -21,11 +21,7 @@ class RegistrationsController < ApplicationController
     if verify_recaptcha()
       if @registration.save
         flash[:notice] = t 'registration.check_email_for_registration'
-        if APP_CONFIG[CONFIG_ALLOW_UNRECOGNIZED_ACCESS]
-          redirect_to root_path
-        else
-          redirect_to login_path
-        end
+        render 'show'
       else
         #@registration.errors.each { |attr,msg| puts "#{attr} - #{msg}" }
         render :action => "new"
