@@ -28,6 +28,12 @@ class HighVoltage::PagesController < ApplicationController
   private
 
   def layout_for_action
+    if params[:id] == "concept3"
+      return 'application_v3'
+    end
+
+    %w(concept).include?(params[:id]) ? 'application_v2' : 'application'
+
     %w(concept).include?(params[:id]) ? 'application_v2' : 'application'
   end
 end

@@ -45,11 +45,20 @@ div {
 }
 
 /* TOPNAV */
-#header div#topnav {
-    position:absolute;
-    top:0;
-    right:-16px;
-    font-size:11px;
+
+
+div#header .container #content {
+	
+}
+
+
+/*div#topnav {*/
+	div#header .container #content {
+		position:relative;
+/*	background-color:red;*/
+/*	border:solid 1px yellow;*/
+/*	height:38px;*/
+/*	width:440px;*/
 }
 
 /* SHADOWBOX */
