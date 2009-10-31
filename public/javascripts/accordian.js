@@ -10,7 +10,7 @@ $(function() {
     });
 
     $("#lesson_stats_accordion").accordion({
-        active: -1,
+        active: -1
     });
 
     $("#faqs_accordian").accordion({
