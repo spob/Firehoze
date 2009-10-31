@@ -9,7 +9,7 @@ $(function() {
         fx: {
             opacity: 'toggle',
             duration: 300
-        },
+        }
     });
 
     $('#admin_user_tabs').tabs(
@@ -21,7 +21,7 @@ $(function() {
         fx: {
             opacity: 'toggle',
             duration: 300
-        },
+        }
     });
 
     $('#lesson_show_tabs').tabs(
@@ -51,17 +51,17 @@ $(function() {
     });
 
     $('#policy_tabs').tabs(
-	    {
-	        cache: true,
-	        cookie: { 
-	            expires: 30,
-	            name: 'policy_tabs'
-	        },
-	        fx: { 
-	            opacity: 'toggle',
-	            duration: 300
-	        }
-	    });
+    {
+        cache: true,
+        cookie: {
+            expires: 30,
+            name: 'policy_tabs'
+        },
+        fx: {
+            opacity: 'toggle',
+            duration: 300
+        }
+    });
 
     $('#user_show_tabs').tabs(
     {
