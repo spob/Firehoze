@@ -14,3 +14,11 @@ Owner: <%= link_to_profile(@group.owner) %>
 <ul>
   <%= render :partial => "member", :collection => (@group.group_members.reject{ |m| m.member_type == OWNER }) %>
 </ul>
+<h3>Lessons:</h3>
+<ul>
+  <% @group.lessons.each do |lesson| %>
+    <li>
+      <%= link_to h(lesson.title), lesson_path(lesson) %>
+    </li>
+  <% end %>
+</ul>
