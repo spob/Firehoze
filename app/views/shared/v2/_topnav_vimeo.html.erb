@@ -1,0 +1,55 @@
+<div style="position:relative; z-index:999999">
+  <ul id="menu">
+    <li class="logo">
+      <%= image_tag('topnav/menu_left.png', :alt => "", :id => 'menu_left' ) %>
+    </li>
+    <li><a href="#">Login</a>
+    </li>
+    <li><a href="#">Help</a>
+      <ul id="help">
+        <li>
+          <%= image_tag('topnav/corner_inset_left.png', :class => :corner_inset_left, :alt => '' ) %>
+          <a href="#">General help</a>
+          <%= image_tag('topnav/corner_inset_right.png', :class => 'corner_inset_right') %>
+        </li>
+        <li><a href="#">Link 1</a></li>
+        <li><a href="#">Link 2</a></li>
+        <li class="last">
+          <%= image_tag('topnav/corner_left.png', :class => 'corner_left') %>
+          <%= image_tag('topnav/dot.png', :class => 'middle') %>
+          <%= image_tag('topnav/corner_right.png', :class => 'corner_right') %>
+        </li>
+      </ul>
+    </li>
+    <li class="search_box">
+      <div>
+        <form method="get" id="searchform" action="#">
+          <fieldset class="search">
+            <input type="text" class="box" />
+            <button class="btn" title="Submit Search">Search</button>
+          </fieldset>
+        </form>
+      </div>
+
+      <ul id="search">
+        <li>
+          <%= image_tag('topnav/corner_inset_left.png', :class => :corner_inset_left, :alt => '' ) %>
+          <input id="cbxAll" type="checkbox" />All
+          <%= image_tag('topnav/corner_inset_right.png', :class => 'corner_inset_right') %>
+        </li>
+        <li><input id="Articles" type="checkbox" />Lessons</li>
+        <li><input id="Tutorials" type="checkbox" />Groups</li>
+        <li><input id="Reviews" type="checkbox" />Instructors</li>
+        <li><input id="Resources" type="checkbox" />Members</li>
+        <li class="last">
+          <%= image_tag('topnav/corner_left.png', :class => 'corner_left') %>
+          <%= image_tag('topnav/dot.png', :class => 'middle') %>
+          <%= image_tag('topnav/corner_right.png', :class => 'corner_right') %>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <!-- <img style="float:left;" alt="" src="menu_right.png"/> -->
+  <%= image_tag('topnav/menu_right.png', :id => :menu_right) %>
+
+</div>

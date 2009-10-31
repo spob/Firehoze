@@ -1,66 +1,28 @@
 /* TOPNAV */
-
-ul.topnav {
-    list-style: none;
-    padding: 0 20px;
-    margin: 0;
-    float: left;
-    background: #222;
-    font-size: 1.2em;
-    background: url(images/topnav/topnav_bg.gif) repeat-x;
-    height:40px;
-}
-ul.topnav li {
-    float: left;
-    margin: 0;
-    padding: 0 15px 0 0;
-    position: relative; /*--Declare X and Y axis base for sub navigation--*/
-}
-ul.topnav li a{
-    padding: 10px 5px;
-    color: #fff;
-    display: block;
-    text-decoration: none;
-    float: left;
-}
-ul.topnav li a:hover{
-    background: url(images/topnav/topnav_hover.gif) no-repeat center top;
-}
-
-/*--Drop down trigger styles--*/
-ul.topnav li span { 
-    width: 17px;
-    height: 35px;
-    float: left;
-    background: url(images/topnav/subnav_btn.gif) no-repeat center top;
-}
-ul.topnav li span.subhover {background-position: center bottom; cursor: pointer;} /*--Hover effect for trigger--*/
-ul.topnav li ul.subnav {
-    z-index:500;
-    list-style: none;
-    position: absolute; /*--Important - Keeps subnav from affecting main navigation flow--*/
-    left: 0; top: 35px;
-    background: #333;
-    margin: 0; padding: 0;
-    display: none;
-    float: left;
-    width: 170px;
-    border: 1px solid #111;
-}
-ul.topnav li ul.subnav li{
-    margin: 0; padding: 0;
-    border-top: 1px solid #252525; /*--Create bevel effect--*/
-    border-bottom: 1px solid #444; /*--Create bevel effect--*/
-    clear: both;
-    width: 170px;
-}
-html ul.topnav li ul.subnav li a {
-    float: left;
-    width: 145px;
-    background: #333 url(images/topnav/dropdown_linkbg.gif) no-repeat 10px center;
-    padding-left: 20px;
-}
-/*--Hover effect for subnav links--*/
-html ul.topnav li ul.subnav li a:hover { 
-    background: #222 url(images/topnav/dropdown_linkbg.gif) no-repeat 10px center;
-}
+/* menu */
+#menu{ margin:0px; padding:0px; list-style:none; color:#fff; line-height:45px; display:inline-block; float:left; z-index:1000; }
+#menu a { color:#fff; text-decoration:none; }
+#menu > li {background:#172322 none repeat scroll 0 0; cursor:pointer; float:left; position:relative;padding:0px 10px;}
+#menu > li a:hover {color:#B0D730;}
+#menu .logo {background:transparent none repeat scroll 0% 0%; padding:0px; background-color:Transparent;}
+/* sub-menus*/
+#menu ul { padding:0px; margin:0px; display:block; display:inline;}
+#menu li ul { position:absolute; left:-10px; top:0px; margin-top:45px; width:150px; line-height:16px; background-color:#172322; color:#0395CC; /* for IE */ display:none; }
+#menu li:hover ul { display:block;}
+#menu li ul li{ display:block; margin:5px 20px; padding: 5px 0px;  border-top: dotted 1px #606060; list-style-type:none; }
+#menu li ul li:first-child { border-top: none; }
+#menu li ul li a { display:block; color:#0395CC; }
+#menu li ul li a:hover { color:#7FCDFE; }
+/* main submenu */
+#menu #main { left:0px; top:-20px; padding-top:20px; background-color:#7cb7e3; color:#fff; z-index:999;}
+/* search */
+.searchContainer div { background-color:#fff; display:inline; padding:5px;}
+.searchContainer input[type="text"] {border:none;}
+.searchContainer img { vertical-align:middle;}
+/* corners*/
+#menu .corner_inset_left { position:absolute; top:0px; left:-12px;}
+#menu .corner_inset_right { position:absolute; top:0px; left:150px;}
+#menu .last { background:transparent none repeat scroll 0% 0%; margin:0px; padding:0px; border:none; position:relative; border:none; height:0px;}
+#menu .corner_left { position:absolute; left:0px; top:0px;}
+#menu .corner_right { position:absolute; left:132px; top:0px;}
+#menu .middle { position:absolute; left:18px; height: 20px; width: 115px; top:0px;}
