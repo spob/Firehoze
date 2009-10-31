@@ -15,7 +15,7 @@
     text-decoration:none;
 }
 #menu > li {
-    background:#575151 none repeat scroll 0 0;
+    background:#444444 none repeat scroll 0 0;
     cursor:pointer;
     float:left;
     position:relative;
@@ -42,7 +42,7 @@
     margin-top:45px;
     width:150px;
     line-height:16px;
-    background-color:#575151;
+    background-color:#444444;
     color:#ccc; /* for IE */ display:none;
 }
 #menu li:hover ul { display:block; }
@@ -141,11 +141,11 @@ fieldset.search {
     height: 20px;
 		font-size:1.2em;
     padding: 8px 5px 0 6px;
-    background: #575151 url(images/topnav/search_bg.png) no-repeat;
+    background: #444444 url(images/topnav/search_bg.png) no-repeat;
     margin-right: 0px;
 }
 .search input.box:focus {
-    background: #575151 url(images/topnav/search_bg.png) no-repeat left -26px;
+    background: #444444 url(images/topnav/search_bg.png) no-repeat left -26px;
     outline: 0;
     border:none;
 }
@@ -154,7 +154,7 @@ fieldset.search {
     height: 24px;
     cursor: pointer;
     text-indent: -9999px;
-    background: #575151 url(images/topnav/search_bg.png) no-repeat top right;
+    background: #444444 url(images/topnav/search_bg.png) no-repeat top right;
     outline: 0;
     border:none;
 }*/
@@ -165,7 +165,7 @@ fieldset.search {
 #menu .last { background:transparent none repeat scroll 0% 0%; margin:0px; padding:0px; border:none; position:relative; border:none; height:0px;}
 #menu .corner_left { position:absolute; left:0px; top:0px;}
 #menu .corner_right { position:absolute; left:132px; top:0px;}
-#menu .middle { background-color:#575151; position:absolute; left:18px; height: 20px; width: 115px; top:0px;}
+#menu .middle { background-color:#444444; position:absolute; left:18px; height: 20px; width: 115px; top:0px;}
 
 #menu_left {
     float:left;
