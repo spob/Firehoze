@@ -48,6 +48,7 @@ class AccountsController < ApplicationController
     if @user.address1_changed? or @user.address2_changed? or @user.city_changed? or
             @user.state_changed? or @user.postal_code_changed? or @user.country_changed?
       @user.verified_address_on = nil
+      @user.instructor_status = AUTHOR_STATUS_INPROGRESS
     end
   end
 

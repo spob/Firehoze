@@ -56,6 +56,12 @@ class OrdersController < ApplicationController
         user.state = @order.state
         user.country = @order.country
         user.postal_code = @order.zip
+
+        if user.address1_changed? or user.address2_changed? or user.city_changed? or
+                user.state_changed? or user.postal_code_changed? or user.country_changed?
+          user.verified_address_on = nil
+          user.instructor_status = AUTHOR_STATUS_INPROGRESS
+        end
         user.save!
       end
       # Saving the order will charge the credit card itself using the ActiveMerchant plugin. If this succeeds,
