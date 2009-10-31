@@ -5,12 +5,14 @@
 %>
 
 <% if lesson.owned_by?(current_user) or lesson.can_edit?(current_user) or lesson.owned_by?(current_user) %>
-    <div<%= " class='#{css_classes}'" unless css_classes.blank? -%>>
-      <b>Add/Remove Groups:</b>
-      <% current_user.groups.each do |group| %>
-          <br/>
-          <%= link_to h(group.name), group_path(group) %>&nbsp;&nbsp;
-          <%= link_to_add_remove_group lesson, group %>
-      <% end %>
+    <% unless current_user.groups.empty? %>
+        <div<%= " class='#{css_classes}'" unless css_classes.blank? -%>>
+          <b>Add/Remove Groups:</b>
+          <% current_user.groups.each do |group| %>
+              <br/>
+              <%= link_to h(group.name), group_path(group) %>&nbsp;&nbsp;
+              <%= link_to_add_remove_group lesson, group %>
+          <% end %>
+    <% end %>
     </div>
 <% end %>
