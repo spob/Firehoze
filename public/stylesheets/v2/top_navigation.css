@@ -27,13 +27,13 @@
     padding: 1px 20px 5px;
     background: url(http://atebits.cachefly.net/atebits/img/nav-a.png) repeat-x 0 0;
     color: #666;
+    text-decoration: none;
 }
 
 #top-navigation li.selected a,
 #top-navigation li.selected a:hover {
     color: #0AAF30;
     cursor: default;
-    text-decoration: none;
 }
 
 #top-navigation li.selected a:focus {
