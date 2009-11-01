@@ -9,17 +9,9 @@
 #top-navigation li {
     float: left;
     padding-right: 2px;
-    background: url(images/top_navigation/nav-li.png) no-repeat right 0;
-    list-style-position:outside;
+    background: url(images/top_navigation/nav-li.png) no-repeat right;
     list-style-type:none;
-    /*border:medium none;
-    font-size:1em;
-    list-style-image:none;
-    margin:0;
-    outline-color:-moz-use-text-color;
-    outline-style:none;
-    outline-width:medium;
-    */
+    position: relative;
 }
 
 #top-navigation li a {
@@ -28,6 +20,10 @@
     background: url(images/top_navigation/nav-a.png) repeat-x 0 0;
     color: #666;
     text-decoration: none;
+}
+
+#top-navigation li.with-subnav a  {
+    padding: 1px 3px 5px 20px;
 }
 
 #top-navigation li.selected a,
@@ -42,7 +38,7 @@
 
 #top-navigation li a:hover,
 #top-navigation li a:focus {
-    color: #333;
+    color: #0AAF30;
     text-decoration: none;
 }
 
@@ -62,6 +58,64 @@
 }
 
 #top-navigation li.last a { 
-    background: url(images/top_navigation/nav-a-last.png) no-repeat right 0;
+    background: url(images/top_navigation/nav-a-last.png) no-repeat right;
     padding-right: 22px;
+}
+
+/* SUBNAV */
+/*--Drop down trigger styles--*/
+ul#top-navigation li span { 
+    width: 17px;
+    height: 34px;
+    float: left;
+    background: #fff url(images/top_navigation/subnav_btn.gif) no-repeat left top;
+    padding:0 20px 0 0;
+    margin:0;
+}
+ul#top-navigation li span.subhover {
+    background-position: left bottom;
+    cursor: pointer;
+    padding:0 20px 0 0;
+    margin:0;
+}
+
+/*--Hover effect for trigger--*/
+ul#top-navigation li ul.subnav {
+    font: bold 13px/30px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-shadow: none;
+    list-style: none;
+    position: absolute; /*--Important - Keeps subnav from affecting main navigation flow--*/
+    left: 0; top: 34px;
+    margin: 0;
+    padding: 0;
+    display: none;
+    float: left;
+    width: 128px;
+    -moz-border-radius-bottomleft: 6px;
+    -moz-border-radius-bottomright: 6px;
+    -webkit-border-bottom-left-radius: 6px;
+    -webkit-border-bottom-right-radius: 6px;
+    background: #333;
+    border: 1px solid #4F4F4F;
+}
+ul#top-navigation li ul.subnav li{
+    margin: 0;
+    padding: 0;
+    /*	border-top: 1px dotted #252525; */ /*--Create bevel effect--*/
+    /*	border-bottom: 1px dotted #444; */ /*--Create bevel effect--*/
+    clear: both;
+    width: 128px;
+}
+
+html ul#top-navigation li ul.subnav li a {
+    color: #ccc;
+    float: left;
+    width: 105px;
+    background: #444 url(images/top_navigation/dropdown_linkbg.gif) no-repeat 10px center;
+    padding-left: 20px;
+}
+
+/*--Hover effect for subnav links--*/
+html ul#top-navigation li ul.subnav li a:hover {
+    background: #222 url(images/top_navigation/dropdown_linkbg.gif) no-repeat 10px center;
 }
