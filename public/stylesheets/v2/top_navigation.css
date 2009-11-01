@@ -9,7 +9,7 @@
 #top-navigation li {
     float: left;
     padding-right: 2px;
-    background: url(http://atebits.cachefly.net/atebits/img/nav-li.png) no-repeat right 0;
+    background: url(images/top_navigation/nav-li.png) no-repeat right 0;
     list-style-position:outside;
     list-style-type:none;
     /*border:medium none;
@@ -25,7 +25,7 @@
 #top-navigation li a {
     float: left;
     padding: 1px 20px 5px;
-    background: url(http://atebits.cachefly.net/atebits/img/nav-a.png) repeat-x 0 0;
+    background: url(images/top_navigation/nav-a.png) repeat-x 0 0;
     color: #666;
     text-decoration: none;
 }
@@ -52,7 +52,7 @@
 }
 
 #top-navigation li.first a { 
-    background: url(http://atebits.cachefly.net/atebits/img/nav-a-first.png) no-repeat 0 0;
+    background: url(images/top_navigation/nav-a-first.png) no-repeat 0 0;
     padding-left: 22px;
 }
 
@@ -62,6 +62,6 @@
 }
 
 #top-navigation li.last a { 
-    background: url(http://atebits.cachefly.net/atebits/img/nav-a-last.png) no-repeat right 0;
+    background: url(images/top_navigation/nav-a-last.png) no-repeat right 0;
     padding-right: 22px;
 }
