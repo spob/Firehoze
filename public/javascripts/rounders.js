@@ -15,21 +15,4 @@ $(function() {
     $('#side-box').cornerz({
         radius: 3
     });
-
-
-
-
-//     $('ul.topnav').cornerz({
-//         radius: 12, 
-// corners: "bl br",
-// background: "#2D2B2C"
-// 
-//     });
-
-
-
-// $('ul.subnav').cornerz({
-// 		//     radius: 3,
-// 		// corners: "bl br"
-// });
 });
