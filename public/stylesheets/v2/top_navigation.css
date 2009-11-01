@@ -1,0 +1,67 @@
+#top-navigation {
+    float: right;
+    margin: 13px 0 0 0;
+    font: bold 13px/30px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: lowercase;
+    text-shadow: #fff 0 1px 1px;
+}
+
+#top-navigation li {
+    float: left;
+    padding-right: 2px;
+    background: url(http://atebits.cachefly.net/atebits/img/nav-li.png) no-repeat right 0;
+    list-style-position:outside;
+    list-style-type:none;
+    /*border:medium none;
+    font-size:1em;
+    list-style-image:none;
+    margin:0;
+    outline-color:-moz-use-text-color;
+    outline-style:none;
+    outline-width:medium;
+    */
+}
+
+#top-navigation li a {
+    float: left;
+    padding: 1px 20px 5px;
+    background: url(http://atebits.cachefly.net/atebits/img/nav-a.png) repeat-x 0 0;
+    color: #666;
+}
+
+#top-navigation li.selected a,
+#top-navigation li.selected a:hover {
+    color: #0AAF30;
+    cursor: default;
+    text-decoration: none;
+}
+
+#top-navigation li.selected a:focus {
+    color: #069;
+}
+
+#top-navigation li a:hover,
+#top-navigation li a:focus {
+    color: #333;
+    text-decoration: none;
+}
+
+#top-navigation li a:active {
+    padding-top: 2px;
+    padding-bottom: 4px;
+}
+
+#top-navigation li.first a { 
+    background: url(http://atebits.cachefly.net/atebits/img/nav-a-first.png) no-repeat 0 0;
+    padding-left: 22px;
+}
+
+#top-navigation li.last {
+    background: none;
+    padding: 0;
+}
+
+#top-navigation li.last a { 
+    background: url(http://atebits.cachefly.net/atebits/img/nav-a-last.png) no-repeat right 0;
+    padding-right: 22px;
+}
