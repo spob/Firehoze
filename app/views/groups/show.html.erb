@@ -24,3 +24,20 @@ Owner: <%= link_to_profile(@group.owner) %>
 </ul>
 <h3>Discussion:</h3>
 <%= link_to "New Topic", new_group_topic_path(@group) %>
+<table>
+  <tr>
+    <th>
+      Title
+    </th>
+    <th>
+      Started By
+    </th>
+    <th>
+      Replies
+    </th>
+    <th>
+      Last Post
+    </th>
+  </tr>
+  <%= render @topics %>
+</table>

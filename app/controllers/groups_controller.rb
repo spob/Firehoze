@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
   end
 
   def show
-
+    @topics = @group.topics.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
   end
 
   def new

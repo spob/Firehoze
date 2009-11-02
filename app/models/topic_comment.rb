@@ -1,6 +1,6 @@
 class TopicComment < Comment
-  belongs_to :topic
-  validates_presence_of :topic, :counter_cache => true
+  belongs_to :topic, :counter_cache => true
+  validates_presence_of :topic
   has_many :flags, :as => :flaggable, :dependent => :destroy
   after_create :update_topic
 

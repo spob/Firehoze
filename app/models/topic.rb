@@ -4,8 +4,10 @@ class Topic < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :group
-  has_many :topic_comments
+  has_many :topic_comments, :order => "id DESC"
+  has_one :last_topic_comment, :class_name => "TopicComment", :order => "id DESC"
   validates_presence_of :user, :group, :title
+  validates_presence_of :comments, :on => :create
   validates_length_of :title, :maximum => 200
   validates_uniqueness_of :title, :scope => :group_id
 
