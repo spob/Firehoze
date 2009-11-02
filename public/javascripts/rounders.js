@@ -9,10 +9,6 @@ $(function() {
     });
 
     $('#side-box').cornerz({
-        radius: 3
-    });
-
-    $('#side-box').cornerz({
-        radius: 3
+        radius: 6
     });
 });
