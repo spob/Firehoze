@@ -1,7 +1,7 @@
 # This controller is a nested resource. It will always be invoked from the sku controller
 class DiscountsController < ApplicationController
   include SslRequirement
-  
+
   before_filter :require_user
   # Since this controller is nested, in most cases we'll need to retrieve the sku first, so I made it a
   # before filter

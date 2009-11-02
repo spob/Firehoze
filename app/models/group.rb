@@ -6,6 +6,7 @@ class Group < ActiveRecord::Base
   has_many :group_members
   has_many :group_lessons
   has_many :lessons, :through => :group_lessons
+  has_many :topics, :order => 'last_commented_at DESC'
   has_many :active_lessons, :source => :lesson, :through => :group_lessons,
            :conditions => { :group_lessons => { :active => true }}
   has_many :users, :through => :group_members

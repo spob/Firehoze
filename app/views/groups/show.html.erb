@@ -22,3 +22,5 @@ Owner: <%= link_to_profile(@group.owner) %>
     </li>
   <% end %>
 </ul>
+<h3>Discussion:</h3>
+<%= link_to "New Topic", new_group_topic_path(@group) %>

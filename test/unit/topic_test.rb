@@ -12,5 +12,6 @@ class TopicTest < ActiveSupport::TestCase
     should_validate_presence_of :user, :group, :title
     should_belong_to :user, :group
     should_ensure_length_in_range :title, (0..200)
+    should_validate_uniqueness_of :title, :scoped_to => :group_id
   end
 end
