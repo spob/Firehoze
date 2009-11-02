@@ -128,7 +128,7 @@ ul#main-navigation  {
 }
 #main-navigation li.selected a,
 #main-navigation li.selected a:hover {
-    color: #BF1701;
+    color: #BF1701;  /*RED LINK*/
     cursor: default;
     text-decoration: none;
     padding-left: 21px;

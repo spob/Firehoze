@@ -28,7 +28,8 @@
 
 #top-navigation li.selected a,
 #top-navigation li.selected a:hover {
-    color: #0AAF30;
+  /*color: #0AAF30;*/  /*GREEN*/
+  color: #BF1701;  /*RED LINK*/
     cursor: default;
 }
 
@@ -38,7 +39,8 @@
 
 #top-navigation li a:hover,
 #top-navigation li a:focus {
-    color: #0AAF30;
+    /*color: #0AAF30;*/  /*GREEN*/
+    color: #BF1701;  /*RED LINK*/
     text-decoration: none;
 }
 
@@ -69,13 +71,13 @@ ul#top-navigation li span {
     height: 34px;
     float: left;
     background: #fff url(images/top_navigation/button_topnav_hover.png) no-repeat left top;
-    padding:0 20px 0 0;
+    padding:0 14px 0 0;
     margin:0;
 }
 ul#top-navigation li span.subhover {
     background-position: left bottom;
     cursor: pointer;
-    padding:0 20px 0 0;
+    padding:0 14px 0 0;
     margin:0;
 }
 
