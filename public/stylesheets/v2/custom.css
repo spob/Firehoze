@@ -18,7 +18,7 @@ div {
     position:relative;
     background-repeat:no-repeat;
     height:77px;
-    /* background: url('images/header-shine.png') no-repeat 50% 0;*/
+     background: url('images/header-shine.png') no-repeat 50% 0;
 }
 #header #logo {
     position:absolute;
@@ -50,14 +50,11 @@ div {
     top:0;
     right:-16px;
     font-size:11px;
-    /*border: dotted 1px red;*/
-    /*float:right;*/
 }
 
 /* SHADOWBOX */
 #shadowbox-top {
     z-index:10;
-		/*position:relative;*/
     background: transparent url(images/main-navigation-bg.png) no-repeat;
     margin:-50px 0 0 0;
     padding:0;
@@ -143,7 +140,6 @@ ul#main-navigation  {
 }
 
 /* MAIN CONTENT AREA */
-
 #side-box {
     padding: 15px;
     border: solid 2px #DFDFDF;
