@@ -3,6 +3,7 @@ class TopicsController < ApplicationController
   # Since this controller is nested, in most cases we'll need to retrieve the sku first, so I made it a
   # before filter
   before_filter :retrieve_group, :except => [ :edit, :update, :destroy, :show ]
+  before_filter :retrieve_topic, :only => [ :edit, :show, :update ]
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
@@ -30,11 +31,27 @@ class TopicsController < ApplicationController
     end
   end
 
+  def edit
+    can_edit? @topic
+  end
+
+  def update
+    if @topic.update_attributes(params[:topic])
+      flash[:notice] = t 'topic.update_success'
+      redirect_to topic_path(@topic)
+    else
+      render :action => 'edit'
+    end
+  end
+
   def show
-    @topic = Topic.find(params[:id])
   end
 
   private
+
+  def retrieve_topic
+    @topic = Topic.find(params[:id])
+  end
 
   # Called by the before filter to retrieve the sku based on the sku_id that
   # was passed in as a parameter
@@ -42,11 +59,20 @@ class TopicsController < ApplicationController
     @group = Group.find(params[:group_id])
   end
 
+  def can_edit? topic
+    if topic.group.moderated_by?(current_user) or topic.group.owned_by?(current_user)
+      return true
+    end
+    flash[:error] = t('topic.must_be_moderator_or_owner', :group => topic.group.name)
+    redirect_to topic_path(topic)
+    false
+  end
+
   def can_create? group
     if group.includes_member? current_user
       return true
     end
-    flash[:error] = t('topic.must_be_member')
+    flash[:error] = t('topic.must_be_member', :group => group.name)
     redirect_to group_path(group)
     false
   end

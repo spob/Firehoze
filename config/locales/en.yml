@@ -274,6 +274,7 @@ en:
     cannot_edit: You do not have rights to edit this topic
     update_success: Topic updated successfully
     must_be_member: You must be a member of the group {{group}} to create a topic
+    must_be_moderator_or_owner:  You must be a moderator or the owner of the {{group}} group in order to edit a topic
   
   login:
     login_success: Login successful

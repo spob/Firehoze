@@ -1,6 +1,6 @@
 <tr>
   <td>
-    <b><%= h topic.title %></b>
+    <b><%= link_to(h(topic.title), topic_path(topic)) %></b>
     <%= "(pinned)" if topic.pinned %>
   </td>
   <td>
