@@ -273,6 +273,7 @@ en:
     create_success: Your topic comment has been recorded
     cannot_edit: You do not have rights to edit this topic
     update_success: Topic updated successfully
+    must_be_member: You must be a member of the group {{group}} to create a topic
   
   login:
     login_success: Login successful

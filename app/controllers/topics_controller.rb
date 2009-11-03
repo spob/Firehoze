@@ -10,19 +10,22 @@ class TopicsController < ApplicationController
 
   def new
     @topic = @group.topics.build
+    can_create?(@group)
   end
 
   def create
-    @topic = @group.topics.build(params[:topic])
-    @topic.user = current_user
-    @topic.last_commented_at = Time.now
-    Topic.transaction do
-      if @topic.save
-        @topic.topic_comments.create!(:user => current_user, :status => COMMENT_STATUS_ACTIVE, :body => @topic.comments)
-        flash[:notice] = t 'topic.create_success'
-        redirect_to topic_path(@topic)
-      else
-        render :action => 'new'
+    if can_create? @group
+      @topic = @group.topics.build(params[:topic])
+      @topic.user = current_user
+      @topic.last_commented_at = Time.now
+      Topic.transaction do
+        if @topic.save
+          @topic.topic_comments.create!(:user => current_user, :status => COMMENT_STATUS_ACTIVE, :body => @topic.comments)
+          flash[:notice] = t 'topic.create_success'
+          redirect_to topic_path(@topic)
+        else
+          render :action => 'new'
+        end
       end
     end
   end
@@ -37,5 +40,14 @@ class TopicsController < ApplicationController
   # was passed in as a parameter
   def retrieve_group
     @group = Group.find(params[:group_id])
+  end
+
+  def can_create? group
+    if group.includes_member? current_user
+      return true
+    end
+    flash[:error] = t('topic.must_be_member')
+    redirect_to group_path(group)
+    false
   end
 end
