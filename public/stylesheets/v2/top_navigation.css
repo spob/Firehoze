@@ -9,7 +9,7 @@
 #top-navigation li {
     float: left;
     padding-right: 2px;
-    background: url(images/top_navigation/nav-li-2.png) no-repeat right;
+    background: url(images/top_navigation/nav-li-dark.png) no-repeat right;
     list-style-type:none;
     position: relative;
 }
@@ -28,8 +28,8 @@
 
 #top-navigation li.selected a,
 #top-navigation li.selected a:hover {
-  /*color: #0AAF30;*/  /*GREEN*/
-  color: #BF1701;  /*RED LINK*/
+    /*color: #0AAF30;*/  /*GREEN*/
+    color: #BF1701;  /*RED LINK*/
     cursor: default;
 }
 
@@ -59,9 +59,51 @@
     padding: 0;
 }
 
+/* not used right now (search box is taken it's place)*/
 #top-navigation li.last a { 
     background: url(images/top_navigation/nav-a-last.png) no-repeat right;
     padding-right: 22px;
+}
+
+/* SEARCH BOX */
+#searchwrapper {
+    width:187px; /* image's actual height */
+    height:36px; /* image's actual width size*/
+    background: url(images/top_navigation/search_box.png) no-repeat;
+    padding:0px;
+    margin:0px;
+    position:relative; 
+}
+
+#searchwrapper form { display:inline ;}
+
+input.searchbox {
+    border:0px; 
+    background-color:transparent; 
+    position:absolute; 
+    top:5px;
+    left:11px;
+    width:132px;
+    height:13px;
+    color: #444;
+    font-size:12px;
+    margin:0.5em 0;
+}
+
+input.searchbox[type=text]:focus,
+input.searchbox:focus {
+    border:none;
+}
+
+.searchbox_submit {
+    border:0px; 
+    border: none;
+    background-color:transparent; 
+    position:absolute; 
+    top:9px;
+    left:151px;
+    width:20px;
+    height:17px;
 }
 
 /* SUBNAV */
@@ -70,7 +112,7 @@ ul#top-navigation li span {
     width: 17px;
     height: 34px;
     float: left;
-    background: #fff url(images/top_navigation/button_topnav_hover.png) no-repeat left top;
+    background: #fff url(images/top_navigation/arrow_buttons.png) no-repeat left top;
     padding:0 14px 0 0;
     margin:0;
 }
@@ -87,7 +129,7 @@ ul#top-navigation li ul.subnav {
     text-shadow: none;
     list-style: none;
     position: absolute; /*--Important - Keeps subnav from affecting main navigation flow--*/
-		z-index:50000;
+    z-index:50000;
     left: 0; top: 34px;
     margin: 0;
     padding: 0;
@@ -114,11 +156,11 @@ html ul#top-navigation li ul.subnav li a {
     color: #ccc;
     float: left;
     width: 105px;
-    background: #444 url(images/top_navigation/dropdown_linkbg.gif) no-repeat 10px center;
+    background: #444 url(images/top_navigation/dropdown_link_bg.gif) no-repeat 10px center;
     padding-left: 20px;
 }
 
 /*--Hover effect for subnav links--*/
 html ul#top-navigation li ul.subnav li a:hover {
-    background: #222 url(images/top_navigation/dropdown_linkbg.gif) no-repeat 10px center;
+    background: #222 url(images/top_navigation/dropdown_link_bg.gif) no-repeat 10px center;
 }
