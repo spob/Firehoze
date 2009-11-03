@@ -10,6 +10,16 @@ class TopicsControllerTest < ActionController::TestCase
       @group = Factory.create(:group)
     end
 
+    context "on GET to :show" do
+      setup { get :show, :id => Factory.create(:topic).id }
+
+      should_assign_to :topic
+      should_render_template 'show'
+      should_respond_with :success
+      should_not_set_the_flash
+      should_render_template "show"
+    end
+
     context "on GET to :new" do
       setup { get :new, :group_id => @group }
 
