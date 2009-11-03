@@ -29,7 +29,5 @@ class HighVoltage::PagesController < ApplicationController
 
   def layout_for_action
     %w(concept).include?(params[:id]) ? 'application_v2' : 'application'
-
-    %w(concept).include?(params[:id]) ? 'application_v2' : 'application'
   end
 end
