@@ -14,5 +14,11 @@ class TopicTest < ActiveSupport::TestCase
     should_belong_to :user, :group
     should_ensure_length_in_range :title, (0..200)
     should_validate_uniqueness_of :title, :scoped_to => :group_id
+
+    fast_context "testing topic comments are created" do
+      should "have a test comment created" do
+        assert 1, @topic.topic_comments.size
+      end
+    end
   end
 end
