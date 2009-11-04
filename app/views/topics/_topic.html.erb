@@ -1,0 +1,18 @@
+<tr>
+  <td>
+    <b><%= link_to(h(topic.title), topic_path(topic)) %></b>
+    <%= "(pinned)" if topic.pinned %>
+  </td>
+  <td>
+    <%= link_to_profile(topic.user) %>
+  </td>
+  <td>
+    <%= topic.topic_comments.size - 1 %>
+  </td>
+  <td>
+    <b><%= h topic.last_topic_comment.user.login %></b>
+    wrote "<%= truncate(topic.last_topic_comment.body, :length => 100) %>"
+    <br/>
+    <%= l(topic.last_commented_at) %>
+  </td>
+</tr>

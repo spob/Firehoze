@@ -1,0 +1,17 @@
+<% title "Edit Discission Topic" -%>
+
+Edit Discussion Topic "<%= h @topic.title %>"
+
+<% form_for :topic, :url => topic_path(@topic), :html => { :method => :put } do |f| %>
+    <%= f.error_messages %>
+    <p>
+      <%= f.label :title %><br/>
+      <%= f.text_field :title %>
+    </p>
+    <p>
+    <%= f.check_box :pinned %>Pin this topic to the top
+    </p>
+    <p><%= f.submit "Submit", :disable_with => translate('general.disable_with') %></p>
+<% end %>
+
+<p><%= link_to "Cancel", topic_path(@topic) %></p>

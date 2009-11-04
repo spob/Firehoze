@@ -1,0 +1,6 @@
+<h2>Topic "<%= h @topic.title %>" in Group "<%= link_to h(@topic.group.name), group_path(@topic.group) %>"</h2>
+<%= link_to "Edit", edit_topic_path(@topic) %> |
+<%= link_to "Add a Comment", new_topic_topic_comment_path(@topic) %>
+<br/>
+<%= render @topic.topic_comments %>
+<%= link_to "Back to Group", group_path(@topic.group) %>

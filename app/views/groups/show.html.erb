@@ -17,8 +17,28 @@ Owner: <%= link_to_profile(@group.owner) %>
 <h3>Lessons:</h3>
 <ul>
   <% @group.active_lessons.each do |lesson| %>
-    <li>
-      <%= link_to h(lesson.title), lesson_path(lesson) %>
-    </li>
+      <li>
+        <%= link_to h(lesson.title), lesson_path(lesson) %>
+      </li>
   <% end %>
 </ul>
+<h3>Discussion:</h3>
+<%= link_to "New Topic", new_group_topic_path(@group) %>
+<table>
+  <tr>
+    <th>
+      Title
+    </th>
+    <th>
+      Started By
+    </th>
+    <th>
+      Replies
+    </th>
+    <th>
+      Last Post
+    </th>
+  </tr>
+  <%= render @topics %>
+  <%= will_paginate @topics %>
+</table>

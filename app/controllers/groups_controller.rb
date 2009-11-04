@@ -14,7 +14,9 @@ class GroupsController < ApplicationController
   end
 
   def show
-
+    if can_view?(@group)
+      @topics = @group.topics.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
+    end
   end
 
   def new
@@ -54,6 +56,15 @@ class GroupsController < ApplicationController
 
   def find_group
     @group = Group.find params[:id]
+  end
+
+  def can_view?(group)
+    if !group.private or group.includes_member?(current_user)
+      return true
+    end
+    flash[:error] = t('topic.must_be_member', :group => group.name)
+    redirect_to groups_path
+    return false
   end
 
   def can_edit?(group)

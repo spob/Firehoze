@@ -79,6 +79,7 @@ class Lesson < ActiveRecord::Base
   validates_presence_of :instructor, :title, :status, :synopsis, :category
   validates_length_of :title, :maximum => 50, :allow_nil => true
   validates_length_of :synopsis, :maximum => 500, :allow_nil => true
+  validates_uniqueness_of :title
 
   # Used to seed the number of free downloads available
   attr_accessor :initial_free_download_count
