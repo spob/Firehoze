@@ -1,5 +1,7 @@
 <% title "Sign Up Completed...Awaiting confirmation email" -%>
+<%= javascript 'always_at_bottom', 'footer' %>
 
-<p>
-  You're almost done. Please check your email to complete the registration process.
-</p>
+<div class="static_error static_flash">
+  <span class="h4">One Last Step</span>
+  <p><%= h(t('registration.check_email_for_registration')) %></p>
+</div>

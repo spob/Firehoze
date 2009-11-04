@@ -387,6 +387,26 @@ img.lesson_tn {
     background: transparent url(images/icons/32_warning.png) 0px 10px no-repeat;
 }
 
+/* static flash */
+.static_flash  {
+    padding:20px 0 20px 52px;
+}
+
+.static_flash a, .static_flash .h4 {
+    font-weight:bold;
+}
+
+/* static error */
+.static_error {
+    text-align:left;
+    border: solid 2px #6F2234;
+    background:#FFFFE8 url(images/icons/32_warning.png) 10px 20px no-repeat;
+}
+
+.static_error a, .static_error .h4 {
+    color: #6F2234;
+}
+
 /* IE6 */
 #ie6.flash {
     display:none;
@@ -623,7 +643,7 @@ div.lesson_comment .actions .button-to {
     line-height: 1.5em;
 }
 #faqs_section .answers {
-    padding: 25px;
+    padding: 20px;
     background-color: #DBDBDB;
     margin: 0 0 20px 0;
 }
@@ -631,9 +651,26 @@ div.lesson_comment .actions .button-to {
     text-decoration:underline;
     color: navy;
     font-size: 12px;
+    font-weight:bold;
 }
 #faqs_section .answers h4 a {
     text-decoration:none;
     color: inherit;
 }
+#faqs_section .answers h4 {
+    padding: 10px 0 10px 10px;
+    border: solid 1px #999;
+    font-size:16px;
+    font-weight:bold;
+    background-color:#ccc;
+    /*	margin-bottom:0;*/
+}
+#faqs_section .answers h5 {
+    font-size:14px;
+    margin-bottom:0;
+}
+#faqs_section .answers img {
+    margin: 20px 0 40px 0;
+}
+
 #faqs_section .anchor { }
