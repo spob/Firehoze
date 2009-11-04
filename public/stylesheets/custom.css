@@ -387,6 +387,26 @@ img.lesson_tn {
     background: transparent url(images/icons/32_warning.png) 0px 10px no-repeat;
 }
 
+/* static flash */
+.static_flash  {
+    padding:20px 0 20px 52px;
+}
+
+.static_flash a, .static_flash .h4 {
+    font-weight:bold;
+}
+
+/* static error */
+.static_error {
+    text-align:left;
+    border: solid 2px #6F2234;
+    background:#FFFFE8 url(images/icons/32_warning.png) 10px 20px no-repeat;
+}
+
+.static_error a, .static_error .h4 {
+    color: #6F2234;
+}
+
 /* IE6 */
 #ie6.flash {
     display:none;
