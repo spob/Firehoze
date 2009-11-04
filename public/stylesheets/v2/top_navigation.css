@@ -81,10 +81,10 @@ input.searchbox {
     border:0px; 
     background-color:transparent; 
     position:absolute; 
-    top:5px;
+    top:4px;
     left:11px;
     width:132px;
-    height:13px;
+    height:16px;
     color: #444;
     font-size:12px;
     margin:0.5em 0;

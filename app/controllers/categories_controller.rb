@@ -53,6 +53,7 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.root.ascend_by_sort_value
+    render :layout => 'application_v2'
   end
 
   def show

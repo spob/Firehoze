@@ -1,3 +1,7 @@
+* {
+    outline: none;
+}
+
 body {
     background-color:#EFEFEF;
     font: 12px/18px "Lucida Grande", Verdana, sans-serif;
@@ -18,7 +22,7 @@ div {
     position:relative;
     background-repeat:no-repeat;
     height:77px;
-     background: url('images/header-shine.png') no-repeat 50% 0;
+    background: url('images/header-shine.png') no-repeat 50% 0;
 }
 #header #logo {
     position:absolute;

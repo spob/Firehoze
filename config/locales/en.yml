@@ -47,6 +47,8 @@ en:
     _no: 'no'
     home: Home
     no_permissions: You do not have permissions to perform that action
+    my_firehoze: My Firehoze
+    lessons: Lessons
   security:
     you_must_be_logged_in: You must be logged in to access that page
     you_must_be_logged_out: You must not be logged in to access that page

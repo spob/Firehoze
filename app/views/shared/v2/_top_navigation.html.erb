@@ -1,10 +1,14 @@
-<ul id="top-navigation">
-  <li class="first "><a href="#">Sign Up</a></li>
-  <li><a href="#">Login</a></li>
+`<ul id="top-navigation">
+  <% if current_user %>
+    <li class="first "><%= signout_link("Sign Out") %></li>
+  <% else %>
+  <li class="first "><%= link_to "Sign Up", new_registration_path %></li>
+  <li><%= link_to "Sign In", login_path %></li>
+  <% end %>
   <li class="with-subnav">
     <a href="#">Teach</a>
     <ul class="subnav">
-      <li><a href="#">teach link 1</a></li>
+      <%= content_tag(:li, "#{link_to h(t('lesson.create_lesson')), new_lesson_path}") if current_user.present? %>
       <li><a href="#">teach link 2</a></li>
     </ul>
   </li>
@@ -17,12 +21,12 @@
   </li>
   <li class="last">
     <div id="searchwrapper">
-      <form action="">
-        <input type="text" class="searchbox" name="s" value="" />
-        <!-- <input type="image" src="THE_BLANK_SUBMIT_BUTTON_IMAGE" class="searchbox_submit" value="" /> -->
-        <%= image_tag('top_navigation/searchbox_button.png', :class => 'searchbox_submit') %>
-      </form>
+      <% form_tag search_lessons_path, :method => :get do %>
+          <%= text_field_tag :search_lesson_criteria, params[:search_lesson_criteria], :class => 'searchbox' %>
+          <%= image_submit_tag('top_navigation/searchbox_button.png', :class => 'searchbox_submit') %>
+      <% end %>
     </div>
   </li>
 </ul><!-- end top-navigation -->
-
+<div style="display:none"><%= link_to "Advanced Search", advanced_search_lessons_path %></div>
+<!-- holding off exposing this here for now -->

@@ -160,6 +160,12 @@ module ApplicationHelper
 
      end
    end
+   
+   def current_page_select?(options)
+     if current_page?(options)
+       return 'selected'
+     end
+   end
 
   private
 
