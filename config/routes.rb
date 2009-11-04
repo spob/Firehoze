@@ -85,6 +85,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :store, :only => :show
   map.resources :skus, :has_many => :discounts, :shallow => true
   map.resource  :user_session, :only => [ :create, :destroy, :new ]
+  map.resources :topics, :has_many => :topic_comments, :shallow => true
   map.resources :users,
                 :member => { :show_admin => :get,
                              :clear_avatar => :post,

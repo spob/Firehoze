@@ -1,13 +1,12 @@
 class TopicsController < ApplicationController
   before_filter :require_user, :except => [ :show ]
-  # Since this controller is nested, in most cases we'll need to retrieve the sku first, so I made it a
+  # Since this controller is nested, in most cases we'll need to retrieve the group first, so I made it a
   # before filter
-  before_filter :retrieve_group, :except => [ :edit, :update, :destroy, :show ]
+  before_filter :retrieve_group, :except => [ :edit, :update, :show ]
   before_filter :retrieve_topic, :only => [ :edit, :show, :update ]
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
-  verify :method => :delete, :only => [:destroy ], :redirect_to => :home_path
 
   def new
     @topic = @group.topics.build
@@ -36,18 +35,30 @@ class TopicsController < ApplicationController
   end
 
   def update
-    if @topic.update_attributes(params[:topic])
-      flash[:notice] = t 'topic.update_success'
-      redirect_to topic_path(@topic)
-    else
-      render :action => 'edit'
+    if can_edit? @topic
+      if @topic.update_attributes(params[:topic])
+        flash[:notice] = t 'topic.update_success'
+        redirect_to topic_path(@topic)
+      else
+        render :action => 'edit'
+      end
     end
   end
 
   def show
+    can_view?(@topic)
   end
 
   private
+
+  def can_view?(topic)
+    if !topic.group.private or topic.group.includes_member?(current_user)
+      return true
+    end
+    flash[:error] = t('topic.must_be_member', :group => topic.group.name)
+    redirect_to groups_path
+    return false
+  end
 
   def retrieve_topic
     @topic = Topic.find(params[:id])

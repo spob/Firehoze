@@ -4,6 +4,12 @@ class TopicComment < Comment
   has_many :flags, :as => :flaggable, :dependent => :destroy
   after_create :update_topic
 
+  # Display the option of public versus private to the user
+  def self.show_public_private_option?(user)
+    return false unless user
+    user.is_admin? or user.is_moderator?
+  end
+
   private
 
   def update_topic

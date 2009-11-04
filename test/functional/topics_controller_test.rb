@@ -23,6 +23,7 @@ class TopicsControllerTest < ActionController::TestCase
       setup { get :new, :group_id => @group }
 
       should_assign_to :topic
+      should_assign_to :group
       should_respond_with :redirect
       should_set_the_flash_to /must be a member/
       should_redirect_to("Group show page") { group_url(@group) }
@@ -108,7 +109,8 @@ class TopicsControllerTest < ActionController::TestCase
         end
 
         fast_context "with a topic defined" do
-          setup { @topic = Factory.create(:topic) }
+          setup { @topic = Factory.create(:topic, :group => @group) }
+
           fast_context "on PUT to :update" do
             setup { put :update, :id => @topic.id, :topic => @topic.attributes }
 
