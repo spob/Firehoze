@@ -10,6 +10,8 @@ class Group < ActiveRecord::Base
   has_many :active_lessons, :source => :lesson, :through => :group_lessons,
            :conditions => { :group_lessons => { :active => true }}
   has_many :users, :through => :group_members
+  has_many :activities, :as => :trackable, :dependent => :destroy
+  
   validates_presence_of :name, :owner, :category
   validates_uniqueness_of :name
 
@@ -50,5 +52,12 @@ class Group < ActiveRecord::Base
     if user
       self.group_members.find(:first, :conditions => {:user_id => user.id, :member_type => [OWNER, MODERATOR, MEMBER]})
     end
+  end
+
+  def compile_activity
+    self.activities.create!(:actor_user => self.owner,
+                            :actee_user => nil,
+                            :acted_upon_at => self.created_at)
+    self.update_attribute(:activity_compiled_at, Time.now)
   end
 end

@@ -22,5 +22,11 @@ class Activity < ActiveRecord::Base
         comment.compile_activity
       end
     end
+
+    Group.activity_compiled_at_null(:lock => true).each do |group|
+      Group.transaction do
+        group.compile_activity
+      end
+    end
   end
 end
