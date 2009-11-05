@@ -9,6 +9,8 @@ Category: <%= h @group.category.name %>
 <br/>
 Owner: <%= link_to_profile(@group.owner) %>
 <br/>
+This group is <%= @group.private ? "by invitation only" : "open to the public" %>
+<br/>
 <br/>
 <h3>Members:</h3>
 <ul>
