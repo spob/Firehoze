@@ -48,7 +48,9 @@
     <div id="header">
       <div class="container">
         <div class="span-12 last" id="content">
-          <div id="logo"><a href="#" id="home">home</a></div>
+          <div id="logo">
+            <%= link_to_unless_current("my firehoze", home_path, :id => :home) %>
+            </div>
           <div id="top-navigation-container">
             <%= render :partial => "shared/v2/top_navigation" %>
           </div><!-- end top-navigation-container-->
