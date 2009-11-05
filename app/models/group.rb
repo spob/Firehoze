@@ -1,5 +1,5 @@
 class Group < ActiveRecord::Base
-  has_friendly_id :name
+  has_friendly_id :name, :use_slug => true
 
   belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"
   belongs_to :category
