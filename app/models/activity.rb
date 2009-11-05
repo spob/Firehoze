@@ -17,8 +17,8 @@ class Activity < ActiveRecord::Base
       end
     end
 
-    LessonComment.activity_compiled_at_null(:lock => true).each do |comment|
-      LessonComment.transaction do
+    Comment.activity_compiled_at_null(:lock => true).each do |comment|
+      Comment.transaction do
         comment.compile_activity
       end
     end

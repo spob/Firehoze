@@ -10,6 +10,13 @@ class TopicComment < Comment
     user.is_admin? or user.is_moderator?
   end
 
+  def compile_activity
+    self.activities.create!(:actor_user => self.user,
+                            :actee_user => self.topic.group.owner,
+                            :acted_upon_at => self.created_at)
+    self.update_attribute(:activity_compiled_at, Time.now)
+  end
+
   private
 
   def update_topic

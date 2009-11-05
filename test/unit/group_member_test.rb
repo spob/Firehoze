@@ -9,6 +9,11 @@ class GroupMemberTest < ActiveSupport::TestCase
       @group_member = GroupMember.create!(:user => Factory.create(:user), :group => @group, :member_type => MEMBER)
       @group_pending = GroupMember.create!(:user => Factory.create(:user), :group => @group, :member_type => PENDING)
     end
+    subject { @group_member }
+
+    should_have_many :activities
+    should_belong_to :group
+    should_belong_to :user
 
     should "verify owners and moderators can edit" do
       assert @group_member.can_edit?(@group.owner)
