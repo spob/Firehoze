@@ -1,16 +1,19 @@
 class GroupsController < ApplicationController
-  before_filter :require_user, :except => [ :show, :index ]
-  before_filter :find_group, :except => [:index, :create, :new]
+  before_filter :require_user, :except => [ :show, :list_admin ]
+  before_filter :find_group, :except => [:list_admin, :create, :new]
 
   # Admins only
-  #  permit ROLE_ADMIN, :except => [ :show, :index ]
+  permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [:list_admin]
 
   verify :method => :post, :only => [:create], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
 
+  layout :layout_for_action
 
-  def index
-    @groups = Group.list(current_user).paginate(:per_page => ROWS_PER_PAGE, :page => params[:page])
+  def list_admin
+    @search = Group.searchlogic(params[:search])
+    @groups = @search.paginate(:include => :owner,
+                               :per_page => session[:per_page] || ROWS_PER_PAGE, :page => params[:page])
   end
 
   def show
@@ -74,5 +77,13 @@ class GroupsController < ApplicationController
       return false
     end
     true
+  end
+
+  def layout_for_action
+    if %w(list_admin).include?(params[:action])
+      'admin'
+    else
+      'application'
+    end
   end
 end

@@ -37,12 +37,6 @@ class Group < ActiveRecord::Base
     set_property :delta => true
   end
 
-  def self.list user
-    owned_groups = user ? user.groups : []
-    groups = Group.public.not_a_member(user).ascend_by_name(:include => :user) + owned_groups
-    groups.sort_by{|g| g.name}
-  end
-
   def owned_by?(user)
     self.owner == user
   end

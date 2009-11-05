@@ -4,11 +4,11 @@
 <div>
   <% form_for(@search, :html => { :class => "search_box" }) do |f| %>
       <div class="span-10">
-        <%= f.label :title_like, "Title" %>
+        <%= f.label :title_like, "Title" %>:
         <%= f.text_field :title_like, :style => "width:200px;" %>
       </div>
       <div class="span-10">
-        <%= f.label :instructor_login_like, "Instructor" %>
+        <%= f.label :instructor_login_like, "Instructor" %>:
         <%= f.text_field :instructor_login_like, :style => "width:170px;" %>
       </div>
       <div class="span-6">

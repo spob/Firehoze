@@ -2,19 +2,34 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'fast_context'
 
 class GroupsControllerTest < ActionController::TestCase
-  fast_context "on GET to :index" do
-    setup { get :index }
-    should_respond_with :success
-    should_not_set_the_flash
-    should_assign_to :groups
-    should_render_template 'index'
-  end
 
   fast_context "when logged on" do
     setup do
       activate_authlogic
       @user = Factory(:user)
       UserSession.create @user
+    end
+
+    fast_context "without moderator access" do
+      context "on GET to :list_admin" do
+        setup { get :list_admin }
+
+        should_respond_with :redirect
+        should_set_the_flash_to /Permission denied/
+        should_redirect_to("home page") { lessons_path }
+      end
+    end
+
+    fast_context "as moderator" do
+      setup { @user.has_role 'moderator' }
+
+      fast_context "on GET to :list_admin" do
+        setup { get :list_admin }
+        should_respond_with :success
+        should_not_set_the_flash
+        should_assign_to :groups
+        should_render_template 'list_admin'
+      end
     end
 
     context "on GET to :new" do
