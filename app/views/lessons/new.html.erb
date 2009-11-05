@@ -3,7 +3,6 @@
 
 <%= stylesheet 'validation' %>
 <%= javascript 'jquery.simplyCountable', 'validate/jquery.validate', 'validate/lesson.validate' %>
-<%= javascript 'jquery.simplyCountable', 'validate/jquery.validate', 'validate/lesson.validate' %>
 
 <%= render :partial => 'upload_warning' %>
 <% form_for(:lesson, :url => lessons_path, :html => { :multipart => true, :id => "lesson" }) do |f| %>
