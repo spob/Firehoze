@@ -67,7 +67,7 @@ class Notifier < ActionMailer::Base
     from        APP_CONFIG[CONFIG_ADMIN_EMAIL]
 
     body       :credit => credit,
-               :url => new_lesson_review_path(credit.lesson, url_options)
+               :url => new_lesson_review_url(credit.lesson, url_options)
   end
 
   # Receipt for an order
