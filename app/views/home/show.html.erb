@@ -1,3 +1,6 @@
+<% title "my firehoze" -%>
+<% @current = 'my_firehoze' %>
+
 <% if session[:browse_category_id].nil? %>
     <%= render :partial => 'lessons/scrollable_lessons' %>
 <% end %>

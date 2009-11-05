@@ -1,6 +1,7 @@
 <% path = current_user.present? ? home_path(:reset => "y") : root_path(:reset => "y") %>
+
 <ul id="main-navigation">
-  <li class="first <%= current_page_select?(:action => :show, :controller => :home) %>"><%= link_to h(t('general.my_firehoze')), path %></li>
-  <li class="<%= current_page_select?(:action => :index, :controller => :categories) %>"><%= link_to h(t('general.lessons')), categories_path %></li>
+  <li class="first <%= page_selected(@current, 'my_firehoze') %>"><%= link_to h(t('general.my_firehoze')), path %></li>
+  <li class="<%= page_selected(@current, 'lessons') %>"><%= link_to h(t('general.lessons')), categories_path %></li>
   <li><a href="#">Groups</a></li>
 </ul><!-- main-navigation -->

@@ -160,9 +160,9 @@ module ApplicationHelper
 
      end
    end
-   
-   def current_page_select?(options)
-     if current_page?(options)
+
+   def page_selected(current_page, tab_name)
+     if current_page == tab_name
        return 'selected'
      end
    end
