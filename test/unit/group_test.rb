@@ -18,6 +18,7 @@ class GroupTest < ActiveSupport::TestCase
     should_have_many :topics
     should_have_many :active_lessons
     should_have_many :users, :through => :group_members
+    should_have_many :activities
 
     should "test owned_by?" do
       assert @group1.owned_by?(@group1.owner)

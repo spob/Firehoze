@@ -9,6 +9,7 @@ class GroupLessonTest < ActiveSupport::TestCase
     should_belong_to                 :user
     should_belong_to                 :lesson
     should_belong_to                 :group
+    should_have_many                 :activities
     should_validate_presence_of      :user, :lesson, :group
   end
 end

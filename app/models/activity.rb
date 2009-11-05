@@ -28,5 +28,11 @@ class Activity < ActiveRecord::Base
         group.compile_activity
       end
     end
+
+    GroupLesson.activity_compiled_at_null(:lock => true).each do |group_lesson|
+      GroupLesson.transaction do
+        group_lesson.compile_activity
+      end
+    end
   end
 end
