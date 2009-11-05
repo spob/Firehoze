@@ -175,3 +175,51 @@ ul#main-navigation  {
     position: absolute;
     top: 45%;
 }
+
+/* FLASH */
+.flash {
+    display: none;
+    padding:0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.flash a, .flash .h4 {
+    font-weight:bold;
+}
+
+.flash #centered {
+    padding:10px 0 0 42px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 880px;
+}
+
+/* flash notice */
+#notice {
+    border-bottom: solid 8px #58941C;
+    background-color: #DEF1CA;
+}
+
+#notice a, #notice .h4 {
+    color: #005738;
+}
+
+#notice #centered {
+    background: transparent url(images/icons/32_success.png) 0px 10px no-repeat;
+}
+
+/* flash error */
+#error {
+    border-bottom: solid 8px #EFE468;
+    background-color: #FFFFE8;
+}
+
+#error a, #error .h4 {
+    color: #6F2234;
+}
+
+#error #centered {
+    background: transparent url(images/icons/32_warning.png) 0px 10px no-repeat;
+}
