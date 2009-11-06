@@ -15,6 +15,24 @@ class GroupMemberTest < ActiveSupport::TestCase
     should_belong_to :group
     should_belong_to :user
 
+    fast_context "compile_activity" do
+      setup do
+        assert @group_moderator.activities.empty?
+        assert @group_member.activities.empty?
+        assert @group_pending.activities.empty?
+        Activity.compile
+        @group_moderator = GroupMember.find(@group_moderator.id)
+        @group_member = GroupMember.find(@group_member.id)
+        @group_pending = GroupMember.find(@group_pending.id)
+      end
+
+      should "generate activity records" do
+        assert_equal @group_moderator, @group_moderator.activities.first.trackable
+        assert_equal @group_member, @group_member.activities.first.trackable
+        assert @group_pending.activities.empty?
+      end
+    end
+
     should "verify owners and moderators can edit" do
       assert @group_member.can_edit?(@group.owner)
       assert @group_moderator.can_edit?(@group.owner)

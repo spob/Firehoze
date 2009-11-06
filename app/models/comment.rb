@@ -1,6 +1,5 @@
 class Comment < ActiveRecord::Base
   belongs_to :user
-  has_many :activities, :as => :trackable, :dependent => :destroy
   before_validation_on_create :default_values
   validates_presence_of     :user, :body, :status
   validates_inclusion_of :status, :in => %w{ active rejected }

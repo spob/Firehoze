@@ -45,5 +45,17 @@ class GroupTest < ActiveSupport::TestCase
         end
       end
     end
+
+    fast_context "compile_activity" do
+      setup do
+        assert @group1.activities.empty?
+        Activity.compile
+        @group1 = Group.find(@group1.id)
+      end
+
+      should "generate activity records" do
+        assert_equal @group1, @group1.activities.first.trackable
+      end
+    end
   end
 end

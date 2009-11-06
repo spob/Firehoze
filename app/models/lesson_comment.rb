@@ -1,5 +1,6 @@
 class LessonComment < Comment
   belongs_to :lesson
+  has_many :activities, :as => :trackable, :dependent => :destroy
   validates_presence_of :lesson
   has_many :flags, :as => :flaggable, :dependent => :destroy
 

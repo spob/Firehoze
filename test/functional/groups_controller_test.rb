@@ -66,7 +66,7 @@ class GroupsControllerTest < ActionController::TestCase
       setup { @group = Factory.create(:group, :owner => @user) }
 
       fast_context "on GET to :edit" do
-        setup { get :edit, :id => @group }
+        setup { get :edit, :id => @group.id }
 
         should_assign_to :group
         should_respond_with :success

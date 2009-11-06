@@ -15,7 +15,7 @@ class GroupMembersControllerTest < ActionController::TestCase
       fast_context "on POST to :create" do
         setup do
           assert !@group.includes_member?(@user)
-          post :create, :id => @group
+          post :create, :id => @group.id
         end
 
         should_set_the_flash_to /joined/
@@ -33,7 +33,7 @@ class GroupMembersControllerTest < ActionController::TestCase
         fast_context "on DELETE to :destroy" do
           setup do
             assert @group.includes_member?(@user)
-            delete :destroy, :id => @group
+            delete :destroy, :id => @group.id
           end
 
           should_set_the_flash_to /left/

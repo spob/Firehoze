@@ -17,7 +17,7 @@ class GroupLessonsControllerTest < ActionController::TestCase
       end
 
       fast_context "on POST to :create" do
-        setup { post :create, :id => @group, :lesson_id => @lesson }
+        setup { post :create, :id => @group.id, :lesson_id => @lesson }
 
         should_set_the_flash_to /added/
         should_assign_to :group
@@ -30,7 +30,7 @@ class GroupLessonsControllerTest < ActionController::TestCase
       end
 
       fast_context "on DELETE to :destroy" do
-        setup { delete :destroy, :id => @group, :lesson_id => @lesson }
+        setup { delete :destroy, :id => @group.id, :lesson_id => @lesson }
 
         should_set_the_flash_to /Lesson is not a member/
         should_assign_to :group
@@ -48,7 +48,7 @@ class GroupLessonsControllerTest < ActionController::TestCase
         end
 
         fast_context "on POST to :create" do
-          setup { post :create, :id => @group, :lesson_id => @lesson }
+          setup { post :create, :id => @group.id, :lesson_id => @lesson }
 
           should_set_the_flash_to /Lesson is already associated/
           should_assign_to :group
@@ -61,7 +61,7 @@ class GroupLessonsControllerTest < ActionController::TestCase
         end
 
         fast_context "on DELETE to :destroy" do
-          setup { delete :destroy, :id => @group, :lesson_id => @lesson }
+          setup { delete :destroy, :id => @group.id, :lesson_id => @lesson }
 
           should_set_the_flash_to /Lesson removed/
           should_assign_to :group
@@ -79,7 +79,7 @@ class GroupLessonsControllerTest < ActionController::TestCase
           end
 
           fast_context "on POST to :create" do
-            setup { post :create, :id => @group, :lesson_id => @lesson }
+            setup { post :create, :id => @group.id, :lesson_id => @lesson }
 
             should_set_the_flash_to /added/
             should_assign_to :group
@@ -92,7 +92,7 @@ class GroupLessonsControllerTest < ActionController::TestCase
           end
 
           fast_context "on DELETE to :destroy" do
-            setup { delete :destroy, :id => @group, :lesson_id => @lesson }
+            setup { delete :destroy, :id => @group.id, :lesson_id => @lesson }
 
             should_set_the_flash_to /Lesson is not a member/
             should_assign_to :group

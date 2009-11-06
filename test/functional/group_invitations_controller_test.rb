@@ -14,7 +14,7 @@ class GroupInvitationsControllerTest < ActionController::TestCase
       end
 
       fast_context "on GET to :new" do
-        setup { get :new, :id => @group }
+        setup { get :new, :id => @group.id }
 
         should_set_the_flash_to /You can only extend invitations to private groups/
         should_redirect_to("show group page") { group_path(@group) }
@@ -27,7 +27,7 @@ class GroupInvitationsControllerTest < ActionController::TestCase
         end
 
         fast_context "on GET to :new" do
-          setup { get :new, :id => @group }
+          setup { get :new, :id => @group.id }
 
           should_set_the_flash_to /You must be either an owner or moderator/
           should_redirect_to("show group page") { group_path(@group) }
@@ -40,7 +40,7 @@ class GroupInvitationsControllerTest < ActionController::TestCase
           end
 
           fast_context "on GET to :new" do
-            setup { get :new, :id => @group }
+            setup { get :new, :id => @group.id }
 
             should_assign_to :group
             should "set group variable" do
@@ -53,7 +53,7 @@ class GroupInvitationsControllerTest < ActionController::TestCase
           fast_context "on POST to :create via login" do
             setup do
               @to_user = Factory(:user)
-              post :create, :id => @group, :to_user => @to_user.login
+              post :create, :id => @group.id, :to_user => @to_user.login
             end
             should_set_the_flash_to /You have sent an invitation/
             should_assign_to :group
@@ -67,7 +67,7 @@ class GroupInvitationsControllerTest < ActionController::TestCase
           fast_context "on POST to :create via email" do
             setup do
               @to_user = Factory(:user)
-              post :create, :id => @group, :to_user_email => @to_user.email
+              post :create, :id => @group.id, :to_user_email => @to_user.email
             end
             should_set_the_flash_to /You have sent an invitation/
             should_assign_to :group
@@ -81,7 +81,7 @@ class GroupInvitationsControllerTest < ActionController::TestCase
             fast_context "and resend an invitation on POST to :create via email" do
               setup do
                 @to_user = Factory(:user)
-                post :create, :id => @group, :to_user_email => @to_user.email
+                post :create, :id => @group.id, :to_user_email => @to_user.email
               end
               should_set_the_flash_to /You have sent an invitation/
               should_assign_to :group

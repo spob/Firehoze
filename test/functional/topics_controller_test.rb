@@ -20,7 +20,7 @@ class TopicsControllerTest < ActionController::TestCase
     end
 
     fast_context "on GET to :new" do
-      setup { get :new, :group_id => @group }
+      setup { get :new, :group_id => @group.id }
 
       should_assign_to :topic
       should_assign_to :group
@@ -32,7 +32,7 @@ class TopicsControllerTest < ActionController::TestCase
     fast_context "on POST to :create" do
       setup do
         topic_attrs = Factory.attributes_for(:topic, :group => @group)
-        post :create, :topic => topic_attrs, :group_id => @group
+        post :create, :topic => topic_attrs, :group_id => @group.id
       end
 
       should_assign_to :group
@@ -47,7 +47,7 @@ class TopicsControllerTest < ActionController::TestCase
       end
 
       context "on GET to :new" do
-        setup { get :new, :group_id => @group }
+        setup { get :new, :group_id => @group.id }
 
         should_assign_to :topic
         should_respond_with :success
@@ -58,7 +58,7 @@ class TopicsControllerTest < ActionController::TestCase
       fast_context "on POST to :create" do
         setup do
           topic_attrs = Factory.attributes_for(:topic, :group => @group)
-          post :create, :topic => topic_attrs, :group_id => @group
+          post :create, :topic => topic_attrs, :group_id => @group.id
         end
 
         should_assign_to :group

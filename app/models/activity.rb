@@ -29,9 +29,15 @@ class Activity < ActiveRecord::Base
       end
     end
 
-    GroupLesson.activity_compiled_at_null(:lock => true).each do |group_lesson|
+    GroupLesson.active.activity_compiled_at_null(:lock => true).each do |group_lesson|
       GroupLesson.transaction do
         group_lesson.compile_activity
+      end
+    end
+
+    GroupMember.active.activity_compiled_at_null(:lock => true).each do |group_member|
+      GroupMember.transaction do
+        group_member.compile_activity
       end
     end
   end
