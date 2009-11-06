@@ -1,7 +1,9 @@
 <% path = current_user.present? ? myfirehoze_path(:reset => "y") : root_path(:reset => "y") %>
 
 <ul id="main-navigation">
-  <li class="first <%= page_selected(@current, 'my_firehoze') %>"><%= link_to h(t('general.my_firehoze')), path %></li>
-  <li class="<%= page_selected(@current, 'lessons') %>"><%= link_to h(t('general.lessons')), categories_path %></li>
+  <% if current_user  %>
+    <li class="first <%= page_selected(@current, 'my_firehoze') %>"><%= link_to h(t('general.my_firehoze')), path %></li>
+  <% end %>
+  <li class="<%= "first" unless current_user %> <%= page_selected(@current, 'lessons') %>"><%= link_to h(t('general.lessons')), categories_path %></li>
   <li><a href="#">Groups</a></li>
 </ul><!-- main-navigation -->
