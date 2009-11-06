@@ -1,45 +1,46 @@
 <% title "my firehoze" -%>
 <% @current = 'my_firehoze' %>
 
-<% if session[:browse_category_id].nil? %>
-    <%= render :partial => 'lessons/scrollable_lessons' %>
-<% end %>
 
-<%= browse_category_navigation %>
-<div class="clear append-0 span-29" id="lesson_tabs">
-  <div id="lessons_tabs">
+<div class="span-8">
+  <div id="my_stuff_tabs">
     <ul>
-      <li><%= link_to h(t('lesson.most_popular')), tabbed_lessons_path(:collection => 'most_popular') %></li>
-      <li><%= link_to h(t('lesson.highest_rated')), tabbed_lessons_path(:collection => 'highest_rated') %></li>
-      <li><%= link_to h(t('lesson.newest')), tabbed_lessons_path(:collection => 'newest') %></li>
+      <li><a href="#my_stuff_tabs-1">Lessons</a></li>
+      <li><a href="#my_stuff_tabs-2">Reviews</a></li>
+      <li><a href="#my_stuff_tabs-3">Recently browsed</a></li>
     </ul>
-    <div style="display:block"></div>
-  </div>
-</div>
 
-<div class="span-11 last">
-  <div id="user_accordion_container">
-    <div id="user_accordion">
-      <h3><a href="#"><%= h(t('lesson.lessons_you_own')) %></a></h3>
+    <div id="my_stuff_tabs-1">
+      <div id="my_stuff_tabs_nested">
+        <ul>
+          <li><a href="#my_stuff_tabs_nested-1"><%= h(t('lesson.lessons_you_own')) %></a></li>
+          <% if current_user.verified_instructor? %>
+            <li><a href="#my_stuff_tabs_nested-2"><%= t 'lesson.lessons_you_instructed' %></a></li>
+          <% end %>
+          <li><a href="#my_stuff_tabs_nested-3"><%= h(t('lesson.wishlist')) %></a></li>
+        </ul>
 
-      <div class="content">
-        <%= render :partial => "lessons/owned", :locals => { :lesson_format => :brief } %>
-      </div>
+        <div id="my_stuff_tabs_nested-1">
+          <%= render :partial => "lessons/owned", :locals => { :lesson_format => :brief } %>
+        </div>
 
-      <% if current_user.verified_instructor? %>
-          <h3><a href="#"><%= t 'lesson.lessons_you_instructed' %></a></h3>
-
-          <div class="content">
+        <% if current_user.verified_instructor? %>
+          <div id="my_stuff_tabs_nested-2">
             <%= render :partial => "lessons/instructed", :locals => { :lesson_format => :brief } %>
           </div>
-      <% end %>
+        <% end %>
 
-      <h3><a href="#"><%= h(t('lesson.wishlist')) %></a></h3>
+        <div id="my_stuff_tabs_nested-3">
+          <%= render :partial => "lessons/wishlist", :locals => { :lesson_format => :brief } %>
+        </div>
+      </div><!-- end my_stuff_tabs_nested -->
+    </div><!-- end my_stuff_tabs-1 -->
 
-      <div class="content">
-        <%= render :partial => "lessons/wishlist", :locals => { :lesson_format => :brief } %>
-      </div>
+    <div id="my_stuff_tabs-2">
+      <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+    </div>
 
+    <div id="my_stuff_tabs-3">
       <h3><a href="#"><%= h(t('lesson.recently_browsed')) %></a></h3>
 
       <div class="content">
@@ -47,8 +48,30 @@
       </div>
     </div>
   </div>
+</div>
 
-  <div class="tag_cloud prepend-top">
-    <%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts %>
+<div class="span-4 last">
+  <h3>Recent Activity</h3>
+  <p>placeholder</p>
+</div>
+
+<div class="span-12 last">
+  <h3><%= h(t('user.account_history')) %></h3>
+  <div id="account_settings_tabs">
+    <ul>
+      <li><a href="#tabs-6"><%= h(t('user.credit_history')) %></a></li>
+      <li><a href="#tabs-7"><%= h(t('user.order_history')) %></a></li>
+      <% if current_user.verified_instructor? %>
+        <li><a href="#tabs-8"><%= t'user.payment_history' %></a></li>
+      <% end %>
+    </ul>
+
+    <div id="tabs-6"><%= render :partial => "accounts/forms/credit_history" %></div>
+    <div id="tabs-7"><%= render :partial => "accounts/forms/order_history", :locals =>  { :user => @user } %></div>
+    <% if current_user.verified_instructor? %>
+      <div id="tabs-8"><%= render :partial => "accounts/forms/payment_history", :locals =>  { :user => @user } %></div>
+    <% end %>
   </div>
 </div>
+
+
