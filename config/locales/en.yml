@@ -288,6 +288,7 @@ en:
   user:
     about_me: About me
     account_details_for: Account Details for
+    account_history: Account History
     account_settings: Account Settings
     account_reg_success: Account registered
     account_update_success: Account updated

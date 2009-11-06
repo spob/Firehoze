@@ -8,12 +8,13 @@ class MyFirehozeController < ApplicationController
   before_filter :set_per_page, :only => [ :show ]
 
   def show
-    render :layout => 'application_v2'
     @user = @current_user
     if params[:reset] == "y"
       # clear category browsing
       session[:browse_category_id] = nil
     end
+
+    render :layout => 'application_v2'
   end
 
   private

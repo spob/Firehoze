@@ -27,11 +27,11 @@ $(function() {
     $('#lesson_show_tabs').tabs(
     {
         cache: true,
-        cookie: { 
+        cookie: {
             expires: 30,
             name: 'lesson_show_tabs'
         },
-        fx: { 
+        fx: {
             opacity: 'toggle',
             duration: 300
         }
@@ -40,11 +40,33 @@ $(function() {
     $('#lessons_tabs').tabs(
     {
         cache: true,
-        cookie: { 
+        cookie: {
             expires: 30,
             name: 'lessons_tabs'
         },
-        fx: { 
+        fx: {
+            opacity: 'toggle',
+            duration: 300
+        }
+    });
+
+    $('#my_stuff_tabs').tabs(
+    {
+        cache: true,
+        cookie: {
+            expires: 30,
+            name: 'my_stuff_tabs'
+        },
+        fx: {
+            opacity: 'toggle',
+            duration: 300
+        }
+    });
+
+    $('#my_stuff_tabs_nested').tabs(
+    {
+        cache: true,
+        fx: {
             opacity: 'toggle',
             duration: 300
         }
@@ -65,7 +87,7 @@ $(function() {
 
     $('#user_show_tabs').tabs(
     {
-        fx: { 
+        fx: {
             opacity: 'toggle',
             duration: 300
         }

@@ -1,4 +1,4 @@
-<% path = current_user.present? ? home_path(:reset => "y") : root_path(:reset => "y") %>
+<% path = current_user.present? ? myfirehoze_path(:reset => "y") : root_path(:reset => "y") %>
 
 <ul id="main-navigation">
   <li class="first <%= page_selected(@current, 'my_firehoze') %>"><%= link_to h(t('general.my_firehoze')), path %></li>
