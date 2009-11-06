@@ -55,7 +55,7 @@
             <% if current_user %>
               <%= link_to_unless_current("my firehoze", myfirehoze_path, :id => :home) %>
             <% else %>
-              <%= link_to_unless_current("home", home_path, :id => :home) %>
+              <%= link_to_unless_current("categories", categories_path, :id => :home) %>
             <% end %>
             </div>
           <div id="top-navigation-container">
