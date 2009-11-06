@@ -17,6 +17,7 @@ class GroupTest < ActiveSupport::TestCase
     should_have_many :lessons
     should_have_many :topics
     should_have_many :active_lessons
+    should_have_many :all_activities
     should_have_many :users, :through => :group_members
     should_have_many :activities
 

@@ -11,6 +11,7 @@ class ActivityTest < ActiveSupport::TestCase
     end
 
     should_belong_to :actor_user, :actee_user
+    should_belong_to :group
     should_validate_presence_of :actor_user, :acted_upon_at
   end
 

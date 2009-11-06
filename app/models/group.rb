@@ -11,6 +11,7 @@ class Group < ActiveRecord::Base
            :conditions => { :group_lessons => { :active => true }}
   has_many :users, :through => :group_members
   has_many :activities, :as => :trackable, :dependent => :destroy
+  has_many :all_activities, :class_name => 'Activity', :foreign_key => "group_id"
   
   validates_presence_of :name, :owner, :category
   validates_uniqueness_of :name
@@ -57,7 +58,8 @@ class Group < ActiveRecord::Base
   def compile_activity
     self.activities.create!(:actor_user => self.owner,
                             :actee_user => nil,
-                            :acted_upon_at => self.created_at)
+                            :acted_upon_at => self.created_at,
+                            :group => self)
     self.update_attribute(:activity_compiled_at, Time.now)
   end
 end
