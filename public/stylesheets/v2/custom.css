@@ -18,7 +18,7 @@ div {
     background-image:url('/stylesheets/v2/images/header/header-bg-tile-tall.jpg');
     background-repeat:repeat-x;
 }
-#header #content {
+#header .content {
     position:relative;
     background-repeat:no-repeat;
     height:77px;
@@ -159,7 +159,7 @@ ul#main-navigation  {
     color: #999;
     background-image:url('/stylesheets/v2/images/footer/footer-bg-tile-tall.png');
 }
-#footer #content {
+#footer .content {
     height:320px;
     background-image:url('/stylesheets/v2/images/footer/footer-watermark.png');
     background-repeat:no-repeat;
