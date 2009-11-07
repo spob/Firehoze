@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   has_many :credits, :order => 'id', :dependent => :destroy
   has_many :group_members, :dependent => :destroy
   has_many :groups, :through => :group_members
+  has_many :group_ids, :select => 'group_id', :class_name => 'GroupMember'
   has_many :moderated_groups, :source => :group, :through => :group_members,
            :conditions => { :group_members => { :member_type => [ OWNER, MODERATOR ] } }
   has_many :gift_certificates, :dependent => :destroy

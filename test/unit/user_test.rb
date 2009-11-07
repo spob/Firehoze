@@ -45,6 +45,7 @@ class UserTest < ActiveSupport::TestCase
     should_have_many                 :user_logons
     should_have_many                 :group_members
     should_have_many                 :groups
+    should_have_many                 :group_ids
     should_have_many                 :moderated_groups
     should_have_many                 :helpfuls
     should_have_many                 :lesson_visits

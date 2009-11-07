@@ -4,6 +4,13 @@ class Activity < ActiveRecord::Base
   belongs_to :actor_user, :class_name => "User", :foreign_key => "actor_user_id"
   belongs_to :actee_user, :class_name => "User", :foreign_key => "actee_user_id"
   validates_presence_of :actor_user, :acted_upon_at
+  named_scope :visible_to_user,
+              lambda{ |user| 
+              {       :include => [:actor_user, :group, :trackable],
+                      :joins => 'LEFT OUTER JOIN groups ON groups.id = activities.group_id',
+               :conditions => ['(activities.group_id IS NULL OR groups.private = 0 OR activities.group_id in (?))',
+                               (user ? user.group_ids.collect(&:group_id) : [] ) + [-1]]
+              } }   
 
   def self.compile
     Lesson.ready.activity_compiled_at_null(:lock => true).each do |lesson|
