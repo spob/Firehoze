@@ -23,6 +23,7 @@
     <%= stylesheet_link_tag 'v2/top_navigation', :media => "screen, projection" %>
     <%= stylesheet_link_tag 'jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" -%>
     <%= stylesheet_link_tag 'tables', :media => "screen, projection" %>
+    <%= stylesheet_link_tag 'v2/sub_navigation', :media => "screen, projection" %>
 
     <!--[if IE]><%= stylesheet_link_tag 'v2/blueprint/ie', :media => "screen, projection" %><![endif]-->
     <!--[if IE 8]><%= stylesheet_link_tag 'v2/ie', :media => "screen, projection" %><![endif]-->
@@ -73,7 +74,7 @@
 
     <!-- start main_content -->
     <div id="shadowbox-middle">
-      <div class="container showgrid"> <!-- showgrid -->
+      <div class="container"> <!-- showgrid -->
         <div class="clear span-12 last">
           <%= yield -%>
         </div>
