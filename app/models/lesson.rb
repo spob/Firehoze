@@ -293,7 +293,14 @@ END
   def compile_activity
     self.activities.create!(:actor_user => self.instructor,
                             :actee_user => nil,
-                            :acted_upon_at => self.created_at)
+                            :acted_upon_at => self.created_at,
+                            :activity_string => 'lesson.activity',
+                            :activity_object_id => self.id,
+                            :activity_object_human_identifier => self.title,
+                            :activity_object_class => self.class.to_s,
+                            :secondary_activity_object_id => nil,
+                            :secondary_activity_object_human_identifier => nil,
+                            :secondary_activity_object_class => nil)
     self.update_attribute(:activity_compiled_at, Time.now)
   end
 
@@ -303,18 +310,6 @@ END
               :name => 'Notify Follower',
               :job => "Lesson.notify_follower(#{user.id}, #{self.id})")
     end
-  end
-
-  def activity_string
-    'lesson.activity'
-  end
-
-  def activity_object
-    self
-  end
-
-  def activity_object_name
-    self.title
   end
 
   def self.notify_follower to_user_id, lesson_id

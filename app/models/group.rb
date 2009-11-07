@@ -63,19 +63,11 @@ class Group < ActiveRecord::Base
     self.activities.create!(:actor_user => self.owner,
                             :actee_user => nil,
                             :acted_upon_at => self.created_at,
-                            :group => self)
+                            :group => self,
+                            :activity_string => "group.activity",
+                            :activity_object_id => self.id,
+                            :activity_object_human_identifier => self.name,
+                            :activity_object_class => self.class.to_s)
     self.update_attribute(:activity_compiled_at, Time.now)
-  end
-
-  def activity_string
-    'group.activity'
-  end
-
-  def activity_object
-    self
-  end
-
-  def activity_object_name
-    self.name
   end
 end

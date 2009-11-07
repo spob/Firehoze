@@ -16,19 +16,14 @@ class GroupMember < ActiveRecord::Base
     self.activities.create!(:actor_user => self.user,
                             :actee_user => self.group.owner,
                             :acted_upon_at => self.created_at,
-                            :group => self.group)
+                            :group => self.group,
+                            :activity_string => "group_member.activity",
+                            :activity_object_id => self.group.id,
+                            :activity_object_human_identifier => self.group.name,
+                            :activity_object_class => self.group.class.to_s,
+                            :secondary_activity_object_id => nil,
+                            :secondary_activity_object_human_identifier => nil,
+                            :secondary_activity_object_class => nil)
     self.update_attribute(:activity_compiled_at, Time.now)
-  end
-
-  def activity_string
-    'group_member.activity'
-  end
-
-  def activity_object
-    self.group
-  end
-
-  def activity_object_name
-    self.group.name
   end
 end

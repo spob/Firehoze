@@ -14,28 +14,15 @@ class TopicComment < Comment
   def compile_activity
     self.activities.create!(:actor_user => self.user,
                             :actee_user => self.topic.group.owner,
-                            :acted_upon_at => self.created_at)
+                            :acted_upon_at => self.created_at,
+                            :activity_string => 'topic_comment.activity',
+                            :activity_object_id => self.topic.id,
+                            :activity_object_class => self.topic.class.to_s,
+                            :activity_object_human_identifier => self.topic.title,
+                            :secondary_activity_object_id => self.topic.group.id,
+                            :secondary_activity_object_human_identifier => self.topic.group.name,
+                            :secondary_activity_object_class => self.topic.group.class.to_s)
     self.update_attribute(:activity_compiled_at, Time.now)
-  end
-
-  def activity_string
-    'topic_comment.activity'
-  end
-
-  def activity_object
-    self.topic
-  end
-
-  def activity_object_name
-    self.topic.title
-  end
-
-  def secondary_activity_object
-    self.topic.group
-  end
-
-  def secondary_activity_object_name
-    self.topic.group.name
   end
 
   private

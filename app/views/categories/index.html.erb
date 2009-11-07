@@ -12,7 +12,8 @@ I'm just putting activities here because I need a place to put it...it should go
 
 <!--You'd push the following into a controller with paginate (which will help performance), but this shows basically how to do it'-->
 <%                                                                                                                               
- Activity.visible_to_user(current_user).descend_by_id.each do |activity| %>
+ Activity.visible_to_user(current_user).descend_by_acted_upon_at.each do |activity| %>
+    <%= activity.id %>
     <%= l(activity.acted_upon_at) %>:
     <%= show_activity_str activity %>
     <br/>
