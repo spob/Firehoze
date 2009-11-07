@@ -7,7 +7,11 @@ class ActivityTest < ActiveSupport::TestCase
       @lesson = Factory.create(:lesson)
       @lesson.activities.create!(:actor_user => Factory.create(:user),
                                  :actee_user => Factory.create(:user),
-                                 :acted_upon_at => 1.days.ago)
+                                 :acted_upon_at => 1.days.ago,
+                                 :activity_string => "lesson.activity",
+                                 :activity_object_id => Factory.create(:lesson).id,
+                                 :activity_object_class => "Lesson",
+                                 :activity_object_human_identifier => "Some lesson title")
     end
 
     should_belong_to :actor_user, :actee_user
