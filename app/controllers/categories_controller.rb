@@ -53,9 +53,6 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.root.ascend_by_sort_value
-    # Rich...I commented this out to get the unit tests to work. I'm not sure...feel free to uncomment
-    # it when you need to fix the behavior
-    # render :layout => 'application_v2'
   end
 
   def show
@@ -105,7 +102,9 @@ class CategoriesController < ApplicationController
 
   def layout_for_action
     if %w(list_admin edit).include?(params[:action])
-      'admin'
+      'admin'    
+    elsif %w(show).include?(params[:action])
+      'application_v2'
     else
       'application'
     end
