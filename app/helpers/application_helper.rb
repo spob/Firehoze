@@ -61,7 +61,7 @@ module ApplicationHelper
   end
 
   def link_to_profile(user)
-    if current_user.try("is_moderator?") or current_user.try("is_admin?") or user.try("show_real_name")
+    if current_user.try("is_a_moderator?") or current_user.try("is_an_admin?") or user.try("show_real_name")
       link_to_unless_current "#{h user.full_name} (#{h user.login})", user_path(user)
     else
       link_to_unless_current h(user.name_or_username), user_path(user)
@@ -145,7 +145,7 @@ module ApplicationHelper
       secondary_url = link_to(activity.secondary_activity_object_human_identifier, secondary_path)
     end
     t(activity.activity_string,
-      :user => activity.actor_user.login, #link_to_profile(activity.actor_user),     << big performance hit
+      :user => link_to_profile(activity.actor_user),     
       :trackable => link_to(activity.activity_object_human_identifier, path),
       :secondary_trackable => secondary_url)
   end

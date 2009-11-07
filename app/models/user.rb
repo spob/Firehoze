@@ -1,6 +1,8 @@
 # As its name implies, a user is a authorized user of the site. It contains information about the user
 # (for example, first and last name), their encrypted password, etc.
 class User < ActiveRecord::Base
+  extend ActiveSupport::Memoizable
+  
   has_friendly_id :login
 
   # Ajaxful-rating plugin
@@ -131,6 +133,18 @@ class User < ActiveRecord::Base
     regex2 = Regexp.new("https")
     url.gsub(regex, "//" + APP_CONFIG[CONFIG_CDN_OUTPUT_SERVER]).gsub(regex2, "http")
   end
+
+  # This method is a decorator and it's sole purpose is to enable memoization
+  def is_a_moderator?
+    self.is_moderator?
+  end
+  memoize :is_a_moderator?
+
+  # This method is a decorator and it's sole purpose is to enable memoization 
+  def is_an_admin?
+    self.is_admin?
+  end
+  memoize :is_an_admin?
 
   def self.supported_languages
     LANGUAGES
