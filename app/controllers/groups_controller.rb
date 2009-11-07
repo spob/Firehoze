@@ -31,7 +31,8 @@ class GroupsController < ApplicationController
     @group.owner = current_user
     Group.transaction do
       if @group.save
-        @group_member = GroupMember.create!(:user => current_user, :group => @group, :member_type => OWNER)
+        @group_member = GroupMember.create!(:user => current_user, :group => @group, :member_type => OWNER,
+                                            :activity_compiled_at => Time.now)
         flash[:notice] = t('group.create_success')
         redirect_to group_path(@group)
       else

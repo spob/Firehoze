@@ -137,6 +137,19 @@ module ApplicationHelper
     buf
   end
 
+  def show_activity_str activity
+    path = eval "#{activity.trackable.activity_object.class.to_s.underscore}_path(#{activity.trackable.activity_object.id})"
+    secondary_url = nil
+    if activity.trackable.public_methods.include? 'secondary_activity_object'
+      secondary_path = eval "#{activity.trackable.secondary_activity_object.class.to_s.underscore}_path(#{activity.trackable.secondary_activity_object.id})"
+      secondary_url = link_to(activity.trackable.secondary_activity_object_name, secondary_path)
+    end
+    t(activity.trackable.activity_string,
+      :user => link_to_profile(activity.actor_user),
+      :trackable => link_to(activity.trackable.activity_object_name, path),
+      :secondary_trackable => secondary_url)
+  end
+
   private
 
   def link_to_command per_page, refresh_url, append_space=true

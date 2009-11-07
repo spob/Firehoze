@@ -305,6 +305,18 @@ END
     end
   end
 
+  def activity_string
+    'lesson.activity'
+  end
+
+  def activity_object
+    self
+  end
+
+  def activity_object_name
+    self.title
+  end
+
   def self.notify_follower to_user_id, lesson_id
     to_user = User.find(to_user_id)
     lesson = Lesson.find(lesson_id)

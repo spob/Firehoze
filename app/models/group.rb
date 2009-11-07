@@ -55,11 +55,27 @@ class Group < ActiveRecord::Base
     end
   end
 
+  def can_see?(user)
+    !self.private or includes_member?(user)
+  end
+
   def compile_activity
     self.activities.create!(:actor_user => self.owner,
                             :actee_user => nil,
                             :acted_upon_at => self.created_at,
                             :group => self)
     self.update_attribute(:activity_compiled_at, Time.now)
+  end
+
+  def activity_string
+    'group.activity'
+  end
+
+  def activity_object
+    self
+  end
+
+  def activity_object_name
+    self.name
   end
 end

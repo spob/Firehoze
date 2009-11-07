@@ -18,6 +18,26 @@ class TopicComment < Comment
     self.update_attribute(:activity_compiled_at, Time.now)
   end
 
+  def activity_string
+    'topic_comment.activity'
+  end
+
+  def activity_object
+    self.topic
+  end
+
+  def activity_object_name
+    self.topic.title
+  end
+
+  def secondary_activity_object
+    self.topic.group
+  end
+
+  def secondary_activity_object_name
+    self.topic.group.name
+  end
+
   private
 
   def update_topic

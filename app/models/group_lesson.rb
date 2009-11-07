@@ -14,4 +14,24 @@ class GroupLesson < ActiveRecord::Base
                             :group => self.group)
     self.update_attribute(:activity_compiled_at, Time.now)
   end
+
+  def activity_string
+    'group_lesson.activity'
+  end
+
+  def activity_object
+    self.group
+  end
+
+  def activity_object_name
+    self.group.name
+  end
+
+  def secondary_activity_object
+    self.lesson
+  end
+
+  def secondary_activity_object_name
+    self.lesson.title
+  end
 end

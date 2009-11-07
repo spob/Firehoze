@@ -19,4 +19,16 @@ class GroupMember < ActiveRecord::Base
                             :group => self.group)
     self.update_attribute(:activity_compiled_at, Time.now)
   end
+
+  def activity_string
+    'group_member.activity'
+  end
+
+  def activity_object
+    self.group
+  end
+
+  def activity_object_name
+    self.group.name
+  end
 end

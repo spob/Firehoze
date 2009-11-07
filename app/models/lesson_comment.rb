@@ -45,4 +45,16 @@ class LessonComment < Comment
                             :acted_upon_at => self.created_at)
     self.update_attribute(:activity_compiled_at, Time.now)
   end
+
+  def activity_string
+    'lesson_comment.activity'
+  end
+
+  def activity_object
+    self.lesson
+  end
+
+  def activity_object_name
+    self.lesson.title
+  end
 end
