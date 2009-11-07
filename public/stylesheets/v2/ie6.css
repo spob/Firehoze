@@ -1,12 +1,28 @@
+#top-navigation-container {
+    top:-18px;
+    right:0;
+}
+
 #shadowbox-middle {
-    margin-top: -4px;
+    margin-top: -6px;
 }
 
 #main-navigation li.selected.first a,
 #main-navigation li.selected.first a:hover {
-    background: transparent
+/*border:solid 1px blue;*/
+/*	margin-top:-1px;*/
+/*	padding-top:=;*/
+/*height:34px;*/
+
 }
 
-#top-navigation-container {
-    right:0;
+#main-navigation li.selected.first
+{
+border:solid 1px #fff;
+/*    padding-top: -5px;*/
+/*		height:38px;*/
+/*border: 0;*/
+padding:0;
+margin:0;
+height:35px;
 }

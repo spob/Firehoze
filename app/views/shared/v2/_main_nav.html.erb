@@ -1,9 +1,31 @@
 <% path = current_user.present? ? myfirehoze_path(:reset => "y") : root_path(:reset => "y") %>
 
+<%
+navigation = [
+  [:my_firehoze, {
+      :name => 'My Firehoze',
+      :location =>  myfirehoze_path(:reset => "y")
+    }],
+  [:lessons, {
+      :name => 'Lessons',
+      :location => categories_path
+    }],
+  [:groups, {
+      :name => 'Groups',
+      :location => ""
+    }],
+]
+%>
+<% navigation.shift unless current_user.present? %>
+
 <ul id="main-navigation">
-  <% if current_user  %>
-    <li class="first <%= page_selected(@current, 'my_firehoze') %>"><%= link_to h(t('general.my_firehoze')), path %></li>
+  <% navigation.each do |key, item| %>
+    <% if navigation.first[0] == key and @current.to_s == key.to_s %>
+      <li id="first"></li>
+      <li <%= 'class="selected first"' if @current.to_s == key.to_s %>><%= link_to item[:name], item[:location] %></li>
+    <% else %>
+      <li <%= 'class="selected"' if @current.to_s == key.to_s %>><%= link_to item[:name], item[:location] %></li>
+    <% end %>
   <% end %>
-  <li class="<%= "first" unless current_user %> <%= page_selected(@current, 'lessons') %>"><%= link_to h(t('general.lessons')), categories_path %></li>
-  <li><a href="#">Groups</a></li>
-</ul><!-- main-navigation -->
+</ul>
+
