@@ -108,8 +108,8 @@ ul#main-navigation  {
 
 #main-navigation li#first {
     background: url('/stylesheets/v2/images/main_navigation/main-navigation-li-first.png') no-repeat left;
-		width:19px;
-		height:40px;
+    width:19px;
+    height:40px;
 }
 #main-navigation li.selected {
     background-color: #fff;
@@ -181,6 +181,7 @@ ul#main-navigation  {
 
 /* FLASH */
 .flash {
+    text-align:left;
     display: none;
     padding:0;
     margin-left: auto;
