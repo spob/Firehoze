@@ -7,22 +7,10 @@
     margin-top: -6px;
 }
 
-#main-navigation li.selected.first a,
-#main-navigation li.selected.first a:hover {
-/*border:solid 1px blue;*/
-/*	margin-top:-1px;*/
-/*	padding-top:=;*/
-/*height:34px;*/
-
-}
-
 #main-navigation li.selected.first
 {
-border:solid 1px #fff;
-/*    padding-top: -5px;*/
-/*		height:38px;*/
-/*border: 0;*/
-padding:0;
-margin:0;
-height:35px;
+    border:solid 1px #fff;
+    padding:0;
+    margin:0;
+    height:35px;
 }
