@@ -27,9 +27,9 @@ module GroupsHelper
   def show_promote_demote_link(group_member)
     if group_member.group.owned_by?(current_user)
       if group_member.member_type == MEMBER
-      link_to "Promote to Moderator", promote_group_member_path(group_member), :method => :post
+        link_to "Promote to Moderator", promote_group_member_path(group_member), :method => :post
       elsif group_member.member_type == MODERATOR
-      link_to "Demote", demote_group_member_path(group_member), :method => :post
+        link_to "Demote", demote_group_member_path(group_member), :method => :post
       end
     end
   end
@@ -37,6 +37,18 @@ module GroupsHelper
   def show_edit_link(group)
     if group.owned_by?(current_user)
       link_to "Edit", edit_group_path(group)
+    end
+  end
+
+  def show_membership_text(group)
+    if current_user
+      member = group.includes_member?(current_user)
+      if member.nil?
+        "You are not a member of this group"
+      elsif member.member_type == MEMBER or member.member_type == MODERATOR
+        member_type = t("group_member.#{member.member_type.downcase}")
+        "You are a #{member_type.downcase} of this group"
+      end
     end
   end
 
