@@ -57,7 +57,6 @@ ActionController::Routing::Routes.draw do |map|
                         :ajaxed => :get,
                         :list_admin => :get,
                         :tagged_with => :get,
-                        :search => :get,
                         :advanced_search => :get,
                         :perform_advanced_search => :get
                 }
@@ -85,6 +84,7 @@ ActionController::Routing::Routes.draw do |map|
                 :only => [:index, :show, :show_unpaid, :create]
   map.resources :per_pages, :collection => { :set => :post }, :only => [ :set ]
   map.resources :periodic_jobs, :member => { :rerun => :post }
+  map.resources :searches, :only => [ :index ]
   map.resources :store, :only => :show
   map.resources :skus, :has_many => :discounts, :shallow => true
   map.resource :user_session, :only => [ :create, :destroy, :new ]

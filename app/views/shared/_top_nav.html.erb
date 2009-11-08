@@ -13,7 +13,7 @@
   <% end %>
 </ul>
 
-<% form_tag search_lessons_path, :method => :get do %>
+<% form_tag searches_path, :method => :get do %>
     <%= text_field_tag :search_lesson_criteria, params[:search_lesson_criteria] %>
     <%= submit_tag "Search", :name => nil %>
     <%= link_to "Advanced Search", advanced_search_lessons_path %>
