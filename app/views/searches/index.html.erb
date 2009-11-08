@@ -1,4 +1,4 @@
-<% title "Search: &quot;#{@search_lesson_criteria}&quot;" -%>
+<% title "Search: &quot;#{@search_criteria}&quot;" -%>
 
 <div class="clear append-0 span-29" id="tagged_with_tabs">
   <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
@@ -10,3 +10,18 @@
     </div>
   </div>
 </div>
+<h3>Public Groups</h3> 
+<table>
+  <tr>
+    <th colspan="2">
+      Group
+    </th>
+    <th>
+      Relationship
+    </th>
+    <th>
+      Category
+    </th>
+  </tr>
+  <%= render :partial => 'categories/group', :collection => @groups %>
+</table>

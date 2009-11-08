@@ -8,8 +8,8 @@ class Activity < ActiveRecord::Base
               lambda{ |user| 
               {       :include => [:actor_user, :group],
                    #   :joins => 'LEFT OUTER JOIN groups ON groups.id = activities.group_id',
-               :conditions => ['(activities.group_id IS NULL OR groups.private = 0 OR activities.group_id in (?))',
-                               (user ? user.group_ids.collect(&:group_id) : [] ) + [-1]]
+               :conditions => ['(activities.group_id IS NULL OR groups.private = ? OR activities.group_id in (?))',
+                               false, (user ? user.group_ids.collect(&:group_id) : [] ) + [-1]]
               } }   
 
   def self.compile

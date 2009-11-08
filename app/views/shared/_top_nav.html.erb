@@ -14,7 +14,7 @@
 </ul>
 
 <% form_tag searches_path, :method => :get do %>
-    <%= text_field_tag :search_lesson_criteria, params[:search_lesson_criteria] %>
+    <%= text_field_tag :search_criteria, params[:search_criteria] %>
     <%= submit_tag "Search", :name => nil %>
     <%= link_to "Advanced Search", advanced_search_lessons_path %>
 <% end %>

@@ -35,6 +35,8 @@ class Group < ActiveRecord::Base
   # otherwise any references to them for fields and attributes will not work.
   define_index do
     indexes name
+    indexes :id
+    indexes private
     indexes description
     has category(:id), :as => :category_ids
     set_property :delta => true

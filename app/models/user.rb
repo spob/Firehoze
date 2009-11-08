@@ -25,6 +25,8 @@ class User < ActiveRecord::Base
   has_many :group_ids, :select => 'group_id', :class_name => 'GroupMember'
   has_many :moderated_groups, :source => :group, :through => :group_members,
            :conditions => { :group_members => { :member_type => [ OWNER, MODERATOR ] } }
+  has_many :member_groups, :source => :group, :through => :group_members,
+           :conditions => { :group_members => { :member_type => [ OWNER, MODERATOR, MEMBER ] } }
   has_many :gift_certificates, :dependent => :destroy
   has_many :orders, :order => 'id DESC', :dependent => :destroy
   has_many :visited_lessons, :source => :lesson, :through => :lesson_visits, :order => 'visited_at DESC'
