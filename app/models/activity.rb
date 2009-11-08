@@ -6,8 +6,8 @@ class Activity < ActiveRecord::Base
   validates_presence_of :actor_user, :acted_upon_at
   named_scope :visible_to_user,
               lambda{ |user| 
-              {       :include => [:actor_user, :group, :trackable],
-                      :joins => 'LEFT OUTER JOIN groups ON groups.id = activities.group_id',
+              {       :include => [:actor_user, :group],
+                   #   :joins => 'LEFT OUTER JOIN groups ON groups.id = activities.group_id',
                :conditions => ['(activities.group_id IS NULL OR groups.private = 0 OR activities.group_id in (?))',
                                (user ? user.group_ids.collect(&:group_id) : [] ) + [-1]]
               } }   

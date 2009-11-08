@@ -15,6 +15,7 @@ class TopicComment < Comment
     self.activities.create!(:actor_user => self.user,
                             :actee_user => self.topic.group.owner,
                             :acted_upon_at => self.created_at,
+                            :group => self.topic.group,
                             :activity_string => 'topic_comment.activity',
                             :activity_object_id => self.topic.id,
                             :activity_object_class => self.topic.class.to_s,

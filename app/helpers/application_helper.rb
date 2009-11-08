@@ -142,11 +142,11 @@ module ApplicationHelper
     secondary_url = nil
     if activity.secondary_activity_object_id
       secondary_path = eval "#{activity.secondary_activity_object_class.underscore}_path(#{activity.secondary_activity_object_id})"
-      secondary_url = link_to(activity.secondary_activity_object_human_identifier, secondary_path)
+      secondary_url = "<b>" + link_to(activity.secondary_activity_object_human_identifier, secondary_path) + "</b>"
     end
     t(activity.activity_string,
       :user => link_to_profile(activity.actor_user),     
-      :trackable => link_to(activity.activity_object_human_identifier, path),
+      :trackable => "<b>" + link_to(activity.activity_object_human_identifier, path) + "</b>",
       :secondary_trackable => secondary_url)
   end
 

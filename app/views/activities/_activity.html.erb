@@ -1,0 +1,10 @@
+<tr>
+  <td>
+    <div id="avatar"><%= avatar_tag activity.actor_user, :size => :small %></div>
+  </td>
+  <td>
+    <%= h(time_ago_in_words(activity.acted_upon_at)) %> ago
+    <br/>
+    <%= show_activity_str activity %>
+  </td>
+</tr>

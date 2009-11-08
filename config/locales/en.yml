@@ -124,10 +124,10 @@ en:
     cannot_remove: You do not have permissions to remove that user from the group
     remove_success: You have removed {{user}} from the group
     promote_success: You have promoted {{user}} to the role of moderator for this group
-    demote_success: The user {{user}} is no longer a moderator for this group
+    demote_success: The <b>{{user}}</b> is no longer a moderator for this group
     welcome: Welcome to the {{group}} group!
     no_thanks: Okay, thanks. You have not joined the group
-    activity: User {{user}} created the group {{trackable}}
+    activity: <b>{{user}}</b> created the group {{trackable}}
 
   group_invitation:
     invitation_no_longer_valid: Invitation no longer valid
@@ -140,10 +140,10 @@ en:
     already_added: Lesson is already associated to this group
     lesson_removed: Lesson removed from the {{group}}} group
     does_not_belong: Lesson is not a member of the {{group}} group
-    activity: User {{user}} added the lesson {{secondary_trackable}} to the group {{trackable}}
+    activity: <b>{{user}}</b> added the lesson {{secondary_trackable}} to the group {{trackable}}
 
   group_member:
-    activity: User {{user}} joined the group {{trackable}}
+    activity: <b>{{user}}</b> joined the group {{trackable}}
 
   helpful:
     cant_feedback_own: You cannot provide feedback on a review you have written
@@ -153,7 +153,7 @@ en:
   instructor_follows:
     create_success: Instructor {{instructor}} is being followed
     delete_success: Instructor {{instructor}} is no longer being followed
-    not_an_instructor: The user {{user}} is not an instructor
+    not_an_instructor: The <b>{{user}}</b> is not an instructor
 
   lesson:
     access_message: You do not have access to edit this lesson
@@ -204,7 +204,7 @@ en:
     create_success: Your lesson comment has been recorded
     cannot_edit: You do not have rights to edit this comment
     update_success: Lesson comment updated successfully
-    activity: User {{user}} commented on the lesson {{trackable}}
+    activity: <b>{{user}}</b> commented on the lesson {{trackable}}
 
   line_item:
     updated_success: Updated line item
@@ -270,7 +270,7 @@ en:
     must_view_to_review: You can only review videos which you own
     update_success: Review updated
     add_your_review: Add Your Review of the Lesson
-    activity: User {{user}} wrote a review for the lesson {{trackable}}
+    activity: <b>{{user}}</b> wrote a review for the lesson {{trackable}}
 
   sku:
     create_success: SKU created
@@ -286,7 +286,7 @@ en:
 
   topic_comment:
     create_success: Your topic comment has been recorded
-    activity: User {{user}} added a comment to the discussion topic {{trackable}} within the group {{secondary_trackable}}
+    activity: <b>{{user}}</b> added a comment to the discussion topic {{trackable}} within the group {{secondary_trackable}}
   
   login:
     login_success: Login successful

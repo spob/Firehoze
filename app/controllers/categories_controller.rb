@@ -53,6 +53,8 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.root.ascend_by_sort_value
+    # This is only here temporarily ... should eventually be moved to the myFirehoze controller
+    @activities = Activity.visible_to_user(current_user).descend_by_acted_upon_at.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
   end
 
   def show

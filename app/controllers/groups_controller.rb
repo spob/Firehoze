@@ -19,6 +19,7 @@ class GroupsController < ApplicationController
   def show
     if can_view?(@group)
       @topics = @group.topics.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
+      @activities = Activity.group_id_equals(@group.id).descend_by_acted_upon_at.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
     end
   end
 
@@ -67,7 +68,7 @@ class GroupsController < ApplicationController
       return true
     end
     flash[:error] = t('topic.must_be_member', :group => group.name)
-    redirect_to groups_path
+    redirect_to home_path
     return false
   end
 

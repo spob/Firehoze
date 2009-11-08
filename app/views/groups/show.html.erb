@@ -44,3 +44,14 @@ This group is <%= @group.private ? "by invitation only" : "open to the public" %
   <%= render @topics %>
   <%= will_paginate @topics %>
 </table>
+
+<h3>Activity</h3>
+<table>
+  <tr>
+    <th colspan="2">
+      Recent Activity
+    </th>
+  </tr>
+  <%= render @activities %>
+</table>
+<%= will_paginate @activities %>

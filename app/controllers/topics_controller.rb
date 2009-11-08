@@ -56,7 +56,7 @@ class TopicsController < ApplicationController
       return true
     end
     flash[:error] = t('topic.must_be_member', :group => topic.group.name)
-    redirect_to groups_path
+    redirect_to home_path
     return false
   end
 
