@@ -46,6 +46,10 @@ This group is <%= @group.private ? "by invitation only" : "open to the public" %
 </table>
 
 <h3>Activity</h3>
+View Activity:
+<%= link_to_unless session[:browse_activities_by] == 'ALL', 'by everybody', group_path(@group) %> |
+<%= link_to_unless session[:browse_activities_by] == 'BY_ME', 'by me', group_path(@group, :browse_activities_by => 'BY_ME') %> |
+<%= link_to_unless session[:browse_activities_by] == 'ON_ME', 'on me', group_path(@group, :browse_activities_by => 'ON_ME') %>
 <table>
   <tr>
     <th colspan="2">
