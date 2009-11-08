@@ -14,6 +14,10 @@ div {
     /*text-align:justify*/
 }
 
+.box { 
+  background: #EDEDED; 
+}
+
 /* HEADER */
 #header {
     height:145px;

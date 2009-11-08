@@ -82,7 +82,7 @@ a.button:active, ul.buttons li a:focus {outline: none}
 .sub-sub-navigation-panes {
     padding:16px;
     /*    margin:0 0 34px 1px;*/
-    border:solid 1px #D6D6D6;
+/*    border:solid 1px #D6D6D6;*/
 }
 
 .sub-sub-navigation ul.links li {
@@ -97,7 +97,7 @@ a.button:active, ul.buttons li a:focus {outline: none}
 
 .sub-sub-navigation ul.links li a.current {
     font-weight:bold;
-    border-bottom:solid 4px #ccc;
+/*    border-bottom:solid 4px #ccc;*/
     color: inherit;
 }
 

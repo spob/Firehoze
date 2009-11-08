@@ -11,4 +11,9 @@ $(function() {
     $('#side-box').cornerz({
         radius: 6
     });
+
+    $('.box').cornerz({
+        radius: 8
+    });
+
 });

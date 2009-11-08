@@ -2,6 +2,24 @@
 <% @current = 'my_firehoze' %>
 <%= javascript 'v2/jquery.tools.min', 'v2/tabs'  %>
 
+
+<div class="span-12 last" style="border-bottom: dotted 1px #ccc; margin: 16px 0 34px 0;">
+  <div class="span-8">
+    <h3>Welcome Home, <%= @current_user.full_name %></h3>
+  </div>
+
+  <div class="span-4 last">
+    <h4>Latest News</h4>
+    <div class="box">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </div>
+  </div>
+</div>
+
+
+<div class="span-12 last" style="border-bottom: dotted 1px #ccc; margin: 0 0 16px 0;">
+  <h4>My Stuff</h4>
+</div>
 <div id="my_stuff" class="span-8">
   <div class="sub-navigation">
     <ul class="buttons">
@@ -19,7 +37,7 @@
         <ul class="links">
           <li><a href="#">Owned</a></li>
           <% if current_user.verified_instructor? %>
-            <li><a href="#">Taught</a></li>
+            <li style="border-left:1px solid #999;border-right:1px solid #999;"><a href="#">Taught</a></li>
           <% end %>
           <li><a href="#"><%= h(t('lesson.wishlist')) %></a></li>
         </ul>
@@ -45,8 +63,15 @@
 </div>
 
 <div class="span-4 last">
-  <h3>Recent Activity</h3>
-  <p>placeholder</p>
+  <h4>Recent Activity</h4>
+  <div class="box">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+  </div>
+
 </div>
 
 <div id="account_history" class="span-8 last">
