@@ -4,7 +4,7 @@ $(function() {
         effect: 'fade'
     });
 
-    $(".sub-sub-navigation ul.buttons").tabs("div.sub-sub-navigation-panes > div", {
+    $(".sub-sub-navigation ul.links").tabs("div.sub-sub-navigation-panes > div", {
         effect: 'fade'
     });
 });

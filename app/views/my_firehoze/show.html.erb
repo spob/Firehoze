@@ -1,6 +1,5 @@
 <% title "my firehoze" -%>
 <% @current = 'my_firehoze' %>
-
 <%= javascript 'v2/jquery.tools.min', 'v2/tabs'  %>
 
 <div class="span-8">
@@ -12,15 +11,16 @@
     </ul>
     <div class="clear"></div>
   </div>
+
   <div class="sub-navigation-panes">
     <div>
-      <div class="sub-sub-navigation">
-        <ul class="buttons">
-          <li><a href="#" class="button"><%= h(t('lesson.lessons_you_own')) %><span class="top_left"></span><span class="bottom_left"></span></a></li>
+        <div class="sub-sub-navigation">
+        <ul class="links">
+          <li><a href="#"><%= h(t('lesson.lessons_you_own')) %></a></li>
           <% if current_user.verified_instructor? %>
-            <li><a href="#" class="button"><%= t 'lesson.lessons_you_instructed' %></a></li>
+            <li><a href="#"><%= t 'lesson.lessons_you_instructed' %></a></li>
           <% end %>
-          <li class="last"><a href="#" class="button"><%= h(t('lesson.wishlist')) %><span class="top_right"></span><span class="bottom_right"></span></a></li>
+          <li><a href="#"><%= h(t('lesson.wishlist')) %></a></li>
         </ul>
         <div class="clear"></div>
         <div class="sub-sub-navigation-panes">
