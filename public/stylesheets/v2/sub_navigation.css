@@ -1,9 +1,9 @@
 .sub-navigation {
-    margin:0 0 20px 0;
+    margin:0;
 }
 
 .sub-navigation-panes {
-
+    margin:20px 0 34px 0;
 }
 
 .sub-navigation li {
@@ -29,7 +29,7 @@ ul.buttons li {
 }
 a.button {
     display: block;
-    padding: 0.1em 1.4em;
+    padding: 0.4em 1.4em;
     background: url(images/sub_navigation/button_bg.png) repeat-x left center;
     text-shadow: #333 0 1px 1px;
     color: #FFF; letter-spacing: 0.05em;
@@ -76,12 +76,12 @@ a.button:active, ul.buttons li a:focus {outline: none}
 
 /* SUB-SUB-NAVIGATION */
 .sub-sub-navigation ul {
-    width:auto;
+    /*    width:auto;*/
 }
 
 .sub-sub-navigation-panes {
     padding:16px;
-    margin:0 0 34px 1px;
+    /*    margin:0 0 34px 1px;*/
     border:solid 1px #D6D6D6;
 }
 
