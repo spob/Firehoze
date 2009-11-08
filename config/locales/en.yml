@@ -128,6 +128,8 @@ en:
     welcome: Welcome to the {{group}} group!
     no_thanks: Okay, thanks. You have not joined the group
     activity: <b>{{user}}</b> created the group {{trackable}}
+    logo_cleared: You have successfully removed the group logo
+    update_error: Oops, something wasn't quite right with the information you entered
 
   group_invitation:
     invitation_no_longer_valid: Invitation no longer valid

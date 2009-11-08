@@ -29,7 +29,9 @@ ActionController::Routing::Routes.draw do |map|
                              :confirm_give => :post }
   map.resources :grant_gift_certificates, :only => [ :create, :new ]
   map.resources :groups,
-                :collection => { :list_admin => :get }, :has_many => :topics, :shallow => true
+                :collection => { :list_admin => :get },
+                :member => { :clear_logo => :post },
+                :has_many => :topics, :shallow => true
   map.resources :group_invitations, :only => [ :create, :new ]
   map.resources :group_lessons, :only => [ :create, :destroy ]
   map.resources :group_members, :only => [ :create, :destroy ],
@@ -85,7 +87,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :periodic_jobs, :member => { :rerun => :post }
   map.resources :store, :only => :show
   map.resources :skus, :has_many => :discounts, :shallow => true
-  map.resource  :user_session, :only => [ :create, :destroy, :new ]
+  map.resource :user_session, :only => [ :create, :destroy, :new ]
   map.resources :topics, :has_many => :topic_comments, :shallow => true
   map.resources :users,
                 :member => { :show_admin => :get,
