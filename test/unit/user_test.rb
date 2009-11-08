@@ -211,13 +211,6 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  fast_context "given an avator url" do
-    should "convert to a cdn url" do
-      assert_equal "http://cdn.firehoze.com/staging/users/avatars/2/medium/DSC_0043_Small.png?1249443866",
-                   User.convert_avatar_url_to_cdn("http://s3.amazonaws.com/images.firehoze.com/staging/users/avatars/2/medium/DSC_0043_Small.png?1249443866")
-    end
-  end
-
   fast_context "Given lesson visits" do
     setup { @lesson_visit = Factory.create(:lesson_visit) }
 

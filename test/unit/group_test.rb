@@ -59,4 +59,11 @@ class GroupTest < ActiveSupport::TestCase
       end
     end
   end
+
+  fast_context "given an logo url" do
+    should "convert to a cdn url" do
+      assert_equal "http://cdn.firehoze.com/staging/groups/logos/2/medium/DSC_0043_Small.png?1249443866",
+                   Group.convert_logo_url_to_cdn("http://s3.amazonaws.com/images.firehoze.com/staging/groups/logos/2/medium/DSC_0043_Small.png?1249443866")
+    end
+  end
 end

@@ -1,8 +1,15 @@
 <tr>
   <td>
+    <%= logo_tag group, :size => :small %>
+  </td>
+  <td>
     <b><%= link_to h(group.name), group_path(group) %></b>
     <br/>
     <%= h group.description %>
+  </td>
+  <td>
+    <% member = group.includes_member?(current_user) %>
+    <%= t("group_member.#{member.member_type.downcase}") if member %>
   </td>
   <td>
     <%= h group.category.name %>

@@ -71,6 +71,26 @@ class GroupsController < ApplicationController
     end
   end
 
+#  def update_logo
+#    if params[:group][:logo]
+#      if @group.update_attribute(:avatar, params[:group][:logo])
+#        flash[:notice] = t 'account_settings.avatar_success'
+#        redirect_to group_path(@group)
+#      end
+#    end
+#  end
+#
+#  def clear_logo
+#    @group.logo.clear
+#    if @group.save
+#      flash[:notice] = t 'account_settings.avatar_cleared'
+#    else
+#      # getting here because not all (required) fields are getting passed in ...
+#      flash[:error] = t 'account_settings.update_error'
+#    end
+#    redirect_to group_path(@group)
+#  end
+
   private
 
   def find_group

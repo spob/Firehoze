@@ -40,6 +40,37 @@ class Group < ActiveRecord::Base
     set_property :delta => true
   end
 
+
+  # PAPERCLIP
+  has_attached_file :logo,
+                    :styles => {
+                            :tiny => ["35x35#", :png],
+                            :small => ["75x75#", :png],
+                            :medium => ["110x110#", :png],
+                            :large => ["220x220#", :png]
+                    },
+                    :storage => :s3,
+                    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+                    :s3_permissions => 'public-read',
+                    :path => "#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/groups/:attachment/:id/:style/:basename.:extension",
+                    :bucket => APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]
+
+  validates_attachment_size :logo, :less_than => 1.megabytes, :message => "All uploaded images must be less then 1 megabyte"
+  validates_attachment_content_type :logo, :content_type => [ 'image/gif', 'image/png', 'image/x-png', 'image/jpeg', 'image/pjpeg', 'image/jpg' ]
+
+  def self.default_logo_url(style)
+    # "http://#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}/groups/avatars/missing/%s/missing.png" % style.to_s
+    # todo: add a logo for missing logo as well
+    "/images/users/avatars/%s/missing.png" % style.to_s
+  end
+
+  # convert an amazon url for a logo to a cdn url
+  def self.convert_logo_url_to_cdn(url)
+    regex = Regexp.new("//.*#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}")
+    regex2 = Regexp.new("https")
+    url.gsub(regex, "//" + APP_CONFIG[CONFIG_CDN_OUTPUT_SERVER]).gsub(regex2, "http")
+  end
+
   def owned_by?(user)
     self.owner == user
   end

@@ -26,7 +26,8 @@
 <%= link_to "New Group", new_group_path %>
 <table>
   <tr>
-    <th>Group</th>
+    <th colspan="2">Group</th>
+    <th>Relationship</th>
     <th>Category</th>
   </tr>
   <%= render :partial => "categories/group", :collection => @groups %>

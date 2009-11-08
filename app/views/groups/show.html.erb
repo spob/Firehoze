@@ -1,5 +1,6 @@
 <% title "Group #{h @group.name}" -%>
 
+<%= logo_tag @group, :size => :medium %>
 <h2>Group <%= h @group.name %></h2>
 Category: <%= h @group.category.name %>
 <%= show_join_link(@group) %>

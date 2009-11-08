@@ -144,6 +144,9 @@ en:
 
   group_member:
     activity: <b>{{user}}</b> joined the group {{trackable}}
+    owner: Owner
+    moderator: Moderator
+    member: Member
 
   helpful:
     cant_feedback_own: You cannot provide feedback on a review you have written
