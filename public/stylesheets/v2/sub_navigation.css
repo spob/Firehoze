@@ -1,9 +1,19 @@
+.sub-navigation {
+margin:0 0 20px 0;
+}
+
 .sub-navigation li, .controls li{ 
     float:left;
     margin: 0 1px 0 0;
     padding:0;
     vertical-align: middle
 }
+
+ul.buttons {
+	margin-left:0;
+	padding:0;
+}
+
 ul.buttons li {
     position: relative;
     float: left;
@@ -17,6 +27,7 @@ a.button {
     display: block;
     padding: 0.1em 1.4em;
     background: url(images/sub_navigation/button_bg.png) repeat-x left center;
+    text-shadow: #333 0 1px 1px;
     color: #FFF; letter-spacing: 0.05em;
     font-weight: normal;
     font-size: 13px;
