@@ -1,5 +1,5 @@
 .sub-navigation {
-margin:0 0 20px 0;
+    margin:0 0 20px 0;
 }
 
 .sub-navigation li, .controls li{ 
@@ -10,8 +10,8 @@ margin:0 0 20px 0;
 }
 
 ul.buttons {
-	margin-left:0;
-	padding:0;
+    margin-left:0;
+    padding:0;
 }
 
 ul.buttons li {
