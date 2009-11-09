@@ -120,6 +120,15 @@ class User < ActiveRecord::Base
           FLAG_SPAM,
           FLAG_OFFENSIVE ]
 
+  # From the thinking sphinx doc: Don’t forget to place this block below your associations,
+  # otherwise any references to them for fields and attributes will not work.
+  define_index do
+    indexes login
+    indexes name_or_username
+    indexes bio
+    set_property :delta => true
+  end
+
   def self.flag_reasons
     @@flag_reasons
   end

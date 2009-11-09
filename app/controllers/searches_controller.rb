@@ -16,5 +16,9 @@ class SearchesController < ApplicationController
                            :include => [:owner ],
                            :page => 1,
                            :per_page => 25
+
+    @users = User.search @search_criteria,
+                         :page => 1,
+                         :per_page => 25
   end
 end
