@@ -26,6 +26,10 @@ class TopicComment < Comment
     self.update_attribute(:activity_compiled_at, Time.now)
   end
 
+  def last_public_comment?
+    self == self.topic.last_public_topic_comment
+  end
+
   private
 
   def update_topic

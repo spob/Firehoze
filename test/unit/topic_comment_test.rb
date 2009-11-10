@@ -21,5 +21,17 @@ class TopicCommentTest < ActiveSupport::TestCase
         assert_equal @topic_comment.created_at, @topic_comment.topic.last_commented_at
       end
     end
+
+    fast_context "testing last comment and last public comment" do
+      setup do
+        @topic_comment2 = Factory.create(:topic_comment, :topic => @topic)
+        @topic_comment3 = Factory.create(:topic_comment, :topic => @topic, :public => false)
+      end
+
+      should "identify the last comment" do
+        assert_equal @topic_comment3, @topic.last_topic_comment
+        assert_equal @topic_comment2, @topic.last_public_topic_comment
+      end
+    end
   end
 end

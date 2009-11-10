@@ -12,6 +12,8 @@ class TopicTest < ActiveSupport::TestCase
     should_validate_presence_of :user, :group, :title
 #    should_validate_presence_of :comments, :on => :create
     should_belong_to :user, :group
+    should_have_one :last_topic_comment
+    should_have_one :last_public_topic_comment
     should_ensure_length_in_range :title, (0..200)
     should_validate_uniqueness_of :title, :scoped_to => :group_id
 

@@ -18,9 +18,15 @@ class Comment < ActiveRecord::Base
   def reject
     self.status = COMMENT_STATUS_REJECTED
   end
-  
+
   def can_edit? user
-    user.try("is_moderator?")
+    (user.try(:is_a_moderator?) or (last_public_comment? and self.user == user)) and (self.public or show_public_private_option?(user))
+  end
+
+  # Display the option of public versus private to the user
+  def self.show_public_private_option?(user)
+    return false unless user
+    user.is_an_admin? or user.is_a_moderator?
   end
 
   private
