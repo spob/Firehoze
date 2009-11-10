@@ -26,6 +26,28 @@ class TopicCommentsController < ApplicationController
     end
   end
 
+  def edit
+    unless @topic_comment.can_edit? current_user
+      flash[:error] = t 'topic_comment.cannot_edit'
+      redirect_to topic_path(@topic_comment.topic)
+    end
+  end
+
+  def update
+    unless @topic_comment.can_edit? current_user
+      flash[:error] = t 'topic_comment.cannot_edit'
+      redirect_to topic_path(@topic_comment.topic)
+      return
+    end
+    params[:topic_comment][:public] ||= false
+    if @topic_comment.update_attributes(params[:topic_comment])
+      flash[:notice] = t 'topic_comment.update_success'
+      redirect_to topic_path(@topic_comment.topic)
+    else
+      render :action => 'edit'
+    end
+  end
+
   private
 
   def retrieve_topic

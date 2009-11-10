@@ -291,6 +291,8 @@ en:
 
   topic_comment:
     create_success: Your topic comment has been recorded
+    cannot_edit: You do not have rights to edit this comment
+    update_success: Topic comment updated successfully
     activity: <b>{{user}}</b> added a comment to the discussion topic {{trackable}} within the group {{secondary_trackable}}
   
   login:

@@ -3,19 +3,19 @@
 <%= render :partial => "shared/infield_head_content" %>
 
 <%= stylesheet 'validation' %>
-<%= javascript 'validate/jquery.validate', 'validate/lesson_comment.validate' %>
+<%= javascript 'validate/jquery.validate', 'validate/topic_comment.validate' %>
 
-<% form_for :lesson_comment, :url => lesson_comment_path(@lesson_comment), :html => { :method => :put, :id => "lesson_comment" } do |f| %>
+<% form_for :topic_comment, :url => topic_comment_path(@topic_comment), :html => { :method => :put, :id => "topic_comment" } do |f| %>
     <%= f.error_messages %>
     <fieldset>
       <legend>Edit you comment
-        of: <%= link_to h(@lesson_comment.lesson.title), lesson_path(@lesson_comment.lesson) %></legend>
+        of: <%= link_to h(@topic_comment.topic.title), topic_path(@topic_comment.topic) %></legend>
       <p>
         <%= f.label :body %><br/>
         <%= f.text_area :body, :style => "width:520px;", :class => "required" %>
         <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
       </p>
-      <% if LessonComment.show_public_private_option?(current_user) %>
+      <% if TopicComment.show_public_private_option?(current_user) %>
           <%= f.label :public %> <%= f.check_box :public %>
       <% else %>
           <%= f.hidden_field :public %>
@@ -23,6 +23,6 @@
     </fieldset>
     <p>
       <%= f.submit "Update Comment", :class => "submit" %>
-      <%= link_to "Cancel", lesson_path(@lesson_comment.lesson) %>
+      <%= link_to "Cancel", topic_path(@topic_comment.topic) %>
     </p>
 <% end %>
