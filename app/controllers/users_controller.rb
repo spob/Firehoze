@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   layout :layout_for_action
 
   def list
-    @search = User.search(params[:search])
+    @search = User.searchlogic(params[:search])
     @users = @search.paginate(:page => params[:page], :per_page => (session[:per_page] || ROWS_PER_PAGE))
   end
 
@@ -62,6 +62,7 @@ class UsersController < ApplicationController
       @lessons = @user.instructed_lessons.ready.all(:include => [:instructor, :tags])
       @reviews = @user.reviews.ready.all(:include => [:user, :lesson])
     end
+    @groups = @user.groups.public
   end
 
   def show_admin

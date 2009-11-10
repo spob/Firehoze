@@ -38,6 +38,7 @@
           <% unless @reviews.empty? %>
               <li><a href="#tabs-3"><%= t 'user.reviews_of', :user => h(@user.name_or_username) %></a></li>
           <% end %>
+              <li><a href="#tabs-4"><%= t 'group.groups' %></a></li>
         </ul>
 
         <% unless @user.bio.blank? %>

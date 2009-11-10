@@ -42,4 +42,8 @@ module UsersHelper
   def payment_levels_for_select
     PaymentLevel.ascend_by_name.collect { |m| [m.name, m.id] }
   end
+
+  def possessive_helper word
+    word + "'" + (word.end_with?("s") ? "" : "s")
+  end
 end
