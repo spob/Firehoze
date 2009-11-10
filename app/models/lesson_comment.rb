@@ -25,7 +25,7 @@ class LessonComment < Comment
 
   def self.list_conditions(lesson, current_user)
     conditions = { :lesson_id => lesson }
-    conditions = conditions.merge!({:public => true, :status => COMMENT_STATUS_ACTIVE}) unless show_public_private_option?(current_user)
+    conditions = conditions.merge!({:public => true, :status => COMMENT_STATUS_ACTIVE}) unless current_user.try(:is_an_admin?) or current_user.try(:is_a_moderator?)
     conditions
   end
 
