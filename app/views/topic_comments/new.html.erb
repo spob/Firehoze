@@ -8,7 +8,7 @@
         <br/>
         <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
       </p>
-      <% if TopicComment.show_public_private_option?(current_user) %>
+      <% if @topic_comment.show_public_private_option?(current_user) %>
           <p>
             <%= f.label :public %> <%= f.check_box :public %>
           </p>
