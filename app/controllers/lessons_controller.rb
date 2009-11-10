@@ -57,7 +57,7 @@ class LessonsController < ApplicationController
   end
 
   def list_admin
-    @search = Lesson.searchlogic(params[:search])
+    @search = Lesson.searchlogic(params[:search], :retry_stale => true)
     @lessons = @search.paginate :include => [:instructor, :category], :page => params[:page], :per_page => session[:per_page] || ROWS_PER_PAGE
   end
 
