@@ -1,0 +1,58 @@
+.compact_container {
+    /*border: solid 1px red;*/
+    padding:18px 0;
+    margin:0;
+    width: 650px;
+}
+
+.compact_container .item_container {
+    /*border: solid 1px lime;*/
+    float:left;
+    padding: 0px;
+    margin:0px 36px 40px 0px;
+    width:126px;
+}
+
+/* single scrollable item */
+.item_container  img {
+    background-color:#fff;
+    padding:2px;
+    border:1px solid #ccc;
+    cursor:pointer;
+    width:120px;
+    height:90px;
+
+    /*-moz-border-radius:4px;*/
+    /*-webkit-border-radius:4px;*/
+}
+
+.item_container	.tn {
+    position:relative;
+}
+
+.item_container	.duration {
+    font-size:9px;
+    padding: 0 2px;
+    color: #fff;
+    font-weight: bold;
+    position:absolute;
+    bottom:3px;
+    left:3px;
+    background: #555;
+    filter: alpha(opacity=65);
+    -moz-opacity: 0.65;
+    opacity: 0.65;
+}
+
+.item_container	.title, .item_container	.created_at, .item_container	.instructor {
+    font-size:11px;
+}
+
+/* active item */
+.scrollable .active {
+    /*
+    border:1px solid #ccc;
+    z-index:9999;
+    position:relative;
+    */
+}

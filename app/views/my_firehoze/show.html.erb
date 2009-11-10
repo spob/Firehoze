@@ -4,8 +4,11 @@
 
 
 <div class="span-12 last">
+  <h4 class="banner">Welcome, <%= @current_user.full_name %></h4>
+</div>
+
+<div class="span-12 last">
   <div class="span-8">
-    <h3>Welcome, <%= @current_user.full_name %></h3>
   </div>
 
   <div class="span-4 last">
@@ -44,11 +47,20 @@
         </ul>
         <div class="clear"></div>
         <div class="sub-sub-navigation-panes">
-          <div><%= render :partial => "lessons/owned", :locals => { :lesson_format => :brief } %></div>
+          <div class="compact_container">
+            <%= render :partial => "lessons/owned", :locals => { :lesson_format => :compact } %>
+            <div class="clear"></div>
+          </div>
           <% if current_user.verified_instructor? %>
-            <div><%= render :partial => "lessons/instructed", :locals => { :lesson_format => :brief } %></div>
+            <div class="compact_container">
+              <%= render :partial => "lessons/instructed", :locals => { :lesson_format => :compact } %>
+              <div class="clear"></div>
+            </div>
           <% end %>
-          <div><%= render :partial => "lessons/wishlist", :locals => { :lesson_format => :brief } %></div>
+          <div class="compact_container">
+            <%= render :partial => "lessons/wishlist", :locals => { :lesson_format => :compact } %>
+            <div class="clear"></div>
+          </div>
         </div><!-- end (interior) panes -->
       </div><!-- end lessons_nested -->
     </div><!-- end lessons pane -->
@@ -59,8 +71,8 @@
     </div><!-- end reviews pane -->
 
     <% # RECENTLY BROWSED -%>
-    <div>
-      <%= render :partial => "lessons/recently_browsed", :locals => { :lesson_format => :brief } %>
+    <div class="compact_container">
+      <%= render :partial => "lessons/recently_browsed", :locals => { :lesson_format => :compact } %>
     </div><!-- end recently browsed -->
   </div>
 </div>
