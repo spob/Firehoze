@@ -3,9 +3,9 @@
 <%= javascript 'v2/jquery.tools.min', 'v2/tabs'  %>
 
 
-<div class="span-12 last" style="border-bottom: dotted 1px #ccc; margin: 16px 0 34px 0;">
+<div class="span-12 last">
   <div class="span-8">
-    <h3>Welcome Home, <%= @current_user.full_name %></h3>
+    <h3>Welcome, <%= @current_user.full_name %></h3>
   </div>
 
   <div class="span-4 last">
@@ -16,15 +16,15 @@
   </div>
 </div>
 
-
-<div class="span-12 last" style="border-bottom: dotted 1px #ccc; margin: 0 0 16px 0;">
-  <h4>My Stuff</h4>
+<div class="span-12 last">
+  <h4 class="banner">My Stuff</h4>
 </div>
+
 <div id="my_stuff" class="span-8">
   <div class="sub-navigation">
     <ul class="buttons">
       <li><a href="#" class="button">Lessons<span class="top_left"></span><span class="bottom_left"></span></a></li>
-      <li><a href="#" class="button">Reviews</a></li>
+      <li><a href="#reviews" class="button">Reviews</a></li>
       <li class="last"><a href="#" class="button">Recently Browsed<span class="top_right"></span><span class="bottom_right"></span></a></li>
     </ul>
   </div>
@@ -32,12 +32,13 @@
   <div class="clear"></div>
 
   <div class="sub-navigation-panes">
+    <% # LESSONS -%>
     <div>
       <div class="sub-sub-navigation">
         <ul class="links">
           <li><a href="#">Owned</a></li>
           <% if current_user.verified_instructor? %>
-            <li style="border-left:1px solid #999;border-right:1px solid #999;"><a href="#">Taught</a></li>
+            <li><a href="#">Taught</a></li>
           <% end %>
           <li><a href="#"><%= h(t('lesson.wishlist')) %></a></li>
         </ul>
@@ -52,10 +53,12 @@
       </div><!-- end lessons_nested -->
     </div><!-- end lessons pane -->
 
+    <% # REVIEWS -%>
     <div>
       My Reviews: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </div><!-- end reviews pane -->
 
+    <% # RECENTLY BROWSED -%>
     <div>
       <%= render :partial => "lessons/recently_browsed", :locals => { :lesson_format => :brief } %>
     </div><!-- end recently browsed -->
@@ -71,26 +74,35 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
   </div>
-
 </div>
 
-<div id="account_history" class="span-8 last">
+<% # ACCOUNT HISTORY -%>
+<div class="span-12 last">
+  <h4 class="banner">Account History</h4>
+</div>
+
+<div id="account_history" class="span-12 last">
   <div class="sub-navigation">
     <ul class="buttons">
-      <li><a href="#" class="button"><%= h(t('user.order_history')) %><span class="top_left"></span><span class="bottom_left"></span></a></li>
+      <li><a href="#" class="button">Orders<span class="top_left"></span><span class="bottom_left"></span></a></li>
       <% if current_user.verified_instructor? %>
-        <li><a href="#" class="button"><%= t'user.payment_history' %></a></li>
+        <li><a href="#" class="button">Payments</a></li>
       <% end %>
-      <li class="last"><a href="#" class="button"><%= h(t('user.credit_history')) %><span class="top_right"></span><span class="bottom_right"></span></a></li>
+      <li class="last"><a href="#" class="button">Credits<span class="top_right"></span><span class="bottom_right"></span></a></li>
     </ul>
     <div class="clear"></div>
   </div>
 
   <div class="sub-navigation-panes">
+    <% # ORDER HISTORY -%>
     <div><%= render :partial => "accounts/forms/order_history", :locals =>  { :user => @user } %></div>
+
+    <% # PAYMENT HISTORY -%>
     <% if current_user.verified_instructor? %>
       <div><%= render :partial => "accounts/forms/payment_history", :locals =>  { :user => @user } %></div>
     <% end %>
+
+    <% # CREDIT HISTORY -%>
     <div><%= render :partial => "accounts/forms/credit_history" %></div>
   </div>
 </div>

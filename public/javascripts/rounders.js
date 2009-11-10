@@ -13,7 +13,13 @@ $(function() {
     });
 
     $('.box').cornerz({
-        radius: 8
+        radius: 5
+    });
+
+
+    $('.pod_wrapper, h4.banner').cornerz({
+        radius: 5,
+        corners: "tr, br"
     });
 
 });

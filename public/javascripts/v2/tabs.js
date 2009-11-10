@@ -1,5 +1,4 @@
 $(function() {
-
     $("#my_stuff div.sub-navigation > ul.buttons").tabs("#my_stuff > div.sub-navigation-panes > div", {
         effect: 'fade'
     });
