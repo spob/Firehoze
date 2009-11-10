@@ -57,7 +57,7 @@ class LessonsController < ApplicationController
   end
 
   def list_admin
-    @search = Lesson.searchlogic(params[:search], :retry_stale => true)
+    @search = Lesson.searchlogic(params[:search])
     @lessons = @search.paginate :include => [:instructor, :category], :page => params[:page], :per_page => session[:per_page] || ROWS_PER_PAGE
   end
 
@@ -132,7 +132,8 @@ class LessonsController < ApplicationController
                              :with => with,
                              :include => :instructor,
                              :page => 1,
-                             :per_page => 25
+                             :per_page => 25,
+                             :retry_stale => true
     @lesson_format = 'narrow'
     @collection = 'search'
     render :action => :advanced_search
