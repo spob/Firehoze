@@ -11,7 +11,7 @@
       <div id="avatar"><%= avatar_tag @user, :size => :large %></div>
       <div class="prepend-top">
         <% if @user.followers.size > 0 %>
-        <%= pluralize @user.followers.size, 'follower' %>
+            <%= pluralize @user.followers.size, 'follower' %>
         <% end %>
         <% if @user.can_contact? current_user %>
             <div><%= link_to 'Contact This User', new_contact_user_path(:id => @user.id) %></div>
@@ -38,7 +38,10 @@
           <% unless @reviews.empty? %>
               <li><a href="#tabs-3"><%= t 'user.reviews_of', :user => h(@user.name_or_username) %></a></li>
           <% end %>
-              <li><a href="#tabs-4"><%= t 'group.groups' %></a></li>
+
+          <% unless @groups.empty? %>
+              <li><a href="#tabs-4"><%= possessive_helper(h(@user.name_or_username)) %> <%= t 'group.groups' %></a></li>
+          <% end %>
         </ul>
 
         <% unless @user.bio.blank? %>
@@ -51,6 +54,9 @@
 
         <% unless @reviews.empty? %>
             <div id="tabs-3"><%= render :partial => "reviews/review_with_lesson", :collection => @reviews %></div>
+        <% end %>
+        <% unless @groups.empty? %>
+            <div id="tabs-4"><%= render :partial => "groups", :locals => { :groups => @groups } %></div>
         <% end %>
       </div>
     </div>
