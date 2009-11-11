@@ -17,9 +17,9 @@ $(function() {
     });
 
 
-    $('.pod_wrapper, h4.banner').cornerz({
-        radius: 5,
-        corners: "tr, br"
-    });
+    // $('.pod_wrapper, h4.banner').cornerz({
+    //     radius: 5,
+    //     corners: "tr, br"
+    // });
 
 });

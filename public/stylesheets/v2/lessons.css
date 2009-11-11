@@ -2,14 +2,14 @@
     /*border: solid 1px red;*/
     padding:18px 0;
     margin:0;
-    width: 650px;
+    width: 668px;
 }
 
 .compact_container .item_container {
     /*border: solid 1px lime;*/
     float:left;
     padding: 0px;
-    margin:0px 36px 40px 0px;
+    margin:0px 39px 40px 0px;
     width:126px;
 }
 
