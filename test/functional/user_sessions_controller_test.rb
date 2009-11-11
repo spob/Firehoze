@@ -28,7 +28,6 @@ class UserSessionsControllerTest < ActionController::TestCase
       end
       should_redirect_to("my firehoze")  { myfirehoze_path }
       should_respond_with :redirect
-      should_set_the_flash_to :login_success
       should "persist a new user logon audit trail record" do
         assert_equal logons + 1, UserLogon.count
       end
