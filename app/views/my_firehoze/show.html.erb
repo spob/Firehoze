@@ -115,6 +115,6 @@
     <% end %>
 
     <% # CREDIT HISTORY -%>
-    <div><%= render :partial => "accounts/forms/credit_history" %></div>
+    <div><%= render :partial => "accounts/forms/credit_history", :locals =>  { :user => @user } %></div>
   </div>
 </div>
