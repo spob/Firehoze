@@ -117,7 +117,9 @@ class CategoriesController < ApplicationController
 
   def layout_for_action
     if %w(list_admin edit).include?(params[:action])
-      'admin'
+      'admin'    
+    elsif %w(index).include?(params[:action])
+      'application_v2'
     else
       'application'
     end

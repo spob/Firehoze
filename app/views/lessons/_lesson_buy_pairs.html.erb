@@ -21,7 +21,6 @@
             <div class="item_container">
               <div class="tn">
                 <%= img_tag_lesson_tn(buy_pair.other_lesson, :small) %>
-                <%#FIXME %>
                 <div class="duration transparent">(<%= ChronicDuration.output(lesson.finished_video_duration/1000, :format => :chrono) -%>)</div>
               </div>
               <div class="title"><%= link_to truncate(h(buy_pair.other_lesson.title), :length => 40), lesson_path(buy_pair.other_lesson) %></div>

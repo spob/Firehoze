@@ -1,0 +1,21 @@
+#top-navigation-container {
+    top:-18px;
+    right:0;
+}
+
+#shadowbox-middle {
+    margin-top: -6px;
+}
+
+#main-navigation li.selected.first
+{
+    border:solid 1px #fff;
+    padding:0;
+    margin:0;
+    height:35px;
+}
+
+.sub-sub-navigation ul.links li a.current,
+.sub-sub-navigation ul.links li a:hover {
+    color: #555;
+}

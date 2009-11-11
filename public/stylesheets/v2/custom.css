@@ -1,33 +1,48 @@
+* {
+    outline: none;
+}
+
+* a:active, a:focus {outline: none}
+
 body {
-    background-color:#ece8e8;
+    background-color:#EFEFEF;
+    font: 12px/18px "Lucida Grande", Verdana, sans-serif;
+    color: #333;
 }
 
 div {
-    text-align:justify
+    /*text-align:justify*/
 }
 
+.box { 
+    background: #EDEDED;
+    border: solid 1px #CFCFCF;
+}
+
+h4.banner  {
+    font-size: 18px;
+    color: #555;
+    /*text-shadow: #333 0 1px 1px;*/
+    padding: 5px 0 5px 16px;
+    margin: 16px -15px 24px -15px;
+/*		border-top: solid 1px #efefef;*/
+/*    border-right: solid 1px #514F50;*/
+    border-bottom: solid 1px #ccc;
+/*   background-color: #6F777F;*/
+    background: url(images/top_navigation/nav-a.png) repeat-x 0 0;
+}
 
 /* HEADER */
 #header {
-    height:132px;
-    background-color:#393D40;    /*dark grey*/
-    background-image:url('images/header_h_tile.png');
+    height:145px;
+    background-image:url('/stylesheets/v2/images/header/header-bg-tile-tall.jpg');
     background-repeat:repeat-x;
 }
-#header #content {
+#header .content {
     position:relative;
-    background-image:url('images/back_bar_top.png');
     background-repeat:no-repeat;
-    background-color:#393D40;
     height:77px;
-    width:960px;
-}
-#header #vimeo_nav {
-    float:right;
-    background-image:url('images/vimeo.png');
-    background-repeat:no-repeat;
-    height:37px;
-    width:441px;
+    background: url('/stylesheets/v2/images/header/header-shine.png') no-repeat 50% 0;
 }
 #header #logo {
     position:absolute;
@@ -37,32 +52,198 @@ div {
     margin:0;
     padding:0;
 }
-#header #tabbed_nav {
-    margin: 40px 0;
-    height:46px;
+
+/* 224 x 134 */
+#header #logo,
+#header #logo #home  {
+    display: block; /* Change anchor to block element */
+    width: 224px; height: 67px; /* Specify width and height of the image. Height is value of each individual button graphic */
+    background-image: url('/stylesheets/v2/images/header/sprite-logo.png'); /* Add the image as a background */
+    background-position: top; /* Set the position to the top */
+    text-indent: -9999px; /* Send the rendered HTML wording off screen */
+}
+
+#header #logo a#home:hover, #header #logo a#home:focus {
+    background-position: bottom; /* Set the position to the center */
+}
+#header #logo a#home:active {
+    background-position: bottom; /* Set the position to the bottom */
+}
+
+/* TOPNAV */
+#top-navigation-container {
+    position:absolute;
+    top:0;
+    right:-16px;
+    font-size:11px;
+}
+
+/* SHADOWBOX */
+#shadowbox-top {
+    z-index:10;
+    background: transparent url('/stylesheets/v2/images/main_navigation/main-navigation-bg.png') no-repeat;
+    margin:-50px 0 0 0;
+    padding:0;
+    width:1000px;
+    height:55px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#shadowbox-middle {
+    background: transparent url('/stylesheets/v2/images/shadow_box/shadow-box-middle.png') repeat-y;
+    width:1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#shadowbox-bottom {
+    background-image:url('/stylesheets/v2/images/shadow_box/shadow-box-bottom.png');
+    background-repeat:no-repeat;
+    margin:0;
+    width:1000px;
+    height:120px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* MAIN-NAVIGATION */
+#main-navigation {
+    z-index:20;
+    position:relative;
+    height: 40px;
+    font: bold 13px/36px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: lowercase;
+    width:980px;
+    margin-left: auto;
+    margin-right: auto;
+}
+ul#main-navigation  {
+    background-color: transparent;
+    list-style-type: none;
+}
+#main-navigation li {
+    padding-right: 2px;
+    float: left;
+    background: url('/stylesheets/v2/images/main_navigation/main-navigation-li.png') no-repeat right;
+}
+
+#main-navigation li#first {
+    background: url('/stylesheets/v2/images/main_navigation/main-navigation-li-first.png') no-repeat left;
+    width:19px;
+    height:40px;
+}
+#main-navigation li.selected {
+    background-color: #fff;
+    margin-left: -1px;
+}
+#main-navigation li a {
+    float: left;
+    padding: 1px 20px 3px;
+    color: #666;
+    text-decoration:none;
+}
+#main-navigation li a:hover,
+#main-navigation li a:focus {
+    text-decoration: none;
+    color: #333;
+}
+#main-navigation li a:active {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+#main-navigation li.selected a,
+#main-navigation li.selected a:hover {
+    color: #BF1701;  /*RED LINK*/
+    cursor: default;
+    text-decoration: none;
+    padding-left: 21px;
+}
+#main-navigation li.selected.first a,
+#main-navigation li.selected.first a:hover {
+    padding-left: 0px;
+}
+
+#main-navigation li.selected a:focus {
+    color: #069;
 }
 
 /* MAIN CONTENT AREA */
-#main_content {
-    background-image:url('images/shadow_box.png');
-    background-repeat:no-repeat;
-    padding: 16px 0 16px 0;
-    margin:-40px 0 0 0;
+#side-box {
+    padding: 15px;
+    border: solid 2px #DFDFDF;
+    background-color: #F6F6F6;
 }
 
 /* FOOTER */
 #footer {
-    /*border: dashed 2px red;*/
     height:320px;
-    background-image:url('images/footer_h_tile.png');
-    background-repeat:repeat-x;
+    color: #999;
+    background-image:url('/stylesheets/v2/images/footer/footer-bg-tile-tall.png');
 }
-#footer #content {
-    /*border: dashed 1px lime;*/
-    color: #ccc;
-    position:relative;
+#footer .content {
     height:320px;
-    background-image:url('/stylesheets/v2/images/brandings/watermark.png');
+    background-image:url('/stylesheets/v2/images/footer/footer-watermark.png');
     background-repeat:no-repeat;
     background-position: right bottom;
+}
+#footer #upper {
+    margin:0;
+    padding: 10px 0;
+    height:232px;
+}
+#footer #lower {
+    height:68px;
+    position: relative;
+}
+#footer #inner {
+    position: absolute;
+    top: 45%;
+}
+
+/* FLASH */
+.flash {
+    text-align:left;
+    display: none;
+    padding:0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.flash a, .flash .h4 {
+    font-weight:bold;
+}
+
+.flash #centered {
+    padding:10px 0 0 42px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 880px;
+}
+
+/* flash notice */
+#notice {
+    border-bottom: solid 8px #58941C;
+    background-color: #DEF1CA;
+}
+
+#notice a, #notice .h4 {
+    color: #005738;
+}
+
+#notice #centered {
+    background: transparent url(images/icons/32_success.png) 0px 10px no-repeat;
+}
+
+/* flash error */
+#error {
+    border-bottom: solid 8px #EFE468;
+    background-color: #FFFFE8;
+}
+
+#error a, #error .h4 {
+    color: #6F2234;
+}
+
+#error #centered {
+    background: transparent url(images/icons/32_warning.png) 0px 10px no-repeat;
 }

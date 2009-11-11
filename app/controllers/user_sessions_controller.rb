@@ -16,8 +16,7 @@ class UserSessionsController < ApplicationController
   def create
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
-      flash[:notice] = t 'login.login_success'
-      redirect_back_or_default home_path
+      redirect_back_or_default myfirehoze_path
     else
       render :action => :new
     end

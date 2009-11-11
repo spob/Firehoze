@@ -1,0 +1,33 @@
+/*table, td { font:100% Arial, Helvetica, sans-serif;}*/
+table { 
+    width:100%;
+    border: solid 1px #A9A9A9;
+    /* border-collapse:collapse; */
+    /* margin:1em 0; */
+}
+
+th, td {
+    margin:0;
+    text-align:left;
+    padding:.5em;
+
+}
+th {
+    background-color:#A9A9A9;
+    color:#fff;
+    text-shadow: #333 0 1px 1px;
+}
+td { 
+    background:#efefef;
+}
+
+/* tablecloth styles */
+tr.even td { background:#eee; }
+tr.odd td { background:#f8fbfc; }
+
+th.over, tr.even th.over, tr.odd th.over { background:#4a98af; }
+
+td.over, tr.even td.over, tr.odd td.over { background:#ecfbd4; }
+
+/* use this if you want to apply different styleing to empty table cells*/
+td.empty, tr.odd td.empty, tr.even td.empty { background:#fff; }

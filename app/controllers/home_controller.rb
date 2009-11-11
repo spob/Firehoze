@@ -8,6 +8,7 @@ class HomeController < ApplicationController
   before_filter :set_per_page, :only => [ :show ]
 
   def show
+    render :layout => 'application_v2'
     @user = @current_user
     if params[:reset] == "y"
       # clear category browsing
@@ -20,5 +21,4 @@ class HomeController < ApplicationController
   def set_per_page
     @per_page = %w(show).include?(params[:action]) ? 5 : Lesson.per_page
   end
-
 end
