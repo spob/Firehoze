@@ -1,0 +1,32 @@
+<% commenter = comment.user %>
+
+<div class="comment">
+  <div class="span-5">
+    <div class="commenter_avatar"><%= link_to avatar_tag(commenter, :size => :medium), user_path(commenter) %></div>
+    <div><%= link_to_profile(commenter) %></div>
+    <div>Member Since:<br/><%= l(commenter.created_at.to_date) %></div>
+  </div>
+
+  <div class="prepend-5 last">
+    <% if comment.can_edit? current_user and !comment.public %>
+      <div class="private">
+        Private Comment
+      </div>
+    <% end %>
+
+    <div class="timestamp">
+      <%= l(comment.created_at) %>
+    </div>
+
+    <div>
+      <%= rbs_formatter comment.body %>
+    </div>
+
+    <div class="actions">
+      <%= render :partial => 'comments/actions', :object => comment  %>
+    </div>
+
+  </div>
+</div>
+
+<div class="spacer"></div>

@@ -14,7 +14,7 @@
         <%= f.text_area :body, :style => "width:530px;", :class => "required" %>
         <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
       </p>
-      <% if @lesson_comment.show_public_private_option?(current_user) %>
+      <% if Comment.show_public_private_option?(current_user) %>
           <p>
             <%= f.label :public %> <%= f.check_box :public %>
           </p>

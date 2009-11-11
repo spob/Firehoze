@@ -7,7 +7,7 @@
   <%= content_tag(:div, button_to_comment(@lesson, "Ask a question"), :class => "action_box") %>
 <% else %>
   <%= content_tag(:div, button_to_comment(@lesson, "Post reply"), :class => "action_box") %>
-  <%= render @lesson_comments %>
+  <%= render :partial => 'comments/comment', :collection => @lesson_comments %>
 <% end %>
 
 <% if @style == 'tab'%>

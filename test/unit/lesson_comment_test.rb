@@ -70,14 +70,14 @@ class LessonCommentTest < ActiveSupport::TestCase
       setup { @user = Factory.create(:user) }
 
       should "not see the option" do
-        assert !@lesson_comment.show_public_private_option?(@user)
+        assert !Comment.show_public_private_option?(@user)
       end
 
       fast_context "who is an admin" do
         setup { @user.is_admin }
 
         should "see the option" do
-          assert @lesson_comment.show_public_private_option?(@user)
+          assert Comment.show_public_private_option?(@user)
         end
       end
 
@@ -85,7 +85,7 @@ class LessonCommentTest < ActiveSupport::TestCase
         setup { @user.is_moderator }
 
         should "see the option" do
-          assert @lesson_comment.show_public_private_option?(@user)
+          assert Comment.show_public_private_option?(@user)
         end
       end
     end
