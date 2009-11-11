@@ -12,9 +12,9 @@ I'm just putting activities here because I need a place to put it...it should go
 
 <h3>Activity</h3>
 View Activity:
-<%= link_to_unless session[:browse_activities_by] == 'ALL', 'by everybody', categories_path %> |
-<%= link_to_unless session[:browse_activities_by] == 'BY_ME', 'by me', categories_path(:browse_activities_by => 'BY_ME') %> |
-<%= link_to_unless session[:browse_activities_by] == 'ON_ME', 'on me', categories_path(:browse_activities_by => 'ON_ME') %>
+<%= link_to_unless session[:browse_activities_by] == 'ALL', bold('by everybody', session[:browse_activities_by] == 'ALL'), categories_path %> |
+<%= link_to_unless (session[:browse_activities_by] == 'BY_ME' or current_user.nil?), bold('by me', session[:browse_activities_by] == 'BY_ME'), categories_path(:browse_activities_by => 'BY_ME') %> |
+<%= link_to_unless (session[:browse_activities_by] == 'ON_ME' or current_user.nil?), bold('on me', session[:browse_activities_by] == 'ON_ME'), categories_path(:browse_activities_by => 'ON_ME') %>
 <table>
   <tr>
     <th colspan="2">

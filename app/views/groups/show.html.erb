@@ -50,9 +50,9 @@ This group is <%= @group.private ? "by invitation only" : "open to the public" %
 
 <h3>Activity</h3>
 View Activity:
-<%= link_to_unless session[:browse_activities_by] == 'ALL', 'by everybody', group_path(@group) %> |
-<%= link_to_unless session[:browse_activities_by] == 'BY_ME', 'by me', group_path(@group, :browse_activities_by => 'BY_ME') %> |
-<%= link_to_unless session[:browse_activities_by] == 'ON_ME', 'on me', group_path(@group, :browse_activities_by => 'ON_ME') %>
+<%= link_to_unless session[:browse_activities_by] == 'ALL', bold('by everybody', session[:browse_activities_by] == 'ALL'), group_path(@group) %> |
+<%= link_to_unless (session[:browse_activities_by] == 'BY_ME' or current_user.nil?), bold('by me', session[:browse_activities_by] == 'BY_ME'), group_path(@group, :browse_activities_by => 'BY_ME') %> |
+<%= link_to_unless (session[:browse_activities_by] == 'ON_ME' or current_user.nil?), bold('on me', session[:browse_activities_by] == 'ON_ME'), group_path(@group, :browse_activities_by => 'ON_ME') %>
 <table>
   <tr>
     <th colspan="2">
