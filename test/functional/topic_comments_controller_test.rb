@@ -64,6 +64,31 @@ class TopicCommentsControllerTest < ActionController::TestCase
         end
       end
 
+      fast_context "as a group moderator" do
+        setup do
+        @group_member = GroupMember.create!(:user => @user, :group => @topic_comment.topic.group, :member_type => MODERATOR)
+        end
+
+        fast_context "on GET to :edit" do
+          setup { get :edit, :id => @topic_comment }
+
+          should_assign_to :topic_comment
+          should_respond_with :success
+          should_not_set_the_flash
+          should_render_template "edit"
+        end
+
+        fast_context "on PUT to :update" do
+          setup { put :update, :id => @topic_comment, :topic => @topic_comment.topic,
+                      :topic_comment => { :public => true } }
+
+          should_set_the_flash_to :topic_comment_update_success
+          should_assign_to :topic_comment
+          should_respond_with :redirect
+          should_redirect_to("Topic Show") { topic_path(@topic_comment.topic) }
+        end
+      end
+
       fast_context "without moderator access" do
         setup { @user.has_no_role 'moderator' }
 

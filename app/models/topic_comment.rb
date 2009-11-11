@@ -24,6 +24,11 @@ class TopicComment < Comment
     self == self.topic.last_public_topic_comment
   end
 
+  def can_edit? user
+    super or
+            ((self.topic.group.moderated_by?(user)) and (self.public or Comment.show_public_private_option?(user)))
+  end
+
   private
 
   def update_topic
