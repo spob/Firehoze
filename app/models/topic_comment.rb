@@ -26,7 +26,7 @@ class TopicComment < Comment
 
   def can_edit? user
     super or
-            ((self.topic.group.moderated_by?(user)) and (self.public or Comment.show_public_private_option?(user)))
+            ((self.topic.group.moderated_by?(user) or self.topic.group.owned_by?(user)) and (self.public or Comment.show_public_private_option?(user)))
   end
 
   private
