@@ -54,6 +54,19 @@
     padding-left: 22px;
 }
 
+#top-navigation li.with-avatar a {
+    padding-left: 12px;
+}
+
+#top-navigation .avatar {
+    margin-top: 3px;
+    margin-right: 8px;
+    float: left;
+    border: solid 2px #ccc;
+    height: 22px;
+    width: 22px;
+}
+
 #top-navigation li.last {
     background: none;
     padding: 0;

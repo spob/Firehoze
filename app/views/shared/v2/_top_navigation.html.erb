@@ -1,8 +1,9 @@
+<%= show_cart? %>
 <ul id="top-navigation">
   <% # RECOGNIZED USER %>
   <% if current_user %>
-    <li class="first with-subnav">
-      <a href="#">Me</a>
+    <li class="first with-subnav with-avatar">
+      <a href="#"><%= avatar_tag(current_user, :size => :tiny) %> me</a>
       <ul class="subnav">
         <li><a href="#">My Firehoze</a></li>
         <li><a href="#">My Public Page</a></li>
@@ -12,6 +13,14 @@
       </ul>
     </li>
     <li><%= link_to h(t('lesson.create_lesson')), new_lesson_path %></li>
+    <li class="with-subnav">
+      <a href="#">Credits</a>
+      <ul class="subnav">
+        <li><%= link_to "Buy Credits", store_path(0) %></li>
+        <%= content_tag(:li, link_to("Gift Certificates (#{current_user.gift_certificates.active.count})", gift_certificates_path))  unless current_user.gift_certificates.active.empty? %>
+        <%= content_tag(:li, link_to('Shopping Cart', cart_path(@current_cart))) if show_cart? %>
+      </ul>
+    </li>
     <% # UN-RECOGNIZED USER %>
   <% else %>
     <li class="first "><%= link_to "Sign Up", new_registration_path %></li>
