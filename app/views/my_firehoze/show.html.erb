@@ -34,6 +34,7 @@
     <ul class="buttons">
       <li><a href="#" class="button">Lessons<span class="top_left"></span><span class="bottom_left"></span></a></li>
       <li><a href="#reviews" class="button">Reviews</a></li>
+      <li><a href="#groups" class="button">Groups</a></li>
       <li class="last">
         <a href="#" class="button">Recently Browsed<span class="top_right"></span><span class="bottom_right"></span></a>
       </li>
@@ -84,6 +85,12 @@
       laborum.
     </div>
     <!-- end reviews pane -->
+
+    <% # GROUPS  -%>
+    <div>
+      <%= render :partial => 'groups/groups', :locals => { :user => @user } %>
+    </div>
+    <!-- end groups pane -->
 
     <% # RECENTLY BROWSED  -%>
     <div class="compact_container">
