@@ -7,8 +7,11 @@ class Activity < ActiveRecord::Base
   named_scope :by_followed_instructors,
               lambda { |user|
                 {
+                        :include => [:group],
                         :joins => {:actor_user => :followed_instructors},
-                        :conditions => {:actor_user => { :followed_instructors_users => {:id => user.id }}}
+#                        :conditions => {:actor_user => { :followed_instructors_users => {:id => user.id }}},
+                        :conditions => ['followed_instructors_users.id = ? AND (activities.group_id IS NULL OR groups.private = ? OR activities.group_id in (?))',
+                                  user.id, false, (user ? user.group_ids.collect(&:group_id) : [] ) + [-1]]
                 }
               }
   named_scope :visible_to_user,

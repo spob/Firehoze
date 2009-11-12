@@ -13,11 +13,32 @@ class MyFirehozeController < ApplicationController
       # clear category browsing
       session[:browse_category_id] = nil
     end
-
+    fetch_activities
     render :layout => 'application_v2'
   end
 
   private
+
+  def fetch_activities    
+    if params[:browse_activities_by] == 'BY_ME' and current_user
+      session[:browse_activities_by] = 'BY_ME'
+    elsif params[:browse_activities_by] == 'ON_ME' and current_user
+      session[:browse_activities_by] = 'ON_ME'
+    elsif params[:browse_activities_by] == 'BY_FOLLOWED' and current_user
+      session[:browse_activities_by] = 'BY_FOLLOWED'
+    else
+      session[:browse_activities_by] = 'ALL'
+    end
+    if session[:browse_activities_by] == 'BY_ME'
+      @activities = Activity.visible_to_user(current_user).actor_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
+    elsif session[:browse_activities_by] == 'ON_ME'
+      @activities = Activity.visible_to_user(current_user).actor_user_id_not_equal_to(current_user).actee_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
+    elsif session[:browse_activities_by] == 'BY_FOLLOWED'
+      @activities = Activity.by_followed_instructors(current_user).descend_by_acted_upon_at.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
+    else
+      @activities = Activity.visible_to_user(current_user).descend_by_acted_upon_at.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
+    end
+  end
 
   def set_per_page
     @per_page = %w(show).include?(params[:action]) ? 5 : Lesson.per_page
