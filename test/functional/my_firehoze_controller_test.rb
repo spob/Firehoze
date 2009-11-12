@@ -15,6 +15,7 @@ class MyFirehozeControllerTest < ActionController::TestCase
       setup { get :show, :id => @user }
 
       should_assign_to :user
+      should_assign_to :activities
       should_respond_with :success
       should_not_set_the_flash
       should_render_template "show"
