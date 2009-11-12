@@ -1,29 +1,38 @@
-`<ul id="top-navigation">
+<ul id="top-navigation">
+  <% # RECOGNIZED USER %>
   <% if current_user %>
-    <li class="first "><%= signout_link("Sign Out") %></li>
+    <li class="first with-subnav">
+      <a href="#">Me</a>
+      <ul class="subnav">
+        <li><a href="#">My Firehoze</a></li>
+        <li><a href="#">My Public Page</a></li>
+        <li><a href="#">Settings</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><%= signout_link("Sign Out") %></li>
+      </ul>
+    </li>
+    <li><%= link_to h(t('lesson.create_lesson')), new_lesson_path %></li>
+    <% # UN-RECOGNIZED USER %>
   <% else %>
-  <li class="first "><%= link_to "Sign Up", new_registration_path %></li>
-  <li><%= link_to "Sign In", login_path %></li>
+    <li class="first "><%= link_to "Sign Up", new_registration_path %></li>
+    <li><%= link_to "Sign In", login_path %></li>
   <% end %>
-  <li class="with-subnav">
-    <a href="#">Teach</a>
-    <ul class="subnav">
-      <%= content_tag(:li, "#{link_to h(t('lesson.create_lesson')), new_lesson_path}") if current_user.present? %>
-      <li><a href="#">teach link 2</a></li>
-    </ul>
-  </li>
+  <% # VISIBLE TO ALL %>
   <li class="with-subnav">
     <a href="#">Help</a>
     <ul class="subnav">
-      <li><a href="#">help link 1</a></li>
-      <li><a href="#">help link 2</a></li>
+      <li><a href="#">Firehoze Basics</a></li>
+      <li><a href="#">Help Center</a></li>
+      <li><a href="#">Community Guidelines</a></li>
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">Get Satisfaction</a></li>
     </ul>
   </li>
   <li class="last">
     <div id="searchwrapper">
       <% form_tag search_lessons_path, :method => :get do %>
-          <%= text_field_tag :search_lesson_criteria, params[:search_lesson_criteria], :class => 'searchbox' %>
-          <%= image_submit_tag('top_navigation/searchbox_button.png', :class => 'searchbox_submit') %>
+        <%= text_field_tag :search_lesson_criteria, params[:search_lesson_criteria], :class => 'searchbox' %>
+        <%= image_submit_tag('top_navigation/searchbox_button.png', :class => 'searchbox_submit') %>
       <% end %>
     </div>
   </li>
