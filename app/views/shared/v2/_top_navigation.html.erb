@@ -1,22 +1,26 @@
-`<ul id="top-navigation">
+<ul id="top-navigation">
   <% if current_user %>
     <li class="first "><%= signout_link("Sign Out") %></li>
+    <li class="with-subnav">
+      <a href="#">Teach</a>
+      <ul class="subnav">
+        <%= content_tag(:li, "#{link_to h(t('lesson.create_lesson')), new_lesson_path}") if current_user.present? %>
+        <li><a href="#">teach link 2</a></li>
+      </ul>
+    </li>
+
   <% else %>
   <li class="first "><%= link_to "Sign Up", new_registration_path %></li>
   <li><%= link_to "Sign In", login_path %></li>
   <% end %>
   <li class="with-subnav">
-    <a href="#">Teach</a>
-    <ul class="subnav">
-      <%= content_tag(:li, "#{link_to h(t('lesson.create_lesson')), new_lesson_path}") if current_user.present? %>
-      <li><a href="#">teach link 2</a></li>
-    </ul>
-  </li>
-  <li class="with-subnav">
     <a href="#">Help</a>
     <ul class="subnav">
-      <li><a href="#">help link 1</a></li>
-      <li><a href="#">help link 2</a></li>
+      <li><a href="#">Firehoze Basics</a></li>
+      <li><a href="#">Help Center</a></li>
+      <li><a href="#">Community Guidelines</a></li>
+      <li><a href="#">Contact Us</a></li>
+      <li><a href="#">Get Satisfaction</a></li>
     </ul>
   </li>
   <li class="last">

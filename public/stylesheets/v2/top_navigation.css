@@ -40,7 +40,7 @@
 #top-navigation li a:hover,
 #top-navigation li a:focus {
     /*color: #0AAF30;*/  /*GREEN*/
-    color: #BF1701;  /*RED LINK*/
+    color: #BF1701;      /*RED LINK*/
     text-decoration: none;
 }
 
@@ -49,7 +49,7 @@
     padding-bottom: 4px;
 }
 
-#top-navigation li.first a { 
+#top-navigation li.first a {
     background: url(images/top_navigation/nav-a-first.png) no-repeat 0 0;
     padding-left: 22px;
 }
@@ -60,7 +60,7 @@
 }
 
 /* not used right now (search box is taken it's place)*/
-#top-navigation li.last a { 
+#top-navigation li.last a {
     background: url(images/top_navigation/nav-a-last.png) no-repeat right;
     padding-right: 22px;
 }
@@ -72,15 +72,15 @@
     background: url(images/top_navigation/search_box.png) no-repeat;
     padding:0px;
     margin:0px;
-    position:relative; 
+    position:relative;
 }
 
 #searchwrapper form { display:inline ;}
 
 input.searchbox {
-    border:0px; 
-    background-color:transparent; 
-    position:absolute; 
+    border:0px;
+    background-color:transparent;
+    position:absolute;
     top:4px;
     left:11px;
     width:132px;
@@ -96,10 +96,10 @@ input.searchbox:focus {
 }
 
 .searchbox_submit {
-    border:0px; 
+    border:0px;
     border: none;
-    background-color:transparent; 
-    position:absolute; 
+    background-color:transparent;
+    position:absolute;
     top:9px;
     left:151px;
     width:20px;
@@ -108,7 +108,7 @@ input.searchbox:focus {
 
 /* SUBNAV */
 /*--Drop down trigger styles--*/
-ul#top-navigation li span { 
+ul#top-navigation li span {
     width: 17px;
     height: 34px;
     float: left;
@@ -125,7 +125,7 @@ ul#top-navigation li span.subhover {
 
 /*--Hover effect for trigger--*/
 ul#top-navigation li ul.subnav {
-    font: bold 13px/30px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font: normal 13px/30px "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-shadow: none;
     list-style: none;
     position: absolute; /*--Important - Keeps subnav from affecting main navigation flow--*/
@@ -135,7 +135,7 @@ ul#top-navigation li ul.subnav {
     padding: 0;
     display: none;
     float: left;
-    width: 128px;
+    width: 168px;
     -moz-border-radius-bottomleft: 6px;
     -moz-border-radius-bottomright: 6px;
     -webkit-border-bottom-left-radius: 6px;
@@ -146,21 +146,21 @@ ul#top-navigation li ul.subnav {
 ul#top-navigation li ul.subnav li{
     margin: 0;
     padding: 0;
-    /*	border-top: 1px dotted #252525; */ /*--Create bevel effect--*/
-    /*	border-bottom: 1px dotted #444; */ /*--Create bevel effect--*/
+    border-top: 1px solid #555;
+    /* border-bottom: 1px solid #252525; */ /* Create bevel effect */
     clear: both;
-    width: 128px;
+    width: 168px;
 }
 
 html ul#top-navigation li ul.subnav li a {
     color: #ccc;
     float: left;
-    width: 105px;
-    background: #444 url(images/top_navigation/dropdown_link_bg.gif) no-repeat 10px center;
+    width: 145px;
+    background: #444 url(images/top_navigation/dropdown_link_bg.gif) no-repeat 8px center;
     padding-left: 20px;
 }
 
 /*--Hover effect for subnav links--*/
 html ul#top-navigation li ul.subnav li a:hover {
-    background: #222 url(images/top_navigation/dropdown_link_bg.gif) no-repeat 10px center;
+    background: #222 url(images/top_navigation/dropdown_link_bg.gif) no-repeat 8px center;
 }
