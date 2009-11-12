@@ -27,7 +27,7 @@
   <div id="tabs-4"><%= render :partial => "accounts/forms/avatar" %></div>
   <div id="tabs-5"><%= render :partial => "accounts/forms/privacy" %></div>      
   <div id="tabs-6"><%= render :partial => "accounts/forms/groups" %></div>
-  <div id="tabs-7"><%= render :partial => "accounts/forms/credit_history" %></div>
+  <div id="tabs-7"><%= render :partial => "accounts/forms/credit_history", :locals =>  { :user => @user } %></div>
   <div id="tabs-8"><%= render :partial => "accounts/forms/order_history" %></div>
   <% if current_user.verified_instructor? %>
       <div id="tabs-9"><%= render :partial => "accounts/forms/payment_history" %></div>
