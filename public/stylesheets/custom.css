@@ -288,6 +288,17 @@ img.lesson_tn {
     float: left; margin-right: .3em;
 }
 
+.upload_warning {
+		display:none;
+    background:#FFFFE8 url(images/icons/48_warning.png) 10px 20px no-repeat;
+    margin: 20px 0;
+    padding: 10px 0 10px 70px;
+}
+
+.upload_warning h4 {
+    margin:10px 0;
+}
+
 /* HOME */
 #user_accordion_container {
     height: 300px;
@@ -641,6 +652,7 @@ div.lesson_comment .actions .button-to {
 #faqs_section #questions h4 {
     margin:0;
     line-height: 1.5em;
+    font-weight:bold;
 }
 #faqs_section .answers {
     padding: 20px;

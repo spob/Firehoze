@@ -12,4 +12,9 @@ $(function() {
         radius: 5
     });
 
+    $('#faqs_section .answers h4').cornerz({
+        radius: 5,
+        background: "#DBDBDB"
+    });
+
 });
