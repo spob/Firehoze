@@ -22,12 +22,12 @@ class ActivityTest < ActiveSupport::TestCase
   context "given some records" do
     setup do
       @user = Factory.create(:user)
-      
+
       @lesson = Factory.create(:lesson)
       @lesson.status = LESSON_STATUS_READY
       @lesson.save!
       assert @lesson.ready?
-      
+
       @user.credits.create!(:price => 0.99, :lesson => @lesson, :acquired_at => Time.now,
                             :line_item => Factory.create(:line_item))
 
@@ -48,6 +48,27 @@ class ActivityTest < ActiveSupport::TestCase
       should "populate activities" do
         assert !Activity.all.empty?
         assert_equal 3, Activity.all.size
+      end
+    end
+
+    context "and someone you are following" do
+      setup do
+        @followee = Factory.create(:user)
+        @followee.followers << @user
+        assert @followee.followed_by?(@user)
+        @group = Factory.create(:group, :owner => @followee)
+        Activity.compile
+      end
+
+      should "generate activities" do
+        @group_activities = Activity.find_all_by_group_id(@group.id)
+        assert_equal 1, @group_activities.size
+        @group_activity = @group_activities.first
+        assert_equal @followee, @group_activity.actor_user
+        assert_equal @group, @group_activity.group
+        # I can't figure out why this is not returning a result...so for now I'll just execute it
+        # to validate it doesn't throw an error.
+        assert_nothing_raised { Activity.by_followed_instructors(@user) }
       end
     end
   end

@@ -4,13 +4,20 @@ class Activity < ActiveRecord::Base
   belongs_to :actor_user, :class_name => "User", :foreign_key => "actor_user_id"
   belongs_to :actee_user, :class_name => "User", :foreign_key => "actee_user_id"
   validates_presence_of :actor_user, :acted_upon_at
+  named_scope :by_followed_instructors,
+              lambda { |user|
+                {
+                        :joins => {:actor_user => :followed_instructors},
+                        :conditions => {:actor_user => { :followed_instructors_users => {:id => user.id }}}
+                }
+              }
   named_scope :visible_to_user,
-              lambda{ |user| 
-              {       :include => [:actor_user, :group],
-                   #   :joins => 'LEFT OUTER JOIN groups ON groups.id = activities.group_id',
-               :conditions => ['(activities.group_id IS NULL OR groups.private = ? OR activities.group_id in (?))',
-                               false, (user ? user.group_ids.collect(&:group_id) : [] ) + [-1]]
-              } }   
+              lambda{ |user|
+                { :include => [:actor_user, :group],
+                  #   :joins => 'LEFT OUTER JOIN groups ON groups.id = activities.group_id',
+                  :conditions => ['(activities.group_id IS NULL OR groups.private = ? OR activities.group_id in (?))',
+                                  false, (user ? user.group_ids.collect(&:group_id) : [] ) + [-1]]
+                } }
 
   def self.compile
     Lesson.ready.activity_compiled_at_null(:lock => true).each do |lesson|
