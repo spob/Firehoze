@@ -10,5 +10,13 @@
       Category
     </th>
   </tr>
-  <%= render :partial => 'categories/group', :collection => user.groups.ascend_by_name %>
+  <% if user.groups.empty? %>
+      <tr>
+        <td colspan="4">
+          You do not belong to any groups
+        </td>
+      </tr>
+  <% else %>
+      <%= render :partial => 'categories/group', :collection => user.groups.ascend_by_name %>
+  <% end %>
 </table>

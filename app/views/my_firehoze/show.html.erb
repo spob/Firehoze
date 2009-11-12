@@ -32,6 +32,7 @@
       <li><a href="#" class="button">Lessons<span class="top_left"></span><span class="bottom_left"></span></a></li>
       <li><a href="#reviews" class="button">Reviews</a></li>
       <li><a href="#groups" class="button">Groups</a></li>
+      <li><a href="#followed_instructors" class="button">Followed Instructors</a></li>
       <li class="last">
         <a href="#" class="button">Recently Browsed<span class="top_right"></span><span class="bottom_right"></span></a>
       </li>
@@ -88,6 +89,12 @@
       <%= render :partial => 'groups/groups', :locals => { :user => @user } %>
     </div>
     <!-- end groups pane -->
+
+    <% # FOLLOWED INSTRUCTORS  -%>
+    <div>
+      <%= render :partial => 'followed_instructors' %>
+    </div>
+    <!-- end followed instructor pane -->
 
     <% # RECENTLY BROWSED  -%>
     <div class="compact_container">

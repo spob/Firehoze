@@ -1,0 +1,9 @@
+Replace this with the mosiacs tab
+
+<ul>
+  <% @user.followed_instructors.each do |u| %>
+      <li>
+        <%= link_to_profile(u) %>
+      </li>
+  <% end %>
+</ul>
