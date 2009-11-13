@@ -10,5 +10,5 @@
       Amount
     </th>
   </tr>
-  <%= render :partial => 'users/forms/order', :collection => @user.orders.cart_purchased_at_not_null %>
+  <%= render :partial => 'order', :collection => @user.orders.cart_purchased_at_not_null %>
 </table>
