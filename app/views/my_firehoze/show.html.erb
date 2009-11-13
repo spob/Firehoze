@@ -1,7 +1,5 @@
 <% title "my firehoze" -%>
 <% @current = 'my_firehoze' %>
-<%= javascript 'v2/jquery.tools.min', 'v2/tabs' %>
-
 
 <div class="span-12 last">
   <h4 class="banner">Welcome, <%= @current_user.full_name %></h4>
@@ -11,14 +9,9 @@
   <div class="span-8">
     <%= render :partial => 'profile', :locals => { :user => current_user } %>
   </div>
-
   <div class="span-4 last">
-    <h4>Latest News</h4>
-
-    <div class="box">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua.
-    </div>
+    <h4>Latest Tweets from Firehoze</h4>
+    <div id="latest_firehoze_tweets" class="box"></div>
   </div>
 </div>
 
