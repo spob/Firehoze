@@ -15,7 +15,11 @@ $(function() {
         effect: 'fade'
     });
 
-    $("#instructor_stuff div.sub-sub-navigation > ul.links").tabs("#instructor_stuff div.sub-sub-navigation-panes > div", {
+    $("#instructor_stuff div.sub-sub-navigation-1 > ul.links").tabs("#instructor_stuff div.sub-sub-navigation-panes > div", {
+        effect: 'fade'
+    });
+
+    $("#instructor_stuff div.sub-sub-navigation-2 > ul.links").tabs("#instructor_stuff div.sub-sub-navigation-panes > div", {
         effect: 'fade'
     });
 
