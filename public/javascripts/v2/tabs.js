@@ -11,4 +11,12 @@ $(function() {
         effect: 'fade'
     });
 
+    $("#instructor_stuff div.sub-navigation > ul.buttons").tabs("#instructor_stuff > div.sub-navigation-panes > div", {
+        effect: 'fade'
+    });
+
+    $("#instructor_stuff div.sub-sub-navigation > ul.links").tabs("#instructor_stuff div.sub-sub-navigation-panes > div", {
+        effect: 'fade'
+    });
+
 });
