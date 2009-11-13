@@ -38,6 +38,11 @@ class MyFirehozeController < ApplicationController
     else
       @activities = Activity.visible_to_user(current_user).descend_by_acted_upon_at.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
     end
+
+    # return credit information
+    @available_credits = current_user.available_credits(:order => "created_at ASC")
+    @used_credits = current_user.credits.redeemed_at_not_null.expired_at_null(:order => "created_at ASC")
+    @expired_credits = current_user.credits.expired_at_not_null(:order => "created_at ASC")
   end
 
   def set_per_page

@@ -12,15 +12,19 @@
     <th>
       Price Paid
     </th>
-    <th>
-      Redeemed At
-    </th>
-    <th>
-      Redeemed For
-    </th>
+    <% if show_redeemed %>
+        <th>
+          Redeemed At
+        </th>
+        <th>
+          Redeemed For
+        </th>
+    <% end %>
+    <% if show_expired %>
     <th>
       Expiration Date
     </th>
+    <% end %> 
   </tr>
-  <%= render :partial => 'credit', :collection => user.credits.all(:order => "created_at DESC") %>
+  <%= render :partial => 'credit', :collection => credits, :locals => { :show_redeemed => show_redeemed, :show_expired => show_expired } %>
 </table>

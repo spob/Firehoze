@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   has_many :flaggings, :class_name => 'Flag'
   has_many :lesson_comments
   has_many :available_credits, :class_name => 'Credit',
-           :conditions => { :redeemed_at => nil },
+           :conditions => { :redeemed_at => nil, :expired_at => nil },
            :order => "id"
   # Instructed represents lessons that this user has instructed
   has_many :instructed_lessons, :class_name => 'Lesson', :foreign_key => 'instructor_id', :order => 'rating_average desc, id'
