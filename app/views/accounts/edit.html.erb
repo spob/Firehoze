@@ -14,20 +14,10 @@
     <li><a href="#tabs-3"><%= h(t('user.author_info')) %></a></li>
     <li><a href="#tabs-4"><%= h(t('user.avatar')) %></a></li>
     <li><a href="#tabs-5"><%= h(t('user.privacy')) %></a></li>
-    <li><a href="#tabs-6"><%= h(t('user.credit_history')) %></a></li>
-    <li><a href="#tabs-7"><%= h(t('user.order_history')) %></a></li>
-    <% if current_user.verified_instructor? %>
-        <li><a href="#tabs-8"><%= t'user.payment_history' %></a></li>
-    <% end %>
   </ul>
   <div id="tabs-1"><%= render :partial => "accounts/forms/profile" %></div>
   <div id="tabs-2"><%= render :partial => "accounts/forms/password" %></div>
   <div id="tabs-3"><%= render :partial => "accounts/forms/instructor" %></div>
   <div id="tabs-4"><%= render :partial => "accounts/forms/avatar" %></div>
   <div id="tabs-5"><%= render :partial => "accounts/forms/privacy" %></div>
-  <div id="tabs-6"><%= render :partial => "accounts/forms/credit_history", :locals =>  { :user => @user } %></div>
-  <div id="tabs-7"><%= render :partial => "accounts/forms/order_history" %></div>
-  <% if current_user.verified_instructor? %>
-      <div id="tabs-8"><%= render :partial => "accounts/forms/payment_history" %></div>
-  <% end %>
 </div>

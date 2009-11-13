@@ -183,10 +183,10 @@
 
   <div class="sub-navigation-panes">
     <% # ORDER HISTORY                    -%>
-    <div><%= render :partial => "accounts/forms/order_history", :locals => { :user => @user } %></div>
+    <div><%= render :partial => "order_history", :locals => { :user => @user } %></div>
 
 
     <% # CREDIT HISTORY                    -%>
-    <div><%= render :partial => "accounts/forms/credit_history", :locals => { :user => @user } %></div>
+    <div><%= render :partial => "credit_history", :locals => { :user => @user } %></div>
   </div>
 </div>
