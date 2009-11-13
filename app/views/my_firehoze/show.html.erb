@@ -78,7 +78,7 @@
 
     <% # FOLLOWED INSTRUCTORS                -%>
     <div>
-      <%= render :partial => 'followed_instructors' %>
+      <%= render :partial => 'followed_instructors', :locals => { :user => @user } %>
     </div>
     <!-- end followed instructor pane -->
   </div>

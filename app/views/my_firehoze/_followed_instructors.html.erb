@@ -1,9 +1,10 @@
 Replace this with the mosiacs tab
-
+<% if (followed_instructors = user.followed_instructors.present?) %>
 <ul>
-  <% @user.followed_instructors.each do |u| %>
-      <li>
-        <%= link_to_profile(u) %>
-      </li>
+  <% followed_instructors.each do |instructor| %>
+  <li>
+    <%= link_to_profile(instructor) %>
+  </li>
   <% end %>
 </ul>
+<% end %>
