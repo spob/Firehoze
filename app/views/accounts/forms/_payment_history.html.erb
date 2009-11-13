@@ -8,10 +8,12 @@ Current Earnings Owed To You:
     <th>Amount</th>
   </tr>
   <% if current_user.payments.empty? %>
+    <tr>
       <td colspan="3">
         You haven't received any payments yet
       </td>
+    </tr>
   <% else %>
-      <%= render :partial => 'accounts/forms/payment', :collection => current_user.payments %>
+    <%= render :partial => 'accounts/forms/payment', :collection => current_user.payments %>
   <% end %>
 </table>
