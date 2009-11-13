@@ -41,30 +41,21 @@
   </div>
 
   <div class="sub-navigation-panes">
-    <% # LESSONS    -%>
+    <% # LESSONS               -%>
     <div>
       <div class="sub-sub-navigation">
         <ul class="links">
           <li><a href="#">Owned</a></li>
-          <% if current_user.verified_instructor? %>
-              <li><a href="#">Taught</a></li>
-          <% end %>
           <li><a href="#"><%= h(t('lesson.wishlist')) %></a></li>
           <li><a href="#">Recently Browsed</a></li>
-
         </ul>
         <div class="clear"></div>
+
         <div class="sub-sub-navigation-panes">
           <div class="compact_container">
             <%= render :partial => "lessons/owned", :locals => { :lesson_format => :compact } %>
             <div class="clear"></div>
           </div>
-          <% if current_user.verified_instructor? %>
-              <div class="compact_container">
-                <%= render :partial => "lessons/instructed", :locals => { :lesson_format => :compact } %>
-                <div class="clear"></div>
-              </div>
-          <% end %>
           <div class="compact_container">
             <%= render :partial => "lessons/wishlist", :locals => { :lesson_format => :compact } %>
             <div class="clear"></div>
@@ -80,19 +71,19 @@
     </div>
     <!-- end lessons pane -->
 
-    <% # REVIEWS    -%>
+    <% # REVIEWS               -%>
     <div>
       <%= render :partial => 'reviews', :locals => { :user => @user } %>
     </div>
     <!-- end reviews pane -->
 
-    <% # GROUPS    -%>
+    <% # GROUPS               -%>
     <div>
       <%= render :partial => 'groups/groups', :locals => { :user => @user } %>
     </div>
     <!-- end groups pane -->
 
-    <% # FOLLOWED INSTRUCTORS    -%>
+    <% # FOLLOWED INSTRUCTORS               -%>
     <div>
       <%= render :partial => 'followed_instructors' %>
     </div>
@@ -108,7 +99,63 @@
   </div>
 </div>
 
-<% # ACCOUNT HISTORY    -%>
+<% # INSTRUCTOR STUFF             -%>
+<% if current_user.verified_instructor? %>
+
+    <div class="span-12 last">
+      <h4 class="banner">Instructor Stuff</h4>
+    </div>
+    <div id="instructor stuff" class="span-12 last">
+      <div class="sub-navigation">
+        <ul class="buttons">
+          <li><a href="#" class="button">Lessons I Taught<span class="top_left"></span><span class="bottom_left"></span></a>
+          </li>
+          <li><a href="#students" class="button">My Students</a></li>
+          <li class="last">
+            <a href="#" class="button">Payments<span class="top_right"></span><span class="bottom_right"></span></a>
+          </li>
+        </ul>
+        <div class="clear"></div>
+      </div>
+
+      <div class="sub-navigation-panes">
+        <% # LESSONS I TAUGHT               -%>
+        <div>
+          <div class="sub-sub-navigation">
+            <ul class="links">
+              <li><a href="#">Tabbed View</a></li>
+              <li><a href="#">Table View</a></li>
+            </ul>
+            <div class="clear"></div>
+
+            <div class="sub-sub-navigation-panes">
+              <div class="compact_container">
+                <%= render :partial => "lessons/instructed", :locals => { :user => @user, :lesson_format => :compact } %>
+                <div class="clear"></div>
+              </div>
+              <div>
+                <%= render :partial => "instructed_lessons", :locals => { :user => @user } %>
+              </div>
+            </div>
+            <!-- end (interior) panes -->
+          </div>
+        </div>
+        <!-- end lessons I taught pane -->
+
+        <% # MY STUDENTS               -%>
+        <div>one</div>
+        <!-- end my students pane -->
+
+        <% # PAYMENT HISTORY               -%>
+        <% if current_user.verified_instructor? %>
+            <div><%= render :partial => "accounts/forms/payment_history", :locals => { :user => @user } %></div>
+        <% end %>
+        <!-- end payments pane -->
+      </div>
+    </div>
+<% end %>
+
+<% # ACCOUNT HISTORY               -%>
 <div class="span-12 last">
   <h4 class="banner">Account History</h4>
 </div>
@@ -117,9 +164,6 @@
   <div class="sub-navigation">
     <ul class="buttons">
       <li><a href="#" class="button">Orders<span class="top_left"></span><span class="bottom_left"></span></a></li>
-      <% if current_user.verified_instructor? %>
-          <li><a href="#" class="button">Payments</a></li>
-      <% end %>
       <li class="last">
         <a href="#" class="button">Credits<span class="top_right"></span><span class="bottom_right"></span></a></li>
     </ul>
@@ -127,15 +171,11 @@
   </div>
 
   <div class="sub-navigation-panes">
-    <% # ORDER HISTORY    -%>
+    <% # ORDER HISTORY               -%>
     <div><%= render :partial => "accounts/forms/order_history", :locals => { :user => @user } %></div>
 
-    <% # PAYMENT HISTORY    -%>
-    <% if current_user.verified_instructor? %>
-        <div><%= render :partial => "accounts/forms/payment_history", :locals => { :user => @user } %></div>
-    <% end %>
 
-    <% # CREDIT HISTORY    -%>
+    <% # CREDIT HISTORY               -%>
     <div><%= render :partial => "accounts/forms/credit_history", :locals => { :user => @user } %></div>
   </div>
 </div>
