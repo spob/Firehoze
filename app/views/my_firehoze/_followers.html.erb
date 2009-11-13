@@ -1,0 +1,11 @@
+Replace this with the mosiacs tab
+<% followers = user.followers %>
+<% if (followers.present?) %>
+<ul>
+  <% followers.each do |follower| %>
+  <li>
+    <%= link_to_profile(follower) %>
+  </li>
+  <% end %>
+</ul>
+<% end %>
