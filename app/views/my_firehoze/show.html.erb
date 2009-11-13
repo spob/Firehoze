@@ -41,7 +41,7 @@
   </div>
 
   <div class="sub-navigation-panes">
-    <% # LESSONS               -%>
+    <% # LESSONS                -%>
     <div>
       <div class="sub-sub-navigation">
         <ul class="links">
@@ -71,19 +71,19 @@
     </div>
     <!-- end lessons pane -->
 
-    <% # REVIEWS               -%>
+    <% # REVIEWS                -%>
     <div>
       <%= render :partial => 'reviews', :locals => { :user => @user } %>
     </div>
     <!-- end reviews pane -->
 
-    <% # GROUPS               -%>
+    <% # GROUPS                -%>
     <div>
       <%= render :partial => 'groups/groups', :locals => { :user => @user } %>
     </div>
     <!-- end groups pane -->
 
-    <% # FOLLOWED INSTRUCTORS               -%>
+    <% # FOLLOWED INSTRUCTORS                -%>
     <div>
       <%= render :partial => 'followed_instructors' %>
     </div>
@@ -99,7 +99,7 @@
   </div>
 </div>
 
-<% # INSTRUCTOR STUFF             -%>
+<% # INSTRUCTOR STUFF              -%>
 <% if current_user.verified_instructor? %>
 
     <div class="span-12 last">
@@ -119,7 +119,7 @@
       </div>
 
       <div class="sub-navigation-panes">
-        <% # LESSONS I TAUGHT               -%>
+        <% # LESSONS I TAUGHT                -%>
         <div>
           <div class="sub-sub-navigation">
             <ul class="links">
@@ -142,20 +142,18 @@
         </div>
         <!-- end lessons I taught pane -->
 
-        <% # MY STUDENTS               -%>
+        <% # MY STUDENTS                -%>
         <div>one</div>
         <!-- end my students pane -->
 
-        <% # PAYMENT HISTORY               -%>
-        <% if current_user.verified_instructor? %>
-            <div><%= render :partial => "accounts/forms/payment_history", :locals => { :user => @user } %></div>
-        <% end %>
+        <% # PAYMENT HISTORY                -%>
+        <div><%= render :partial => "accounts/forms/payment_history", :locals => { :user => @user } %></div>
         <!-- end payments pane -->
       </div>
     </div>
 <% end %>
 
-<% # ACCOUNT HISTORY               -%>
+<% # ACCOUNT HISTORY                -%>
 <div class="span-12 last">
   <h4 class="banner">Account History</h4>
 </div>
@@ -171,11 +169,11 @@
   </div>
 
   <div class="sub-navigation-panes">
-    <% # ORDER HISTORY               -%>
+    <% # ORDER HISTORY                -%>
     <div><%= render :partial => "accounts/forms/order_history", :locals => { :user => @user } %></div>
 
 
-    <% # CREDIT HISTORY               -%>
+    <% # CREDIT HISTORY                -%>
     <div><%= render :partial => "accounts/forms/credit_history", :locals => { :user => @user } %></div>
   </div>
 </div>

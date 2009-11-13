@@ -2,7 +2,7 @@
 # (for example, first and last name), their encrypted password, etc.
 class User < ActiveRecord::Base
   extend ActiveSupport::Memoizable
-  
+
   has_friendly_id :login
 
   # Ajaxful-rating plugin
@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   before_save :persist_user_logon
   before_validation :strip_fields
 
-  acts_as_authentic  do |c|
+  acts_as_authentic do |c|
     c.logged_in_timeout = 30.minutes # log out after 30 minutes of inactivity
   end
 
@@ -82,16 +82,16 @@ class User < ActiveRecord::Base
   # Used to verify current password during password changes
   attr_accessor :current_password
 
-  validates_presence_of     :login_count, :failed_login_count, :last_name, :instructor_status, :language
-  validates_presence_of     :user_agreement_accepted_on #, :message => :must_accept_agreement
-  validates_presence_of     :login#, :message => :login_required
-  validates_uniqueness_of   :email, :case_sensitive => false
-  validates_uniqueness_of   :login, :case_sensitive => false
+  validates_presence_of :login_count, :failed_login_count, :last_name, :instructor_status, :language
+  validates_presence_of :user_agreement_accepted_on #, :message => :must_accept_agreement
+  validates_presence_of :login#, :message => :login_required
+  validates_uniqueness_of :email, :case_sensitive => false
+  validates_uniqueness_of :login, :case_sensitive => false
   validates_numericality_of :login_count, :failed_login_count
-  validates_length_of       :email, :maximum => 100, :allow_nil => true
-  validates_length_of       :last_name, :maximum => 40, :allow_nil => true
-  validates_length_of       :first_name, :maximum => 40, :allow_nil => true
-  validates_length_of       :login, :maximum => 25, :allow_nil => true
+  validates_length_of :email, :maximum => 100, :allow_nil => true
+  validates_length_of :last_name, :maximum => 40, :allow_nil => true
+  validates_length_of :first_name, :maximum => 40, :allow_nil => true
+  validates_length_of :login, :maximum => 25, :allow_nil => true
 
   # PAPERCLIP
   has_attached_file :avatar,
@@ -149,16 +149,31 @@ class User < ActiveRecord::Base
   def is_a_moderator?
     self.is_moderator?
   end
+
   memoize :is_a_moderator?
 
   # This method is a decorator and it's sole purpose is to enable memoization 
   def is_an_admin?
     self.is_admin?
   end
+
   memoize :is_an_admin?
 
   def self.supported_languages
     LANGUAGES
+  end
+
+  def students
+    sql = <<END
+    SELECT distinct u.*
+    FROM users AS u
+    INNER JOIN credits AS c ON u.id = c.user_id
+    INNER JOIN lessons AS l ON c.lesson_id = l.id
+    WHERE l.instructor_id = ?
+      AND u.active = 1
+    ORDER BY u.login
+END
+    User.find_by_sql([sql, self.id])
   end
 
   # Reset the password token and then send the user an email
