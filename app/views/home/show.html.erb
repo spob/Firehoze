@@ -30,7 +30,7 @@
           <h3><a href="#"><%= t 'lesson.lessons_you_instructed' %></a></h3>
 
           <div class="content">
-            <%= render :partial => "lessons/instructed", :locals => { :lesson_format => :brief } %>
+            <%= render :partial => "lessons/instructed", :locals => { :user => current_user, :lesson_format => :brief } %>
           </div>
       <% end %>
 

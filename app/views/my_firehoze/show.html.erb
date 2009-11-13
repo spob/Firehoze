@@ -136,7 +136,7 @@
         <!-- end lessons I taught pane -->
 
         <% # MY STUDENTS                -%>
-        <div>one</div>
+        <div><%= render :partial => "students", :locals => { :user => @user } %></div>
         <!-- end my students pane -->
 
         <% # PAYMENT HISTORY                -%>
