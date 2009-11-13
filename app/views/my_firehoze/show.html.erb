@@ -37,7 +37,7 @@
   <div class="sub-navigation-panes">
     <% # LESSONS -%>
     <div>
-      <div class="sub-sub-navigation">
+      <div class="secondary-sub-navigation">
         <ul class="links">
           <li><a href="#">Owned</a></li>
           <li><a href="#"><%= h(t('lesson.wishlist')) %></a></li>
@@ -45,7 +45,7 @@
         </ul>
         <div class="clear"></div>
 
-        <div class="sub-sub-navigation-panes">
+        <div class="secondary-sub-navigation-panes">
           <div class="compact_container">
             <%= render :partial => "lessons/owned", :locals => { :lesson_format => :compact } %>
             <div class="clear"></div>
@@ -115,14 +115,14 @@
       <div class="sub-navigation-panes">
         <% # LESSONS I TAUGHT -%>
         <div>
-          <div class="sub-sub-navigation-1">
+          <div class="secondary-sub-navigation">
             <ul class="links">
               <li><a href="#">Tabbed View</a></li>
               <li><a href="#">Table View</a></li>
             </ul>
             <div class="clear"></div>
 
-            <div class="sub-sub-navigation-panes">
+            <div class="secondary-sub-navigation-panes">
               <div class="compact_container">
                 <%= render :partial => "lessons/instructed", :locals => { :user => @user, :lesson_format => :compact } %>
                 <div class="clear"></div>
@@ -139,14 +139,14 @@
 
         <% # STUDENTS -%>
         <div>
-          <div class="sub-sub-navigation-2">
+          <div class="secondary-sub-navigation">
             <ul class="links">
               <li><a href="#">My Students</a></li>
               <li><a href="#">Followers</a></li>
             </ul>
             <div class="clear"></div>
 
-            <div class="sub-sub-navigation-panes">
+            <div class="secondary-sub-navigation-panes">
               <div class="compact_container">
                 <%= render :partial => "students", :locals => { :user => @user } %>
                 <div class="clear"></div>

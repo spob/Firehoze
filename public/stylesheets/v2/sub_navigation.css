@@ -81,43 +81,43 @@ a.button:hover .bottom_right, ul.buttons li a.current .bottom_right {background-
 a.button:active, ul.buttons li a:focus {outline: none}
 
 
-/* SUB-SUB-NAVIGATION */
-.sub-sub-navigation ul {
+/* secondary-sub-navigation */
+.secondary-sub-navigation ul {
     /* width:auto; */
 }
 
-.sub-sub-navigation-panes {
+.secondary-sub-navigation-panes {
     /* padding:16px; */
     /* margin:0 0 34px 1px; */
     /* border:solid 1px #D6D6D6; */
 }
 
-.sub-sub-navigation ul.links li {
+.secondary-sub-navigation ul.links li {
     margin: 0 0 0 1px;
     display: inline;
 }
 
-.sub-sub-navigation ul.links {
+.secondary-sub-navigation ul.links {
     margin:0 0 20px 0;
     padding-left:0px;
 }
 
-.sub-sub-navigation ul.links li a.current {
+.secondary-sub-navigation ul.links li a.current {
     font-weight:bold;
     border-bottom:solid 4px #D6D6D6;
     color: inherit;
 }
 
-.sub-sub-navigation ul.links li a:hover {
+.secondary-sub-navigation ul.links li a:hover {
     border-bottom:solid 4px #D6D6D6;
     color: inherit;
 }
 
-.sub-sub-navigation ul.links li a {
+.secondary-sub-navigation ul.links li a {
     color: #A6A6A6;
 }
 
-.sub-sub-navigation ul.links li a {
+.secondary-sub-navigation ul.links li a {
     padding:2px 20px 6px 20px;
     letter-spacing: 0.05em;
     font-weight: normal;
@@ -125,6 +125,6 @@ a.button:active, ul.buttons li a:focus {outline: none}
     text-decoration: none
 }
 
-.sub-sub-navigation ul.links {
+.secondary-sub-navigation ul.links {
     margin-bottom:8px;
 }

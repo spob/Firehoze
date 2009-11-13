@@ -1,4 +1,4 @@
-.sub-sub-navigation ul.links li a.current,
-.sub-sub-navigation ul.links li a:hover {
+.secondary-sub-navigation ul.links li a.current,
+.secondary-sub-navigation ul.links li a:hover {
     color: #555;
 }
