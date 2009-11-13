@@ -72,6 +72,7 @@ class Lesson < ActiveRecord::Base
   has_many :groups, :through => :group_lessons
   has_many :active_groups, :source => :group, :through => :group_lessons,
            :conditions => { :group_lessons => { :active => true }}
+  has_many :students, :through => :credits, :source => 'user'
   has_one :original_video
   has_one :full_processed_video
   has_one :preview_processed_video
