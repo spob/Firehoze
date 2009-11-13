@@ -115,7 +115,7 @@
       <div class="sub-navigation-panes">
         <% # LESSONS I TAUGHT                 -%>
         <div>
-          <div class="sub-sub-navigation">
+          <div class="sub-sub-navigation-1">
             <ul class="links">
               <li><a href="#">Tabbed View</a></li>
               <li><a href="#">Table View</a></li>
@@ -129,6 +129,7 @@
               </div>
               <div>
                 <%= render :partial => "instructed_lessons", :locals => { :user => @user } %>
+                <div class="clear"></div>
               </div>
             </div>
             <!-- end (interior) panes -->
@@ -138,7 +139,7 @@
 
         <% # STUDENTS                 -%>
         <div>
-          <div class="sub-sub-navigation">
+          <div class="sub-sub-navigation-2">
             <ul class="links">
               <li><a href="#">My Students</a></li>
               <li><a href="#">Followers</a></li>
