@@ -1,9 +1,10 @@
+<% activities = object %>
 View Activity:
 <%= link_to_unless session[:browse_activities_by] == 'ALL', bold('by everybody', session[:browse_activities_by] == 'ALL'), myfirehoze_path %> |
 <%= link_to_unless (session[:browse_activities_by] == 'BY_ME' or current_user.nil?), bold('by me', session[:browse_activities_by] == 'BY_ME'), myfirehoze_path(:browse_activities_by => 'BY_ME') %> |
 <%= link_to_unless (session[:browse_activities_by] == 'ON_ME' or current_user.nil?), bold('on me', session[:browse_activities_by] == 'ON_ME'), myfirehoze_path(:browse_activities_by => 'ON_ME') %> |
 <%= link_to_unless (session[:browse_activities_by] == 'BY_FOLLOWED' or current_user.nil?), bold('by followers', session[:browse_activities_by] == 'BY_FOLLOWED'), myfirehoze_path(:browse_activities_by => 'BY_FOLLOWED') %>
 <table>
-  <%= render @activities %>
+  <%= render activities %>
 </table>
-<%= will_paginate @activities %>
+<%= will_paginate activities %>
