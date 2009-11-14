@@ -45,6 +45,7 @@ namespace :db do
     create_job RunIntervalPeriodicJob, 'SessionCleaner', 'SessionCleaner.clean', 3600 * 24  #once a day
     create_job RunIntervalPeriodicJob, 'SessionExpiry', 'SessionCleaner.sweep', 1800  #once every 30 minutes
     create_job RunIntervalPeriodicJob, 'ActivityFeed', 'Activity.compile', 900  #once every 15 minutes
+    create_job RunIntervalPeriodicJob, 'TwitterFeed', 'Tweet.fetch_firehoze_tweets("FIREHOZE", "firehoze")', 600  #once every 10 minutes
     create_job RunIntervalPeriodicJob, 'PeriodicJobCleanup', 'PeriodicJob.cleanup', 3600  #once an hour
     create_job RunIntervalPeriodicJob, 'CreditExpiration', 'Credit.expire_unused_credits', 3600 * 24  #once a day
     create_job RunIntervalPeriodicJob, 'LessonBuyPattern', 'LessonBuyPattern.rollup_buy_patterns', 3600  #once an hour
