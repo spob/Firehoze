@@ -87,6 +87,9 @@ Rails::Initializer.run do |config|
 
   # For interacting with AWS
   config.gem 'right_aws'
+  
+  # For retrieving tweets
+  config.gem 'twitter', :version => '0.7.0'
 
   # Search Logic
   config.gem "searchlogic", :version => '~> 2.3.5'
