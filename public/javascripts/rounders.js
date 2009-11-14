@@ -16,10 +16,8 @@ $(function() {
         radius: 5
     });
 
-
-    // $('.pod_wrapper, h4.banner').cornerz({
+    // $('.subColWidget .footer').cornerz({
     //     radius: 5,
-    //     corners: "tr, br"
+    //     corners: "bl, br"
     // });
-
 });
