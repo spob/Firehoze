@@ -14,30 +14,36 @@ div {
     /*text-align:justify*/
 }
 
-.box { 
+.box {
     background: #EDEDED;
     border: solid 1px #CFCFCF;
+}
+
+.inner_box {
+    background: #fff;
+    border: solid 1px #CFCFCF;
+    padding: 10px;
 }
 
 .clearfix {
-	display:inline-block;
+    display:inline-block;
 }
 
 
-.flat-box-header { 
+.flat-box-header {
     background: #EDEDED;
     border: solid 1px #CFCFCF;
 }
 
-.flat-box { 
+.flat-box {
     background: #EDEDED;
     border: solid 1px #CFCFCF;
 }
 
 /* SUB COLUMN WIDGET */
 .subColWidget {
-	margin:0;
-	position:relative;
+    margin:0;
+    position:relative;
 }
 
 .subColWidget .header { position:relative; }
@@ -73,34 +79,34 @@ div {
     background: url(images/sub_navigation/corners.png) no-repeat -4px -4px
 }
 .subColWidget .header .header-text{
-  vertical-align: middle;
-  display: block;
-  padding: 4px 12px;
-  background: url(images/sub_navigation/button_bg.png) repeat-x left center;
- 	text-shadow: #333 0 1px 1px;
-  color: #FFF; 
-	letter-spacing: 0.05em;
-  font-weight: normal;
-  font-size: 13px;
-  text-decoration: none;
+    vertical-align: middle;
+    display: block;
+    padding: 4px 12px;
+    background: url(images/sub_navigation/button_bg.png) repeat-x left center;
+    text-shadow: #333 0 1px 1px;
+    color: #FFF;
+    letter-spacing: 0.05em;
+    font-weight: normal;
+    font-size: 13px;
+    text-decoration: none;
 }
 
 .subColWidget .content {
-  background: #FFF;
-  border-left: solid 1px #CFCFCF;
-  border-right: solid 1px #CFCFCF;
+    background: #FFF;
+    border-left: solid 1px #CFCFCF;
+    border-right: solid 1px #CFCFCF;
 }
 .subColWidget .footer .footer-text{
-  vertical-align: middle;
-  display: block;
-  padding: 5px 12px;
-  background: url(images/sub_navigation/button_bg.png) repeat-x left center;
- 	text-shadow: #333 0 1px 1px;
-  color: #FFF; 
-	letter-spacing: 0.05em;
-  font-weight: normal;
-  font-size: 13px;
-  text-decoration: none;
+    vertical-align: middle;
+    display: block;
+    padding: 5px 12px;
+    background: url(images/sub_navigation/button_bg.png) repeat-x left center;
+    text-shadow: #333 0 1px 1px;
+    color: #FFF;
+    letter-spacing: 0.05em;
+    font-weight: normal;
+    font-size: 13px;
+    text-decoration: none;
 }
 
 h4.banner  {
@@ -109,10 +115,10 @@ h4.banner  {
     /*text-shadow: #333 0 1px 1px;*/
     padding: 5px 0 5px 16px;
     margin: 16px -15px 24px -15px;
-/*		border-top: solid 1px #efefef;*/
-/*    border-right: solid 1px #514F50;*/
+    /*		border-top: solid 1px #efefef;*/
+    /*    border-right: solid 1px #514F50;*/
     border-bottom: solid 1px #ccc;
-/*   background-color: #6F777F;*/
+    /*   background-color: #6F777F;*/
     background: url(images/top_navigation/nav-a.png) repeat-x 0 0;
 }
 

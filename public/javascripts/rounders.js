@@ -16,8 +16,8 @@ $(function() {
         radius: 5
     });
 
-    // $('.subColWidget .footer').cornerz({
-    //     radius: 5,
-    //     corners: "bl, br"
-    // });
+    $('.inner_box').cornerz({
+        radius: 5,
+				background : "#EDEDED"
+    });
 });
