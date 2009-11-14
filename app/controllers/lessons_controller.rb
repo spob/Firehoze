@@ -4,7 +4,7 @@ class LessonsController < ApplicationController
   if APP_CONFIG[CONFIG_ALLOW_UNRECOGNIZED_ACCESS]
     before_filter :require_user, :only => [:new, :create, :edit, :update, :unreject]
   else
-    before_filter :require_user, :except => [:conversion_notify]
+    before_filter :require_user, :except => [:conversion_notify, :index]
   end
   permit ROLE_ADMIN, :only => [:convert]
   permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [:list_admin]
@@ -26,8 +26,11 @@ class LessonsController < ApplicationController
   def index
     if current_user
       redirect_to home_path
-    else
+    elsif APP_CONFIG[CONFIG_ALLOW_UNRECOGNIZED_ACCESS]
       @lessons = Lesson.list(params[:page], current_user)
+    else
+      # We're running in closed beta mode...redirect to the login page
+      redirect_to login_path
     end
   end
 
