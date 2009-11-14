@@ -2,10 +2,9 @@ class MyFirehozeController < ApplicationController
   include SslRequirement
 
   before_filter :require_user
-
-#  verify :method => :put, :only => [ :update ], :redirect_to => :home_path
-
+  #  verify :method => :put, :only => [ :update ], :redirect_to => :home_path
   before_filter :set_per_page, :only => [ :show ]
+  layout :layout_for_action
 
   def show
     @user = @current_user
@@ -14,7 +13,11 @@ class MyFirehozeController < ApplicationController
       session[:browse_category_id] = nil
     end
     fetch_activities
-    render :layout => 'application_v2'
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   private
@@ -48,5 +51,13 @@ class MyFirehozeController < ApplicationController
 
   def set_per_page
     @per_page = %w(show).include?(params[:action]) ? 5 : Lesson.per_page
+  end
+
+  def layout_for_action
+    if %w(show).include?(params[:action])
+      'application_v2'
+    else
+      'application'
+    end
   end
 end

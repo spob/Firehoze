@@ -1,6 +1,7 @@
 <% title "my firehoze" -%>
 <% @current = 'my_firehoze' %>
 <%= stylesheet 'v2/my_firehoze'  %>
+<%= javascript 'pagination'  %>
 
 <div class="span-12 last">
   <h4 class="banner">Welcome, <%= current_user.full_name %></h4>
@@ -25,7 +26,7 @@
 
 <div class="span-4 last">
   <h4>Recent Activity</h4>
-  <div class="box">
+  <div id="activities" class="box">
     <%= render :partial => 'activities/activities', :object => @activities %>
   </div>
 </div>

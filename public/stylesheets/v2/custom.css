@@ -14,6 +14,14 @@ div {
     /*text-align:justify*/
 }
 
+.clearfix {
+    display:inline-block;
+}
+
+.hidden {
+    display:none;
+}
+
 .box {
     background: #EDEDED;
     border: solid 1px #CFCFCF;
@@ -24,11 +32,6 @@ div {
     border: solid 1px #CFCFCF;
     padding: 10px;
 }
-
-.clearfix {
-    display:inline-block;
-}
-
 
 .flat-box-header {
     background: #EDEDED;

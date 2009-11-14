@@ -1,9 +1,11 @@
 <% activities = object %>
+<span id="loader" class="hidden"><%= image_tag("general/spinners/ajax-loader_small_arrows.gif") %></span>
 View Activity:
 <%= link_to_unless session[:browse_activities_by] == 'ALL', bold('by everybody', session[:browse_activities_by] == 'ALL'), myfirehoze_path %> |
 <%= link_to_unless (session[:browse_activities_by] == 'BY_ME' or current_user.nil?), bold('by me', session[:browse_activities_by] == 'BY_ME'), myfirehoze_path(:browse_activities_by => 'BY_ME') %> |
 <%= link_to_unless (session[:browse_activities_by] == 'ON_ME' or current_user.nil?), bold('on me', session[:browse_activities_by] == 'ON_ME'), myfirehoze_path(:browse_activities_by => 'ON_ME') %> |
 <%= link_to_unless (session[:browse_activities_by] == 'BY_FOLLOWED' or current_user.nil?), bold('by followers', session[:browse_activities_by] == 'BY_FOLLOWED'), myfirehoze_path(:browse_activities_by => 'BY_FOLLOWED') %>
+<%= will_paginate activities %>
 <table>
   <%= render activities %>
 </table>
