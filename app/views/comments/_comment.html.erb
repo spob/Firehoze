@@ -9,9 +9,9 @@
 
   <div class="prepend-5 last">
     <% if comment.can_edit? current_user and !comment.public %>
-      <div class="private">
-        Private Comment
-      </div>
+        <div class="private">
+          Private Comment
+        </div>
     <% end %>
 
     <div class="timestamp">
@@ -19,11 +19,15 @@
     </div>
 
     <div>
+      <b><%= comment.row_num %></b>
+    </div>
+
+    <div>
       <%= rbs_formatter comment.body %>
     </div>
 
     <div class="actions">
-      <%= render :partial => 'comments/actions', :object => comment  %>
+      <%= render :partial => 'comments/actions', :object => comment %>
     </div>
 
   </div>

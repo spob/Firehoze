@@ -2,5 +2,5 @@
 <%= link_to "Edit", edit_topic_path(@topic) %> |
 <%= link_to "Add a Comment", new_topic_topic_comment_path(@topic) %>
 <br/>
-<%= render :partial => 'comments/comment', :collection => @topic.topic_comments %>
+<%= render :partial => 'comments/comment', :collection => Comment.numerate(@topic.topic_comments) %>
 <%= link_to "Back to Group", group_path(@topic.group) %>

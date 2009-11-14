@@ -6,9 +6,10 @@ class LessonComment < Comment
 
 # Basic paginated listing finder
   def self.list(lesson, page, current_user=nil)
-    paginate :page => page,
+    comments = Comment.numerate(LessonComment.find(:all,
              :conditions => list_conditions(lesson, current_user), :include => [:user, :lesson],
-             :order => 'id desc', :per_page => ROWS_PER_PAGE
+             :order => 'id desc'))
+    comments.paginate :page => page, :per_page => ROWS_PER_PAGE
   end
 
   def self.list_count(lesson, current_user)

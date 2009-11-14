@@ -1,10 +1,12 @@
 class Comment < ActiveRecord::Base
   belongs_to :user
   before_validation_on_create :default_values
-  validates_presence_of     :user, :body, :status
+  validates_presence_of :user, :body, :status
   validates_inclusion_of :status, :in => %w{ active rejected }
 
   named_scope :public, :conditions => { :public => true }
+
+  attr_accessor :row_num
 
   @@flag_reasons = [
           FLAG_LEWD,
@@ -27,6 +29,15 @@ class Comment < ActiveRecord::Base
   def self.show_public_private_option?(user)
     return false unless user
     user.is_an_admin? or user.is_a_moderator?
+  end
+
+  def self.numerate(comments)
+    i = 1
+    comments.each do |comment|
+      comment.row_num = i
+      i += 1
+    end
+    comments
   end
 
   private
