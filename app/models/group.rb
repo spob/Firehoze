@@ -88,6 +88,10 @@ class Group < ActiveRecord::Base
     end
   end
 
+  def self.fetch_user_groups(user, page, per_page)
+    user.groups.ascend_by_name.paginate(:per_page => @per_page, :page => params[:page]) if user
+  end
+
   def can_see?(user)
     !self.private or includes_member?(user)
   end

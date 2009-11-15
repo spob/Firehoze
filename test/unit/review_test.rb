@@ -47,6 +47,7 @@ class ReviewTest < ActiveSupport::TestCase
 
       should "return records" do
         assert_equal 1, Review.list(@review.lesson, 1, @user, REVIEWS_ON_LESSON_SHOW_PER_PAGE).size
+        assert_equal 1, Review.list(nil, 1, @user, REVIEWS_ON_LESSON_SHOW_PER_PAGE).size
         assert_equal 1, Review.list_count(@review.lesson, @user)
         assert_equal 1, Review.ready.size
       end

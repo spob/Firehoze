@@ -21,6 +21,7 @@ class MyFirehozeController < ApplicationController
       when 'my_stuff'
         fetch_my_stuff_lessons
         fetch_reviews
+        fetch_groups
       when 'instructor_stuff'
       when 'account_history'
       else
@@ -56,6 +57,9 @@ class MyFirehozeController < ApplicationController
     @reviews = Review.list(nil, @per_page, current_user, params[:page])
   end
 
+  def fetch_groups
+    @groups = Group.fetch_user_groups(current_user, @per_page, params[:page])
+  end
 
   def fetch_activities
     @activities = case set_session_param(:browse_activities_by, "ALL")

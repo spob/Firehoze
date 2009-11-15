@@ -26,6 +26,10 @@ class GroupTest < ActiveSupport::TestCase
       assert !@group1.owned_by?( Factory.create(:user))
     end
 
+    should "test fetch method(s)" do
+      assert 1, Group.fetch_user_groups(@group1.owner, 1, 10)
+    end
+
     fast_context "and a couple more groups" do
       setup do
         @group2 = Factory.create(:group)

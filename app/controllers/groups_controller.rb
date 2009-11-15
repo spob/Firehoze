@@ -90,7 +90,7 @@ class GroupsController < ApplicationController
     @groups =
             case @collection
               when 'belongs_to'
-                current_user.groups.ascend_by_name.paginate(:per_page => @per_page, :page => params[:page])
+                Group.fetch_user_groups(current_user, @per_page, params[:page])
             end
   end
 
