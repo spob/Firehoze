@@ -1,1 +1,6 @@
-$("#activities").html("<%= escape_javascript(render("activities/activities")) %>");
+<% mode = params[:id] %>
+<% if mode == "my_stuff" %>
+  $("#lessons").html("<%= escape_javascript(render("lessons/ajaxed_lessons")) %>");
+<% else %>
+  $("#activities").html("<%= escape_javascript(render("activities/activities")) %>");
+<% end %>

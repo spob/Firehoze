@@ -24,11 +24,6 @@ class MyFirehozeController < ApplicationController
     fetch_reviews
     fetch_groups
     fetch_followed_instructors
-
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def instructor
