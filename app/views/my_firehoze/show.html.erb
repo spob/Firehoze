@@ -48,7 +48,8 @@
         <%= link_to "Wishlist", ajaxed_lessons_path(:collection => :wishlist, :per_page => 2) %> |
         <%= link_to "Recently Browsed", ajaxed_lessons_path(:collection => :recently_browsed, :per_page => 2) %> |
         <%= link_to "Reviews", ajaxed_reviews_path(:collection => :by_author, :per_page => 2) %> |
-        <%= link_to "Groups", ajaxed_groups_path(:collection => :belongs_to, :per_page => 2) %>
+        <%= link_to "Groups", ajaxed_groups_path(:collection => :belongs_to, :per_page => 2) %> |
+        <%= link_to "Followed Instructors", ajaxed_instructor_follows_path(:collection => :following, :per_page => 2) %>
         <%= render :partial => 'my_stuff', :locals => { :user => current_user } %>
       </div>
 

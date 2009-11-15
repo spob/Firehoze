@@ -42,7 +42,8 @@ ActionController::Routing::Routes.draw do |map|
                          :collection => { :new_private => :get }
   end
   map.resources :helpfuls, :only => [ :create ]
-  map.resources :instructor_follows, :only => [ :create, :destroy ]
+  map.resources :instructor_follows, :only => [ :create, :destroy ],
+                :collection => { :ajaxed => :get }
   map.resources :reviews, :collection => { :ajaxed => :get }
   map.resources :lessons, :has_many => :reviews, :shallow => true,
                 :member => {

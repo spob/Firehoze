@@ -1,0 +1,13 @@
+This is a temporary view for testing the ajax action on reviews controller. We should probably delete it after it's
+been wired up.
+
+<% followed_instructors = @instructors %>
+<% if (followed_instructors.present?) %>
+<ul>
+  <% followed_instructors.each do |instructor| %>
+  <li>
+    <%= link_to_profile(instructor) %>
+  </li>
+  <% end %>
+</ul>
+<% end %>
