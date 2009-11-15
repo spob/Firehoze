@@ -173,13 +173,20 @@ class LessonTest < ActiveSupport::TestCase
           setup do
             @lesson.update_attribute(:status, LESSON_STATUS_READY)
             @lesson2.update_attribute(:status, LESSON_STATUS_READY)
+            @lesson3.update_attribute(:status, LESSON_STATUS_READY)
+            @user.wishes << @lesson3
+            assert_equal 1, @user.wishes.size
           end
 
           should "return collections" do
             assert_equal 1, Lesson.fetch_most_popular(@user, @lesson.category.id, 10, 1).size
-            assert_equal 1, Lesson.newest(@user, @lesson.category.id, 10, 1).size
-            assert_equal 1, Lesson.highest_rated(@user, @lesson.category.id, 10, 1).size
-            assert_equal 0, Lesson.tagged_with(@user, @lesson.category.id, 'tag', 10, 1).size
+            assert_equal 1, Lesson.fetch_newest(@user, @lesson.category.id, 10, 1).size
+            assert_equal 1, Lesson.fetch_highest_rated(@user, @lesson.category.id, 10, 1).size
+            assert_equal 0, Lesson.fetch_tagged_with(@user, @lesson.category.id, 'tag', 10, 1).size
+            assert_equal 2, Lesson.fetch_owned(@user, 10, 1).size
+            assert_equal 1, Lesson.fetch_wishlist(@user, nil, 10, 1).size
+            assert_equal 0, Lesson.fetch_latest_browsed(@user, nil, 10, 1).size
+            assert_equal 1, Lesson.fetch_instructed_lessons(@lesson.instructor, nil, 10, 1).size
           end
         end
       end

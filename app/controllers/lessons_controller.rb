@@ -53,7 +53,7 @@ class LessonsController < ApplicationController
     @tag = params[:tag]
     @collection = 'tagged_with'
     @lesson_format = 'narrow'
-    @lessons = Lesson.ready.find_tagged_with(@tag).paginate(:page => params[:page], :per_page => @per_page)
+    @lessons = Lesson.fetch_tagged_with nil, nil, @tag, @per_page, params[:page]
   end
 
   def list_admin
@@ -199,27 +199,34 @@ class LessonsController < ApplicationController
               when 'most_popular'
                 Lesson.fetch_most_popular(current_user, @category_id, @per_page, 1)
               when 'newest'
-                Lesson.newest(current_user, @category_id, @per_page, 1)
+                Lesson.fetch_newest(current_user, @category_id, @per_page, 1)
               when 'highest_rated'
-                Lesson.highest_rated(current_user, @category_id, @per_page, 1)
+                Lesson.fetch_highest_rated(current_user, @category_id, @per_page, 1)
             end
   end
 
   # SUPPORTING AJAX PAGINATION (keeping this around for a little while, just in case we need it later)
   def ajaxed
     @lesson_format = 'wide'
+    @category_id = session[:browse_category_id].to_i if session[:browse_category_id]
     @lessons =
             case @collection
               when 'most_popular'
-                Lesson.fetch_most_popular(current_user, nil, @per_page, params[:page])
+                Lesson.fetch_most_popular(current_user, @category_id, @per_page, params[:page])
               when 'newest'
-                Lesson.newest(current_user, nil, @per_page, params[:page])
+                Lesson.fetch_newest(current_user, @category_id, @per_page, params[:page])
               when 'highest_rated'
-                Lesson.highest_rated(current_user, nil, @per_page, params[:page])
+                Lesson.fetch_highest_rated(current_user, @category_id, @per_page, params[:page])
               when 'tagged_with'
                 @lesson_format = 'narrow'
                 @tag = params[:tag]
-                Lesson.tagged_with(current_user, nil, @tag, @per_page, params[:page])
+                Lesson.fetch_tagged_with(current_user, @category_id, @tag, @per_page, params[:page])
+              when 'owned'
+                Lesson.fetch_owned(current_user, @per_page, params[:page])
+              when 'wishlist'
+                Lesson.fetch_wishlist(current_user, @category_id, @per_page, params[:page])
+              when 'instructed'
+                Lesson.fetch_instructed_lessons(current_user, @category_id, @per_page, params[:page])
             end
   end
 
