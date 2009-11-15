@@ -26,7 +26,6 @@ class MyFirehozeController < ApplicationController
       when 'instructor_stuff'
         fetch_instructed_lessons
         fetch_students
-        fetch_followers
         fetch_payments
       when 'account_history'
       else
@@ -34,7 +33,6 @@ class MyFirehozeController < ApplicationController
         fetch_activities
         fetch_tweets
     end
-    \
 
     respond_to do |format|
       format.html
@@ -99,11 +97,13 @@ class MyFirehozeController < ApplicationController
   end
 
   def fetch_students
-    @students = current_user.students.paginate(:per_page => @per_page, :page => params[:page])
-  end
-
-  def fetch_followers
-    @followers = current_user.students
+    @students =
+            case set_session_param("browse_students_by", "students")
+              when "followers"
+                @followers = current_user.students
+              else
+                @students = current_user.students.paginate(:per_page => @per_page, :page => params[:page])
+            end
   end
 
   def fetch_payments
