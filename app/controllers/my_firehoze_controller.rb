@@ -17,16 +17,19 @@ class MyFirehozeController < ApplicationController
       session[:browse_category_id] = nil
     end
 
-    if mode = "news"
-    elsif mode = "my_stuff"
-    elsif mode = "my_stuff"
-    elsif mode = "my_stuff"
-    elsif mode = "my_stuff"
+    case mode
+      when 'my_stuff'
+        fetch_my_stuff_lessons
+        fetch_reviews
+      when 'instructor_stuff'
+      when 'account_history'
+      else
+        # latest news
+        fetch_activities
+        fetch_tweets
     end
 
-    fetch_activities
     fetch_credits
-    fetch_tweets
 
     respond_to do |format|
       format.html
@@ -35,57 +38,35 @@ class MyFirehozeController < ApplicationController
   end
 
 
-
-
-
   private
 
-def fetch_lessons 
-  @lesson_format = 'wide'
-  @category_id = session[:browse_category_id].to_i if session[:browse_category_id]
-  @lessons =
-          case @collection
-            when 'most_popular'
-              Lesson.fetch_most_popular(current_user, @category_id, @per_page, params[:page])
-            when 'newest'
-              Lesson.fetch_newest(current_user, @category_id, @per_page, params[:page])
-            when 'highest_rated'
-              Lesson.fetch_highest_rated(current_user, @category_id, @per_page, params[:page])
-            when 'tagged_with'
-              @lesson_format = 'narrow'
-              @tag = params[:tag]
-              Lesson.fetch_tagged_with(current_user, @category_id, @tag, @per_page, params[:page])
-            when 'recently_browsed'
-              Lesson.fetch_latest_browsed(current_user, @category_id, @per_page, params[:page])               
-            when 'owned'
-              Lesson.fetch_owned(current_user, @per_page, params[:page])
-            when 'wishlist'
-              Lesson.fetch_wishlist(current_user, @category_id, @per_page, params[:page])
-            when 'instructed'
-              Lesson.fetch_instructed_lessons(current_user, @category_id, @per_page, params[:page])
-          end
-end
+  def fetch_my_stuff_lessons
+    @lessons =
+            case set_session_param("browse_activities_by", "owned")
+              when 'recently_browsed'
+                Lesson.fetch_latest_browsed(current_user, @category_id, @per_page, params[:page])
+              when 'owned'
+                Lesson.fetch_owned(current_user, @per_page, params[:page])
+              when 'wishlist'
+                Lesson.fetch_wishlist(current_user, @category_id, @per_page, params[:page])
+            end
+  end
+
+  def fetch_reviews
+    @reviews = Review.list(nil, @per_page, current_user, params[:page])
+  end
 
 
-  def fetch_activities    
-    if params[:browse_activities_by] == 'BY_ME' and current_user
-      session[:browse_activities_by] = 'BY_ME'
-    elsif params[:browse_activities_by] == 'ON_ME' and current_user
-      session[:browse_activities_by] = 'ON_ME'
-    elsif params[:browse_activities_by] == 'BY_FOLLOWED' and current_user
-      session[:browse_activities_by] = 'BY_FOLLOWED'
-    else
-      session[:browse_activities_by] = 'ALL'
-    end
-    
-    if session[:browse_activities_by] == 'BY_ME'
-      @activities = Activity.visible_to_user(current_user).actor_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => ACTIVITES_PER_PAGE, :page => params[:page]
-    elsif session[:browse_activities_by] == 'ON_ME'
-      @activities = Activity.visible_to_user(current_user).actor_user_id_not_equal_to(current_user).actee_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => ACTIVITES_PER_PAGE, :page => params[:page]
-    elsif session[:browse_activities_by] == 'BY_FOLLOWED'
-      @activities = Activity.by_followed_instructors(current_user).descend_by_acted_upon_at.paginate :per_page => ACTIVITES_PER_PAGE, :page => params[:page]
-    else
-      @activities = Activity.visible_to_user(current_user).descend_by_acted_upon_at.paginate :per_page => ACTIVITES_PER_PAGE, :page => params[:page]
+  def fetch_activities
+    @activities = case set_session_param(:browse_activities_by, "ALL")
+      when 'BY_ME'
+        Activity.visible_to_user(current_user).actor_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => ACTIVITES_PER_PAGE, :page => params[:page]
+      when 'ON_ME'
+        Activity.visible_to_user(current_user).actor_user_id_not_equal_to(current_user).actee_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => ACTIVITES_PER_PAGE, :page => params[:page]
+      when 'BY_FOLLOWED'
+        Activity.by_followed_instructors(current_user).descend_by_acted_upon_at.paginate :per_page => ACTIVITES_PER_PAGE, :page => params[:page]
+      else
+        Activity.visible_to_user(current_user).descend_by_acted_upon_at.paginate :per_page => ACTIVITES_PER_PAGE, :page => params[:page]
     end
   end
 
@@ -113,7 +94,6 @@ end
   end
 
 
-
   def set_collection
     @collection = params[:collection]
     raise "Invalid collection" unless (LIST_COLLECTIONS).include?(@collection)
@@ -122,15 +102,18 @@ end
   end
 
   def set_per_page
-    @per_page = 
-    if params[:per_page]
-      params[:per_page]
-    elsif %w(tabbed).include?(params[:action])
-      3
-    elsif %w(ajaxed).include?(params[:action])
-      5
-    else
-      Lesson.per_page
-    end
+    @per_page =
+            if params[:per_page]
+              params[:per_page]
+            elsif %w(show).include?(params[:action])
+              5
+            else
+              Lesson.per_page
+            end
   end
+
+  def set_session_param(parameter, default_value)
+    session[parameter] = (params[parameter].nil? ? default_value : params[parameter])
+  end
+
 end

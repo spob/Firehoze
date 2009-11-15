@@ -32,7 +32,7 @@ class ReviewsController < ApplicationController
     @reviews =
             case @collection
               when 'by_author'
-                current_user.reviews.paginate(:per_page => @per_page, :page => params[:page])
+                Review.list(nil, @per_page, current_user, params[:page])
             end
   end
 
