@@ -53,9 +53,9 @@ class User < ActiveRecord::Base
   belongs_to :payment_level
   has_and_belongs_to_many :wishes, :join_table => 'wishes', :class_name => 'Lesson'
   has_and_belongs_to_many :followed_instructors, :join_table => 'instructor_follows',
-                          :class_name => 'User', :foreign_key => 'instructor_id'
+                          :class_name => 'User', :foreign_key => 'instructor_id', :order => 'login ASC'
   has_and_belongs_to_many :followers, :join_table => 'instructor_follows',
-                          :class_name => 'User', :association_foreign_key => 'instructor_id'
+                          :class_name => 'User', :association_foreign_key => 'instructor_id', :order => 'login ASC'
 
   # Active users
   named_scope :active, :conditions => {:active => true}

@@ -29,7 +29,9 @@ class InstructorFollowsController < ApplicationController
               when 'followers'
 #                current_user.groups.ascend_by_name.paginate(:per_page => @per_page, :page => params[:page])
               when 'following'
-                current_user.followed_instructors.ascend_by_login.paginate(:per_page => @per_page, :page => params[:page])
+                current_user.followed_instructors.active.paginate(:per_page => @per_page, :page => params[:page])
+              when 'students'
+                current_user.students.paginate(:per_page => @per_page, :page => params[:page])
             end
   end
 
