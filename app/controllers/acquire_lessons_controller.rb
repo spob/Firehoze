@@ -3,6 +3,7 @@ class AcquireLessonsController < ApplicationController
   include SslRequirement
 
   before_filter :require_user
+  before_filter :set_per_page, :only => [ :ajaxed ]
   ssl_required :create if Rails.env.production?
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
@@ -38,11 +39,20 @@ class AcquireLessonsController < ApplicationController
     @credits =
             case @collection
               when 'available'
-                current_user.available_credits(:order => "created_at ASC")
+                current_user.available_credits(:order => "created_at ASC").paginate(:per_page => @per_page, :page => params[:page])
               when 'used'
-                current_user.credits.redeemed_at_not_null.expired_at_null(:include => [:lesson], :order => "created_at ASC")
+                current_user.credits.redeemed_at_not_null.expired_at_null(:include => [:lesson], :order => "created_at ASC").paginate(:per_page => @per_page, :page => params[:page])
               when 'expired'
-                current_user.credits.expired_at_not_null(:order => "created_at ASC")
+                current_user.credits.expired_at_not_null(:order => "created_at ASC").paginate(:per_page => @per_page, :page => params[:page])
             end
   end
-end 
+
+  def set_per_page
+    @per_page =
+    if params[:per_page]
+      params[:per_page]
+    else
+      5
+    end
+  end
+end

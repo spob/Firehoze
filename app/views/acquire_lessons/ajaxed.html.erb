@@ -27,4 +27,5 @@ been wired up.
     </th>
   </tr>
   <%= render :partial => 'my_firehoze/credit', :collection => @credits, :locals => { :show_redeemed => true, :show_expired => true } %>
+<%= will_paginate @credits %>
 </table>
