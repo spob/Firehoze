@@ -16,7 +16,7 @@ class UserSessionsController < ApplicationController
   def create
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
-      redirect_back_or_default myfirehoze_path
+      redirect_back_or_default my_firehoze_path
     else
       render :action => :new
     end

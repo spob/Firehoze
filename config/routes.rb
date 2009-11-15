@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.home 'home', :controller => 'home', :action => 'show'
-  map.myfirehoze 'my-firehoze', :controller => 'my_firehoze', :action => 'show'
+  map.resources :my_firehoze, :only => [ :show ]
   map.resources :accounts,
                 :member => { :instructor_signup_wizard => :get,
                              :instructor_wizard_step1 => :get,
