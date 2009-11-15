@@ -7,6 +7,6 @@ View Activity:
 <%= link_to_unless (session[:browse_activities_by] == 'BY_FOLLOWED' or current_user.nil?), bold('by followers', session[:browse_activities_by] == 'BY_FOLLOWED'), myfirehoze_path(:browse_activities_by => 'BY_FOLLOWED') %>
 <%= will_paginate activities %>
 <table>
-  <%= render activities %>
+  <%= render :partial => 'activities/activity', :collection => activities %>
 </table>
 <%= will_paginate activities %>
