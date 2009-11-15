@@ -31,4 +31,18 @@ class AcquireLessonsController < ApplicationController
       redirect_to lesson_path(@lesson)
     end
   end
-end
+
+  # SUPPORTING AJAX PAGINATION
+  def ajaxed
+    @collection = params[:collection]
+    @credits =
+            case @collection
+              when 'available'
+                current_user.available_credits(:order => "created_at ASC")
+              when 'used'
+                current_user.credits.redeemed_at_not_null.expired_at_null(:include => [:lesson], :order => "created_at ASC")
+              when 'expired'
+                current_user.credits.expired_at_not_null(:order => "created_at ASC")
+            end
+  end
+end 
