@@ -56,6 +56,16 @@ class PaymentsController < ApplicationController
     end
   end
 
+  # SUPPORTING AJAX PAGINATION
+  def ajaxed
+    @collection = params[:collection]
+    @payments =
+            case @collection
+              when 'by_instructor'
+                current_user.payments.paginate(:per_page => @per_page, :page => params[:page])
+            end
+  end
+
   private
   def layout_for_action
     current_user.is_paymentmgr? ? 'admin' : 'application'

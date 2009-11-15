@@ -84,6 +84,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :payment_levels
   map.resources :payments, :member => { :show_unpaid => :get,
                                         :list => :get },
+                :collection => { :ajaxed => :get },
                 :only => [:index, :show, :show_unpaid, :create]
   map.resources :per_pages, :collection => { :set => :post }, :only => [ :set ]
   map.resources :periodic_jobs, :member => { :rerun => :post }
