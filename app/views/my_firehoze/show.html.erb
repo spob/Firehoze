@@ -3,44 +3,68 @@
 <%= stylesheet 'v2/my_firehoze'  %>
 <%= javascript 'pagination'  %>
 
-<div class="span-12 last">
-  <h4 class="banner">Welcome, <%= current_user.full_name %></h4>
-</div>
-
-<div class="span-12 last">
-  <div class="span-8">
-    <%= render :partial => 'profile', :locals => { :user => current_user } %>
+<div id="my_firehoze" class="span-12 last">
+  <div class="top-level-navigation">
+    <ul class="buttons">
+      <li><a href="#" class="button">Latest News<span class="top_left"></span><span class="bottom_left"></span></a></li>
+      <li><a href="#my_stuff" class="button">My Stuff</a></li>
+      <% if current_user.verified_instructor? %>
+        <li><a href="#instructor_dashboard" class="button">Instructor Dashboard</a></li>
+      <% end %>
+      <li class="last"><a href="#account_history" class="button">Account History<span class="top_right"></span><span class="bottom_right"></span></a></li>
+    </ul>
+    <div class="clear"></div>
   </div>
-  <div class="span-4 last">
-    <%= render :partial => 'tweets' %>
+
+  <div class="top-level-panes">
+    <div>
+      <div class="span-12 last">
+        <h4 class="banner">Welcome, <%= current_user.full_name %></h4>
+      </div>
+
+      <div class="span-12 last">
+        <div class="span-8">
+          <%= render :partial => 'profile', :locals => { :user => current_user } %>
+        </div>
+        <div class="span-4 last">
+          <%= render :partial => 'tweets' %>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="span-12 last">
+        <h4 class="banner">My Stuff</h4>
+      </div>
+
+      <div id="my_stuff" class="span-8">
+        <%= render :partial => 'my_stuff', :locals => { :user => current_user } %>
+      </div>
+
+      <div class="span-4 last">
+        <h4>Recent Activity</h4>
+        <div id="activities" class="box">
+          <%= render :partial => 'activities/activities', :object => @activities %>
+        </div>
+      </div>
+    </div>
+
+
+    <% # INSTRUCTOR STUFF -%>
+    <% if current_user.verified_instructor? %>
+      <div>
+        <%= render :partial => 'instructor_stuff', :locals => { :user => current_user } %>
+      </div>
+    <% end %>
+
+    <% # ACCOUNT HISTORY -%>
+    <div>
+      <div class="span-12 last">
+        <h4 class="banner">Account History</h4>
+      </div>
+
+      <div id="account_history" class="span-12 last">
+        <%= render :partial => 'account_history', :locals => { :user => current_user } %>
+      </div>
+    </div>
   </div>
-</div>
-
-<div class="span-12 last">
-  <h4 class="banner">My Stuff</h4>
-</div>
-
-<div id="my_stuff" class="span-8">
-  <%= render :partial => 'my_stuff', :locals => { :user => current_user } %>
-</div>
-
-<div class="span-4 last">
-  <h4>Recent Activity</h4>
-  <div id="activities" class="box">
-    <%= render :partial => 'activities/activities', :object => @activities %>
-  </div>
-</div>
-
-<% # INSTRUCTOR STUFF -%>
-<% if current_user.verified_instructor? %>
-  <%= render :partial => 'instructor_stuff', :locals => { :user => current_user } %>
-<% end %>
-
-<% # ACCOUNT HISTORY -%>
-<div class="span-12 last">
-  <h4 class="banner">Account History</h4>
-</div>
-
-<div id="account_history" class="span-12 last">
-  <%= render :partial => 'account_history', :locals => { :user => current_user } %>
 </div>
