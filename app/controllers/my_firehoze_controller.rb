@@ -5,40 +5,46 @@ class MyFirehozeController < ApplicationController
   #  verify :method => :put, :only => [ :update ], :redirect_to => :home_path
   before_filter :set_per_page, :only => [ :show ]
   before_filter :set_collection, :only => [ :show ]
+  before_filter :setup
 
   layout :layout_for_action
 
   def index
-   redirect_to my_firehoze_path('latest_news', :reset => "y")
+    fetch_activities
+    fetch_tweets
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
-  def show
-    mode = params[:id]
+  def my_stuff
+    fetch_my_stuff_lessons
+    fetch_reviews
+    fetch_groups
+    fetch_followed_instructors
 
-    @user = @current_user
-    if params[:reset] == "y"
-      # clear category browsing
-      session[:browse_category_id] = nil
+    respond_to do |format|
+      format.html
+      format.js
     end
+  end
 
-    case mode
-      when 'my_stuff'
-        fetch_my_stuff_lessons
-        fetch_reviews
-        fetch_groups
-        fetch_followed_instructors
-      when 'instructor_stuff'
-        fetch_instructed_lessons
-        fetch_students
-        fetch_payments
-      when 'account_history'
-        fetch_orders
-        fetch_credits
-      else
-        # latest news
-        fetch_activities
-        fetch_tweets
+  def instructor
+    fetch_instructed_lessons
+    fetch_students
+    fetch_payments
+
+    respond_to do |format|
+      format.html
+      format.js
     end
+  end
+
+  def account_history
+    fetch_orders
+    fetch_credits
 
     respond_to do |format|
       format.html
@@ -48,6 +54,11 @@ class MyFirehozeController < ApplicationController
 
 
   private
+
+  def setup
+    @user = @current_user
+    session[:browse_category_id] = nil if params[:reset] == "y"
+  end
 
   #==================================== LATEST NEWS FETCHERS ========================================
   def fetch_activities
