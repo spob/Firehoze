@@ -132,10 +132,6 @@ class MyFirehozeController < ApplicationController
   end
   #================================ END ACCOUNT HISTORY FETCHERS ======================================
 
-  def set_per_page
-    @per_page = %w(show).include?(params[:action]) ? 5 : Lesson.per_page
-  end
-
   def layout_for_action
     if %w(show).include?(params[:action])
       'application_v2'
