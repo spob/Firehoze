@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   before_filter :require_user, :except => [ :show, :list_admin ]
-  before_filter :find_group, :except => [:list_admin, :create, :new]
+  before_filter :find_group, :except => [:list_admin, :create, :new, :ajaxed]
+  before_filter :set_per_page, :only => [ :ajaxed, :list_admin ]
 
   # Admins only
   permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [:list_admin]
@@ -13,7 +14,8 @@ class GroupsController < ApplicationController
   def list_admin
     @search = Group.searchlogic(params[:search])
     @groups = @search.paginate(:include => :owner,
-                               :per_page => session[:per_page] || ROWS_PER_PAGE, :page => params[:page])
+                               :page => params[:page],
+                               :per_page => @per_page)
   end
 
   def show
@@ -82,6 +84,16 @@ class GroupsController < ApplicationController
     redirect_to group_path(@group)
   end
 
+  # SUPPORTING AJAX PAGINATION
+  def ajaxed
+    @collection = params[:collection]
+    @groups =
+            case @collection
+              when 'belongs_to'
+                current_user.groups.ascend_by_name.paginate(:per_page => @per_page, :page => params[:page])
+            end
+  end
+
   private
 
   def find_group
@@ -111,6 +123,17 @@ class GroupsController < ApplicationController
       'admin'
     else
       'application'
+    end
+  end
+
+  def set_per_page
+    @per_page =
+    if params[:per_page]
+      params[:per_page]
+    elsif %w(list_admin).include?(params[:action])
+      (session[:per_page] || ROWS_PER_PAGE)
+    else
+      5
     end
   end
 end

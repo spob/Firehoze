@@ -15,12 +15,13 @@ ActionController::Routing::Routes.draw do |map|
                              :update_instructor_wizard => :put,
                              :update_privacy => :put },
                 :collection => { :instructor_agreement => :get }
-  map.resources :acquire_lessons, :only => [ :create, :new ]
+  map.resources :acquire_lessons, :only => [ :create, :new ],
+                :collection => { :ajaxed => :get }
   map.resources :admin_consoles, :only => [ :index ]
   map.resources :carts, :only => [ :show ]
   map.resources :categories, :collection => { :explode => :post, :list_admin => :get }
   map.resources :contact_users, :only => [ :create, :new ]
-  map.resources :credits
+#  map.resources :credits
   map.resources :flags, :only => [ :new, :create, :index, :show, :update, :edit ]
   map.resources :gift_certificates,
                 :collection => { :list_admin => :get },
@@ -30,7 +31,7 @@ ActionController::Routing::Routes.draw do |map|
                              :confirm_give => :post }
   map.resources :grant_gift_certificates, :only => [ :create, :new ]
   map.resources :groups,
-                :collection => { :list_admin => :get },
+                :collection => { :list_admin => :get, :ajaxed => :get },
                 :member => { :clear_logo => :post },
                 :has_many => :topics, :shallow => true
   map.resources :group_invitations, :only => [ :create, :new ]
@@ -42,7 +43,9 @@ ActionController::Routing::Routes.draw do |map|
                          :collection => { :new_private => :get }
   end
   map.resources :helpfuls, :only => [ :create ]
-  map.resources :instructor_follows, :only => [ :create, :destroy ]
+  map.resources :instructor_follows, :only => [ :create, :destroy ],
+                :collection => { :ajaxed => :get }
+  map.resources :reviews, :collection => { :ajaxed => :get }
   map.resources :lessons, :has_many => :reviews, :shallow => true,
                 :member => {
                         :convert => :post,
@@ -82,6 +85,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :payment_levels
   map.resources :payments, :member => { :show_unpaid => :get,
                                         :list => :get },
+                :collection => { :ajaxed => :get },
                 :only => [:index, :show, :show_unpaid, :create]
   map.resources :per_pages, :collection => { :set => :post }, :only => [ :set ]
   map.resources :periodic_jobs, :member => { :rerun => :post }

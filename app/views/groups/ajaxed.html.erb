@@ -1,0 +1,27 @@
+This is a temporary view for testing the ajax action on reviews controller. We should probably delete it after it's
+been wired up.
+<table>
+  <tr>
+    <th colspan="2">
+      Group
+    </th>
+    <th>
+      Relationship
+    </th>
+    <th>
+      Category
+    </th>
+  </tr>
+  <% if @groups.empty? %>
+      <tr>
+        <td colspan="4">
+          You do not belong to any groups
+        </td>
+      </tr>
+  <% else %>
+
+      <%= render :partial => 'categories/group', :collection => @groups %>
+
+  <% end %>
+</table>
+<%= will_paginate @groups %>

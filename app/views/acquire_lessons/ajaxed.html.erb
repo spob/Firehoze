@@ -1,0 +1,31 @@
+This is a temporary view for testing the ajax action on reviews controller. We should probably delete it after it's
+been wired up.
+
+
+<table>
+  <tr>
+    <th>
+      Acquired At
+    </th>
+    <th>
+      Type
+    </th>
+    <th>
+      Order Number
+    </th>
+    <th>
+      Price Paid
+    </th>
+    <th>
+      Redeemed At
+    </th>
+    <th>
+      Redeemed For
+    </th>
+    <th>
+      Expiration Date
+    </th>
+  </tr>
+  <%= render :partial => 'my_firehoze/credit', :collection => @credits, :locals => { :show_redeemed => true, :show_expired => true } %>
+<%= will_paginate @credits %>
+</table>
