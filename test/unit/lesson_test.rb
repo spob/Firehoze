@@ -168,6 +168,20 @@ class LessonTest < ActiveSupport::TestCase
           assert_equal 1, Lesson.by_category(@lesson.category.parent_category).size
           assert_equal @lesson2, Lesson.by_category(@lesson2.category.parent_category).first
         end
+
+        fast_context "and lessons in the ready state" do
+          setup do
+            @lesson.update_attribute(:status, LESSON_STATUS_READY)
+            @lesson2.update_attribute(:status, LESSON_STATUS_READY)
+          end
+
+          should "return collections" do
+            assert_equal 1, Lesson.fetch_most_popular(@user, @lesson.category.id, 10, 1).size
+            assert_equal 1, Lesson.newest(@user, @lesson.category.id, 10, 1).size
+            assert_equal 1, Lesson.highest_rated(@user, @lesson.category.id, 10, 1).size
+            assert_equal 0, Lesson.tagged_with(@user, @lesson.category.id, 'tag', 10, 1).size
+          end
+        end
       end
 
       fast_context "and instructor is allow_contact NONE" do

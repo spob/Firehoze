@@ -197,11 +197,11 @@ class LessonsController < ApplicationController
     @lessons =
             case @collection
               when 'most_popular'
-                Lesson.ready.most_popular.not_owned_by(current_user).by_category(@category_id).all(:include => [:instructor, :tags], :limit => @per_page)
+                Lesson.fetch_most_popular(current_user, @category_id, @per_page, 1)
               when 'newest'
-                Lesson.ready.newest.not_owned_by(current_user).by_category(@category_id).all(:include => [:instructor, :tags], :limit => @per_page)
+                Lesson.newest(current_user, @category_id, @per_page, 1)
               when 'highest_rated'
-                Lesson.ready.highest_rated.not_owned_by(current_user).by_category(@category_id).all(:include => [:instructor, :tags], :limit => @per_page)
+                Lesson.highest_rated(current_user, @category_id, @per_page, 1)
             end
   end
 
@@ -211,27 +211,15 @@ class LessonsController < ApplicationController
     @lessons =
             case @collection
               when 'most_popular'
-                if current_user
-                  Lesson.ready.most_popular.not_owned_by(current_user).ready.paginate(:per_page => @per_page, :page => params[:page])
-                else
-                  Lesson.ready.most_popular.ready.paginate(:per_page => @per_page, :page => params[:page])
-                end
+                Lesson.fetch_most_popular(current_user, nil, @per_page, params[:page])
               when 'newest'
-                if current_user
-                  Lesson.ready.newest.not_owned_by(current_user).ready.paginate(:per_page => @per_page, :page => params[:page])
-                else
-                  Lesson.ready.newest.ready.paginate(:per_page => @per_page, :page => params[:page])
-                end
+                Lesson.newest(current_user, nil, @per_page, params[:page])
               when 'highest_rated'
-                if current_user
-                  Lesson.ready.highest_rated.not_owned_by(current_user).ready.paginate(:per_page => @per_page, :page => params[:page])
-                else
-                  Lesson.ready.highest_rated.ready.paginate(:per_page => @per_page, :page => params[:page])
-                end
+                Lesson.highest_rated(current_user, nil, @per_page, params[:page])
               when 'tagged_with'
                 @lesson_format = 'narrow'
                 @tag = params[:tag]
-                Lesson.ready.find_tagged_with(@tag).paginate(:page => params[:page], :per_page => @per_page)
+                Lesson.tagged_with(current_user, nil, @tag, @per_page, params[:page])
             end
   end
 

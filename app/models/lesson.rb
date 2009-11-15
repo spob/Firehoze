@@ -221,6 +221,22 @@ END
     instructor == user
   end
 
+  def self.fetch_most_popular user, category_id, per_page, page
+    Lesson.ready.most_popular.not_owned_by(user).by_category(category_id).all(:include => [:instructor, :tags]).paginate(:per_page => per_page, :page => page)
+  end
+
+  def self.newest user, category_id, per_page, page
+    Lesson.ready.newest.not_owned_by(user).by_category(category_id).all(:include => [:instructor, :tags]).paginate(:per_page => per_page, :page => page)
+  end
+
+  def self.highest_rated user, category_id, per_page, page
+    Lesson.ready.highest_rated.not_owned_by(user).by_category(category_id).all(:include => [:instructor, :tags]).paginate(:per_page => per_page, :page => page)
+  end
+
+  def self.tagged_with user, category_id, tag, per_page, page
+    Lesson.ready.find_tagged_with(tag).not_owned_by(user).by_category(category_id).paginate(:per_page => per_page, :page => page)
+  end
+
   # The lesson can be edited by an admin or the instructor who created it
   def can_edit? user
     user and (user.is_admin? or user.is_moderator? or instructor == user)
