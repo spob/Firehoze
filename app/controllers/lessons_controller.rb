@@ -221,6 +221,8 @@ class LessonsController < ApplicationController
                 @lesson_format = 'narrow'
                 @tag = params[:tag]
                 Lesson.fetch_tagged_with(current_user, @category_id, @tag, @per_page, params[:page])
+              when 'recently_browsed'
+                Lesson.fetch_latest_browsed(current_user, @category_id, @per_page, params[:page])               
               when 'owned'
                 Lesson.fetch_owned(current_user, @per_page, params[:page])
               when 'wishlist'
