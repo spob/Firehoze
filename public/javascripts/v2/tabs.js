@@ -1,6 +1,11 @@
 $(function() {
 
     // MY-FIREHOZE TABS
+    // my-firehoze-tab
+    $("#my_firehoze div.top-level-navigation > ul.buttons").tabs("#my_firehoze > div.top-level-panes > div", {
+        effect: 'fade'
+    });
+
     // my-stuff
     $("#my_stuff div.sub-navigation > ul.buttons").tabs("#my_stuff > div.sub-navigation-panes > div", {
         effect: 'fade'
