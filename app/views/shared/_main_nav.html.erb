@@ -1,4 +1,4 @@
-<% path = current_user.present? ? my_firehoze_path(:reset => "y") : root_path(:reset => "y") %>
+<% path = current_user.present? ? my_firehoze_index_path(:reset => "y") : root_path(:reset => "y") %>
 <ul>
   <%= content_tag(:li, "#{link_to h(t('general.home')), path}") %>
   <%= content_tag(:li, "#{link_to "Browse", categories_path }") %>

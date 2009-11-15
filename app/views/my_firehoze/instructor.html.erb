@@ -1,0 +1,18 @@
+<% title "my firehoze" -%>
+<% @current = 'my_firehoze' %>
+<%= stylesheet 'v2/my_firehoze'  %>
+<%= javascript 'pagination'  %>
+
+<div id="my_firehoze" class="span-12 last">
+  <% # TOP LEVEL NAVIGATION -%>
+  <%= render :partial => 'nav' %>
+
+  <% # INSTRUCTOR STUFF -%>
+  <% if current_user.verified_instructor? %>
+    <%= link_to "Instructed", ajaxed_lessons_path(:collection => :instructed, :per_page => 2) %>  |
+    <%= link_to "Followed Instructors", ajaxed_instructor_follows_path(:collection => :students, :per_page => 2) %>  |
+    <%= link_to "Payments", ajaxed_payments_path(:collection => :by_instructor, :per_page => 2) %>
+    <%= render :partial => 'instructor_stuff', :locals => { :user => current_user } %>
+  <% end %>
+
+</div>

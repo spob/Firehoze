@@ -1,0 +1,13 @@
+  <div class="box">
+    <h4 class="banner"><%= current_user.full_name %>'s firehoze</h4>
+    <div class="top-level-navigation">
+      <ul>
+        <li><%= link_to 'Latest News', my_firehoze_index_path %></li>
+        <li><%= link_to 'My Stuff', my_stuff_my_firehoze_path %></li>
+        <% if current_user.verified_instructor? %>
+          <li><%= link_to 'Instructor Dashboard', instructor_my_firehoze_path %></li>
+        <% end %>
+        <li><%= link_to 'Account History', account_history_my_firehoze_path %></li>
+      </ul>
+    </div>
+  </div>

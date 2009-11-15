@@ -3,7 +3,7 @@ class MyFirehozeController < ApplicationController
 
   before_filter :require_user
   #  verify :method => :put, :only => [ :update ], :redirect_to => :home_path
-  before_filter :set_per_page, :only => [ :show ]
+  before_filter :set_per_page, :only => [ :show, :my_stuff ]
   before_filter :set_collection, :only => [ :show ]
   before_filter :setup
 
@@ -24,6 +24,10 @@ class MyFirehozeController < ApplicationController
     fetch_reviews
     fetch_groups
     fetch_followed_instructors
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def instructor
@@ -144,11 +148,7 @@ class MyFirehozeController < ApplicationController
   #================================ END ACCOUNT HISTORY FETCHERS ======================================
 
   def layout_for_action
-    if %w(show).include?(params[:action])
-      'application_v2'
-    else
-      'application'
-    end
+    'application_v2'
   end
 
 

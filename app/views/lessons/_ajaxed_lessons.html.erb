@@ -1,13 +1,11 @@
-<%= javascript 'pagination' %>
+<% lessons = object %>
+
 <span id="loader" class="hidden"><%= image_tag("general/spinners/ajax-loader_small_arrows.gif") %></span>
 
-<div>
-
-<%= will_paginate @lessons %>
-
+<div id="lessons">
+  <%= will_paginate lessons %>
   <div class="lessons">
-    <%= render :partial => "lessons/lesson_compact", :collection => @lessons, :locals => { :lesson_format => :compact } %>
+    <%= render :partial => "lessons/ajaxed_lesson", :collection => lessons  %>
   </div>
-
-    <%= will_paginate @lessons %>
+  <%= will_paginate lessons %>
 </div>

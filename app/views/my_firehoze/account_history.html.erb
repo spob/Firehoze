@@ -1,0 +1,20 @@
+<% title "my firehoze" -%>
+<% @current = 'my_firehoze' %>
+<%= stylesheet 'v2/my_firehoze'  %>
+<%= javascript 'pagination'  %>
+
+<div id="my_firehoze" class="span-12 last">
+  <% # TOP LEVEL NAVIGATION -%>
+  <%= render :partial => 'nav' %>
+  <% # ACCOUNT HISTORY -%>
+  <div class="span-12 last">
+    <h4 class="banner">Account History</h4>
+  </div>
+
+  <div id="account_history" class="span-12 last">
+    <%= link_to "Available Credits", ajaxed_acquire_lessons_path(:collection => :available, :per_page => 2) %> |
+    <%= link_to "Used Credits", ajaxed_acquire_lessons_path(:collection => :used, :per_page => 2) %> |
+    <%= link_to "Expired Credits", ajaxed_acquire_lessons_path(:collection => :expired, :per_page => 2) %>
+    <%= render :partial => 'account_history', :locals => { :user => current_user } %>
+  </div>
+</div>

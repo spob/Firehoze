@@ -1,10 +1,10 @@
-<% path = current_user.present? ? my_firehoze_path(:reset => "y") : root_path(:reset => "y") %>
+<% path = current_user.present? ? my_firehoze_index_path(:reset => "y") : root_path(:reset => "y") %>
 
 <%
 navigation = [
   [:my_firehoze, {
       :name => 'My Firehoze',
-      :location =>  my_firehoze_path(:reset => "y")
+      :location =>  my_firehoze_index_path(:reset => "y")
     }],
   [:lessons, {
       :name => 'Lessons',
