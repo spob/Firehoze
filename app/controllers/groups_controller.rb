@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_filter :require_user, :except => [ :show, :list_admin ]
-  before_filter :find_group, :except => [:list_admin, :create, :new]
+  before_filter :find_group, :except => [:list_admin, :create, :new, :ajaxed]
 
   # Admins only
   permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [:list_admin]
@@ -80,6 +80,16 @@ class GroupsController < ApplicationController
       flash[:error] = t 'group.update_error'
     end
     redirect_to group_path(@group)
+  end
+
+  # SUPPORTING AJAX PAGINATION
+  def ajaxed
+    @collection = params[:collection]
+    @groups =
+            case @collection
+              when 'belongs_to'
+                current_user.groups.ascend_by_name.paginate(:per_page => @per_page, :page => params[:page])
+            end
   end
 
   private

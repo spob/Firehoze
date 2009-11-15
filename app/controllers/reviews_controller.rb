@@ -25,17 +25,14 @@ class ReviewsController < ApplicationController
     render :layout => 'content_in_tab' if @style == 'tab'
   end
 
-  # SUPPORTING AJAX PAGINATION (keeping this around for a little while, just in case we need it later)
+  # SUPPORTING AJAX PAGINATION
   def ajaxed
-    puts "=====================================1"
     @collection = params[:collection]
     @reviews =
             case @collection
               when 'by_author'
-    puts "=====================================2"
                 current_user.reviews.paginate(:per_page => @per_page, :page => params[:page])
             end
-    puts "=====================================3"
   end
 
   def show
