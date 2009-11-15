@@ -14,6 +14,7 @@ class GroupsController < ApplicationController
   def list_admin
     @search = Group.searchlogic(params[:search])
     @groups = @search.paginate(:include => :owner,
+                               :page => params[:page],
                                :per_page => @per_page)
   end
 
