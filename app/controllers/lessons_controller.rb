@@ -327,13 +327,15 @@ class LessonsController < ApplicationController
   end
 
   def set_per_page
-    @per_page =
-            if %w(tabbed).include?(params[:action])
-              3
-            elsif %w(ajaxed).include?(params[:action])
-              5
-            else
-              Lesson.per_page
-            end
+    @per_page = 
+    if params[:per_page]
+      params[:per_page]
+    elsif %w(tabbed).include?(params[:action])
+      3
+    elsif %w(ajaxed).include?(params[:action])
+      5
+    else
+      Lesson.per_page
+    end
   end
 end

@@ -43,6 +43,11 @@
       </div>
 
       <div id="my_stuff" class="span-12">
+        
+        <%= link_to "Owned", ajaxed_lessons_path(:collection => :owned, :per_page => 2) %>
+        <%= link_to "Wishlist", ajaxed_lessons_path(:collection => :wishlist, :per_page => 2) %>
+        <%= link_to "Instructed", ajaxed_lessons_path(:collection => :instructed, :per_page => 2) %>
+
         <%= render :partial => 'my_stuff', :locals => { :user => current_user } %>
       </div>
 
