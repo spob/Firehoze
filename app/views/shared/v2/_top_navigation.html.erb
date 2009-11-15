@@ -3,7 +3,7 @@
   <% # RECOGNIZED USER %>
   <% if current_user %>
     <li class="first with-subnav with-avatar">
-      <a href="#"><%= avatar_tag(current_user, :size => :tiny) %> me</a>
+      <a href="#"><%= avatar_tag(current_user, :size => :tiny) %> <%= current_user.login %></a>
       <ul class="subnav">
         <li><a href="#">My Public Page</a></li>
         <li><a href="#">Settings</a></li>
