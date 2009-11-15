@@ -4,14 +4,26 @@ class MyFirehozeController < ApplicationController
   before_filter :require_user
   #  verify :method => :put, :only => [ :update ], :redirect_to => :home_path
   before_filter :set_per_page, :only => [ :show ]
+  before_filter :set_collection, :only => [ :show ]
+
   layout :layout_for_action
 
   def show
+    mode = params[:id]
+
     @user = @current_user
     if params[:reset] == "y"
       # clear category browsing
       session[:browse_category_id] = nil
     end
+
+    if mode = "news"
+    elsif mode = "my_stuff"
+    elsif mode = "my_stuff"
+    elsif mode = "my_stuff"
+    elsif mode = "my_stuff"
+    end
+
     fetch_activities
     fetch_credits
     fetch_tweets
@@ -22,7 +34,38 @@ class MyFirehozeController < ApplicationController
     end
   end
 
+
+
+
+
   private
+
+def fetch_lessons 
+  @lesson_format = 'wide'
+  @category_id = session[:browse_category_id].to_i if session[:browse_category_id]
+  @lessons =
+          case @collection
+            when 'most_popular'
+              Lesson.fetch_most_popular(current_user, @category_id, @per_page, params[:page])
+            when 'newest'
+              Lesson.fetch_newest(current_user, @category_id, @per_page, params[:page])
+            when 'highest_rated'
+              Lesson.fetch_highest_rated(current_user, @category_id, @per_page, params[:page])
+            when 'tagged_with'
+              @lesson_format = 'narrow'
+              @tag = params[:tag]
+              Lesson.fetch_tagged_with(current_user, @category_id, @tag, @per_page, params[:page])
+            when 'recently_browsed'
+              Lesson.fetch_latest_browsed(current_user, @category_id, @per_page, params[:page])               
+            when 'owned'
+              Lesson.fetch_owned(current_user, @per_page, params[:page])
+            when 'wishlist'
+              Lesson.fetch_wishlist(current_user, @category_id, @per_page, params[:page])
+            when 'instructed'
+              Lesson.fetch_instructed_lessons(current_user, @category_id, @per_page, params[:page])
+          end
+end
+
 
   def fetch_activities    
     if params[:browse_activities_by] == 'BY_ME' and current_user
@@ -66,6 +109,28 @@ class MyFirehozeController < ApplicationController
       'application_v2'
     else
       'application'
+    end
+  end
+
+
+
+  def set_collection
+    @collection = params[:collection]
+    raise "Invalid collection" unless (LIST_COLLECTIONS).include?(@collection)
+  rescue
+    false
+  end
+
+  def set_per_page
+    @per_page = 
+    if params[:per_page]
+      params[:per_page]
+    elsif %w(tabbed).include?(params[:action])
+      3
+    elsif %w(ajaxed).include?(params[:action])
+      5
+    else
+      Lesson.per_page
     end
   end
 end
