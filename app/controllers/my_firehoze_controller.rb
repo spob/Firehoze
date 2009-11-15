@@ -24,14 +24,17 @@ class MyFirehozeController < ApplicationController
         fetch_groups
         fetch_followed_instructors
       when 'instructor_stuff'
+        fetch_instructed_lessons
+        fetch_students
+        fetch_followers
+        fetch_payments
       when 'account_history'
       else
         # latest news
         fetch_activities
         fetch_tweets
     end
-
-    fetch_credits
+    \
 
     respond_to do |format|
       format.html
@@ -42,6 +45,27 @@ class MyFirehozeController < ApplicationController
 
   private
 
+  #==================================== LATEST NEWS FETCHERS ========================================
+  def fetch_activities
+    @activities = case set_session_param(:browse_activities_by, "ALL")
+      when 'BY_ME'
+        Activity.visible_to_user(current_user).actor_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => ACTIVITES_PER_PAGE, :page => params[:page]
+      when 'ON_ME'
+        Activity.visible_to_user(current_user).actor_user_id_not_equal_to(current_user).actee_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => ACTIVITES_PER_PAGE, :page => params[:page]
+      when 'BY_FOLLOWED'
+        Activity.by_followed_instructors(current_user).descend_by_acted_upon_at.paginate :per_page => ACTIVITES_PER_PAGE, :page => params[:page]
+      else
+        Activity.visible_to_user(current_user).descend_by_acted_upon_at.paginate :per_page => ACTIVITES_PER_PAGE, :page => params[:page]
+    end
+  end
+
+  def fetch_tweets
+    @tweets = Tweet.list_tweets(FIREHOZE_TWEETS, 3)
+  end
+
+  #================================== END LATEST NEWS FETCHERS ======================================
+
+  #==================================== MY STUFF FETCHERS ===========================================
   def fetch_my_stuff_lessons
     @lessons =
             case set_session_param("browse_activities_by", "owned")
@@ -66,28 +90,33 @@ class MyFirehozeController < ApplicationController
     @followed_instructors = current_user.followed_instructors.active.paginate(:per_page => @per_page, :page => params[:page])
   end
 
-  def fetch_activities
-    @activities = case set_session_param(:browse_activities_by, "ALL")
-      when 'BY_ME'
-        Activity.visible_to_user(current_user).actor_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => ACTIVITES_PER_PAGE, :page => params[:page]
-      when 'ON_ME'
-        Activity.visible_to_user(current_user).actor_user_id_not_equal_to(current_user).actee_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => ACTIVITES_PER_PAGE, :page => params[:page]
-      when 'BY_FOLLOWED'
-        Activity.by_followed_instructors(current_user).descend_by_acted_upon_at.paginate :per_page => ACTIVITES_PER_PAGE, :page => params[:page]
-      else
-        Activity.visible_to_user(current_user).descend_by_acted_upon_at.paginate :per_page => ACTIVITES_PER_PAGE, :page => params[:page]
-    end
+  #================================== END MY STUFF FETCHERS =========================================
+
+
+  #=================================== INSTRUCTOR FETCHERS ===========================================
+  def fetch_instructed_lessons
+    @instructed_lessons = Lesson.fetch_instructed_lessons(current_user, @category_id, @per_page, params[:page])
   end
+
+  def fetch_students
+    @students = current_user.students.paginate(:per_page => @per_page, :page => params[:page])
+  end
+
+  def fetch_followers
+    @followers = current_user.students
+  end
+
+  def fetch_payments
+    @payments = current_user.payments.paginate(:per_page => @per_page, :page => params[:page])
+  end
+
+  #================================== END INSTRUCTOR FETCHERS ========================================
 
   def fetch_credits
     # return credit information
     @available_credits = current_user.available_credits(:order => "created_at ASC")
     @used_credits = current_user.credits.redeemed_at_not_null.expired_at_null(:order => "created_at ASC")
     @expired_credits = current_user.credits.expired_at_not_null(:order => "created_at ASC")
-  end
-
-  def fetch_tweets
-    @tweets = Tweet.list_tweets(FIREHOZE_TWEETS, 3)
   end
 
   def set_per_page
@@ -124,5 +153,4 @@ class MyFirehozeController < ApplicationController
   def set_session_param(parameter, default_value)
     session[parameter] = (params[parameter].nil? ? default_value : params[parameter])
   end
-
 end
