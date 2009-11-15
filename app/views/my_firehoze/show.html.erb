@@ -10,21 +10,19 @@
   <div class="box">
     <h4 class="banner"><%= current_user.full_name %>'s firehoze</h4>
     <div class="top-level-navigation">
-      <ul class="buttons">
-        <li><a href="#" class="button">Latest News<span class="top_left"></span><span class="bottom_left"></span></a></li>
-        <li><a href="#my_stuff" class="button">My Stuff</a></li>
+      <ul>
+        <li><%= link_to 'Latest News', my_firehoze_path('latest_news') %></li>
+        <li><%= link_to 'My Stuff', my_firehoze_path('my_stuff') %></li>
         <% if current_user.verified_instructor? %>
-          <li><a href="#instructor_dashboard" class="button">Instructor Dashboard</a></li>
+          <li><%= link_to 'Instructor Dashboard', my_firehoze_path('instructor_stuff') %></li>
         <% end %>
-        <li class="last"><a href="#account_history" class="button">Account History<span class="top_right"></span><span class="bottom_right"></span></a></li>
+        <li><%= link_to 'Account History', my_firehoze_path('account_history') %></li>
       </ul>
-      <div class="clear"></div>
     </div>
   </div>
 
 
-  <% if @mode.nil? %>
-
+  <% if @mode.nil? or @mode == "latest_news" %>
     <% # LATEST NEWS -%>
     <div class="span-12 last">
       <div class="span-8">
@@ -45,13 +43,6 @@
     </div>
 
     <div id="my_stuff" class="span-12">
-
-      <%= link_to "Owned", ajaxed_lessons_path(:collection => :owned, :per_page => 2) %> |
-      <%= link_to "Wishlist", ajaxed_lessons_path(:collection => :wishlist, :per_page => 2) %> |
-      <%= link_to "Recently Browsed", ajaxed_lessons_path(:collection => :recently_browsed, :per_page => 2) %> |
-      <%= link_to "Reviews", ajaxed_reviews_path(:collection => :by_author, :per_page => 2) %> |
-      <%= link_to "Groups", ajaxed_groups_path(:collection => :belongs_to, :per_page => 2) %> |
-      <%= link_to "Followed Instructors", ajaxed_instructor_follows_path(:collection => :following, :per_page => 2) %>
       <%= render :partial => 'my_stuff', :locals => { :user => current_user } %>
     </div>
 
@@ -65,7 +56,7 @@
       <%= render :partial => 'instructor_stuff', :locals => { :user => current_user } %>
     <% end %>
 
-  <% elsif @mode == "instructor_stuff" %>
+  <% elsif @mode == "account_history" %>
 
     <% # ACCOUNT HISTORY -%>
     <div class="span-12 last">
