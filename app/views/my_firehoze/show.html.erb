@@ -46,7 +46,7 @@
         
         <%= link_to "Owned", ajaxed_lessons_path(:collection => :owned, :per_page => 2) %>
         <%= link_to "Wishlist", ajaxed_lessons_path(:collection => :wishlist, :per_page => 2) %>
-        <%= link_to "Instructed", ajaxed_lessons_path(:collection => :instructed, :per_page => 2) %>
+        <%= link_to "Recently Browsed", ajaxed_lessons_path(:collection => :recently_browsed, :per_page => 2) %>
 
         <%= render :partial => 'my_stuff', :locals => { :user => current_user } %>
       </div>
@@ -56,6 +56,7 @@
     <% # INSTRUCTOR STUFF -%>
     <% if current_user.verified_instructor? %>
       <div>
+        <%= link_to "Instructed", ajaxed_lessons_path(:collection => :instructed, :per_page => 2) %>
         <%= render :partial => 'instructor_stuff', :locals => { :user => current_user } %>
       </div>
     <% end %>
