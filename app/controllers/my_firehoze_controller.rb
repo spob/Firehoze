@@ -9,7 +9,7 @@ class MyFirehozeController < ApplicationController
   layout :layout_for_action
 
   def show
-    mode = params[:id]
+    @mode = params[:id]
 
     @user = @current_user
     if params[:reset] == "y"
@@ -17,7 +17,7 @@ class MyFirehozeController < ApplicationController
       session[:browse_category_id] = nil
     end
 
-    case mode
+    case @mode
       when 'my_stuff'
         fetch_my_stuff_lessons
         fetch_reviews

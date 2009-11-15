@@ -4,6 +4,8 @@
 <%= javascript 'pagination'  %>
 
 <div id="my_firehoze" class="span-12 last">
+
+
   <% # TOP LEVEL NAVIGATION -%>
   <div class="box">
     <h4 class="banner"><%= current_user.full_name %>'s firehoze</h4>
@@ -20,63 +22,62 @@
     </div>
   </div>
 
-  <div class="top-level-panes">
+
+  <% if @mode.nil? %>
+
     <% # LATEST NEWS -%>
-    <div>
-      <div class="span-12 last">
-        <div class="span-8">
-          <h4>Recent Activity</h4>
-          <div id="activities" class="box">
-            <%= render :partial => 'activities/activities', :object => @activities %>
-          </div>
+    <div class="span-12 last">
+      <div class="span-8">
+        <h4>Recent Activity</h4>
+        <div id="activities" class="box">
+          <%= render :partial => 'activities/activities', :object => @activities %>
         </div>
-        <div class="span-4 last">
-          <%= render :partial => 'tweets' %>
-        </div>
+      </div>
+      <div class="span-4 last">
+        <%= render :partial => 'tweets' %>
       </div>
     </div>
 
+  <% elsif @mode == "my_stuff" %>
     <% # MY STUFF -%>
-    <div>
-      <div class="span-12 last">
-        <h4 class="banner">My Stuff</h4>
-      </div>
-
-      <div id="my_stuff" class="span-12">
-        
-        <%= link_to "Owned", ajaxed_lessons_path(:collection => :owned, :per_page => 2) %> |
-        <%= link_to "Wishlist", ajaxed_lessons_path(:collection => :wishlist, :per_page => 2) %> |
-        <%= link_to "Recently Browsed", ajaxed_lessons_path(:collection => :recently_browsed, :per_page => 2) %> |
-        <%= link_to "Reviews", ajaxed_reviews_path(:collection => :by_author, :per_page => 2) %> |
-        <%= link_to "Groups", ajaxed_groups_path(:collection => :belongs_to, :per_page => 2) %> |
-        <%= link_to "Followed Instructors", ajaxed_instructor_follows_path(:collection => :following, :per_page => 2) %>
-        <%= render :partial => 'my_stuff', :locals => { :user => current_user } %>
-      </div>
-
+    <div class="span-12 last">
+      <h4 class="banner">My Stuff</h4>
     </div>
+
+    <div id="my_stuff" class="span-12">
+
+      <%= link_to "Owned", ajaxed_lessons_path(:collection => :owned, :per_page => 2) %> |
+      <%= link_to "Wishlist", ajaxed_lessons_path(:collection => :wishlist, :per_page => 2) %> |
+      <%= link_to "Recently Browsed", ajaxed_lessons_path(:collection => :recently_browsed, :per_page => 2) %> |
+      <%= link_to "Reviews", ajaxed_reviews_path(:collection => :by_author, :per_page => 2) %> |
+      <%= link_to "Groups", ajaxed_groups_path(:collection => :belongs_to, :per_page => 2) %> |
+      <%= link_to "Followed Instructors", ajaxed_instructor_follows_path(:collection => :following, :per_page => 2) %>
+      <%= render :partial => 'my_stuff', :locals => { :user => current_user } %>
+    </div>
+
+  <% elsif @mode == "instructor_stuff" %>
 
     <% # INSTRUCTOR STUFF -%>
     <% if current_user.verified_instructor? %>
-      <div>
-        <%= link_to "Instructed", ajaxed_lessons_path(:collection => :instructed, :per_page => 2) %>  |
-        <%= link_to "Followed Instructors", ajaxed_instructor_follows_path(:collection => :students, :per_page => 2) %>  |
-        <%= link_to "Payments", ajaxed_payments_path(:collection => :by_instructor, :per_page => 2) %>
-        <%= render :partial => 'instructor_stuff', :locals => { :user => current_user } %>
-      </div>
+      <%= link_to "Instructed", ajaxed_lessons_path(:collection => :instructed, :per_page => 2) %>  |
+      <%= link_to "Followed Instructors", ajaxed_instructor_follows_path(:collection => :students, :per_page => 2) %>  |
+      <%= link_to "Payments", ajaxed_payments_path(:collection => :by_instructor, :per_page => 2) %>
+      <%= render :partial => 'instructor_stuff', :locals => { :user => current_user } %>
     <% end %>
 
-    <% # ACCOUNT HISTORY -%>
-    <div>
-      <div class="span-12 last">
-        <h4 class="banner">Account History</h4>
-      </div>
+  <% elsif @mode == "instructor_stuff" %>
 
-      <div id="account_history" class="span-12 last">
-        <%= link_to "Available Credits", ajaxed_acquire_lessons_path(:collection => :available, :per_page => 2) %> |
-        <%= link_to "Used Credits", ajaxed_acquire_lessons_path(:collection => :used, :per_page => 2) %> |
-        <%= link_to "Expired Credits", ajaxed_acquire_lessons_path(:collection => :expired, :per_page => 2) %>
-        <%= render :partial => 'account_history', :locals => { :user => current_user } %>
-      </div>
+    <% # ACCOUNT HISTORY -%>
+    <div class="span-12 last">
+      <h4 class="banner">Account History</h4>
     </div>
-  </div>
+
+    <div id="account_history" class="span-12 last">
+      <%= link_to "Available Credits", ajaxed_acquire_lessons_path(:collection => :available, :per_page => 2) %> |
+      <%= link_to "Used Credits", ajaxed_acquire_lessons_path(:collection => :used, :per_page => 2) %> |
+      <%= link_to "Expired Credits", ajaxed_acquire_lessons_path(:collection => :expired, :per_page => 2) %>
+      <%= render :partial => 'account_history', :locals => { :user => current_user } %>
+    </div>
+
+  <% end  %>
 </div>
