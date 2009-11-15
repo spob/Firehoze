@@ -3,9 +3,9 @@
 <span id="loader" class="hidden"><%= image_tag("general/spinners/ajax-loader_small_arrows.gif") %></span>
 
 <div id="lessons">
-  <%= will_paginate lessons %>
+  <%= will_paginate @lessons %>
   <div class="lessons">
-    <%= render :partial => "lessons/ajaxed_lesson", :collection => lessons  %>
+    <%= render :partial => "lessons/ajaxed_lesson", :collection => @lessons  %>
   </div>
-  <%= will_paginate lessons %>
+  <%= will_paginate @lessons %>
 </div>
