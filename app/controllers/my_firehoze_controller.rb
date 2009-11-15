@@ -8,6 +8,10 @@ class MyFirehozeController < ApplicationController
 
   layout :layout_for_action
 
+  def index
+   redirect_to my_firehoze_path('latest_news', :reset => "y")
+  end
+
   def show
     @mode = params[:id]
 
@@ -28,6 +32,8 @@ class MyFirehozeController < ApplicationController
         fetch_students
         fetch_payments
       when 'account_history'
+        fetch_orders
+        fetch_credits
       else
         # latest news
         fetch_activities
@@ -112,16 +118,24 @@ class MyFirehozeController < ApplicationController
 
   #================================== END INSTRUCTOR FETCHERS ========================================
 
+  #================================== ACCOUNT HISTORY FETCHERS ========================================
   def fetch_credits
-    # return credit information
-    @available_credits = current_user.available_credits(:order => "created_at ASC")
-    @used_credits = current_user.credits.redeemed_at_not_null.expired_at_null(:order => "created_at ASC")
-    @expired_credits = current_user.credits.expired_at_not_null(:order => "created_at ASC")
+    @credits =
+            case set_session_param("browse_credits_by", "available")
+              when "used"
+                current_user.credits.redeemed_at_not_null.expired_at_null(:order => "created_at ASC")
+              when "expired"
+                current_user.credits.expired_at_not_null(:order => "created_at ASC")
+              else
+                current_user.available_credits(:order => "created_at ASC")
+            end
   end
 
-  def set_per_page
-    @per_page = %w(show).include?(params[:action]) ? 5 : Lesson.per_page
+  def fetch_orders
+    @orders = current_user.orders.cart_purchased_at_not_null.descend_by_id
   end
+
+  #================================ END ACCOUNT HISTORY FETCHERS ======================================
 
   def layout_for_action
     if %w(show).include?(params[:action])
