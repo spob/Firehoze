@@ -22,6 +22,7 @@ class MyFirehozeController < ApplicationController
         fetch_my_stuff_lessons
         fetch_reviews
         fetch_groups
+        fetch_followed_instructors
       when 'instructor_stuff'
       when 'account_history'
       else
@@ -59,6 +60,10 @@ class MyFirehozeController < ApplicationController
 
   def fetch_groups
     @groups = Group.fetch_user_groups(current_user, @per_page, params[:page])
+  end
+
+  def fetch_followed_instructors
+    @followed_instructors = current_user.followed_instructors.active.paginate(:per_page => @per_page, :page => params[:page])
   end
 
   def fetch_activities
