@@ -1,0 +1,40 @@
+This is a temporary view for testing the ajax action on reviews controller. We should probably delete it after it's
+been wired up.
+<table>
+  <tr>
+    <th>
+      User
+    </th>
+    <th>
+      Lesson
+    </th>
+    <th>
+      Review Title
+    </th>
+    <th>
+      Written At
+    </th>
+    <th>
+      Review Status
+    </th>
+  </tr>
+  <% @reviews.each do |review| %>
+      <tr>
+        <td>
+          <%= link_to_profile review.user %>
+        </td>
+        <td>
+          <%= link_to(h(review.lesson.title), lesson_path(review.lesson)) %>
+        </td>
+        <td>
+          <%= h review.headline %>
+        </td>
+        <td>
+          <%= l review.created_at %>
+        </td>
+        <td>
+          <%= h review.status %>
+        </td>
+      </tr>
+  <% end %>
+</table>

@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
   end
   # Since this controller is nested, in most cases we'll need to retrieve the lesson first, so I made it a
   # before filter
-  before_filter :find_lesson, :except => [ :edit, :update, :show ]
+  before_filter :find_lesson, :except => [ :edit, :update, :show, :ajaxed ]
   before_filter :find_review, :only => [ :edit, :update, :show ]
 
 
@@ -23,6 +23,19 @@ class ReviewsController < ApplicationController
     @reviews = Review.list @lesson, params[:page], current_user, params[:per_page]
     @style = params[:style]
     render :layout => 'content_in_tab' if @style == 'tab'
+  end
+
+  # SUPPORTING AJAX PAGINATION (keeping this around for a little while, just in case we need it later)
+  def ajaxed
+    puts "=====================================1"
+    @collection = params[:collection]
+    @reviews =
+            case @collection
+              when 'by_author'
+    puts "=====================================2"
+                current_user.reviews.paginate(:per_page => @per_page, :page => params[:page])
+            end
+    puts "=====================================3"
   end
 
   def show
@@ -100,5 +113,4 @@ class ReviewsController < ApplicationController
   def find_review
     @review = Review.find(params[:id])
   end
-
 end

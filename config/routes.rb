@@ -43,6 +43,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.resources :helpfuls, :only => [ :create ]
   map.resources :instructor_follows, :only => [ :create, :destroy ]
+  map.resources :reviews, :collection => { :ajaxed => :get }
   map.resources :lessons, :has_many => :reviews, :shallow => true,
                 :member => {
                         :convert => :post,
