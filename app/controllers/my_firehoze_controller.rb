@@ -8,6 +8,10 @@ class MyFirehozeController < ApplicationController
 
   layout :layout_for_action
 
+  def index
+   redirect_to my_firehoze_path('latest_news', :reset => "y")
+  end
+
   def show
     mode = params[:id]
 
@@ -130,6 +134,7 @@ class MyFirehozeController < ApplicationController
   def fetch_orders
     @orders = current_user.orders.cart_purchased_at_not_null.descend_by_id
   end
+
   #================================ END ACCOUNT HISTORY FETCHERS ======================================
 
   def layout_for_action
