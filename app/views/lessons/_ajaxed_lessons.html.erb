@@ -4,8 +4,8 @@
 
 <div id="lessons">
   <%= will_paginate @lessons %>
-  <div class="lessons">
+  <ul class="lesson-list">
     <%= render :partial => "lessons/ajaxed_lesson", :collection => @lessons  %>
-  </div>
+  </ul>
   <%= will_paginate @lessons %>
 </div>
