@@ -34,17 +34,17 @@
 
     <%= google_jquery(:version => '1.3.2', :local => Rails.env.development?) %><%# JQuery %>
     <%#= google_jqueryui(:version => '1.7.2', :local => Rails.env.development?) %><%# JQueryUI -%>
-    <%= javascript_include_tag 'jrails' %>
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_include_tag 'flash' %>
+    <%= javascript_include_tag 'v2/jrails' %>
+    <%= javascript_include_tag 'v2/application' %>
+    <%= javascript_include_tag 'v2/flash' %>
     <%#= javascript_include_tag 'accordian', 'tabs', 'jquery.cookie' %><%# JQueryUI libraries -%>
-    <%= javascript_include_tag 'cornerz', 'rounders' %><%# Cornerz for rounding %>
-    <%= javascript_include_tag 'always_at_bottom', 'footer' %>
-    <%= javascript_include_tag 'top_navigation' %>
+    <%= javascript_include_tag 'v2/cornerz', 'v2/rounders' %><%# Cornerz for rounding %>
+    <%= javascript_include_tag 'v2/always_at_bottom', 'v2/footer' %>
+    <%= javascript_include_tag 'v2/top_navigation' %>
     <%= javascript_include_tag 'v2/jquery.tools.min', 'v2/tabs'  %>
-    <%= javascript_include_tag 'jquery.cookie' %><%# JQueryUI libraries -%>
-    <%= javascript_include_tag 'jquery.truncator', 'v2/truncator' %>
-    <%= javascript_include_tag 'pagination'  %>
+    <%= javascript_include_tag 'v2/jquery.cookie' %><%# JQueryUI libraries -%>
+    <%= javascript_include_tag 'v2/jquery.truncator', 'v2/truncator' %>
+    <%= javascript_include_tag 'v2/pagination'  %>
 
     <!--[if IE 6]><%= javascript_include_tag 'DD_belatedPNG_0.0.8a-min' %><![endif]-->
     <!--[if lt IE 8]><%= javascript_include_tag 'ie7/z-index-workaround' %><![endif]-->
