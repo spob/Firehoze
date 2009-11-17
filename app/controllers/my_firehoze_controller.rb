@@ -26,7 +26,14 @@ class MyFirehozeController < ApplicationController
     fetch_followed_instructors
     respond_to do |format|
       format.html
-      format.js
+      format.js do 
+        case params[:pane]
+        when 'owned', 'latest_browsed', 'wishlist'
+          render :action => "my_stuff_lessons"
+        else
+          render :action => params[:pane]
+        end
+      end
     end
   end
 
@@ -87,7 +94,7 @@ class MyFirehozeController < ApplicationController
   end
 
   def fetch_reviews
-    @reviews = current_user.reviews.ready.paginate(:page => params[:page], :page => @page)
+    @reviews = current_user.reviews.ready.paginate(:page => params[:page], :per_page => @per_page)  if retrieve_by_pane("reviews")
   end
 
   def fetch_groups
