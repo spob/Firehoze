@@ -99,7 +99,7 @@ class MyFirehozeController < ApplicationController
   end
 
   def fetch_groups
-    @groups = Group.fetch_user_groups(current_user, @per_page, params[:page])
+    @groups = Group.fetch_user_groups(current_user, params[:page], @per_page)
   end
 
   def fetch_followed_instructors

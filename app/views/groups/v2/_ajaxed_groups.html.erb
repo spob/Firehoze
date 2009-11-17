@@ -23,7 +23,7 @@
         </tr>
     <% else %>
     <% paginated_section  groups, :params => { :pane => pane } do %>
-      <%= render :partial => 'categories/group', :collection => user.groups.ascend_by_name %>
+      <%= render :partial => 'categories/group', :collection => groups %>
     <% end %>
     <% end %>
   </table>
