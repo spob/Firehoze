@@ -53,7 +53,7 @@
 
       <% # REVIEWS -%>
       <div>
-        <%= render :partial => 'reviews', :locals => { :user => @user } %>
+        <%= render :partial => 'reviews/v2/ajaxed_reviews', :locals => { :reviews => @reviews, :pane => :reviews } %>
       </div>
       <!-- end reviews pane -->
 

@@ -1,0 +1,10 @@
+<% pane = params[:pane] if params[:pane] %>
+<% reviews = @reviews if pane == "reviews" %>
+
+<%= image_tag("general/spinners/ajax-loader_small_arrows.gif", :class => "loader") %>
+<div id="<%= pane %>">
+  <% paginated_section  reviews, :params => { :pane => pane } do %>
+    <%= render :partial => "reviews/v2/review", :collection => reviews %>
+  <% end %>
+</div>
+
