@@ -26,7 +26,7 @@ class MyFirehozeController < ApplicationController
     fetch_followed_instructors
     respond_to do |format|
       format.html
-      format.js 
+      format.js
     end
   end
 
@@ -166,5 +166,9 @@ class MyFirehozeController < ApplicationController
 
   def set_session_param(parameter, default_value)
     session[parameter] = (params[parameter].nil? ? default_value : params[parameter])
+  end
+
+  def retrieve_by_pane(pane)
+    params[pane].nil? or params[pane] == pane
   end
 end
