@@ -26,7 +26,7 @@ class MyFirehozeController < ApplicationController
     fetch_followed_instructors
     respond_to do |format|
       format.html
-      format.js
+      format.js 
     end
   end
 
@@ -81,15 +81,9 @@ class MyFirehozeController < ApplicationController
 
   #==================================== MY STUFF FETCHERS ===========================================
   def fetch_my_stuff_lessons
-    @lessons =
-            case set_session_param("browse_activities_by", "owned")
-              when 'recently_browsed'
-                Lesson.fetch_latest_browsed(current_user, @category_id, @per_page, params[:page])
-              when 'owned'
-                Lesson.fetch_owned(current_user, @per_page, params[:page])
-              when 'wishlist'
-                Lesson.fetch_wishlist(current_user, @category_id, @per_page, params[:page])
-            end
+    @latest_browsed = Lesson.fetch_latest_browsed(current_user, @category_id, @per_page, params[:page])
+    @owned = Lesson.fetch_owned(current_user, @per_page, params[:page])
+    @wishlist = Lesson.fetch_wishlist(current_user, @category_id, @per_page, params[:page])
   end
 
   def fetch_reviews
@@ -163,8 +157,8 @@ class MyFirehozeController < ApplicationController
     @per_page =
             if params[:per_page]
               params[:per_page]
-            elsif %w(show).include?(params[:action])
-              5
+            elsif %w(my_stuff show).include?(params[:action])
+              3
             else
               Lesson.per_page
             end
