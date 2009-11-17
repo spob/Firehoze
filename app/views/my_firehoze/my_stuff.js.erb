@@ -1,1 +1,1 @@
-$("#lessons").html("<%= escape_javascript(render("lessons/ajaxed_lessons")) %>");
+$("#<%= params[:pane] %>").html("<%= escape_javascript(render("lessons/ajaxed_lessons")) %>");

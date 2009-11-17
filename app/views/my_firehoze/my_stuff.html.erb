@@ -1,7 +1,5 @@
 <% title "my firehoze" -%>
 <% @current = 'my_firehoze' %>
-<%= stylesheet 'v2/my_firehoze'  %>
-<%= javascript 'pagination'  %>
 
 <div id="my_firehoze" class="span-12 last">
   <% # TOP LEVEL NAVIGATION -%>
@@ -38,23 +36,20 @@
 
           <div class="secondary-sub-navigation-panes">
             <div>
-              <%= render :partial => "lessons/ajaxed_lessons", :object => @lessons %>
+              <%= render :partial => "lessons/ajaxed_lessons", :locals => { :lessons => @owned, :pane => :owned } %>
               <div class="clear"></div>
             </div>
-            <div class="compact_container">
-              <%= render :partial => "lessons/ajaxed_lessons", :object => @lessons %>
+            <div>
+              <%= render :partial => "lessons/ajaxed_lessons", :locals => { :lessons => @wishlist, :pane => :wishlist } %>
               <div class="clear"></div>
             </div>
-            <div class="compact_container">
-              <%= render :partial => "lessons/recently_browsed", :locals => { :lesson_format => :compact } %>
+            <div>
+              <%= render :partial => "lessons/ajaxed_lessons", :locals => { :lessons => @latest_browsed, :pane => :latest_browsed } %>
               <div class="clear"></div>
             </div>
-          </div>
-          <!-- end (interior) panes -->
-        </div>
-        <!-- end lessons_nested -->
-      </div>
-      <!-- end lessons pane -->
+          </div><!-- end (interior) panes -->
+        </div><!-- end lessons_nested -->
+      </div><!-- end lessons pane -->
 
       <% # REVIEWS -%>
       <div>
