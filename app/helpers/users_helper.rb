@@ -1,5 +1,5 @@
 module UsersHelper
-  def follow_link user
+  def follow_link user, current_user
     if current_user
       if user.followed_by?(current_user)
         link_to "Stop Following", instructor_follow_path(user), :method => :delete

@@ -20,7 +20,7 @@
             <div><%= link_to "Edit", edit_user_path(@user) %></div>
         <% end %>
         <div><%= flag_link @user %></div>
-        <div><%= follow_link @user %></div>
+        <div><%= follow_link @user, current_user %></div>
       </div>
     </div>
 
