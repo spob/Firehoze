@@ -81,9 +81,9 @@ class MyFirehozeController < ApplicationController
 
   #==================================== MY STUFF FETCHERS ===========================================
   def fetch_my_stuff_lessons
-    @latest_browsed = Lesson.fetch_latest_browsed(current_user, @category_id, @per_page, params[:page]) if retrieve_by_pane(:latest_browsed)
-    @owned = Lesson.fetch_owned(current_user, @per_page, params[:page])  if retrieve_by_pane(:owned)
-    @wishlist = Lesson.fetch_wishlist(current_user, @category_id, @per_page, params[:page])  if retrieve_by_pane(:wishlist)
+    @latest_browsed = Lesson.fetch_latest_browsed(current_user, @category_id, @per_page, params[:page]) if retrieve_by_pane("latest_browsed")
+    @owned = Lesson.fetch_owned(current_user, @per_page, params[:page]) if retrieve_by_pane("owned")
+    @wishlist = Lesson.fetch_wishlist(current_user, @category_id, @per_page, params[:page]) if retrieve_by_pane("wishlist")
   end
 
   def fetch_reviews
@@ -169,6 +169,6 @@ class MyFirehozeController < ApplicationController
   end
 
   def retrieve_by_pane(pane)
-    params[pane].nil? or params[pane] == pane
+    params[:pane].nil? or params[:pane] == pane
   end
 end
