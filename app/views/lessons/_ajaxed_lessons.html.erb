@@ -1,13 +1,13 @@
-
 <% pane = params[:pane] if params[:pane] %>
 <% lessons = @owned if pane == "owned" %>
 <% lessons = @latest_browsed if pane == "latest_browsed" %>
 <% lessons = @wishlist if pane == "wishlist" %>
+
 <%= image_tag("general/spinners/ajax-loader_small_arrows.gif", :class => "loader") %>
 <div id="<%= pane %>">
-  <%= will_paginate lessons, :params => { :pane => pane } %>
-  <ul class="lesson-list">
-    <%= render :partial => "lessons/ajaxed_lesson", :collection => lessons %>
-  </ul>
-  <%= will_paginate lessons, :params => { :pane => pane } %>
+  <% paginated_section  lessons, :params => { :pane => pane } do %>
+    <ul class="lesson-list">
+      <%= render :partial => "lessons/ajaxed_lesson", :collection => lessons %>
+    </ul>
+  <% end %>
 </div>
