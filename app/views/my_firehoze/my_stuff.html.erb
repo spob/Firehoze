@@ -59,13 +59,13 @@
 
       <% # GROUPS -%>
       <div>
-        <%= render :partial => 'groups/groups', :locals => { :user => @user } %>
+        <%= render :partial => 'groups/v2/ajaxed_groups', :locals => { :groups => @groups, :pane => :groups } %>
       </div>
       <!-- end groups pane -->
 
       <% # FOLLOWED INSTRUCTORS -%>
       <div>
-        <%= render :partial => 'followed_instructors', :locals => { :user => @user } %>
+        <%= render :partial => 'followed_instructors', :locals => { :followed_instructors => @followed_instructors } %>
       </div>
       <!-- end followed instructor pane -->
     </div>

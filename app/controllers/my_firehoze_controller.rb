@@ -30,6 +30,7 @@ class MyFirehozeController < ApplicationController
         case params[:pane]
         when 'owned', 'latest_browsed', 'wishlist'
           render :action => "my_stuff_lessons"
+        
         else
           render :action => params[:pane]
         end
