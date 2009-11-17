@@ -36,15 +36,15 @@
 
           <div class="secondary-sub-navigation-panes">
             <div>
-              <%= render :partial => "lessons/ajaxed_lessons", :locals => { :lessons => @owned, :pane => :owned } %>
+              <%= render :partial => "lessons/v2/ajaxed_lessons", :locals => { :lessons => @owned, :pane => :owned } %>
               <div class="clear"></div>
             </div>
             <div>
-              <%= render :partial => "lessons/ajaxed_lessons", :locals => { :lessons => @wishlist, :pane => :wishlist } %>
+              <%= render :partial => "lessons/v2/ajaxed_lessons", :locals => { :lessons => @wishlist, :pane => :wishlist } %>
               <div class="clear"></div>
             </div>
             <div>
-              <%= render :partial => "lessons/ajaxed_lessons", :locals => { :lessons => @latest_browsed, :pane => :latest_browsed } %>
+              <%= render :partial => "lessons/v2/ajaxed_lessons", :locals => { :lessons => @latest_browsed, :pane => :latest_browsed } %>
               <div class="clear"></div>
             </div>
           </div><!-- end (interior) panes -->
