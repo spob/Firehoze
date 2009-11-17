@@ -87,7 +87,7 @@ class MyFirehozeController < ApplicationController
   end
 
   def fetch_reviews
-    @reviews = Review.list(nil, @per_page, current_user, params[:page])
+    @reviews = current_user.reviews.ready.paginate(:page => params[:page], :page => @page)
   end
 
   def fetch_groups
