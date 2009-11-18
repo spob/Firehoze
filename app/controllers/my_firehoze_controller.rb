@@ -29,7 +29,7 @@ class MyFirehozeController < ApplicationController
       format.js do 
         case params[:pane]
         when 'owned', 'latest_browsed', 'wishlist'
-          render :action => "my_stuff_lessons"
+          render :action => "lessons"
         else
           render :action => params[:pane]
         end
@@ -46,8 +46,10 @@ class MyFirehozeController < ApplicationController
       format.html
       format.js do 
         case params[:pane]
-        when 'instructed_lessons'
-          render :action => "my_stuff_lessons"
+        when 'lessons_instructed_tn_view'
+          render :action => "lessons"
+        when 'lessons_instructed_table_view'
+          render :action => "lessons_instructed_table_view"
         else
           render :action => params[:pane]
         end
