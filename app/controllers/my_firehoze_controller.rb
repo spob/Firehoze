@@ -123,13 +123,8 @@ class MyFirehozeController < ApplicationController
   end
 
   def fetch_students
-    @students =
-      case set_session_param("browse_students_by", "students")
-    when "followers"
-      @followers = current_user.students
-    else
-      @students = current_user.students.paginate(:per_page => @per_page, :page => params[:page])
-    end
+    @followers = current_user.students
+    @students = current_user.students.paginate(:per_page => @per_page, :page => params[:page])
   end
 
   def fetch_payments

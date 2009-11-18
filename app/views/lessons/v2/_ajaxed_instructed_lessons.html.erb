@@ -14,7 +14,7 @@
     </tr>
     <% if lessons.empty? %>
       <tr>
-        <td colspan="4">You have not instructed any lessons</td>
+        <td colspan="5">You have not instructed any lessons</td>
       </tr>
     <% else %>
     <%= render :partial => 'lessons/v2/ajaxed_instructed_lesson', :collection => lessons %>

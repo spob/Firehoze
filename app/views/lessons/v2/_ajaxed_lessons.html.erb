@@ -6,12 +6,12 @@
 
 <div id="<%= pane %>">
   <% if lessons.empty? %>
-      No lessons
+    No lessons
   <% else %>
-      <% paginated_section lessons, :params => { :pane => pane } do %>
-          <ul class="lesson-list">
-            <%= render :partial => "lessons/v2/ajaxed_lesson", :collection => lessons %>
-          </ul>
-      <% end %>
+    <% paginated_section lessons, :params => { :pane => pane } do %>
+      <ul class="lesson-list">
+        <%= render :partial => "lessons/v2/ajaxed_lesson", :collection => lessons %>
+      </ul>
+    <% end %>
   <% end %>
 </div>
