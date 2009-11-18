@@ -37,21 +37,18 @@
 
           <div class="secondary-sub-navigation-panes">
             <div class="compact_container">
-              Available credits are available to use to purchase videos.
-              <%= render :partial => "credit_history",
-                :locals => { :user => current_user, :credits => @available_credits, :show_redeemed => false, :show_expired => false } %>
+              <p>Available credits are available to use to purchase videos.</p>
+              <%= render :partial => "credits/credits", :locals => { :user => current_user, :credits => @available_credits, :show_redeemed => false, :show_expired => false, :pane => :available } %>
               <div class="clear"></div>
             </div>
-            <div>
-              Used credits are credits that you have used to purchase videos.
-              <%= render :partial => "credit_history",
-                :locals => { :user => current_user, :credits => @used_credits, :show_redeemed => true, :show_expired => false } %>
+            <div class="compact_container">
+              <p>Used credits are credits that you have used to purchase videos.</p>
+              <%= render :partial => "credits/credits", :locals => { :user => current_user, :credits => @used_credits, :show_redeemed => true, :show_expired => false, :pane => :used } %>
               <div class="clear"></div>
             </div>
-            <div>
-              Credits expire if they are unused and you have not logged in for one year.
-              <%= render :partial => "credit_history",
-                :locals => { :user => current_user, :credits => @expired_credits, :show_redeemed => false, :show_expired => true } %>
+            <div class="compact_container">
+              <p>Credits expire if they are unused and you have not logged in for one year.</p>
+              <%= render :partial => "credits/credits", :locals => { :user => current_user, :credits => @expired_credits, :show_redeemed => false, :show_expired => true, :pane => :expired } %>
               <div class="clear"></div>
             </div>
           </div><!-- end (interior) panes -->
