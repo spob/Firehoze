@@ -2,7 +2,11 @@
 <% reviews = @reviews if pane == "reviews" %>
 
 <div id="<%= pane %>">
-  <% paginated_section  reviews, :params => { :pane => pane } do %>
-    <%= render :partial => "reviews/v2/review", :collection => reviews %>
+  <% if reviews.empty? %>
+      You haven't reviewed any lessons yet.
+  <% else %>
+      <% paginated_section reviews, :params => { :pane => pane } do %>
+          <%= render :partial => "reviews/v2/review", :collection => reviews %>
+      <% end %>
   <% end %>
 </div>
