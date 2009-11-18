@@ -3,7 +3,6 @@
 <% lessons = @latest_browsed if pane == "latest_browsed" %>
 <% lessons = @wishlist if pane == "wishlist" %>
 
-<%= image_tag("general/spinners/ajax-loader_small_arrows.gif", :class => "loader") %>
 <div id="<%= pane %>">
   <% paginated_section  lessons, :params => { :pane => pane } do %>
     <ul class="lesson-list">
