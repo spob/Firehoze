@@ -9,6 +9,7 @@
           <th>Order Date</th>
           <th>Amount</th>
         </tr>
+        <%= render :partial => 'orders/v2/order', :collection => orders %>
       </table>
   <% else %>
       No lessons
