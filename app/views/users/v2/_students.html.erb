@@ -1,11 +1,20 @@
-<table>
-  <tr>
-    <th>
-      Student
-    </th>
-    <th>
-      Purchased Lessons
-    </th>
-  </tr>
-  <%= render :partial => 'student', :collection => user.students %>
-</table>
+<% pane = params[:pane] if params[:pane] %>
+<% students = @students if pane == "students" %>
+
+<div id="<%= pane %>">
+  <% paginated_section  students, :params => { :pane => pane } do %>
+    <table>
+      <tr>
+        <th>Student</th>
+        <th>Purchased Lessons</th>
+      </tr>
+      <% if students.empty? %>
+        <tr>
+          <td colspan="2">You currently have no students</td>
+        </tr>
+      <% else %>
+        <%= render :partial => 'users/v2/student', :collection => students %>
+      <% end %>
+    </table>
+  <% end %>
+</div>
