@@ -124,7 +124,6 @@ class User < ActiveRecord::Base
   # otherwise any references to them for fields and attributes will not work.
   define_index do
     indexes login
-    indexes name_or_username
     indexes bio
     set_property :delta => true
   end

@@ -11,7 +11,7 @@ namespace :db do
   namespace :populate do
 
     desc "Bootstraps the application"
-    task :all => [ :truncate, :admins, :users, :seed_skus, :categories, :lessons, :tags, :credits, :acquire_lessons, :reviews, :reset_passwords, :groups] do
+    task :all => [ :truncate, :admins, :users, :seed_skus, :categories, :lessons, :tags, :credits, :acquire_lessons, :reviews, :reset_passwords, :groups, :followers] do
       puts "***** ALL COMPLETE *****"
     end
 
@@ -53,8 +53,9 @@ namespace :db do
         end
       end
 
+      i = 1
       User.populate count.to_i do |user|
-        user.login = Faker::Name.first_name + Faker::Name.last_name
+        user.login = "#{Faker::Name.first_name}i"
         user.first_name = Faker::Name.first_name
         user.last_name = Faker::Name.last_name
         user.email = Faker::Internet.email
@@ -68,6 +69,7 @@ namespace :db do
         user.failed_login_count = 0
         user.active = true
         user.user_agreement_accepted_on = Date.today
+        i = i + 1
 
         # insane why I need to specify these for my PC dev instance -- oh well
         user.rejected_bio = false
@@ -138,12 +140,45 @@ namespace :db do
       create_sku GiftCertificateSku, GIFT_CERTIFICATE_SKU, 'Gift Certificate', 1, 0.99
     end
 
+    desc "Create some followers"
+    task :followers => :environment do
+      require 'populator'
+      require 'faker'
+      count = (ENV['count'] ? ENV['count'].to_i : 25)/3
+      while User.instructors.count < count
+        puts "=============#{User.instructors.count} < #{count}"
+        puts "=== Turning some users into instructors ==="
+        user = User.first(:order => 'RAND()')
+        unless user.verified_instructor? or !user.valid?
+          puts "Converting #{user.login} to an instructor"
+          user.address1 = Faker::Address.street_address
+          user.address2 = Faker::Address.secondary_address
+          user.city = Faker::Address.city
+          user.state = Faker::Address.us_state
+          user.postal_code = Faker::Address.zip_code
+          user.country = 'US'
+          user.verified_address_on = Time.now
+          user.author_agreement_accepted_on = Time.now
+          user.payment_level = PaymentLevel.first(:order => 'RAND()')
+          user.save!
+        end
+      end
+      puts "=== Generating Followers ==="
+      count = (ENV['count'] ? ENV['count'].to_i : 25)
+      count.times do |n|
+        instructor = User.instructors.first(:order => 'RAND()')
+        user = User.first(:order => 'RAND()')
+        if instructor.verified_instructor?
+          instructor.followers << user unless instructor == user or instructor.followed_by?(user)
+        end
+      end
+    end
+
     desc "Generate some public groups"
     task :groups => :environment do
       puts "=== Generating Public Groups ==="
-      require 'populator'
       require 'faker'
-      
+
       (1..15).each do |i|
         group = Group.new
         group.owner = User.first(:order => 'RAND()')
