@@ -103,7 +103,7 @@ class MyFirehozeController < ApplicationController
   end
 
   def fetch_reviews
-    @reviews = current_user.reviews.ready.paginate(:page => params[:page], :per_page => @per_page)  if retrieve_by_pane("reviews")
+    @reviews = current_user.reviews.ready.paginate(:page => params[:page], :per_page => @per_page) if retrieve_by_pane("reviews")
   end
 
   def fetch_groups
@@ -135,8 +135,7 @@ class MyFirehozeController < ApplicationController
 
   #================================== ACCOUNT HISTORY FETCHERS ========================================
   def fetch_credits
-    @credits =
-      case set_session_param("browse_credits_by", "available")
+    @credits = case set_session_param("browse_credits_by", "available")
     when "used"
       current_user.credits.redeemed_at_not_null.expired_at_null(:order => "created_at ASC")
     when "expired"
