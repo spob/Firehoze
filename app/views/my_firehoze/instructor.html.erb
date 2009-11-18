@@ -73,7 +73,9 @@
         <!-- end students pane -->
 
         <% # PAYMENT HISTORY -%>
-        <div><%= render :partial => "accounts/forms/payment_history", :locals => { :user => current_user } %></div>
+        <div>
+          <%= render :partial => "accounts/forms/payment_history", :locals => { :lessons => @payments, :pane => :payments } %>
+        </div>
         <!-- end payments pane -->
       </div>
     </div>
