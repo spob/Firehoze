@@ -2,20 +2,31 @@
 <% groups = @groups if pane == "groups" %>
 
 <div id="<%= pane %>">
-  <% paginated_section  groups, :params => { :pane => pane } do %>
-    <table>
-      <tr>
-        <th colspan="2">Group</th>
-        <th>Relationship</th>
-        <th>Category</th>
-      </tr>
-      <% if groups.empty? %>
+  <% paginated_section groups, :params => { :pane => pane } do %>
+      <table>
         <tr>
-          <td colspan="4">You do not belong to any groups</td>
+          <th colspan="2">Group</th>
+          <th>Relationship</th>
+          <th>Category</th>
         </tr>
-      <% else %>
-        <%= render :partial => 'categories/group', :collection => groups %>
-      <% end %>
-    </table>
+        <% if groups.empty? %>
+            <tr>
+              <td colspan="4">
+                <p>You do not belong to any groups...yet</p>
+
+                <p>Groups are virtual communities within the Firehoze community made up of users with similar
+                  interests
+                  or backgrounds. Share lessons in other users, engage in online discussions, or suggest new lesson
+                  topics
+                  within a group discussion.</p>
+
+                <p>You can <%= link_to "browse", categories_path %> for groups to join or create your own. Or
+                <%= link_to "create", new_group_path %> your own.</p>
+              </td>
+            </tr>
+        <% else %>
+            <%= render :partial => 'categories/group', :collection => groups %>
+        <% end %>
+      </table>
   <% end %>
 </div>
