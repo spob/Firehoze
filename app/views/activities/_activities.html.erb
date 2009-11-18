@@ -2,13 +2,20 @@
 <%= image_tag("general/spinners/ajax-loader_small_arrows.gif", :class => "loader") %>
 View Activity:
 <div class="filter_activity_by">
-  <%= link_to_unless session[:browse_activities_by] == 'ALL', bold('by everybody', session[:browse_activities_by] == 'ALL'), my_firehoze_index_path %> |
-  <%= link_to_unless (session[:browse_activities_by] == 'BY_ME' or current_user.nil?), bold('by me', session[:browse_activities_by] == 'BY_ME'), my_firehoze_index_path(:browse_activities_by => 'BY_ME') %> |
-  <%= link_to_unless (session[:browse_activities_by] == 'ON_ME' or current_user.nil?), bold('on me', session[:browse_activities_by] == 'ON_ME'), my_firehoze_index_path(:browse_activities_by => 'ON_ME') %> |
+  <%= link_to_unless session[:browse_activities_by] == 'ALL', bold('by everybody', session[:browse_activities_by] == 'ALL'), my_firehoze_index_path %>
+  |
+  <%= link_to_unless (session[:browse_activities_by] == 'BY_ME' or current_user.nil?), bold('by me', session[:browse_activities_by] == 'BY_ME'), my_firehoze_index_path(:browse_activities_by => 'BY_ME') %>
+  |
+  <%= link_to_unless (session[:browse_activities_by] == 'ON_ME' or current_user.nil?), bold('on me', session[:browse_activities_by] == 'ON_ME'), my_firehoze_index_path(:browse_activities_by => 'ON_ME') %>
+  |
   <%= link_to_unless (session[:browse_activities_by] == 'BY_FOLLOWED' or current_user.nil?), bold("by instructors I'm following", session[:browse_activities_by] == 'BY_FOLLOWED'), my_firehoze_index_path(:browse_activities_by => 'BY_FOLLOWED') %>
   <%= will_paginate activities %>
 </div>
 <table>
-  <%= render :partial => 'activities/activity', :collection => activities %>
+  <% if activities.empty? %>
+      <td>Alas, no activity to report.</td>
+  <% else %>
+      <%= render :partial => 'activities/activity', :collection => activities %>
+  <% end %>
 </table>
 <%= will_paginate activities %>
