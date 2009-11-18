@@ -1,13 +1,19 @@
-  <div class="box">
-    <h4 class="banner"><%= current_user.full_name %>'s firehoze</h4>
-    <div class="top-level-navigation">
-      <ul>
-        <li><%= link_to 'Latest News', my_firehoze_index_path %></li>
-        <li><%= link_to 'My Stuff', my_stuff_my_firehoze_path %></li>
-        <% if current_user.verified_instructor? %>
+<div class="box">
+  <h4 class="banner"><%= current_user.full_name %>'s firehoze</h4>
+
+  <div class="top-level-navigation">
+    <ul>
+      <li><%= link_to 'Latest News', my_firehoze_index_path %></li>
+      <li><%= link_to 'My Stuff', my_stuff_my_firehoze_path %></li>
+      <% if current_user.verified_instructor? %>
           <li><%= link_to 'Instructor Dashboard', instructor_my_firehoze_path %></li>
-        <% end %>
-        <li><%= link_to 'Account History', account_history_my_firehoze_path %></li>
-      </ul>
-    </div>
+      <% end %>
+      <li><%= link_to 'Account History', account_history_my_firehoze_path %></li>
+    </ul>
   </div>
+  You have <%= pluralize current_user.available_credits.count, "credit" %> available
+  <% if current_user.verified_instructor? %>
+     | Current Earnings Owed To You:
+      <%= link_to_if current_user.unpaid_credits_amount > 0, number_to_currency(current_user.unpaid_credits_amount), show_unpaid_payment_path(current_user) %>
+  <% end %>
+</div>
