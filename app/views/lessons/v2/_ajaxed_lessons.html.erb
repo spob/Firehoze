@@ -4,9 +4,13 @@
 <% lessons = @wishlist if pane == "wishlist" %>
 
 <div id="<%= pane %>">
-  <% paginated_section  lessons, :params => { :pane => pane } do %>
-    <ul class="lesson-list">
-      <%= render :partial => "lessons/v2/ajaxed_lesson", :collection => lessons %>
-    </ul>
+  <% if lessons.empty? %>
+      No lessons
+  <% else %>
+      <% paginated_section lessons, :params => { :pane => pane } do %>
+          <ul class="lesson-list">
+            <%= render :partial => "lessons/v2/ajaxed_lesson", :collection => lessons %>
+          </ul>
+      <% end %>
   <% end %>
 </div>
