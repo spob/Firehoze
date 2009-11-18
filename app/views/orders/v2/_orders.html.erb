@@ -1,0 +1,19 @@
+<% pane = params[:pane] if params[:pane] %>
+<% orders = @orders if pane == "orders" %>
+
+<div id="<%= pane %>">
+  <% if orders.present? %>
+    No lessons
+  <% else %>
+    <% paginated_section orders, :params => { :pane => pane } do %>
+      <table>
+        <tr>
+          <th>Order Number</th>
+          <th>Order Date</th>
+          <th>Amount</th>
+        </tr>
+        <%= render :partial => 'order', :collection => orders %>
+      </table>
+    <% end %>
+  <% end %>
+</div>
