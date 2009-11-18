@@ -35,12 +35,12 @@
 
             <div class="secondary-sub-navigation-panes">
               <div>
-                <%= render :partial => "lessons/v2/ajaxed_lessons", :locals => { :lessons => @instructed_lessons, :pane => :instructed_lessons } %>
+                <%= render :partial => "lessons/v2/ajaxed_lessons", :locals => { :lessons => @instructed_lessons, :pane => :lessons_instructed_tn_view } %>
                 <div class="clear"></div>
               </div>
 
               <div>
-                <%= render :partial => "instructed_lessons", :locals => { :user => current_user } %>
+                <%= render :partial => "lessons/v2/ajaxed_instructed_lessons", :locals => { :lessons => @instructed_lessons, :pane => :lessons_instructed_table_view } %>
                 <div class="clear"></div>
               </div>
             </div>
