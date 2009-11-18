@@ -111,7 +111,7 @@ class MyFirehozeController < ApplicationController
   end
 
   def fetch_followed_instructors
-    @followed_instructors = current_user.followed_instructors.active.paginate(:per_page => @per_page, :page => params[:page])
+    @followed_instructors = current_user.followed_instructors.active.paginate(:per_page => @per_page, :page => params[:page]) if retrieve_by_pane("followed_instructors")
   end
 
   #================================== END MY STUFF FETCHERS =========================================
