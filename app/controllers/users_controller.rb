@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     @user.user_agreement_accepted_on = Time.now if params[:accept_agreement]
     if @user.save
       flash[:notice] = t 'user.account_reg_success'
-      redirect_back_or_default home_path
+      redirect_back_or_default my_firehoze_index_path
     else
       render :action => :new
     end
