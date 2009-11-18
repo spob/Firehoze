@@ -107,7 +107,7 @@ class MyFirehozeController < ApplicationController
   end
 
   def fetch_groups
-    @groups = Group.fetch_user_groups(current_user, params[:page], @per_page)
+    @groups = Group.fetch_user_groups(current_user, params[:page], @per_page) if retrieve_by_pane("groups")
   end
 
   def fetch_followed_instructors
@@ -119,7 +119,9 @@ class MyFirehozeController < ApplicationController
 
   #=================================== INSTRUCTOR FETCHERS ===========================================
   def fetch_instructed_lessons
-    @instructed_lessons = Lesson.fetch_instructed_lessons(current_user, @category_id, @per_page, params[:page])
+    if retrieve_by_pane("lessons_instructed_table_view") or retrieve_by_pane("lessons_instructed_tn_view")
+      @instructed_lessons = Lesson.fetch_instructed_lessons(current_user, @category_id, @per_page, params[:page])
+    end
   end
 
   def fetch_students
@@ -135,14 +137,9 @@ class MyFirehozeController < ApplicationController
 
   #================================== ACCOUNT HISTORY FETCHERS ========================================
   def fetch_credits
-    @credits = case set_session_param("browse_credits_by", "available")
-    when "used"
-      current_user.credits.redeemed_at_not_null.expired_at_null(:order => "created_at ASC")
-    when "expired"
-      current_user.credits.expired_at_not_null(:order => "created_at ASC")
-    else
-      current_user.available_credits(:order => "created_at ASC")
-    end
+    @used_credits = current_user.credits.redeemed_at_not_null.expired_at_null(:order => "created_at ASC")
+    @expired_credits = current_user.credits.expired_at_not_null(:order => "created_at ASC")
+    @available_credits = current_user.available_credits(:order => "created_at ASC")
   end
 
   def fetch_orders
