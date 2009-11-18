@@ -34,10 +34,11 @@
             <div class="clear"></div>
 
             <div class="secondary-sub-navigation-panes">
-              <div class="compact_container">
-                <%= render :partial => "lessons/instructed", :locals => { :user => current_user, :lesson_format => :compact } %>
+              <div>
+                <%= render :partial => "lessons/v2/ajaxed_lessons", :locals => { :lessons => @instructed_lessons, :pane => :instructed_lessons } %>
                 <div class="clear"></div>
               </div>
+
               <div>
                 <%= render :partial => "instructed_lessons", :locals => { :user => current_user } %>
                 <div class="clear"></div>

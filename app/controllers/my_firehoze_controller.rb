@@ -3,7 +3,7 @@ class MyFirehozeController < ApplicationController
 
   before_filter :require_user
   #  verify :method => :put, :only => [ :update ], :redirect_to => :home_path
-  before_filter :set_per_page, :only => [ :show, :my_stuff ]
+  before_filter :set_per_page, :only => [ :show, :my_stuff, :instructor ]
   before_filter :set_collection, :only => [ :show ]
   before_filter :setup
 
@@ -30,7 +30,6 @@ class MyFirehozeController < ApplicationController
         case params[:pane]
         when 'owned', 'latest_browsed', 'wishlist'
           render :action => "my_stuff_lessons"
-        
         else
           render :action => params[:pane]
         end
@@ -45,7 +44,14 @@ class MyFirehozeController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.js
+      format.js do 
+        case params[:pane]
+        when 'instructed_lessons'
+          render :action => "my_stuff_lessons"
+        else
+          render :action => params[:pane]
+        end
+      end
     end
   end
 
@@ -165,7 +171,7 @@ class MyFirehozeController < ApplicationController
     @per_page =
       if params[:per_page]
       params[:per_page]
-    elsif %w(my_stuff show).include?(params[:action])
+    elsif %w(my_stuff instructor show).include?(params[:action])
       3
     else
       Lesson.per_page

@@ -2,6 +2,7 @@
 <% lessons = @owned if pane == "owned" %>
 <% lessons = @latest_browsed if pane == "latest_browsed" %>
 <% lessons = @wishlist if pane == "wishlist" %>
+<% lessons = @instructed_lessons if pane == "instructed_lessons" %>
 
 <div id="<%= pane %>">
   <% if lessons.empty? %>
