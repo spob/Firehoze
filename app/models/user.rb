@@ -97,6 +97,7 @@ class User < ActiveRecord::Base
   has_attached_file :avatar,
                     :styles => {
                             :tiny => ["35x35#", :png],
+                            :smaller => ["60x60#", :png],
                             :small => ["75x75#", :png],
                             :medium => ["110x110#", :png],
                             :large => ["220x220#", :png]
