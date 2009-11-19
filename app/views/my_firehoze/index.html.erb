@@ -3,17 +3,19 @@
 
 <div id="my_firehoze" class="span-12 last">
   <% # TOP LEVEL NAVIGATION -%>
-  <%= render :partial => 'nav' %>
-    <% # LATEST NEWS -%>
-    <div class="span-12 last">
-      <div class="span-8">
-        <h4>Recent Activity</h4>
-        <div id="activities" class="box">
-          <%= render :partial => 'activities/activities', :object => @activities %>
-        </div>
-      </div>
-      <div class="span-4 last">
-        <%= render :partial => 'tweets' %>
+  <div class="span-12 append-bottom">
+    <%= render :partial => 'nav' %>
+  </div>
+  <% # LATEST NEWS -%>
+  <div class="span-12">
+    <div class="span-8">
+      <h4>Recent Activity</h4>
+      <div id="activities" class="box">
+        <%= render :partial => 'activities/activities', :object => @activities %>
       </div>
     </div>
+    <div class="span-4 last">
+      <%= render :partial => 'tweets' %>
+    </div>
+  </div>
 </div>

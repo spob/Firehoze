@@ -18,6 +18,25 @@ $(function() {
 
     $('.inner_box').cornerz({
         radius: 5,
-				background : "#EDEDED"
+        background : "#EDEDED"
+    });
+
+    $('ul.top-level-navigation a').cornerz({
+        radius: 8,
+        background : "#FFF"
+    });
+
+    $('dl.top-level-navigation dd a').cornerz({
+        radius: 8,
+        background : "#F2F2F2"
+    });
+
+    $('div.top-level-navigation-box-outer').cornerz({
+        radius: 5
+    });
+
+    $('div.top-level-navigation-box-inner').cornerz({
+        radius: 3,
+        background: "#ccc"
     });
 });
