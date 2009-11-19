@@ -21,7 +21,7 @@ $(function() {
         background : "#EDEDED"
     });
 
-    $('ul.top-level-navigation a').cornerz({
+    $('ul.top-level-navigation li').cornerz({
         radius: 8,
         background : "#FFF"
     });

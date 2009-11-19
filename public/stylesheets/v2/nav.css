@@ -2,33 +2,36 @@ ul.top-level-navigation {
     display: block;
     width: auto;
     height: 27px;
-    margin: 0 0 10px 0;
+    margin: 0 0 16px 0;
 }
 
 ul.top-level-navigation li {
     list-style: none;
     float: left;
     display: inline;
+    margin-right: 8px;
+    border: solid 2px #F2F2F2;
+    padding: 5px 12px  5px 12px ;
+    color: #295F6D;
+    background: #FFF;
 }
 
 ul.top-level-navigation li a {
     text-decoration: none;
-    margin: 0 12px 0 0;
-    padding: 5px 12px;
-    color: #295F6D;
-    background: #FFF;
-    border: solid 2px #F2F2F2;
 }
 
-ul.top-level-navigation li a:hover {
+ul.top-level-navigation li:hover {
     border: solid 2px #F2F2F2;
     background: #F2F2F2;
 }
 
-ul.top-level-navigation li.current a {
-    text-shadow: #666 0 1px 1px;
+ul.top-level-navigation li.current  {
     background: #CCC;
     border: solid 1px #CCC;
+}
+
+ul.top-level-navigation li.current a {
+    text-shadow: #666 0 1px 1px;
     font-weight:bold;
     color: #fff;
 }
