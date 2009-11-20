@@ -10,8 +10,7 @@ class GroupLessonsController < ApplicationController
     if can_update_groups?(@lesson, current_user)
       @group_lesson = @group.group_lessons.find_by_lesson_id(@lesson)
       if @group_lesson.nil?
-        @group_lesson = GroupLesson.create!(:user => current_user, :lesson => @lesson,
-                                            :group => @group)
+        @group_lesson = @group.group_lessons.create!(:user => current_user, :lesson => @lesson)
         flash[:notice] = t('group_lesson.lesson_added', :group =>@group.name)
       elsif !@group_lesson.active
         @group_lesson.update_attribute(:active, true)

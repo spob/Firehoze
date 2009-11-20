@@ -6,7 +6,7 @@ class GroupMembersController < ApplicationController
 
   def create
     @group = Group.find(params[:id])
-    @group_member = GroupMember.create!(:user => current_user, :group => @group, :member_type => MEMBER)
+    @group_member = @group.group_members.create!(:user => current_user, :member_type => MEMBER)
     flash[:notice] = t('group.join', :group => @group.name)
     redirect_to group_path(@group)
   end
