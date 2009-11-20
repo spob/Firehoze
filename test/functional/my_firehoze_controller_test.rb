@@ -81,7 +81,9 @@ class MyFirehozeControllerTest < ActionController::TestCase
       setup { get :account_history }
 
       should_assign_to :orders
-      should_assign_to :credits
+      should_assign_to :used_credits
+      should_assign_to :available_credits
+      should_assign_to :expired_credits
       should_respond_with :success
       should_not_set_the_flash
       should_render_template "account_history"
