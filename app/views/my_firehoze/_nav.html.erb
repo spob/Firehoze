@@ -1,10 +1,31 @@
+<%
+top_level_navigation = [
+  [:latest_news, {
+      :name => 'Latest News',
+      :location =>  my_firehoze_index_path
+    }],
+  [:my_stuff, {
+      :name => 'My Stuff',
+      :location =>  my_stuff_my_firehoze_path
+    }],
+  [:account_history, {
+      :name => 'Account History',
+      :location => account_history_my_firehoze_path
+    }]
+]
+
+instructor_link = [:instructor, {
+    :name => 'Instructor Dashboard',
+    :location =>  instructor_my_firehoze_path
+  }]
+
+top_level_navigation << instructor_link if current_user.verified_instructor?
+%>
+
 <ul class="top-level-navigation">
-  <li class="current"><%= link_to 'Latest News', my_firehoze_index_path %></li>
-  <li><%= link_to 'My Stuff', my_stuff_my_firehoze_path %></li>
-  <% if current_user.verified_instructor? %>
-    <li><%= link_to 'Instructor Dashboard', instructor_my_firehoze_path %></li>
+  <% top_level_navigation.each do |key, item| %>
+    <li <%= 'class="current"' if @secondary_nav_current.to_s == key.to_s %>><%= link_to item[:name], item[:location] %></li>
   <% end %>
-  <li><%= link_to 'Account History', account_history_my_firehoze_path %></li>
 </ul>
 
 
