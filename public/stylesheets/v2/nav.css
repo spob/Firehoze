@@ -52,44 +52,32 @@ ul.top-level-navigation li.current a {
     padding:15px;
     background: #F2F2F2;
     border: solid 1px #F2F2F2;
-    /*		width:100%;*/
 }
 
-dl.top-level-navigation {
-    display: block;
+dl.nav {
     width: auto;
-    height: 27px;
+    height: 19px;
     margin: 0;
 }
-dl.top-level-navigation dt,
-dl.top-level-navigation dd a {
+dl.nav dt, dl.nav dd {
     float: left;
     display: inline;
 }
-dl.top-level-navigation dt {
-    color:#555;
-    font-size:18px;
-    text-decoration: none;
-    padding: 5px 0;
+dl.nav dt {
+    color: #999;
+    font-weight: normal;
 }
-
-dl.top-level-navigation dd a {
-    text-decoration: none;
-    margin-left: 12px;
+dl.nav dd a {
+    margin-left: 6px;
     padding: 5px 12px;
-    color: #295F6D;
-    background: #FFF;
-    border: solid 1px #F2F2F2;
+    text-decoration: none;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
 }
-
-dl.top-level-navigation dd a:hover {
-    border: solid 1px #F2F2F2;
-    background: #74B3CF;
-    color: #fff;
+dl.nav a:hover {
+    background: #eee;
 }
-dl.top-level-navigation dd.current a {
-    background: #295F80;
-    border: solid 1px #295F80;
-    font-weight:bold;
+dl.nav dd.active a {
+    background: #2daebf;
     color: #fff;
 }

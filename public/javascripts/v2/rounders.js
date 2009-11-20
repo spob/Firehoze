@@ -18,17 +18,17 @@ $(function() {
 
     $('.inner_box').cornerz({
         radius: 5,
-        background : "#EDEDED"
+        background: "#EDEDED"
     });
 
     $('ul.top-level-navigation li').cornerz({
         radius: 8,
-        background : "#FFF"
+        background: "#FFF"
     });
 
     $('dl.top-level-navigation dd a').cornerz({
         radius: 8,
-        background : "#F2F2F2"
+        background: "#F2F2F2"
     });
 
     $('div.top-level-navigation-box-outer').cornerz({
@@ -38,5 +38,17 @@ $(function() {
     $('div.top-level-navigation-box-inner').cornerz({
         radius: 3,
         background: "#ccc"
+    });
+
+    $('div.widget-box-header').cornerz({
+        radius: 5,
+        corners: "tl, tr",
+        background: "#FFF"
+    });
+
+    $('div.widget-box-footer').cornerz({
+        radius: 5,
+        corners: "br, bl",
+        background: "#FFF"
     });
 });

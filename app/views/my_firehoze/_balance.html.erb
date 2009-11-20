@@ -1,5 +1,5 @@
 <div id="balance">
-  Cedits available: <%= user.available_credits.count %>
+  Credits available: <%= user.available_credits.count %>
   <% if user.verified_instructor? %>
     | Earnings Owed: <%= link_to_if user.unpaid_credits_amount > 0, number_to_currency(user.unpaid_credits_amount), show_unpaid_payment_path(user) %>
   <% end %>

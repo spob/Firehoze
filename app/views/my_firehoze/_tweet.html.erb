@@ -1,5 +1,1 @@
-<p>
-  <img src="<%= tweet.profile_image_url %>" />
-  <%= tweet.tweet_text %>
-  Posted <%= time_ago_in_words tweet.posted_at %> ago
-</p>
+<li class="<%= cycle :odd, :even %>"><strong>Posted <%= time_ago_in_words tweet.posted_at %> ago:</strong> <%= tweet.tweet_text %></li>
