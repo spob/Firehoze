@@ -215,7 +215,7 @@ END
   end
 
   def generate_payment
-    payment = Payment.create(:user => self, :amount => 0)
+    payment = self.payments.create!(:amount => 0)
     payment.apply_unpaid_credits
     payment
   end

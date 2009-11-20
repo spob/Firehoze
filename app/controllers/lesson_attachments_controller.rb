@@ -12,8 +12,7 @@ class LessonAttachmentsController < ApplicationController
   def create
     @lesson = Lesson.find(params[:lesson_id])
     if has_access? @lesson
-      @attachment = LessonAttachment.new( params[:attachment] )
-      @attachment.lesson = @lesson
+      @attachment = @lesson.attachments.build(params[:attachment])
       if @attachment.save
         flash[:notice] = t 'attachment.create_success'
         redirect_to lesson_path(@lesson)
