@@ -17,6 +17,7 @@ ul.top-level-navigation li {
 }
 
 ul.top-level-navigation li a {
+    border: 0 none;
     text-decoration: none;
 }
 
@@ -68,11 +69,14 @@ dl.nav dt {
     font-weight: normal;
 }
 dl.nav dd a {
+    border: 0 none;
     margin-left: 6px;
     padding: 5px 12px;
     text-decoration: none;
     -webkit-border-radius: 12px;
     -moz-border-radius: 12px;
+    border: 0 none;
+
 }
 dl.nav a:hover {
     background: #eee;

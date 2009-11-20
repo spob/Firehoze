@@ -4,6 +4,20 @@
 
 * a:active, a:focus {outline: none}
 
+a:link, a:visited {
+    color: #666;
+    text-decoration: none;
+    border-bottom: dotted 1px #999;
+    background-color: transparent;
+}
+
+a:hover, a:active {
+    color: #BF1701;  /*RED LINK*/
+    color: #555;
+    text-decoration: none;
+    border-bottom: solid 1px #999;
+}
+
 body {
     background-color:#EFEFEF;
     font: 12px/18px "Lucida Grande", Verdana, sans-serif;
@@ -240,6 +254,7 @@ ul#main-navigation  {
     padding: 1px 20px 3px;
     color: #666;
     text-decoration:none;
+    border: 0 none;
 }
 #main-navigation li a:hover,
 #main-navigation li a:focus {
