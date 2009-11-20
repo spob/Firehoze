@@ -4,6 +4,7 @@ class Topic < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :group
+  delegate :name, :to => :group, :prefix => true
   has_many :topic_comments, :order => "id"
   has_one :last_topic_comment, :class_name => "TopicComment", :order => "id DESC"
   has_one :last_public_topic_comment, :class_name => "TopicComment", :conditions => { :public => true }, :order => "id DESC"
