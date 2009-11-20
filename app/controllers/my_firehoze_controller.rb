@@ -77,20 +77,21 @@ class MyFirehozeController < ApplicationController
 
   #==================================== LATEST NEWS FETCHERS ========================================
   def fetch_activities
+    activites_per_page = 7
     @activities = case set_session_param(:browse_activities_by, "ALL")
     when 'BY_ME'
-      Activity.visible_to_user(current_user).actor_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => ACTIVITES_PER_PAGE, :page => params[:page]
+      Activity.visible_to_user(current_user).actor_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
     when 'ON_ME'
-      Activity.visible_to_user(current_user).actor_user_id_not_equal_to(current_user).actee_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => ACTIVITES_PER_PAGE, :page => params[:page]
+      Activity.visible_to_user(current_user).actor_user_id_not_equal_to(current_user).actee_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
     when 'BY_FOLLOWED'
-      Activity.by_followed_instructors(current_user).descend_by_acted_upon_at.paginate :per_page => ACTIVITES_PER_PAGE, :page => params[:page]
+      Activity.by_followed_instructors(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
     else
-      Activity.visible_to_user(current_user).descend_by_acted_upon_at.paginate :per_page => ACTIVITES_PER_PAGE, :page => params[:page]
+      Activity.visible_to_user(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
     end
   end
 
   def fetch_tweets
-    @tweets = Tweet.list_tweets(FIREHOZE_TWEETS, 3)
+    @tweets = Tweet.list_tweets(FIREHOZE_TWEETS, 6)
   end
 
   #================================== END LATEST NEWS FETCHERS ======================================

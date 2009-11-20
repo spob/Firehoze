@@ -40,15 +40,8 @@ $(function() {
         background: "#ccc"
     });
 
-    $('div.widget-box-header').cornerz({
+    $('div.widget-box').cornerz({
         radius: 5,
-        corners: "tl, tr",
-        background: "#FFF"
-    });
-
-    $('div.widget-box-footer').cornerz({
-        radius: 5,
-        corners: "br, bl",
         background: "#FFF"
     });
 });

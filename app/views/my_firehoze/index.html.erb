@@ -9,18 +9,19 @@
   </div>
   <% # LATEST NEWS -%>
   <div class="span-12">
-      <div class="span-8">
-      
-        <div class="widget-box">
-          <div class="widget-box-header">
-            <span class="h4">Recent Activity</span>
-          </div>
-          <%= render :partial => 'activities/activities', :object => @activities %>
+    <div class="span-8">
+
+      <div class="widget-box">
+        <div class="widget-box-header">
+          <span class="h4">Recent Activity</span>
+          <%= image_tag("general/spinners/ajax-loader_small_spinner.gif", :class => "loader") %>
         </div>
-          
+        <%= render :partial => 'activities/activities', :object => @activities %>
       </div>
-      <div class="span-4 last">
-        <%= render :partial => 'tweets' %>
-      </div>
+
+    </div>
+    <div class="span-4 last">
+      <%= render :partial => 'tweets' %>
     </div>
   </div>
+</div>

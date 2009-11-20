@@ -1,7 +1,7 @@
 <% activities = object %>
 
-<div id="recent-activities">
-  <div class="widget-box-content">
+<div class="widget-box-content">
+  <div id="recent-activities">
     <div class="filter_activity_by">
       <dl class="nav">
         <dt>View Activity:</dt>
@@ -12,10 +12,6 @@
       </dl>
     </div>
 
-    <div class="pager">
-      <%= will_paginate activities %><%= image_tag("general/spinners/ajax-loader_small_spinner.gif", :class => "loader") %>
-    </div>
-
     <ul class="activity-feed">
       <% if activities.empty? %>
         <li>Alas, no activity to report.</li>
@@ -23,9 +19,6 @@
         <%= render :partial => 'activities/activity', :collection => activities %>
       <% end %>
     </ul>
-  </div>
-
-  <div class="widget-box-footer">
-    <%= will_paginate activities %>
+    <%= will_paginate activities  %>
   </div>
 </div>
