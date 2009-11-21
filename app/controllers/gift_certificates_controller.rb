@@ -52,8 +52,7 @@ class GiftCertificatesController < ApplicationController
   end
 
   def confirm_give
-    @to_user = User.find_by_login(params[:to_user])
-    @to_user ||= User.find_by_email(params[:to_user_email])
+    @to_user = User.find_by_login_or_email(params[:to_user], params[:to_user_email])
     user_str = params[:to_user]
     user_str = params[:to_user_email] if user_str.nil? or user_str.blank?
     if @to_user.nil?

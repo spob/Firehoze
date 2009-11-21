@@ -12,7 +12,7 @@ class Group < ActiveRecord::Base
   has_many :users, :through => :group_members
   has_many :activities, :as => :trackable, :dependent => :destroy
   has_many :all_activities, :class_name => 'Activity', :foreign_key => "group_id"
-  
+
   validates_presence_of :name, :owner, :category
   validates_uniqueness_of :name
 
@@ -106,5 +106,15 @@ class Group < ActiveRecord::Base
                             :activity_object_human_identifier => self.name,
                             :activity_object_class => self.class.to_s)
     self.update_attribute(:activity_compiled_at, Time.now)
+  end
+
+  def invite(user)
+    group_member = self.group_members.find(:first, :conditions => {:user_id => user.id })
+    if group_member
+      group_member.touch
+    else
+      group_member = self.group_members.create!(:user => user, :member_type => PENDING)
+    end
+    group_member
   end
 end

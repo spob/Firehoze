@@ -26,6 +26,19 @@ class GroupTest < ActiveSupport::TestCase
       assert !@group1.owned_by?( Factory.create(:user))
     end
 
+    fast_context "on invite of group" do
+      setup do
+        @user = Factory.create(:user)
+        @group_member = @group1.invite(@user)
+      end
+      
+      should "test invite" do
+        assert @group_member
+        assert_equal PENDING, @group_member.member_type
+      end
+    end
+    
+
     should "test fetch method(s)" do
       assert 1, Group.fetch_user_groups(@group1.owner, 1, 10)
     end

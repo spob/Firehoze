@@ -1,12 +1,11 @@
 class GroupLessonsController < ApplicationController
   before_filter :require_user
+  before_filter :find_group_and_lesson
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :delete, :only => [:destroy ], :redirect_to => :home_path
 
   def create
-    @group = Group.find(params[:id])
-    @lesson = Lesson.find(params[:lesson_id])
     if can_update_groups?(@lesson, current_user)
       @group_lesson = @group.group_lessons.find_by_lesson_id(@lesson)
       if @group_lesson.nil?
@@ -23,8 +22,6 @@ class GroupLessonsController < ApplicationController
   end
 
   def destroy
-    @group = Group.find(params[:id])
-    @lesson = Lesson.find(params[:lesson_id])
     if can_update_groups?(@lesson, current_user)
       @group_lesson = @group.group_lessons.find_by_lesson_id(@lesson.id)
       if @group_lesson.nil? or !@group_lesson.active
@@ -46,5 +43,10 @@ class GroupLessonsController < ApplicationController
       flash[:error] = t('general.no_permissions')
       return false
     end
+  end
+
+  def find_group_and_lesson
+    @group = Group.find(params[:id])
+    @lesson = Lesson.find(params[:lesson_id])
   end
 end

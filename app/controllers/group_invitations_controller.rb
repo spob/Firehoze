@@ -12,8 +12,7 @@ class GroupInvitationsController < ApplicationController
 
   def create
     if can_invite(@group)
-      @to_user = User.find_by_login(params[:to_user])
-      @to_user ||= User.find_by_email(params[:to_user_email])
+      @to_user = User.find_by_login_or_email(params[:to_user], params[:to_user_email])
       user_str = params[:to_user]
       user_str = params[:to_user_email] if user_str.nil? or user_str.blank?
       if @to_user.nil?
@@ -25,12 +24,7 @@ class GroupInvitationsController < ApplicationController
         invite.group = @group
         invite.message = params[:message]
         if invite.save
-          @group_member = @group.group_members.find(:first, :conditions => {:user_id => @to_user.id })
-          if @group_member
-            @group_member.touch
-          else
-            @group_member = GroupMember.create!(:user => @to_user, :group => @group, :member_type => PENDING)
-          end
+          @group_member = @group.invite(@to_user)
           flash[:notice] = t('group.invitation_success', :user => user_str)
           redirect_to group_path(@group)
         else

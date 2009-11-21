@@ -7,13 +7,13 @@ class UserTest < ActiveSupport::TestCase
   fast_context "given an existing record" do
     setup { @user = Factory.create(:user) }
     subject { @user }
-    
 
-    should_validate_uniqueness_of    :email
-    should_validate_uniqueness_of    :login
-    should_validate_presence_of      :last_name, :login, :language, :instructor_status
-    should_validate_presence_of      :user_agreement_accepted_on, :message => /must be selected/
-    should_validate_numericality_of  :login_count, :failed_login_count
+
+    should_validate_uniqueness_of :email
+    should_validate_uniqueness_of :login
+    should_validate_presence_of :last_name, :login, :language, :instructor_status
+    should_validate_presence_of :user_agreement_accepted_on, :message => /must be selected/
+    should_validate_numericality_of :login_count, :failed_login_count
     should_not_allow_mass_assignment_of :email, :login, :rejected_bio, :instructor_status, :address1, :address2,
                                         :city, :state, :postal_code, :country, :author_agreement_accepted_on,
                                         :withold_taxes, :payment_level_id, :user_logons, :credits, :gift_certificates, :orders, :lesson_visits,
@@ -21,43 +21,51 @@ class UserTest < ActiveSupport::TestCase
 
     # Apparently should not allow values for only works if you pass the error message you expect
     # to see...though this is not clear in the shoulda documentation.
-    should_not_allow_values_for      :email, "blahhhh", "bbbb lah",
-                                     :message => /should look like an email address/
-    should_allow_values_for          :email, "apple@b.com", "asdf@asdf.com"
-    should_allow_values_for          :login, "spob", "big boy", "  test "
+    should_not_allow_values_for :email, "blahhhh", "bbbb lah",
+                                :message => /should look like an email address/
+    should_allow_values_for :email, "apple@b.com", "asdf@asdf.com"
+    should_allow_values_for :login, "spob", "big boy", "  test "
 
     # Apparently should not allow values for only works if you pass the error message you expect
     # to see...though this is not clear in the shoulda documentation.
-    should_not_allow_values_for      :login, "1234567890123456789012345678", :message => I18n.translate('activerecord.errors.messages.too_long', :count => 25)
-    should_ensure_length_in_range    :email, (6..100)
-    should_ensure_length_in_range    :last_name, (0..40)
-    should_ensure_length_in_range    :first_name, (0..40)
-    should_ensure_length_in_range    :login, (0..25)
-    should_have_many                 :credits
-    should_have_many                 :gift_certificates
-    should_have_many                 :reviews
-    should_have_many                 :orders
-    should_have_many                 :flags
-    should_have_many                 :lessons
-    should_have_many                 :lesson_ids
-    should_have_many                 :lesson_comments
-    should_have_many                 :flaggings
-    should_have_many                 :user_logons
-    should_have_many                 :group_members
-    should_have_many                 :groups
-    should_have_many                 :group_ids
-    should_have_many                 :moderated_groups
-    should_have_many                 :member_groups
-    should_have_many                 :helpfuls
-    should_have_many                 :lesson_visits
-    should_have_many                 :visited_lessons
-    should_have_many                 :instructed_lessons
-    should_have_many                 :instructed_lesson_ids
-    should_have_many                 :payments
-    should_belong_to                 :payment_level
-    should_have_and_belong_to_many   :wishes
-    should_have_and_belong_to_many   :followers
-    should_have_and_belong_to_many   :followed_instructors
+    should_not_allow_values_for :login, "1234567890123456789012345678", :message => I18n.translate('activerecord.errors.messages.too_long', :count => 25)
+    should_ensure_length_in_range :email, (6..100)
+    should_ensure_length_in_range :last_name, (0..40)
+    should_ensure_length_in_range :first_name, (0..40)
+    should_ensure_length_in_range :login, (0..25)
+    should_have_many :credits
+    should_have_many :gift_certificates
+    should_have_many :reviews
+    should_have_many :orders
+    should_have_many :flags
+    should_have_many :lessons
+    should_have_many :lesson_ids
+    should_have_many :lesson_comments
+    should_have_many :flaggings
+    should_have_many :user_logons
+    should_have_many :group_members
+    should_have_many :groups
+    should_have_many :group_ids
+    should_have_many :moderated_groups
+    should_have_many :member_groups
+    should_have_many :helpfuls
+    should_have_many :lesson_visits
+    should_have_many :visited_lessons
+    should_have_many :instructed_lessons
+    should_have_many :instructed_lesson_ids
+    should_have_many :payments
+    should_belong_to :payment_level
+    should_have_and_belong_to_many :wishes
+    should_have_and_belong_to_many :followers
+    should_have_and_belong_to_many :followed_instructors
+
+    fast_context "testing lookup by address and email" do
+      should "find by address or email" do
+        assert User.find_by_login_or_email(@user.login, "blah")
+        assert User.find_by_login_or_email("xxx", @user.email)
+        assert_nil User.find_by_login_or_email("xxx", "yyy")
+      end
+    end
 
     fast_context "when rejecting" do
       setup do
@@ -180,7 +188,7 @@ class UserTest < ActiveSupport::TestCase
     end
 
     fast_context "and several expected languages" do
-      setup { @expected_lang =  [['English', 'en'] ] }
+      setup { @expected_lang = [['English', 'en'] ] }
 
       should "support English and Wookie" do
         l = User.supported_languages

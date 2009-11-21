@@ -6,6 +6,7 @@ class DiscountsController < ApplicationController
   # Since this controller is nested, in most cases we'll need to retrieve the sku first, so I made it a
   # before filter
   before_filter :retrieve_sku, :except => [ :edit, :update, :destroy ]
+  before_filter :retrieve_discount, :only => [ :edit, :update, :destroy ]
 
   # Admins only
   permit ROLE_ADMIN
@@ -43,11 +44,9 @@ class DiscountsController < ApplicationController
   end
   
   def edit
-    @discount = Discount.find(params[:id])
   end
   
   def update
-    @discount = Discount.find(params[:id])
     if @discount.update_attributes(params[:discount])
       flash[:notice] = t 'discount.update_success'
       redirect_to sku_discounts_url(@discount.sku)
@@ -57,7 +56,6 @@ class DiscountsController < ApplicationController
   end
   
   def destroy
-    @discount = Discount.find(params[:id])
     @discount.destroy
     flash[:notice] = t 'discount.destroyed_success'
       redirect_to sku_discounts_path(@discount.sku)
@@ -69,5 +67,9 @@ class DiscountsController < ApplicationController
   # was passed in as a parameter
   def retrieve_sku
     @sku = Sku.find(params[:sku_id])
+  end
+
+  def retrieve_discount
+    @discount = Discount.find(params[:id])
   end
 end

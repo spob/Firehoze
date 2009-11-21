@@ -1,17 +1,16 @@
 class ContactUsersController < ApplicationController
   include SslRequirement
-  
+
   before_filter :require_user
+  before_filter :find_to_user
 
   verify :method => :post, :only => [ :create ], :redirect_to => :home_path
 
   def new
-    @to_user = User.find(params[:id])
     check_permissions
   end
 
   def create
-    @to_user = User.find(params[:id])
     @subject = params[:subject]
     @msg = params[:msg]
     if check_permissions
@@ -32,6 +31,10 @@ class ContactUsersController < ApplicationController
   end
 
   private
+
+  def find_to_user
+    @to_user = User.find(params[:id])
+    end
 
   def check_permissions
     if @to_user.can_contact?(current_user)

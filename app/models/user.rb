@@ -182,6 +182,12 @@ END
     Notifier.deliver_password_reset_instructions(self)
   end
 
+  def self.find_by_login_or_email(login_str, email_str)
+    to_user = User.find_by_login(login_str)
+    to_user ||= User.find_by_email(email_str)
+    to_user
+  end
+
   # used to verify whether the user typed their correct password when, for example,
   # the user updates their password
   def valid_current_password?
