@@ -17,7 +17,7 @@ $(function() {
     });
 
     // instructor history
-    $("#instructor_stuff div.sub-navigation > ul.buttons").tabs("#instructor_stuff > div.sub-navigation-panes > div", {
+    $("#instructor_stuff ul.tabs").tabs("#instructor_stuff > div.panes > div", {
         effect: 'fade'
     });
 
@@ -26,5 +26,4 @@ $(function() {
         effect: 'fade'
     });
 // END MY-FIREHOZE TABS
-
 });

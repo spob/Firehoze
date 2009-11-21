@@ -11,20 +11,17 @@
 
     <% # INSTRUCTOR STUFF -%>
     <div id="instructor_stuff" class="span-12 last">
-      <div class="sub-navigation">
-        <ul class="buttons">
-          <li><a href="#" class="button">Lessons I Taught<span class="top_left"></span><span class="bottom_left"></span></a>
-          </li>
-          <li><a href="#students" class="button">Students</a></li>
-          <li class="last">
-            <a href="#" class="button">Payments<span class="top_right"></span><span class="bottom_right"></span></a>
-          </li>
-        </ul>
-        <div class="clear"></div>
-      </div>
 
-      <div class="sub-navigation-panes">
-        <% # LESSONS I TAUGHT -%>
+      <!-- the tabs -->
+      <ul class="tabs">
+        <li><a href="#">Lessons I Taught</a></li>
+        <li><a href="#students">Students</a></li>
+        <li><a href="#payments">Payments</a></li>
+      </ul>
+
+      <!-- tab "panes" -->
+      <% # LESSONS -%>
+      <div class="panes">
         <div>
           <div class="secondary-sub-navigation">
             <ul class="links">
@@ -38,16 +35,13 @@
                 <%= render :partial => "lessons/v2/ajaxed_lessons", :locals => { :lessons => @instructed_lessons, :pane => :lessons_instructed_tn_view } %>
                 <div class="clear"></div>
               </div>
-
               <div>
                 <%= render :partial => "lessons/v2/ajaxed_instructed_lessons", :locals => { :lessons => @instructed_lessons, :pane => :lessons_instructed_table_view } %>
                 <div class="clear"></div>
               </div>
-            </div>
-            <!-- end (interior) panes -->
-          </div>
-        </div>
-        <!-- end lessons I taught pane -->
+            </div><!-- end (interior) panes -->
+          </div><!-- end secondary-sub-navigation -->
+        </div><!-- end lessons I taught pane -->
 
         <% # STUDENTS -%>
         <div>
@@ -66,18 +60,15 @@
               <div>
                 <%= render :partial => 'users/v2/followers', :locals => { :lessons => @followers, :pane => :followers } %>
               </div>
-            </div>
-            <!-- end (interior) panes -->
-          </div>
-        </div>
-        <!-- end students pane -->
+            </div><!-- end (interior) panes -->
+          </div><!-- end secondary-sub-navigation -->
+        </div><!-- end students pane -->
 
         <% # PAYMENT HISTORY -%>
         <div>
           <%= render :partial => "accounts/forms/payment_history", :locals => { :lessons => @payments, :pane => :payments } %>
-        </div>
-        <!-- end payments pane -->
-      </div>
+        </div><!-- end payments pane -->
+      </div><!-- end panes -->
     </div>
   <% end %>
 </div>
