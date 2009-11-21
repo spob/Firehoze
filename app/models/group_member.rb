@@ -2,6 +2,8 @@ class GroupMember < ActiveRecord::Base
   belongs_to :user, :counter_cache => true
   belongs_to :group, :counter_cache => true
   has_many :activities, :as => :trackable, :dependent => :destroy
+  delegate :login, :to => :user, :prefix => true 
+
   validates_presence_of :member_type
 
   named_scope :active, :conditions => {:member_type => [OWNER, MODERATOR, MEMBER] }

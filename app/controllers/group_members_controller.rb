@@ -1,20 +1,19 @@
 class GroupMembersController < ApplicationController
   before_filter :require_user
+  before_filter :find_group, :only => [:create, :destroy]
   before_filter :find_group_member, :only => [ :remove, :promote, :demote, :create_private ]
   verify :method => :post, :only => [:create, :promote, :demote, :create_private ], :redirect_to => :home_path
   verify :method => :delete, :only => [:destroy, :remove ], :redirect_to => :home_path
 
   def create
-    @group = Group.find(params[:id])
     @group_member = @group.group_members.create!(:user => current_user, :member_type => MEMBER)
     flash[:notice] = t('group.join', :group => @group.name)
     redirect_to group_path(@group)
   end
 
   def promote
-    if @group_member.group.owned_by?(current_user) and @group_member.member_type == MEMBER
-      @group_member.update_attribute(:member_type, MODERATOR)
-      flash[:notice] = t('group.promote_success', :user => @group_member.user.login)
+    if change_member_type(@group_member, current_user, MEMBER, MODERATOR)
+      flash[:notice] = t('group.promote_success', :user => @group_member.user_login)
     else
       flash[:error] = t('general.no_permissions')
     end
@@ -22,9 +21,8 @@ class GroupMembersController < ApplicationController
   end
 
   def demote
-    if @group_member.group.owned_by?(current_user) and @group_member.member_type == MODERATOR
-      @group_member.update_attribute(:member_type, MEMBER)
-      flash[:notice] = t('group.demote_success', :user => @group_member.user.login)
+    if change_member_type(@group_member, current_user, MODERATOR, MEMBER)
+      flash[:notice] = t('group.demote_success', :user => @group_member.user_login)
     else
       flash[:error] = t('general.no_permissions')
     end
@@ -42,7 +40,6 @@ class GroupMembersController < ApplicationController
   end
 
   def destroy
-    @group = Group.find(params[:id])
     @group_member = GroupMember.find_by_user_id_and_group_id(current_user.try(:id), params[:id])
     @group.group_members.delete(@group_member)
     flash[:notice] = t('group.left', :group => @group.name)
@@ -78,7 +75,7 @@ class GroupMembersController < ApplicationController
       flash[:error] = t 'group_invitation.invitation_no_longer_valid'
       redirect_back_or_default home_path
     elsif @group_member.user != current_user
-      flash[:error] = t('group_invitation.wrong_user', :user => @group_member.user.login)
+      flash[:error] = t('group_invitation.wrong_user', :user => @group_member.user_login)
       redirect_back_or_default home_path
     elsif params[:join] == 'yes'
       @group_member.update_attribute(:member_type, MEMBER)
@@ -94,6 +91,13 @@ class GroupMembersController < ApplicationController
 
   private
 
+  def change_member_type(group_member, user, from_type, to_type)
+    if group_member.group.owned_by?(user) and group_member.member_type == from_type
+      group_member.update_attribute(:member_type, to_type)
+      group_member
+    end
+  end
+
   def check_permissions(member, user)
     if @group_member.can_edit?(user)
       return true
@@ -104,6 +108,10 @@ class GroupMembersController < ApplicationController
 
   def find_group_member
     @group_member = GroupMember.find(params[:id])
+  end
+
+  def find_group
+    @group = Group.find(params[:id])
   end
 
   def populate_invitation
