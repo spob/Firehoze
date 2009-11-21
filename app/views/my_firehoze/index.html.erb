@@ -5,7 +5,16 @@
 <div class="span-12 last">
   <% # TOP LEVEL NAVIGATION -%>
   <div class="span-12 append-bottom">
-    <%= render :partial => 'nav' %>
+  
+      <div id="profile-box">
+        <%= avatar_tag @user, :size => :smaller %>
+        <div id="content">
+        <h3><%= current_user.full_name %>'s firehoze</h3>
+        <%= render :partial => 'nav' %>
+        <%= render :partial => 'balance', :locals => { :user => current_user} %>
+        </div>
+      </div>
+    
   </div>
   <% # LATEST NEWS -%>
   <div class="span-12">

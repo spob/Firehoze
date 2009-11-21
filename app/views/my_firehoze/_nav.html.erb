@@ -22,17 +22,8 @@ instructor_link = [:instructor, {
 top_level_navigation << instructor_link if current_user.verified_instructor?
 %>
 
-<ul class="top-level-navigation">
+<ul class="third-level-nav">
   <% top_level_navigation.each do |key, item| %>
     <li <%= 'class="current"' if @secondary_nav_current.to_s == key.to_s %>><%= link_to item[:name], item[:location] %></li>
   <% end %>
 </ul>
-
-
-<div class="top-level-navigation-box-outer">
-  <div class="top-level-navigation-box-inner">
-<%#= avatar_tag @user, :size => :smaller %>
-    <span class="h3"><%= current_user.full_name %>'s firehoze</span>
-    <%= render :partial => 'balance', :locals => { :user => current_user} %>
-  </div>
-</div>

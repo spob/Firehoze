@@ -203,12 +203,25 @@ h4.banner  {
     margin-left: auto;
     margin-right: auto;
 }
+
 #shadowbox-middle {
     background: transparent url('/stylesheets/v2/images/shadow_box/shadow-box-middle.png') repeat-y;
     width:1000px;
     margin-left: auto;
     margin-right: auto;
+    position:relative;
 }
+
+#shadowbox-middle-blue {
+    position:absolute;
+    background: url(images/backgrounds/profile_bg_tile.gif) repeat-x top center;
+    height: 220px;
+    top:-15px;
+    left:10px;
+    width:980px;
+    border-bottom:solid 4px #333;
+}
+
 #shadowbox-bottom {
     background-image:url('/stylesheets/v2/images/shadow_box/shadow-box-bottom.png');
     background-repeat:no-repeat;
@@ -369,6 +382,7 @@ div.widget-box {
     margin:0;
     padding: 0px;
     border: solid 1px #ccc;
+    background-color: #fff;
 }
 
 div.widget-box-header {
@@ -379,7 +393,7 @@ div.widget-box-header {
     z-index: 1;
 }
 
-.widget-box-header img.loader { 
+.widget-box-header img.loader {
     z-index: 10;
     position: absolute;
     top:6px;
@@ -387,9 +401,7 @@ div.widget-box-header {
 }
 
 .widget-box-content {
-    /*    border-left: solid 1px #ccc;
-        border-right: solid 1px #ccc;
-    */    margin:0;
+    margin:0;
 }
 .widget-box-content ul {
     margin:0;
@@ -398,14 +410,14 @@ div.widget-box-header {
 .widget-box-content ul li {
     list-style-type:none;
     padding:2px 8px;
-    border-top:solid 1px #F2F2F2;
+    border-top:solid 1px #DBDBDB;
 }
 
 .widget-box-content ul li.even {
     background: #FFF;
 }
 .widget-box-content ul li.odd {
-    background: #FEFCF4;
+    background: #F2F2F2;
 }
 
 .widget-box-content ul li:first-child {
@@ -428,7 +440,7 @@ div.widget-box-header {
 .widget-box-content .activity-feed li {
     position:relative;
     margin: 0;
-    padding: 8px 8px 0px 54px;
+    padding: 8px 8px 8px 54px;
     display:block;
     min-height: 45px;
 }
@@ -440,13 +452,16 @@ div.widget-box-header {
     top:8px;
 }
 
-.filter_activity_by  { 
+.filter_activity_by  {
     border-bottom: solid 1px #E3E3E3;
     padding: 12px;
 }
 
-
-.pagination { 
+.pagination {
     padding: 12px;
 }
 
+.test-span {
+    background: url(images/backgrounds/profile_bg_tile.gif) repeat-x top center;
+    height: 140px;
+}

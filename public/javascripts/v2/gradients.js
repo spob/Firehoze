@@ -1,7 +1,7 @@
 $(function() {
     // sample code
     $('#box1').gradientz({
-        start:"#fcc",
-        end:"#fff"
+        start:"#f2f2f2",
+        end:"#ccc"
     })
 });
