@@ -19,9 +19,10 @@
     </ul>
 
     <!-- tab "panes" -->
-    <% # LESSONS -%>
+
     <div class="panes">
-      <div>
+      <% # LESSONS -%>
+      <div><!-- start lessons pane -->
         <div class="secondary-sub-navigation">
           <ul class="links">
             <li><a href="#">Owned</a></li>
@@ -48,14 +49,13 @@
       </div><!-- end lessons pane -->
 
       <% # REVIEWS -%>
-      <div>
+      <div><!-- start reviews -->
         <%= image_tag("general/spinners/ajax-loader_small_arrows.gif", :class => "loader") %>
         <%= render :partial => 'reviews/v2/ajaxed_reviews', :locals => { :reviews => @reviews, :pane => :reviews } %>
-      </div>
-      <!-- end reviews pane -->
+      </div><!-- end reviews pane -->
 
       <% # GROUPS -%>
-      <div>
+      <div><!-- start groups -->
         <%= image_tag("general/spinners/ajax-loader_small_arrows.gif", :class => "loader") %>
         <%= render :partial => 'groups/v2/ajaxed_groups', :locals => { :groups => @groups, :pane => :groups } %>
       </div><!-- end groups pane -->
@@ -64,6 +64,6 @@
       <div>
         <%= render :partial => 'followed_instructors', :locals => { :followed_instructors => @followed_instructors } %>
       </div><!-- end followed instructor pane -->
-    </div>
-  </div>
+    </div><!-- end panes -->
+  </div><!-- end my-stuff -->
 </div>
