@@ -26,7 +26,7 @@
       </div>
 
       <div><!-- start credit history -->
-        <div class="secondary-sub-navigation">
+        <div class="nested-navigation">
           <ul class="links">
             <li><a href="#">Available</a></li>
             <li><a href="#">Used</a></li>
@@ -34,7 +34,7 @@
           </ul>
           <div class="clear"></div>
 
-          <div class="secondary-sub-navigation-panes">
+          <div class="nested-navigation-panes">
             <div>
               <p>Available credits are available to use to purchase videos.</p>
               <%= render :partial => "credits/credits", :locals => { :user => current_user, :credits => @available_credits, :show_redeemed => false, :show_expired => false, :pane => :available } %>

@@ -23,7 +23,7 @@
     <div class="panes">
       <% # LESSONS -%>
       <div><!-- start lessons pane -->
-        <div class="secondary-sub-navigation">
+        <div class="nested-navigation">
           <ul class="links">
             <li><a href="#">Owned</a></li>
             <li><a href="#"><%= h(t('lesson.wishlist')) %></a></li>
@@ -31,7 +31,7 @@
           </ul>
           <div class="clear"><%= image_tag("general/spinners/ajax-loader_small_arrows.gif", :class => "loader") %></div>
 
-          <div class="secondary-sub-navigation-panes">
+          <div class="nested-navigation-panes">
             <div>
               <%= render :partial => "lessons/v2/ajaxed_lessons", :locals => { :lessons => @owned, :pane => :owned } %>
               <div class="clear"></div>

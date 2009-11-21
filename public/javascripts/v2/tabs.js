@@ -22,7 +22,7 @@ $(function() {
     });
 
     // ALL secondary sub navigation
-    $("div.secondary-sub-navigation > ul.links").tabs("div.secondary-sub-navigation-panes > div", {
+    $("div.nested-navigation > ul.links").tabs("div.nested-navigation-panes > div", {
         effect: 'fade'
     });
 // END MY-FIREHOZE TABS

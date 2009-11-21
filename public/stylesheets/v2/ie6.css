@@ -14,7 +14,7 @@
     height:35px;
 }
 
-.secondary-sub-navigation ul.links li a.current,
-.secondary-sub-navigation ul.links li a:hover {
+.nested-navigation ul.links li a.current,
+.nested-navigation ul.links li a:hover {
     color: #555;
 }

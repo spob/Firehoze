@@ -81,43 +81,43 @@ a.button:hover .bottom_right, ul.buttons li a.current .bottom_right {background-
 a.button:active, ul.buttons li a:focus {outline: none}
 
 
-/* secondary-sub-navigation */
-.secondary-sub-navigation ul {
+/* nested-navigation */
+.nested-navigation ul {
     /* width:auto; */
 }
 
-.secondary-sub-navigation-panes {
+.nested-navigation-panes {
     /* padding:16px; */
     /* margin:0 0 34px 1px; */
     /* border:solid 1px #D6D6D6; */
 }
 
-.secondary-sub-navigation ul.links li {
+.nested-navigation ul.links li {
     margin: 0 0 0 1px;
     display: inline;
 }
 
-.secondary-sub-navigation ul.links {
+.nested-navigation ul.links {
     margin:0 0 20px 0;
     padding-left:0px;
 }
 
-.secondary-sub-navigation ul.links li a.current {
+.nested-navigation ul.links li a.current {
     font-weight:bold;
     border-bottom:solid 4px #D6D6D6;
     color: inherit;
 }
 
-.secondary-sub-navigation ul.links li a:hover {
+.nested-navigation ul.links li a:hover {
     border-bottom:solid 4px #D6D6D6;
     color: inherit;
 }
 
-.secondary-sub-navigation ul.links li a {
+.nested-navigation ul.links li a {
     color: #A6A6A6;
 }
 
-.secondary-sub-navigation ul.links li a {
+.nested-navigation ul.links li a {
     padding:2px 20px 6px 20px;
     letter-spacing: 0.05em;
     font-weight: normal;
@@ -125,6 +125,6 @@ a.button:active, ul.buttons li a:focus {outline: none}
     text-decoration: none
 }
 
-.secondary-sub-navigation ul.links {
+.nested-navigation ul.links {
     margin-bottom:8px;
 }
