@@ -391,6 +391,8 @@ div.widget-box-header {
     padding:12px;
     border-bottom: solid 1px #ccc;
     z-index: 1;
+    text-shadow: #999 0 1px 1px;
+    background: url(images/backgrounds/widget-box-header-tile.png) repeat-x bottom center;
 }
 
 .widget-box-header img.loader {

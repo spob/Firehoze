@@ -3,25 +3,17 @@
 <% @secondary_nav_current = 'latest_news' %>
 
 <div class="span-12 last">
-  <% # TOP LEVEL NAVIGATION -%>
+  <% # PROFILE BOX & TOP LEVEL NAVIGATION -%>
   <div class="span-12 append-bottom">
-  
-      <div id="profile-box">
-        <%= avatar_tag @user, :size => :smaller %>
-        <div id="content">
-        <h3><%= current_user.full_name %>'s firehoze</h3>
-        <%= render :partial => 'nav' %>
-        <%= render :partial => 'balance', :locals => { :user => current_user} %>
-        </div>
-      </div>
-    
+    <%= render :partial => 'profile_and_nav', :locals => { :user => current_user } %>
   </div>
+  
   <% # LATEST NEWS -%>
   <div class="span-12">
     <div class="span-8">
 
       <div class="widget-box">
-        <div class="widget-box-header">
+        <div class="widget-box-header banner">
           <span class="h4">Recent Activity</span>
           <%= image_tag("general/spinners/ajax-loader_small_spinner.gif", :class => "loader") %>
         </div>
