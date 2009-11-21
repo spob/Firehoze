@@ -12,7 +12,7 @@ $(function() {
     });
 
     // account history
-    $("#account_history div.sub-navigation > ul.buttons").tabs("#account_history > div.sub-navigation-panes > div", {
+    $("#account_history ul.tabs").tabs("#account_history > div.panes > div", {
         effect: 'fade'
     });
 
@@ -21,10 +21,10 @@ $(function() {
         effect: 'fade'
     });
 
-		// ALL secondary sub navigation 
-	  $("div.secondary-sub-navigation > ul.links").tabs("div.secondary-sub-navigation-panes > div", {
-	      effect: 'fade'
-	  });
-    // END MY-FIREHOZE TABS
+    // ALL secondary sub navigation
+    $("div.secondary-sub-navigation > ul.links").tabs("div.secondary-sub-navigation-panes > div", {
+        effect: 'fade'
+    });
+// END MY-FIREHOZE TABS
 
 });
