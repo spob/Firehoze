@@ -7,7 +7,7 @@ $(function() {
     });
 
     // my-stuff
-    $("#my_stuff div.sub-navigation > ul.buttons").tabs("#my_stuff > div.sub-navigation-panes > div", {
+    $("#my_stuff ul.tabs").tabs("#my_stuff > div.panes > div", {
         effect: 'fade'
     });
 

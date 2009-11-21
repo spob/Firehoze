@@ -1,6 +1,7 @@
 <% title "my firehoze" -%>
 <% @current = 'my_firehoze' %>
 <% @secondary_nav_current = params[:action] %>
+<%= stylesheet 'v2/tabs' %>
 
 <div id="my_firehoze" class="span-12 last">
   <% # TOP LEVEL NAVIGATION -%>
@@ -10,20 +11,18 @@
 
   <% # MY STUFF -%>
   <div id="my_stuff" class="span-12">
-    <div class="sub-navigation">
-      <ul class="buttons">
-        <li><a href="#" class="button">Lessons<span class="top_left"></span><span class="bottom_left"></span></a></li>
-        <li><a href="#reviews" class="button">Reviews</a></li>
-        <li><a href="#groups" class="button">Groups</a></li>
-        <li class="last">
-          <a href="#followed_instructors" class="button">Followed Instructors<span class="top_right"></span><span class="bottom_right"></span></a>
-        </li>
-      </ul>
-      <div class="clear"></div>
-    </div>
+    <!-- the tabs -->
+    <ul class="tabs">
+      <li><a href="#">Lessons</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#groups">Groups</a></li>
+      <li><a href="#followed_instructors">Followed Instructors</a></li>
+    </ul>
 
-    <div class="sub-navigation-panes">
-      <% # LESSONS -%>
+    <!-- tab "panes" -->
+    <!-- <div class="sub-navigation-panes"> -->
+    <% # LESSONS -%>
+    <div class="panes">
       <div>
         <div class="secondary-sub-navigation">
           <ul class="links">
