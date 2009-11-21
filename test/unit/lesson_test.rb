@@ -20,6 +20,35 @@ class LessonTest < ActiveSupport::TestCase
 
   subject { @lesson }
 
+  fast_context "given an existing lesson" do
+    setup do
+      @user = Factory.create(:user)
+      @lesson = Factory.create(:lesson)
+    end
+
+    should "not acquire lesson" do
+      assert_nil @lesson.acquire(@user, "session")
+    end
+
+    fast_context "with available credits" do
+      setup do
+        @sku = Factory.create(:credit_sku)     
+        @user.credits.create(:sku => @sku, :price => 0.99)
+        assert @user.available_credits.present?
+        @credit = @lesson.acquire(@user, "session")
+        @user = User.find(@user.id)
+      end
+
+      should "acquire lesson" do
+        assert @credit
+        assert @user.available_credits.empty?
+        assert @lesson.owned_by?(@user)
+      end
+    end
+  end
+
+  subject { @lesson }
+
   context "given an existing lesson" do
     setup do
       @sku = Factory.create(:credit_sku, :sku => FREE_CREDIT_SKU)

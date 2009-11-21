@@ -192,6 +192,18 @@ END
     kludge_workaround_for_f__cking_db_bug(comments.public)
   end
 
+  def acquire(user, session_id)
+    credit = user.available_credits.first
+    if credit
+      Lesson.transaction do
+        credit.update_attributes(:lesson => self, :acquired_at => Time.now)
+        user.wishes.delete(self) if user.on_wish_list?(self)
+        LessonVisit.touch(self, user, session_id, true)
+      end
+    end
+    credit
+  end
+
   # Basic paginated listing finder
   # if the user is specified and is an admin, then lessons will be retrieved regardless of
   # the state of the video. Otherwise, only READY videos will be retrieved
