@@ -175,6 +175,7 @@ h4.banner  {
     background-image: url('/stylesheets/v2/images/header/sprite-logo.png'); /* Add the image as a background */
     background-position: top; /* Set the position to the top */
     text-indent: -9999px; /* Send the rendered HTML wording off screen */
+    border: 0 none;
 }
 
 #header #logo a#home:hover, #header #logo a#home:focus {
