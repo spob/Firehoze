@@ -1,4 +1,23 @@
-/* nested-navigation */
+.nested-navigation {
+    position: relative;
+    z-index: 1;
+}
+
+div.nested-navigation div.loader {
+    z-index: 10;
+    height:24px;
+    width:24px;
+    position: absolute;
+    top:51px;
+    right:0px;
+    background: transparent url("images/spinners/ajax_spinner_16.gif") no-repeat;
+}
+
+div.nested-navigation-panes div .pagination {
+    margin:0;
+    padding: 8px 26px 8px 0;
+    text-align:right;
+}
 
 .nested-navigation  ul.links {
     background-color: #A9A9A9;
@@ -19,7 +38,7 @@
 }
 
 .nested-navigation ul.links {
-    margin:0 0 20px 0;
+    margin:0;
     padding-left:0px;
 }
 
@@ -42,8 +61,13 @@
     font-weight:bold;
 }
 
-.nested-navigation-panes {
-    /* padding:16px; */
-    /* margin:0 0 34px 1px; */
-    /* border:solid 1px #D6D6D6;*/
+.panes p {
+    margin: 12px 0;
 }
+
+/*
+.nested-navigation-panes {
+     border:solid 1px #A9A9A9;
+    border-width:1px 1px 1px 1px;
+}
+*/

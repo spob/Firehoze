@@ -1,8 +1,7 @@
 <% pane = params[:pane] if params[:pane] %>
 <% payments = @payments if pane == "payments" %>
 
-<p>Current Earnings Owed To You:</p>
-<p><%= link_to_if current_user.unpaid_credits_amount > 0, number_to_currency(current_user.unpaid_credits_amount), show_unpaid_payment_path(current_user) %></p>
+<p>Current Earnings Owed To You: <%= link_to_if current_user.unpaid_credits_amount > 0, number_to_currency(current_user.unpaid_credits_amount), show_unpaid_payment_path(current_user) %></p>
 
 <div id="<%= pane %>">
   <% if payments.present? %>

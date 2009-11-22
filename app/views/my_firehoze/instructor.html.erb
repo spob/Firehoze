@@ -28,7 +28,7 @@
               <li><a href="#">Tabbed View</a></li>
               <li><a href="#">Table View</a></li>
             </ul>
-            <div class="clear"><%= image_tag("general/spinners/ajax-loader_small_arrows.gif", :class => "loader") %></div>
+            <div class="loader"></div>
 
             <div class="nested-navigation-panes">
               <div>
@@ -48,12 +48,12 @@
           <div class="nested-navigation">
             <ul class="links">
               <li><a href="#">My Students</a></li>
-              <li><a href="#">Followers</a></li>
+              <li><a href="#">Followers <%= "(#{@followers.size})" if @followers.size > 0 %></a></li>
             </ul>
-            <div class="clear"><%= image_tag("general/spinners/ajax-loader_small_arrows.gif", :class => "loader") %></div>
+            <div class="loader"></div>
 
             <div class="nested-navigation-panes">
-              <div class="compact_container">
+              <div>
                 <%= render :partial => "users/v2/students", :locals => { :lessons => @students, :pane => :students } %>
                 <div class="clear"></div>
               </div>

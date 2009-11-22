@@ -29,7 +29,7 @@
             <li><a href="#"><%= h(t('lesson.wishlist')) %></a></li>
             <li><a href="#">Recently Browsed</a></li>
           </ul>
-          <div class="clear"><%= image_tag("general/spinners/ajax-loader_small_arrows.gif", :class => "loader") %></div>
+          <div class="loader"></div>
 
           <div class="nested-navigation-panes">
             <div>
@@ -50,13 +50,13 @@
 
       <% # REVIEWS -%>
       <div><!-- start reviews -->
-        <%= image_tag("general/spinners/ajax-loader_small_arrows.gif", :class => "loader") %>
+        <div class="loader"></div>
         <%= render :partial => 'reviews/v2/ajaxed_reviews', :locals => { :reviews => @reviews, :pane => :reviews } %>
       </div><!-- end reviews pane -->
 
       <% # GROUPS -%>
       <div><!-- start groups -->
-        <%= image_tag("general/spinners/ajax-loader_small_arrows.gif", :class => "loader") %>
+        <div class="loader"></div>
         <%= render :partial => 'groups/v2/ajaxed_groups', :locals => { :groups => @groups, :pane => :groups } %>
       </div><!-- end groups pane -->
 

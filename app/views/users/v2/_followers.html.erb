@@ -1,8 +1,9 @@
-Replace this with the mosiacs tab
 <% if (followers.present?) %>
-  <ul>
+  <ul class="followers-mosaic">
     <% followers.each do |follower| %>
-      <li><%= link_to_profile(follower) %></li>
+      <li><%= avatar_link_to(follower, :size => :tiny) %></li>
     <% end %>
   </ul>
+<% else %>
+  <p>No followings at this time.</p>
 <% end %>

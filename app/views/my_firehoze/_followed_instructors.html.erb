@@ -1,11 +1,11 @@
 Replace this with the mosiacs tab
 <% followed_instructors = @followed_instructors %>
 <% if (followed_instructors.present?) %>
-<ul>
-  <% followed_instructors.each do |instructor| %>
-  <li>
-    <%= link_to_profile(instructor) %>
-  </li>
-  <% end %>
-</ul>
+  <ul class="followers-mosaic">
+    <% followed_instructors.each do |instructor| %>
+      <li><%= avatar_link_to(instructor, :size => :tiny) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You are not following any instructors</p>
 <% end %>

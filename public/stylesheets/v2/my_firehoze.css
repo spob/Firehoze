@@ -1,38 +1,31 @@
-/* TWEETS POD */
-/*#latest_firehoze_tweets {
-    font-size: 11px;
-    margin: 0;
-    padding: 0;
-}
-
-#latest_firehoze_tweets .tweet_list {
+ul.followers-mosaic {
+    margin:18px 0;
+    padding:0;
     list-style-type: none;
-    margin: 0;
 }
 
-#latest_firehoze_tweets .tweet_list li {
-    padding: 10px;
-    overflow: auto;
-    border-bottom: solid 1px #CFCFCF;
+ul.followers-mosaic li {
+    float: left;
+    margin-right: 8px;
+    margin-bottom: 4px;
 }
 
-#latest_firehoze_tweets .tweet_list li:last-child { 
-    border: none;
+ul.followers-mosaic .avatar {
+    padding:0;
+    margin:0;
+    border:solid 1px #D4D4D4;
 }
 
-#latest_firehoze_tweets .tweet_list li a {
-    color: inherit;
+
+ul.followers-mosaic a {
+    border:0 none;
+    text-decoration: none;
+
 }
 
-#latest_firehoze_tweets .tweet_list .tweet_even {
-    background-color: #FCFCFC; 
+ul.followers-mosaic a:hover .avatar {
+    padding:0;
+    margin:0;
+    border:solid 1px #9E9E9E;
+    text-decoration: none;
 }
-
-#latest_firehoze_tweets .tweet_list .tweet_avatar {
-    padding-right: 5px;
-    float: left; 
-}
-#latest_firehoze_tweets .tweet_list .tweet_avatar img {
-    vertical-align: middle; 
-}
-*/

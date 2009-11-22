@@ -39,6 +39,11 @@ module UsersHelper
     image_tag cdn_avatar_url, options.merge({ :alt => h(user.full_name), :class => 'avatar' })
   end
 
+  def avatar_link_to(user, options)
+    return unless user
+    link_to avatar_tag(user, options),  user_path(user),  :title => h(user.full_name)
+  end
+
   def payment_levels_for_select
     PaymentLevel.ascend_by_name.collect { |m| [m.name, m.id] }
   end
