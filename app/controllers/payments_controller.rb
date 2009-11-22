@@ -68,6 +68,7 @@ class PaymentsController < ApplicationController
   end
 
   private
+  
   def layout_for_action
     current_user.is_paymentmgr? ? 'admin' : 'application'
   end
