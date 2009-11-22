@@ -78,6 +78,15 @@ class SkusControllerTest < ActionController::TestCase
           should_respond_with :redirect
           should_redirect_to("sku page") { skus_path }
         end
+
+        fast_context "on DELETE to :destroy" do
+          setup { delete :destroy, :id => @sku.id }
+
+          should_assign_to :sku
+          should_respond_with :redirect
+          should_set_the_flash_to /successfully deleted/
+          should_redirect_to("sku page") { skus_path }
+        end
       end
     end
 
