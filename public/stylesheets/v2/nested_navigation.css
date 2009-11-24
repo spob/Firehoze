@@ -3,16 +3,6 @@
     z-index: 1;
 }
 
-div.nested-navigation div.loader {
-    z-index: 10;
-    height:24px;
-    width:24px;
-    position: absolute;
-    top:51px;
-    right:0px;
-    background: transparent url("images/spinners/ajax_spinner_16.gif") no-repeat;
-}
-
 div.nested-navigation-panes div .pagination {
     margin:0;
     padding: 8px 26px 8px 0;
@@ -20,8 +10,11 @@ div.nested-navigation-panes div .pagination {
 }
 
 .nested-navigation  ul.links {
-    background-color: #A9A9A9;
+    /*background-color: #ccc;*/
+    /*background-color: #A9A9A9;*/
     padding:10px 0 12px 12px;
+    /*border: solid 1px #212121;*/
+    /*border-width: 0 1px 1px 1px;*/
 }
 
 .nested-navigation ul.links li a {
@@ -44,19 +37,22 @@ div.nested-navigation-panes div .pagination {
 
 .nested-navigation ul.links li a:link,
 .nested-navigation ul.links li a:visited {
-    color: #F2F2F2;
+    color: #666;
+    background: #EDEDED;
     padding:4px 20px 6px 20px;
     letter-spacing: 0.05em;
     font-weight: normal;
     font-size: 12px;
-    text-decoration: none
+    text-decoration: none;
 }
 
 .nested-navigation ul.links li a:hover {
-    background: #8C8C8C;
+    color:#444;
+    background: #DEDEDE;
 }
 
 .nested-navigation ul.links li a.current {
+    color: #F2F2F2;
     background: #737373;
     font-weight:bold;
 }

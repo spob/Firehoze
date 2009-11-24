@@ -13,11 +13,14 @@
     <div id="instructor_stuff" class="span-12 last">
 
       <!-- the tabs -->
-      <ul class="tabs">
-        <li><a href="#">Lessons I Taught</a></li>
-        <li><a href="#students">Students</a></li>
-        <li><a href="#payments">Payments</a></li>
-      </ul>
+      <div class="tab-container">
+        <ul class="tabs">
+          <li><a href="#">Lessons I Taught</a></li>
+          <li><a href="#students">Students</a></li>
+          <li><a href="#payments">Payments</a></li>
+        </ul>
+        <%= image_tag("general/spinners/ajax-loader_small_spinner.gif", :class => "loader") %>
+      </div>
 
       <!-- tab "panes" -->
       <% # LESSONS -%>

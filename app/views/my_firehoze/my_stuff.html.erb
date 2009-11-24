@@ -11,13 +11,15 @@
   <% # MY STUFF -%>
   <div id="my_stuff" class="span-12">
     <!-- the tabs -->
-    <ul class="tabs">
-      <li><a href="#">Lessons</a></li>
-      <li><a href="#reviews">Reviews</a></li>
-      <li><a href="#groups">Groups</a></li>
-      <li><a href="#followed_instructors">Followed Instructors</a></li>
-    </ul>
-
+    <div class="tab-container">
+      <ul class="tabs">
+        <li><a href="#">Lessons</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#groups">Groups</a></li>
+        <li><a href="#followed_instructors">Followed Instructors</a></li>
+      </ul>
+      <%= image_tag("general/spinners/ajax-loader_small_spinner.gif", :class => "loader") %>
+    </div>
     <!-- tab "panes" -->
 
     <div class="panes">
@@ -29,7 +31,6 @@
             <li><a href="#"><%= h(t('lesson.wishlist')) %></a></li>
             <li><a href="#">Recently Browsed</a></li>
           </ul>
-          <div class="loader"></div>
 
           <div class="nested-navigation-panes">
             <div>
@@ -50,13 +51,11 @@
 
       <% # REVIEWS -%>
       <div><!-- start reviews -->
-        <div class="loader"></div>
         <%= render :partial => 'reviews/v2/ajaxed_reviews', :locals => { :reviews => @reviews, :pane => :reviews } %>
       </div><!-- end reviews pane -->
 
       <% # GROUPS -%>
       <div><!-- start groups -->
-        <div class="loader"></div>
         <%= render :partial => 'groups/v2/ajaxed_groups', :locals => { :groups => @groups, :pane => :groups } %>
       </div><!-- end groups pane -->
 

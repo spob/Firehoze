@@ -1,17 +1,13 @@
-.loader {
-    display:none;
-}
-
 .lessons-container {
-/*border: 1px solid red;*/	
-margin:12px 0 0 0 ;
+    /*border: 1px solid red;*/
+    margin:12px 0 0 0 ;
 }
 
 .pagination {
-	display:block;
-	/*border: 1px solid blue;*/
-	clear:both;
-	margin:12px 0 0 0 ;
+    display:block;
+    /*border: 1px solid blue;*/
+    clear:both;
+    margin:12px 0 0 0 ;
 }
 
 .lesson-list {

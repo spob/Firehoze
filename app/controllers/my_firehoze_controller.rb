@@ -77,7 +77,7 @@ class MyFirehozeController < ApplicationController
 
   #==================================== LATEST NEWS FETCHERS ========================================
   def fetch_activities
-    activites_per_page = 7
+    activites_per_page = 10
     @activities = case set_session_param(:browse_activities_by, "ALL")
     when 'BY_ME'
       Activity.visible_to_user(current_user).actor_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
@@ -91,7 +91,7 @@ class MyFirehozeController < ApplicationController
   end
 
   def fetch_tweets
-    @tweets = Tweet.list_tweets(FIREHOZE_TWEETS, 6)
+    @tweets = Tweet.list_tweets(FIREHOZE_TWEETS, 10)
   end
 
   #================================== END LATEST NEWS FETCHERS ======================================
@@ -166,7 +166,7 @@ class MyFirehozeController < ApplicationController
       if params[:per_page]
       params[:per_page]
     elsif %w(my_stuff instructor show).include?(params[:action])
-      3
+      10
     else
       Lesson.per_page
     end

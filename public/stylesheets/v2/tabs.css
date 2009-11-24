@@ -1,4 +1,17 @@
 /* root element for tabs  */
+.tab-container {
+    position:relative;
+}
+
+.tab-container img.loader {
+    display:none;
+    height:32px;
+    width:32px;
+    position: absolute;
+    top:-6px;
+    right:4px;
+}
+
 ul.tabs {
     margin:0 !important;
     padding:0;

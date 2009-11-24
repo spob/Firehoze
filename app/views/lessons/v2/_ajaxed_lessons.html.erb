@@ -4,7 +4,7 @@
 <% lessons = @wishlist if pane == "wishlist" %>
 <% lessons = @instructed_lessons if pane == "lessons_instructed_tn_view" %>
 
-<div id="<%= pane %>">
+<div id="<%= pane %>" class="lessons-container">
   <% if lessons.empty? %>
     No lessons
   <% else %>

@@ -475,6 +475,7 @@ div#groups div.pagination {
     padding-right:24px;
 }
 
+/*
 div.loader {
     height:16px;
     width:16px;
@@ -483,7 +484,7 @@ div.loader {
     right:28px;
     background: transparent url("images/spinners/ajax_spinner_16.gif") no-repeat;
 }
-
+*/
 table {
     width:100%;
 }
