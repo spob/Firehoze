@@ -9,7 +9,7 @@
               <th colspan="2">Group</th>
               <th>Category</th>
             </tr>
-            <%= render :partial => 'categories/group', :collection => groups %>
+            <%= render :partial => 'categories/group', :collection => groups, :locals => { :show_member => false } %>
           </table>
       <% end %>
       <%= link_to "Create a New Group", new_group_path %>
