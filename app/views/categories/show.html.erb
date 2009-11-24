@@ -31,7 +31,7 @@
     <th>Relationship</th>
     <th>Category</th>
   </tr>
-  <%= render :partial => "categories/group", :collection => @groups %>
+  <%= render :partial => "categories/group", :collection => @groups, :locals => { :show_member => true } %>
 </table>
 
 <%= will_paginate @groups %>
