@@ -18,6 +18,7 @@ class Group < ActiveRecord::Base
 
   named_scope :public, :conditions => { :private => false }
   named_scope :private, :conditions => { :private => true }
+  named_scope :ascend_by_category_name_and_name, :joins => :category, :order => 'categories.name, groups.name'
   named_scope :not_a_member,
               lambda{ |user| return {} if user.nil?;
               { :conditions => ["groups.id not in (?)", user.groups.collect(&:id) + [-1]] }
@@ -89,7 +90,7 @@ class Group < ActiveRecord::Base
   end
 
   def self.fetch_user_groups(user, page, per_page)
-    user.groups.ascend_by_name.paginate(:per_page => per_page, :page => page) if user
+    user.groups.ascend_by_category_name_and_name.paginate(:per_page => per_page, :page => page) if user
   end
 
   def can_see?(user)

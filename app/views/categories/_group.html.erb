@@ -4,12 +4,10 @@
   </td>
   <td>
     <b><%= link_to h(group.name), group_path(group) %></b>
+    <% member = group.includes_member?(current_user) %>
+    <%= "<i>(" + t("group_member.#{member.member_type.downcase}") + ")</i>" if member and (member.member_type == OWNER or member.member_type == MODERATOR) %>
     <br/>
     <%= h group.description %>
-  </td>
-  <td>
-    <% member = group.includes_member?(current_user) %>
-    <%= t("group_member.#{member.member_type.downcase}") if member %>
   </td>
   <td>
     <%= h group.category.name %>

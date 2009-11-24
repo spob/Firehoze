@@ -7,12 +7,12 @@
           <table>
             <tr>
               <th colspan="2">Group</th>
-              <th>Relationship</th>
               <th>Category</th>
             </tr>
             <%= render :partial => 'categories/group', :collection => groups %>
           </table>
       <% end %>
+      <%= link_to "Create a New Group", new_group_path %>
   <% else %>
       <p>You do not belong to any groups...yet</p>
 
