@@ -11,7 +11,7 @@ namespace :db do
   namespace :populate do
 
     desc "Bootstraps the application"
-    task :all => [ :truncate, :admins, :users, :seed_skus, :categories, :lessons, :tags, :credits, :acquire_lessons, :reviews, :reset_passwords, :groups, :followers] do
+    task :all => [ :truncate, :admins, :users, :seed_skus, :categories, :lessons, :tags, :credits, :acquire_lessons, :reviews, :reset_passwords, :groups, :followers, :tweets ] do
       puts "***** ALL COMPLETE *****"
     end
 
@@ -187,6 +187,23 @@ namespace :db do
         group.name = Populator.words(1..2)
         group.description = Populator.sentences(2..4)
         group.save!
+      end
+    end
+
+    desc "Generate some tweets"
+    task :tweets => :environment do
+      puts "=== Generating Tweets ==="
+      require 'populator'
+      require 'faker'
+
+      (1..20).each do |i|
+        tweet = Tweet.new(:search_code => FIREHOZE_TWEETS, :twitter_post_id => Time.now.to_i + i,
+                          :iso_language_code => "en")
+        tweet.posted_at =  (rand() * 10000).to_i.minutes.ago
+        tweet.from_user = Faker::Name.name
+        tweet.tweet_text = Populator.sentences(1..2)[0..139]
+        tweet.profile_image_url = "http://assets.firehoze.com.s3.amazonaws.com/images/users/avatars/tiny/missing.png"
+        tweet.save!
       end
     end
 
