@@ -61,10 +61,14 @@ module ApplicationHelper
   end
 
   def link_to_profile(user)
+    link_to_unless_current privacy_sensitive_username(user), user_path(user)
+  end
+
+  def privacy_sensitive_username(user)
     if current_user.try("is_a_moderator?") or current_user.try("is_an_admin?") or user.try("show_real_name")
-      link_to_unless_current "#{h user.full_name} (#{h user.login})", user_path(user)
+      "#{h user.full_name} (#{h user.login})"
     else
-      link_to_unless_current h(user.name_or_username), user_path(user)
+      h(user.name_or_username)
     end
   end
 
@@ -145,40 +149,40 @@ module ApplicationHelper
       secondary_url = "<b>" + link_to(activity.secondary_activity_object_human_identifier, secondary_path) + "</b>"
     end
     t(activity.activity_string,
-      :user => link_to_profile(activity.actor_user),     
+      :user => link_to_profile(activity.actor_user),
       :trackable => "<b>" + link_to(activity.activity_object_human_identifier, path) + "</b>",
       :secondary_trackable => secondary_url)
   end
 
   def browser_name
-     @browser_name ||= begin
+    @browser_name ||= begin
 
-       ua = request.env['HTTP_USER_AGENT']
-       return nil if ua.nil?
-       ua.downcase!
+      ua = request.env['HTTP_USER_AGENT']
+      return nil if ua.nil?
+      ua.downcase!
 
-       if ua.index('msie') && !ua.index('opera') && !ua.index('webtv')
-         'ie'+ua[ua.index('msie')+5].chr
-       elsif ua.index('gecko/')
-         'gecko'
-       elsif ua.index('opera')
-         'opera'
-       elsif ua.index('konqueror')
-         'konqueror'
-       elsif ua.index('applewebkit/')
-         'safari'
-       elsif ua.index('mozilla/')
-         'gecko'
-       end
+      if ua.index('msie') && !ua.index('opera') && !ua.index('webtv')
+        'ie'+ua[ua.index('msie')+5].chr
+      elsif ua.index('gecko/')
+        'gecko'
+      elsif ua.index('opera')
+        'opera'
+      elsif ua.index('konqueror')
+        'konqueror'
+      elsif ua.index('applewebkit/')
+        'safari'
+      elsif ua.index('mozilla/')
+        'gecko'
+      end
 
-     end
-   end
+    end
+  end
 
-   def page_selected(current_page, tab_name)
-     if current_page == tab_name
-       return 'selected'
-     end
-   end
+  def page_selected(current_page, tab_name)
+    if current_page == tab_name
+      return 'selected'
+    end
+  end
 
   private
 
