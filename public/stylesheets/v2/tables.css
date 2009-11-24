@@ -31,3 +31,16 @@ td.over, tr.even td.over, tr.odd td.over { background:#ecfbd4; }
 
 /* use this if you want to apply different styleing to empty table cells*/
 td.empty, tr.odd td.empty, tr.even td.empty { background:#fff; }
+
+.right {
+	text-align:right;
+}
+
+.left {
+	text-align:left;
+}
+
+.center {
+	text-align:center;
+}
+
