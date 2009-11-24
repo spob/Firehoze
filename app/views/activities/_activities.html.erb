@@ -19,6 +19,6 @@
         <%= render :partial => 'activities/activity', :collection => activities %>
       <% end %>
     </ul>
-    <%= will_paginate activities  %>
+    <%= will_paginate activities, :inner_window => 3  %>
   </div>
 </div>
