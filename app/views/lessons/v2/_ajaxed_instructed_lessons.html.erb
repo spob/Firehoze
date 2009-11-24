@@ -2,7 +2,7 @@
 <% lessons = @instructed_lessons if pane == "lessons_instructed_table_view" %>
 
 <div id="<%= pane %>">
-  <% paginated_section  lessons, :params => { :pane => pane } do %>
+  <%= will_paginate lessons, :params => { :pane => pane } %>
   <table>
     <tr>
       <th>Lesson</th>
@@ -17,8 +17,7 @@
         <td colspan="5">You have not instructed any lessons</td>
       </tr>
     <% else %>
-    <%= render :partial => 'lessons/v2/ajaxed_instructed_lesson', :collection => lessons %>
+      <%= render :partial => 'lessons/v2/ajaxed_instructed_lesson', :collection => lessons %>
     <% end %>
   </table>
-  <% end %>
 </div>

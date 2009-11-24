@@ -2,19 +2,18 @@
 <% students = @students if pane == "students" %>
 
 <div id="<%= pane %>">
-  <% paginated_section  students, :params => { :pane => pane } do %>
-    <table>
+  <%= will_paginate students, :params => { :pane => pane } %>
+  <table>
+    <tr>
+      <th>Student</th>
+      <th>Purchased Lessons</th>
+    </tr>
+    <% if students.empty? %>
       <tr>
-        <th>Student</th>
-        <th>Purchased Lessons</th>
+        <td colspan="2">You currently have no students</td>
       </tr>
-      <% if students.empty? %>
-        <tr>
-          <td colspan="2">You currently have no students</td>
-        </tr>
-      <% else %>
-        <%= render :partial => 'users/v2/student', :collection => students %>
-      <% end %>
-    </table>
-  <% end %>
+    <% else %>
+      <%= render :partial => 'users/v2/student', :collection => students %>
+    <% end %>
+  </table>
 </div>
