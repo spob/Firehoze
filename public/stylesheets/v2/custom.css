@@ -328,6 +328,7 @@ div.review .title {
 
 div.review .headline { 
     padding-top: 6px;
+		font-weight:bold;
 }
 
 div.review .title { 

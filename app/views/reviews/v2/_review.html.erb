@@ -16,11 +16,7 @@
       <span class="helpful_phrase">&mdash;<%= review.helpfuls.helpful_yes.size %> of <%= review.helpfuls.size %> people found this review helpful</span>
     <% end %>
 
-    <% if reviewer == current_user %>
-      <div id="stars"><%= ratings_for(review.lesson, current_user, { :static => false }) %></div>
-    <% else %>
-      <%= ratings_for(review.lesson, reviewer, { :static => true } ) %>
-    <% end %>
+    <%= ratings_for(review.lesson, reviewer, { :static => true } ) %>
 
     <span class="headline h5">&quot;<%= h review.headline %>&quot;</span><span class="timestamp">&mdash;written on <%= l review.created_at %></span><br />
     <div class="review-body"><%= rbs_formatter review.body %></div>
