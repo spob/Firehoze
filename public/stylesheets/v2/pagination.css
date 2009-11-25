@@ -1,11 +1,7 @@
-.pagination {
-    background: white;
-    /* self-clearing method: */
-}
+/* Site-wide Pagination Styling */
 .pagination a, .pagination span {
     padding: .2em .5em;
     display: inline;
-    /* float: right;*/
     margin-right: 1px;
 }
 .pagination span.disabled {
@@ -19,7 +15,6 @@
 }
 .pagination a {
     text-decoration: none;
-    /*color: #BF1701;*/
     border: 1px solid #DDD;
 }
 .pagination a:hover, .pagination a:focus {

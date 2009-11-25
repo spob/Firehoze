@@ -1,14 +1,4 @@
-.lessons-container {
-    /*border: 1px solid red;*/
-    margin:12px 0 0 0 ;
-}
-
-.pagination {
-    display:block;
-    /*border: 1px solid blue;*/
-    clear:both;
-    margin:12px 0 0 0 ;
-}
+.lessons-container { }
 
 .lesson-list {
     margin:0;

@@ -12,6 +12,9 @@
       </dl>
     </div>
 
+
+    <%= will_paginate activities, :id => true, :inner_window => 3  %>
+
     <ul class="activity-feed">
       <% if activities.empty? %>
         <li>Alas, no activity to report.</li>
@@ -19,6 +22,8 @@
         <%= render :partial => 'activities/activity', :collection => activities %>
       <% end %>
     </ul>
-    <%= will_paginate activities, :inner_window => 3  %>
+
+    <p><!-- put flow pagination here -->&nbsp;</p>
+
   </div>
 </div>

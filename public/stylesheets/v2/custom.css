@@ -7,8 +7,8 @@
 a:link, a:visited {
     color: #666;
     text-decoration: underline;
-    /* border-bottom: dotted 1px #999;*/
     background-color: transparent;
+    /* border-bottom: dotted 1px #999;*/
 }
 
 a:hover, a:active {
@@ -64,74 +64,6 @@ div {
     border: solid 1px #CFCFCF;
 }
 
-/* SUB COLUMN WIDGET */
-.subColWidget {
-    margin:0;
-    position:relative;
-}
-
-.subColWidget .header { position:relative; }
-.subColWidget .footer { position:relative; }
-
-.subColWidget .header .top-left, .subColWidget .header .top-right,
-.subColWidget .footer .bottom-left, .subColWidget .footer .bottom-right {
-    overflow: hidden;
-    position: absolute;
-    z-index: 5;
-    width: 4px;
-    height: 4px
-}
-
-.subColWidget .header .top-left {
-    top: 0;
-    left: 0;
-    background: url(images/sub_navigation/corners.png) no-repeat 0 0;
-}
-.subColWidget .header .top-right {
-    top: 0;
-    right: 0;
-    background: url(images/sub_navigation/corners.png) no-repeat -4px 0
-}
-.subColWidget .footer .bottom-left {
-    bottom: 0;
-    left: 0;
-    background: url(images/sub_navigation/corners.png) no-repeat 0 -4px
-}
-.subColWidget .footer .bottom-right {
-    bottom: 0;
-    right: 0;
-    background: url(images/sub_navigation/corners.png) no-repeat -4px -4px
-}
-.subColWidget .header .header-text{
-    vertical-align: middle;
-    display: block;
-    padding: 4px 12px;
-    background: url(images/sub_navigation/button_bg.png) repeat-x left center;
-    text-shadow: #333 0 1px 1px;
-    color: #FFF;
-    letter-spacing: 0.05em;
-    font-weight: normal;
-    font-size: 13px;
-    text-decoration: none;
-}
-
-.subColWidget .content {
-    background: #FFF;
-    border-left: solid 1px #CFCFCF;
-    border-right: solid 1px #CFCFCF;
-}
-.subColWidget .footer .footer-text{
-    vertical-align: middle;
-    display: block;
-    padding: 5px 12px;
-    background: url(images/sub_navigation/button_bg.png) repeat-x left center;
-    text-shadow: #333 0 1px 1px;
-    color: #FFF;
-    letter-spacing: 0.05em;
-    font-weight: normal;
-    font-size: 13px;
-    text-decoration: none;
-}
 
 h4.banner  {
     font-size: 18px;
@@ -291,13 +223,6 @@ ul#main-navigation  {
     color: #069;
 }
 
-/* MAIN CONTENT AREA */
-#side-box {
-    padding: 15px;
-    border: solid 2px #DFDFDF;
-    background-color: #F6F6F6;
-}
-
 /* FOOTER */
 #footer {
     height:320px;
@@ -371,121 +296,4 @@ ul#main-navigation  {
 
 #error #centered {
     background: transparent url(images/icons/32_warning.png) 0px 10px no-repeat;
-}
-
-
-/* Widget-box */
-div.widget-box {
-    margin:0;
-    padding: 0px;
-    border: solid 1px #ccc;
-    background-color: #fff;
-}
-
-div.widget-box-header {
-    position: relative;
-    margin:0;
-    padding:12px;
-    border-bottom: solid 1px #ccc;
-    z-index: 1;
-    text-shadow: #999 0 1px 1px;
-    background: url(images/backgrounds/widget-box-header-tile.png) repeat-x bottom center;
-}
-
-.widget-box-header img.loader {
-    display:none;
-    z-index: 10;
-    position: absolute;
-    top:6px;
-    right:8px;
-}
-
-.widget-box-content {
-    margin:0;
-}
-.widget-box-content ul {
-    margin:0;
-}
-
-.widget-box-content ul li {
-    list-style-type:none;
-    padding:2px 8px;
-    border-top:solid 1px #DBDBDB;
-}
-
-.widget-box-content ul li.even {
-    background: #FFF;
-}
-.widget-box-content ul li.odd {
-    background: #F2F2F2;
-}
-
-.widget-box-content ul li:first-child {
-    border-top:0 none;
-    margin-top:0;
-}
-
-.widget-box-footer {
-    margin:0;
-    padding:12px;
-    border-top: solid 1px #ccc;
-    background: #FFF;
-}
-
-.widget-box-content .activity-feed  {
-    top-bottom: solid 1px #E3E3E3;
-    border-bottom: solid 1px #E3E3E3;
-}
-
-.widget-box-content .activity-feed li {
-    position:relative;
-    margin: 0;
-    padding: 8px 8px 8px 54px;
-    display:block;
-    min-height: 45px;
-}
-
-.widget-box-content .activity-feed li img.avatar {
-    border: solid 1px #E3E3E3;
-    position:absolute;
-    left:8px;
-    top:8px;
-}
-
-.filter_activity_by  {
-    border-bottom: solid 1px #E3E3E3;
-    padding: 12px;
-}
-
-.pagination {
-    padding: 12px;
-}
-
-.test-span {
-    background: url(images/backgrounds/profile_bg_tile.gif) repeat-x top center;
-    height: 140px;
-}
-
-.pagination {
-    padding: 12px;
-}
-
-div#reviews div.pagination,
-div#groups div.pagination {
-    text-align:right;
-    padding-right:24px;
-}
-
-/*
-div.loader {
-    height:16px;
-    width:16px;
-    position: absolute;
-    top:159px;
-    right:28px;
-    background: transparent url("images/spinners/ajax_spinner_16.gif") no-repeat;
-}
-*/
-table {
-    width:100%;
 }

@@ -8,7 +8,7 @@
   <% if lessons.empty? %>
     No lessons
   <% else %>
-    <%= will_paginate lessons, :params => { :pane => pane } %>
+    <%= will_paginate lessons, :id => true, :params => { :pane => pane } %>
     <ul class="lesson-list">
       <%= render :partial => "lessons/v2/ajaxed_lesson", :collection => lessons %>
     </ul>

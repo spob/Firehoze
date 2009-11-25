@@ -50,7 +50,7 @@
         <div>
           <div class="nested-navigation">
             <ul class="links">
-              <li><a href="#">My Students</a></li>
+              <li><a href="#">My Students <%= "(#{@students.size})" if @students.size > 0 %></a></li>
               <li><a href="#">My Followers <%= "(#{@followers.size})" if @followers.size > 0 %></a></li>
             </ul>
             <div class="loader"></div>
@@ -62,6 +62,7 @@
               </div>
               <div>
                 <%= render :partial => 'users/v2/followers', :locals => { :lessons => @followers, :pane => :followers } %>
+                <div class="clear"></div>
               </div>
             </div><!-- end (interior) panes -->
           </div><!-- end nested-navigation -->

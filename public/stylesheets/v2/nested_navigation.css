@@ -3,42 +3,27 @@
     z-index: 1;
 }
 
-div.nested-navigation-panes div .pagination {
-    margin:0;
-    padding: 8px 26px 8px 0;
-    text-align:right;
-}
-
-.nested-navigation  ul.links {
-    /*background-color: #ccc;*/
-    /*background-color: #A9A9A9;*/
-    padding:10px 0 12px 12px;
-    /*border: solid 1px #212121;*/
-    /*border-width: 0 1px 1px 1px;*/
-}
-
-.nested-navigation ul.links li a {
-    border:0 none;
-    margin-left: 6px;
-    padding: 5px 12px;
-    text-decoration: none;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
+.nested-navigation ul.links {
+    padding:0;
+    margin:0 0 23px 0;
 }
 
 .nested-navigation ul.links li {
     display: inline;
 }
 
-.nested-navigation ul.links {
-    margin:0;
-    padding-left:0px;
+.nested-navigation ul.links li a {
+    border:0 none;
+    margin-right: 6px;
+    text-decoration: none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
 }
 
 .nested-navigation ul.links li a:link,
 .nested-navigation ul.links li a:visited {
     color: #666;
-    background: #EDEDED;
+    background: #CCCCCC;
     padding:4px 20px 6px 20px;
     letter-spacing: 0.05em;
     font-weight: normal;
@@ -47,23 +32,15 @@ div.nested-navigation-panes div .pagination {
 }
 
 .nested-navigation ul.links li a:hover {
-    color:#444;
-    background: #DEDEDE;
+    color: #F2F2F2;
+    background: #737373;
 }
 
 .nested-navigation ul.links li a.current {
     color: #F2F2F2;
     background: #737373;
-    font-weight:bold;
 }
 
-.panes p {
-    margin: 12px 0;
-}
-
-/*
 .nested-navigation-panes {
-     border:solid 1px #A9A9A9;
-    border-width:1px 1px 1px 1px;
+    /*border:solid 1px lime;*/
 }
-*/

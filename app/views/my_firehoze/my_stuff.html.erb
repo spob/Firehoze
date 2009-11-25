@@ -27,14 +27,14 @@
       <div><!-- start lessons pane -->
         <div class="nested-navigation">
           <ul class="links">
+            <li><a href="#">Recently Browsed</a></li>
             <li><a href="#">Owned</a></li>
             <li><a href="#"><%= h(t('lesson.wishlist')) %></a></li>
-            <li><a href="#">Recently Browsed</a></li>
           </ul>
 
           <div class="nested-navigation-panes">
             <div>
-              <%= render :partial => "lessons/v2/ajaxed_lessons", :locals => { :lessons => @owned, :pane => :owned } %>
+              <%= render :partial => "lessons/v2/ajaxed_lessons", :locals => { :lessons => @latest_browsed, :pane => :latest_browsed } %>
               <div class="clear"></div>
             </div>
             <div>
@@ -42,26 +42,28 @@
               <div class="clear"></div>
             </div>
             <div>
-              <%= render :partial => "lessons/v2/ajaxed_lessons", :locals => { :lessons => @latest_browsed, :pane => :latest_browsed } %>
+              <%= render :partial => "lessons/v2/ajaxed_lessons", :locals => { :lessons => @owned, :pane => :owned } %>
               <div class="clear"></div>
             </div>
+
           </div><!-- end (interior) panes -->
         </div><!-- end lessons_nested -->
       </div><!-- end lessons pane -->
 
       <% # REVIEWS -%>
-      <div><!-- start reviews -->
+      <div class="no-nested-nav-potentially-paginated"><!-- start reviews -->
         <%= render :partial => 'reviews/v2/ajaxed_reviews', :locals => { :reviews => @reviews, :pane => :reviews } %>
       </div><!-- end reviews pane -->
 
       <% # GROUPS -%>
-      <div><!-- start groups -->
+      <div class="no-nested-nav-potentially-paginated"><!-- start groups -->
         <%= render :partial => 'groups/v2/ajaxed_groups', :locals => { :groups => @groups, :pane => :groups } %>
       </div><!-- end groups pane -->
 
       <% # FOLLOWED INSTRUCTORS -%>
       <div>
         <%= render :partial => 'followed_instructors', :locals => { :followed_instructors => @followed_instructors } %>
+        <div class="clear"></div>
       </div><!-- end followed instructor pane -->
     </div><!-- end panes -->
   </div><!-- end my-stuff -->
