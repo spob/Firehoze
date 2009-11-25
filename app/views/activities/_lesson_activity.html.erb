@@ -1,2 +1,2 @@
 Instructor <b><%=link_to_profile(activity.actor_user) %></b> created the new lesson
-<b><%= link_to(activity.activity_object_human_identifier, lesson_path(activity.activity_object_id)) %></b>
+<b><%= link_to(h(activity.activity_object_human_identifier), lesson_path(activity.activity_object_id)) %></b>

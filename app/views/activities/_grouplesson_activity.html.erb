@@ -1,4 +1,4 @@
 <b><%=link_to_profile(activity.actor_user) %></b> added the lesson
-<b><%= link_to(activity.secondary_activity_object_human_identifier, lesson_path(activity.secondary_activity_object_id)) %></b>
+<b><%= link_to(h(activity.secondary_activity_object_human_identifier), lesson_path(activity.secondary_activity_object_id)) %></b>
 to the group
-<b><%= link_to(activity.activity_object_human_identifier, group_path(activity.activity_object_id)) %></b>
+<b><%= link_to(h(activity.activity_object_human_identifier), group_path(activity.activity_object_id)) %></b>
