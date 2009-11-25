@@ -393,6 +393,7 @@ div.widget-box-header {
 }
 
 .widget-box-header img.loader {
+    display:none;
     z-index: 10;
     position: absolute;
     top:6px;
