@@ -10,7 +10,6 @@
           <% if current_user.is_admin? or current_user.is_paymentmgr? or current_user.is_moderator? %>
               <li><a href="<%= admin_consoles_path %>">Admin Console</a></li>
           <% end %>
-          <li><a href="#">Contact Us</a></li>
           <li><%= signout_link("Sign Out") %></li>
         </ul>
       </li>
