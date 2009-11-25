@@ -1,4 +1,4 @@
-<tr>
+<tr class="<%= cycle("even", "odd") -%>">
   <td><%= link_to_profile student %></td>
   <td><%= list_instructed_lessons student, current_user %></td>
 </tr>
