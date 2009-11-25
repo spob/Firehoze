@@ -1,31 +1,33 @@
 <% reviewer = review.user %>
 
 <div class="review">
-
-  <%= render :partial => "lessons/lesson_image_block", :object => review.lesson %>
-
-  <div class="prepend-6 last review_right">
-    <div class="helpful_phrase">
-      <% unless review.helpfuls.empty? %>
-          <%= review.helpfuls.helpful_yes.size %> of <%= review.helpfuls.size %> people found this review helpful
-      <% end %>
-    </div>
-
-    <div class="headline h3">
-      "<%= h review.headline %>" for the lesson "<%= h review.lesson.title %>"
-    </div>
-
-    <div class="timestamp">
-      written on <%= l review.created_at %>
-    </div>
-
-    <div>
-      <%= rbs_formatter review.body %>
-    </div>
-
-    <div class="actions">
-      <%= render :partial => 'reviews/actions', :object => review %>
+  <div class="span-2">
+    <div class="lesson_left">
+      <div><%= img_tag_lesson_tn(review.lesson, :small) %></div>
     </div>
   </div>
+
+  <div class="span-10 last">
+
+    <span class="title h4">
+      <%= h review.lesson.title %>
+    </span>
+    <% unless review.helpfuls.empty? %>
+      <span class="helpful_phrase">&mdash;<%= review.helpfuls.helpful_yes.size %> of <%= review.helpfuls.size %> people found this review helpful</span>
+    <% end %>
+
+    <% if reviewer == current_user %>
+      <div id="stars"><%= ratings_for(review.lesson, current_user, { :static => false }) %></div>
+    <% else %>
+      <%= ratings_for(review.lesson, reviewer, { :static => true } ) %>
+    <% end %>
+
+    <span class="headline h5">&quot;<%= h review.headline %>&quot;</span><span class="timestamp">&mdash;written on <%= l review.created_at %></span><br />
+    <div class="review-body"><%= rbs_formatter review.body %></div>
+
+    <div class="actions">
+      <%= render :partial => 'reviews/v2/actions', :object => review %>
+    </div>
+  </div>
+  <div class="clear"></div>
 </div>
-<hr class="clear"/>

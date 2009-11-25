@@ -13,8 +13,8 @@
     <!-- the tabs -->
     <div class="tab-container">
       <ul class="tabs">
-        <li><a href="#">Lessons</a></li>
         <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#">Lessons</a></li>
         <li><a href="#groups">Groups</a></li>
         <li><a href="#followed_instructors">Followed Instructors</a></li>
       </ul>
@@ -23,6 +23,12 @@
     <!-- tab "panes" -->
 
     <div class="panes">
+      <% # REVIEWS -%>
+      <div class="no-nested-nav-potentially-paginated"><!-- start reviews -->
+        <%= render :partial => 'reviews/v2/ajaxed_reviews', :locals => { :reviews => @reviews, :pane => :reviews } %>
+      </div><!-- end reviews pane -->
+
+
       <% # LESSONS -%>
       <div><!-- start lessons pane -->
         <div class="nested-navigation">
@@ -50,10 +56,6 @@
         </div><!-- end lessons_nested -->
       </div><!-- end lessons pane -->
 
-      <% # REVIEWS -%>
-      <div class="no-nested-nav-potentially-paginated"><!-- start reviews -->
-        <%= render :partial => 'reviews/v2/ajaxed_reviews', :locals => { :reviews => @reviews, :pane => :reviews } %>
-      </div><!-- end reviews pane -->
 
       <% # GROUPS -%>
       <div class="no-nested-nav-potentially-paginated"><!-- start groups -->

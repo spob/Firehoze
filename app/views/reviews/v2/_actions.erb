@@ -1,0 +1,29 @@
+<% review = object %>
+
+<% unless review.user == current_user %>
+  <div class="review_actions">
+    <% if current_user %>
+      <% if review.helpful?(current_user).nil? %>
+        <span class="button-to">Was this review helpful to you?</span>
+        <%= button_to t('general._yes'), helpfuls_path(:review_id => review, :helpful => 'yes'), :method => :post %>
+        <%= button_to t('general._no'), helpfuls_path(:review_id => review, :helpful => 'no'), :method => :post %>
+      <% else %>
+        <%= review.helpful?(current_user) ? "(#{t('review.found_helpful')})" : "(#{t('review.found_unhelpful')})" %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+
+<div>
+  <% unless review.status == REVIEW_STATUS_ACTIVE %>
+    <div>Status: <%= review.status %></div>
+  <% end %>
+
+  <% if review.can_edit? current_user %>
+    <div><%= link_to "Edit", edit_review_path(review) %></div>
+  <% end %>
+</div>
+
+<% unless review.user == current_user %>
+<div><%= flag_link review user  %></div>
+<% end %>

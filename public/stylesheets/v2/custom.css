@@ -308,3 +308,39 @@ ul#main-navigation  {
 #error #centered {
     background: transparent url(images/icons/32_warning.png) 0px 10px no-repeat;
 }
+
+
+/* REVIEWS */
+div.review {
+    padding-bottom:17px;
+    margin-bottom:17px;
+    border-bottom: dotted 1px #8F8F8F;
+}
+
+div.review .helpful_phrase {
+    color: #8F8F8F;
+    font-style: italic;
+}
+div.review .headline,
+div.review .title {
+    color: #4D4D4D;
+}
+
+div.review .headline { 
+    padding-top: 6px;
+}
+
+div.review .title { 
+    padding: 0 0 3px 0;
+}
+
+div.review .timestamp {
+    color: #8F8F8F;
+    font-style: italic;
+}
+
+div.review .actions { }
+
+div.review #stars {
+    margin:5px 0 0 0;
+}
