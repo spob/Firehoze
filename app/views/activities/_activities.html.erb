@@ -2,7 +2,7 @@
 
 <div class="widget-box-content">
   <div id="recent-activities">
-    <div class="filter_activity_by">
+    <div class="filter-activity-by">
       <dl class="third-level-nav">
         <dt>View Activity:</dt>
         <dd><%= link_to_unless session[:browse_activities_by] == 'ALL', bold('by everybody', session[:browse_activities_by] == 'ALL'), my_firehoze_index_path %></dd>

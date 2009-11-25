@@ -1,3 +1,4 @@
-ul.third-level-nav li.last {
+ul.third-level-nav li.last, 
+dl.third-level-nav dd.last {
     border: 0 none;
 }
