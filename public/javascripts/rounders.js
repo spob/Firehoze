@@ -8,10 +8,6 @@ $(function() {
         radius: 5
     });
 
-    $('#side-box').cornerz({
-        radius: 6
-    });
-
     $('.box').cornerz({
         radius: 5
     });
