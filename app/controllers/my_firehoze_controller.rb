@@ -77,7 +77,7 @@ class MyFirehozeController < ApplicationController
 
   #==================================== LATEST NEWS FETCHERS ========================================
   def fetch_activities
-    activites_per_page = 10
+    activites_per_page = 8
     @activities = case set_session_param(:browse_activities_by, "ALL")
     when 'BY_ME'
       Activity.visible_to_user(current_user).actor_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
