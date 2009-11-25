@@ -29,9 +29,11 @@
     <%= stylesheet_link_tag 'v2/lessons', :media => "screen, projection" %>
     <%= stylesheet_link_tag 'v2/nested_navigation', :media => "screen, projection" %>
     <%= stylesheet_link_tag 'v2/pagination', :media => "screen, projection" %>
-
-    <!--[if IE]><%= stylesheet_link_tag 'v2/blueprint/ie', :media => "screen, projection" %><![endif]-->
-    <!--[if IE 8]><%= stylesheet_link_tag 'v2/ie', :media => "screen, projection" %><![endif]-->
+    <!--[if IE]>
+    <%= stylesheet_link_tag 'v2/blueprint/ie', :media => "screen, projection" %>
+    <%= stylesheet_link_tag 'v2/ie', :media => "screen, projection" %>
+    <![endif]-->
+    <!--[if IE 8]><%= stylesheet_link_tag 'v2/ie8', :media => "screen, projection" %><![endif]-->
     <!--[if IE 7]><%= stylesheet_link_tag 'v2/ie7', :media => "screen, projection" %><![endif]-->
     <!--[if IE 6]><%= stylesheet_link_tag 'v2/ie6', :media => "screen, projection" %><![endif]-->
 
