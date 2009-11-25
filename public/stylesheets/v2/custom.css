@@ -39,6 +39,10 @@ div {
     display:inline-block;
 }
 
+a.no-border:hover {
+    border: 0 none;
+}
+
 .append-top-half-gutter {
     margin-top:17px;
 }

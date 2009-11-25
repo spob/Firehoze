@@ -1,7 +1,7 @@
 <div id="profile-box">
   <%= avatar_tag user, :size => :smaller %>
   <div id="content">
-    <h3><%= user.full_name %>'s firehoze</h3>
+    <h3><%= user.full_name %>'s firehoze <%= link_to image_tag("icons/profile-16.png", :alt => "your public profile", :class => "profile"), user_path(user),  :title => "your public profile", :class => "no-border" %></h3>
     <%= render :partial => 'nav' %>
     <%= render :partial => 'balance', :locals => { :user => user} %>
   </div>
