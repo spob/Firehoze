@@ -1,0 +1,5 @@
+<b><%=link_to_profile(activity.actor_user) %></b> added the comment "<b><%= truncate(activity.trackable.body, 50) %></b>"
+to the discussion topic
+<b><%= link_to(activity.activity_object_human_identifier, topic_path(activity.activity_object_id)) %></b>
+within the group
+<b><%= link_to(activity.activity_object_human_identifier, group_path(activity.activity_object_id)) %></b>

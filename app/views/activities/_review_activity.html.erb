@@ -1,0 +1,2 @@
+<b><%=link_to_profile(activity.actor_user) %></b> wrote a review "<b><%= truncate(activity.trackable.body, 50) %></b>" on the lesson
+<b><%= link_to(activity.activity_object_human_identifier, lesson_path(activity.activity_object_id)) %></b>

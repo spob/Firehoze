@@ -129,7 +129,6 @@ en:
     demote_success: The <b>{{user}}</b> is no longer a moderator for this group
     welcome: Welcome to the {{group}} group!
     no_thanks: Okay, thanks. You have not joined the group
-    activity: <b>{{user}}</b> created the group {{trackable}}
     logo_cleared: You have successfully removed the group logo
     update_error: Oops, something wasn't quite right with the information you entered
 
@@ -144,10 +143,8 @@ en:
     already_added: Lesson is already associated to this group
     lesson_removed: Lesson removed from the {{group}}} group
     does_not_belong: Lesson is not a member of the {{group}} group
-    activity: <b>{{user}}</b> added the lesson {{secondary_trackable}} to the group {{trackable}}
 
   group_member:
-    activity: <b>{{user}}</b> joined the group {{trackable}}
     owner: Owner
     moderator: Moderator
     member: Member
@@ -198,7 +195,6 @@ en:
     watch_for_free: Watch For Free
     must_logon: Please log on or request an account in order to watch this video
     wishlist: Wishlist
-    activity: Instructor {{user}} created a new lesson entitled {{trackable}}
     # Lesson states
     Rejected: Rejected
     Converting: Converting
@@ -211,7 +207,6 @@ en:
     create_success: Your lesson comment has been recorded
     cannot_edit: You do not have rights to edit this comment
     update_success: Lesson comment updated successfully
-    activity: <b>{{user}}</b> commented on the lesson {{trackable}}
 
   line_item:
     updated_success: Updated line item
@@ -295,7 +290,6 @@ en:
     create_success: Your topic comment has been recorded
     cannot_edit: You do not have rights to edit this comment
     update_success: Topic comment updated successfully
-    activity: <b>{{user}}</b> added a comment to the discussion topic {{trackable}} within the group {{secondary_trackable}}
   
   login:
     login_success: Login successful

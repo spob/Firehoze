@@ -1,5 +1,5 @@
 <li class="<%= cycle :odd, :even %>">
     <%= avatar_tag activity.actor_user, :size => :tiny %>
   <%= h(time_ago_in_words(activity.acted_upon_at)) %> ago:<br />
-  <%= show_activity_str activity %>
+  <%= render :partial => "activities/#{activity.trackable_type.downcase}_activity", :locals => { :activity => activity } %>
 </li>
