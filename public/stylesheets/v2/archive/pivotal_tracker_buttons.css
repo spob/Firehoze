@@ -39,7 +39,8 @@ a.button {
     padding: 0.4em 1.4em;
     background: url(images/sub_navigation/button_bg.png) repeat-x left center;
     text-shadow: #333 0 1px 1px;
-    color: #FFF; letter-spacing: 0.05em;
+    color: #FFF; 
+    letter-spacing: 0.05em;
     font-weight: normal;
     font-size: 13px;
     text-decoration: none
