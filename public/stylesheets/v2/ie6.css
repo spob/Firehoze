@@ -13,3 +13,7 @@
     margin:0;
     height:35px;
 }
+
+.widget-box-content .activity-feed li {
+    zoom:1;
+}
