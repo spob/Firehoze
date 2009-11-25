@@ -1,7 +1,6 @@
 $(function() {
 
     // MY-FIREHOZE TABS
-
     // my-stuff
     $("#my_stuff ul.tabs").tabs("#my_stuff > div.panes > div", {
         effect: 'fade'
@@ -13,7 +12,7 @@ $(function() {
     });
 
     // instructor history
-    $("#instructor_stuff ul.tabs").tabs("#instructor_stuff > div.panes > div", {
+    $("#instructor_dashboard ul.tabs").tabs("#instructor_dashboard > div.panes > div", {
         effect: 'fade'
     });
 
@@ -21,5 +20,4 @@ $(function() {
     $("div.nested-navigation > ul.links").tabs("div.nested-navigation-panes > div", {
         effect: 'fade'
     });
-// END MY-FIREHOZE TABS
 });
