@@ -5,8 +5,8 @@
     margin-right: 1px;
 }
 .pagination span.disabled {
-    color: #999;
-    border: 1px solid #DDD;
+    color: #BABABA;
+    border: 1px solid #ccc;
 }
 .pagination span.current {
     background: #2B2B2B;
@@ -15,7 +15,7 @@
 }
 .pagination a {
     text-decoration: none;
-    border: 1px solid #DDD;
+    border: 1px solid #A3A3A3;
 }
 .pagination a:hover, .pagination a:focus {
     color: #555;

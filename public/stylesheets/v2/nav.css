@@ -15,16 +15,17 @@
 }
 
 #profile-box #content {
-    position:relative;
     margin:0 0 0 80px;
 }
 
 #profile-box #content #balance {
     position: absolute;
-    top:0;
-    right:0;
+    top:17px;
+    right:17px;
 }
 
+
+/* Profile links */
 ul.third-level-nav {
     display: block;
     margin: 0;
@@ -63,7 +64,7 @@ ul.third-level-nav li.current a {
     border: 0 none;
 }
 
-
+/* filter by links */
 dl.third-level-nav {
     width: auto;
     height: 19px;
@@ -74,8 +75,8 @@ dl.third-level-nav dt, dl.third-level-nav dd {
     display: inline;
 }
 dl.third-level-nav dt {
-    color: #999;
-    font-weight: normal;
+    font-weight: bold;
+    letter-spacing: 0.02em;
 }
 dl.third-level-nav dd {
     margin: 0px;
@@ -101,7 +102,7 @@ dl.third-level-nav a:hover {
 }
 
 dl.nav dd.active a {
-    color: #fff;
+    /*color: #fff;*/
 }
 
 /**********************************/
