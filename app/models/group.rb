@@ -64,7 +64,7 @@ class Group < ActiveRecord::Base
   def self.default_logo_url(style)
     # "http://#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}/groups/avatars/missing/%s/missing.png" % style.to_s
     # todo: add a logo for missing logo as well
-    "/images/users/avatars/%s/missing.png" % style.to_s
+    "/images/groups/%s/missing.png" % style.to_s
   end
 
   # convert an amazon url for a logo to a cdn url
