@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   include SslRequirement
 
-  ssl_required  :new, :create, :update if Rails.env.production?
+  ssl_required :new, :create, :update if Rails.env.production?
   before_filter :require_no_user, :only => [ :new, :create ]
   before_filter :require_user, :except => [ :new, :create, :show, :user_agreement ]
   before_filter :find_user, :only => [ :clear_avatar, :edit, :show_admin, :private, :reset_password, :update,
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
     @groups = @user.member_groups.ascend_by_name.public
     unless @user.active or (current_user and (current_user.is_moderator? or !current_user.is_admin?))
       flash[:error] = t 'user.inactive_cannot_show'
-      redirect_to lessons_path                          
+      redirect_to lessons_path
     end
     if current_user.try("is_moderator?") or current_user.try("is_admin?")
       @lessons = @user.instructed_lessons.all(:include => [:instructor, :tags])
@@ -180,9 +180,11 @@ class UsersController < ApplicationController
 
   def update_avatar
     if params[:user][:avatar]
-      if  @user.update_attribute(:avatar, params[:user][:avatar])
+      if @user.update_attributes(:avatar => params[:user][:avatar])
         flash[:notice] = t 'account_settings.avatar_success'
         redirect_to edit_user_path(@user)
+      else
+        render :action => :edit
       end
     end
   end

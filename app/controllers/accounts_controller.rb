@@ -113,10 +113,10 @@ class AccountsController < ApplicationController
 
   def update_avatar
     if params[:user][:avatar]
-      if @user.update_attribute(:avatar, params[:user][:avatar])
+      if @user.update_attributes(:avatar => params[:user][:avatar])
         flash[:notice] = t 'account_settings.avatar_success'
-        redirect_to edit_account_path(@user)
       end
+      redirect_to edit_account_path(@user)
     end
   end
 
