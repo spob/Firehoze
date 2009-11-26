@@ -104,7 +104,7 @@ class MyFirehozeController < ApplicationController
   end
 
   def fetch_reviews
-    @reviews = current_user.reviews.ready.paginate(:page => params[:page], :per_page => @per_page) if retrieve_by_pane("reviews")
+    @reviews = current_user.reviews.ready(:include => [:user, :lesson]).paginate(:page => params[:page], :per_page => @per_page) if retrieve_by_pane("reviews")
   end
 
   def fetch_groups
@@ -138,13 +138,13 @@ class MyFirehozeController < ApplicationController
 
   #================================== ACCOUNT HISTORY FETCHERS ========================================
   def fetch_credits
-    @used_credits = current_user.credits.redeemed_at_not_null.expired_at_null(:order => "created_at ASC")
-    @expired_credits = current_user.credits.expired_at_not_null(:order => "created_at ASC")
-    @available_credits = current_user.available_credits(:order => "created_at ASC")
+    @used_credits = current_user.credits.redeemed_at_not_null.expired_at_null(:include => [:sku, :line_item, :lesson], :order => "created_at ASC")
+    @expired_credits = current_user.credits.expired_at_not_null(:include => [:sku, :line_item, :lesson], :order => "created_at ASC")
+    @available_credits = current_user.available_credits(:include => [:sku, :line_item, :lesson], :order => "created_at ASC")
   end
 
   def fetch_orders
-    @orders = current_user.orders.cart_purchased_at_not_null.descend_by_id
+    @orders = current_user.orders.cart_purchased_at_not_null.descend_by_id(:include => [:cart])
   end
 
   #================================ END ACCOUNT HISTORY FETCHERS ======================================
