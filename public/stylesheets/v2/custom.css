@@ -149,7 +149,7 @@ h4.banner  {
     width:1000px;
     margin-left: auto;
     margin-right: auto;
-    /*position:relative;*/ 
+    /*position:relative;*/
 }
 
 #shadowbox-middle-blue {
@@ -326,12 +326,12 @@ div.review .title {
     color: #4D4D4D;
 }
 
-div.review .headline { 
+div.review .headline {
     padding-top: 6px;
-		font-weight:bold;
+    font-weight:bold;
 }
 
-div.review .title { 
+div.review .title {
     padding: 0 0 3px 0;
 }
 

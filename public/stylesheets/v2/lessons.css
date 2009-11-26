@@ -10,7 +10,9 @@
     position:relative;
     float: left;
     width:148px;
-    margin-right: 18px;
+    height:160px;
+    margin-left: 20px;
+    margin-right: 20px;
     margin-bottom: 22px;
     font: 11px Arial, Helvetica, sans-serif;
     color: #999;
@@ -37,21 +39,8 @@ li .duration {
     opacity: 0.65;
 }
 
-.compact_container {
-    padding:18px 0;
-    margin:0;
-    width: 668px;
-}
-
-.compact_container .item_container {
-    float:left;
-    padding: 0px;
-    margin:0px 39px 40px 0px;
-    width:126px;
-}
-
 /* single scrollable item */
-.item_container  img {
+.item_container img {
     background-color:#fff;
     padding:2px;
     border:1px solid #ccc;
