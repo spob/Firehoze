@@ -1,5 +1,5 @@
 ul.third-level-nav li a:visited, ul.tabs a:visited {
-	text-decoration:none;
+    text-decoration:none;
 }
 
 #top-navigation-container {
@@ -20,4 +20,15 @@ ul.third-level-nav li a:visited, ul.tabs a:visited {
 
 .widget-box-content .activity-feed li {
     zoom:1;
+}
+
+.lessons-container, 
+.reviews-container {
+    zoom:1;
+}
+
+.lesson-list li {
+    zoom:1;
+    margin-left: 10px;
+    margin-right: 24px;
 }
