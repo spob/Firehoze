@@ -35,10 +35,6 @@ div {
 .h3 { font-size: 1.5em; line-height: 1; margin-bottom: 1em; }
 .h4 { font-size: 1.2em; line-height: 1.25; margin-bottom: 1.25em; }
 
-.clearfix {
-    display:inline-block;
-}
-
 a.no-border:hover {
     border: 0 none;
 }
@@ -311,6 +307,8 @@ ul#main-navigation  {
 
 
 /* REVIEWS */
+
+div.reviews-container { }
 div.review {
     padding-bottom:17px;
     margin-bottom:17px;

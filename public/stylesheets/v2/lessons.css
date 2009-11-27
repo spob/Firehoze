@@ -1,38 +1,38 @@
-.lessons-container { }
-
-.lesson-list {
-    margin:0;
-    padding:0;
-    list-style-type: none;
+.lessons-container {
+    padding:0 0 0 0px;
 }
-
-.lesson-list li {
+.lesson-container {
     position:relative;
-    float: left;
-    width:148px;
-    height:160px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 22px;
+    float:left;
+    margin: 0 6px 22px 0;
+    padding:12px 5px 10px 11px;
+    background: url('/stylesheets/v2/images/backgrounds/image_holder.png') no-repeat scroll 0 0;
+    width:168px;
+    height:168px;
     font: 11px Arial, Helvetica, sans-serif;
     color: #999;
 }
 
-.lesson-list img {
+.lesson-container img {
     display: block;
     margin:0 0 6px 0;
-    padding:0;
-    border:solid 1px #D6D6D6;
 }
 
-li .duration {
+.lesson-container .title {
+    padding:0;
+    margin:0;
+    width:140px;
+}
+
+
+div.duration {
     font-size:9px;
     padding: 0 2px;
     color: #fff;
     font-weight: bold;
     position:absolute;
-    top:98px;
-    left:0px;
+    top:110px;
+    left:11px;
     background: #555;
     filter: alpha(opacity=65);
     -moz-opacity: 0.65;

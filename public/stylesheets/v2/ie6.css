@@ -18,17 +18,12 @@ ul.third-level-nav li a:visited, ul.tabs a:visited {
     height:35px;
 }
 
-.widget-box-content .activity-feed li {
-    zoom:1;
-}
+.widget-box-content .activity-feed li { zoom:1;}
+.tab-container { zoom:1; } 
+#lessons_pagination {	zoom:1;	}
 
-.lessons-container, 
-.reviews-container {
+.lesson-container {
     zoom:1;
-}
-
-.lesson-list li {
-    zoom:1;
-    margin-left: 10px;
-    margin-right: 24px;
+    margin-right: 4px;
+    background: url('/stylesheets/v2/images/backgrounds/image_holder.jpg') no-repeat scroll 0 0;
 }

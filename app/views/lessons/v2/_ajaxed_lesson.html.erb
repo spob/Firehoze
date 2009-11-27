@@ -1,5 +1,5 @@
-<li>
+<div class="lesson-container">
   <%= img_tag_lesson_tn(ajaxed_lesson, :small) %>
   <div class="duration transparent"><%= ChronicDuration.output(ajaxed_lesson.finished_video_duration/1000, :format => :chrono) -%></div>
-  <%= link_to truncate(h(ajaxed_lesson.title), :length => 40), lesson_path(ajaxed_lesson) %>
-</li>
+  <div class="title"><%= link_to truncate(h(ajaxed_lesson.title), :length => 40), lesson_path(ajaxed_lesson) %></div>
+</div>

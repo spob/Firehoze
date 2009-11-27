@@ -33,19 +33,15 @@
           </ul>
 
           <div class="nested-navigation-panes">
-            <div>
+            <div class="clearfix">
               <%= render :partial => "lessons/v2/ajaxed_lessons", :locals => { :lessons => @latest_browsed, :pane => :latest_browsed } %>
-              <div class="clear"></div>
             </div>
-            <div>
-              <%= render :partial => "lessons/v2/ajaxed_lessons", :locals => { :lessons => @wishlist, :pane => :wishlist } %>
-              <div class="clear"></div>
-            </div>
-            <div>
+            <div class="clearfix">
               <%= render :partial => "lessons/v2/ajaxed_lessons", :locals => { :lessons => @owned, :pane => :owned } %>
-              <div class="clear"></div>
             </div>
-
+            <div class="clearfix">
+              <%= render :partial => "lessons/v2/ajaxed_lessons", :locals => { :lessons => @wishlist, :pane => :wishlist } %>
+            </div>
           </div><!-- end (interior) panes -->
         </div><!-- end lessons_nested -->
       </div><!-- end lessons pane -->
@@ -61,9 +57,8 @@
       </div><!-- end groups pane -->
 
       <% # FOLLOWED INSTRUCTORS -%>
-      <div>
+      <div class="clearfix">
         <%= render :partial => 'followed_instructors', :locals => { :followed_instructors => @followed_instructors } %>
-        <div class="clear"></div>
       </div><!-- end followed instructor pane -->
     </div><!-- end panes -->
   </div><!-- end my-stuff -->
