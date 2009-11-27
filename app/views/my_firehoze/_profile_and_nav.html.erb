@@ -3,6 +3,13 @@
   <div id="content">
     <h3><%= user.full_name %>'s firehoze <%= link_to image_tag("icons/profile-16.png", :alt => "your public profile", :class => "profile"), user_path(user),  :title => "your public profile", :class => "no-border" %></h3>
     <%= render :partial => 'nav' %>
-    <%= render :partial => 'balance', :locals => { :user => user} %>
+    <div id="balance"><%= render :partial => 'balance', :locals => { :user => user} %></div>
+    <div id="action">
+      <% if user.verified_instructor? %>
+        <%= link_to 'Create Lesson  &raquo;', new_lesson_path, :class => 'awesome large blue button' %>
+      <% else %>
+        <%= button_to "Become an Instructor  &raquo;", instructor_signup_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :method => :get, :class => 'awesome large steel-blue button' %>
+      <% end %>
+    </div>
   </div>
 </div>

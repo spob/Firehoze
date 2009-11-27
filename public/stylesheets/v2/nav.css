@@ -25,6 +25,11 @@
     right:17px;
 }
 
+#profile-box #content #action {
+    position: absolute;
+    bottom:-2px;
+    right:15px;
+}
 
 /* Profile links */
 ul.third-level-nav {
