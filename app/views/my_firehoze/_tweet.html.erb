@@ -1,1 +1,1 @@
-<li class="<%= cycle :odd, :even %>"><strong>Posted <%= time_ago_in_words tweet.posted_at %> ago:</strong> <%= tweet.tweet_text %></li>
+<li class="<%= cycle :odd, :even %>"><strong>Posted <%= time_ago_in_words tweet.posted_at %> ago:</strong> <%= auto_link(tweet.tweet_text) %></li>
