@@ -1,7 +1,7 @@
 /* TOP CENTER */
-.lesson-tooltip {
-    z-index:43000;
+div.lesson-tooltip {
     position:relative;
+    z-index:9000;
     display:none;
     background: url('/stylesheets/v2/images/tooltip/black-arrow-big.png') no-repeat scroll 0 0;
     height:163px;

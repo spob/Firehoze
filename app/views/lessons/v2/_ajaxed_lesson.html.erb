@@ -1,6 +1,6 @@
 <div class="lesson-container">
   <%= img_tag_lesson_tn(ajaxed_lesson, :small ) %>
-  <%= render :partial => 'lessons/v2/tooltip', :locals => { :lesson => ajaxed_lesson } %>
+  <%= render :partial => 'lessons/v2/tooltip', :locals => { :lesson => ajaxed_lesson } unless g_browser_is?( :name => 'ie') %>
   <div class="duration transparent"><%= ChronicDuration.output(ajaxed_lesson.finished_video_duration/1000, :format => :chrono) unless ajaxed_lesson.finished_video_duration.nil?-%></div>
   <div class="title"><%= link_to truncate(h(ajaxed_lesson.title), :length => 40), lesson_path(ajaxed_lesson), :title => ajaxed_lesson.synopsis %></div>
 </div>

@@ -1,6 +1,7 @@
 /* root element for tabs  */
 .tab-container {
     position:relative;
+		z-index:1;
     margin-bottom: 17px;
 }
 
@@ -14,6 +15,8 @@
 }
 
 ul.tabs {
+  position:relative;
+	z-index:1;
     margin:0 !important;
     padding:0;
     height:30px;
@@ -46,7 +49,6 @@ ul.tabs a {
     -moz-border-radius-topright:4px;
     -webkit-border-top-left-radius:4px;
     -webkit-border-top-right-radius:4px;
-    position:relative;
     top:1px;
 }
 
