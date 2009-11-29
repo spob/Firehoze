@@ -6,16 +6,13 @@
     height:62px;
 }
 
-#profile-box, #profile-box a {
-    color:#333;
-}
-
 #profile-box .avatar {
     float:left;
     border: solid 1px #ccc;
 }
 
 #profile-box #content {
+    padding:0;
     margin:0 0 0 80px;
 }
 
@@ -26,9 +23,10 @@
 }
 
 #profile-box #content #action {
+    padding:0;
     position: absolute;
-    bottom:-2px;
-    right:15px;
+    bottom:17px;
+    right:17px;
 }
 
 /* Profile links */

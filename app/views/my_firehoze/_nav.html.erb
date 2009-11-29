@@ -20,16 +20,10 @@ instructor_link = [:instructor, {
   }]
 
 top_level_navigation << instructor_link if current_user.verified_instructor?
-nav_count = 0
 %>
 
-<ul class="third-level-nav">
-  <% top_level_navigation.each do |key, item|
-    css = []
-    nav_count += 1
-    css << "last" if nav_count == top_level_navigation.size
-    css << "current" if @secondary_nav_current.to_s == key.to_s
-  %>
-    <li<%= " class='#{css.join(" ").to_s}'" unless css.empty? %>><%= link_to item[:name], item[:location] %></li>
+<div class="third-level-nav">
+  <% top_level_navigation.each do |key, item| %>
+    <%= link_to item[:name], item[:location], :class => "rounded #{'current' if @secondary_nav_current.to_s == key.to_s}" %>
   <% end %>
-</ul>
+</div>

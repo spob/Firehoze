@@ -16,14 +16,14 @@
     border:0 none;
     margin-right: 6px;
     text-decoration: none;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
 }
 
 .nested-navigation ul.links li a:link,
 .nested-navigation ul.links li a:visited {
     color: #666;
-    background: #CCCCCC;
+    background: #E3E3E3;
     padding:4px 20px 6px 20px;
     letter-spacing: 0.05em;
     font-weight: normal;
@@ -33,12 +33,47 @@
 
 .nested-navigation ul.links li a:hover {
     color: #F2F2F2;
-    background: #737373;
+    background: #999;
 }
 
 .nested-navigation ul.links li a.current {
     color: #F2F2F2;
-    background: #737373;
+    background: #999;
+}
+
+.nested-navigation-panes { }
+
+
+
+/* Rounded links */
+
+a.rounded  {
+    border:0 none;
+    margin-right: 6px;
+    text-decoration: none;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+}
+
+a.rounded:link,
+a.rounded:visited {
+    color: #666;
+    background: #E3E3E3;
+    padding:4px 20px 6px 20px;
+    letter-spacing: 0.05em;
+    font-weight: normal;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a.rounded:hover {
+    color: #F2F2F2;
+    background: #999999;
+}
+
+a.rounded.current {
+    color: #F2F2F2;
+    background: #999;
 }
 
 .nested-navigation-panes { }

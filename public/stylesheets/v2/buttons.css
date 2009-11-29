@@ -32,6 +32,7 @@ a.button.awesome {
 
     padding: 5px 10px 6px;
     font-size: 13px;
+    margin:0;
 
     /* IE only stuff */
     margin: 0 -2px -2px 0 \9;
