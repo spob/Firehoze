@@ -1,5 +1,6 @@
 /* PANES */
 .panes {
+    z-index:100;
     position:relative;
     margin:0;
     padding:0;

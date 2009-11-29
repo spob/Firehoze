@@ -1,0 +1,53 @@
+.lesson-tooltip {
+    z-index:43000;
+    position:relative;
+    display:none;
+    background: url('/stylesheets/v2/images/tooltip/black_arrow_big.png') no-repeat scroll 0 0;
+    height:163px;
+    padding:40px 30px 10px 30px;
+    width:310px;
+    font-size:11px;
+    color:#fff;
+}
+
+
+/* override the arrow image of the tooltip */
+.lesson-tooltip.bottom {
+    background: url('/stylesheets/v2/images/tooltip/black_arrow_big_bottom.png') no-repeat scroll 0 0;
+    height:163px;
+    padding:70px 30px 10px 30px;
+    width:310px;
+}
+
+.lesson-tooltip.bottom {
+    background: url('/stylesheets/v2/images/tooltip/black_arrow_big_bottom.png') no-repeat scroll 0 0;
+}
+
+.lesson-tooltip.bottom .ajaxful-rating-wrapper {
+    position:absolute;
+    top:48px;
+}
+
+.lesson-tooltip a {
+    color:#ad4;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.lesson-tooltip .ajaxful-rating-wrapper {
+    position:absolute;
+    top:22px;
+    left:24px;
+}
+
+.lesson-tooltip .duration {
+    position:absolute;
+    top:22px;
+    right:24px;
+    text-align:right;
+    background:none;
+}
+
+.lesson-tooltip .content {
+    margin:10px 0 0 0;
+}

@@ -60,7 +60,7 @@ module LessonsHelper
     tn_options.merge!(options)
 
     img_src = lesson.thumbnail_url ? lesson.sized_thumbnail_url(size) : "videos/video_placeholder_#{size}.jpg"
-    link_to(image_tag(img_src, tn_options), lesson_path(lesson))
+    link_to(image_tag(img_src, tn_options), lesson_path(lesson), :class => 'link-to-lesson')
   end
 
   def number_of_students_phrase(lesson)

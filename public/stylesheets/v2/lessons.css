@@ -1,6 +1,13 @@
 .lessons-container {
     padding:0 0 0 0px;
 }
+
+.lessons-container .title {
+    font-size:12px;
+    color:#fff;
+    font-weight:bold;
+}
+
 .lesson-container {
     position:relative;
     float:left;
