@@ -12,7 +12,7 @@ class LessonsController < ApplicationController
 
   verify :method => :post, :only => [ :create, :convert, :unreject ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update, :conversion_notify ], :redirect_to => :home_path
-  before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :update, :watch, :unreject ]
+  before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :update, :watch, :unreject, :show_lesson_status ]
   before_filter :set_per_page, :only => [ :ajaxed, :index, :list, :tabbed, :tagged_with ]
   before_filter :set_collection, :only => [ :ajaxed, :list, :tabbed ]
 
@@ -188,6 +188,10 @@ class LessonsController < ApplicationController
       flash[:error] = t 'lesson.access_message'
       redirect_to lesson_path(@lesson)
     end
+  end
+
+  def show_lesson_status
+    render :inline => "<%= translate('lesson.#{@lesson.status}') %> <%= image_tag('general/spinners/ajax-loader_small_arrows.gif') if @lesson.status == LESSON_STATUS_CONVERTING %>"
   end
 
   # SUPPORTING AJAX TABS
