@@ -3,12 +3,12 @@
 <% @secondary_nav_current = params[:action] %>
 
 <div id="my_firehoze" class="span-12 last">
-  <% # TOP LEVEL NAVIGATION -%>
+  <% # TOP LEVEL NAVIGATION  -%>
   <div class="span-12 append-bottom">
     <%= render :partial => 'profile_and_nav', :locals => { :user => current_user } %>
   </div>
 
-  <% # ACCOUNT HISTORY -%>
+  <% # ACCOUNT HISTORY  -%>
   <div id="account_history" class="span-12 last">
     <!-- the tabs -->
 
@@ -21,10 +21,10 @@
     </div>
 
     <!-- tab "panes" -->
-    <% # CREDIT HISTORY -%>
+    <% # CREDIT HISTORY  -%>
     <div class="panes">
 
-      <% # ORDER HISTORY -%>
+      <% # ORDER HISTORY  -%>
       <div>
         <%= render :partial => "orders/v2/orders", :locals => { :orders => @orders, :pane => :orders } %>
       </div>
@@ -40,24 +40,44 @@
 
           <div class="nested-navigation-panes">
             <div>
-              <p>Available credits are available to use to purchase videos.</p>
-              <%= render :partial => "credits/credits", :locals => { :user => current_user, :credits => @available_credits, :show_redeemed => false, :show_expired => false, :pane => :available } %>
+              <p>
+                Available credits are available to use to purchase lessons.
+                <% if @available_credits.empty? %>
+                    You have no available credits...but you can easily purchase credits in
+                    the <%= link_to "online store", store_path(0) %>.
+                <% end %>
+              </p>
+              <%= render :partial => "credits/credits", :locals => { :user => current_user, :credits => @available_credits, :show_redeemed => false, :show_expired => false, :pane => :available } if @available_credits.present? %>
               <div class="clear"></div>
             </div>
             <div>
-              <p>Used credits are credits that you have used to purchase videos.</p>
-              <%= render :partial => "credits/credits", :locals => { :user => current_user, :credits => @used_credits, :show_redeemed => true, :show_expired => false, :pane => :used } %>
+              <p>
+                Used credits are credits that you have redeemed to purchase lessons.
+                <% if @used_credits.empty? %>
+                    You have not yet redeemed any credits.
+                <% end %>
+              </p>
+              <%= render :partial => "credits/credits", :locals => { :user => current_user, :credits => @used_credits, :show_redeemed => true, :show_expired => false, :pane => :used } if @used_credits.present? %>
               <div class="clear"></div>
             </div>
             <div>
-              <p>Credits expire if they are unused and you have not logged in for one year.</p>
-              <%= render :partial => "credits/credits", :locals => { :user => current_user, :credits => @expired_credits, :show_redeemed => false, :show_expired => true, :pane => :expired } %>
+              <p>
+                Credits expire if they are unused and you have not logged in for one year.
+                <% if @expired_credits.empty? %>
+                    Phew...you don't have any credits that have expired.
+                <% end %>
+              </p>
+              <%= render :partial => "credits/credits", :locals => { :user => current_user, :credits => @expired_credits, :show_redeemed => false, :show_expired => true, :pane => :expired } if @expired_credits.present? %>
               <div class="clear"></div>
             </div>
-          </div><!-- end secondary panes -->
+          </div>
+          <!-- end secondary panes -->
         </div>
-      </div><!-- end credit history -->
+      </div>
+      <!-- end credit history -->
 
-    </div><!-- end panes -->
-  </div><!-- end my-account -->
+    </div>
+    <!-- end panes -->
+  </div>
+  <!-- end my-account -->
 </div>

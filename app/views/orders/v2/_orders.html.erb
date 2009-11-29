@@ -12,6 +12,6 @@
         <%= render :partial => 'orders/v2/order', :collection => orders %>
       </table>
   <% else %>
-      No lessons
+      You have not placed any orders. Why not buy some credits now in the <%= link_to "online store", store_path(0) %>?
   <% end %>
 </div>
