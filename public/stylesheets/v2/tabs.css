@@ -1,7 +1,6 @@
 /* root element for tabs  */
 .tab-container {
     position:relative;
-		z-index:1;
     margin-bottom: 17px;
 }
 
@@ -15,8 +14,6 @@
 }
 
 ul.tabs {
-  position:relative;
-	z-index:1;
     margin:0 !important;
     padding:0;
     height:30px;
@@ -34,6 +31,7 @@ ul.tabs li {
 
 /* link inside the tab */
 ul.tabs a {
+    position:relative;
     float:left;
     font-size:13px;
     display:block;
