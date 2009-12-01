@@ -28,7 +28,6 @@ $(function() {
     });
 
     $('div.category-container').cornerz({
-        radius: 8,
-        background: "#FFF"
+        radius: 8
     });
 });
