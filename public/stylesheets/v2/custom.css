@@ -28,6 +28,8 @@ div {
     /*text-align:justify*/
 }
 
+h1,h2,h3,h4,h5,h6 { font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif; }
+
 /* psuedo-header classes */
 .h1,.h2,.h3,.h4,.h5,.h6 { font-weight: normal; color: #111; }
 .h1 { font-size: 3em; line-height: 1; margin-bottom: 0.5em; }

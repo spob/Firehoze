@@ -1,0 +1,36 @@
+.widget-box-content.feature-lessons,
+.widget-box-content.tags {
+    padding:17px;
+}
+.widget-box-content.categories {
+    padding:17px 0 17px 17px;
+}
+.category-container {
+    float: left;
+    padding:12px;
+    margin: 0 17px 17px 0;
+    height: 45px;
+    width: 260px;
+    background:#e8f5fb;
+    color:#777;
+}
+.category-container {
+    font-weight:bold;
+}
+.category-container a {
+    text-decoration:none;
+    color:#2786c2;
+    font-weight:bold;
+}
+.category-container h3 {
+    margin-bottom:11px;
+}
+.category-container h3 a:hover {
+    text-decoration:underline;
+    color:#17587F;
+    border:0 none;
+}
+.category-container:hover {
+    background:#bee5fc;
+    color:#555;
+}

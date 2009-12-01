@@ -7,7 +7,9 @@
       <div class="widget-box-header banner">
         <span class="h4">Firehoze Categories</span>
       </div>
-      <%= render :partial => 'categories/v2/category', :collection => @categories %>
+      <div class="widget-box-content categories clearfix">
+        <%= render :partial => 'categories/v2/category', :collection => @categories %>
+      </div>
     </div>
   </div>
   <div class="span-4 last">
@@ -15,7 +17,7 @@
       <div class="widget-box-header">
         <span class="h4">Featured Lessons</span>
       </div>
-      <div class="widget-box-content" id="latest_firehoze_tweets">
+      <div class="widget-box-content feature-lessons">
         Some featured lessons
       </div>
     </div>
@@ -24,7 +26,7 @@
       <div class="widget-box-header">
         <span class="h4">Tags</span>
       </div>
-      <div class="widget-box-content">
+      <div class="widget-box-content tags">
         <%= render :partial => "lessons/v2/tag_cloud", :object => Lesson.tag_counts %>
       </div>
     </div>

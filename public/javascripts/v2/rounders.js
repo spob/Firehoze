@@ -27,4 +27,8 @@ $(function() {
         background: "#FFF"
     });
 
+    $('div.category-container').cornerz({
+        radius: 8,
+        background: "#FFF"
+    });
 });
