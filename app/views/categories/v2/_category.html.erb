@@ -1,0 +1,4 @@
+<div class="category-container">
+  <p><%= link_to category.name, category_path(category) %></p>
+  <%= content_tag(:p, child_categories_links(category)) if category.has_children? %>
+</div>

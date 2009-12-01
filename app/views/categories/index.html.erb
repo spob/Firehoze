@@ -1,9 +1,32 @@
-<% title "Browse by Categories" -%>
+<% title "Browse Categories" -%>
 <% @current = 'lessons' %>
 
-<h3>Browse by Categories</h3>
+<div class="span-12 last">
+  <div class="span-8">
+    <div class="widget-box">
+      <div class="widget-box-header banner">
+        <span class="h4">Firehoze Categories</span>
+      </div>
+      <%= render :partial => 'categories/v2/category', :collection => @categories %>
+    </div>
+  </div>
+  <div class="span-4 last">
+    <div class="widget-box">
+      <div class="widget-box-header">
+        <span class="h4">Featured Lessons</span>
+      </div>
+      <div class="widget-box-content" id="latest_firehoze_tweets">
+        Some featured lessons
+      </div>
+    </div>
 
-<% for category in @categories %>
-    <%= link_to category.name, category_path(category) %>
-    <br/><br/>
-<% end %>
+    <div class="widget-box">
+      <div class="widget-box-header">
+        <span class="h4">Tags</span>
+      </div>
+      <div class="widget-box-content">
+        <%= render :partial => "lessons/v2/tag_cloud", :object => Lesson.tag_counts %>
+      </div>
+    </div>
+  </div>
+</div>

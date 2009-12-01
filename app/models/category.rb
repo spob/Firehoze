@@ -31,6 +31,10 @@ class Category < ActiveRecord::Base
     self.child_categories.empty? and self.lessons.empty?
   end
 
+  def has_children?
+    self.child_categories.present?
+  end
+
   def self.explode
     @@counter = 0
     Category.transaction do
