@@ -27,13 +27,17 @@ class ActiveSupport::TestCase
   # test cases which use the @david style and don't mind the speed hit (each
   # instantiated fixtures translates to a database query per test method),
   # then set this back to true.
-  self.use_instantiated_fixtures  = false
+  self.use_instantiated_fixtures = false
 
   # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
   #
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
   fixtures :all
+
+  Webrat.configure do |config|
+    config.mode = :rails
+  end
 
   # Added the following to validate paperclip
   # See http://giantrobots.thoughtbot.com/2008/6/3/testing-paperclip-with-shoulda
@@ -53,5 +57,4 @@ class ActiveSupport::TestCase
       assert_equal Paperclip::Attachment, klass.new.send(attachment.to_sym).class
     end
   end
-
 end
