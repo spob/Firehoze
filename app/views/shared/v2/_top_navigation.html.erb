@@ -18,7 +18,6 @@
         <a href="#">Credits</a>
         <ul class="subnav">
           <li><%= link_to "Buy Credits", store_path(0) %></li>
-          <%= content_tag(:li, link_to("Gift Certificates (#{current_user.gift_certificates.active.count})", gift_certificates_path)) unless current_user.gift_certificates.active.empty? %>
           <%= content_tag(:li, link_to('Shopping Cart', cart_path(@current_cart))) if show_cart? %>
         </ul>
       </li>
