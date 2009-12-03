@@ -64,8 +64,20 @@ class CategoriesController < ApplicationController
     else
       @category = Category.find(id)
       category_id = @category.id
+      @child_categories = Category.parent_category_id_equals(@category.id).ascend_by_sort_value
+      if @category.parent_category.nil?
+        @sibling_categories = Category.root.ascend_by_sort_value
+      else
+        @sibling_categories = Category.parent_category_id_equals(@category.parent_category.id).ascend_by_sort_value
+      end
 
-      @lesson_format = 'wide'
+#      @sub_categories = []
+#      if @category
+#      else
+#        @sub_categories = Category.root.ascend_by_sort_value
+#      end
+
+#      @lesson_format = 'wide'
       @lessons =
               case session[:browse_sort]
                 when 'most_popular'
@@ -76,6 +88,7 @@ class CategoriesController < ApplicationController
                   session[:browse_sort] = 'newest'
                   Lesson.ready.newest.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
               end
+# todo can we get rid of the following line?
       @collection = session[:browse_sort]
 
       @groups = Group.public.by_category(category_id).ascend_by_name.paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
@@ -103,7 +116,7 @@ class CategoriesController < ApplicationController
 
   def layout_for_action
     if %w(list_admin edit).include?(params[:action])
-      'admin'    
+      'admin'
     elsif %w(index).include?(params[:action])
       'application_v2'
     else
