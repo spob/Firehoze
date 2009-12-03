@@ -1,7 +1,7 @@
 $(function() {
     $('#marketing_fpo').cornerz({
         radius: 5,
-        background: "white"
+        background: "#FFF"
     });
 
     $('#tag_cloud, #bought_this_video_also_bought, #what_do_students_ultimately').cornerz({
@@ -29,5 +29,9 @@ $(function() {
 
     $('div.category-container').cornerz({
         radius: 8
+    });
+
+    $('ul#breadcrumb').cornerz({
+        radius: 5
     });
 });

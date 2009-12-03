@@ -345,3 +345,44 @@ div.review .actions { }
 div.review #stars {
     margin:5px 0 0 0;
 }
+
+
+/* BREADCRUMB */
+#breadcrumb {
+    font: 12px Arial, Helvetica, sans-serif; 
+    height:30px;
+    line-height:30px;
+    color:#9b9b9b;
+    width:100%;
+    overflow:hidden;
+    margin:0 0 17px 0;
+    padding:0px;
+    background:transparent url('images/breadcrumbs/bc_bg.png') repeat-x scroll 0 0;
+    /* border:solid 1px #cacaca;*/
+}
+
+#breadcrumb li {
+    list-style-type:none;
+    float:left;
+    padding-left:10px;
+    background-image:url('images/breadcrumbs/bc_separator.png');
+    background-repeat:no-repeat;
+    background-position:right;
+    padding-right: 15px;
+}
+
+#breadcrumb a {
+    height:30px;
+    display:block;
+    text-decoration: none;
+    color:#454545;
+}
+
+.home {
+    border:none;
+    margin: 8px 0px;
+}
+
+#breadcrumb a:hover {
+    color:#35acc5;
+}

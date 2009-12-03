@@ -3,21 +3,20 @@
 <% @current = 'lessons' %>
 
 <div class="span-12 last">
-  <%= browse_category_navigation %>
-  <%= render :partial => "categories/v2/breadcrumb" %>
+  <%= render :partial => "categories/v2/breadcrumbs", :object => @category %>
   <div class="span-8">
     <div class="widget-box">
       <div class="widget-box-header banner">
         <span class="h4">Firehoze Categories</span>
       </div>
       <div class="widget-box-content clearfix">
-
         <% form_tag category_path(@category ? @category : 'all'), :method => :get do %>
           <div>
             Sort By:
             <%= select_tag :sort_by, options_for_select(CategoriesController.sort_by, session[:browse_sort]), { :onchange => "submit();"} %>
           </div>
         <% end %>
+
         <div class="clear append-0 span-29" id="tagged_with_tabs">
           <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
             <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
@@ -30,9 +29,6 @@
             </div>
           </div>
         </div>
-
-
-
       </div>
     </div>
   </div>
@@ -61,15 +57,15 @@
 <div style="display:none">
   <h3>Groups</h3>
 
-  <%= link_to "New Group", new_group_path %>
+<%#= link_to "New Group", new_group_path %>
   <table>
     <tr>
       <th colspan="2">Group</th>
       <th>Relationship</th>
       <th>Category</th>
     </tr>
-    <%= render :partial => "categories/group", :collection => @groups, :locals => { :show_member => true } %>
+<%#= render :partial => "categories/group", :collection => @groups, :locals => { :show_member => true } %>
   </table>
 
-  <%= will_paginate @groups %>
+<%#= will_paginate @groups %>
 </div>
