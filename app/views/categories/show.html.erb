@@ -2,6 +2,9 @@
 
 <%= browse_category_navigation %>
 
+<%= render :partial => "categories/v2/breadcrumb" %>
+<%= render :partial => "categories/v2/tree_view" %>
+
 <% form_tag category_path(@category ? @category : 'all'), :method => :get do %>
     <div>
       Sort By:
