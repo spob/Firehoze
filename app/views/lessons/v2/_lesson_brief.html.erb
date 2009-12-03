@@ -1,6 +1,6 @@
 <% lesson = object %>
 <li class="<%= cycle :odd, :even %>">
   <%= link_to(avatar_tag(lesson.instructor, :size => :tiny), lesson_path(lesson)) %>
-  <div class="title"><%= link_to h(truncate(lesson.title, :length => 38)), lesson_path(lesson), :class => :lesson_title_link %></div>
-  <div class="synopsis"><%= truncate(h(lesson.synopsis), :length => 38) %></div>
+  <div class="title"><%= link_to h(truncate(lesson.title, :length => 36)), lesson_path(lesson), :class => :lesson_title_link %></div>
+  <div class="synopsis"><%= truncate(h(lesson.synopsis), :length => 36) %></div>
 </li>
