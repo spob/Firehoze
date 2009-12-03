@@ -1,10 +1,16 @@
-<% sibling_categories.each do |sibling| %>
+<ul>
+  <% sibling_categories.each do |sibling| %>
     <% if sibling == category %>
-        <b><%= sibling.name %></b><br/>
-        <% sibling.child_categories.ascend_by_sort_value.each do |child| %>
-            ---<%= link_to h(child.name), category_path(child).downcase %><br/> 
+      <%= content_tag :li, sibling.name, :class => 'current'  %>
+      <% content_tag :li do -%>
+        <% content_tag :ul, :class => "clildren" do -%>
+          <% sibling.child_categories.ascend_by_sort_value.each do |child| %>
+            <li><%= link_to h(child.name), category_path(child).downcase %></li>
+          <% end %>
         <% end %>
+      <% end if sibling.has_children? %>
     <% else %>
-        <%= link_to h(sibling.name), category_path(sibling).downcase  %><br/>
+      <li><%= link_to h(sibling.name), category_path(sibling).downcase  %></li>
     <% end %>
-<% end %>
+  <% end %>
+</ul>
