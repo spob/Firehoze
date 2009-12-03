@@ -65,10 +65,12 @@ class LessonTest < ActiveSupport::TestCase
         @lesson.save!
         assert @lesson.ready?
         @lessons = Lesson.lesson_recommendations(Factory.create(:user), 5)
+        @lessons2 = Lesson.lesson_recommendations(nil, 5)
       end
 
       should "retrieve lessons" do
         assert !@lessons.empty?
+        assert !@lessons2.empty?
       end
     end
 
