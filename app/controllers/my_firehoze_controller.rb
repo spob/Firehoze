@@ -26,7 +26,7 @@ class MyFirehozeController < ApplicationController
     fetch_followed_instructors
     respond_to do |format|
       format.html
-      format.js do 
+      format.js do
         case params[:pane]
         when 'owned', 'latest_browsed', 'wishlist'
           render :action => "lessons"
@@ -44,7 +44,7 @@ class MyFirehozeController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.js do 
+      format.js do
         case params[:pane]
         when 'lessons_instructed_tn_view'
           render :action => "lessons"
@@ -76,7 +76,6 @@ class MyFirehozeController < ApplicationController
     session[:browse_category_id] = nil if params[:reset] == "y"
   end
 
-  #==================================== LATEST NEWS FETCHERS ========================================
   def fetch_activities
     activites_per_page = 8
     @activities = case set_session_param(:browse_activities_by, "ALL")
@@ -95,9 +94,6 @@ class MyFirehozeController < ApplicationController
     @tweets = Tweet.list_tweets(FIREHOZE_TWEETS, 10)
   end
 
-  #================================== END LATEST NEWS FETCHERS ======================================
-
-  #==================================== MY STUFF FETCHERS ===========================================
   def fetch_my_stuff_lessons
     @latest_browsed = Lesson.fetch_latest_browsed(current_user, @category_id, @per_page, params[:page]) if retrieve_by_pane("latest_browsed")
     @owned = Lesson.fetch_owned(current_user, @per_page, params[:page]) if retrieve_by_pane("owned")
@@ -116,10 +112,6 @@ class MyFirehozeController < ApplicationController
     @followed_instructors = current_user.followed_instructors.active.paginate(:per_page => @per_page, :page => params[:page]) if retrieve_by_pane("followed_instructors")
   end
 
-  #================================== END MY STUFF FETCHERS =========================================
-
-
-  #=================================== INSTRUCTOR FETCHERS ===========================================
   def fetch_instructed_lessons
     if retrieve_by_pane("lessons_instructed_table_view") or retrieve_by_pane("lessons_instructed_tn_view")
       @instructed_lessons = Lesson.fetch_instructed_lessons(current_user, @category_id, @per_page, params[:page])
@@ -135,9 +127,6 @@ class MyFirehozeController < ApplicationController
     @payments = current_user.payments.paginate(:per_page => @per_page, :page => params[:page])
   end
 
-  #================================== END INSTRUCTOR FETCHERS ========================================
-
-  #================================== ACCOUNT HISTORY FETCHERS ========================================
   def fetch_credits
     @used_credits = current_user.credits.redeemed_at_not_null.expired_at_null(:include => [:sku, :line_item, :lesson], :order => "created_at ASC")
     @expired_credits = current_user.credits.expired_at_not_null(:include => [:sku, :line_item, :lesson], :order => "created_at ASC")
@@ -151,8 +140,6 @@ class MyFirehozeController < ApplicationController
   def fetch_gift_certificates
     @gift_certificates = current_user.gift_certificates.ascend_by_id.active
   end
-
-  #================================ END ACCOUNT HISTORY FETCHERS ======================================
 
   def layout_for_action
     'application_v2'
