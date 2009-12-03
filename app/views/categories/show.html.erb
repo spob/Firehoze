@@ -3,7 +3,7 @@
 <%= browse_category_navigation %>
 
 <%= render :partial => "categories/v2/breadcrumb" %>
-<%= render :partial => "categories/v2/tree_view" %>
+<%= render :partial => "categories/v2/tree_view", :locals => { :category => @category, :sibling_categories => @sibling_categories } %>
 
 <% form_tag category_path(@category ? @category : 'all'), :method => :get do %>
     <div>
