@@ -79,10 +79,74 @@ div.duration {
 }
 
 /* active item */
+/*
 .scrollable .active {
-    /*
-    border:1px solid #ccc;
-    z-index:9999;
+border:1px solid #ccc;
+z-index:9999;
+position:relative;
+}
+*/
+
+
+/* Category Round Up*/
+.widget-box-content.categories {
+    padding:17px 0 0 17px;
+}
+.category-container {
+    float: left;
+    padding:12px;
+    margin: 0 17px 17px 0;
+    height: 45px;
+    width: 260px;
+    background:#e8f5fb;
+    color:#777;
+}
+.category-container {
+    font-weight:bold;
+}
+.category-container a {
+    text-decoration:none;
+    color:#2786c2;
+    font-weight:bold;
+}
+.category-container h3 {
+    margin-bottom:11px;
+}
+.category-container h3 a:hover {
+    text-decoration:underline;
+    color:#17587F;
+    border:0 none;
+}
+.category-container:hover {
+    background:#bee5fc;
+    color:#555;
+}
+
+/* Tags box */
+.widget-box-content.tags {
+    padding:17px;
+}
+
+/* Lessons you may like */
+.lessons-you-may-like .lesson_brief  {
+    font-size:11px;
+}
+
+.lessons-you-may-like .lesson_brief .title {
+    font-style:italic;
+}
+
+.widget-box-content .lesson_brief li {
     position:relative;
-    */
+    margin: 0;
+    padding: 8px 8px 8px 54px;
+    display:block;
+    min-height: 45px;
+}
+
+.widget-box-content .lesson_brief li img.avatar {
+    border: solid 1px #E3E3E3;
+    position:absolute;
+    left:8px;
+    top:8px;
 }

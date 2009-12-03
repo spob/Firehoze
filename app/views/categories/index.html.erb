@@ -17,8 +17,10 @@
       <div class="widget-box-header">
         <span class="h4">Lessons You May Like</span>
       </div>
-      <div class="widget-box-content feature-lessons">
-        <%= render :partial => "lessons/lesson_brief", :collection => @suggested_lessons %>
+      <div class="widget-box-content lessons-you-may-like">
+        <ul class="lesson_brief">
+          <%= render :partial => "lessons/v2/lesson_brief", :collection => @suggested_lessons %>
+        </ul>
       </div>
     </div>
 

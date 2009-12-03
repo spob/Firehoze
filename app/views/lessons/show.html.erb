@@ -104,7 +104,7 @@
     <% if @lesson.instructor.instructed_lessons.size > 1 %>
         <div id="instructor_accordion_container" class="append-bottom">
           <div id="instructor_accordion">
-            <h3><a href="#">Lessons by <%= truncate(h(@lesson.instructor.login), 27) %></a></h3>
+            <h3><a href="#">Lessons by <%= truncate(h(@lesson.instructor.login), :length => 27) %></a></h3>
 
             <div class="content">
               <%= render :partial => "lessons/lesson_brief", :collection => (@lesson.instructor.instructed_lessons.reject{ |lesson| lesson == @lesson }) %>
