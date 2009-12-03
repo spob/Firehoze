@@ -15,8 +15,8 @@ class CategoriesController < ApplicationController
   # there is only one type
 
   @@sort_by = [ [ 'Most Popular', 'most_popular' ],
-                [ 'Highest Rated', 'highest_rated' ],
-                [ 'Newest', 'newest'] ]
+    [ 'Highest Rated', 'highest_rated' ],
+    [ 'Newest', 'newest'] ]
 
   def self.sort_by
     @@sort_by
@@ -34,7 +34,6 @@ class CategoriesController < ApplicationController
       redirect_to list_admin_categories_path
     else
       error_msg = ""
-#      @category.errors.each { |attr, msg| error_msg = error_msg + "#{error_msg == "" ? "" : ", "}#{attr} #{msg}" }
       flash[:error] = t('category.create_failed', :msg => error_msg)
       index
       redirect_to list_admin_categories_path
@@ -65,31 +64,24 @@ class CategoriesController < ApplicationController
     else
       @category = Category.find(id)
       category_id = @category.id
-#      @child_categories = Category.parent_category_id_equals(@category.id).ascend_by_sort_value
+
       if @category.parent_category.nil?
         @sibling_categories = Category.root.ascend_by_sort_value
       else
         @sibling_categories = Category.parent_category_id_equals(@category.parent_category.id).ascend_by_sort_value
       end
 
-#      @sub_categories = []
-#      if @category
-#      else
-#        @sub_categories = Category.root.ascend_by_sort_value
-#      end
+      @lessons = case session[:browse_sort]
+      when 'most_popular'
+        Lesson.ready.most_popular.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+      when 'highest_rated'
+        Lesson.ready.highest_rated.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+      else
+        session[:browse_sort] = 'newest'
+        Lesson.ready.newest.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+      end
 
-#      @lesson_format = 'wide'
-      @lessons =
-              case session[:browse_sort]
-                when 'most_popular'
-                  Lesson.ready.most_popular.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
-                when 'highest_rated'
-                  Lesson.ready.highest_rated.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
-                else
-                  session[:browse_sort] = 'newest'
-                  Lesson.ready.newest.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
-              end
-# todo can we get rid of the following line?
+      #FIXME can we get rid of the following line?
       @collection = session[:browse_sort]
 
       @groups = Group.public.by_category(category_id).ascend_by_name.paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
@@ -107,8 +99,8 @@ class CategoriesController < ApplicationController
 
   def explode
     RunOncePeriodicJob.create!(
-            :name => 'Explode Categories',
-            :job => "Category.explode")
+      :name => 'Explode Categories',
+      :job => "Category.explode")
     flash[:notice] = t 'category.explosion_started'
     redirect_to list_admin_categories_path
   end
