@@ -165,13 +165,14 @@ class Lesson < ActiveRecord::Base
             ORDER BY l.rating_average DESC
       LIMIT ?
 END
-    lessons1 = Lesson.ready.find_by_sql([sql, VIDEO_STATUS_READY, user.id, user.id, limit])
+    lessons1 = []
     lessons2 = []
+    lessons1 = Lesson.ready.find_by_sql([sql, VIDEO_STATUS_READY, user.id, user.id, limit]) if user
     tmp_limit = limit * 2 - lessons1.size
     lessons2 = Lesson.ready.find(:all, :conditions => ["instructor_id <> ? and id not in (?) and id not in (?)",
-                                                       user.id,
+                                                       (user ? user.id : -1),
                                                        lessons1.collect(&:id) + [-1],
-                                                       user.lesson_ids + [-1]],
+                                                       (user ? user.lesson_ids : []) + [-1]],
                                  :limit => tmp_limit,
                                  :order => "rating_average DESC")
     all = lessons1 + lessons2
