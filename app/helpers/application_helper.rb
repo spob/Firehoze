@@ -126,18 +126,6 @@ module ApplicationHelper
       end
       buf = buf + " > " + @category.name
     end
-
-    buf = buf + "<br/>"
-
-    @categories = []
-    if @category
-      @categories = Category.parent_category_id_equals(@category.id).ascend_by_sort_value
-    else
-      @categories = Category.root.ascend_by_sort_value
-    end
-    @categories.each do |category|
-      buf = buf + "<br/>#{link_to category.name, category_path(category)}"
-    end
     buf
   end
 

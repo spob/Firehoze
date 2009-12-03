@@ -1,7 +1,10 @@
 <% @sibling_categories.each do |sibling| %>
     <% if sibling == @category %>
         <b><%= sibling.name %></b><br/>
+        <% sibling.child_categories.ascend_by_sort_value.each do |child| %>
+            ---<%= link_to h(child.name), category_path(child)%><br/> 
+        <% end %>
     <% else %>
-        <%= sibling.name %><br/>
+        <%= link_to h(sibling.name), category_path(sibling) %><br/>
     <% end %>
 <% end %>

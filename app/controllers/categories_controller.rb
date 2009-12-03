@@ -64,7 +64,7 @@ class CategoriesController < ApplicationController
     else
       @category = Category.find(id)
       category_id = @category.id
-      @child_categories = Category.parent_category_id_equals(@category.id).ascend_by_sort_value
+#      @child_categories = Category.parent_category_id_equals(@category.id).ascend_by_sort_value
       if @category.parent_category.nil?
         @sibling_categories = Category.root.ascend_by_sort_value
       else
