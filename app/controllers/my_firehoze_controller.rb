@@ -23,6 +23,7 @@ class MyFirehozeController < ApplicationController
     fetch_my_stuff_lessons
     fetch_reviews
     fetch_groups
+    fetch_gift_certificates
     fetch_followed_instructors
     respond_to do |format|
       format.html
@@ -113,6 +114,10 @@ class MyFirehozeController < ApplicationController
 
   def fetch_followed_instructors
     @followed_instructors = current_user.followed_instructors.active.paginate(:per_page => @per_page, :page => params[:page]) if retrieve_by_pane("followed_instructors")
+  end
+
+  def fetch_gift_certificates
+    @gift_certificates = current_user.gift_certificates.active.paginate(:per_page => @per_page, :page => params[:page]) if retrieve_by_pane("gift_certificates") 
   end
 
   #================================== END MY STUFF FETCHERS =========================================

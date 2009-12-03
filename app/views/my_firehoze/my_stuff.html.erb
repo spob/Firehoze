@@ -16,6 +16,7 @@
         <li><a href="#">Lessons</a></li>
         <li><a href="#reviews">Reviews</a></li>
         <li><a href="#groups">Groups</a></li>
+        <li><a href="#reviews">Gift Certificates</a></li>
         <li><a href="#followed_instructors">Followed Instructors</a></li>
       </ul>
       <%= image_tag("general/spinners/ajax-loader_small_spinner.gif", :class => "loader") %>
@@ -55,6 +56,11 @@
       <div class="no-nested-nav-potentially-paginated"><!-- start groups -->
         <%= render :partial => 'groups/v2/ajaxed_groups', :locals => { :groups => @groups, :pane => :groups } %>
       </div><!-- end groups pane -->
+
+      <% # GIFT CERTIFICATES -%>
+      <div class="no-nested-nav-potentially-paginated"><!-- start gift_certificates -->
+        <%= render :partial => 'gift_certificates/v2/ajaxed_gift_certificates', :locals => { :gift_certificates => @gift_certificates, :pane => :gift_certificates } %>
+      </div><!-- end gift certificates pane -->
 
       <% # FOLLOWED INSTRUCTORS -%>
       <div class="clearfix">
