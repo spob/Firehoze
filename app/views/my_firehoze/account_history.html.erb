@@ -3,12 +3,12 @@
 <% @secondary_nav_current = params[:action] %>
 
 <div id="my_firehoze" class="span-12 last">
-  <% # TOP LEVEL NAVIGATION  -%>
+  <% # TOP LEVEL NAVIGATION    -%>
   <div class="span-12 append-bottom">
     <%= render :partial => 'profile_and_nav', :locals => { :user => current_user } %>
   </div>
 
-  <% # ACCOUNT HISTORY  -%>
+  <% # ACCOUNT HISTORY    -%>
   <div id="account_history" class="span-12 last">
     <!-- the tabs -->
 
@@ -16,19 +16,21 @@
       <ul class="tabs">
         <li><a href="#">Orders</a></li>
         <li><a href="#">Credits</a></li>
+        <li><a href="#reviews">Gift Certificates</a></li>
       </ul>
       <%= image_tag("general/spinners/ajax-loader_small_spinner.gif", :class => "loader") %>
     </div>
 
     <!-- tab "panes" -->
-    <% # CREDIT HISTORY  -%>
     <div class="panes">
 
-      <% # ORDER HISTORY  -%>
+      <% # ORDER HISTORY    -%>
       <div>
         <%= render :partial => "orders/v2/orders", :locals => { :orders => @orders, :pane => :orders } %>
       </div>
+      <!-- end order history -->
 
+      <% # CREDIT HISTORY    -%>
       <div><!-- start credit history -->
         <div class="nested-navigation">
           <ul class="links">
@@ -76,6 +78,11 @@
       </div>
       <!-- end credit history -->
 
+      <% # GIFT CERTIFICATES   -%>
+      <div class="no-nested-nav-potentially-paginated"><!-- start gift_certificates -->
+        <%= render :partial => 'gift_certificates/v2/ajaxed_gift_certificates', :locals => { :gift_certificates => @gift_certificates, :pane => :gift_certificates } %>
+      </div>
+      <!-- end gift certificates pane -->
     </div>
     <!-- end panes -->
   </div>

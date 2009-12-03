@@ -3,7 +3,6 @@
 
 <div id="<%= pane %>">
   <% if gift_certificates.present? %>
-      <%= will_paginate gift_certificates, :params => { :pane => pane } %>
       <table>
         <tr>
           <th>Code</th>
