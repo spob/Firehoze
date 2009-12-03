@@ -2,9 +2,9 @@
 <ul id="breadcrumb">
   <li><%= link_to image_tag("/stylesheets/images/breadcrumbs/home.png", :class => :home), categories_path, :title => :Home %></li>
   <% if category %>
-    <li><%= link_to "All", (categories_path) %></li>
+    <li><%= link_to "All", (categories_path).downcase %></li>
     <% AncestorCategory.category_id_equals(category.id).descend_by_generation(:select => [:ancestor_name]).each do |cat| %>
-      <li><%= link_to(cat.ancestor_name, category_path(cat.ancestor_category)) %></li>
+      <li><%= link_to(cat.ancestor_name, category_path(cat.ancestor_category).downcase) %></li>
     <% end %>
     <li><%= category.name %></li>
   <% end %>
