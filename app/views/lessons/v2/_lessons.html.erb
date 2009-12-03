@@ -1,0 +1,19 @@
+<% lessons = @lessons %>
+<% counter = 1 %>
+
+<div class="lessons-container clearfix">
+  <%#= will_paginate lessons, :id => true %>
+  <%#= render :partial => "lessons/v2/lesson", :collection => lessons %>
+
+  <% lessons.each do |lesson| %>
+  <% last_item_class = (counter % 3 == 0) ? " last" : nil %>
+
+  <div class="lesson-container<%= last_item_class %>">
+    <%= img_tag_lesson_tn(lesson, :small ) %>
+    <%= render :partial => 'lessons/v2/tooltip', :locals => { :lesson => lesson } unless g_browser_is?( :name => 'ie') %>
+    <div class="duration transparent"><%= ChronicDuration.output(lesson.finished_video_duration/1000, :format => :chrono) unless lesson.finished_video_duration.nil?-%></div>
+    <div class="title"><%= link_to truncate(h(lesson.title), :length => 40), lesson_path(lesson), :title => lesson.synopsis %></div>
+  </div>
+  <% counter += 1 %>
+  <% end %>
+</div>

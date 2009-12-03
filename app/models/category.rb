@@ -35,6 +35,10 @@ class Category < ActiveRecord::Base
     self.child_categories.present?
   end
 
+  def self.sort_by_filters
+    %w(most_popular highest_rated newest)
+  end
+  
   def self.explode
     @@counter = 0
     Category.transaction do

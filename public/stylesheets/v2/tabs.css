@@ -14,7 +14,8 @@
 }
 
 ul.tabs {
-    margin:0 !important;
+    /*margin:0 !important;*/
+    margin:0;
     padding:0;
     height:30px;
     border-bottom:3px solid #212121;

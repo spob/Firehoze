@@ -13,6 +13,7 @@ class CategoriesController < ApplicationController
 
   # These are the values displayed in the html select in the UI to define which type of SKU to create. For  now,
   # there is only one type
+
   @@sort_by = [ [ 'Most Popular', 'most_popular' ],
                 [ 'Highest Rated', 'highest_rated' ],
                 [ 'Newest', 'newest'] ]
@@ -57,7 +58,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    session[:browse_sort] = params[:sort_by] if params[:sort_by]
+    session[:browse_sort] =  params[:sort_by] ? params[:sort_by] : "most_popular"
     id = params[:id]
     if id == "all"
       redirect_to categories_path

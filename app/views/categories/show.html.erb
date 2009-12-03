@@ -4,34 +4,22 @@
 
 <div class="span-12 last">
   <%= render :partial => "categories/v2/breadcrumbs", :object => @category %>
-  <div class="span-8">
-    <div class="widget-box">
-      <div class="widget-box-header banner">
-        <span class="h4">Firehoze Categories</span>
-      </div>
-      <div class="widget-box-content clearfix">
-        <% form_tag category_path(@category ? @category : 'all'), :method => :get do %>
-          <div>
-            Sort By:
-            <%= select_tag :sort_by, options_for_select(CategoriesController.sort_by, session[:browse_sort]), { :onchange => "submit();"} %>
-          </div>
+  <div id="category-show" class="span-8">
+    <div class="tab-container">
+      <ul class="tabs">
+        <% Category.sort_by_filters.each do |filter| %>
+          <li><%= link_to  filter.humanize, category_path(@category, :sort_by => filter), :class => "#{'current' if session[:browse_sort].to_s == filter.to_s}" %></li>
         <% end %>
-
-        <div class="clear append-0 span-29" id="tagged_with_tabs">
-          <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
-            <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-              <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active">
-                <a href="#tabs-1"><%= "Browse by category &quot;#{@category ? @category.name : 'All Categories'}&quot;" %></a>
-              </li>
-            </ul>
-            <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-1">
-              <%= render :partial => "lessons/lessons", :collection => @lessons, :locals => { :lesson_format => @lesson_format, :collection => @collection } %>
-            </div>
-          </div>
+      </ul>
+      <!-- tab "panes" -->
+      <div class="panes">
+        <div class="clearfix">
+          <%= render :partial => "lessons/v2/lessons", :object => @lessons %>
         </div>
-      </div>
-    </div>
+      </div><!-- end panes -->
+    </div><!-- end tab-container -->
   </div>
+
   <div class="span-4 last">
     <div class="widget-box">
       <div class="widget-box-header">
@@ -51,21 +39,4 @@
       </div>
     </div>
   </div>
-</div>
-
-
-<div style="display:none">
-  <h3>Groups</h3>
-
-<%#= link_to "New Group", new_group_path %>
-  <table>
-    <tr>
-      <th colspan="2">Group</th>
-      <th>Relationship</th>
-      <th>Category</th>
-    </tr>
-<%#= render :partial => "categories/group", :collection => @groups, :locals => { :show_member => true } %>
-  </table>
-
-<%#= will_paginate @groups %>
 </div>
