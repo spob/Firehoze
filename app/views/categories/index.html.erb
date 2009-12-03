@@ -18,7 +18,7 @@
         <span class="h4">Featured Lessons</span>
       </div>
       <div class="widget-box-content feature-lessons">
-        Some featured lessons
+        <%= render :partial => "lessons/most_popular", :locals => { :lesson_format => :brief } %>
       </div>
     </div>
 
