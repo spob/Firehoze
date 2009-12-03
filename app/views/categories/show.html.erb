@@ -23,11 +23,13 @@
   <div class="span-4 last">
     <div class="widget-box">
       <div class="widget-box-header">
-        <span class="h4">Explore Categories</span>
+        <span class="h4">Explore Firehoze Categories</span>
       </div>
-      <div class="widget-box-content">
+      <div class="tree-view">
         <%= render :partial => "categories/v2/tree_view", :locals => { :category => @category, :sibling_categories => @sibling_categories } %>
       </div>
+
+      <div class="widget-box-footer treeview"></div>
     </div>
 
     <div class="widget-box">

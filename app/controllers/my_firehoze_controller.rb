@@ -145,7 +145,6 @@ class MyFirehozeController < ApplicationController
     'application_v2'
   end
 
-
   def set_collection
     @collection = params[:collection]
     raise "Invalid collection" unless (LIST_COLLECTIONS).include?(@collection)

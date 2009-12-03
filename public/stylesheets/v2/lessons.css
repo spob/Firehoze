@@ -146,6 +146,7 @@ position:relative;
     padding:17px;
 }
 
+
 /* Lessons you may like */
 .lessons-you-may-like .lesson_brief  {
     font-size:11px;
@@ -168,4 +169,55 @@ position:relative;
     position:absolute;
     left:8px;
     top:8px;
+}
+
+/* Explore Categories */
+.tree-view { /*background-color:#AAAAAA;*/}
+.widget-box-footer.treeview {
+    margin:0;
+    padding:0;
+    height: 22px;
+    background: url(images/backgrounds/widget-box-header-tile.png) repeat-x bottom center;
+    border-top:none;
+}
+
+.tree-view ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.tree-view li { margin: 0 0 1px 0; }
+
+.tree-view .current {
+    border: 0 none;
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    background-color: #336699;
+    color: #fff;
+}
+
+.tree-view a:hover, .tree-view a:active {
+    border-bottom: 0 none;
+    text-decoration: none;
+    background-color: #69C;
+    color: #fff;
+}
+
+.tree-view a {
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    background-color: #fff;
+    color: #212121;
+}
+
+.tree-view ul ul li { margin: 0 0 1px 0; }
+
+.tree-view ul ul a {
+    display: block;
+    padding: 5px 5px 5px 30px;
+    color: #212121;
+    text-decoration: none;
 }
