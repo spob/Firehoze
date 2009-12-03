@@ -3,7 +3,7 @@
 
 <div id="<%= pane %>">
   <% if groups.present? %>
-    <%= will_paginate groups, :params => { :pane => pane } %>
+    <%= will_paginate groups, :params => { :pane => pane }, :class => "ajax-pagination" %>
     <table>
       <tr>
         <th colspan="2">Group</th>

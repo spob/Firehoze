@@ -16,7 +16,7 @@
       No lessons
     <% end %>
   <% else %>
-    <%= will_paginate lessons, :id => true, :params => { :pane => pane } %>
+    <%= will_paginate lessons, :id => true, :params => { :pane => pane }, :class => "ajax-pagination" %>
     <%= render :partial => "lessons/v2/lesson", :collection => lessons %>
   <% end %>
 </div>

@@ -1,27 +1,32 @@
 /* Site-wide Pagination Styling */
-.pagination a, .pagination span {
+.pagination a, .pagination span, 
+.ajax-pagination a, .ajax-pagination span {
     padding: .2em .5em;
     display: inline;
     margin-right: 1px;
 }
-.pagination span.disabled {
+.pagination span.disabled,
+.ajax-pagination span.disabled {
     color: #BABABA;
     border: 1px solid #ccc;
 }
-.pagination span.current {
+.pagination span.current,
+.ajax-pagination span.current {
     background: #2B2B2B;
     color: #F2F2F2;
     border: 1px solid #2B2B2B;
 }
-.pagination a {
+.pagination a, .ajax-pagination a {
     text-decoration: none;
     border: 1px solid #A3A3A3;
 }
-.pagination a:hover, .pagination a:focus {
+.pagination a:hover, .pagination a:focus,
+.ajax-pagination a:hover, .ajax-pagination a:focus {
     color: #555;
     border-color: #555;
 }
-.pagination .page_info {
+.pagination .page_info,
+.ajax-pagination .page_info {
     background: #2E6AB1;
     color: white;
     padding: .4em .6em;
@@ -29,21 +34,25 @@
     margin-bottom: .3em;
     text-align: center;
 }
-.pagination .page_info b {
+.pagination .page_info b,
+.ajax-pagination .page_info b {
     color: #003;
     background: #6aa6ed;
     padding: .1em .25em;
 }
-.pagination:after {
+.pagination:after,
+.ajax-pagination:after {
     content: ".";
     display: block;
     height: 0;
     clear: both;
     visibility: hidden;
 }
-* html .pagination {
+* html .pagination,
+* html .ajax-pagination {
     height: 1%;
 }
-*:first-child+html .pagination {
+*:first-child+html .pagination,
+*:first-child+html .ajax-pagination {
     overflow: hidden;
 }

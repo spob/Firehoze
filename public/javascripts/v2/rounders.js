@@ -34,4 +34,8 @@ $(function() {
     $('ul#breadcrumb').cornerz({
         radius: 5
     });
+
+    $('div#lessons_pagination.pagination').cornerz({
+        radius: 5
+    });
 });

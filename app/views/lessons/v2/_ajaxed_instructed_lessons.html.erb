@@ -2,7 +2,7 @@
 <% lessons = @instructed_lessons if pane == "lessons_instructed_table_view" %>
 
 <div id="<%= pane %>">
-  <%= will_paginate lessons, :params => { :pane => pane } %>
+  <%= will_paginate lessons, :params => { :pane => pane }, :class => "ajax-pagination" %>
   <table>
     <tr>
       <th>Lesson</th>

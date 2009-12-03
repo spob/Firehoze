@@ -16,12 +16,19 @@
 }
 
 /* PAGINATION */
-div.pagination {
+div.ajax-pagination {
     top:0;
     right:0;
     position: absolute;
     padding: 1px 0;
-    /*border: solid 1px lime;*/
+}
+
+div#lessons_pagination.pagination {
+    position: static;
+    text-align:center;
+    margin:0;
+    padding: 12px 0;
+    border: solid 1px #CCC;
 }
 
 div#activities_pagination  {

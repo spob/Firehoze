@@ -2,7 +2,7 @@
 <% students = @students if pane == "students" %>
 
 <div id="<%= pane %>">
-  <%= will_paginate students, :params => { :pane => pane } %>
+  <%= will_paginate students, :params => { :pane => pane }, :class => "ajax-pagination" %>
   <table>
     <tr>
       <th>Student</th>
