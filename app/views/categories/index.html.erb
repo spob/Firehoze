@@ -15,10 +15,10 @@
   <div class="span-4 last">
     <div class="widget-box">
       <div class="widget-box-header">
-        <span class="h4">Featured Lessons</span>
+        <span class="h4">Lessons You May Like</span>
       </div>
       <div class="widget-box-content feature-lessons">
-        <%= render :partial => "lessons/most_popular", :locals => { :lesson_format => :brief } %>
+        <%= render :partial => "lessons/lesson_brief", :collection => @suggested_lessons %>
       </div>
     </div>
 
