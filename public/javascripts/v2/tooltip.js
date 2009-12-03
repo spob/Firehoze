@@ -1,5 +1,7 @@
 $(function() {
     $(".lesson-container  a.link-to-lesson").tooltip({
-        relative:true
+        relative:true,
+        delay:0,
+        predelay:1000
     }).dynamic();
 });
