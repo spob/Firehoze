@@ -18,7 +18,8 @@ ul.third-level-nav li a:visited, ul.tabs a:visited {
     height:35px;
 }
 
-.widget-box-content .activity-feed li { zoom:1;}
+.widget-box-content .activity-feed li,
+.widget-box-content .lesson_brief li { zoom:1;}
 .tab-container { zoom:1; } 
 #lessons_pagination {	zoom:1;	}
 
