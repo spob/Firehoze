@@ -53,6 +53,7 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.root.ascend_by_sort_value
+    @suggested_lessons = Lesson.lesson_recommendations(current_user, 8)
   end
 
   def show
