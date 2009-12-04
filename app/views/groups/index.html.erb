@@ -1,0 +1,7 @@
+<% title "Browse Groups by #{@category ? @category.name : 'Categories' }" -%>
+
+<% if @category %>
+    <%= render :partial => "groups/v2/browse_category" %>
+<% else %>
+    <%= render :partial => "groups/v2/category_roundup" %>
+<% end %>

@@ -10,6 +10,10 @@ navigation = [
       :name => 'Lessons',
       :location => categories_path
     }],
+  [:lessons, {
+      :name => 'Groups',
+      :location => groups_path
+    }],
 ]
 %>
 <% navigation.shift unless current_user.present? %>

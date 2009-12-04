@@ -1,9 +1,9 @@
-<% title "Browse by #{@category ? @category.name : 'All Categories'}" -%>
+<% title "Browse Lessons by #{@category ? @category.name : 'All Categories'}" -%>
 
 <% @current = 'lessons' %>
 
 <div class="span-12 last">
-  <%= render :partial => "categories/v2/breadcrumbs", :object => @category %>
+  <%= render :partial => "categories/v2/breadcrumbs", :object => @category, :locals => { :mode => "lessons" } %>
   <div id="category-show" class="span-8">
     <div class="tab-container">
       <ul class="tabs">
@@ -17,7 +17,7 @@
           <% if @lessons.present? %>
               <%= render :partial => "lessons/v2/lessons", :object => @lessons %>
           <% else %>
-              Looks like no one has created a lesson this category yet. Why not be the first to
+              Looks like no one has created a lesson for this category yet. Why not be the first to
               <%= link_to "create a lesson", new_lesson_path %>?
           <% end %>
         </div>
@@ -33,7 +33,7 @@
         <span class="h4">Explore Firehoze Categories</span>
       </div>
       <div class="tree-view">
-        <%= render :partial => "categories/v2/tree_view", :locals => { :category => @category, :sibling_categories => @sibling_categories } %>
+        <%= render :partial => "categories/v2/tree_view", :locals => { :category => @category, :mode => "lessons" } %>
       </div>
 
       <div class="widget-box-footer treeview"></div>

@@ -1,4 +1,4 @@
-<% title "Browse Categories" -%>
+<% title "Browse Lesson by Category" -%>
 <% @current = 'lessons' %>
 
 <div class="span-12 last">
@@ -8,7 +8,7 @@
         <span class="h4">Firehoze Categories</span>
       </div>
       <div class="widget-box-content categories clearfix">
-        <%= render :partial => 'categories/v2/category', :collection => @categories %>
+        <%= render :partial => 'categories/v2/category', :collection => @categories, :locals => { :mode => "lessons" } %>
       </div>
     </div>
   </div>

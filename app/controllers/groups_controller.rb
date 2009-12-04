@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_filter :require_user, :except => [ :show, :list_admin ]
-  before_filter :find_group, :except => [:list_admin, :create, :new, :ajaxed]
+  before_filter :find_group, :except => [:list_admin, :create, :new, :ajaxed, :index]
   before_filter :set_per_page, :only => [ :ajaxed, :list_admin ]
 
   # Admins only
@@ -16,6 +16,15 @@ class GroupsController < ApplicationController
     @groups = @search.paginate(:include => :owner,
                                :page => params[:page],
                                :per_page => @per_page)
+  end
+
+  def index
+    if params[:category]
+      @category = Category.find(params[:category])
+      @groups = Group.public.by_category(@category.id).ascend_by_name.paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+    else
+      @categories = Category.root.ascend_by_sort_value
+    end
   end
 
   def show
@@ -121,6 +130,8 @@ class GroupsController < ApplicationController
   def layout_for_action
     if %w(list_admin).include?(params[:action])
       'admin'
+    elsif %w(index).include?(params[:action])
+      'application_v2'
     else
       'application'
     end
@@ -128,12 +139,12 @@ class GroupsController < ApplicationController
 
   def set_per_page
     @per_page =
-    if params[:per_page]
-      params[:per_page]
-    elsif %w(list_admin).include?(params[:action])
-      (session[:per_page] || ROWS_PER_PAGE)
-    else
-      5
-    end
+            if params[:per_page]
+              params[:per_page]
+            elsif %w(list_admin).include?(params[:action])
+              (session[:per_page] || ROWS_PER_PAGE)
+            else
+              5
+            end
   end
 end

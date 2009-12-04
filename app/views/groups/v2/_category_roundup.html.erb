@@ -1,0 +1,12 @@
+<div class="span-12 last">
+  <div class="span-8">
+    <div class="widget-box">
+      <div class="widget-box-header banner">
+        <span class="h4">Firehoze Categories</span>
+      </div>
+      <div class="widget-box-content categories clearfix">
+        <%= render :partial => 'categories/v2/category', :collection => @categories, :locals => { :mode => "groups" } %>
+      </div>
+    </div>
+  </div>
+</div>

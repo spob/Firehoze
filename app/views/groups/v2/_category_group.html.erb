@@ -1,0 +1,17 @@
+<tr>
+  <td>
+    <%= link_to(h(group.name), group_path(group)) %>
+  </td>
+  <td>
+    <%= link_to_profile(group.owner) %>
+  </td>
+  <td>
+    <%= h group.category.try(:name) %>
+  </td>
+  <td>
+    <%= h group.group_members.size %>
+  </td>
+  <td>
+    <%= h group.private %>
+  </td>
+</tr>

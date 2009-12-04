@@ -76,9 +76,7 @@ class CategoriesController < ApplicationController
       end
 
       #FIXME can we get rid of the following line?
-      @collection = session[:browse_sort]
-
-      @groups = Group.public.by_category(category_id).ascend_by_name.paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+#      @collection = session[:browse_sort]
     end
   end
 
