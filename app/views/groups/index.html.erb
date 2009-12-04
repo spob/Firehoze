@@ -1,4 +1,5 @@
 <% title "Browse Groups by #{@category ? @category.name : 'Categories' }" -%>
+<% @current = 'groups' %>
 
 <% if @category %>
     <%= render :partial => "groups/v2/browse_category" %>
