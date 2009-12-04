@@ -1,5 +1,5 @@
 <ul>
-  <% @category.self_and_siblings.each do |sibling| %>
+  <% category.self_and_siblings.each do |sibling| %>
     <% if sibling == category %>
       <%= content_tag :li, sibling.name, :class => 'current'  %>
       <% content_tag :li do -%>
