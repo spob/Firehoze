@@ -8,16 +8,23 @@
     <div class="tab-container">
       <ul class="tabs">
         <% Category.sort_by_filters.each do |filter| %>
-          <li><%= link_to  filter.humanize, category_path(@category, :sort_by => filter).downcase, :class => "#{'current' if session[:browse_sort].to_s == filter.to_s}" %></li>
+            <li><%= link_to filter.humanize, category_path(@category, :sort_by => filter).downcase, :class => "#{'current' if session[:browse_sort].to_s == filter.to_s}" %></li>
         <% end %>
       </ul>
       <!-- tab "panes" -->
       <div class="panes">
         <div class="clearfix">
-          <%= render :partial => "lessons/v2/lessons", :object => @lessons %>
+          <% if @lessons.present? %>
+              <%= render :partial => "lessons/v2/lessons", :object => @lessons %>
+          <% else %>
+              Looks like no one has created a lesson this category yet. Why not be the first to
+              <%= link_to "create a lesson", new_lesson_path %>?
+          <% end %>
         </div>
-      </div><!-- end panes -->
-    </div><!-- end tab-container -->
+      </div>
+      <!-- end panes -->
+    </div>
+    <!-- end tab-container -->
   </div>
 
   <div class="span-4 last">
