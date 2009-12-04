@@ -3,8 +3,8 @@ require 'fast_context'
 
 class CategoryTest < ActiveSupport::TestCase
   fast_context "given an existing record" do
-    setup { @category = Factory.create(:category) }
-    subject { @category }
+    setup { @category1 = Factory.create(:category) }
+    subject { @category1 }
 
     should_belong_to :parent_category
     should_have_many :exploded_categories, :base_exploded_categories
@@ -21,37 +21,37 @@ class CategoryTest < ActiveSupport::TestCase
 
       should "retrieve a value" do
         assert_equal 2, @categories.size
-        assert @categories.include?(@category)
-        assert @categories.include?(@category.parent_category)
+        assert @categories.include?(@category1)
+        assert @categories.include?(@category1.parent_category)
       end
     end
 
     fast_context "testing can_delete?" do
       should "check can delete" do
-        assert @category.can_delete?
-        assert !@category.parent_category.can_delete?
+        assert @category1.can_delete?
+        assert !@category1.parent_category.can_delete?
       end
 
       context "with a lesson defined" do
         setup do
-          @lesson = Factory.create(:lesson, :category => @category)
-          @category = Category.find(@category.id)
-          assert_equal @category, @lesson.category
-          assert !@category.lessons.empty?
+          @lesson = Factory.create(:lesson, :category => @category1)
+          @category1 = Category.find(@category1.id)
+          assert_equal @category1, @lesson.category
+          assert !@category1.lessons.empty?
         end
 
         should "not be able to delete" do
-          assert !@category.can_delete?
-          assert !@category.parent_category.can_delete?
+          assert !@category1.can_delete?
+          assert !@category1.parent_category.can_delete?
         end
       end
     end
 
     fast_context "and a second sub category" do
       setup do
-        @category2 = Factory.create(:category, :parent_category => @category.parent_category)
+        @category1a = Factory.create(:category, :parent_category => @category1.parent_category)
         assert_equal 3, Category.count
-        assert_equal 2, @category.parent_category.child_categories.size
+        assert_equal 2, @category1.parent_category.child_categories.size
       end
 
       fast_context "testing exploding" do

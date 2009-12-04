@@ -65,12 +65,6 @@ class CategoriesController < ApplicationController
       @category = Category.find(id)
       category_id = @category.id
 
-      if @category.parent_category.nil?
-        @sibling_categories = Category.root.ascend_by_sort_value
-      else
-        @sibling_categories = Category.parent_category_id_equals(@category.parent_category.id).ascend_by_sort_value
-      end
-
       @lessons = case session[:browse_sort]
       when 'most_popular'
         Lesson.ready.most_popular.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
