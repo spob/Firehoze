@@ -30,8 +30,7 @@ class MyFirehozeTest < ActionController::IntegrationTest
       click_link "Reviews"
       assert_contain "You haven't reviewed any lessons"
 
-
-      click_link "Groups"
+      click_link "group_tab"
       assert_contain "You do not belong to any groups"
 
       click_link "Followed Instructors"
