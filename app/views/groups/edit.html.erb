@@ -1,33 +1,59 @@
 <% title "Edit Group" -%>
+<% @current = 'groups' %>
 
-<h3>Edit Group</h3>
-
-<% form_for(:group, :url => group_path(@group), :html => { :method => :put, :multipart => true }) do |f| %>
+<div class="fh-form">
+  <% form_for(:group, :url => group_path(@group), :html => { :method => :put, :multipart => true  }) do |f| %>
     <%= f.error_messages %>
+    <ul id="company-info" class="section">
+      <li class="header">
+        <span></span>
+        <h3>Edit Your Group</h3>
+        <h4>This is your chance to entice users to join your group. You can change this later.</h4>
+      </li>
+      <li>
+        <span>
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+        </span>
+      </li>
+      <li>
+        <span class="unlabelled">
+          <%= f.check_box :private %>This group is by invitation only
+        </span>
+      </li>
+      <li>
+        <span>
+          <%= f.label :description %>
+          <%= f.text_area :description %>
+        </span>
+      </li>
+      <li>
+        <span>
+          <%= f.label :category %>
+          <%= f.collection_select(:category_id, Category.ascend_by_compiled_sort, :id, :formatted_name,  {:include_blank => 'Select...'}) %>
+        </span>
+      </li>
+      <li>
+        <span>
+          <label><%= link_to('Delete current?', clear_logo_group_path(@group.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) if @group.logo?  %></label>
+          <%= logo_tag @group, :size => :medium %>
+        </span>
+      </li>
+      <li>
+        <span>
+          <%= f.label :logo %>
+          <%= f.file_field :logo, :class => "required" %>
+        </span>
+      </li>
+      <li class="bottom">
+        <span class="unlabelled">
+          <%= f.submit "Save", :disable_with => translate('general.disable_with') %>
+          <%= link_to 'Cancel', group_path(@group) %>
+        </span>
+        <div class="clear" />
 
-    <%= f.label :name %>:
-    <%= f.text_field :name %><br />
-    <br/>
-    <%= f.check_box :private %>This group is by invitation only
-    <br/>
-    <br/>
-    <%= f.label :description %>:
-    <%= f.text_area :description %><br />
-    <br/>
-    <%= f.label :category %>
-    <%= f.collection_select(:category_id, Category.ascend_by_compiled_sort, :id,
-                            :formatted_name,  {:include_blank => 'Select...'}) %>
-    <br/>
-    <p>
-      <%= logo_tag @group, :size => :medium %>
-      <% if @group.logo? %>
-          <%= link_to('Delete current', clear_logo_group_path(@group.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) %>
-      <% end %>
-    </p>
-    <div>
-      <%= f.label :logo %>
-      <%= f.file_field :logo, :class => "required" %>
-    </div>
-    <%= f.submit "Save", :disable_with => translate('general.disable_with') %>
-    <%= link_to 'Cancel', group_path(@group) %>
-<% end %>
+      </li>
+    </ul>
+  <% end %>
+
+</div>

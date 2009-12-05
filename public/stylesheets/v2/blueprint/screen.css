@@ -354,7 +354,7 @@ legend      { font-weight: bold; font-size:1.2em; }
 /* Form fields
 -------------------------------------------------------------- */
 
-input[type=text],
+/*input[type=text],
 input.text, input.title, 
 textarea, select { 
   background-color:#fff; 
@@ -384,7 +384,7 @@ input.checkbox, input.radio {
 
 form.inline { line-height:3; }
 form.inline p { margin-bottom:0; }
-
+*/
 
 /* Success, notice and error boxes
 -------------------------------------------------------------- */
