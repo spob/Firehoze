@@ -1,66 +1,17 @@
-/* Master Resets (thanks Yahoo)
-------------------------------------------------------------- */
-
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {  
+.fh-form ol,
+.fh-form ul {
+    list-style:none;
     margin:0;
     padding:0;
-} 
-
-table { 
-    border-collapse:collapse;
-    border-spacing:0; 
-} 
-
-fieldset,img {  
-    border:0; 
-} 
-
-address,caption,cite,code,dfn,em,strong,th,var { 
-    font-style:normal; 
-    font-weight:normal; 
-} 
-
-ol,ul { 
-    list-style:none; 
-} 
-
-caption,th { 
-    text-align:left; 
-} 
-
-h1,h2,h3,h4,h5,h6 { 
-    font-size:100%; 
-    font-weight:normal; 
-} 
-
-q:before,q:after { 
-    content:''; 
-} 
-
-abbr,acronym { 
-    border:0;
-} 
-
-a {
-    outline: none;
 }
 
-/* For poorly rendered light-on-dark text on OSX with default text rendering settings */
-.textfix{
-    -webkit-text-stroke:1px transparent; /*fixes it for safari*/
-    ///	opacity: 0.9999; /*improves it a little bit for FF */
-}
-@media only screen and (max-device-width:480px) {.textfix{-webkit-text-stroke:0 black;}} 
-
-*{ outline:none; outline:0; }
-
-*:focus { outline-width: 0 }
 .fh-form  {
+    margin:0;
+    padding:0;
     font-size: 12px;
     font-family: "Helvetica", "Arial", sans-serif;
 }
 
-/* ############################ SIGN UP PAGE ############################ */
 .fh-form { text-shadow: #fff 0 1px 1px; }
 
 #top-error-message{
@@ -87,7 +38,8 @@ a {
     line-height:32px;
     margin-right:10px;
 }
-.fh-form .unlabelled {
+
+.fh-form .unlabelled  {
     margin-left:175px;
 }
 
@@ -107,7 +59,6 @@ a {
     padding-top:7px
 }
 
-
 .fh-form input[type=file] {
     width:420px;
     height:20px;
@@ -121,7 +72,6 @@ a {
     padding:5px;
     padding-top:7px
 }
-
 
 .fh-form textarea {
     height:100px;
@@ -159,7 +109,7 @@ a {
     font-size:12px;
     color:#011934;
     margin-left:82px;
-}	
+}
 .fh-form ul.section li {
     background-color:#e3e9f2;
     border-top:1px solid #f3f6f9;
@@ -188,19 +138,7 @@ a {
 }
 
 .fh-form ul#company-info.section li.header span {
-    background: url(images/signup-icon-company.png) no-repeat top left;
-}
-
-.fh-form ul#user-info.section li.header span {
-    background: url(images/signup-icon-user.png) no-repeat top left;
-}
-
-.fh-form ul#payment-info.section li.header span {
-    background: url(images/signup-icon-payment.png) no-repeat top left;
-}
-
-.fh-form ul#confirm-details.section li.header span {
-    background: url(images/signup-icon-confirm.png) no-repeat top left;
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
 }
 
 .fh-form ul.section li.bottom{
@@ -210,7 +148,7 @@ a {
 }
 
 
-.fh-form  .form-error{
+.fh-form .form-error{
     width:566px;
     border-radius:5px;
     -moz-border-radius:5px;
@@ -240,4 +178,153 @@ a {
     -webkit-border-radius:5	px;
     opacity:.75;
     border:1px solid #888888;
+}
+
+/* UNIFORM JQUERY PLUGIN CSS */
+div.checker {
+    height: 18px;
+    width: 18px;
+    overflow: hidden;
+    border: solid 1px #ddd;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: #fff url(images/forms/bg.png) repeat-x left 10px;
+    float: left;
+    display: inline;
+    margin-right: 10px;
+    position: relative;
+    margin-left:175px;
+}
+
+div.checker.focus {
+    border-color: #999;
+}
+
+div.checker.focus span {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+div.checker span {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+div.checker span.checked {
+    background: url(images/forms/check.gif) no-repeat center center;
+}
+
+div.checker span input {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Radio box */
+
+div.radio {
+    height: 19px;
+    width: 19px;
+    overflow: hidden;
+    background: #fff url(images/forms/bg.png) repeat-x left 10px;
+    float: left;
+    display: inline;
+    margin-right: 10px;
+    position: relative;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+    border: solid 1px #ddd;
+}
+
+div.radio.focus {
+    border-color: #999;
+}
+
+div.radio.focus span {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-position: center center;
+}
+
+div.radio span {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+div.radio span.checked {
+    background: url(images/forms/radio.gif) no-repeat center center;
+}
+
+div.radio span input {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Select Box */
+
+div.selector {
+    display: block;
+    width: 150px;
+    border: solid 1px #ddd;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    position: relative;
+    background: url(images/forms/bg.png) repeat-x left 12px;
+    line-height: 22px;
+    margin-top: 3px;
+    text-shadow: 0 1px 0 #fff;
+    height: 22px;
+    color: #444;
+    margin-left:175px;
+}
+
+div.selector select {
+    width: 150px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+div.selector.focus {
+    border-color: #999;
+}
+
+div.selector span {
+    position: absolute;
+    left: 6px;
+    top: 0px;
+    font-size: 1.1em;
+    padding: 0;
+    display: block;
+    padding-right: 20px;
+    background: url(images/forms/select.gif) no-repeat right 60%;
+    right: 0;
+}
+
+div.selector.focus span {
+    left: 5px;
+}
+
+div.selector select {
+    position: relative;
+    font-size: 1.1em;
+    padding: 0;
+    line-height: 23px;
+    border: 0;
+    margin: 0;
+    padding-right: 40px;
 }
