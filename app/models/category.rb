@@ -79,7 +79,7 @@ class Category < ActiveRecord::Base
     self.level = self.ancestors.size unless self.level
     buffer = ""
     self.level.times do
-      buffer = buffer + "."
+      buffer = buffer + "-"
     end
     buffer + self.name
   end
