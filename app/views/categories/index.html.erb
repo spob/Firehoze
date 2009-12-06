@@ -1,17 +1,23 @@
 <% title "Browse Lesson by Category" -%>
 <% @current = 'lessons' %>
 
+
 <div class="span-12 last">
   <div class="span-8">
-    <div class="widget-box">
-      <div class="widget-box-header banner">
-        <span class="h4">Browse Lessons by Categories</span>
-      </div>
-      <div class="widget-box-content categories clearfix">
-        <%= render :partial => 'categories/v2/category', :collection => @categories, :locals => { :mode => "lessons" } %>
-      </div>
+    <div class="blue-box">    
+      <ul id="categories-header" class="section">
+        <li class="header">
+          <span></span>
+          <h3>Browse Lessons by Categories</h3>
+          <h4>Bags Fly Free</h4>
+        </li>
+        <li id="categories-roundup" class="clearfix">
+          <%= render :partial => 'categories/v2/category', :collection => @categories, :locals => { :mode => "lessons" } %>
+        </li>
+      </ul>
     </div>
   </div>
+
   <div class="span-4 last">
     <div class="widget-box">
       <div class="widget-box-header">

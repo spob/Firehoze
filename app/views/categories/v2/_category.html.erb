@@ -2,9 +2,11 @@
   <h3>
     <% if mode == "groups" %>
         <%= link_to h(category.name), groups_path(:category => category).downcase %>
+        <%= link_to image_tag("general/backgrounds/blue-arrow.png"), groups_path(:category => category).downcase, :class => 'arrow-link', :alt => h(category.name) %>
     <% else %>
         <%= link_to h(category.name), category_path(category).downcase %>
+        <%= link_to image_tag("general/backgrounds/blue-arrow.png"), category_path(category).downcase, :class => 'arrow-link', :alt => h(category.name) %>
     <% end %>
   </h3>
-  <%= content_tag(:p, truncate(child_categories_names(category), :length => 38)) if category.has_children? %>
+  <%= content_tag(:p, truncate(child_categories_names(category), :length => 75)) if category.has_children? %>
 </div>
