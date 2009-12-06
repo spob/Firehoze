@@ -8,7 +8,7 @@
       <li class="header">
         <span></span>
         <h3>Edit Your Group</h3>
-        <h4>This is your chance to entice users to join your group. You can change this later.</h4>
+        <h4>This is your chance to entice users to join your group.</h4>
       </li>
       <li>
         <span>
@@ -35,7 +35,7 @@
       </li>
       <li>
         <span>
-          <label><%= link_to('Delete current?', clear_logo_group_path(@group.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) if @group.logo?  %></label>
+          <label><%= link_to('Delete current?', clear_logo_group_path(@group.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) if @group.logo?  %>&nbsp;</label>
           <%= logo_tag @group, :size => :medium %>
         </span>
       </li>
