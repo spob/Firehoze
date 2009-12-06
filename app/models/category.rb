@@ -84,6 +84,14 @@ class Category < ActiveRecord::Base
     buffer + self.name
   end
 
+  def lesson_count(user = nil)
+    Lesson.ready.not_owned_by(user).by_category(self.id).count
+  end
+
+  def group_count(user = nil)
+    Group.public.by_category(self.id).count
+  end
+
   private
 
   def set_lesson_delta_flag
