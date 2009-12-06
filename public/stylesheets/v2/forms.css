@@ -4,6 +4,9 @@
     margin:0;
     padding:0;
 }
+.fh-form li {
+    position: relative;
+}
 
 .fh-form  {
     margin:0;
@@ -31,7 +34,7 @@
 .fh-form textarea,
 .fh-form input[type=text],
 .fh-form input[type=password] {
-    width:420px;
+    width:400px;
     height:20px;
     border: 1px solid #8d9095;
     border-radius:3px;
@@ -108,10 +111,10 @@
 .fh-form ul.section li.header {
     border:0;
     border-bottom: 1px solid #c1cad5;
-    height:52px;
+    min-height:52px;
     background-color:transparent;
     position:relative;
-    padding:0;
+    padding:0 12px 0 0;
 }
 
 .fh-form ul.section li.header span {
@@ -284,6 +287,41 @@ div.selector select {
 }
 
 /*  FORM ERRORS */
+
+span.required-field {
+    z-index: 1;
+    background:transparent url("images/forms/asterisk.png") no-repeat top right;
+    width:16px;
+    height:16px;
+    position:absolute;
+    top:6px;
+    right:10px;
+}
+
+span.error {
+    color:#0350a6;
+    top:9px;
+    left:640px;
+    width:276px;
+    text-align:left;
+    position:absolute;
+    padding: 5px 5px 5px 26px;
+    background: #fdffdf url("images/forms/error-circle.png") no-repeat 3px 3px;
+    border:solid 2px #E3E9F2;
+    border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+}
+span.valid {
+    border: 0 none;
+    position:absolute;
+    top:24px;
+    left:600px;
+    height:16px;
+    width:16px;
+    background:url("images/forms/ok-circle.png") no-repeat 0px 0px;
+}
+
 .fh-form .errorExplanation {
     border-radius:5px;
     -moz-border-radius:5px;
@@ -298,15 +336,15 @@ div.selector select {
 #errorExplanation {
     /* this dictates the overall width of the errorExplaination box */
     width:612px;
-    border: 1px solid #801609;
+    border: 2px solid #E3E9F2;
     padding: 7px;
     padding-bottom: 12px;
     margin-bottom: 20px;
-    background-color: #fff;
+    background-color: #fdffdf;
 }
 
 #errorExplanation h2 {
-    background-color: #801609;
+    background-color: #E3E9F2;
     letter-spacing: 0.5px;
     text-align: left;
     font-weight: bold;
@@ -314,6 +352,7 @@ div.selector select {
     font-size: 14px;
     margin: -7px;
     color: #fff;
+    color:#0350a6;
 }
 
 #errorExplanation p {
