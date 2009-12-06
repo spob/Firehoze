@@ -1,7 +1,8 @@
 <% title "Add Attachment to the Lesson '#{h @lesson.title}'" -%>
+<%= javascript 'v2/validation/lesson_attachments.validate.js' %>
 
 <div class="fh-form">
-  <% form_for :attachment, :url => lesson_lesson_attachments_url(@lesson), :html => { :multipart => true, :id => "edit_attachment" } do |form| %>
+  <% form_for :attachment, :url => lesson_lesson_attachments_url(@lesson), :html => { :multipart => true, :id => "new_attachment" } do |form| %>
       <%= form.error_messages %>
       <ul id="company-info" class="section">
         <li class="header">
@@ -13,13 +14,15 @@
         <li>
         <span>
           <%= form.label :title %>
-          <%= form.text_field :title %>
+          <%= form.text_field :title, :title => "You must enter a title", :class => "required" %>
+          <span class="required-field"/>
         </span>
         </li>
         <li>
         <span>
           <%= form.label :attachment %>
-          <%= form.file_field :attachment %>
+          <%= form.file_field :attachment, :title => "You must specify the file to attach", :class => "required" %>
+          <span class="required-field"/>
         </span>
         </li>
         <li class="bottom">
