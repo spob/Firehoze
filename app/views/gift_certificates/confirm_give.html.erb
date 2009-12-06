@@ -1,13 +1,26 @@
 <% title "Give Gift Certificate" -%>
 
-<h3>Give Gift Certificate '<%= h @gift_certificate.formatted_code %>' to Another User</h3>
+<div class="fh-form">
+  <% form_for(:gift_certificate, :url => give_gift_certificate_path) do |f| %>
+      <%= f.error_messages %>
+      <%= hidden_field_tag("to_user_id", @to_user.id) %>
+      <%= hidden_field_tag("comments", @comments) %>
+      <ul id="company-info" class="section">
+        <li class="header">
+          <span></span>
 
-You are about to give this gift certificate to <%= link_to_profile(@to_user) %>. Please confirm.
-<% form_for(:gift_certificate, :url => give_gift_certificate_path) do |f| %>
-    <%= f.error_messages %>
-    <%= hidden_field_tag("to_user_id", @to_user.id) %>
-    <%= hidden_field_tag("comments", @comments) %>
-    <br/>
-    <%= f.submit "Yes", :disable_with => translate('general.disable_with') %>
-    <%= link_to "No", gift_certificates_path %>
-<% end %>
+          <h3>Give Gift Certificate '<%= h @gift_certificate.formatted_code %>' to Another User</h3>
+          <h4>You are about to give this gift certificate to <%= link_to_profile(@to_user) %>. Please confirm...</h4>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+      <%= f.submit "Yes", :disable_with => translate('general.disable_with') %>
+          <%= link_to "No", gift_certificates_path %>
+        </span>
+
+          <div class="clear"/>
+
+        </li>
+      </ul>
+  <% end %>
+</div>
