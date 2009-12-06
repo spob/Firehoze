@@ -1,0 +1,57 @@
+<div class="fh-form">
+  <% form_for(@group, :html => { :multipart => true }) do |f| %>
+      <%= f.error_messages %>
+      <ul id="company-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3><%= heading %></h3>
+          <h4><%= subtext %></h4>
+        </li>
+        <li>
+        <span>
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.check_box :private %> This group is by invitation only
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :description %>
+          <%= f.text_area :description %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :category %>
+          <%= f.collection_select(:category_id, Category.ascend_by_compiled_sort, :id, :formatted_name,  {:include_blank => 'Select...'}) %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <label><%= link_to('Delete current?', clear_logo_group_path(@group.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) if @group.logo? %>&nbsp;</label>
+          <%= logo_tag @group, :size => :medium %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :logo %>
+          <%= f.file_field :logo, :class => "required" %>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= f.submit "Save", :disable_with => translate('general.disable_with') %>
+          <%= link_to 'Cancel', @group.new_record? ? home_path : group_path(@group) %>
+        </span>
+
+          <div class="clear"/>
+
+        </li>
+      </ul>
+  <% end %>
+</div>

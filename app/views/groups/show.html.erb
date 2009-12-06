@@ -3,6 +3,7 @@
 <%= logo_tag @group, :size => :medium %>
 <h2>Group <%= h @group.name %></h2>
 Category: <%= h @group.category.name %>
+<%= h @group.description %>
 <%= show_join_link(@group) %>
 <%= show_leave_link(@group) %>
 <%= show_invite_link(@group) %>

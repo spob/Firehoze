@@ -1,26 +1,4 @@
 <% title "Create Group" -%>
+<% @current = 'groups' %>
 
-<h3>Create Group</h3>
-
-<% form_for(:group, :url => groups_path, :html => { :multipart => true }) do |f| %>
-    <%= f.error_messages %>
-
-    <%= f.label :name %>:
-    <%= f.text_field :name %><br />
-    <br/>
-    <%= f.check_box :private %>This group is by invitation only
-    <br/>
-    <br/>
-    <%= f.label :description %>:
-    <%= f.text_area :description %><br />
-    <br/>
-    <%= f.label :category %>
-    <%= f.collection_select(:category_id, Category.ascend_by_compiled_sort, :id,
-                            :formatted_name,  {:include_blank => 'Select...'}) %>
-    <br/>
-    <%= f.label :logo %>
-    <%= f.file_field :logo, :class => "required" %>
-    <br/>
-    <%= f.submit "Save", :disable_with => translate('general.disable_with') %>
-    <%= link_to 'Cancel', home_path %>
-<% end %>
+<%= render :partial => 'form', :locals => { :heading => "Create a Group", :subtext => "Groups are online communities that allow Firehoze users with similar interests to interact."} %>
