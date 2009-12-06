@@ -3,7 +3,10 @@ require 'fast_context'
 
 class CategoryTest < ActiveSupport::TestCase
   fast_context "given an existing record" do
-    setup { @category1 = Factory.create(:category) }
+    setup do
+      @category1 = Factory.create(:category)
+      @category2 = Factory.create(:category)
+    end
     subject { @category1 }
 
     should_belong_to :parent_category
@@ -20,7 +23,7 @@ class CategoryTest < ActiveSupport::TestCase
       subject { @categories }
 
       should "retrieve a value" do
-        assert_equal 2, @categories.size
+        assert_equal 4, @categories.size
         assert @categories.include?(@category1)
         assert @categories.include?(@category1.parent_category)
       end
@@ -34,10 +37,27 @@ class CategoryTest < ActiveSupport::TestCase
 
       context "with a lesson defined" do
         setup do
+          Category.explode
+          assert @category1.lessons.empty?
           @lesson = Factory.create(:lesson, :category => @category1)
+          @lesson.update_attribute :status, LESSON_STATUS_READY
           @category1 = Category.find(@category1.id)
           assert_equal @category1, @lesson.category
           assert !@category1.lessons.empty?
+        end
+
+        should "calculate lesson count" do
+          assert_equal 1, @category1.lesson_count
+          assert_equal 0, @category2.lesson_count
+        end
+
+        fast_context "and a group defined" do
+          setup { @group = Factory.create(:group, :category => @category1) }
+
+          should "calculate group count" do
+            assert_equal 1, @category1.group_count
+            assert_equal 0, @category2.group_count
+          end
         end
 
         should "not be able to delete" do
@@ -50,7 +70,7 @@ class CategoryTest < ActiveSupport::TestCase
     fast_context "and a second sub category" do
       setup do
         @category1a = Factory.create(:category, :parent_category => @category1.parent_category)
-        assert_equal 3, Category.count
+        assert_equal 5, Category.count
         assert_equal 2, @category1.parent_category.child_categories.size
       end
 
@@ -62,8 +82,8 @@ class CategoryTest < ActiveSupport::TestCase
         end
 
         should "have explode values" do
-          assert_equal 5, @exploded_categories.size
-          assert_equal 2, @ancestor_categories.size
+          assert_equal 8, @exploded_categories.size
+          assert_equal 3, @ancestor_categories.size
         end
       end
     end

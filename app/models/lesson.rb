@@ -107,7 +107,7 @@ class Lesson < ActiveRecord::Base
   end
 
   # I added the id to the sort criteria so that the videos would be sorted in the same order every time, even in the
-  # event of a tie in the primary sort criteria RBS
+  # event of a tie in the primary sort criterby_cia RBS
   named_scope :most_popular, :order => "credits_count DESC, id DESC"
   named_scope :highest_rated, :order => "rating_average DESC, id DESC"
   named_scope :newest, :order => "id DESC"
