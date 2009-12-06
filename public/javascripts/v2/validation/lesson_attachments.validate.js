@@ -7,4 +7,13 @@ $(document).ready(function() {
             form.submit();
         }
     })
+
+    $('#attachment_title').simplyCountable({
+        counter: '#group_name_counter',
+        countType: 'characters',
+        maxCount: 50,
+        countDirection: 'down',
+        safeClass: 'safe',
+        overClass: 'over'
+    });
 });

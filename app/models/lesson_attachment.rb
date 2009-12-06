@@ -2,6 +2,7 @@ class LessonAttachment < ActiveRecord::Base
   belongs_to :lesson, :counter_cache => :lesson_attachments_count
   validates_presence_of :attachment_file_name
   validates_presence_of :lesson, :title
+  validates_length_of :title, :maximum => 50, :allow_nil => true
   validates_numericality_of :attachment_file_size, :greater_than => 0, :allow_nil => true
 
   has_attached_file :attachment,

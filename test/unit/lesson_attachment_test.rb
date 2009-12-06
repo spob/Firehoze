@@ -6,6 +6,7 @@ class LessonAttachmentTest < ActiveSupport::TestCase
     setup { @attachment = Factory.create(:lesson_attachment) }
 
     should_validate_presence_of :lesson, :title
+    should_ensure_length_in_range :title, (0..50)
     should_have_attached_file :attachment
   end
   subject { @attachment }

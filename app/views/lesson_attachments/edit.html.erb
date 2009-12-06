@@ -13,9 +13,10 @@
         </li>
         <li>
         <span>
-          <%= form.text_field :title, :title => "You must enter a title", :class => "required" %>
+          <%= form.text_field :title, :maxlength => "50", :title => "You must enter a title", :class => "required" %>
           <span class="required-field"/>
         </span>
+          <div class="counter"><span id="group_name_counter"></span> characters left</div>
         </li>
         <li class="bottom">
         <span class="unlabelled">
