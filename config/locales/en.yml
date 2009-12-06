@@ -87,6 +87,7 @@ en:
     flaggable_rejected: The {{flaggable}} has been rejected
     flag_lewd: Sexual Content
     flag_spam: Spam
+    flag_other: Other
     flag_offensive: Offensive or Abusive
     flag_dangerous: Depicts a Dangerous Act
     flag_ip: Infringes My Rights

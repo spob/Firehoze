@@ -86,6 +86,7 @@ FLAG_LEWD = 'lewd'
 FLAG_SPAM = 'spam'
 FLAG_OFFENSIVE = 'offensive'
 FLAG_DANGEROUS = 'dangerous'
+FLAG_OTHER = 'other'
 FLAG_IP = 'ip'
 
 # flag status

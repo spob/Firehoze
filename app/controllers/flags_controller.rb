@@ -108,7 +108,13 @@ class FlagsController < ApplicationController
   end
 
   def layout_for_action
-    %w(index show edit).include?(params[:action]) ? 'admin' : 'application'
+    if %w(index show edit).include?(params[:action])
+      'admin'
+    elsif %w(new create).include?(params[:action])
+      'application_v2'
+    else
+      'application'
+    end
   end
 
   def show_url klass, id, anchor=nil

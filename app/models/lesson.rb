@@ -138,7 +138,8 @@ class Lesson < ActiveRecord::Base
           FLAG_SPAM,
           FLAG_OFFENSIVE,
           FLAG_DANGEROUS,
-          FLAG_IP ]
+          FLAG_IP,
+          FLAG_OTHER ]
 
   def self.flag_reasons
     @@flag_reasons
