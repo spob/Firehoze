@@ -27,9 +27,7 @@
     margin-right:10px;
 }
 
-.fh-form .unlabelled  {
-    margin-left:175px;
-}
+.fh-form .unlabelled  { margin-left:175px; }
 
 .fh-form textarea,
 .fh-form input[type=text],
@@ -366,3 +364,18 @@ span.valid {
     font-size: 12px;
     margin: 5px 5px 5px 10px;
 }
+
+/* CHARACTER COUNTER */
+div.counter { 
+    margin:3px 0 0 175px;
+}
+
+div.counter .safe, 
+div.counter .over {
+    padding:3px;
+    font-weight:bold;
+}
+
+div.counter .safe { color: inherit;}
+div.counter .over { color:red }
+
