@@ -45,7 +45,7 @@
         </li>
         <li class="bottom">
         <span class="unlabelled">
-          <%= f.submit "Save", :disable_with => translate('general.disable_with') %>
+          <%= f.submit @group.new_record? ? 'Create' : 'Update', :disable_with => translate('general.disable_with') %>
           <%= link_to 'Cancel', @group.new_record? ? home_path : group_path(@group) %>
         </span>
 
