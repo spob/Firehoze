@@ -15,6 +15,7 @@ class Group < ActiveRecord::Base
 
   validates_presence_of :name, :owner, :category
   validates_uniqueness_of :name
+  validates_length_of :name, :maximum => 50, :allow_nil => true
 
   named_scope :public, :conditions => { :private => false }
   named_scope :private, :conditions => { :private => true }

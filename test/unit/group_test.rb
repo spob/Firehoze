@@ -11,6 +11,7 @@ class GroupTest < ActiveSupport::TestCase
 
     should_validate_presence_of :name, :owner, :category
     should_validate_uniqueness_of :name
+    should_ensure_length_in_range :name, (0..50)
     should_belong_to :owner, :category
     should_have_many :group_members
     should_have_many :group_lessons
