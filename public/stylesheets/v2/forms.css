@@ -334,7 +334,7 @@ span.valid {
 #errorExplanation {
     /* this dictates the overall width of the errorExplaination box */
     width:612px;
-    border: 2px solid #E3E9F2;
+    border: 2px solid #801609;
     padding: 7px;
     padding-bottom: 12px;
     margin-bottom: 20px;
@@ -342,15 +342,15 @@ span.valid {
 }
 
 #errorExplanation h2 {
-    background-color: #E3E9F2;
+    background-color: #801609;
     letter-spacing: 0.5px;
     text-align: left;
     font-weight: bold;
     padding: 5px 5px 5px 10px;
     font-size: 14px;
     margin: -7px;
-    color: #fff;
-    color:#0350a6;
+    color: #f2f2f2;
+    text-shadow: #333 2px 2px 1px;
 }
 
 #errorExplanation p {
