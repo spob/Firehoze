@@ -12,21 +12,6 @@
     font-family: "Helvetica", "Arial", sans-serif;
 }
 
-.fh-form { text-shadow: #fff 0 1px 1px; }
-
-#top-error-message{
-    font-family:"Helvetica Neue",helvetica,Arial,sans-serif;
-    font-size:16px;
-    margin-bottom:20px;
-    background-color: #FFFABF;
-    float:left;
-    padding: 5px 10px;
-    border:1px solid #888	;
-    border-radius:5px;
-    -moz-border-radius:5px;
-    -webkit-border-radius:5px;
-}
-
 .fh-form label {
     font-size:13px;
     font-weight:bold;
@@ -85,6 +70,7 @@
 }
 
 .fh-form ul.section {
+    /* this dictates the overall width of the form */
     width:626px;
     border: 1px solid #c1cad5;
     border-top:1px solid #8f9aa7;
@@ -147,38 +133,6 @@
     background-color:transparent;
 }
 
-
-.fh-form .form-error{
-    width:566px;
-    border-radius:5px;
-    -moz-border-radius:5px;
-    -webkit-border-radius: 5px;
-    background:#AF2B2B url(images/icon-error.png) no-repeat scroll 10px 6px;
-    border:1px solid #DA3536;
-    color:#FFDAD3;
-    display:block;
-    font-size:18px;
-    margin-bottom:25px;
-    margin-top:10px;
-    padding:10px 10px 10px 50px;
-    text-shadow:0 1px 0 #000000;
-}
-
-.fh-form .formError{
-    float:right;
-    position:absolute;
-    background-color: #ffdfdf;
-    background-color: #FFFABF;
-    top:12px;
-    width:110px;
-    right:-150px;
-    padding:5px 10px;
-    border-radius:5px;
-    -moz-border-radius:5px;
-    -webkit-border-radius:5	px;
-    opacity:.75;
-    border:1px solid #888888;
-}
 
 /* UNIFORM JQUERY PLUGIN CSS */
 div.checker {
@@ -285,7 +239,7 @@ div.selector {
     -moz-border-radius: 5px;
     border-radius: 5px;
     position: relative;
-    background: url(images/forms/bg.png) repeat-x left 12px;
+    background: #f2f2f2 url(images/forms/bg.png) repeat-x left 12px;
     line-height: 22px;
     margin-top: 3px;
     text-shadow: 0 1px 0 #fff;
@@ -327,4 +281,49 @@ div.selector select {
     border: 0;
     margin: 0;
     padding-right: 40px;
+}
+
+/*  FORM ERRORS */
+.fh-form .errorExplanation {
+    border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+}
+
+.fieldWithErrors {
+    padding: 2px;
+    display: table;
+}
+
+#errorExplanation {
+    /* this dictates the overall width of the errorExplaination box */
+    width:612px;
+    border: 1px solid #801609;
+    padding: 7px;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+#errorExplanation h2 {
+    background-color: #801609;
+    letter-spacing: 0.5px;
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 10px;
+    font-size: 14px;
+    margin: -7px;
+    color: #fff;
+}
+
+#errorExplanation p {
+    font-size: 12px;
+    color: #333;
+    margin-bottom: 0;
+    margin: 14px 5px 5px 10px;
+}
+
+#errorExplanation ul {
+    font-size: 12px;
+    margin: 5px 5px 5px 10px;
 }
