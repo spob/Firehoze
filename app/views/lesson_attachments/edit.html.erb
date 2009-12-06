@@ -1,19 +1,30 @@
 <% title "Edit Attachment" -%>
 
-<%= render :partial => "shared/infield_head_content" %>
-<%= stylesheet 'validation' %>
-<%= javascript 'validate/jquery.validate', 'validate/flag.validate' %>
+<div class="fh-form">
+  <% form_for :attachment, :url => lesson_attachment_path(@attachment), :html => { :method => :put, :id => "edit_attachment" } do |form| %>
+      <%= form.error_messages %>
+      <ul id="company-info" class="section">
+        <li class="header">
+          <span></span>
 
-<% form_for :attachment, :url => lesson_attachment_path(@attachment), :html => { :method => :put, :id => "edit_attachment" } do |form| %>
-    <%= form.error_messages %>
-    <fieldset>
-      <legend>Edit Attachment to "<%= @attachment.lesson.title %>"</legend>
-      <p>
-        <%= form.label :title, "Title", :style => "display:none" %>
-        <%= form.text_field :title %>
-      </p>
-    </fieldset>
-    <p>
-      <%= form.submit "Save Changes" %>
-    </p>
-<% end %>
+          <h3>Edit Attachment <%= h @attachment.attachment_file_name.upcase %></h3>
+          <h4>You can associate lesson notes, presentation files, code samples or whatever with your lesson.</h4>
+        </li>
+        <li>
+        <span>
+          <%= form.label :title %>
+          <%= form.text_field :title %>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= form.submit "Save", :disable_with => translate('general.disable_with') %>
+          <%= link_to 'Cancel', lesson_path(@attachment.lesson) %>
+        </span>
+
+          <div class="clear"/>
+
+        </li>
+      </ul>
+  <% end %>
+</div>
