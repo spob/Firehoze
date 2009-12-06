@@ -9,7 +9,7 @@ $(document).ready(function() {
     })
 
     $('#attachment_title').simplyCountable({
-        counter: '#group_name_counter',
+        counter: '#attachment_title_counter',
         countType: 'characters',
         maxCount: 50,
         countDirection: 'down',
