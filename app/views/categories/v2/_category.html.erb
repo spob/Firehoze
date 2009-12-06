@@ -6,5 +6,5 @@
         <%= link_to h(category.name), category_path(category).downcase %>
     <% end %>
   </h3>
-  <%= content_tag(:p, truncate(child_categories_names(category), :length => 40)) if category.has_children? %>
+  <%= content_tag(:p, truncate(child_categories_names(category), :length => 38)) if category.has_children? %>
 </div>
