@@ -1,4 +1,5 @@
 <% title "Edit Attachment" -%>
+<%= javascript 'v2/validation/lesson_attachments.validate.js' %>
 
 <div class="fh-form">
   <% form_for :attachment, :url => lesson_attachment_path(@attachment), :html => { :method => :put, :id => "edit_attachment" } do |form| %>
@@ -18,7 +19,7 @@
         </li>
         <li class="bottom">
         <span class="unlabelled">
-          <%= form.submit "Save", :disable_with => translate('general.disable_with') %>
+          <%= form.submit "Save" %>
           <%= link_to 'Cancel', lesson_path(@attachment.lesson) %>
         </span>
 
