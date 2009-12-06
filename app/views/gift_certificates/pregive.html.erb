@@ -1,17 +1,43 @@
 <% title "Give Gift Certificate" -%>
 
-<h3>Give Gift Certificate '<%= h @gift_certificate.formatted_code %>' to Another User</h3>
+<div class="fh-form">
 
-<% form_for(:gift_certificate, :url => confirm_give_gift_certificate_path) do |f| %>
-    <%= f.error_messages %>
+  <% form_for(:gift_certificate, :url => confirm_give_gift_certificate_path) do |f| %>
+      <%= f.error_messages %>
+      <ul id="company-info" class="section">
+        <li class="header">
+          <span></span>
 
-    Recipient Username:
-    <%= text_field_tag :to_user %> or
-    Recipient Email Address:
-    <%= text_field_tag :to_user_email %>
-    <br/>
-    Comments:
-    <%= text_field_tag :comments %>
-    <br/>
-    <%= f.submit "Give It", :disable_with => translate('general.disable_with') %>
-<% end %>
+          <h3>Give Gift Certificate '<%= h @gift_certificate.formatted_code %>' to Another User</h3>
+          <h4>
+            It's better to give than to receive. You can use this screen to give one of your gift certificates to
+            someone else. You can identify the user to whom you want to give the gift certificate by either their login
+            name or their email address.
+          </h4>
+        </li>
+        <li>
+        <span>
+          <%= label_tag :to_user, "Recipient Username" %>
+          <%= text_field_tag :to_user %>
+          <strong>or</strong>
+          <%= label_tag :to_user, "Recipient Email Address" %>
+          <%= text_field_tag :to_user_email %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= label_tag :comments %>
+          <%= text_field_tag :comments %>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+        <%= f.submit "Give It", :disable_with => translate('general.disable_with') %>
+        </span>
+
+          <div class="clear"/>
+
+        </li>
+      </ul>
+  <% end %>
+</div>
