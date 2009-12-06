@@ -6,13 +6,13 @@
         <% content_tag :ul do -%>
           <% sibling.child_categories.ascend_by_sort_value.each do |child| %>
             <li>
-              <%= link_to h(child.name), (mode == "groups" ? groups_path(:category => child) : category_path(child)).downcase %> (<%= mode == "groups" ? child.group_count(current_user) : child.lesson_count(current_user) %>)
+              <%= link_to h(child.name), (mode == "groups" ? groups_path(:category => child) : category_path(child)).downcase %>
             </li>
           <% end %>
         <% end %>
       <% end if sibling.has_children? %>
     <% else %>
-      <li><%= link_to h(sibling.name), (mode == "groups" ? groups_path(:category => sibling) : category_path(sibling)).downcase  %> (<%= mode == "groups" ? sibling.group_count(current_user) : sibling.lesson_count(current_user) %>)</li>
+      <li><%= link_to h(sibling.name), (mode == "groups" ? groups_path(:category => sibling) : category_path(sibling)).downcase  %></li>
     <% end %>
   <% end %>
 </ul>

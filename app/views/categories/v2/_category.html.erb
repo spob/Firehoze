@@ -2,10 +2,8 @@
   <h3>
     <% if mode == "groups" %>
         <%= link_to h(category.name), groups_path(:category => category).downcase %>
-        (<%= category.group_count(current_user) %>)
     <% else %>
         <%= link_to h(category.name), category_path(category).downcase %>
-        (<%= category.lesson_count(current_user) %>)
     <% end %>
   </h3>
   <%= content_tag(:p, truncate(child_categories_names(category), :length => 38)) if category.has_children? %>
