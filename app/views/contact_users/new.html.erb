@@ -1,4 +1,5 @@
 <% title "Contact #{h @to_user.name_or_username}" -%>
+<%= javascript 'v2/validation/contact_users.validate.js' %>
 
 <div class="fh-form">
   <% form_tag contact_users_path, :class => "contact_user", :id => "contact_user" do -%>
@@ -13,18 +14,20 @@
         <li>
         <span>
           <%= label_tag :subject %>
-          <%= text_field_tag :subject %>
+          <%= text_field_tag :subject, :title => "You must enter a subject", :class => "required" %>
+          <span class="required-field"/>
         </span>
         </li>
         <li>
         <span>
           <%= label_tag :msg, "Message" %>
-          <%= text_area_tag :msg %>
+          <%= text_area_tag :msg, :title => "You must enter a message", :class => "required" %>
+          <span class="required-field"/>
         </span>
         </li>
         <li class="bottom">
         <span class="unlabelled">
-          <%= submit_tag "Send Message", :disable_with => translate('general.disable_with') %>
+          <%= submit_tag "Send Message" %>
           <%= link_to 'Cancel', user_path(@to_user) %>
         </span>
 
