@@ -7,7 +7,7 @@
         <li class="header">
           <span></span>
 
-          <h3>Add Attachment to the Lesson "<%= h @lesson.title %>"</h3>
+          <h3>Add Attachment to the lesson "<%= truncate(h(@lesson.title), :length => 30) %>"</h3>
           <h4>You can associate lesson notes, presentation files, code samples or whatever with your lesson.</h4>
         </li>
         <li>
