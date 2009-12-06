@@ -4,7 +4,6 @@
       <ul id="company-info" class="section">
         <li class="header">
           <span></span>
-
           <h3><%= heading %></h3>
           <h4><%= subtext %></h4>
         </li>
@@ -27,19 +26,25 @@
         </li>
         <li>
         <span>
-          <%= f.label :category %>
-          <%= f.collection_select(:category_id, Category.ascend_by_compiled_sort, :id, :formatted_name,  {:include_blank => 'Select...'}) %>
+          <%= f.label(:category, "Category") %>
+          <%= f.collection_select(:category, Category.ascend_by_compiled_sort, :id, :formatted_name,  {:include_blank => 'Select...'}) %>
         </span>
         </li>
         <li>
-        <span>
-          <label><%= link_to('Delete current?', clear_logo_group_path(@group.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) if @group.logo? %>&nbsp;</label>
-          <%= logo_tag @group, :size => :medium %>
-        </span>
+          <span>
+            <label>
+              <% if @group.logo? %>
+                <%= link_to('Delete current?', clear_logo_group_path(@group.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) %>
+              <% else %>
+                Current logo
+              <% end %>
+            </label>
+            <%= logo_tag @group, :size => :medium -%>
+          </span>
         </li>
         <li>
         <span>
-          <%= f.label :logo %>
+          <%= f.label(:logo, "Update Logo?") %>
           <%= f.file_field :logo, :class => "required" %>
         </span>
         </li>
