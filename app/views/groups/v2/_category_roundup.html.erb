@@ -1,12 +1,14 @@
-<div class="span-12 last">
-  <div class="span-8">
-    <div class="widget-box">
-      <div class="widget-box-header banner">
-        <span class="h4">Browse Groups by Categories</span>
-      </div>
-      <div class="widget-box-content categories clearfix">
+<div class="span-8">
+  <div class="blue-box">
+    <ul id="categories-header" class="section">
+      <li class="header">
+        <span></span>
+        <h3>Browse Groups by Categories</h3>
+        <h4>Groups are wicked</h4>
+      </li>
+      <li id="categories-roundup" class="clearfix">
         <%= render :partial => 'categories/v2/category', :collection => @categories, :locals => { :mode => "groups" } %>
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
 </div>

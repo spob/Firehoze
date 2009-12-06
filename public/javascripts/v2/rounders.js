@@ -28,7 +28,8 @@ $(function() {
     });
 
     $('div.category-container').cornerz({
-        radius: 8
+        radius: 8,
+        background: "#e3e9f2"
     });
 
     $('ul#breadcrumb').cornerz({

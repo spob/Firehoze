@@ -106,21 +106,103 @@ position:relative;
 }
 */
 
-
-/* Category Round Up*/
-.widget-box-content.categories {
-    padding:17px 0 0 17px;
+/*  SIMPLE BLUE THEMED BOX */
+.blue-box  {
+    margin:0;
+    padding:0;
+    font-size: 12px;
+    font-family: "Helvetica", "Arial", sans-serif;
 }
+
+.blue-box ol,
+.blue-box ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.blue-box ul li {
+    background-color:#e3e9f2;
+    border-top:1px solid #f3f6f9;
+    border-bottom:1px solid #c1cad5;
+    position:relative;
+    zoom:1;
+}
+
+.blue-box ul.section {
+    /* this dictates the overall width of the form */
+    width:626px;
+    border: 1px solid #c1cad5;
+    border-top:1px solid #8f9aa7;
+    border-radius:5px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    background-color:#f1f7fe;
+    margin-bottom:20px;
+    float:left;
+}
+
+.blue-box h3 {
+    font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
+    font-weight:bold;
+    font-size:24px;
+    color:#0350a6;
+}
+
+.blue-box .header h3 {
+    margin:8px 0 6px 84px;
+}
+
+.blue-box .header h4 {
+    font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
+    font-size:12px;
+    color:#011934;
+    margin-left:84px;
+}
+
+.blue-box ul.section li.header {
+    border:0;
+    border-bottom: 1px solid #c1cad5;
+    min-height:52px;
+    background-color:transparent;
+    position:relative;
+    padding:0 12px 0 0;
+}
+
+.blue-box ul.section li.header span {
+    position:absolute;
+    display:block;
+    width:59px;
+    height:62px;
+    top:-15px;
+    left:15px;
+}
+
+.blue-box ul.section li.bottom {
+    border:0;
+    min-height:5px;
+    background-color:transparent;
+}
+
+/* CATEGORY ROUND UP */
+.blue-box ul#categories-header.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+
+.blue-box ul li#categories-roundup {
+	padding:17px 0 17px 17px;
+}
+
 .category-container {
+		position: relative;
     float: left;
     padding:12px;
-    margin: 0 17px 17px 0;
-    height: 45px;
-    width: 260px;
+    margin: 0 18px 17px 0;
+    height: 62px;
+    width: 262px;
     background:#e8f5fb;
+    background:#fff;
     color:#777;
-}
-.category-container {
     font-weight:bold;
 }
 .category-container a {
@@ -128,6 +210,14 @@ position:relative;
     color:#2786c2;
     font-weight:bold;
 }
+
+.category-container .arrow-link {
+	position: absolute;
+	top: 30px;
+	right: 6px;
+	
+}
+
 .category-container h3 {
     margin-bottom:11px;
 }
@@ -141,11 +231,11 @@ position:relative;
     color:#555;
 }
 
+
 /* Tags box */
 .widget-box-content.tags {
     padding:17px;
 }
-
 
 /* Lessons you may like */
 .lessons-you-may-like .lesson_brief  {
