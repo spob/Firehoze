@@ -85,7 +85,13 @@ class GiftCertificatesController < ApplicationController
   private
 
   def layout_for_action
-    %w(list_admin).include?(params[:action]) ? 'admin' : 'application'
+    if %w(list_admin).include?(params[:action])
+      'admin'
+    elsif %w(new create).include?(params[:action])
+      'application_v2'
+    else
+      'application'
+    end
   end
 
   def find_gift_certificate

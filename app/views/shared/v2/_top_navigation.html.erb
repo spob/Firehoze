@@ -18,6 +18,7 @@
         <a href="#">Credits</a>
         <ul class="subnav">
           <li><%= link_to "Buy Credits", store_path(0) %></li>
+          <li><%= link_to "Redeem Gift Certificate", new_gift_certificate_path %></li>
           <%= content_tag(:li, link_to('Shopping Cart', cart_path(@current_cart))) if show_cart? %>
         </ul>
       </li>
