@@ -2,14 +2,20 @@
   Hi <%= h @to_user.full_name %>,
 </p>
 <p>
-  A Firehoze user has sent you a message:
+  <%= link_to h(@from_user.login.capitalize), user_url(@from_user) %>, a Firehoze user, has sent you a message:
 </p>
 <p>
-  <%= @msg %>
+  <%= simple_format h(@msg) %>
 </p>
 <p>
   Sincerely, <%= h @from_user.full_name %>
 </p>
 <p>
   <%= link_to 'Sign In', @url %>
+</p>
+<p>
+  Firehoze respects your privacy. You are receiving this message because your privacy settings allow users to do so.
+  If you'd like to restrict your privacy settings, please <%= link_to "edit your account settings", edit_account_url(@to_user) %>.
+  Regardless of whether you allow users contact you or not, Firehoze will never share your email address with other
+  users.
 </p>

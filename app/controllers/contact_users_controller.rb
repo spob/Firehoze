@@ -4,6 +4,8 @@ class ContactUsersController < ApplicationController
   before_filter :require_user
   before_filter :find_to_user
 
+  layout 'application_v2'
+
   verify :method => :post, :only => [ :create ], :redirect_to => :home_path
 
   def new
@@ -14,12 +16,17 @@ class ContactUsersController < ApplicationController
     @subject = params[:subject]
     @msg = params[:msg]
     if check_permissions
-      RunOncePeriodicJob.create!(
-              :name => 'Contact User',
-              :job => "ContactUsersController.contact_user(#{@to_user.id}, #{current_user.id}, '#{@subject.gsub(/'/, "")}', #JOBID#)",
-              :data => @msg)
-      flash[:notice] = t 'contact_user.msg_sent'
-      redirect_to user_path(@to_user)
+      if @subject.blank? or @msg.blank?
+        flash[:error] = t('contact_user.required')
+        render :action => 'new'
+      else
+        RunOncePeriodicJob.create!(
+                :name => 'Contact User',
+                :job => "ContactUsersController.contact_user(#{@to_user.id}, #{current_user.id}, '#{@subject.gsub(/'/, "")}', #JOBID#)",
+                :data => @msg)
+        flash[:notice] = t 'contact_user.msg_sent'
+        redirect_to user_path(@to_user)
+      end
     end
   end
 
@@ -34,7 +41,7 @@ class ContactUsersController < ApplicationController
 
   def find_to_user
     @to_user = User.find(params[:id])
-    end
+  end
 
   def check_permissions
     if @to_user.can_contact?(current_user)

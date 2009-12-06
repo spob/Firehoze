@@ -61,6 +61,7 @@ en:
 
   contact_user:
     cannot_contact: This user's privacy settings prevent you from contacting him or her directly
+    required: Please enter a value for both the message subject as well as the message itself
     msg_sent: Your message has been sent
   
   discount:

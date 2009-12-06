@@ -1,9 +1,11 @@
 Hi <%= @to_user.full_name %>,
 
-A Firehoze user has sent you a message:
+<%= h @from_user.login.capitalize %>, a Firehoze user, has sent you a message:
 
-<%= @msg %>
+<%= h @msg %>
 
-Sincerely, <%= @from_user.full_name %>
+  Sincerely, <%= h @from_user.full_name %>
 
 <%= @url %>
+
+Firehoze respects your privacy. You are receiving this message because your privacy settings allow users to do so. If you'd like to restrict your privacy settings, please edit your account settings. Regardless of whether you allow users contact you or not, Firehoze will never share your email address with other users.

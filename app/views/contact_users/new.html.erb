@@ -1,24 +1,36 @@
-<% title "Contact #{@to_user.name_or_username}" -%>
+<% title "Contact #{h @to_user.name_or_username}" -%>
 
-<%= render :partial => "shared/infield_head_content" %>
+<div class="fh-form">
+  <% form_tag contact_users_path, :class => "contact_user", :id => "contact_user" do -%>
+      <%= hidden_field_tag 'id', @to_user.id %>
+      <ul id="company-info" class="section">
+        <li class="header">
+          <span></span>
 
-<% form_tag contact_users_path, :class => "contact_user", :id => "contact_user"  do -%>
-  <%= hidden_field_tag 'id', @to_user.id %>
-  <fieldset>
-    <legend>Contact <%= link_to_profile(@to_user) %></legend>
-    <p>
-      Subject:
-      <br/>
-      <%= text_field_tag 'subject' %>
-    </p>
-    <p>
-      Message:
-      <br/>
-      <%= text_area_tag 'msg' %>
-    </p>
-  </fieldset>
-  <p>
-    <%= submit_tag 'Send Email' %>
-  </p>
-<% end %>
+          <h3>Contact <%= h @to_user.name_or_username %></h3>
+          <h4>Send a private message to <%= link_to_profile(@to_user) %></h4>
+        </li>
+        <li>
+        <span>
+          <%= label_tag :subject %>
+          <%= text_field_tag :subject %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= label_tag :msg, "Message" %>
+          <%= text_area_tag :msg %>
+        </span>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= submit_tag "Send Message", :disable_with => translate('general.disable_with') %>
+          <%= link_to 'Cancel', user_path(@to_user) %>
+        </span>
+
+          <div class="clear"/>
+
+        </li>
+      </ul>
+  <% end %>
+</div>
   
