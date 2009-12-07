@@ -4,6 +4,8 @@ class GroupMembersController < ApplicationController
   before_filter :find_group_member, :only => [ :remove, :promote, :demote, :create_private ]
   verify :method => :post, :only => [:create, :promote, :demote, :create_private ], :redirect_to => :home_path
   verify :method => :delete, :only => [:destroy, :remove ], :redirect_to => :home_path
+  
+  layout :layout_for_action
 
   def create
     @group_member = @group.group_members.create!(:user => current_user, :member_type => MEMBER)
@@ -36,14 +38,22 @@ class GroupMembersController < ApplicationController
       @group_member.destroy
       flash[:notice] = t('group.remove_success', :user => @user.login)
     end
-    redirect_to group_path(@group)
+    if @group.can_see? current_user
+      redirect_to group_path(@group)
+    else
+      redirect_to my_stuff_my_firehoze_path
+    end
   end
 
   def destroy
     @group_member = GroupMember.find_by_user_id_and_group_id(current_user.try(:id), params[:id])
     @group.group_members.delete(@group_member)
     flash[:notice] = t('group.left', :group => @group.name)
-    redirect_to group_path(@group)
+    if @group.can_see? current_user
+      redirect_to group_path(@group)
+    else
+      redirect_to my_stuff_my_firehoze_path
+    end
   end
 
   def new_private
@@ -54,6 +64,7 @@ class GroupMembersController < ApplicationController
     unless @invitation.user == current_user
       flash[:error] = t('group_invitation.wrong_user', :user => @invitation.user.login)
       redirect_back_or_default home_path
+      return
     end
     @group_member = GroupMember.find_by_user_id_and_group_id(current_user.try(:id), @invitation.group)
     if @group_member.nil?
@@ -119,5 +130,13 @@ class GroupMembersController < ApplicationController
     invitation.user = @invitation.user
     invitation.group = @invitation.group
     invitation
+  end
+
+  def layout_for_action
+    if %w(new_private create_private).include?(params[:action])
+      'application_v2'
+    else
+      'application'
+    end
   end
 end
