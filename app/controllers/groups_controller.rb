@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_filter :require_user, :except => [ :show, :list_admin ]
+  before_filter :require_user, :except => [ :index, :show, :list_admin ]
   before_filter :find_group, :except => [:list_admin, :create, :new, :ajaxed, :index]
   before_filter :set_per_page, :only => [ :ajaxed, :list_admin ]
 
