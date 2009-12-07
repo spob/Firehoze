@@ -1,4 +1,5 @@
 <% title "Flag Inappropriate #{t("flag.#{@flag.flaggable.class.to_s.downcase}").capitalize}" -%>
+<%= javascript 'v2/validation/flags.validate.js' %>
 
 <div class="fh-form">
   <% form_for :flag, :url => flags_url(@flag, :flagger_type => @flag.flaggable.class.to_s, :flagger_id =>@flag.flaggable.id),  :html => { :class => "flag", :id => "flag" } do |f| %>
@@ -8,8 +9,8 @@
           <span></span>
 
           <h3>
-            Flag Inappropriate <%= t("flag.#{@flag.flaggable.class.to_s.downcase}").capitalize %>
-            : <%= link_to h(@flag.friendly_flagger_name), flaggable_show_path(@flag) %>
+            Flag Inappropriate <%= t("flag.#{@flag.flaggable.class.to_s.downcase}").capitalize %>:
+            <%= link_to h(@flag.friendly_flagger_name), flaggable_show_path(@flag) %>
             <% unless @flag.flaggable.class == User %>
                 by <%= link_to_profile(offending_user) %>
             <% end %>
@@ -24,18 +25,20 @@
         <span>
           <%= f.label :reason_type, "Reason", :style => "display:none" %>
           <%= f.select(:reason_type, reason_select_list, :prompt => "Select Reason...") %>
+          <span class="required-field"/>
         </span>
         </li>
         <li>
         <span>
           <%= f.label :comments %>
-          <%= f.text_area :comments, :class => "required" %>
+          <%= f.text_area :comments, :title => "You must enter a title", :class => "required"  %>
+          <span class="required-field"/>
         </span>
           <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
         </li>
         <li class="bottom">
         <span class="unlabelled">
-          <%= submit_tag "Flag Content", :disable_with => translate('general.disable_with') %>
+          <%= submit_tag "Flag Content" %>
           <%= link_to 'Cancel', flaggable_show_path(@flag) %>
         </span>
 
