@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
                 :collection => { :instructor => :get,
                                  :my_stuff => :get,
                                  :account_history => :get }
-  map.resources :accounts,
+  map.resources :accounts, :except => [ :show ],
                 :member => { :instructor_signup_wizard => :get,
                              :instructor_wizard_step1 => :get,
                              :instructor_wizard_step2 => :get,

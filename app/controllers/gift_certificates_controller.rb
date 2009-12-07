@@ -35,7 +35,7 @@ class GiftCertificatesController < ApplicationController
       flash[:error] = t('gift_certificate.invalid_gift_certificate', :code => code)
       render 'new'
     elsif redeem_certificate(gift_certificate)
-      redirect_to account_path(@current_user)
+      redirect_to home_path
     else
       render 'new'
     end
@@ -44,7 +44,7 @@ class GiftCertificatesController < ApplicationController
   # Redeem a gift certificate
   def redeem
     redeem_certificate(@gift_certificate)
-    redirect_to account_path(@current_user)
+    redirect_to home_path
   end
 
   def pregive

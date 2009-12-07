@@ -1,20 +1,39 @@
-<% title "Create Group" -%>
+<% title "Invite a User to a Group" -%>
 
+<div class="fh-form">
+  <% form_for(:group_invitation, :url => group_invitations_path, :html => {'accept-charset' => "utf-8", :id => "inline", :class => "register" }) do |f| %>
+      <%= f.error_messages %>
+      <%= hidden_field_tag :id, @group.id %>
+      <ul id="company-info" class="section">
+        <li class="header">
+          <span></span>
 
-<h3>Invite a user to join "<%= @group.name %>"</h3>
+          <h3>Invite a User to Join "<%= @group.name %>"</h3>
+          <h4>This group is a private group, which means membership is invitation only.</h4>
+        </li>
+        <li>
+        <span>
+          <%= label_tag :to_user, "Invitee Username" %>
+          <%= text_field_tag :to_user %>
+          <strong>or</strong>
+          <%= label_tag :to_user, "Invitee Email Address" %>
+          <%= text_field_tag :to_user_email %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= label_tag :message %>
+          <%= text_area_tag :message %>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+        <%= f.submit "Invite" %>
+          <%= link_to "Cancel", group_path(@group) %>
+        </span>
 
-<% form_for(:group_invitation, :url => group_invitations_path, :html => {'accept-charset' => "utf-8", :id => "inline", :class => "register" }) do |f| %>
-    <%= f.error_messages %>
-    <%= hidden_field_tag :id, @group.id %>
-
-    Invitee Username:
-    <%= text_field_tag :to_user %> or
-    Invitee Email Address:
-    <%= text_field_tag :to_user_email %>
-    <br/>
-    Message:
-    <%= text_area_tag :message %>
-    <br/>
-    <%= f.submit "Invite", :disable_with => translate('general.disable_with') %>
-    <%= link_to "Cancel", group_path(@group) %>
-<% end %>
+          <div class="clear"/>
+        </li>
+      </ul>
+  <% end %>
+</div>
