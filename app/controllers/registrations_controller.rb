@@ -4,6 +4,8 @@ class RegistrationsController < ApplicationController
 
   before_filter :require_no_user
 
+  layout 'application_v2'
+
   def new
     @registration = Registration.new
   end

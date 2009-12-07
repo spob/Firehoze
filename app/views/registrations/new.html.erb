@@ -1,49 +1,72 @@
 <% title "Sign Up" -%>
+<%= javascript 'v2/validation/registration.validate.js' %>
 
-<%= render :partial => "shared/infield_head_content" %>
-<% restricted = APP_CONFIG[CONFIG_RESTRICT_REGISTRATION]  %>
+<% restricted = APP_CONFIG[CONFIG_RESTRICT_REGISTRATION] %>
 <% if restricted == true %>
-  <div class="span-17 append-1">
-    <div class="info">
-      <h3>1. Request a Registration Code</h3>
-      <p>Can't wait for the public release?<br />For a limited time get early access to the Firehoze site.</p>
-      <p><strong><%= link_to "Request", "http://www.firehoze.com" %> your Registration Code now!</strong></p>
+    <div class="span-17 append-1">
+      <div class="info">
+        <h3>1. Request a Registration Code</h3>
+
+        <p>Can't wait for the public release?<br/>For a limited time get early access to the Firehoze site.</p>
+
+        <p><strong><%= link_to "Request", "http://www.firehoze.com" %> your Registration Code now!</strong></p>
+      </div>
     </div>
-  </div>
 <% end %>
 
-<div class="span-22 last">
+<div class="fh-form">
   <% form_for(:registration, :url => registrations_path, :html => {'accept-charset' => "utf-8", :id => "inline", :class => "register" }) do |f| %>
-    <%= f.error_messages %>
-    <fieldset>
-      <legend><%= restricted == true ? "2. Sign Up" : "Sign Up"  %></legend>
-      <p>
-        <%= f.label :username, :Username %>
-        <%= f.text_field :username %>
-      </p>
+      <%= f.error_messages %>
+      <ul id="company-info" class="section">
+        <li class="header">
+          <span></span>
 
-      <p>
+          <h3>
+            <%= restricted == true ? "2. Sign Up" : "Firehoze Account Sign Up" %>
+          </h3>
+          <h4>
+            Request your Firehoze account.
+          </h4>
+        </li>
+        <li>
+        <span>
+        <%= f.label :username %>
+          <%= f.text_field :username, :title => "You must enter a username", :class => "required" %>
+          <span class="required-field"/>
+        </span>
+        </li>
+        <li>
+        <span>
         <%= f.label :email %>
-        <%= f.text_field :email %>
-      </p>
+          <%= f.text_field :email, :title => "You must enter an email address", :class => "required" %>
+          <span class="required-field"/>
+        </span>
+        </li>
 
-      <% if APP_CONFIG[CONFIG_RESTRICT_REGISTRATION] %>
-        <p>
+        <% if APP_CONFIG[CONFIG_RESTRICT_REGISTRATION] %>
+            <li>
+        <span>
           <%= f.label :registration_code %>
           <%= f.text_field :registration_code %>
-        </p>
-      <% end %>
+          <span class="required-field"/>
+        </span>
+            </li>
+        <% end %>
+        <li>
+        <span>
+          <%= f.label :captcha, "Please verify that you are human" %>
+          <%= recaptcha_tags :display => {:theme => 'clean', :tabindex => 3 } %>
+          <span class="required-field"/>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= submit_tag "Request Account" %>
+          <%= link_to "Already have an account?", login_path %>
+        </span>
 
-      <p style="padding:0 0 5px 0;">
-        <%= f.label :captcha, "Please verify that you are human:" %>
-      </p>
-      <%= recaptcha_tags :display => {:theme => 'clean', :tabindex => 3 } %>
-    </fieldset>
-
-    <p>
-      <%= f.submit "Register", :disable_with => translate('general.disable_with') %>
-      <%= link_to "Already have an account?", login_path %>
-    </p>
+          <div class="clear"/>
+        </li>
+      </ul>
   <% end %>
 </div>
-
