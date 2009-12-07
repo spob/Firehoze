@@ -7,4 +7,22 @@ $(document).ready(function() {
             form.submit();
         }
     })
+
+    $('#registration_username').simplyCountable({
+        counter: '#registration_username_counter',
+        countType: 'characters',
+        maxCount: 25,
+        countDirection: 'down',
+        safeClass: 'safe',
+        overClass: 'over'
+    });
+
+    $('#registration_email').simplyCountable({
+        counter: '#registration_email_counter',
+        countType: 'characters',
+        maxCount: 100,
+        countDirection: 'down',
+        safeClass: 'safe',
+        overClass: 'over'
+    });
 });
