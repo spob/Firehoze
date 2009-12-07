@@ -48,7 +48,7 @@ class GiftCertificatesControllerTest < ActionController::TestCase
         should_assign_to :gift_certificate
         should_respond_with :redirect
         should_set_the_flash_to /redeemed/
-        should_redirect_to("account page") { account_path(@user) }
+        should_redirect_to("account page") { account_history_my_firehoze_path }
       end
 
       fast_context "on POST to :create" do
@@ -57,7 +57,7 @@ class GiftCertificatesControllerTest < ActionController::TestCase
         should_not_assign_to :gift_certificate
         should_respond_with :redirect
         should_set_the_flash_to /redeemed/
-        should_redirect_to("account page") { account_path(@user) }
+        should_redirect_to("account page") { account_history_my_firehoze_path }
       end
 
       fast_context "on GET to :pregive" do
