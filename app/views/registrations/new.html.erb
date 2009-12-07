@@ -31,16 +31,18 @@
         <li>
         <span>
         <%= f.label :username %>
-          <%= f.text_field :username, :title => "You must enter a username", :class => "required" %>
+          <%= f.text_field :username, :maxlength => "25", :title => "You must enter a username", :class => "required" %>
           <span class="required-field"/>
         </span>
+          <div class="counter"><span id="registration_username_counter"></span> characters left</div>
         </li>
         <li>
         <span>
         <%= f.label :email %>
-          <%= f.text_field :email, :title => "You must enter an email address", :class => "required" %>
+          <%= f.text_field :email, :maxlength => "100", :title => "You must enter an email address", :class => "required" %>
           <span class="required-field"/>
         </span>
+          <div class="counter"><span id="registration_email_counter"></span> characters left</div>
         </li>
 
         <% if APP_CONFIG[CONFIG_RESTRICT_REGISTRATION] %>
