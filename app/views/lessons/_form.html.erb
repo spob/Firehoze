@@ -1,0 +1,86 @@
+<%= stylesheet 'validation' %>
+<%= javascript 'jquery.simplyCountable', 'validate/jquery.validate', 'validate/lesson.validate' %>
+
+<div class="fh-form">
+  <% form_for(@lesson, :html => { :multipart => true, :id => "lesson" }) do |f| %>
+      <%= f.error_messages %>
+      <ul id="company-info" class="section">
+        <li class="header">
+
+          <h3><%= heading %></h3>
+          <h4><%= subtext %></h4>
+        </li>
+        <li>
+        <span>
+          <%= f.label :title %>
+          <%= f.text_field :title, :maxlength => "50", :title => "You must provide a title for your lesson", :class => "required" %>
+          <span class="required-field"/>
+        </span>
+
+          <div class="counter"><span id="lesson_title_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :synopsis %>
+          <%= f.text_area :synopsis, :maxlength => "500", :title => "You must provide a synopsis for your lesson", :class => "required" %>
+          <span class="required-field"/>
+        </span>
+
+          <div class="counter"><span id="lesson_synopsis_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :notes %>
+          <%= f.text_area :notes %>
+        </span>
+          <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :tag_list, :Tags %>
+          <%= f.text_field :tag_list %>
+        </span>
+          <span class="help">(use commas to separate multiple tags)</span>
+        </li>
+        <% if @lesson.new_record? %>
+            <li>
+        <span>
+          <%= f.label :video %>
+          <%= f.file_field :video, :title => "You must provide a video for your lesson", :class => "required" %>
+          <span class="required-field"/>
+        </span>
+            </li>
+            <li>
+        <span>
+          <%= f.label :initial_free_download_count, 'Free Downloads' %>
+          <%= select_tag :initial_free_download_count, options_for_select(LessonsController.free_download_counts) %>
+          <span class="required-field"/>
+        </span>
+            </li>
+        <% end %>
+        <li>
+        <span>
+          <%= f.label :category %>
+          <%= f.collection_select(:category_id, Category.ascend_by_compiled_sort, :id,
+                                  :formatted_name,  {:include_blank => 'Select...'}) %>
+          <span class="required-field"/>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :language %>
+          <%= f.select :language, User.supported_languages %>
+          <span class="required-field"/>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+        <%= f.submit "#{@lesson.new_record? ? "Create" : "Update"} Lesson" %>
+          <%= link_to "Cancel", lessons_path %>
+        </span>
+
+          <div class="clear"/>
+        </li>
+      </ul>
+  <% end %>
+</div>

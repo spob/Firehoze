@@ -317,7 +317,7 @@ class LessonsController < ApplicationController
       'content_in_tab'
     elsif %w(list_admin).include?(params[:action])
       'admin'
-    elsif %w(new create).include?(params[:action])
+    elsif %w(new create edit update).include?(params[:action])
       'application_v2'
     else
       'application'
