@@ -274,7 +274,6 @@ en:
     must_view_to_review: You can only review videos which you own
     update_success: Review updated
     add_your_review: Add Your Review of the Lesson
-    activity: <b>{{user}}</b> wrote a review for the lesson {{trackable}}
 
   sku:
     create_success: SKU created

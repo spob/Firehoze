@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
   # the times this user has reported in appropriate content
   has_many :flaggings, :class_name => 'Flag'
   has_many :lesson_comments
+  has_many :activities, :as => :trackable, :dependent => :destroy
   has_many :available_credits, :class_name => 'Credit',
            :conditions => { :redeemed_at => nil, :expired_at => nil },
            :order => "id"
@@ -138,7 +139,7 @@ class User < ActiveRecord::Base
     "/images/users/avatars/%s/missing.png" % style.to_s
   end
 
-  # convert an amazon url for an avator to a cdn url
+  # convert an amazon url for an avator to a cdn url                       
   def self.convert_avatar_url_to_cdn(url)
     regex = Regexp.new("//.*#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}")
     regex2 = Regexp.new("https")
@@ -309,6 +310,18 @@ END
 
   def followed_by?(user)
     self.followers.find_by_id(user, :select => [:id])
+  end
+
+  def compile_activity
+    self.activities.create!(:actor_user => self,
+                            :actee_user => nil,
+                            :acted_upon_at => self.created_at,
+                            :group => nil,
+                            :activity_string => "user.activity",
+                            :activity_object_id => self.id,
+                            :activity_object_human_identifier => self.login,
+                            :activity_object_class => self.class.to_s)
+    self.update_attribute(:activity_compiled_at, Time.now)
   end
 
   private

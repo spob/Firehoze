@@ -58,5 +58,11 @@ class Activity < ActiveRecord::Base
         group_member.compile_activity
       end
     end
+
+    User.active.activity_compiled_at_null(:lock => true).each do |user|
+      User.transaction do
+        user.compile_activity
+      end
+    end
   end
 end

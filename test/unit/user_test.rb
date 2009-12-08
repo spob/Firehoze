@@ -54,6 +54,7 @@ class UserTest < ActiveSupport::TestCase
     should_have_many :instructed_lessons
     should_have_many :instructed_lesson_ids
     should_have_many :payments
+    should_have_many :activities
     should_belong_to :payment_level
     should_have_and_belong_to_many :wishes
     should_have_and_belong_to_many :followers
