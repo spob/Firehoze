@@ -1,28 +1,3 @@
 <% title "Edit comment" -%>
 
-<%= render :partial => "shared/infield_head_content" %>
-
-<%= stylesheet 'validation' %>
-<%= javascript 'validate/jquery.validate', 'validate/lesson_comment.validate' %>
-
-<% form_for :lesson_comment, :url => lesson_comment_path(@lesson_comment), :html => { :method => :put, :id => "lesson_comment" } do |f| %>
-    <%= f.error_messages %>
-    <fieldset>
-      <legend>Edit you comment
-        of: <%= link_to h(@lesson_comment.lesson.title), lesson_path(@lesson_comment.lesson) %></legend>
-      <p>
-        <%= f.label :body %><br/>
-        <%= f.text_area :body, :style => "width:520px;", :class => "required" %>
-        <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
-      </p>
-      <% if Comment.show_public_private_option?(current_user) %>
-          <%= f.label :public %> <%= f.check_box :public %>
-      <% else %>
-          <%= f.hidden_field :public %>
-      <% end %>
-    </fieldset>
-    <p>
-      <%= f.submit "Update Comment", :class => "submit" %>
-      <%= link_to "Cancel", lesson_path(@lesson_comment.lesson) %>
-    </p>
-<% end %>
+<%= render :partial => 'form', :locals => { :heading => "Edit Comment for the Lesson #{link_to h(@lesson_comment.lesson.title), lesson_path(@lesson_comment.lesson)}", :subtext => "Edit your comment"} %>

@@ -1,0 +1,39 @@
+<%= stylesheet 'validation' %>
+<%= javascript 'validate/jquery.validate', 'validate/lesson_comment.validate' %>
+
+<div class="fh-form">
+  <% form_for(:lesson_comment, :url => (@lesson_comment.new_record? ? lesson_lesson_comments_url(@lesson) : lesson_comment_path(@lesson_comment)), :html => { :method => (@lesson_comment.new_record? ? :post : :put), :class => "lesson_comment", :id => "lesson_comment" }) do |f| %>
+      <%= f.error_messages  %>
+      <ul id="company-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3><%= heading %></h3>
+          <h4><%= subtext %></h4>
+        </li>
+        <li>
+        <span>
+          <%= f.label :body, "Your comment" %>
+          <%= f.text_area :body, :class => "required", :title => "You must enter text for your comment", :class => "required" %>
+          <span class="required-field"/>
+        </span>
+          <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
+        </li>
+        <% if Comment.show_public_private_option?(current_user) %>
+            <li>
+        <span>
+          <%= f.check_box :public %> Private
+        </span>
+            </li>
+        <% end %>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= f.submit (@lesson_comment.new_record? ? 'Create' : 'Update') %>
+          <%= link_to "Cancel", lesson_path(@lesson_comment.new_record? ? @lesson : @lesson_comment.lesson) %>
+        </span>
+
+          <div class="clear"/>
+        </li>
+      </ul>
+  <% end %>
+</div>

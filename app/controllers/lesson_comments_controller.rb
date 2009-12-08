@@ -15,11 +15,13 @@ class LessonCommentsController < ApplicationController
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
 #  verify :method => :destroy, :only => [:delete ], :redirect_to => :home_path
+  
+  layout :layout_for_action
 
-  def index
-    @lesson_comments = LessonComment.list @lesson, params[:page], current_user
-    render :layout => 'content_in_tab'
-  end
+#  def index
+#    @lesson_comments = LessonComment.list @lesson, params[:page], current_user
+#    render :layout => 'content_in_tab'
+#  end
 
   def index
     @lesson_comments = LessonComment.list @lesson, params[:page], current_user
@@ -81,5 +83,13 @@ class LessonCommentsController < ApplicationController
 
   def find_lesson_comment
     @lesson_comment = LessonComment.find(params[:id])
+  end
+
+  def layout_for_action
+    if %w(edit update new create).include?(params[:action])
+      'application_v2'
+    else
+      'application'
+    end
   end
 end
