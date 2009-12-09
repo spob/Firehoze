@@ -152,6 +152,23 @@
     background-color:transparent;
 }
 
+/* rating stars */
+.fh-form  ul.ajaxful-rating li {
+    padding:1px 0 0 0;
+    border:0 none;
+    position:static;
+}
+
+.fh-form #rating_average {
+    position:absolute;
+    left: 318px;
+    top:16px;
+}
+
+.fh-form .ajaxful-rating .current-rating{
+    position: absolute  !important;
+}
+
 
 /* UNIFORM JQUERY PLUGIN CSS */
 div.checker {
@@ -396,4 +413,3 @@ div.counter .over {
 
 div.counter .safe { color: inherit;}
 div.counter .over { color:red }
-
