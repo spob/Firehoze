@@ -48,7 +48,7 @@ class PasswordResetsControllerTest < ActionController::TestCase
 
         should_assign_to :user
         should_set_the_flash_to "Password successfully updated"
-        should_redirect_to("my account page") { account_url assigns(:user) }
+        should_redirect_to("my firehoze page") { my_firehoze_index_path }
       end
 
       fast_context "on PUT to :update with bad password confirmation" do

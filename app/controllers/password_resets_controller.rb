@@ -48,7 +48,7 @@ class PasswordResetsController < ApplicationController
       render :action => :edit 
     elsif @user.save
       flash[:notice] = t 'password_reset.pwd_update_success'
-      redirect_to home_path(@user)
+      redirect_to my_firehoze_index_path
     else
       render :action => :edit
     end
