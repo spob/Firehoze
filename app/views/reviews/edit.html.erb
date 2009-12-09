@@ -1,26 +1,45 @@
 <% title "Edit review of &quot;#{h(@review.lesson.title)}&quot;" -%>
 
-<%= render :partial => "shared/infield_head_content" %>
 <%= stylesheet 'validation' %>
 <%= javascript 'jquery.simplyCountable', 'validate/jquery.validate', 'validate/review.validate' %>
 
-<% form_for :review, :url => review_path(@review), :html => { :method => :put, :id => "review" } do |f| %>
-  <%= f.error_messages %>
-  <fieldset>
-    <legend>Edit your Review of: <%= link_to h(@review.lesson.title), lesson_path(@review.lesson) %></legend>
-    <p>
-      <%= f.label :headline %><br />
-      <%= f.text_field :headline, :maxlength => "100", :class => "required" %>
-    <div class="counter"><span id="headline_counter"></span> characters left</div>
-  </p>
-  <p>
-    <%= f.label :body %><br />
-    <%= f.text_area :body, :class => "required" %>
-    <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
-  </p>
-  </fieldset>
-  <p>
-    <%= f.submit "Create review", :class => "submit" %>
-    <%= link_to "Cancel", lesson_path(@review.lesson) %>
-  </p>
-<% end %>
+<div class="fh-form">
+  <% form_for :review, :url => review_path(@review), :html => { :method => :put, :id => "review" } do |f| %>
+      <%= f.error_messages %>
+      <ul id="company-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3>Edit review for <%= link_to h(@review.lesson.title), lesson_path(@review.lesson) %></h3>
+          <h4>Help the Firehoze community by writing a review for this lesson.</h4>
+        </li>
+        <li>
+        <span>
+          <%= f.label :headline %>
+          <%= f.text_field :headline, :maxlength => "100", :title => "You must provide a headline for your review", :class => "required" %>
+          <span class="required-field"/>
+        </span>
+
+          <div class="counter"><span id="headline_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :body %>
+          <%= f.text_area :body, :title => "You must provide the text of your review", :class => "required" %>
+          <span class="required-field"/>
+        </span>
+
+          <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= f.submit "Update" %>
+          <%= link_to "Cancel", lesson_path(@review.lesson) %>
+        </span>
+
+          <div class="clear"/>
+
+        </li>
+      </ul>
+  <% end %>
+</div>
