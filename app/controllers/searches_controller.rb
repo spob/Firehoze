@@ -4,8 +4,7 @@ class SearchesController < ApplicationController
 
   def index
     @search_criteria = params[:search_criteria]
-    @lesson_format = 'brief'
-    @collection = 'search'
+
     # using paginate to set a maximum # of rows returned
     @lessons = Lesson.search @search_criteria,
       :conditions => { :status => 'Ready'},
@@ -14,7 +13,7 @@ class SearchesController < ApplicationController
       :per_page => 25,
       :retry_stale => true
 
-    #    member_groups = [-1] + (current_user ? current_user.member_groups : [])
+    # member_groups = [-1] + (current_user ? current_user.member_groups : [])
     @groups = Group.search @search_criteria,
       :conditions => { :private => 0},
       :include => [:owner ],
