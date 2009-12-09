@@ -72,6 +72,9 @@ Rails::Initializer.run do |config|
   # Not sure why this is required...but rake is failing without it. Some gems must require it -- RBS
   config.gem "hpricot", :source => "http://code.whytheluckystiff.net"
 
+  # Using jRails, you can get all of the same default Rails helpers for javascript functionality using the lighter jQuery library.
+  config.gem 'jrails', :version => '0.6', :source => 'http://gemcutter.org'
+
   # Gem for secret url (for user signup requests)
   config.gem "mholling-active_url", :lib => "active_url", :source => "http://gems.github.com"
 
