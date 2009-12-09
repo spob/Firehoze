@@ -27,6 +27,11 @@
     margin-right:10px;
 }
 
+.fh-form .help {
+    margin-left:175px;
+    display:block;
+}
+
 .fh-form .unlabelled  { margin-left:175px; }
 
 .fh-form textarea,
@@ -87,6 +92,7 @@
     font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
     font-weight:bold;
     font-size:18px;
+    line-height:22px;
     color:#0350a6;
     margin:8px 0 6px 82px;
 }
