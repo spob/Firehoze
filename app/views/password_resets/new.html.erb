@@ -1,19 +1,34 @@
 <% title "Forgot Password" -%>
 
+<%= stylesheet 'validation' %>
+<%= javascript 'validate/jquery.validate', 'v2/validation/reset_password.validate' %>
 <%= javascript 'always_at_bottom', 'footer' %>
-<%= render :partial => "shared/infield_head_content" %>
 
-<% form_tag password_resets_path,  :id => "inline", :class => "password_reset"  do %>
-  <fieldset>
-    <legend>Forgot Password</legend>
-    <div class="help">Fill out the form below and instructions to reset your password will be emailed to you:</div>
-    <p>
-      <label for="email">Email</label><br />
-      <%= text_field_tag "email" %>
-    </p>
-  </fieldset>
-  <p>
-    <%= submit_tag "Reset my password", :disable_with => translate('general.disable_with') %>
-    <%= link_to "Back to Login", login_path %>
-  </p>
-<% end %>
+<div class="fh-form">
+  <% form_tag password_resets_path,  :id => "inline", :class => "password_reset" do %>
+      <ul id="company-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3>Forgot Password</h3>
+          <h4>Fill out the form below and instructions to reset your password will be emailed to you.</h4>
+        </li>
+        <li>
+        <span>
+          <%= label_tag :email %>
+          <%= text_field_tag :email, "", :title => "You must provide your email address", :class => "required" %>
+          <span class="required-field"/>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+        <%= submit_tag "Reset my password" %>
+          <%= link_to "Cancel", login_path %>
+        </span>
+
+          <div class="clear"/>
+
+        </li>
+      </ul>
+  <% end %>
+</div>
