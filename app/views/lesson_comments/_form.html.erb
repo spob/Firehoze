@@ -28,7 +28,7 @@
         <% end %>
         <li class="bottom">
         <span class="unlabelled">
-          <%= f.submit (@lesson_comment.new_record? ? 'Create' : 'Update') %>
+          <%= f.submit(@lesson_comment.new_record? ? 'Create' : 'Update') %>
           <%= link_to "Cancel", lesson_path(@lesson_comment.new_record? ? @lesson : @lesson_comment.lesson) %>
         </span>
 
