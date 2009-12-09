@@ -2,30 +2,40 @@
 
 <h3><%= "Search: &quot;#{@search_criteria}&quot;" %></h3>
 
-<div>
-  <h4>Lessons</h4>
-  <%= render :partial => "lessons/lessons", :object => @lessons, :locals => { :lesson_format => @lesson_format, :collection => @collection } %>
-</div>
+<% if @lessons.empty? and @groups.empty? and @users.empty? %>
+  no results
+<% end  %>
 
-<div>
-  <h4>Public Groups</h4>
-  <table>
-    <tr>
-      <th colspan="2">Group</th>
-      <th>Relationship</th>
-      <th>Category</th>
-    </tr>
-    <%= render :partial => 'categories/group', :collection => @groups %>
-  </table>
-</div>
+<% if @lessons.present? %>
+  <div>
+    <h4>Lessons</h4>
+    <%= render :partial => "lessons/lessons", :object => @lessons, :locals => { :lesson_format => @lesson_format, :collection => @collection } %>
+  </div>
+<% end %>
 
-<div>
-  <h4>Firehoze Users</h4>
-  <table>
-    <tr>
-      <th colspan="2">User</th>
-      <th>Bio</th>
-    </tr>
-    <%= render :partial => "user", :collection => @users %>
-  </table>
-</div>
+<% if @groups.present? %>
+  <div>
+    <h4>Public Groups</h4>
+    <table>
+      <tr>
+        <th colspan="2">Group</th>
+        <th>Relationship</th>
+        <th>Category</th>
+      </tr>
+      <%= render :partial => 'categories/group', :collection => @groups %>
+    </table>
+  </div>
+<% end %>
+
+<% if @users.present? %>
+  <div>
+    <h4>Firehoze Users</h4>
+    <table>
+      <tr>
+        <th colspan="2">User</th>
+        <th>Bio</th>
+      </tr>
+      <%= render :partial => "user", :collection => @users %>
+    </table>
+  </div>
+<% end %>
