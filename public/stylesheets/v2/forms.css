@@ -23,7 +23,8 @@
     text-align:right;
     display:block;
     float:left;
-    line-height:32px;
+    /*line-height:32px;*/
+    margin-top:8px;
     margin-right:10px;
 }
 
