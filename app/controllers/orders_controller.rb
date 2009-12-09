@@ -99,6 +99,12 @@ class OrdersController < ApplicationController
   private
 
   def layout_for_action
-    %w(index).include?(params[:action]) || (params[:action] == 'show' and current_user.is_admin?) ? 'admin' : 'application'
+    if %w(index).include?(params[:action]) || (params[:action] == 'show' and current_user.is_admin?)
+      'admin'
+    elsif %w(new create).include?(params[:action])
+      'application_v2'
+    else
+      'application'
+    end
   end
 end

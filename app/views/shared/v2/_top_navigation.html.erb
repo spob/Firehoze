@@ -15,7 +15,7 @@
       </li>
       <li><%= link_to h(t('lesson.create_lesson')), new_lesson_path %></li>
       <li class="with-subnav">
-        <a href="#">Credits</a>
+        <%= link_to "Credits", store_path(0) %>
         <ul class="subnav">
           <li><%= link_to "Buy Credits", store_path(0) %></li>
           <li><%= link_to "Redeem Gift Certificate", new_gift_certificate_path %></li>
