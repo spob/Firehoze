@@ -11,7 +11,7 @@
       <legend>Edit you comment
         of: <%= link_to h(@topic_comment.topic.title), topic_path(@topic_comment.topic) %></legend>
       <p>
-        <%= f.label :body %><br/>
+        <%= f.label :body %><br />
         <%= f.text_area :body, :style => "width:520px;", :class => "required" %>
         <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
       </p>

@@ -4,7 +4,7 @@
   <div class="span-5">
     <div class="commenter_avatar"><%= link_to avatar_tag(commenter, :size => :medium), user_path(commenter) %></div>
     <div><%= link_to_profile(commenter) %></div>
-    <div>Member Since:<br/><%= l(commenter.created_at.to_date) %></div>
+    <div>Member Since:<br /><%= l(commenter.created_at.to_date) %></div>
   </div>
 
   <div class="prepend-5 last">

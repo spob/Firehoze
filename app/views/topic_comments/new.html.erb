@@ -3,9 +3,9 @@
 <% form_for(:topic_comment, :url => topic_topic_comments_url(@topic), :html => { :class => "lesson_comment", :id => "topic_comment" }) do |f| %>
     <%= f.error_messages %>
       <p>
-        <%= f.label :body, "Your comment" %><br/>
+        <%= f.label :body, "Your comment" %><br />
         <%= f.text_area :body, :style => "width:530px;", :class => "required" %>
-        <br/>
+        <br />
         <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
       </p>
       <% if Comment.show_public_private_option?(current_user) %>

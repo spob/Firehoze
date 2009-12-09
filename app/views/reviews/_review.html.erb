@@ -4,7 +4,7 @@
   <div class="span-5">
     <div class="instructor_avatar"><%= link_to avatar_tag(reviewer, :size => :medium), user_path(reviewer) %></div>
     <div><%= link_to_profile(reviewer) %></div>
-    <div>Member Since:<br/><%= h(l(reviewer.created_at.to_date)) %></div>
+    <div>Member Since:<br /><%= h(l(reviewer.created_at.to_date)) %></div>
   </div>
 
   <div class="prepend-5 last">

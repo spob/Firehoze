@@ -6,10 +6,10 @@
 
     Quantity:
     <%= f.text_field :credit_quantity %>
-    <br/>
+    <br />
     User:
     <%= f.select :user_id, options_from_collection_for_select(User.ascend_by_login, :id, :login) %>
-    <br/>
+    <br />
 
     <%= f.submit "Create", :disable_with => translate('general.disable_with') %>
 <% end %>

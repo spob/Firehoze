@@ -8,14 +8,14 @@ Category: <%= h @group.category.name %>
 <%= show_leave_link(@group) %>
 <%= show_invite_link(@group) %>
 <%= show_edit_link(@group) %>
-<br/>
+<br />
 Owner: <%= link_to_profile(@group.owner) %>
-<br/>
+<br />
 This group is <%= @group.private ? "by invitation only" : "open to the public" %>
-<br/>
+<br />
 <%= show_membership_text @group %>
-<br/>
-<br/>
+<br />
+<br />
 <h3>Members:</h3>
 <ul>
   <%= render :partial => "member", :collection => (@group.group_members.reject{ |m| m.member_type == OWNER }) %>

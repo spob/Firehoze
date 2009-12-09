@@ -14,7 +14,7 @@
         <span>
           <%= f.label :name %>
           <%= f.text_field :name, :maxlength => "50", :title => "You must enter your group name", :class => "required" %>
-          <span class="required-field"/>
+          <span class="required-field" />
         </span>
           <div class="counter"><span id="group_name_counter"></span> characters left</div>
         </li>
@@ -27,14 +27,14 @@
         <span>
           <%= f.label :description %>
           <%= f.text_area :description, :title => "You must enter a description", :class => "required" %>
-          <span class="required-field"/>
+          <span class="required-field" />
         </span>
         </li>
         <li>
         <span>
           <%= f.label(:category_id, "Category") %>
           <%= f.collection_select(:category_id, Category.ascend_by_compiled_sort, :id, :formatted_name,  {:include_blank => 'Select...'}) %>
-          <span class="required-field"/>
+          <span class="required-field" />
         </span>
         </li>
         <% if !@group.new_record? %>
@@ -63,7 +63,7 @@
           <%= link_to 'Cancel', @group.new_record? ? home_path : group_path(@group) %>
         </span>
 
-          <div class="clear"/>
+          <div class="clear" />
         </li>
       </ul>
   <% end %>

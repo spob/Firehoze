@@ -9,11 +9,11 @@
     <div<%= " class='#{css_classes}'" unless css_classes.blank? -%>>
       <b>Add Lesson to <%= groups.size > 1 ? 'Groups' : 'Group' %>:</b>
       <% groups.each do |group| %>
-          <br/>
+          <br />
           <%= link_to h(group.name), group_path(group) %>&nbsp;&nbsp;
           <%= link_to_add_remove_group lesson, group %>
       <% end %>
-      <br/>
+      <br />
       <%= link_to "Create a New Group", new_group_path %>
     </div>
 <% end %>

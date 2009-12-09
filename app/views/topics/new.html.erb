@@ -5,11 +5,11 @@ New Discussion Topic in the <%= h @group.name %> group
 <% form_for :topic, :url => group_topics_url(@group) do |f| %>
     <%= f.error_messages %>
     <p>
-      <%= f.label :title %><br/>
+      <%= f.label :title %><br />
       <%= f.text_field :title %>
     </p>
     <p>
-      <%= f.label :comments %><br/>
+      <%= f.label :comments %><br />
       <%= f.text_area :comments %>
       <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
     </p>

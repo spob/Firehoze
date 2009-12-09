@@ -12,7 +12,7 @@
   <td>
     <b><%= h topic.last_topic_comment.user.login %></b>
     wrote "<%= truncate(topic.last_topic_comment.body, :length => 100) %>"
-    <br/>
+    <br />
     <%= l(topic.last_commented_at) %>
   </td>
 </tr>

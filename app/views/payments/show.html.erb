@@ -3,7 +3,7 @@
 <h3>Payment #<%= @payment.id %></h3>
 <h4>Paid to:</h4>
 <b><%= h @payment.user.full_name %></b>
-<p><%= user_formatted_address(@payment.user, "<BR/>") %></p>
+<p><%= user_formatted_address(@payment.user, "<BR />") %></p>
 <% @balance = 0.0 %>
 <table>
   <tr>

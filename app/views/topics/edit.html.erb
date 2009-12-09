@@ -5,7 +5,7 @@ Edit Discussion Topic "<%= h @topic.title %>"
 <% form_for :topic, :url => topic_path(@topic), :html => { :method => :put } do |f| %>
     <%= f.error_messages %>
     <p>
-      <%= f.label :title %><br/>
+      <%= f.label :title %><br />
       <%= f.text_field :title %>
     </p>
     <p>

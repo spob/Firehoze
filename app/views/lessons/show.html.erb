@@ -38,18 +38,18 @@
       <div>
         <b>Language:</b>
         <%= h language_value(@lesson.language) -%>
-        <br/>
+        <br />
         <% if @lesson.finished_video_duration -%>
             <b>Duration:</b>
             <%= ChronicDuration.output(@lesson.finished_video_duration/1000, :format => :long) -%>
-            <br/>
+            <br />
         <% end -%>
         <b>Released on:</b>
         <%= l @lesson.created_at -%>
-        <br/>
+        <br />
         <b>Category:</b>
         <%= bread_crumb(@lesson.category) -%>
-        <br/>
+        <br />
         <% if current_user.try("is_admin?") or @lesson.instructor == current_user -%>
             <b>Status:</b>
 
@@ -62,7 +62,7 @@
                                                :frequency => 5 ) %>
               <% end %>
             </div>
-            <br/>
+            <br />
         <% end -%>
         <% @groups = @lesson.active_groups.public(:select => [:id, :name]) +
                 @lesson.active_groups.private(:select => [:id, :name]) %>
@@ -71,10 +71,10 @@
             <% @groups.each do |group| %>
                 <%= link_to h(group.name), group_path(group) %>&nbsp;
             <% end %>
-            <br/>
+            <br />
         <% end %>
         <%= number_of_students_phrase(@lesson) -%>
-        <br/>
+        <br />
         <%= content_tag(:p, free_remaining_text(@lesson)) if @lesson.has_free_credits? -%>
       </div>
     </div>
