@@ -28,6 +28,12 @@
     margin-right:10px;
 }
 
+.fh-form .field-separator {
+    display:block;
+    margin-left:82px;
+    font-weight:bold;
+}
+
 .fh-form .help {
     margin-left:175px;
     display:block;
