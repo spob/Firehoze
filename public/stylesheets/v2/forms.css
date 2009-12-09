@@ -141,7 +141,12 @@
     background: url(images/forms/signup-icon-company.png) no-repeat top left;
 }
 
-.fh-form ul.section li.bottom{
+.fh-form ul.section li.heading {
+    font-weight:bold;
+    background-color:transparent;
+}
+
+.fh-form ul.section li.bottom {
     border:0;
     min-height:5px;
     background-color:transparent;
