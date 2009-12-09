@@ -100,7 +100,7 @@
         <% unless current_user.verified_address_on %>
             <li>
         <span>
-          <%= f.check_box :default_address %> Save this address for future orders.
+          <%= check_box_tag :default_address %> Save this address for future orders.
         </span>
             </li>
         <% end %>
