@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $(".password_reset").validate({
+    $(".password_reset, .edit_user").validate({
         errorElement: "span",
         success: "valid",
         submitHandler: function(form) {

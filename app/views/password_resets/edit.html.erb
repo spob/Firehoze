@@ -1,14 +1,40 @@
 <% title "Change My Password" -%>
 
-<h3>Change My Password</h3>
+<%= stylesheet 'validation' %>
+<%= javascript 'validate/jquery.validate', 'v2/validation/reset_password.validate' %>
 
-<% form_for @user, :url => password_reset_url(:protocol => SECURE_PROTOCOL), :method => :put do |f| %>
-  <%= f.error_messages %>
-  <%= f.label :password %><br />
-  <%= f.password_field :password %><br />
-  <br />
-  <%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %><br />
-  <br />
-  <%= f.submit "Update my password and log me in", :disable_with => translate('general.disable_with') %>
-<% end %>
+<div class="fh-form">
+  <% form_for @user, :url => password_reset_url(:protocol => SECURE_PROTOCOL), :method => :put do |f| %>
+      <%= f.error_messages %>
+      <ul id="company-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3>Change My Password</h3>
+          <h4>Please select your new password.</h4>
+        </li>
+        <li>
+        <span>
+      <%= f.label :password %>
+      <%= f.password_field :password, :title => "You must provide a new password", :class => "required" %>
+          <span class="required-field"/>
+        </span>
+        </li>
+        <li>
+        <span>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, :title => "You must confirm your password", :class => "required" %>
+          <span class="required-field"/>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+        <%= submit_tag "Update my password and log me in" %>
+        </span>
+
+          <div class="clear"/>
+
+        </li>
+      </ul>
+  <% end %>
+</div>

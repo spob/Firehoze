@@ -48,7 +48,7 @@ class PasswordResetsController < ApplicationController
       render :action => :edit 
     elsif @user.save
       flash[:notice] = t 'password_reset.pwd_update_success'
-      redirect_to account_url(@user)
+      redirect_to home_path(@user)
     else
       render :action => :edit
     end
