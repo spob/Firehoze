@@ -13,6 +13,8 @@ class ReviewsController < ApplicationController
   before_filter :find_review, :only => [ :edit, :update, :show ]
   before_filter :set_per_page, :only => [ :ajaxed, :index ]
 
+  layout :layout_for_action
+
 
   permit ROLE_MODERATOR, :only => [:edit, :update]
 
@@ -118,6 +120,16 @@ class ReviewsController < ApplicationController
       params[:per_page]
     else
       5
+    end
+  end
+
+  def layout_for_action
+    if %w(list_admin).include?(params[:action])
+      'admin'
+    elsif %w(index edit update new create).include?(params[:action])
+      'application_v2'
+    else
+      'application'
     end
   end
 end
