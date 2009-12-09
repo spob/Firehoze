@@ -1,8 +1,9 @@
-<% lessons = @lessons %>
+<% lessons = object %>
 <% counter = 1 %>
+<% per_row = per_row.nil? ? 3 : per_row %>
 <div class="lessons-container clearfix">
   <% lessons.each do |lesson| %>
-    <% last_item_class = (counter % 3 == 0) ? " last" : nil %>
+    <% last_item_class = (counter % per_row == 0) ? " last" : nil %>
     <div class="lesson-container<%= last_item_class %>">
       <%= img_tag_lesson_tn(lesson, :small ) %>
       <%= render :partial => 'lessons/v2/tooltip', :locals => { :lesson => lesson } unless g_browser_is?( :name => 'ie') %>
