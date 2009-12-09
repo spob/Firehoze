@@ -25,14 +25,14 @@
         <span>
           <%= f.label :reason_type, "Reason", :style => "display:none" %>
           <%= f.select(:reason_type, reason_select_list, :prompt => "Select Reason...") %>
-          <span class="required-field"/>
+          <span class="required-field" />
         </span>
         </li>
         <li>
         <span>
           <%= f.label :comments %>
           <%= f.text_area :comments, :title => "You must enter a title", :class => "required"  %>
-          <span class="required-field"/>
+          <span class="required-field" />
         </span>
           <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
         </li>
