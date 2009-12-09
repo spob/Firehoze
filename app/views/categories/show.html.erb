@@ -4,7 +4,30 @@
 
 <div class="span-12 last">
   <%= render :partial => "categories/v2/breadcrumbs", :object => @category, :locals => { :mode => "lessons" } %>
-  <div id="category-show" class="span-8">
+
+  <div class="span-4">
+    <div class="widget-box">
+      <div class="widget-box-header">
+        <span class="h4">Explore Firehoze Categories</span>
+      </div>
+      <div class="tree-view">
+        <%= render :partial => "categories/v2/tree_view", :locals => { :category => @category, :mode => "lessons" } %>
+      </div>
+
+      <div class="widget-box-footer treeview"></div>
+    </div>
+
+    <div class="widget-box">
+      <div class="widget-box-header">
+        <span class="h4">Tags</span>
+      </div>
+      <div class="widget-box-content tags">
+        <%= render :partial => "lessons/v2/tag_cloud", :object => Lesson.tag_counts(:order => 'name ASC') %>
+      </div>
+    </div>
+  </div>
+
+  <div id="category-show" class="span-8 last">
     <div class="tab-container">
       <ul class="tabs">
         <% Category.sort_by_filters.each do |filter| %>
@@ -25,27 +48,5 @@
       <!-- end panes -->
     </div>
     <!-- end tab-container -->
-  </div>
-
-  <div class="span-4 last">
-    <div class="widget-box">
-      <div class="widget-box-header">
-        <span class="h4">Explore Firehoze Categories</span>
-      </div>
-      <div class="tree-view">
-        <%= render :partial => "categories/v2/tree_view", :locals => { :category => @category, :mode => "lessons" } %>
-      </div>
-
-      <div class="widget-box-footer treeview"></div>
-    </div>
-
-    <div class="widget-box">
-      <div class="widget-box-header">
-        <span class="h4">Tags</span>
-      </div>
-      <div class="widget-box-content tags">
-        <%= render :partial => "lessons/v2/tag_cloud", :object => Lesson.tag_counts(:order => 'name ASC') %>
-      </div>
-    </div>
   </div>
 </div>

@@ -1,5 +1,19 @@
 <%= render :partial => "categories/v2/breadcrumbs", :object => @category, :locals => { :mode => "groups" } %>
-<div id="category-show" class="span-8">
+
+<div class="span-4">
+  <div class="widget-box">
+    <div class="widget-box-header">
+      <span class="h4">Explore Firehoze Categories</span>
+    </div>
+    <div class="tree-view">
+      <%= render :partial => "categories/v2/tree_view", :locals => { :category => @category, :mode => "groups" } %>
+    </div>
+
+    <div class="widget-box-footer treeview"></div>
+  </div>
+</div>
+
+<div id="category-show" class="span-8 last">
   <% if @groups.present? %>
     <%= will_paginate @groups %>
     <table>
@@ -15,17 +29,4 @@
     <%= link_to "create a group", new_group_path %>?
   <% end %>
   <!-- end tab-container -->
-</div>
-
-<div class="span-4 last">
-  <div class="widget-box">
-    <div class="widget-box-header">
-      <span class="h4">Explore Firehoze Categories</span>
-    </div>
-    <div class="tree-view">
-      <%= render :partial => "categories/v2/tree_view", :locals => { :category => @category, :mode => "groups" } %>
-    </div>
-
-    <div class="widget-box-footer treeview"></div>
-  </div>
 </div>
