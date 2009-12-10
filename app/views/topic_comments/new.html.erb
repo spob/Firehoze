@@ -1,20 +1,41 @@
-<h2>Add a Comment to the Topic "<%= h @topic_comment.topic.title %>"</h2>
+<% title "Add a Comment to &quot;#{h(@topic_comment.topic.title)}&quot;" -%>
 
-<% form_for(:topic_comment, :url => topic_topic_comments_url(@topic), :html => { :class => "lesson_comment", :id => "topic_comment" }) do |f| %>
-    <%= f.error_messages %>
-      <p>
-        <%= f.label :body, "Your comment" %><br />
-        <%= f.text_area :body, :style => "width:530px;", :class => "required" %>
-        <br />
-        <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
-      </p>
-      <% if Comment.show_public_private_option?(current_user) %>
-          <p>
-            <%= f.label :public %> <%= f.check_box :public %>
-          </p>
-      <% end %>
-    <p>
-      <%= f.submit "Submit", :class => "submit" %>
-      <%= link_to "Cancel", topic_path(@topic) %>
-    </p>
-<% end %>
+<%= stylesheet 'validation' %>
+<%= javascript 'jquery.simplyCountable', 'validate/jquery.validate', 'v2/validation/topic_comments.validate' %>
+
+<div class="fh-form">
+  <% form_for(:topic_comment, :url => topic_topic_comments_url(@topic), :html => { :id => "topic_comment" }) do |f| %>
+      <%= f.error_messages %>
+      <ul id="company-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3>Add a Comment to the Topic "<%= h @topic_comment.topic.title %>"</h3>
+          <h4>Engage in an online discussion with other members of <%= link_to h(@topic_comment.topic.title), topic_path(@topic_comment.topic) %>.</h4>
+        </li>
+        <li>
+        <span>
+          <%= f.label :body, "Your comment" %>
+          <%= f.text_area :body, :title => "You must provide the text of your comment", :class => "required" %>
+          <span class="required-field"/>
+        </span>
+          <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
+        </li>
+        <% if Comment.show_public_private_option?(current_user) %>
+            <li>
+        <span>
+          <%= f.check_box :public %> Public
+        </span>
+            </li>
+        <% end %>
+        <li class="bottom">
+        <span class="unlabelled">
+        <%= f.submit "Save Comment" %>
+          <%= link_to "Cancel", topic_path(@topic) %>
+        </span>
+
+          <div class="clear"/>
+        </li>
+      </ul>
+  <% end %>
+</div>

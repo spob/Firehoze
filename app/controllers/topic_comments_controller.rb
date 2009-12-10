@@ -8,6 +8,8 @@ class TopicCommentsController < ApplicationController
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
 
+  layout :layout_for_action
+
   def new
     @topic_comment = @topic.topic_comments.build
     can_create?(@topic)
@@ -68,5 +70,13 @@ class TopicCommentsController < ApplicationController
     flash[:error] = t('topic.must_be_member', :group => topic.group.name)
     redirect_to group_path(topic.group)
     false
+  end
+
+  def layout_for_action
+    if %w(edit update new create).include?(params[:action])
+      'application_v2'
+    else
+      'application'
+    end
   end
 end

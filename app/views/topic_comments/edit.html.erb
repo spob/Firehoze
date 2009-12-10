@@ -1,28 +1,41 @@
-<% title "Edit comment" -%>
-
-<%= render :partial => "shared/infield_head_content" %>
+<% title "Edit Comment to &quot;#{h(@topic_comment.topic.title)}&quot;" -%>
 
 <%= stylesheet 'validation' %>
-<%= javascript 'validate/jquery.validate', 'validate/topic_comment.validate' %>
+<%= javascript 'jquery.simplyCountable', 'validate/jquery.validate', 'v2/validation/topic_comments.validate' %>
 
-<% form_for :topic_comment, :url => topic_comment_path(@topic_comment), :html => { :method => :put, :id => "topic_comment" } do |f| %>
-    <%= f.error_messages %>
-    <fieldset>
-      <legend>Edit you comment
-        of: <%= link_to h(@topic_comment.topic.title), topic_path(@topic_comment.topic) %></legend>
-      <p>
-        <%= f.label :body %><br />
-        <%= f.text_area :body, :style => "width:520px;", :class => "required" %>
-        <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
-      </p>
-      <% if Comment.show_public_private_option?(current_user) %>
-          <%= f.label :public %> <%= f.check_box :public %>
-      <% else %>
-          <%= f.hidden_field :public %>
-      <% end %>
-    </fieldset>
-    <p>
-      <%= f.submit "Update Comment", :class => "submit" %>
-      <%= link_to "Cancel", topic_path(@topic_comment.topic) %>
-    </p>
-<% end %>
+<div class="fh-form">
+  <% form_for :topic_comment, :url => topic_comment_path(@topic_comment), :html => { :method => :put, :id => "topic_comment" } do |f| %>
+      <%= f.error_messages %>
+      <ul id="company-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3>Edit Comment to the Topic "<%= h @topic_comment.topic.title %>"</h3>
+          <h4>Engage in an online discussion with other members of <%= link_to h(@topic_comment.topic.title), topic_path(@topic_comment.topic) %>.</h4>
+        </li>
+        <li>
+        <span>
+          <%= f.label :body, "Your comment" %>
+          <%= f.text_area :body, :title => "You must provide the text of your comment", :class => "required" %>
+          <span class="required-field"/>
+        </span>
+          <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
+        </li>
+        <% if Comment.show_public_private_option?(current_user) %>
+            <li>
+        <span>
+          <%= f.check_box :public %> Public
+        </span>
+            </li>
+        <% end %>
+        <li class="bottom">
+        <span class="unlabelled">
+        <%= f.submit "Update Comment" %>
+          <%= link_to "Cancel", topic_path(@topic_comment.topic) %>
+        </span>
+
+          <div class="clear"/>
+        </li>
+      </ul>
+  <% end %>
+</div>
