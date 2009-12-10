@@ -1,15 +1,26 @@
-ul.users {
+ul.users,
+ul.groups {
     list-style:none;
     margin:0;
     padding:0;
 }
 
-ul.users li img.avatar {
+ul.users li img.avatar,
+ul.groups li img.logo {
     float:left;
 }
 
-ul.users li .details {
+ul.users li .details,
+ul.groups li .details {
     border-bottom: dotted 1px #ccc;
-    padding: 0 17px 20px 77px;
-
+    margin-bottom: 17px;
 }
+
+ul.users li .details {
+    padding: 0 17px 17px 77px;
+}
+
+ul.groups li .details {
+    padding: 0 17px 17px 94px;
+}
+

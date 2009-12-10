@@ -16,14 +16,7 @@
 <% if @groups.present? %>
   <div>
     <h4>Public Groups (<%= @groups.size %>)</h4>
-    <table>
-      <tr>
-        <th colspan="2">Group</th>
-        <th>Relationship</th>
-        <th>Category</th>
-      </tr>
-      <%= render :partial => 'categories/group', :collection => @groups %>
-    </table>
+    <%= render :partial => 'groups/v2/groups', :collection => @groups %>
   </div>
 <% end %>
 
