@@ -1,0 +1,15 @@
+ul.users {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+ul.users li img.avatar {
+    float:left;
+}
+
+ul.users li .details {
+    border-bottom: dotted 1px #ccc;
+    padding: 0 17px 20px 77px;
+
+}

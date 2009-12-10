@@ -1,6 +1,6 @@
 $(function() {
     $('.bio').truncate({
-        max_length: 750,
+        max_length: 260,
         more : "more",
         less : "less",
         fade : 500
