@@ -1,7 +1,6 @@
 <% title "Write a review for &quot;#{h(@lesson.title)}&quot;" -%>
 
-<%= stylesheet 'validation' %>
-<%= javascript 'jquery.simplyCountable', 'validate/jquery.validate', 'validate/review.validate' %>
+<%= javascript 'v2/validation/review.validate' %>
 
 <div class="fh-form">
   <% form_for(:review, :url => lesson_reviews_url(@lesson), :html => { :class => "review", :id => "review" }) do |f| %>
