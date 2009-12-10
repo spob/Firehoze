@@ -1,23 +1,52 @@
-<% title "Create Discission Topic" -%>
+<% title "Create Discussion Topic for &quot;#{h(@group.name)}&quot;" -%>
 
-New Discussion Topic in the <%= h @group.name %> group
+<%= stylesheet 'validation' %>
+<%= javascript 'jquery.simplyCountable', 'validate/jquery.validate', 'v2/validation/topics.validate' %>
 
-<% form_for :topic, :url => group_topics_url(@group) do |f| %>
-    <%= f.error_messages %>
-    <p>
-      <%= f.label :title %><br />
-      <%= f.text_field :title %>
-    </p>
-    <p>
-      <%= f.label :comments %><br />
-      <%= f.text_area :comments %>
-      <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
-    </p>
-    <p>
-      <%= f.check_box :pinned %>Pin this topic to the top
-    </p>
-    <p><%= f.submit "Submit", :disable_with => translate('general.disable_with') %></p>
-<% end %>
+<div class="fh-form">
+  <% form_for :topic, :url => group_topics_url(@group), :html => { :id => "new_topic" } do |f| %>
+      <%= f.error_messages %>
+      <ul id="company-info" class="section">
+        <li class="header">
+          <span></span>
 
+          <h3>New Discussion Topic in Group <%= link_to h(@group.name), group_path(@group) %></h3>
+          <h4>Discussion topics allow you to communicate with other users with similar interests.
+            Ask a question for other group members, suggest a lesson topic for instructors or
+            talk about the weather.</h4>
+        </li>
+        <li>
+        <span>
+          <%= f.label :title %>
+          <%= f.text_field :title, :maxlength => "200", :title => "You must provide a topic title", :class => "required" %>
+          <span class="required-field"/>
+        </span>
 
-<p><%= link_to "Cancel", group_path(@group) %></p>
+          <div class="counter"><span id="topic_title_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :comments %>
+          <%= f.text_area :comments, :title => "You must provide a comment for your topic", :class => "required" %>
+          <span class="required-field"/>
+        </span>
+          <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
+        </li>
+        <% if @group.owned_by?(current_user) or @group.moderated_by?(current_user) %>
+            <li>
+        <span>
+        <%= f.check_box :pinned %>Pin this topic to the top
+        </span>
+            </li>
+        <% end %>
+        <li class="bottom">
+        <span class="unlabelled">
+         <%= f.submit "Create Topic" %>
+          <%= link_to "Cancel", group_path(@group) %>
+        </span>
+
+          <div class="clear"/>
+        </li>
+      </ul>
+  <% end %>
+</div>
