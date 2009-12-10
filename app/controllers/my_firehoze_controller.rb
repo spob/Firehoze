@@ -119,7 +119,7 @@ class MyFirehozeController < ApplicationController
   end
 
   def fetch_students
-    @followers = current_user.students
+    @followers = current_user.followers
     @students = current_user.students.paginate(:per_page => @per_page, :page => params[:page])
   end
 
