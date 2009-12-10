@@ -19,4 +19,11 @@ $(function() {
         less : "less",
         fade : 500
     });
+
+    $('.lessons-row-format .details .synopsis').truncate({
+        max_length: 240,
+        more : "more",
+        less : "less",
+        fade : 500
+    });
 });

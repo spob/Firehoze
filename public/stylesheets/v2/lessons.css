@@ -190,11 +190,11 @@ position:relative;
 }
 
 .blue-box ul li#categories-roundup {
-	padding:17px 0 17px 17px;
+    padding:17px 0 17px 17px;
 }
 
 .category-container {
-		position: relative;
+    position: relative;
     float: left;
     padding:12px;
     margin: 0 18px 17px 0;
@@ -212,10 +212,10 @@ position:relative;
 }
 
 .category-container .arrow-link {
-	position: absolute;
-	top: 30px;
-	right: 6px;
-	
+    position: absolute;
+    top: 30px;
+    right: 6px;
+
 }
 
 .category-container h3 {
@@ -310,4 +310,48 @@ position:relative;
     padding: 5px 5px 5px 30px;
     color: #212121;
     text-decoration: none;
+}
+
+
+/* SEARCH RESULT LESSON ROW FORMAT PARTIAL _lesson_row_format.html.erb */
+ul.lessons-row-format {
+    list-style:none;
+    margin:0 0 17px 0;
+    padding:0;
+    border-bottom: dotted 1px #ccc;
+}
+
+ul.lessons-row-format li {
+    position:relative;
+    padding: 17px 0;
+    border-top: dotted 1px #ccc;
+    min-height: 74px;
+}
+
+ul.lessons-row-format li div.tn_container {
+    position:absolute;
+    top:17px;
+    left:0;
+}
+
+ul.lessons-row-format li a:hover {
+    border: 0 none;
+}
+
+
+ul.lessons-row-format li div.instructor_container {
+    position:absolute;
+    top:17px;
+    right:0;
+}
+
+ul.lessons-row-format li div.detail-container {
+    padding:0;
+    margin: 0 77px 0px 97px;
+}
+
+ul.lessons-row-format li div.details {
+    margin:0;
+    padding:0;
+    /*	border: solid 1px red;*/
 }

@@ -60,8 +60,10 @@ module ApplicationHelper
     LANGUAGES.rassoc(key).first
   end
 
-  def link_to_profile(user)
-    link_to_unless_current privacy_sensitive_username(user), user_path(user)
+  def link_to_profile(user, options = {})
+      length = options[:length]
+      name = length ? (truncate(privacy_sensitive_username(user), :length => length)) : privacy_sensitive_username(user)
+      link_to_unless_current name, user_path(user)
   end
 
   def privacy_sensitive_username(user)

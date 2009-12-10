@@ -1,0 +1,23 @@
+<% lessons = object %>
+
+<ul class="lessons-row-format">
+  <% lessons.each do |lesson| %>
+    <li>
+      <div class="tn_container">
+        <div><%= img_tag_lesson_tn(lesson, :small, :size => "80x60") %></div>
+      </div>
+      <div class="detail-container">
+        <div class="details">
+          <div><%= ratings_for(lesson, :static, :small_stars => true) %></div>
+          <strong><%= link_to h(lesson.title), lesson_path(lesson), :class => :lesson_title_link %> <%= content_tag(:span, "(#{owned_it_phase(lesson)})" ) unless owned_it_phase(lesson).blank? %></strong>
+          <div class="synopsis"><%= h lesson.synopsis %></div>
+          <%= render :partial => "lessons/tag_links_for", :object => lesson, :locals => { :options => { :css_classes =>  "lesson_center" } } %>
+        </div>
+      </div>
+      <div class="instructor_container">
+        <%= link_to avatar_tag(lesson.instructor, :size => :smaller), user_path(lesson.instructor) %>
+        <div><%= link_to_profile(lesson.instructor,:length => 10) %></div>
+      </div>
+    </li>
+  <% end %>
+</ul>
