@@ -1,7 +1,6 @@
 <% title "Checkout" -%>
 
-<%= stylesheet 'validation' %>
-<%= javascript 'jquery.simplyCountable', 'validate/jquery.validate', 'validate/order.validate' %>
+<%= javascript 'v2/validation/order.validate' %>
 
 <div class="fh-form">
   <% form_for(@order, :protocol => SECURE_PROTOCOL, :html => { :id => "order" }) do |f| %>

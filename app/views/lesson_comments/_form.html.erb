@@ -1,5 +1,4 @@
-<%= stylesheet 'validation' %>
-<%= javascript 'validate/jquery.validate', 'validate/lesson_comment.validate' %>
+<%= javascript 'v2/validation/lesson_comment.validate' %>
 
 <div class="fh-form">
   <% form_for(:lesson_comment, :url => (@lesson_comment.new_record? ? lesson_lesson_comments_url(@lesson) : lesson_comment_path(@lesson_comment)), :html => { :method => (@lesson_comment.new_record? ? :post : :put), :class => "lesson_comment", :id => "lesson_comment" }) do |f| %>
