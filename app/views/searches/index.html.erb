@@ -9,7 +9,7 @@
 <% if @lessons.present? %>
   <div>
     <h4>Lessons (<%= @lessons.size %>)</h4>
-    <%= render :partial => "lessons/v2/lessons", :object => @lessons, :locals => { :per_row => 5 } %>
+    <%= render :partial => "lessons/v2/lesson_tns", :object => @lessons, :locals => { :per_row => 5 } %>
   </div>
 <% end %>
 
