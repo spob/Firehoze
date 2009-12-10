@@ -1,0 +1,12 @@
+<ul class="users">
+  <li>
+    <div><%= avatar_link_to(user, :size => :smaller) %></div>
+    <div class="details clearfix">
+      <strong><%=link_to_profile(user) %></strong>
+      <div class="bio"><%= user.bio %></div>
+    </div>
+  </li>
+</ul>
+
+
+

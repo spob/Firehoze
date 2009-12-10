@@ -3,7 +3,7 @@
 <h3><%= "Search Results for: &quot;#{@search_criteria}&quot;" %></h3>
 
 <% if @lessons.empty? and @groups.empty? and @users.empty? %>
-  no results
+  sorry, no results
 <% end  %>
 
 <% if @lessons.present? %>
@@ -15,7 +15,7 @@
 
 <% if @groups.present? %>
   <div>
-    <h4>Public Groups</h4>
+    <h4>Public Groups (<%= @groups.size %>)</h4>
     <table>
       <tr>
         <th colspan="2">Group</th>
@@ -29,13 +29,7 @@
 
 <% if @users.present? %>
   <div>
-    <h4>Firehoze Users</h4>
-    <table>
-      <tr>
-        <th colspan="2">User</th>
-        <th>Bio</th>
-      </tr>
-      <%= render :partial => "user", :collection => @users %>
-    </table>
+    <h4>Firehoze Users (<%= @users.size %>)</h4>
+    <%= render :partial => "users/v2/users", :collection => @users %>
   </div>
 <% end %>
