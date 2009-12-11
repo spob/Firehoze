@@ -314,6 +314,20 @@ position:relative;
 
 
 /* SEARCH RESULT LESSON ROW FORMAT PARTIAL _lesson_row_format.html.erb */
+
+#search-results {
+    position:relative;
+    z-index:1;
+}
+
+#advanced-search-link {
+    position:absolute;
+    top:-7px;
+    right:0px;
+    margin:0;
+    z-index:100;
+}
+
 ul.lessons-row-format {
     list-style:none;
     margin:0 0 17px 0;
