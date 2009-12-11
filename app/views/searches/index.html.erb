@@ -5,24 +5,45 @@
 <% if @lessons.empty? and @groups.empty? and @users.empty? %>
   sorry, no results
 <% end  %>
+<div id="search-results">
+  <!-- the tabs -->
+  <div class="tab-container">
+    <ul class="tabs">
+      <% if @lessons.present? %>
+        <li><a href="#lessons">Lessons (<%= @lessons.size %>)</a></li>
+      <% end %>
 
-<% if @lessons.present? %>
-  <div>
-    <h4>Lessons (<%= @lessons.size %>)</h4>
-    <%= render :partial => "lessons/v2/lessons_row_format", :object => @lessons %>
-  </div>
-<% end %>
+      <% if @groups.present? %>
+        <li><a href="#groups">Groups (<%= @groups.size %>)</a></li>
+      <% end %>
 
-<% if @groups.present? %>
-  <div>
-    <h4>Public Groups (<%= @groups.size %>)</h4>
-    <%= render :partial => 'groups/v2/groups', :collection => @groups %>
+      <% if @users.present? %>
+        <li><a href="#users">User (<%= @users.size %>)</a></li>
+      <% end %>
+    </ul>
   </div>
-<% end %>
 
-<% if @users.present? %>
-  <div>
-    <h4>Firehoze Users (<%= @users.size %>)</h4>
-    <%= render :partial => "users/v2/users", :collection => @users %>
+  <!-- tab "panes" -->
+  <div class="panes">
+    <% # LESSONS -%>
+    <% if @lessons.present? %>
+      <div>
+        <%= render :partial => "lessons/v2/lessons_row_format", :object => @lessons %>
+      </div>
+    <% end %>
+
+    <% # GROUPS -%>
+    <% if @groups.present? %>
+      <div>
+        <%= render :partial => 'groups/v2/groups', :collection => @groups %>
+      </div>
+    <% end %>
+
+    <% # USERS -%>
+    <% if @users.present? %>
+      <div>
+        <%= render :partial => "users/v2/users", :collection => @users %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

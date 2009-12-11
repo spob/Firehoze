@@ -20,4 +20,9 @@ $(function() {
     $("div.nested-navigation > ul.links").tabs("div.nested-navigation-panes > div", {
         effect: 'fade'
     });
+
+// SEARCH RESULTS
+    $("#search-results ul.tabs").tabs("#search-results > div.panes > div", {
+        effect: 'fade'
+    });
 });

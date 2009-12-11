@@ -318,19 +318,19 @@ ul.lessons-row-format {
     list-style:none;
     margin:0 0 17px 0;
     padding:0;
-    border-bottom: dotted 1px #ccc;
 }
 
 ul.lessons-row-format li {
     position:relative;
-    padding: 17px 0;
-    border-top: dotted 1px #ccc;
+    padding:0 0 17px 0;
+    margin:0 0 17px 0;
+    border-bottom: dotted 1px #ccc;
     min-height: 74px;
 }
 
 ul.lessons-row-format li div.tn_container {
     position:absolute;
-    top:17px;
+    top:0;
     left:0;
 }
 
@@ -338,10 +338,9 @@ ul.lessons-row-format li a:hover {
     border: 0 none;
 }
 
-
 ul.lessons-row-format li div.instructor_container {
     position:absolute;
-    top:17px;
+    top:0;
     right:0;
 }
 
@@ -353,5 +352,4 @@ ul.lessons-row-format li div.detail-container {
 ul.lessons-row-format li div.details {
     margin:0;
     padding:0;
-    /*	border: solid 1px red;*/
 }
