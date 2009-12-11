@@ -21,6 +21,7 @@ class GroupTest < ActiveSupport::TestCase
     should_have_many :all_activities
     should_have_many :users, :through => :group_members
     should_have_many :activities
+    should_not_allow_mass_assignment_of :active
 
     should "test owned_by?" do
       assert @group1.owned_by?(@group1.owner)

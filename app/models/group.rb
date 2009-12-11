@@ -18,9 +18,15 @@ class Group < ActiveRecord::Base
   validates_uniqueness_of :name
   validates_length_of :name, :maximum => 50, :allow_nil => true
 
+  attr_protected :active
+
   named_scope :public, :conditions => { :private => false }
   named_scope :private, :conditions => { :private => true }
   named_scope :ascend_by_category_name_and_name, :joins => :category, :order => 'categories.name, groups.name'
+  named_scope :active_or_owner_access_all,
+              lambda{ |access_all, user_id|
+              { :conditions => ["(groups.active = ? or ? = 1 or groups.owner_id = ?)", true, access_all, user_id] }
+              }
   named_scope :not_a_member,
               lambda{ |user| return {} if user.nil?;
               { :conditions => ["groups.id not in (?)", user.groups.collect(&:id) + [-1]] }
@@ -123,7 +129,7 @@ class Group < ActiveRecord::Base
   end
 
   def reject
-#    self.rejected_bio = true
+    self.active = false
   end
 
   def invite(user)

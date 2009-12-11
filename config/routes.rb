@@ -35,7 +35,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :grant_gift_certificates, :only => [ :create, :new ]
   map.resources :groups,
                 :collection => { :list_admin => :get, :ajaxed => :get },
-                :member => { :clear_logo => :post },
+                :member => { :clear_logo => :post, :activate => :post },
                 :has_many => :topics, :shallow => true
   map.resources :group_invitations, :only => [ :create, :new ]
   map.resources :group_lessons, :only => [ :create, :destroy ]

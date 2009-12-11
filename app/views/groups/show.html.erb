@@ -9,14 +9,22 @@ Category: <%= h @group.category.name %>
 <%= show_invite_link(@group) %>
 <%= show_edit_link(@group) %>
 <%= flag_link @group -%>
-<br />
+<br/>
 Owner: <%= link_to_profile(@group.owner) %>
-<br />
+<br/>
 This group is <%= @group.private ? "by invitation only" : "open to the public" %>
-<br />
+<br/>
+<% unless @group.active %>
+    This group is inactive because of inappropriate content. Please address this concern and notify the system administration
+    if you think this group is ready to be re-activated.
+    <% if current_user.try(:is_moderator?) %>
+        <%= link_to('Reactivate?', activate_group_path(@group.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) %>
+    <% end %>
+<% end %>
+<br/>
 <%= show_membership_text @group %>
-<br />
-<br />
+<br/>
+<br/>
 <h3>Members:</h3>
 <ul>
   <%= render :partial => "member", :collection => (@group.group_members.reject{ |m| m.member_type == OWNER }) %>
