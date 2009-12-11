@@ -22,7 +22,7 @@ class GroupsController < ApplicationController
   def index
     if params[:category]
       @category = Category.find(params[:category])
-      @groups = Group.public.active_or_owner_access_all(current_user.is_moderator?, current_user ? current_user.id : -1).by_category(@category.id).ascend_by_name.paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+      @groups = Group.public.active_or_owner_access_all(current_user.try(:is_moderator?), current_user ? current_user.id : -1).by_category(@category.id).ascend_by_name.paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
     else
       @categories = Category.root.ascend_by_sort_value
     end
@@ -86,7 +86,7 @@ class GroupsController < ApplicationController
   def activate
     @group.active = true
     @group.save!
-    flash[:notice] = t('group.activated')
+    flash[:notice] = t('group.activated', :group => h(@group.name))
     redirect_to group_path(@group)
   end
 

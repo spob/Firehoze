@@ -8,7 +8,7 @@ Category: <%= h @group.category.name %>
 <%= show_leave_link(@group) %>
 <%= show_invite_link(@group) %>
 <%= show_edit_link(@group) %>
-<%= flag_link @group -%>
+<%= flag_link @group unless @group.private-%>
 <br/>
 Owner: <%= link_to_profile(@group.owner) %>
 <br/>
