@@ -80,7 +80,9 @@ en:
     review: review
     user: user
     lesson: lesson
+    group: group
     lessoncomment: comment
+    topiccomment: comment
     already_flagged: You've already flagged this item.
     create_success: Thank you for bringing this to our attention. Your feedback has been recorded and will be reviewed.
     update_success: Flag updated successfully

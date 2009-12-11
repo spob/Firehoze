@@ -3,7 +3,20 @@ class TopicComment < Comment
   has_many :activities, :as => :trackable, :dependent => :destroy
   validates_presence_of :topic
   has_many :flags, :as => :flaggable, :dependent => :destroy
+  has_many :flags, :as => :flaggable, :dependent => :destroy
+  
   after_create :update_topic
+  
+  @@flag_reasons = [
+          FLAG_LEWD,
+          FLAG_SPAM,
+          FLAG_OFFENSIVE,
+          FLAG_DANGEROUS,
+          FLAG_OTHER ]
+
+  def self.flag_reasons
+    @@flag_reasons
+  end
 
   def compile_activity
     self.activities.create!(:actor_user => self.user,

@@ -35,9 +35,11 @@ class Flag < ActiveRecord::Base
       return flaggable.title
     elsif self.flaggable.class == Review
       return flaggable.headline
+    elsif self.flaggable.class == Group
+      return flaggable.name
     elsif self.flaggable.class == User
       return flaggable.login
-    elsif self.flaggable.class == LessonComment
+    elsif self.flaggable.class == LessonComment or self.flaggable.class == TopicComment
       return abbreviate(flaggable.body, 45)
     else
       return "ERROR: Unknown"

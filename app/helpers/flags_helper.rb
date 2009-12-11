@@ -5,7 +5,9 @@ module FlagsHelper
       @flag.flaggable.instructor
     elsif @flag.flaggable.class == User
       @flag.flaggable
-    elsif @flag.flaggable.class == Review or @flag.flaggable.class == LessonComment
+    elsif @flag.flaggable.class == Group
+      @flag.flaggable.owner
+    elsif @flag.flaggable.class == Review or @flag.flaggable.class == LessonComment or @flag.flaggable.class == TopicComment
       @flag.flaggable.user
     else
       raise

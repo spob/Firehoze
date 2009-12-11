@@ -12,6 +12,7 @@ class Group < ActiveRecord::Base
   has_many :users, :through => :group_members
   has_many :activities, :as => :trackable, :dependent => :destroy
   has_many :all_activities, :class_name => 'Activity', :foreign_key => "group_id"
+  has_many :flags, :as => :flaggable, :dependent => :destroy
 
   validates_presence_of :name, :owner, :category
   validates_uniqueness_of :name
@@ -62,6 +63,17 @@ class Group < ActiveRecord::Base
   validates_attachment_size :logo, :less_than => 1.megabytes, :message => "All uploaded images must be less then 1 megabyte"
   validates_attachment_content_type :logo, :content_type => [ 'image/gif', 'image/png', 'image/x-png', 'image/jpeg', 'image/pjpeg', 'image/jpg' ]
 
+  @@flag_reasons = [
+          FLAG_LEWD,
+          FLAG_SPAM,
+          FLAG_OFFENSIVE,
+          FLAG_DANGEROUS,
+          FLAG_OTHER ]
+
+  def self.flag_reasons
+    @@flag_reasons
+  end
+
   def self.default_logo_url(style)
     # "http://#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}/groups/avatars/missing/%s/missing.png" % style.to_s
     # todo: add a logo for missing logo as well
@@ -108,6 +120,10 @@ class Group < ActiveRecord::Base
                             :activity_object_human_identifier => self.name,
                             :activity_object_class => self.class.to_s)
     self.update_attribute(:activity_compiled_at, Time.now)
+  end
+
+  def reject
+#    self.rejected_bio = true
   end
 
   def invite(user)

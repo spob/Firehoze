@@ -280,7 +280,7 @@ END
   def get_flags(flaggable)
     klass = flaggable.class
     # for some reason rails settings the flaggable type to Comment instead of LessonComment
-    klass = Comment if flaggable.class.to_s == "LessonComment"
+    klass = Comment if flaggable.class.to_s == "LessonComment" or flaggable.class.to_s == "TopicComment"
     flaggings.by_flaggable_type(klass).find_all_by_flaggable_id(flaggable.id)
   end
 
