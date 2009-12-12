@@ -90,7 +90,7 @@ namespace :db do
       require 'faker'
       puts "S3 root directory: #{APP_CONFIG[CONFIG_S3_DIRECTORY]}"
       blow_away_lessons
-      count = ENV['count'] ? ENV['count'] : 11
+      count = ENV['count'] ? ENV['count'] : 21
 
       (1..count.to_i).each do |i|
         lesson = Lesson.new
@@ -325,7 +325,9 @@ namespace :db do
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE roles_users;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE user_logons;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE user_logons;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE activities;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE groups;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE instructor_follows;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE users;")
     end
 
@@ -364,6 +366,7 @@ namespace :db do
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE video_status_changes;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE free_credits;")
     ActiveRecord::Base.connection.execute("DELETE FROM videos WHERE TYPE = 'ProcessedVideo';")
+    ActiveRecord::Base.connection.execute("DELETE FROM videos WHERE converted_from_video_id IS NOT NULL;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE videos;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_visits;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE lessons;")
