@@ -179,6 +179,7 @@ namespace :db do
     task :groups => :environment do
       puts "=== Generating Public Groups ==="
       require 'faker'
+      require 'populator'
 
       (1..15).each do |i|
         group = Group.new
@@ -186,6 +187,7 @@ namespace :db do
         group.category = Category.first(:order => 'RAND()')
         group.private = false
         group.name = Populator.words(1..2)
+        retry if Group.find_by_name(group.name)
         group.description = Populator.sentences(2..4)
         group.save!
       end
