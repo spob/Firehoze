@@ -99,6 +99,7 @@ namespace :db do
         lesson.synopsis = Populator.sentences(2..4)
         lesson.notes = Populator.paragraphs(2..6)
         lesson.status = VIDEO_STATUS_PENDING
+        lesson.category = Category.first(:order => "RAND()")
         dummy_video_path = "/test/videos/#{rand(5)+1}.avi" #pick a random vid,
         if !File.exist?(RAILS_ROOT + dummy_video_path)
           puts "can not find file"
@@ -199,7 +200,7 @@ namespace :db do
       (1..20).each do |i|
         tweet = Tweet.new(:search_code => FIREHOZE_TWEETS, :twitter_post_id => Time.now.to_i + i,
                           :iso_language_code => "en")
-        tweet.posted_at =  (rand() * 10000).to_i.minutes.ago
+        tweet.posted_at = (rand() * 10000).to_i.minutes.ago
         tweet.from_user = Faker::Name.name
         tweet.tweet_text = Populator.sentences(1..2)[0..139]
         tweet.profile_image_url = "http://assets.firehoze.com.s3.amazonaws.com/images/users/avatars/tiny/missing.png"
@@ -223,24 +224,14 @@ namespace :db do
     #Not sure I neeed this any more
     desc "Generate some categories"
     task :categories => :environment do
-      math = Category.create!(:name => "Math", :parent_category => nil, :sort_value => 10)
-      Category.create!(:name => "Trigonometry", :parent_category => math, :sort_value => 10)
-      Category.create!(:name => "Calculus", :parent_category => math, :sort_value => 20)
-      Category.create!(:name => "Geometry", :parent_category => math, :sort_value => 30)
-      science = Category.create!(:name => "Science", :parent_category => nil, :sort_value => 30)
-      Category.create!(:name => "Chemistry", :parent_category => science, :sort_value => 10)
-      Category.create!(:name => "Physics", :parent_category => science, :sort_value => 20)
-      Category.create!(:name => "Biology", :parent_category => science, :sort_value => 30)
-    end
-
-    desc "assign some categories"
-    task :assign_categories => :environment do
-      Lesson.all.each do |lesson|
-        category = Category.first(:order => "RAND()")
-        lesson.category = category
-        lesson.save!
-        puts "#{lesson.id} assigned to category #{category.name}"
-      end
+      math = create_category "Math", nil, 10
+      create_category "Trigonometry", math, 10
+      create_category "Calculus", math, 20
+      create_category "Geometry", math, 30
+      science = create_category "Science", nil, 20
+      create_category "Chemistry", science, 10
+      create_category "Physics", science, 20
+      create_category "Biology", science, 30
     end
 
     desc "Generate some credits"
@@ -330,6 +321,8 @@ namespace :db do
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE tags;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE roles_users;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE user_logons;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE user_logons;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE groups;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE users;")
     end
 
@@ -371,5 +364,15 @@ namespace :db do
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE videos;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_visits;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE lessons;")
+  end
+
+  def create_category name, parent, sort
+    category = Category.find_by_name(name)
+    if category
+      puts "Category #{category.name} already exists...skipping"
+    else
+      category = Category.create!(:name => name, :parent_category => parent, :sort_value => sort)
+    end
+    return category
   end
 end
