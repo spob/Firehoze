@@ -1,6 +1,6 @@
 require "migration_helpers"
 
-class Cart < ActiveRecord::Migration
+class ShoppingCart < ActiveRecord::Migration
   extend MigrationHelpers
 
   def self.up

@@ -1,6 +1,6 @@
 require "migration_helpers"
 
-class LineItem < ActiveRecord::Migration
+class CreateLineItem < ActiveRecord::Migration
     extend MigrationHelpers
   
   def self.up
