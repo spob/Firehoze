@@ -3,7 +3,7 @@
 development:  
   adapter: mysql
   encoding: utf8
-  database: firehoze_dev2
+  database: firehoze_dev
   username: root
 
 # Warning: The database defined as "test" will be erased and
