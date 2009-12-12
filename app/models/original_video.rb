@@ -8,7 +8,7 @@ class OriginalVideo < Video
                     :storage => :s3,
                     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                     :s3_permissions => 'private',
-                    :path => "#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/:attachment/:id/:basename.:extension",
+                    :path => "#{(ENV['s3_dir'] and Rails.env.development?) ? ENV['s3_dir'] : APP_CONFIG[CONFIG_S3_DIRECTORY]}/:attachment/:id/:basename.:extension",
                     :bucket => APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]
   #:url => "/assets/videos/:id/:basename.:extension",
   #:path => ":rails_root/public/assets/videos/:id/:basename.:extension"
@@ -39,16 +39,16 @@ class OriginalVideo < Video
 
   # Call out to flixcloud to trigger a conversion process
   def trigger_convert(clazz, notify_url)
+    set_url
     processed_video = clazz.find(:first, :conditions => { :lesson_id => self.lesson })
     unless processed_video
       processed_video = clazz.create!(:lesson_id => self.lesson.id,
-                                               :video_file_name => self.video_file_name,
-                                               :s3_key => self.s3_key,
-                                               :converted_from_video => self,
-                                               :s3_root_dir => self.s3_root_dir)
+                                      :video_file_name => self.video_file_name,
+                                      :s3_key => self.s3_key,
+                                      :converted_from_video => self,
+                                      :s3_root_dir => self.s3_root_dir)
     end
     begin
-      set_url
       grant_s3_permissions_to_flix
     rescue Exception => e
       # rethrow the exception so we see the error in the periodic jobs log
