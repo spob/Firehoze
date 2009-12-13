@@ -31,7 +31,7 @@
     <% if @lessons.present? %>
         <div>
           <%= render :partial => "lessons/v2/lessons_row_format", :object => @lessons %>
-          <%= will_paginate @lessons, :param_name => :lesson_page, :params => {:group_page => @groups.current_page, :user_page => @users.current_page} %>
+          <%= will_paginate @lessons, :param_name => :lesson_page, :params => {:group_page => @groups.current_page, :user_page => @users.current_page, :anchor => :lessons} %>
         </div>
     <% end %>
 
@@ -39,7 +39,7 @@
     <% if @groups.present? %>
         <div>
           <%= render :partial => 'groups/v2/groups', :collection => @groups %>
-          <%= will_paginate @groups, :param_name => :group_page, :params => {:lesson_page => @lessons.current_page, :user_page => @users.current_page} %>
+          <%= will_paginate @groups, :param_name => :group_page, :params => {:lesson_page => @lessons.current_page, :user_page => @users.current_page, :anchor => :groups} %>
         </div>
     <% end %>
 
@@ -47,7 +47,7 @@
     <% if @users.present? %>
         <div>
           <%= render :partial => "users/v2/users", :collection => @users %>
-          <%= will_paginate @users, :param_name => :user_page, :params => {:lesson_page => @lessons.current_page, :group_page => @groups.current_page} %>
+          <%= will_paginate @users, :param_name => :user_page, :params => {:lesson_page => @lessons.current_page, :group_page => @groups.current_page, :anchor => :users} %>
         </div>
     <% end %>
   </div>
