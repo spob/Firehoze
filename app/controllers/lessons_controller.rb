@@ -122,7 +122,7 @@ class LessonsController < ApplicationController
     conditions = params[:advanced_search]
     conditions[:status] = 'Ready'
     with = {}
-    with[:created_at] = params[:advanced_search][:created_in].to_i.days.ago..Time.now if params[:advanced_search][:created_in]
+    with[:created_at] = params[:advanced_search][:created_in].to_i.days.ago..1.day.since if params[:advanced_search][:created_in]
     with[:category_ids] = @advanced_search.categories.collect(&:id) unless @advanced_search.categories.empty?
     with[:rating_average] = params[:advanced_search][:rating_average].to_f..5.0 if params[:advanced_search][:rating_average]
     params[:advanced_search].delete(:category_ids)
@@ -134,8 +134,6 @@ class LessonsController < ApplicationController
                              :page => 1,
                              :per_page => 25,
                              :retry_stale => true
-    @lesson_format = 'narrow'
-    @collection = 'search'
     render :action => :advanced_search
   end
 
@@ -317,7 +315,7 @@ class LessonsController < ApplicationController
       'content_in_tab'
     elsif %w(list_admin).include?(params[:action])
       'admin'
-    elsif %w(new create edit update).include?(params[:action])
+    elsif %w(new create edit update advanced_search perform_advanced_search).include?(params[:action])
       'application_v2'
     else
       'application'

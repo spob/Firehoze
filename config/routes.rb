@@ -81,6 +81,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :lessons, :has_many => :lesson_attachments, :shallow => true
   map.resources :line_items, :only => [ :create, :destroy, :update ]
   map.resources :orders
+  map.resources :pages, :controller => 'pages', :only => [:show]
   map.login 'login',   :controller => 'user_sessions', :action => 'new'
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
   map.resources :passwords

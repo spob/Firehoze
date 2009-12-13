@@ -105,10 +105,10 @@ namespace :db do
           puts "can not find file"
         else
           lesson.save!
-          OriginalVideo.create!(:lesson => lesson,
+          video = OriginalVideo.create!(:lesson => lesson,
                                 :video => File.open(RAILS_ROOT + dummy_video_path))
           lesson.trigger_conversion("http://some/url")
-          puts "#{i}: #{lesson.original_video.video_file_name} uploaded [instructor: #{lesson.instructor.full_name} | file size:#{lesson.original_video.video_file_size}]"
+          puts "#{i}: #{lesson.original_video.video_file_name} uploaded [instructor: #{lesson.instructor.full_name} | file size:#{lesson.original_video.video_file_size}] to #{video.video.path}"
         end
       end
       puts "- done -"
@@ -298,7 +298,12 @@ namespace :db do
 
 
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE periodic_jobs;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_attachments;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE activities;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE free_credits;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE group_lessons;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE group_members;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE instructor_follows;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE gift_certificates;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE payments;")
@@ -359,6 +364,8 @@ namespace :db do
 
   def blow_away_lessons
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE group_lessons;")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_attachments;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE skus;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE helpfuls;")

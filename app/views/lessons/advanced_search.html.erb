@@ -1,59 +1,92 @@
-<% title "Advanced Search" -%>
+<% title "Advanced Lesson Search" -%>
 
-<h3>Lessons Advanced Search</h3>
-<div>
+<div class="fh-form">
   <% form_for(:advanced_search, :url => perform_advanced_search_lessons_path, :html => { :method => :get, :class => "search_box" }) do |f| %>
-      <%= f.label :title, "Title" %>
-      <%= f.text_field :title %>
-      <br />
+      <ul id="company-info" class="section">
+        <li class="header">
+          <span></span>
 
-      <%= f.label :synopsis, "Synopsis" %>
-      <%= f.text_field :synopsis %>
-      <br />
+          <h3>Advanced Lesson Search</h3>
+          <h4>
+            Advanced search gives you greater control over the criteria you use to search for lessons
+          </h4>
+        </li>
+        <li>
+        <span>
+          <%= f.label :title %>
+          <%= f.text_field :title %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :synopsis %>
+          <%= f.text_field :synopsis %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :notes %>
+          <%= f.text_field :notes %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :instructor, "Instructor Username" %>
+          <%= f.text_field :instructor %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :tag %>
+          <%= f.text_field :tag %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :rating_average, "Rating Greater than:" %>
+          <%= f.radio_button :rating_average, 0 %> 0
+          <%= f.radio_button :rating_average, 1 %> 1
+          <%= f.radio_button :rating_average, 2 %> 2
+          <%= f.radio_button :rating_average, 3 %> 3
+          <%= f.radio_button :rating_average, 4 %> 4
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :category %>
+          <% Category.ascend_by_compiled_sort.each do |c| %>
+            <%= check_box_tag "advanced_search[category_ids][]", c.id, @advanced_search.categories.include?(c) %> <%= c.name %>
+              <br/>
+        <% end %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :created_in, "Created in the" %>
+          <%= f.radio_button :created_in, "1" %> last day &nbsp;
+        <%= f.radio_button :created_in, "7" %> last week &nbsp;
+        <%= f.radio_button :created_in, "30" %> last 30 days &nbsp;
+        <%= f.radio_button :created_in, "90" %> last 90 days &nbsp;
+        <%= f.radio_button :created_in, "9999" %> All
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :language %>
+          <%= f.select :language, User.supported_languages,
+                     {:include_blank => true} %>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= f.submit "Search" %>
+          <%= link_to 'Cancel', my_firehoze_index_path %>
+        </span>
 
-      <%= f.label :notes, "Notes" %>
-      <%= f.text_field :notes %>
-      <br />
+          <div class="clear" />
 
-      <%= f.label :instructor, "Instructor Login" %>
-      <%= f.text_field :instructor %>
-      <br />
-
-      <%= f.label :tag, "Tag" %>
-      <%= f.text_field :tag %>
-      <br />
-
-      <%= f.label :rating_average, "Rating Greater than:" %>
-      <%= f.radio_button :rating_average, 0 %> 0
-      <%= f.radio_button :rating_average, 1 %> 1
-      <%= f.radio_button :rating_average, 2 %> 2
-      <%= f.radio_button :rating_average, 3 %> 3
-      <%= f.radio_button :rating_average, 4 %> 4
-      <br />
-      <br />
-
-      <%= f.label :category %>
-      <br />
-      <% Category.ascend_by_compiled_sort.each do |c| %>
-          <%= check_box_tag "advanced_search[category_ids][]", c.id, @advanced_search.categories.include?(c) %> <%= c.name %>
-          <br />
-      <% end %>
-      <br />
-
-      <%= f.label :created_in, "Created in the" %>
-      <%= f.radio_button :created_in, "1" %> last day &nbsp;
-      <%= f.radio_button :created_in, "7" %> last week &nbsp;
-      <%= f.radio_button :created_in, "30" %> last 30 days &nbsp;
-      <%= f.radio_button :created_in, "90" %> last 90 days &nbsp;
-      <%= f.radio_button :created_in, "9999" %> All
-      <br />
-
-      <%= f.label :language %>
-      <%= f.select :language, User.supported_languages,
-                   {:include_blank => true} %>
-      <br />
-
-      <%= f.submit "Search" %>
+        </li>
+      </ul>
   <% end %>
 </div>
 
@@ -61,16 +94,9 @@
     <% if @lessons.empty? %>
         Your query returned no results
     <% else %>
-        <div class="clear append-0 span-29" id="tagged_with_tabs">
-          <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
-            <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-              <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active">
-                <a href="#tabs-1"><%= "Search: &quot;#{@search_lesson_criteria}&quot;" %></a></li>
-            </ul>
-            <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-1">
-              <%= render :partial => "lessons", :object => @lessons, :locals => { :lesson_format => @lesson_format, :collection => @collection } %>
-            </div>
-          </div>
+        <div>
+          <%= render :partial => "lessons/v2/lessons_row_format", :object => @lessons %>
+          <%= will_paginate @lessons %>
         </div>
     <% end %>
 <% end %>

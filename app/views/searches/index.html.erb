@@ -3,8 +3,8 @@
 <h3><%= "Search Results for: &quot;#{@search_criteria}&quot;" %></h3>
 
 <% if @lessons.empty? and @groups.empty? and @users.empty? %>
-  sorry, no results
-<% end  %>
+    sorry, no results
+<% end %>
 
 <div id="search-results">
   <%= link_to "Advanced Search&nbsp;&raquo;", advanced_search_lessons_path, :id => 'advanced-search-link', :class => 'rounded' %>
@@ -12,40 +12,43 @@
   <div class="tab-container">
     <ul class="tabs">
       <% if @lessons.present? %>
-        <li><a href="#lessons">Lessons (<%= @lessons.size %>)</a></li>
+          <li><a href="#lessons">Lessons (<%= @lessons.total_entries %>)</a></li>
       <% end %>
 
       <% if @groups.present? %>
-        <li><a href="#groups">Groups (<%= @groups.size %>)</a></li>
+          <li><a href="#groups">Groups (<%= @groups.total_entries %>)</a></li>
       <% end %>
 
       <% if @users.present? %>
-        <li><a href="#users">User (<%= @users.size %>)</a></li>
+          <li><a href="#users">User (<%= @users.total_entries %>)</a></li>
       <% end %>
     </ul>
   </div>
 
   <!-- tab "panes" -->
   <div class="panes">
-    <% # LESSONS -%>
+    <% # LESSONS  -%>
     <% if @lessons.present? %>
-      <div>
-        <%= render :partial => "lessons/v2/lessons_row_format", :object => @lessons %>
-      </div>
+        <div>
+          <%= render :partial => "lessons/v2/lessons_row_format", :object => @lessons %>
+          <%= will_paginate @lessons, :param_name => :lesson_page, :params => {:group_page => @groups.current_page, :user_page => @users.current_page} %>
+        </div>
     <% end %>
 
-    <% # GROUPS -%>
+    <% # GROUPS  -%>
     <% if @groups.present? %>
-      <div>
-        <%= render :partial => 'groups/v2/groups', :collection => @groups %>
-      </div>
+        <div>
+          <%= render :partial => 'groups/v2/groups', :collection => @groups %>
+          <%= will_paginate @groups, :param_name => :group_page, :params => {:lesson_page => @lessons.current_page, :user_page => @users.current_page} %>
+        </div>
     <% end %>
 
-    <% # USERS -%>
+    <% # USERS  -%>
     <% if @users.present? %>
-      <div>
-        <%= render :partial => "users/v2/users", :collection => @users %>
-      </div>
+        <div>
+          <%= render :partial => "users/v2/users", :collection => @users %>
+          <%= will_paginate @users, :param_name => :user_page, :params => {:lesson_page => @lessons.current_page, :group_page => @groups.current_page} %>
+        </div>
     <% end %>
   </div>
 </div>
