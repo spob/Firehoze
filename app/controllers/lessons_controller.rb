@@ -122,7 +122,7 @@ class LessonsController < ApplicationController
     conditions = params[:advanced_search]
     conditions[:status] = 'Ready'
     with = {}
-    with[:created_at] = params[:advanced_search][:created_in].to_i.days.ago..Time.now if params[:advanced_search][:created_in]
+    with[:created_at] = params[:advanced_search][:created_in].to_i.days.ago..1.day.since if params[:advanced_search][:created_in]
     with[:category_ids] = @advanced_search.categories.collect(&:id) unless @advanced_search.categories.empty?
     with[:rating_average] = params[:advanced_search][:rating_average].to_f..5.0 if params[:advanced_search][:rating_average]
     params[:advanced_search].delete(:category_ids)
