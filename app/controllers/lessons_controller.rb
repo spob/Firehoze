@@ -134,8 +134,6 @@ class LessonsController < ApplicationController
                              :page => 1,
                              :per_page => 25,
                              :retry_stale => true
-    @lesson_format = 'narrow'
-    @collection = 'search'
     render :action => :advanced_search
   end
 
@@ -317,7 +315,7 @@ class LessonsController < ApplicationController
       'content_in_tab'
     elsif %w(list_admin).include?(params[:action])
       'admin'
-    elsif %w(new create edit update).include?(params[:action])
+    elsif %w(new create edit update advanced_search perform_advanced_search).include?(params[:action])
       'application_v2'
     else
       'application'
