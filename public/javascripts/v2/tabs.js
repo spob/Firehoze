@@ -21,8 +21,20 @@ $(function() {
         effect: 'fade'
     });
 
-// SEARCH RESULTS
+    // SEARCH RESULTS
     $("#search-results ul.tabs").tabs("#search-results > div.panes > div", {
         effect: 'fade'
     });
+
+    // HIDE & SHOW the advance lesson search link
+    $('li#lessons-tab a').click(function () {
+        $('a#advanced-search-link').show();
+        return false;
+    });
+
+    $('li#groups-tab a,li#users-tab a').click(function () {
+        $('a#advanced-search-link').hide();
+        return false;
+    });
+
 });
