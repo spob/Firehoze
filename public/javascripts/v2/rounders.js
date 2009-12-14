@@ -39,4 +39,14 @@ $(function() {
     $('div#lessons_pagination.pagination').cornerz({
         radius: 5
     });
+
+    $('#faqs_section #questions, #faqs_section .answers').cornerz({
+        radius: 5
+    });
+
+    $('#faqs_section .answers h4').cornerz({
+        radius: 5,
+        background: "#DBDBDB"
+    });
+
 });

@@ -390,3 +390,52 @@ div.review #stars {
 #breadcrumb a:hover {
     color:#35acc5;
 }
+
+
+/* FAQ SECTION */
+#faqs_section #questions {
+    padding: 20px;
+    border: solid 2px #999;
+    background-color: #eee;
+    margin: 0 0 20px 0;
+}
+#faqs_section #questions h4 {
+    margin:0;
+    line-height: 1.5em;
+    font-weight:bold;
+}
+#faqs_section .answers {
+    padding: 10px;
+    /*    background-color: #DBDBDB;*/
+    margin: 0 0 20px 0;
+}
+#faqs_section .answers .top {
+    text-decoration:underline;
+    color: navy;
+    font-size: 12px;
+    font-weight:bold;
+}
+#faqs_section .answers h4 a {
+    text-decoration:none;
+    color: inherit;
+}
+#faqs_section .answers h4 {
+    padding: 10px 0 10px 10px;
+    border: solid 1px #999;
+    font-size:16px;
+    font-weight:bold;
+    background-color:#ccc;
+}
+#faqs_section .answers h5 {
+    color: #222;
+    font-size:14px;
+    margin-bottom:0.4em;
+    text-decoration:underline;
+    cursor:pointer;
+}
+
+#faqs_section .answers img {
+    margin: 20px 0 40px 0;
+}
+
+#faqs_section .anchor { }

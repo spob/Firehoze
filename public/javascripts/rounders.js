@@ -8,12 +8,13 @@ $(function() {
         radius: 5
     });
 
-    $('.box').cornerz({
+    $('#faqs_section #questions, #faqs_section .answers').cornerz({
         radius: 5
     });
 
-    $('.inner_box').cornerz({
+    $('#faqs_section .answers h4').cornerz({
         radius: 5,
-				background : "#EDEDED"
+        background: "#DBDBDB"
     });
+
 });
