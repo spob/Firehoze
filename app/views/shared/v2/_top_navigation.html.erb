@@ -40,7 +40,7 @@
   <li class="last">
     <div id="searchwrapper">
       <% form_tag searches_path, :method => :get do %>
-          <%= text_field_tag :search_criteria, params[:search_criteria], :class => 'searchbox' %>
+          <%= text_field_tag :search_criteria, params[:search_criteria].present? ? params[:search_criteria] : "Search", :class => 'searchbox' %>
           <%= image_submit_tag('top_navigation/searchbox_button.png', :class => 'searchbox_submit') %>
       <% end %>
     </div>

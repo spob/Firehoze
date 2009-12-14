@@ -37,8 +37,13 @@ $(document).ready(function(){
     jQuery.ajaxSetup({
         'beforeSend': function (xhr) {
             xhr.setRequestHeader("Accept", "text/javascript")
-            }
+        }
     });
     // Have all remote-classed forms submit AJAX
     $('form.remote').submitWithAjax();
+
+    // clear the seach input field on focus
+    $("form #search_criteria").focus(function () {
+        $(this).val(null);
+    });
 });
