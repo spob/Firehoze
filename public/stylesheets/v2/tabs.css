@@ -4,10 +4,6 @@
     margin-bottom: 17px;
 }
 
-.tab-container.policies a {
-	font-size:11px;
-}
-
 .tab-container img.loader {
     display:none;
     height:32px;
@@ -69,4 +65,13 @@ ul.tabs a.current {
     border:0 none;
     border:1px solid #212121;
     border-width:0 0 1px 0;
+}
+
+/********* DEVIATIONS *****************
+ 		Policies Tabs (deviates from norm)
+***************************************/
+
+.tab-container.policies ul li a {
+    padding-left:12px;
+    padding-right:12px;
 }
