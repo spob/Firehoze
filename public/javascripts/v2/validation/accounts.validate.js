@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("#profile").validate({
+    $("#profile, #author").validate({
         errorElement: "span",
         success: "valid",
         submitHandler: function(form) {
@@ -37,6 +37,24 @@ $(document).ready(function() {
 
     $('#user_last_name').simplyCountable({
         counter: '#last_name_counter',
+        countType: 'characters',
+        maxCount: 40,
+        countDirection: 'down',
+        safeClass: 'safe',
+        overClass: 'over'
+    });
+
+    $('#ofirst_name').simplyCountable({
+        counter: '#ofirst_name_counter',
+        countType: 'characters',
+        maxCount: 40,
+        countDirection: 'down',
+        safeClass: 'safe',
+        overClass: 'over'
+    });
+
+    $('#olast_name').simplyCountable({
+        counter: '#olast_name_counter',
         countType: 'characters',
         maxCount: 40,
         countDirection: 'down',
