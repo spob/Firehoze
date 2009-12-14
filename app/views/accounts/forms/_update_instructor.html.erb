@@ -1,54 +1,85 @@
-<% form_for(:user, :url => update_instructor_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
-    <%= f.error_messages %>
-    <fieldset>
-      <legend>Postal Address</legend>
-      <p>
-        Tell us where you'd like us to send all the money you're going to make.
-      </p>
+<div class="fh-form">
+  <% form_for(:user, :url => update_instructor_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
+      <%= f.error_messages %>
+      <ul id="company-info" class="section">
+        <li class="header">
+          <span></span>
 
-      <p>
-        <%= f.label :first_name %>
-        <%= f.text_field :first_name %>
-      </p>
+          <h3>Postal Address</h3>
+          <h4>Tell us where you'd like us to send all the money you're going to make.</h4>
+        </li>
+        <li>
+        <span>
+          <%= f.label :login %>
+          <%= f.text_field :login, :maxlength => "25", :title => "You must enter your username", :class => "required" %>
+          <span class="required-field" />
+        </span>
+          <div class="counter"><span id="login_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name, :maxlength => "40" %>
+        </span>
+          <div class="counter"><span id="first_name_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name, :maxlength => "40", :title => "You must enter your last name", :class => "required" %>
+          <span class="required-field" />
+        </span>
+          <div class="counter"><span id="last_name_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :address1 %>
+          <%= f.text_field :address1 %>
+          <span class="required-field" />
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :address2 %>
+          <%= f.text_field :address2 %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :city %>
+          <%= f.text_field :city %>
+          <span class="required-field" />
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :state, "State or Region" %>
+          <%= f.text_field :state %>
+          <span class="required-field" />
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :postal_code, "Postal Code or Zip Code" %>
+          <%= f.text_field :postal_code %>
+          <span class="required-field" />
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.localized_country_select(:country, ['US']) %>
+          <span class="required-field" />
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+        <%= f.submit "Update" %>
+        <%= link_to 'Cancel', home_path %> |
+        <%= link_to "Revisit Instructor Signup Wizard", instructor_signup_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :method => :get %>
+        </span>
 
-      <p>
-        <%= f.label :last_name %>
-        <%= f.text_field :last_name %>
-      </p>
-
-      <p>
-        <%= f.label :address1 %>
-        <%= f.text_field :address1 %>
-      </p>
-
-      <p>
-        <%= f.label :address2 %>
-        <%= f.text_field :address2 %>
-      </p>
-
-      <p>
-        <%= f.label :city %>
-        <%= f.text_field :city %>
-      </p>
-
-      <p>
-        <%= f.label :state, "State or Region" %>
-        <%= f.text_field :state %>
-      </p>
-
-      <p>
-        <%= f.label :postal_code, "Postal Code or Zip Code" %>
-        <%= f.text_field :postal_code %>
-      </p>
-
-      <p>
-        <%= f.localized_country_select(:country, ['US']) %>
-      </p>
-
-    </fieldset>
-    <p>
-      <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
-      <%= link_to 'Cancel', home_path %> |
-    <%= link_to "Revisit Instructor Signup Wizard", instructor_signup_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :method => :get %>
-    </p>
-<% end %>                                            `
+          <div class="clear"/>
+        </li>
+      </ul>
+  <% end %>                                            `
+</div>

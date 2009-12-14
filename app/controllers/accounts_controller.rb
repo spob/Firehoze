@@ -9,6 +9,8 @@ class AccountsController < ApplicationController
 
   verify :method => :put, :only => [ :update, :update_privacy, :update_instructor, :update_avatar, :update_instructor_wizard ], :redirect_to => :home_path
   verify :method => :post, :only => [ :clear_avatar ], :redirect_to => :home_path
+  
+  layout :layout_for_action
 
 #  def show
 #  end
@@ -218,6 +220,14 @@ class AccountsController < ApplicationController
       @user = User.find params[:id]
     else
       @user = @current_user
+    end
+  end
+
+  def layout_for_action
+    if %w(edit update).include?(params[:action])
+      'application_v2'
+    else
+      'application'
     end
   end
 end
