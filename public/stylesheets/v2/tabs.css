@@ -4,6 +4,10 @@
     margin-bottom: 17px;
 }
 
+.tab-container.policies a {
+	font-size:11px;
+}
+
 .tab-container img.loader {
     display:none;
     height:32px;
