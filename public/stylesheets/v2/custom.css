@@ -235,9 +235,13 @@ ul#main-navigation  {
 /* FOOTER */
 #footer {
     height:320px;
-    color: #999;
     background-image:url('/stylesheets/v2/images/footer/footer-bg-tile-tall.png');
 }
+#footer, 
+#footer a {
+    color: #999;
+}
+
 #footer .content {
     height:320px;
     background-image:url('/stylesheets/v2/images/footer/footer-watermark.png');
