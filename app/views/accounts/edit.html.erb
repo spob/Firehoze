@@ -1,20 +1,22 @@
 <% title "editing #{@user.name_or_username}'s account" %>
 
+<%= javascript 'v2/validation/accounts.validate.js' %>
+
 <% content_for :head do -%>
     <%= javascript_include_tag 'validate/jquery.validate.js', 'validate/account.setting.validate.js' %>
 <% end %>
 
-<%= render :partial => "shared/infield_head_content" %>
-
 <h3><%= h(t('user.account_settings')) %></h3>
-<div id="account_settings_tabs">
-  <ul>
+<div id="account_settings_tabs" class="tab-container">
+  <ul class="tabs">
     <li><a href="#tabs-1"><%= h(t('user.profile')) %></a></li>
     <li><a href="#tabs-2"><%= h(t('user.password')) %></a></li>
     <li><a href="#tabs-3"><%= h(t('user.author_info')) %></a></li>
     <li><a href="#tabs-4"><%= h(t('user.avatar')) %></a></li>
     <li><a href="#tabs-5"><%= h(t('user.privacy')) %></a></li>
   </ul>
+</div>
+<div class="panes">
   <div id="tabs-1"><%= render :partial => "accounts/forms/profile" %></div>
   <div id="tabs-2"><%= render :partial => "accounts/forms/password" %></div>
   <div id="tabs-3"><%= render :partial => "accounts/forms/instructor" %></div>
