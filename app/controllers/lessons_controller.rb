@@ -103,7 +103,9 @@ class LessonsController < ApplicationController
   end
 
   def advanced_search
+    # disable the uniform plugin, otherwise the advanced search form is all @$@!# up
     @no_uniform_js = true
+    
     @advanced_search = AdvancedSearch.new
     @advanced_search.language = current_user.language if current_user
     @advanced_search.created_in = 30
