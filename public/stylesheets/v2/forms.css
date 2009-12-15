@@ -413,3 +413,19 @@ div.counter .over {
 
 div.counter .safe { color: inherit;}
 div.counter .over { color:red }
+
+
+/* Deviation Advanced search form */
+.fh-form.advanced ul.section {
+    /* this dictates the overall width of the form */
+    width:950px;
+}
+
+.fh-form.advanced div.collection {
+    margin:0 0 0 165px;
+}
+
+.fh-form.advanced div.item {
+    float: left;
+    width:150px;
+}
