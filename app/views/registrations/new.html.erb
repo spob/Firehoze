@@ -3,14 +3,19 @@
 
 <% restricted = APP_CONFIG[CONFIG_RESTRICT_REGISTRATION] %>
 <% if restricted == true %>
-    <div class="span-17 append-1">
-      <div class="info">
-        <h3>1. Request a Registration Code</h3>
+    <div class="fh-form">
+      <ul id="company-info" class="section">
+        <li class="header">
+          <span></span>
 
-        <p>Can't wait for the public release?<br />For a limited time get early access to the Firehoze site.</p>
-
-        <p><strong><%= link_to "Request", "http://www.firehoze.com" %> your Registration Code now!</strong></p>
-      </div>
+          <h3>Step 1. Request a Registration Code</h3>
+          <h4>
+            Can't wait for the public release? For a limited time get early access to the Firehoze site.
+            <br /><br />
+            <strong><%= link_to "Request", "http://www.firehoze.com" %> your Registration Code now!</strong>
+          </h4>
+        </li>
+      </ul>
     </div>
 <% end %>
 
@@ -22,7 +27,7 @@
           <span></span>
 
           <h3>
-            <%= restricted == true ? "2. Sign Up" : "Firehoze Account Sign Up" %>
+            <%= restricted == true ? "Step 2. Sign Up" : "Firehoze Account Sign Up" %>
           </h3>
           <h4>
             Membership has its privileges. By joining the Firehoze community, you can watch full lessons,
@@ -34,16 +39,18 @@
         <span>
         <%= f.label :username %>
           <%= f.text_field :username, :maxlength => "25", :title => "You must enter a username", :class => "required" %>
-          <span class="required-field" />
+          <span class="required-field"/>
         </span>
+
           <div class="counter"><span id="registration_username_counter"></span> characters left</div>
         </li>
         <li>
         <span>
         <%= f.label :email %>
           <%= f.text_field :email, :maxlength => "100", :title => "You must enter an email address", :class => "required" %>
-          <span class="required-field" />
+          <span class="required-field"/>
         </span>
+
           <div class="counter"><span id="registration_email_counter"></span> characters left</div>
         </li>
 
@@ -52,7 +59,7 @@
         <span>
           <%= f.label :registration_code %>
           <%= f.text_field :registration_code %>
-          <span class="required-field" />
+          <span class="required-field"/>
         </span>
             </li>
         <% end %>
@@ -60,7 +67,7 @@
         <span>
           <%= f.label :captcha, "Please verify that you are human" %>
           <%= recaptcha_tags :display => {:theme => 'white', :tabindex => 3 } %>
-          <span class="required-field" />
+          <span class="required-field"/>
         </span>
         </li>
         <li class="bottom">
@@ -69,7 +76,7 @@
           <%= link_to "Already have an account?", login_path %>
         </span>
 
-          <div class="clear" />
+          <div class="clear"/>
         </li>
       </ul>
   <% end %>

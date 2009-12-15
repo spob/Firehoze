@@ -1,5 +1,9 @@
 class CategoriesController < ApplicationController
-  before_filter :require_user, :except => [ :show, :index ]
+  if APP_CONFIG[CONFIG_ALLOW_UNRECOGNIZED_ACCESS]
+    before_filter :require_user, :except => [ :show, :index ]
+  else
+    before_filter :require_user
+  end
   before_filter :find_category, :except => [:index, :list_admin, :create, :explode, :show]
 
   # Admins only
@@ -15,8 +19,8 @@ class CategoriesController < ApplicationController
   # there is only one type
 
   @@sort_by = [ [ 'Most Popular', 'most_popular' ],
-    [ 'Highest Rated', 'highest_rated' ],
-    [ 'Newest', 'newest'] ]
+                [ 'Highest Rated', 'highest_rated' ],
+                [ 'Newest', 'newest'] ]
 
   def self.sort_by
     @@sort_by
@@ -57,7 +61,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    session[:browse_sort] =  params[:sort_by] ? params[:sort_by] : "most_popular"
+    session[:browse_sort] = params[:sort_by] ? params[:sort_by] : "most_popular"
     id = params[:id]
     if id == "all"
       redirect_to categories_path
@@ -66,13 +70,13 @@ class CategoriesController < ApplicationController
       category_id = @category.id
 
       @lessons = case session[:browse_sort]
-      when 'most_popular'
-        Lesson.ready.most_popular.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
-      when 'highest_rated'
-        Lesson.ready.highest_rated.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
-      else
-        session[:browse_sort] = 'newest'
-        Lesson.ready.newest.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+        when 'most_popular'
+          Lesson.ready.most_popular.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+        when 'highest_rated'
+          Lesson.ready.highest_rated.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+        else
+          session[:browse_sort] = 'newest'
+          Lesson.ready.newest.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
       end
 
       #FIXME can we get rid of the following line?
@@ -91,8 +95,8 @@ class CategoriesController < ApplicationController
 
   def explode
     RunOncePeriodicJob.create!(
-      :name => 'Explode Categories',
-      :job => "Category.explode")
+            :name => 'Explode Categories',
+            :job => "Category.explode")
     flash[:notice] = t 'category.explosion_started'
     redirect_to list_admin_categories_path
   end
