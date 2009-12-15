@@ -114,6 +114,9 @@ class LessonsController < ApplicationController
   end
 
   def perform_advanced_search
+    # disable the uniform plugin, otherwise the advanced search form is all @$@!# up
+    @no_uniform_js = true
+    
     # Dynamically setup the advanced search object so the search criteria will show properly in the screen
     @advanced_search = AdvancedSearch.new
     AdvancedSearch.public_instance_methods(false).find_all{|item| item.ends_with? "="}.each do |a|
