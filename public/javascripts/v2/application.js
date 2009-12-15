@@ -44,6 +44,6 @@ $(document).ready(function(){
 
     // clear the seach input field on focus
     $("form #search_criteria").focus(function () {
-        $(this).val(null);
+        $(this).val("");
     });
 });
