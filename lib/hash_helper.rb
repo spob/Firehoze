@@ -8,6 +8,7 @@ module HashHelper
   end
 
   def match?(plain_text, code="", prefix="", suffix="")
+    return nil if code.nil?
     hash = code.strip.gsub("-", "")
     hash == gen_hash(plain_text.downcase, prefix, suffix)
   end

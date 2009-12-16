@@ -82,6 +82,8 @@ class User < ActiveRecord::Base
 
   # Used to verify current password during password changes
   attr_accessor :current_password
+  # Used when restricting instructor signup
+  attr_accessor :registration_code
 
   validates_presence_of :login_count, :failed_login_count, :last_name, :instructor_status, :language
   validates_presence_of :user_agreement_accepted_on #, :message => :must_accept_agreement

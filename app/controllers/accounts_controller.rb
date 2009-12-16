@@ -9,7 +9,7 @@ class AccountsController < ApplicationController
 
   verify :method => :put, :only => [ :update, :update_privacy, :update_instructor, :update_avatar, :update_instructor_wizard ], :redirect_to => :home_path
   verify :method => :post, :only => [ :clear_avatar ], :redirect_to => :home_path
-  
+
   layout :layout_for_action
 
 #  def show
@@ -59,18 +59,24 @@ class AccountsController < ApplicationController
       # Accepting the agreement
       if @user.author_agreement_accepted_on.nil?
         if params[:accept_agreement]
-          @user.author_agreement_accepted_on = Time.now
-          if @user.instructor_status == AUTHOR_STATUS_NO
-            @user.instructor_status = AUTHOR_STATUS_INPROGRESS
-          end
-          if @user.save
-            instructor_signup_wizard
-          else
+          if RESTRICT_INSTRUCTOR_SIGNUP and !Registration.match?(@user.email, params[:user][:registration_code], HASH_PREFIX, HASH_SUFFIX)
+            flash[:error] = t('account_settings.must_provide_regcode')
             render :action => "instructor_wizard_step1"
+          else
+            @user.author_agreement_accepted_on = Time.now
+            if @user.instructor_status == AUTHOR_STATUS_NO
+              @user.instructor_status = AUTHOR_STATUS_INPROGRESS
+            end
+            if @user.save
+              instructor_signup_wizard
+            else
+              render :action => "instructor_wizard_step1"
+            end
           end
         else
           flash[:error] = t 'account_settings.must_accept_agreement'
-          render :action => "instructor_wizard_step1"
+          redirect_to instructor_wizard_step1_account_path
+#          render :action => "instructor_wizard_step1"
         end
       end
     elsif params[:step] == "2"
