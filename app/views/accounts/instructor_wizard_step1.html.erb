@@ -20,8 +20,8 @@
           </div>
           <% if RESTRICT_INSTRUCTOR_SIGNUP %>
               <div>
-                <%= f.label :registration_code %>
-                <%= f.text_field :registration_code %>
+                <%= label_tag :registration_code %>
+                <%= text_field_tag :registration_code %>
               </div>
           <% end %>
       <% else %>
