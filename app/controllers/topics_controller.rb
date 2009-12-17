@@ -7,7 +7,7 @@ class TopicsController < ApplicationController
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
-  
+
   layout :layout_for_action
 
   def new
@@ -55,11 +55,12 @@ class TopicsController < ApplicationController
 
   def can_view?(topic)
     if !topic.group.private or topic.group.includes_member?(current_user)
-      return true
+      true
+    else
+      flash[:error] = t('topic.must_be_member', :group => topic.group.name)
+      redirect_to home_path
+      false
     end
-    flash[:error] = t('topic.must_be_member', :group => topic.group.name)
-    redirect_to home_path
-    return false
   end
 
   def retrieve_topic
@@ -74,20 +75,22 @@ class TopicsController < ApplicationController
 
   def can_edit? topic
     if topic.group.moderated_by?(current_user) or topic.group.owned_by?(current_user)
-      return true
+      true
+    else
+      flash[:error] = t('topic.must_be_moderator_or_owner', :group => topic.group.name)
+      redirect_to topic_path(topic)
+      false
     end
-    flash[:error] = t('topic.must_be_moderator_or_owner', :group => topic.group.name)
-    redirect_to topic_path(topic)
-    false
   end
 
   def can_create? group
     if group.includes_member? current_user
-      return true
+      true
+    else
+      flash[:error] = t('topic.must_be_member', :group => group.name)
+      redirect_to group_path(group)
+      false
     end
-    flash[:error] = t('topic.must_be_member', :group => group.name)
-    redirect_to group_path(group)
-    false
   end
 
   def layout_for_action

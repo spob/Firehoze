@@ -38,10 +38,10 @@ class GroupLessonsController < ApplicationController
 
   def can_update_groups?(lesson, user)
     if lesson.owned_by?(user) or lesson.can_edit?(user) or lesson.owned_by?(user)
-      return true
+      true
     else
       flash[:error] = t('general.no_permissions')
-      return false
+      false
     end
   end
 

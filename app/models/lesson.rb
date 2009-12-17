@@ -377,14 +377,14 @@ END
     videos.find_all{|video| video.class == FullProcessedVideo or video.class == PreviewProcessedVideo }.each do |video|
       return true if video.status == status
     end
-    return false
+    false
   end
 
   def all_videos_match_by_status(status)
     videos.find_all{|video| video.class == FullProcessedVideo or video.class == PreviewProcessedVideo }.each do |video|
       return false if video.status != status
     end
-    return true
+    true
   end
 
   def input_path

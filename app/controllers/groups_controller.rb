@@ -124,25 +124,27 @@ class GroupsController < ApplicationController
   def can_view?(group)
     if !group.private or group.includes_member?(current_user) or current_user.try(:is_moderator?)
       if (group.active or group.owned_by?(current_user) or current_user.try(:is_moderator?))
-        return true
+        true
       else
         flash[:error] = t('group.inactive', :group => group.name)
         redirect_to home_path
-        return false
+        false
       end
+    else
+      flash[:error] = t('topic.must_be_member', :group => group.name)
+      redirect_to home_path
+      false
     end
-    flash[:error] = t('topic.must_be_member', :group => group.name)
-    redirect_to home_path
-    return false
   end
 
   def can_edit?(group)
-    unless current_user == group.owner
+    if current_user == group.owner
+      true
+    else
       flash[:error] = t('general.no_permissions')
       redirect_to group_path(group)
-      return false
+      false
     end
-    true
   end
 
   def layout_for_action

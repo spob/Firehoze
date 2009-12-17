@@ -7,7 +7,7 @@ class RunIntervalPeriodicJob < PeriodicJob
   # settings as this job except with the next_run_at based upon the run_at_minutes
   def calc_next_run
     # puts "Calc next run #{Time.zone.now}, #{self.interval} #{(Time.zone.now + self.interval)}"
-    return RunIntervalPeriodicJob.new(:name => self.name, :job => self.job,
+    RunIntervalPeriodicJob.new(:name => self.name, :job => self.job,
                                       :interval => self.interval)
   end
 

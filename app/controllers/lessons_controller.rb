@@ -167,10 +167,10 @@ class LessonsController < ApplicationController
 
   def lesson_notes
     @style = params[:style]
-    if @style == 'tab'
-      # render :layout => 'content_in_tab'
-      return
-    end
+#    if @style == 'tab'
+#      # render :layout => 'content_in_tab'
+#      return
+#    end
   end
 
   def edit

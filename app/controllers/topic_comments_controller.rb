@@ -47,10 +47,13 @@ class TopicCommentsController < ApplicationController
   private
 
   def can_edit?(comment, user)
-    return true if comment.can_edit? user
-    flash[:error] = t 'topic_comment.cannot_edit'
-    redirect_to topic_path(comment.topic)
-    false
+    if comment.can_edit? user
+      true
+    else
+      flash[:error] = t 'topic_comment.cannot_edit'
+      redirect_to topic_path(comment.topic)
+      false
+    end
   end
 
   def retrieve_topic
@@ -65,11 +68,12 @@ class TopicCommentsController < ApplicationController
 
   def can_create? topic
     if topic.group.includes_member? current_user
-      return true
+      true
+    else
+      flash[:error] = t('topic.must_be_member', :group => topic.group.name)
+      redirect_to group_path(topic.group)
+      false
     end
-    flash[:error] = t('topic.must_be_member', :group => topic.group.name)
-    redirect_to group_path(topic.group)
-    false
   end
 
   def layout_for_action

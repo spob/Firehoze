@@ -15,7 +15,7 @@ class LessonCommentsController < ApplicationController
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
 #  verify :method => :destroy, :only => [:delete ], :redirect_to => :home_path
-  
+
   layout :layout_for_action
 
 #  def index
@@ -59,17 +59,17 @@ class LessonCommentsController < ApplicationController
   end
 
   def update
-    unless @lesson_comment.can_edit? current_user
+    if @lesson_comment.can_edit? current_user
+      params[:lesson_comment][:public] ||= false
+      if @lesson_comment.update_attributes(params[:lesson_comment])
+        flash[:notice] = t 'lesson_comment.update_success'
+        redirect_to lesson_lesson_comments_url(@lesson_comment.lesson)
+      else
+        render :action => 'edit'
+      end
+    else
       flash[:error] = t 'lesson_comment.cannot_edit'
       redirect_to lesson_lesson_comments_path(@lesson_comment.lesson)
-      return
-    end
-    params[:lesson_comment][:public] ||= false
-    if @lesson_comment.update_attributes(params[:lesson_comment])
-      flash[:notice] = t 'lesson_comment.update_success'
-      redirect_to lesson_lesson_comments_url(@lesson_comment.lesson)
-    else
-      render :action => 'edit'
     end
   end
 

@@ -3,14 +3,15 @@ require 'digest'
 module HashHelper
   def formatted_hash(plain_text, prefix="", suffix="")
     hash = gen_hash(plain_text.downcase, prefix, suffix)
-    hash[0, 4] + "-" + hash[4, 4] + "-" + hash[8, 4] + "-" + hash[12, 4] + "-" + 
+    hash[0, 4] + "-" + hash[4, 4] + "-" + hash[8, 4] + "-" + hash[12, 4] + "-" +
             hash[16, 4] + "-" + hash[20, 4] + "-" + hash[24, 4] + "-" + hash[28, 4]
   end
 
   def match?(plain_text, code="", prefix="", suffix="")
-    return nil if code.nil?
-    hash = code.strip.gsub("-", "")
-    hash == gen_hash(plain_text.downcase, prefix, suffix)
+    unless code.nil?
+      hash = code.strip.gsub("-", "")
+      hash == gen_hash(plain_text.downcase, prefix, suffix)
+    end
   end
 
   def gen_hash(plain_text, prefix, suffix)

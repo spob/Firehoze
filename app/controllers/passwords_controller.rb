@@ -1,7 +1,7 @@
 # Controller to allow a user to change their password when they are logged in
 class PasswordsController < ApplicationController
   include SslRequirement
-  
+
   before_filter :require_user
   before_filter :find_user
   ssl_required :update if Rails.env.production?
@@ -13,18 +13,18 @@ class PasswordsController < ApplicationController
 
   def update
     @user.current_password = params[:user][:current_password]
-    unless @user.valid_current_password?
+    if @user.valid_current_password?
+      @user.password = params[:user][:password]
+      @user.password_confirmation = params[:user][:password_confirmation]
+      if @user.save
+        flash[:notice] = t 'password.pwd_update_success'
+        redirect_to edit_account_url(@user)
+      else
+        render :template => 'accounts/edit'
+      end
+    else
       # user typed a bad value for current password
       @user.password = params[:user][:password]
-      render :template => 'accounts/edit'
-      return
-    end
-    @user.password = params[:user][:password]
-    @user.password_confirmation = params[:user][:password_confirmation]
-    if @user.save
-      flash[:notice] = t 'password.pwd_update_success'
-      redirect_to edit_account_url(@user)
-    else
       render :template => 'accounts/edit'
     end
   end

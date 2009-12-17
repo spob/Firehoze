@@ -27,8 +27,7 @@ class Comment < ActiveRecord::Base
 
   # Display the option of public versus private to the user
   def self.show_public_private_option?(user)
-    return false unless user
-    user.is_an_admin? or user.is_a_moderator?
+    user and (user.is_an_admin? or user.is_a_moderator?)
   end
 
   def self.numerate(comments)
