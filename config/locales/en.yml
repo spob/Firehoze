@@ -257,6 +257,7 @@ en:
     must_accept_agreement: You must accept the instructor agreement before continuing with the enrollment process
     confirm_address: Please confirm your contact information before continuing
     wizard_jump_ahead: Hey, no fair jumping ahead
+    must_provide_regcode: You must specify a valid registration code in order to become an instructor
   
   registration:
     check_email_for_registration: Please check your email to complete the registration

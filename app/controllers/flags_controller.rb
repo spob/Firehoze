@@ -103,9 +103,9 @@ class FlagsController < ApplicationController
     if msg
       flash[:error] = msg
       redirect_to flaggable_show_path(flags.first)
-      return false
+      false
     else
-      return true
+      true
     end
   end
 

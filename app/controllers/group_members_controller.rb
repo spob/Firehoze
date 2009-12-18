@@ -4,7 +4,7 @@ class GroupMembersController < ApplicationController
   before_filter :find_group_member, :only => [ :remove, :promote, :demote, :create_private ]
   verify :method => :post, :only => [:create, :promote, :demote, :create_private ], :redirect_to => :home_path
   verify :method => :delete, :only => [:destroy, :remove ], :redirect_to => :home_path
-  
+
   layout :layout_for_action
 
   def create
@@ -111,10 +111,11 @@ class GroupMembersController < ApplicationController
 
   def check_permissions(member, user)
     if @group_member.can_edit?(user)
-      return true
+      true
+    else
+      flash[:error] = t('general.no_permissions')
+      false
     end
-    flash[:error] = t('general.no_permissions')
-    false
   end
 
   def find_group_member

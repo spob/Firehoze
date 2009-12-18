@@ -32,16 +32,16 @@ module UsersHelper
   end
 
   def avatar_tag(user, options = {})
-    return unless user
-    size = options[:size] || :medium
-    avatar_url = user.avatar.file? ? user.avatar.url(size) : User.default_avatar_url(size)
-    cdn_avatar_url = User.convert_avatar_url_to_cdn(avatar_url)
-    image_tag cdn_avatar_url, options.merge({ :alt => h(privacy_sensitive_username(user)), :class => 'avatar' })
+    if user
+      size = options[:size] || :medium
+      avatar_url = user.avatar.file? ? user.avatar.url(size) : User.default_avatar_url(size)
+      cdn_avatar_url = User.convert_avatar_url_to_cdn(avatar_url)
+      image_tag cdn_avatar_url, options.merge({ :alt => h(privacy_sensitive_username(user)), :class => 'avatar' })
+    end
   end
 
   def avatar_link_to(user, options)
-    return unless user
-    link_to avatar_tag(user, options),  user_path(user),  :title => h(privacy_sensitive_username(user))
+    link_to avatar_tag(user, options),  user_path(user),  :title => h(privacy_sensitive_username(user)) if user
   end
 
   def payment_levels_for_select

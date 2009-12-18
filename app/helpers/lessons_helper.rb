@@ -55,12 +55,13 @@ module LessonsHelper
   end
 
   def img_tag_lesson_tn(lesson, size, options={})
-    return if lesson.nil?
-    tn_options = { :class => :lesson_tn, :alt => h(lesson.title) }
-    tn_options.merge!(options)
+    unless lesson.nil?
+      tn_options = { :class => :lesson_tn, :alt => h(lesson.title) }
+      tn_options.merge!(options)
 
-    img_src = lesson.thumbnail_url ? lesson.sized_thumbnail_url(size) : "videos/video_placeholder_#{size}.jpg"
-    link_to(image_tag(img_src, tn_options), lesson_path(lesson), :class => 'link-to-lesson')
+      img_src = lesson.thumbnail_url ? lesson.sized_thumbnail_url(size) : "videos/video_placeholder_#{size}.jpg"
+      link_to(image_tag(img_src, tn_options), lesson_path(lesson), :class => 'link-to-lesson')
+    end
   end
 
   def number_of_students_phrase(lesson)
@@ -79,17 +80,14 @@ module LessonsHelper
 
   def button_to_buy(lesson)
     if lesson.ready?
-      if lesson.owned_by?(current_user) or lesson.can_edit?(current_user)
-        return
+      unless lesson.owned_by?(current_user) or lesson.can_edit?(current_user)
+        if lesson.free_credits.available.size > 0
+          action_text = t('lesson.watch_for_free')
+        else
+          action_text = t('lesson.buy')
+        end
+        button_to action_text, watch_lesson_path(lesson), :method => :get
       end
-
-      if lesson.free_credits.available.size > 0
-        action_text = t('lesson.watch_for_free')
-      else
-        action_text = t('lesson.buy')
-      end
-
-      button_to action_text, watch_lesson_path(lesson), :method => :get
     end
   end
 
@@ -113,9 +111,7 @@ module LessonsHelper
 
   def button_to_preview(lesson)
     if lesson.ready?
-      if lesson.owned_by?(current_user) or lesson.instructed_by?(current_user)
-        return
-      else
+      unless lesson.owned_by?(current_user) or lesson.instructed_by?(current_user)
         button_to "Preview", nil, { :alt => '#FIXME (when preview functionality is coded by Bob)', :disabled => true }
       end
     end
@@ -132,12 +128,12 @@ module LessonsHelper
   end
 
   def button_to_wish(lesson)
-    if lesson.instructed_by?(current_user) or lesson.owned_by?(current_user)
-      return
-    elsif current_user and current_user.on_wish_list?(lesson)
-      button_to "Remove from Wish List", wish_list_path(lesson), :method => :delete, :disable_with => translate('general.disable_with')
-    else
-      button_to "Add to Wish List", wish_lists_path(:id => lesson), :method => :post, :disable_with => translate('general.disable_with')
+    unless lesson.instructed_by?(current_user) or lesson.owned_by?(current_user)
+      if current_user and current_user.on_wish_list?(lesson)
+        button_to "Remove from Wish List", wish_list_path(lesson), :method => :delete, :disable_with => translate('general.disable_with')
+      else
+        button_to "Add to Wish List", wish_lists_path(:id => lesson), :method => :post, :disable_with => translate('general.disable_with')
+      end
     end
   end
 
@@ -152,7 +148,7 @@ module LessonsHelper
   def link_to_add_remove_group lesson, group
     if lesson.belongs_to_group?(group)
       link_to "Remove from Group", group_lesson_path(group.id, :lesson_id => lesson.id), :method => :delete
-    else                                                              
+    else
       link_to "Add to Group", group_lessons_path(:id => group.id, :lesson_id => lesson.id), :method => :post
     end
   end

@@ -32,17 +32,17 @@ class Flag < ActiveRecord::Base
 
   def friendly_flagger_name
     if self.flaggable.class == Lesson
-      return flaggable.title
+      flaggable.title
     elsif self.flaggable.class == Review
-      return flaggable.headline
+      flaggable.headline
     elsif self.flaggable.class == Group
-      return flaggable.name
+      flaggable.name
     elsif self.flaggable.class == User
-      return flaggable.login
+      flaggable.login
     elsif self.flaggable.class == LessonComment or self.flaggable.class == TopicComment
-      return abbreviate(flaggable.body, 45)
+      abbreviate(flaggable.body, 45)
     else
-      return "ERROR: Unknown"
+      "ERROR: Unknown"
     end
   end
 

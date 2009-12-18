@@ -45,11 +45,11 @@ class ContactUsersController < ApplicationController
 
   def check_permissions
     if @to_user.can_contact?(current_user)
-      return true
+      true
     else
       flash[:error] = t 'contact_user.cannot_contact'
       redirect_to user_path(@to_user)
-      return false
+      false
     end
   end
 end

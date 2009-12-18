@@ -57,11 +57,11 @@ class LessonAttachmentsController < ApplicationController
 
   def has_access? lesson
     if lesson.can_edit? current_user
-      return true
+      true
     else
       flash[:error] = t 'attachment.access_message'
       redirect_to lesson_path(@attachment.lesson)
-      return false
+      false
     end
   end
 

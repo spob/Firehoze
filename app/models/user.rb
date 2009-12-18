@@ -192,11 +192,12 @@ END
   # used to verify whether the user typed their correct password when, for example,
   # the user updates their password
   def valid_current_password?
-    unless valid_password?(current_password.try(:strip))
+    if valid_password?(current_password.try(:strip))
+      true
+    else
       errors.add(:current_password, "is incorrect")
-      return false
+      false
     end
-    true
   end
 
   def address_provided?
@@ -208,8 +209,11 @@ END
   # Utility method to return either the last_name if no first name is specified, or the first and last
   # name with a space betwen them
   def full_name
-    return last_name if first_name.nil? or first_name.empty?
-    "#{first_name} #{last_name}".strip
+    if first_name.nil? or first_name.empty?
+      last_name
+    else
+      "#{first_name} #{last_name}".strip
+    end
   end
 
   # Has this user purchased this lesson?
@@ -236,8 +240,9 @@ END
   end
 
   def name_or_username
-    return 'Firehoze member' if username.blank? and username.blank?
-    if self.show_real_name
+    if username.blank? and username.blank?
+      'Firehoze member'
+    elsif self.show_real_name
       full_name
     else
       username
