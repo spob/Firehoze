@@ -2,7 +2,7 @@
 <%= javascript 'swfobject' %>
 <% account_settings_link = current_user ? (link_to "Account Settings", edit_account_path(current_user)) : "&apos;Account Settings&apos;" %>
 <% content_for :head do -%>
-  <a name="top" class="anchor"></a>
+  <a name="top" id="top" class="anchor"></a>
 <% end -%>
 
 <div id="faqs_section">
@@ -11,21 +11,21 @@
     <h3>Frequently Asked Questions</h3>
     <h4>For Everyone</h4>
     <ul>
-      <li><a href="#beta-site">Beta Site</a></li>
-      <li><a href="#privacy">Privacy</a></li>
-      <li><a href="#managing-my-account">Managing My Account</a></li>
-      <li><a href="#buying-lessons">Buying Lessons/Credits</a></li>
+      <li><a href="#beta-site" class="anchorLink">Beta Site</a></li>
+      <li><a href="#privacy" class="anchorLink">Privacy</a></li>
+      <li><a href="#managing-my-account" class="anchorLink">Managing My Account</a></li>
+      <li><a href="#buying-lessons" class="anchorLink">Buying Lessons/Credits</a></li>
     </ul>
 
     <h4>For Instructors</h4>
     <ul>
-      <li><a href="#payment-exclusivity">Payment/Exclusivity</a></li>
-      <li><a href="#contributing-uploading-lessons">Contributing/Uploading Lessons</a></li>
-      <li><a href="#recording">Recording</a></li>
+      <li><a href="#payment-exclusivity" class="anchorLink">Payment/Exclusivity</a></li>
+      <li><a href="#contributing-uploading-lessons" class="anchorLink">Contributing/Uploading Lessons</a></li>
+      <li><a href="#recording" class="anchorLink">Recording</a></li>
     </ul>
   </div>
 
-  <a name="beta-site" class="anchor"></a>
+  <a name="beta-site" id="beta-site" class="anchor"></a>
 
   <div class="answers">
     <h4>Beta Site</h4>
@@ -53,11 +53,11 @@
       <p>The big ones at the moment but more to come. Firefox 3.0 and higher, InternetExplorer 6.x and higher, Safari, Chrome. Other browsers and versions may work just fine, but we don't guarantee it. If there's a browser you think we should support but don't, we'd love to hear from you.</p>
     </div>
 
-    <p>&nbsp;&uarr;<a href="#top" class="top">return to top</a></p>
+    <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
   </div>
 
 
-  <a name="privacy" class="anchor"></a>
+  <a name="privacy" id="privacy" class="anchor"></a>
 
   <div class="answers">
     <h4>Privacy</h4>
@@ -85,11 +85,11 @@
       <p>You can look at this by going into your <%= account_settings_link %>, clicking on the 'Profile' tab. At the top of the page you'll see a link with the option 'view your public profile here'.</p>
     </div>
 
-    <p>&nbsp;&uarr;<a href="#top" class="top">return to top</a></p>
+    <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
   </div>
 
 
-  <a name="managing-my-account" class="anchor"></a>
+  <a name="managing-my-account" id="managing-my-account" class="anchor"></a>
 
   <div class="answers">
     <h4>Managing My Account</h4>
@@ -133,10 +133,10 @@
       <p>Just click on the 'Forgot password 'link on the login page.</p>
     </div>
 
-    <p>&nbsp;&uarr;<a href="#top" class="top">return to top</a></p>
+    <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
   </div>
 
-  <a name="buying-lessons" class="anchor"></a>
+  <a name="buying-lessons" id="buying-lessons" class="anchor"></a>
 
   <div class="answers">
     <h4>Buying Lessons/Credits</h4>
@@ -179,12 +179,12 @@
       <p>If you have credits that are about to expire, we'll warn you via email 30 days before they expire, just to remind you to log on to keep them alive.</p>
     </div>
 
-    <p>&nbsp;&uarr;<a href="#top" class="top">return to top</a></p>
+    <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
 
   </div>
 
 
-  <a name="payment-exclusivity" class="anchor"></a>
+  <a name="payment-exclusivity" id="payment-exclusivity" class="anchor"></a>
 
   <div class="answers">
     <h4>Payment/Exclusivity</h4>
@@ -223,10 +223,10 @@
       <p>You can find this information in your account information. Click on the <%= account_settings_link %> link at the top of the page. Then go to the 'Payment History' tab to see the lessons of yours that have been purchased by other Firehoze users and how much you've made from them.</p>
     </div>
 
-    <p>&nbsp;&uarr;<a href="#top" class="top">return to top</a></p>
+    <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
   </div>
 
-  <a name="contributing-uploading-lessons" class="anchor"></a>
+  <a name="contributing-uploading-lessons" id="contributing-uploading-lessons" class="anchor"></a>
 
   <div class="answers">
     <h4>Contributing/Uploading Lessons</h4>
@@ -293,11 +293,11 @@
 
       <p>For additional help with this or to request more time, contact us at <a href="http://getsatisfaction.com/firehoze/topics">Support</a>.</p>
     </div>
-    <p>&nbsp;&uarr;<a href="#top" class="top">return to top</a></p>
+    <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
 
   </div>
 
-  <a name="recording" class="anchor"></a>
+  <a name="recording" id="recording" class="anchor"></a>
 
   <div class="answers">
     <h4>Recording</h4>
@@ -510,6 +510,6 @@
         </li>
       </ol>
     </div>
-    <p>&nbsp;&uarr;<a href="#top" class="top">return to top</a></p>
+    <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
   </div>
 </div>
