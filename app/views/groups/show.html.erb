@@ -10,16 +10,19 @@
     <div id="details">
       <h3>Group <%= h @group.name %></h3>
       <ul>
-        <li>Category: <%= h @group.category.name %></li>
         <li><%= h @group.description %></li>
-        <li><%= show_join_link(@group) %></li>
-        <li><%= show_leave_link(@group) %></li>
-        <li><%= show_invite_link(@group) %></li>
-        <li><%= show_edit_link(@group) %></li>
-        <li><%= flag_link @group unless @group.private-%></li>
         <li>Owner: <%= link_to_profile(@group.owner) %></li>
         <li>This group is <%= @group.private ? "by invitation only" : "open to the public" %></li>
       </ul>
+
+      <div class="actions"> 
+        <%= show_join_link(@group) %>
+        <%= show_leave_link(@group) %>
+        <%= show_invite_link(@group) %>
+        <%= show_edit_link(@group) %>
+        <%= flag_link @group unless @group.private-%>
+      </div>
+
       <% unless @group.active %>
         <p>This group is inactive because of inappropriate content. Please address this concern and notify the system administration if you think this group is ready to be re-activated.</p>
         <% if current_user.try(:is_moderator?) %>
