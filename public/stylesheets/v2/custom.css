@@ -439,3 +439,9 @@ div.review #stars {
 }
 
 #faqs_section .anchor { }
+
+
+/* ACCOUNT SETTINGS SCREENS */
+div#account-settings-tabs div.panes {
+	margin: 2em 0 0 1em;
+}

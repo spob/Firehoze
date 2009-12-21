@@ -26,6 +26,11 @@ $(function() {
         effect: 'fade'
     });
 
+    // account settings
+    $("#account-settings-tabs ul.tabs").tabs("#account-settings-tabs > div.panes > div", {
+        effect: 'fade'
+    });
+
     // HIDE & SHOW the advance lesson search link
     $('li#lessons-tab a').click(function () {
         $('a#advanced-search-link').show();
