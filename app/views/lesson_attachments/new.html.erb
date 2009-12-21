@@ -4,7 +4,7 @@
 <div class="fh-form">
   <% form_for :attachment, :url => lesson_lesson_attachments_url(@lesson), :html => { :multipart => true, :id => "new_attachment" } do |form| %>
       <%= form.error_messages %>
-      <ul id="company-info" class="section">
+      <ul id="attachment-info" class="section">
         <li class="header">
           <span></span>
           <h3>Add Attachment to the Lesson "<%= h @lesson.title %>"</h3>

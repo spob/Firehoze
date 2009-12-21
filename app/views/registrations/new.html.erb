@@ -4,7 +4,7 @@
 <% restricted = APP_CONFIG[CONFIG_RESTRICT_REGISTRATION] %>
 <% if restricted == true %>
     <div class="fh-form">
-      <ul id="company-info" class="section">
+      <ul id="request-registration-info" class="section">
         <li class="header">
           <span></span>
 
@@ -22,7 +22,7 @@
 <div class="fh-form">
   <% form_for(:registration, :url => registrations_path, :html => {'accept-charset' => "utf-8", :id => "inline", :class => "register" }) do |f| %>
       <%= f.error_messages %>
-      <ul id="company-info" class="section">
+      <ul id="registation-info" class="section">
         <li class="header">
           <span></span>
 

@@ -4,7 +4,7 @@
   <% form_for(:group_invitation, :url => group_invitations_path, :html => {'accept-charset' => "utf-8", :id => "inline", :class => "register" }) do |f| %>
       <%= f.error_messages %>
       <%= hidden_field_tag :id, @group.id %>
-      <ul id="company-info" class="section">
+      <ul id="group-invitation-info" class="section">
         <li class="header">
           <span></span>
 

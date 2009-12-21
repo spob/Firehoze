@@ -443,5 +443,5 @@ div.review #stars {
 
 /* ACCOUNT SETTINGS SCREENS */
 div#account-settings-tabs div.panes {
-	margin: 2em 0 0 1em;
+	margin-top: 2em;
 }

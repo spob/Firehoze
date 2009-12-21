@@ -3,18 +3,14 @@
 
 <%= javascript 'v2/validation/accounts.validate.js' %>
 
-<% content_for :head do -%>
-    <%= javascript_include_tag 'validate/jquery.validate.js', 'validate/account.setting.validate.js' %>
-<% end %>
-
 <h3><%= h(t('user.account_settings')) %></h3>
 <div id="account-settings-tabs" class="tab-container">
   <ul class="tabs">
-    <li><a href="#tabs-1"><%= h(t('user.profile')) %></a></li>
-    <li><a href="#tabs-2"><%= h(t('user.password')) %></a></li>
-    <li><a href="#tabs-3"><%= h(t('user.author_info')) %></a></li>
-    <li><a href="#tabs-4"><%= h(t('user.avatar')) %></a></li>
-    <li><a href="#tabs-5"><%= h(t('user.privacy')) %></a></li>
+    <li><a href="#profile"><%= h(t('user.profile')) %></a></li>
+    <li><a href="#password"><%= h(t('user.password')) %></a></li>
+    <li><a href="#instructor"><%= h(t('user.author_info')) %></a></li>
+    <li><a href="#avatar"><%= h(t('user.avatar')) %></a></li>
+    <li><a href="#privacy"><%= h(t('user.privacy')) %></a></li>
   </ul>
 <div class="panes clearfix">
   <div id="tabs-1"><%= render :partial => "accounts/forms/profile" %></div>

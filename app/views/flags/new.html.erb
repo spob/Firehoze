@@ -4,7 +4,7 @@
 <div class="fh-form">
   <% form_for :flag, :url => flags_url(@flag, :flagger_type => @flag.flaggable.class.to_s, :flagger_id =>@flag.flaggable.id),  :html => { :class => "flag", :id => "flag" } do |f| %>
       <%= f.error_messages %>
-      <ul id="company-info" class="section">
+      <ul id="flag-info" class="section">
         <li class="header">
           <span></span>
 

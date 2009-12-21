@@ -1,7 +1,8 @@
+<%= javascript 'v2/validation/instructor.validate.js' %>
 <div class="fh-form">
   <% form_for(:user, :url => update_instructor_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
       <%= f.error_messages %>
-      <ul id="company-info" class="section">
+      <ul id="instructor-info" class="section">
         <li class="header">
           <span></span>
 
@@ -59,13 +60,14 @@
         </li>
         <li>
         <span>
+          <%= f.label :country, "Country" %>
           <%= f.localized_country_select(:country, ['US']) %>
           <span class="required-field" />
         </span>
         </li>
         <li class="bottom">
         <span class="unlabelled">
-        <%= f.submit "Update" %>
+        <%= f.submit "Update", :id => "instructor_update" %>
         <%= link_to 'Cancel', home_path %> |
         <%= link_to "Revisit Instructor Signup Wizard", instructor_signup_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :method => :get %>
         </span>

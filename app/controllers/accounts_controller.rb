@@ -6,6 +6,7 @@ class AccountsController < ApplicationController
                :update_instructor_wizard, :update_privacy if Rails.env.production?
   before_filter :require_user, :except => [:instructor_agreement]
   before_filter :find_user
+  before_filter :set_no_uniform_js
 
   verify :method => :put, :only => [ :update, :update_privacy, :update_instructor, :update_avatar, :update_instructor_wizard ], :redirect_to => :home_path
   verify :method => :post, :only => [ :clear_avatar ], :redirect_to => :home_path
@@ -123,7 +124,7 @@ class AccountsController < ApplicationController
       if @user.update_attributes(:avatar => params[:user][:avatar])
         flash[:notice] = t 'account_settings.avatar_success'
       end
-      redirect_to edit_account_path(@user)
+      redirect_to edit_account_path(@user, :anchor => :avatar)
     end
   end
 
@@ -192,14 +193,18 @@ class AccountsController < ApplicationController
       flash[:error] = t 'account_settings.update_error'
     end
 
-    redirect_to edit_account_path
+    redirect_to edit_account_path(:anchor => :privacy)
 
   rescue Exception => e
     flash[:error] = e.message
-    redirect_to edit_account_path
+    redirect_to edit_account_path(:anchor => :privacy)
   end
 
   private
+
+  def set_no_uniform_js
+    @no_uniform_js = true
+  end
 
   def enforce_order user, step_num
     if calc_next_wizard_step(user) < step_num

@@ -3,7 +3,7 @@
 <div class="fh-form">
   <% form_for(:lesson_comment, :url => (@lesson_comment.new_record? ? lesson_lesson_comments_url(@lesson) : lesson_comment_path(@lesson_comment)), :html => { :method => (@lesson_comment.new_record? ? :post : :put), :class => "lesson_comment", :id => "lesson_comment" }) do |f| %>
       <%= f.error_messages  %>
-      <ul id="company-info" class="section">
+      <ul id="lesson-comment-info" class="section">
         <li class="header">
           <span></span>
 

@@ -1,7 +1,7 @@
 <div class="fh-form">
   <% form_for(@user, :url => update_avatar_account_url(@user), :html => { :method => :put, :multipart => true, :id => "avatar_form", :class => "edit_user" }) do |f| %>
       <%= f.error_messages %>
-      <ul id="company-info" class="section">
+      <ul id="avatar-info" class="section">
         <li class="header">
           <span></span>
 
@@ -17,12 +17,12 @@
         <li>
         <span>
           <%= f.label :avatar %>
-          <%= f.file_field :avatar, :class => "required" %>
+          <%= f.file_field :avatar,  :title => "Please select an image to upload", :class => "required" %>
         </span>
         </li>
         <li class="bottom">
         <span class="unlabelled">
-          <%= f.submit "Update" %>
+          <%= f.submit "Update", :id => "update-avatar" %>
           <%= link_to 'Cancel', home_path %>
       <% if @user.avatar? %>
           | <%= link_to('Delete current', clear_avatar_account_path(@user.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) %>
@@ -32,6 +32,5 @@
           <div class="clear" />
         </li>
       </ul>
-      </fieldset>
   <% end %>
 </div>

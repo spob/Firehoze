@@ -1,40 +1,31 @@
 <div class="fh-form">
   <% form_for(:user, :url => update_privacy_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "privacy" }) do |f| %>
-      <%= f.error_messages %>
-      <ul id="company-info" class="section">
-        <li class="header">
-          <span></span>
+    <%= f.error_messages %>
+    <ul id="privacy-info" class="section">
+      <li class="header">
+        <span></span>
 
-          <h3>Update Privacy Settings</h3>
-          <h4>Control how much information you share with other users, and whether other users can contact you.</h4>
-        </li>
-        <li>
-        <span>
-          <%= f.check_box :show_real_name %>
-          Show Real First and Last Name
-        </span>
-          <span class="help">(if you leave this unchecked, other users will only see your username)</span>
-        </li>
-        <h4>Who can contact you via email?</h4>
-        <li>
-        <ul>
-          <li><%= f.radio_button :allow_contact, USER_ALLOW_CONTACT_NONE %>
-            <label for="<%= USER_ALLOW_CONTACT_NONE %>">No one</label></li>
-          <li><%= f.radio_button :allow_contact, USER_ALLOW_CONTACT_ANYONE %>
-            <label for="<%= USER_ALLOW_CONTACT_ANYONE %>">Anyone</label></li>
-          <li><%= f.radio_button :allow_contact, USER_ALLOW_CONTACT_STUDENTS_ONLY %>
-            <label for="<%= USER_ALLOW_CONTACT_STUDENTS_ONLY %>">Only students who have purchased at least one of your
-            lessons</label></li>
-        </ul>
-        </li>
-        <li class="bottom">
+        <h3>Update Privacy Settings</h3>
+        <h4>Control how much information you share with other users, and whether other users can contact you.</h4>
+      </li>
+      <li>
+        <span class="heading">Show Real First and Last Name?</span>
         <span class="unlabelled">
-        <%= f.submit "Update" %>
-        <%= link_to 'Cancel', home_path %>
+          <%= f.check_box :show_real_name %>(if you leave this unchecked, other users will only see your username)
         </span>
-
-          <div class="clear"/>
-        </li>
-      </ul>
+      </li>
+      <li>
+        <span class="heading">Who can contact you via email?</span>
+        <span class="unlabelled"><%= f.radio_button :allow_contact, USER_ALLOW_CONTACT_NONE %> No one</span>
+        <span class="unlabelled"><%= f.radio_button :allow_contact, USER_ALLOW_CONTACT_ANYONE %> Anyone</span>
+        <span class="unlabelled"><%= f.radio_button :allow_contact, USER_ALLOW_CONTACT_STUDENTS_ONLY %> Only students who have purchased at least one of your lessons</span>
+      </li>
+      <li class="bottom">
+        <span class="unlabelled">
+          <%= f.submit "Update Privacy", :id => "update_privacy" %>
+          <%= link_to 'Cancel', home_path %>
+        </span>
+      </li>
+    </ul>
   <% end %>
 </div>

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("#profile, #author").validate({
+    $("#profile").validate({
         errorElement: "span",
         success: "valid",
         submitHandler: function(form) {
@@ -7,6 +7,43 @@ $(document).ready(function() {
             form.submit();
         }
     });
+
+    $("#author").validate({
+        errorElement: "span",
+        success: "valid",
+        submitHandler: function(form) {
+            $(form).find(":submit").attr("disabled", true).attr("value", "Please wait ...");
+            form.submit();
+        }
+    });
+
+    $("#avatar_form").validate({
+        errorElement: "span",
+        success: "valid",
+        submitHandler: function(form) {
+            $(form).find(":submit").attr("disabled", true).attr("value", "Please wait ...");
+            form.submit();
+        }
+    });
+
+    $("#password_form").validate({
+        errorElement: "span",
+        success: "valid",
+        submitHandler: function(form) {
+            $(form).find(":submit").attr("disabled", true).attr("value", "Please wait ...");
+            form.submit();
+        }
+    });
+
+    $("#privacy").validate({
+        errorElement: "span",
+        success: "valid",
+        submitHandler: function(form) {
+            $(form).find(":submit").attr("disabled", true).attr("value", "Please wait ...");
+            form.submit();
+        }
+    });
+
 
     $('#user_login').simplyCountable({
         counter: '#login_counter',
@@ -37,24 +74,6 @@ $(document).ready(function() {
 
     $('#user_last_name').simplyCountable({
         counter: '#last_name_counter',
-        countType: 'characters',
-        maxCount: 40,
-        countDirection: 'down',
-        safeClass: 'safe',
-        overClass: 'over'
-    });
-
-    $('#ofirst_name').simplyCountable({
-        counter: '#ofirst_name_counter',
-        countType: 'characters',
-        maxCount: 40,
-        countDirection: 'down',
-        safeClass: 'safe',
-        overClass: 'over'
-    });
-
-    $('#olast_name').simplyCountable({
-        counter: '#olast_name_counter',
         countType: 'characters',
         maxCount: 40,
         countDirection: 'down',
