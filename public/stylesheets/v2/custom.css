@@ -237,7 +237,7 @@ ul#main-navigation  {
     height:320px;
     background-image:url('/stylesheets/v2/images/footer/footer-bg-tile-tall.png');
 }
-#footer, 
+#footer,
 #footer a {
     color: #999;
 }
@@ -353,7 +353,7 @@ div.review #stars {
 
 /* BREADCRUMB */
 #breadcrumb {
-    font: 12px Arial, Helvetica, sans-serif; 
+    font: 12px Arial, Helvetica, sans-serif;
     height:30px;
     line-height:30px;
     color:#9b9b9b;
@@ -443,5 +443,22 @@ div.review #stars {
 
 /* ACCOUNT SETTINGS SCREENS */
 div#account-settings-tabs div.panes {
-	margin-top: 2em;
+    margin-top: 2em;
+}
+
+
+/* GROUPS */
+#group-details {
+    padding: 20px;
+    border: solid 2px #999;
+    background-color: #eee;
+    margin: 0 0 20px 0;
+}
+
+#group-details div#logo {
+    float:left;
+}
+
+#group-details div#details {
+    margin-left: 130px;
 }

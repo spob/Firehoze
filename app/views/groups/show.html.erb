@@ -1,74 +1,90 @@
 <% title "Group #{h @group.name}" -%>
+<% @current = 'groups' %>
 
-<%= logo_tag @group, :size => :medium %>
-<h2>Group <%= h @group.name %></h2>
-Category: <%= h @group.category.name %>
-<%= h @group.description %>
-<%= show_join_link(@group) %>
-<%= show_leave_link(@group) %>
-<%= show_invite_link(@group) %>
-<%= show_edit_link(@group) %>
-<%= flag_link @group unless @group.private-%>
-<br/>
-Owner: <%= link_to_profile(@group.owner) %>
-<br/>
-This group is <%= @group.private ? "by invitation only" : "open to the public" %>
-<br/>
-<% unless @group.active %>
-    This group is inactive because of inappropriate content. Please address this concern and notify the system administration
-    if you think this group is ready to be re-activated.
-    <% if current_user.try(:is_moderator?) %>
-        <%= link_to('Reactivate?', activate_group_path(@group.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) %>
-    <% end %>
-<% end %>
-<br/>
-<%= show_membership_text @group %>
-<br/>
-<br/>
-<h3>Members:</h3>
-<ul>
-  <%= render :partial => "member", :collection => (@group.group_members.reject{ |m| m.member_type == OWNER }) %>
-</ul>
-<h3>Lessons:</h3>
-<ul>
-  <% @group.active_lessons.each do |lesson| %>
-      <li>
-        <%= link_to h(lesson.title), lesson_path(lesson) %>
-      </li>
-  <% end %>
-</ul>
-<h3>Discussion:</h3>
-<%= link_to "New Topic", new_group_topic_path(@group) %>
-<table>
-  <tr>
-    <th>
-      Title
-    </th>
-    <th>
-      Started By
-    </th>
-    <th>
-      Replies
-    </th>
-    <th>
-      Last Post
-    </th>
-  </tr>
-  <%= render @topics %>
-  <%= will_paginate @topics %>
-</table>
+<%= render :partial => "categories/v2/breadcrumbs", :object => @group.category, :locals => { :mode => "groups" } %>
 
-<h3>Activity</h3>
-View Activity:
-<%= link_to_unless session[:browse_activities_by] == 'ALL', bold('by everybody', session[:browse_activities_by] == 'ALL'), group_path(@group) %> |
-<%= link_to_unless (session[:browse_activities_by] == 'BY_ME' or current_user.nil?), bold('by me', session[:browse_activities_by] == 'BY_ME'), group_path(@group, :browse_activities_by => 'BY_ME') %> |
-<%= link_to_unless (session[:browse_activities_by] == 'ON_ME' or current_user.nil?), bold('on me', session[:browse_activities_by] == 'ON_ME'), group_path(@group, :browse_activities_by => 'ON_ME') %>
-<table>
-  <tr>
-    <th colspan="2">
-      Recent Activity
-    </th>
-  </tr>
-  <%= render @activities %>
-</table>
-<%= will_paginate @activities %>
+<% # group details -%>
+<div class="span-12 append-bottom">
+  <div id="group-details">
+    <div id="logo"><%= logo_tag @group, :size => :medium %></div>
+    <div id="details">
+      <h3>Group <%= h @group.name %></h3>
+      <ul>
+        <li>Category: <%= h @group.category.name %></li>
+        <li><%= h @group.description %></li>
+        <li><%= show_join_link(@group) %></li>
+        <li><%= show_leave_link(@group) %></li>
+        <li><%= show_invite_link(@group) %></li>
+        <li><%= show_edit_link(@group) %></li>
+        <li><%= flag_link @group unless @group.private-%></li>
+        <li>Owner: <%= link_to_profile(@group.owner) %></li>
+        <li>This group is <%= @group.private ? "by invitation only" : "open to the public" %></li>
+      </ul>
+      <% unless @group.active %>
+        <p>This group is inactive because of inappropriate content. Please address this concern and notify the system administration if you think this group is ready to be re-activated.</p>
+        <% if current_user.try(:is_moderator?) %>
+          <p><%= link_to('Reactivate?', activate_group_path(@group.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) %></p>
+        <% end %>
+      <% end %>
+      <div><%= show_membership_text @group %></div>
+    </div>
+  </div>
+</div>
+
+<% # group content tab -%>
+<div class="span-8">
+  <div id="group-details-tabs" class="tab-container">
+    <ul class="tabs">
+      <li><a href="#members">Members</a></li>
+      <li><a href="#lessons">Lessons</a></li>
+      <li><a href="#discussion">Discussion</a></li>
+    </ul>
+    <div class="panes clearfix">
+      <div id="tabs-1">
+        <ul>
+          <%= render :partial => "member", :collection => (@group.group_members.reject{ |m| m.member_type == OWNER }) %>
+        </ul>
+      </div>
+      <div id="tabs-2">
+        <ul>
+          <% @group.active_lessons.each do |lesson| %>
+            <li>
+              <%= link_to h(lesson.title), lesson_path(lesson) %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div id="tabs-3">
+        <%= link_to "New Topic", new_group_topic_path(@group) %>
+        <table>
+          <tr>
+            <th>Title</th>
+            <th>Started By</th>
+            <th>Replies</th>
+            <th>Last Post</th>
+          </tr>
+          <%= render @topics %>
+          <%= will_paginate @topics %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- recent group activity -->
+<div class="span-4 last">
+  <h3>Activity</h3>
+  View Activity:
+  <%= link_to_unless session[:browse_activities_by] == 'ALL', bold('by everybody', session[:browse_activities_by] == 'ALL'), group_path(@group) %> |
+  <%= link_to_unless (session[:browse_activities_by] == 'BY_ME' or current_user.nil?), bold('by me', session[:browse_activities_by] == 'BY_ME'), group_path(@group, :browse_activities_by => 'BY_ME') %> |
+  <%= link_to_unless (session[:browse_activities_by] == 'ON_ME' or current_user.nil?), bold('on me', session[:browse_activities_by] == 'ON_ME'), group_path(@group, :browse_activities_by => 'ON_ME') %>
+  <table>
+    <tr>
+      <th colspan="2">
+        Recent Activity
+      </th>
+    </tr>
+    <%= render @activities %>
+  </table>
+  <%= will_paginate @activities %>
+</div>

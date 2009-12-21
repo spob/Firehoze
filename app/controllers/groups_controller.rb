@@ -150,7 +150,7 @@ class GroupsController < ApplicationController
   def layout_for_action
     if %w(list_admin).include?(params[:action])
       'admin'
-    elsif %w(index edit update new create).include?(params[:action])
+    elsif %w(create edit index new show update).include?(params[:action])
       'application_v2'
     else
       'application'

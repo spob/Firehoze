@@ -42,4 +42,8 @@ $(function() {
         return false;
     });
 
+    // group details
+    $("#group-details-tabs ul.tabs").tabs("#group-details-tabs > div.panes > div", {
+        effect: 'fade'
+    });
 });

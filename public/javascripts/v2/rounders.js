@@ -49,4 +49,8 @@ $(function() {
         background: "#DBDBDB"
     });
 
+    $('#group-details').cornerz({
+        radius: 5
+    });
+
 });
