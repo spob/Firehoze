@@ -76,18 +76,11 @@
 
 <!-- recent group activity -->
 <div class="span-4 last">
-  <h3>Activity</h3>
-  View Activity:
-  <%= link_to_unless session[:browse_activities_by] == 'ALL', bold('by everybody', session[:browse_activities_by] == 'ALL'), group_path(@group) %> |
-  <%= link_to_unless (session[:browse_activities_by] == 'BY_ME' or current_user.nil?), bold('by me', session[:browse_activities_by] == 'BY_ME'), group_path(@group, :browse_activities_by => 'BY_ME') %> |
-  <%= link_to_unless (session[:browse_activities_by] == 'ON_ME' or current_user.nil?), bold('on me', session[:browse_activities_by] == 'ON_ME'), group_path(@group, :browse_activities_by => 'ON_ME') %>
-  <table>
-    <tr>
-      <th colspan="2">
-        Recent Activity
-      </th>
-    </tr>
-    <%= render @activities %>
-  </table>
-  <%= will_paginate @activities %>
+  <div class="widget-box">
+    <div class="widget-box-header banner">
+      <span class="h4">Recent Group Activity</span>
+      <%= image_tag("general/spinners/ajax-loader_small_spinner.gif", :class => "loader") %>
+    </div>
+    <%= render :partial => 'activities/activities', :object => @activities %>
+  </div>
 </div>

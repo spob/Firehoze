@@ -91,6 +91,16 @@ dl.third-level-nav dd {
     border-right: solid 1px #ccc;
 }
 
+/* my_firehoze page */
+dl.third-level-nav.my_firehoze dd {
+    padding: 0 14px;
+}
+
+/* groups page */
+dl.third-level-nav.groups dd {
+    padding: 0 7px;
+}
+
 dl.third-level-nav dd a {
     margin: 0px;
     text-decoration: none;

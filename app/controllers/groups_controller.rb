@@ -51,6 +51,12 @@ class GroupsController < ApplicationController
         @activities = Activity.group_id_equals(@group.id).descend_by_acted_upon_at.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
       end
     end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
 
   def new
