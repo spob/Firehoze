@@ -512,11 +512,11 @@ div.counter .over { color:red }
     width:950px;
 }
 
-.fh-form.advanced div.collection {
+.fh-form.advanced span.collection {
     margin:0 0 0 165px;
 }
 
-.fh-form.advanced div.item {
+.fh-form.advanced span.item {
     float: left;
     width:150px;
 }
