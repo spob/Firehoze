@@ -41,37 +41,37 @@
         </span>
       </li>
       <li>
-        <span class="clearfix">
+        <span>
           <%= f.label :rating_average, "Rating Greater Than" %>
-          <span class="collection">
+          <div class="collection clearfix">
             <span class="item"><%= f.radio_button :rating_average, 0 %> 0 stars</span>
             <span class="item"><%= f.radio_button :rating_average, 1 %> 1 stars</span>
             <span class="item"><%= f.radio_button :rating_average, 2 %> 2 stars</span>
             <span class="item"><%= f.radio_button :rating_average, 3 %> 3 stars</span>
             <span class="item"><%= f.radio_button :rating_average, 4 %> 4 stars</span>
-          </span>
+          </div>
         </span>
       </li>
       <li>
-        <span class="clearfix">
+        <span>
           <%= f.label :category %>
-          <span class="collection">
+          <div class="collection clearfix">
             <% Category.ascend_by_compiled_sort.each do |c| %>
               <span class="item"><%= check_box_tag "advanced_search[category_ids][]", c.id, @advanced_search.categories.include?(c), :id => nil %> <%= c.name %></span>
             <% end %>
-          </span>
+          </div>
         </span>
       </li>
       <li>
-        <span class="clearfix">
+        <span>
           <%= f.label :created_in, "Created in the" %>
-          <span class="collection">
+          <div class="collection clearfix">
             <span class="item"><%= f.radio_button :created_in, "1" %> last day &nbsp;</span>
             <span class="item"><%= f.radio_button :created_in, "7" %> last week &nbsp;</span>
             <span class="item"><%= f.radio_button :created_in, "30" %> last 30 days &nbsp;</span>
             <span class="item"><%= f.radio_button :created_in, "90" %> last 90 days &nbsp;</span>
             <span class="item"><%= f.radio_button :created_in, "9999" %> All</span>
-          </span>
+          </div>
         </span>
       </li>
       <li>
