@@ -59,7 +59,7 @@ class AccountsControllerTest < ActionController::TestCase
       should_assign_to :user
       should_respond_with :redirect
       should_set_the_flash_to :profile_update_success
-      should_redirect_to("edit account page") { edit_account_path(assigns(:user)) }
+      should_redirect_to("edit account page") { edit_account_path(assigns(:user), :anchor => 'privacy') }
       should "set show real name" do
         assert @user.show_real_name
       end
