@@ -33,6 +33,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @lessons = @group.active_lessons.paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
     if can_view?(@group)
       @topics = @group.topics.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
 
@@ -58,7 +59,7 @@ class GroupsController < ApplicationController
     end
 
   end
-
+  
   def new
     @group ||= Group.new
   end

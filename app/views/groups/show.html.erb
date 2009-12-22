@@ -50,13 +50,11 @@
     </ul>
     <div class="panes clearfix">
       <div id="tabs-lessons">
-        <ul>
-          <% @group.active_lessons.each do |lesson| %>
-            <li>
-              <%= link_to h(lesson.title), lesson_path(lesson) %>
-            </li>
+          <% if @lessons.present? %>
+              <%= render :partial => "lessons/v2/lesson_tns", :object => @lessons, :locals => { :per_row => 3 } %>
+          <% else %>
+              Looks like no one has added lessons to this group yet.
           <% end %>
-        </ul>
       </div>
       <div id="tabs-discussion">
         <%= link_to "New Topic", new_group_topic_path(@group) %>
