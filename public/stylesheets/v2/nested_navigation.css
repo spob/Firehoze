@@ -76,15 +76,16 @@ a.rounded.current {
     background: #999;
 }
 
-div#group-details a.rounded:link,
-div#group-details a.rounded:visited {
-    background: #C7C7C7;
-}
-
-div#group-details a.rounded:hover {
+div#group-container a.rounded:link,
+div#group-container a.rounded:visited {
+    color: #F2F2F2;
     background: #999999;
 }
-div#group-details a.rounded.current {
+
+div#group-container a.rounded:hover {
+    background: #666;
+}
+div#group-container a.rounded.current {
     background: #999;
 }
 

@@ -13,23 +13,19 @@
         <li><%= link_to_profile(@group.owner) %>&mdash;Creator</li>
         <li class="description"><%= h @group.description %>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
       </ul>
-
-
       <hr />
-      <div class="actions clearfix"> 
+      <div class="actions clearfix">
         <%= show_join_link(@group)  %>
         <%= show_leave_link(@group) %>
         <%= show_invite_link(@group) %>
         <%= show_edit_link(@group) %>
         <%= flag_link @group unless @group.private-%>
-
         <div id="status">
           <ul>
             <li>This group is <%= @group.private ? "by invitation only" : "open to the public" %></li>
             <%= content_tag(:li, "#{show_membership_text @group}") if current_user %>
           </ul>
         </div>
-
       </div>
       <hr />
       <% unless @group.active %>
