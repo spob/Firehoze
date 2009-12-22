@@ -39,9 +39,9 @@
   </li>
   <li class="last">
     <div id="searchwrapper">
-      <% form_tag searches_path, :method => :get do %>
-          <%= text_field_tag :search_criteria, params[:search_criteria].present? ? params[:search_criteria] : "Search", :class => 'searchbox' %>
-          <%= image_submit_tag('top_navigation/searchbox_button.png', :class => 'searchbox_submit') %>
+      <% form_tag searches_path, :method => :get, :id => 'search' do %>
+          <%= text_field_tag :search_criteria, (params[:search_criteria].present? ? params[:search_criteria] : "Search"), :class => 'searchbox' %>
+          <%= image_submit_tag('top_navigation/searchbox_button.png', :class => 'searchbox_submit', :id => 'searchbox_submit') %>
       <% end %>
     </div>
   </li>
