@@ -446,19 +446,71 @@ div#account-settings-tabs div.panes {
     margin-top: 2em;
 }
 
-
 /* GROUPS */
-#group-details {
+#group-container {
+    position:relative;
     padding: 20px;
-    border: solid 2px #999;
-    background-color: #eee;
+    border: solid 1px #ccc;
+    background-color: #F2f2f2;
     margin: 0 0 20px 0;
 }
 
-#group-details div#logo {
+#group-container div#logo img {
+    border: solid 1px #999;
+
+}
+#group-container div#logo {
     float:left;
+    padding: 3px;
+    border: solid 1px #999;
+    background:#ccc;
 }
 
-#group-details div#details {
-    margin-left: 130px;
+#group-container div#description {
+    margin:0 0 0 140px;
+    padding:0;
+}
+
+div#group-container div.actions {
+    margin: 17px 0 0 0;
+}
+
+#group-container #status {
+    padding: 1px 5px;
+    margin:0;
+    position:absolute;
+    top:0px;
+    right: 0px;
+    border-left: solid 1px #CCC;
+    border-bottom: solid 1px #CCC;
+    font-size: 9px;
+    background: #fff;
+    color:#666;
+    -moz-border-radius-bottomleft: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+}
+
+div#group-container div.notice {
+    margin: 17px 0 0 0;
+    padding: 8px 8px 17px 47px;
+    background: #fafdbf url(images/icons/32_warning.png) 8px 10px no-repeat;
+}
+
+div#group-container  hr {
+    margin: 17px 0 0 0;
+    height: 0;
+    clear: both;
+    border-width: 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #fff;
+}
+
+div#group-container div#description h3 {
+    margin:0 0 8px 0;
+}
+
+div#group-container div#description ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
 }

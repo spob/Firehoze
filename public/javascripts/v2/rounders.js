@@ -49,7 +49,7 @@ $(function() {
         background: "#DBDBDB"
     });
 
-    $('#group-details').cornerz({
+    $('#group-container').cornerz({
         radius: 5
     });
 

@@ -26,4 +26,11 @@ $(function() {
         less : "less",
         fade : 500
     });
+
+    $('div#group-container div#description ul li.description').truncate({
+        max_length: 450,
+        more : "more",
+        less : "less",
+        fade : 500
+    });
 });

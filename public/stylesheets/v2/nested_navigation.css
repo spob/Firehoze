@@ -76,4 +76,16 @@ a.rounded.current {
     background: #999;
 }
 
+div#group-details a.rounded:link,
+div#group-details a.rounded:visited {
+    background: #C7C7C7;
+}
+
+div#group-details a.rounded:hover {
+    background: #999999;
+}
+div#group-details a.rounded.current {
+    background: #999;
+}
+
 .nested-navigation-panes { }
