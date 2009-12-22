@@ -58,8 +58,8 @@
 
       <% # FOLLOWED INSTRUCTORS -%>
       <div class="clearfix">
-        <%= render :partial => 'followed_instructors', :locals => { :followed_instructors => @followed_instructors } %>
-      </div><!-- end followed instructor pane -->
+        <%= render :partial => 'users/v2/users_mosaic', :object => @followed_instructors %>
+      </div><!-- end followed instructor mosaic pane -->
     </div><!-- end panes -->
   </div><!-- end my-stuff -->
 </div>

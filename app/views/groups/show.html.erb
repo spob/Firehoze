@@ -50,11 +50,11 @@
     </ul>
     <div class="panes clearfix">
       <div id="tabs-lessons">
-          <% if @lessons.present? %>
-              <%= render :partial => "lessons/v2/lesson_tns", :object => @lessons, :locals => { :per_row => 3 } %>
-          <% else %>
-              Looks like no one has added lessons to this group yet.
-          <% end %>
+        <% if @lessons.present? %>
+          <%= render :partial => "lessons/v2/lesson_tns", :object => @lessons, :locals => { :per_row => 3 } %>
+        <% else %>
+          Looks like no one has added lessons to this group yet.
+        <% end %>
       </div>
       <div id="tabs-discussion">
         <%= link_to "New Topic", new_group_topic_path(@group) %>
@@ -70,11 +70,8 @@
         </table>
       </div>
       <div id="tabs-members">
-        <ul>
-          <%= render :partial => "member", :collection => (@group.group_members.reject{ |m| m.member_type == OWNER }) %>
-        </ul>
+        <%= render :partial => 'users/v2/users_mosaic', :object => @members %>
       </div>
-
     </div>
   </div>
 </div>

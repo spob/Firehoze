@@ -125,32 +125,32 @@ div.no-nested-nav-potentially-paginated {
 
 /* FOLLOWERS MOSAIC */
 
-ul.followers-mosaic {
+ul.users-mosaic {
     margin:0;
     padding:0;
     list-style-type: none;
 }
 
-ul.followers-mosaic li {
+ul.users-mosaic li {
     float: left;
     margin-right: 8px;
     margin-bottom: 4px;
 }
 
-ul.followers-mosaic .avatar {
+ul.users-mosaic .avatar {
     padding:0;
     margin:0;
     border:solid 1px #D4D4D4;
 }
 
 
-ul.followers-mosaic a {
+ul.users-mosaic a {
     border:0 none;
     text-decoration: none;
 
 }
 
-ul.followers-mosaic a:hover .avatar {
+ul.users-mosaic a:hover .avatar {
     padding:0;
     margin:0;
     border:solid 1px #9E9E9E;
