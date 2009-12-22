@@ -1,22 +1,23 @@
 <% activities = object %>
 <div class="widget-box-content">
   <div id="recent-activities">
-    <div class="filter-activity-by">
-      <dl class="third-level-nav <%= controller.controller_name %>">
-        <dt>Filter:</dt>
-        <% if controller.controller_name == "my_firehoze" %>
-          <dd><%= link_to_unless session[:browse_activities_by] == 'ALL', bold('by everybody', session[:browse_activities_by] == 'ALL'), my_firehoze_index_path %></dd>
-          <dd><%= link_to_unless (session[:browse_activities_by] == 'BY_ME' or current_user.nil?), bold('by me', session[:browse_activities_by] == 'BY_ME'), my_firehoze_index_path(:browse_activities_by => 'BY_ME') %></dd>
-          <dd><%= link_to_unless (session[:browse_activities_by] == 'ON_ME' or current_user.nil?), bold('on me', session[:browse_activities_by] == 'ON_ME'), my_firehoze_index_path(:browse_activities_by => 'ON_ME') %></dd>
-          <dd class="last"><%= link_to_unless (session[:browse_activities_by] == 'BY_FOLLOWED' or current_user.nil?), bold("by instructors I'm following", session[:browse_activities_by] == 'BY_FOLLOWED'), my_firehoze_index_path(:browse_activities_by => 'BY_FOLLOWED') %></dd>
-        <% else   #currently only used by "group#show" %>
-          <dd><%= link_to_unless session[:browse_activities_by] == 'ALL', bold('by everybody', session[:browse_activities_by] == 'ALL'), group_path(@group) %></dd>
-          <dd><%= link_to_unless (session[:browse_activities_by] == 'BY_ME' or current_user.nil?), bold('by me', session[:browse_activities_by] == 'BY_ME'), group_path(@group, :browse_activities_by => 'BY_ME') %></dd>
-          <dd class="last"><%= link_to_unless (session[:browse_activities_by] == 'ON_ME' or current_user.nil?), bold('on me', session[:browse_activities_by] == 'ON_ME'), group_path(@group, :browse_activities_by => 'ON_ME') %></dd>
-        <% end  %>
-      </dl>
-    </div>
-
+    <% if current_user %>
+      <div class="filter-activity-by">
+        <dl class="third-level-nav <%= controller.controller_name %>">
+          <dt>Filter:</dt>
+          <% if controller.controller_name == "my_firehoze" %>
+            <dd><%= link_to_unless session[:browse_activities_by] == 'ALL', bold('by everybody', session[:browse_activities_by] == 'ALL'), my_firehoze_index_path %></dd>
+            <dd><%= link_to_unless (session[:browse_activities_by] == 'BY_ME' or current_user.nil?), bold('by me', session[:browse_activities_by] == 'BY_ME'), my_firehoze_index_path(:browse_activities_by => 'BY_ME') %></dd>
+            <dd><%= link_to_unless (session[:browse_activities_by] == 'ON_ME' or current_user.nil?), bold('on me', session[:browse_activities_by] == 'ON_ME'), my_firehoze_index_path(:browse_activities_by => 'ON_ME') %></dd>
+            <dd class="last"><%= link_to_unless (session[:browse_activities_by] == 'BY_FOLLOWED' or current_user.nil?), bold("by instructors I'm following", session[:browse_activities_by] == 'BY_FOLLOWED'), my_firehoze_index_path(:browse_activities_by => 'BY_FOLLOWED') %></dd>
+          <% else   #currently only used by "group#show" %>
+            <dd><%= link_to_unless session[:browse_activities_by] == 'ALL', bold('by everybody', session[:browse_activities_by] == 'ALL'), group_path(@group) %></dd>
+            <dd><%= link_to_unless (session[:browse_activities_by] == 'BY_ME' or current_user.nil?), bold('by me', session[:browse_activities_by] == 'BY_ME'), group_path(@group, :browse_activities_by => 'BY_ME') %></dd>
+            <dd class="last"><%= link_to_unless (session[:browse_activities_by] == 'ON_ME' or current_user.nil?), bold('on me', session[:browse_activities_by] == 'ON_ME'), group_path(@group, :browse_activities_by => 'ON_ME') %></dd>
+          <% end  %>
+        </dl>
+      </div>
+    <% end %>
     <%= will_paginate activities, :id => true, :inner_window => 3, :class => "ajax-pagination" %>
 
     <ul class="activity-feed">
