@@ -33,3 +33,22 @@ td.empty, tr.odd td.empty, tr.even td.empty { background:#fff; }
 .right { text-align:right;}
 .left { text-align:left;}
 .center { text-align:center;}
+
+/* TOPICS */
+table.topic {
+    border: solid 1px #A9A9A9;
+    border-collapse:collapse;
+}
+table.topic tr td {
+    border: solid 1px #A9A9A9;
+}
+table.topic tr td.icon {
+    width:42px;
+}
+table.topic tr td.icon a:link,
+table.topic tr td.icon a:visited,
+table.topic tr td.icon a:hover,
+table.topic tr td.icon a:active {
+    border:0 none;
+    text-decoration: none !important;
+}

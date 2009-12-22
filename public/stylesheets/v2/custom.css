@@ -519,5 +519,21 @@ div#group-container div#description ul {
 }
 
 div#group-details-tabs div.panes {
-   padding-top:17px;
+    padding-top:17px;
 }
+
+
+/* group topics*/
+div#tabs-discussion {
+    position:relative;
+}
+
+div#new-topic-link {
+    position:absolute;
+    top:-50px;
+    right:-5px;
+}
+
+
+
+

@@ -1,18 +1,12 @@
 <tr>
+  <td class="icon center"><%= link_to(image_tag("icons/32-topics.png", :alt => h(topic.title)), topic_path(topic)) %></td>
   <td>
-    <b><%= link_to(h(topic.title), topic_path(topic)) %></b>
-    <%= "(pinned)" if topic.pinned %>
+    <b><%= link_to(h(topic.title), topic_path(topic)) %></b><%= "(pinned)" if topic.pinned %><br />
+    by <%= link_to_profile(topic.user) %>
   </td>
+  <td class="center"><%= topic.topic_comments.size - 1 %></td>
   <td>
-    <%= link_to_profile(topic.user) %>
-  </td>
-  <td>
-    <%= topic.topic_comments.size - 1 %>
-  </td>
-  <td>
+    <%= time_ago_in_words l(topic.last_commented_at) %><br />
     <b><%= h topic.last_topic_comment.user.login %></b>
-    wrote "<%= truncate(topic.last_topic_comment.body, :length => 100) %>"
-    <br />
-    <%= l(topic.last_commented_at) %>
   </td>
 </tr>

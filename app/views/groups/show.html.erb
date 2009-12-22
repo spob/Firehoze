@@ -57,12 +57,11 @@
         <% end %>
       </div>
       <div id="tabs-discussion">
-        <%= link_to "New Topic", new_group_topic_path(@group) %>
-        <table>
+        <div id="new-topic-link"><%= link_to "Post New Topic", new_group_topic_path(@group), :class => :rounded %></div>
+        <table class="topic">
           <tr>
-            <th>Title</th>
-            <th>Started By</th>
-            <th>Replies</th>
+            <th colspan="2">Topics</th>
+            <th class="center">Comments</th>
             <th>Last Post</th>
           </tr>
           <%= render @topics %>
