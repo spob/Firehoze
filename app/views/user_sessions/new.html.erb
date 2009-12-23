@@ -1,32 +1,48 @@
 <% title "Sign In" -%>
 <%= javascript 'always_at_bottom', 'footer' %>
-<%= render :partial => "shared/infield_head_content" %>
+<%= javascript 'v2/validation/login.validate.js' %>
 
-<div class="span-23">
+<div class="fh-form">
   <% form_for @user_session, :url => user_session_url(:protocol => SECURE_PROTOCOL), :html => {'accept-charset' => "utf-8", :id => "inline", :class => "login" } do |f| %>
-    <%= f.error_messages %>
-    <fieldset>
-      <legend>Sign In</legend>
-      <p>
-        <%= f.label :login, :Username %><br />
-        <%= f.text_field :login %>
-      </p>
-      <p>
-        <%= f.label :password %><br />
-        <%= f.password_field :password %>
-      </p>
-      <%= f.check_box :remember_me %>
-      <label for="user_session_remember_me">Remember Me</label>
-    </fieldset>
+      <%= f.error_messages %>
+      <ul id="group-info" class="section">
+        <li class="header">
+          <span></span>
 
-    <p>
-      <%= f.submit "Login", :disable_with => translate('general.disable_with') %>
-      <%= link_to "Forgot password?", new_password_reset_path %>
-    </p>
+          <h3>Sign In</h3>
+          <h4>Sign in to your Firehoze account to be able to purchase and view your lessons, communicate with other
+            Firehoze users, and create lessons of your own.</h4>
+          <h4><strong>Don't have an account yet?
+            <%= link_to "Create one for free", new_registration_path %></strong></h4>
+        </li>
+        <li>
+        <span>
+          <%= f.label :login, :Username %>
+          <%= f.text_field :login, :title => "You must provide your username", :class => "required" %>
+          <span class="required-field" />
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :password %>
+          <%= f.password_field :password, :title => "You must provide your password", :class => "required" %>
+          <span class="required-field" />
+        </span>
+        </li>
+        <li>
+        <span>
+        <%= f.check_box :remember_me %>
+        Remember Me
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= f.submit "Login" %>
+          <%= link_to "Forgot password?", new_password_reset_path %>
+        </span>
+
+          <div class="clear" />
+        </li>
+      </ul>
   <% end %>
-</div>
-
-<div class="span-17 last">
-  <h3>Don't have an account yet?</h3>
-  <%= link_to "Create one for free", new_registration_path %>
 </div>
