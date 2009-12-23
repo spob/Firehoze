@@ -1,10 +1,10 @@
 <% title "#{h @lesson.title}" -%>
 <%= javascript 'swfobject' %>
 
-<div id="lesson_container">
+<div id="lesson_container" style="border: solid 1px red">
   <% # TITLE BAR             -%>
-  <div class="clear span-40 last" id="banner">
-    <div class="span-25" id="banner_title">
+  <div id="banner">
+    <div class="span-12 last" id="banner_title">
       <%= h @lesson.title -%> by <%= link_to_profile(@lesson.instructor) -%>
     </div>
 
@@ -90,12 +90,12 @@
 
     <% # STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT...             -%>
     <div>
-      <%= render :partial => 'lesson_buy_pairs', :object => @lesson -%>
+      <%#= render :partial => 'lesson_buy_pairs', :object => @lesson -%>
     </div>
 
     <% # WHAT DO STUDENTS ULTIMATELY BUY AFTER BROWSING THIS ITEM?             -%>
     <div>
-      <%= render :partial => 'lesson_buy_patterns', :object => @lesson -%>
+      <%#= render :partial => 'lesson_buy_patterns', :object => @lesson -%>
     </div>
   </div>
 
@@ -107,17 +107,17 @@
             <h3><a href="#">Lessons by <%= truncate(h(@lesson.instructor.login), :length => 27) %></a></h3>
 
             <div class="content">
-              <%= render :partial => "lessons/lesson_brief", :collection => (@lesson.instructor.instructed_lessons.reject{ |lesson| lesson == @lesson }) %>
+              <%#= render :partial => "lessons/lesson_brief", :collection => (@lesson.instructor.instructed_lessons.reject{ |lesson| lesson == @lesson }) %>
             </div>
           </div>
         </div>
     <% end %>
 
     <% #TAG CLOUD             -%>
-    <%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts -%>
+    <%#= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts -%>
 
   </div>
 </div>
 
 <% # LESSON STATS (ACCORDIAN FOR INSTRUCTOR AND ADMINS ONLY)             -%>
-<%= render :partial => 'lesson_stats', :object => @lesson -%>
+<%#= render :partial => 'lesson_stats', :object => @lesson -%>

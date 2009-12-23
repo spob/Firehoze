@@ -4,7 +4,7 @@
 <div class="lessons-container clearfix">
   <% lessons.each do |lesson| %>
     <% last_item_class = (counter % per_row == 0) ? " last" : nil %>
-    <div class="lesson-container<%= last_item_class %>">
+    <div class="small-lesson-container<%= last_item_class %>">
       <%= img_tag_lesson_tn(lesson, :small ) %>
       <%= render :partial => 'lessons/v2/tooltip', :locals => { :lesson => lesson } unless g_browser_is?( :name => 'ie') %>
       <div class="duration transparent"><%= ChronicDuration.output(lesson.finished_video_duration/1000, :format => :chrono) unless lesson.finished_video_duration.nil?-%></div>

@@ -17,7 +17,7 @@ div#category-show div.lessons-container {
     font-weight:bold;
 }
 
-.lesson-container {
+.small-lesson-container {
     position:relative;
     float:left;
     margin: 0 6px 22px 0;
@@ -28,14 +28,14 @@ div#category-show div.lessons-container {
     font: 11px Arial, Helvetica, sans-serif;
     color: #999;
 }
-div#group-details-tabs .lesson-container,
-#category-show .lesson-container {
+div#group-details-tabs .small-lesson-container,
+#category-show .small-lesson-container {
     margin: 0 26px 11px 0;
     padding:12px 5px 10px 11px;
 }
 
-div#group-details-tabs .lesson-container.last,
-#category-show .lesson-container.last {
+div#group-details-tabs .small-lesson-container.last,
+#category-show .small-lesson-container.last {
     margin-right:0;
     padding-right:0;
 }
@@ -44,12 +44,12 @@ div#group-details-tabs .lesson-container.last,
     padding:0 0 0 17px;
 }
 
-.lesson-container img {
+.small-lesson-container img {
     display: block;
     margin:0 0 6px 0;
 }
 
-.lesson-container .title {
+.small-lesson-container .title {
     padding:0;
     margin:0;
     width:140px;

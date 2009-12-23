@@ -1,4 +1,4 @@
-<div class="lesson-container">
+<div class="small-lesson-container">
   <%= img_tag_lesson_tn(lesson, :small ) %>
   <%= render :partial => 'lessons/v2/tooltip', :locals => { :lesson => lesson } unless g_browser_is?( :name => 'ie') %>
   <div class="duration transparent"><%= ChronicDuration.output(lesson.finished_video_duration/1000, :format => :chrono) unless lesson.finished_video_duration.nil?-%></div>
