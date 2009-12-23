@@ -12,5 +12,5 @@
   <div id="comments-container">
     <%= render :partial => 'comments/comment', :collection => Comment.numerate(@topic.topic_comments) %>
   </div>
-  <div>&laquo; <%= link_to "Back to Group", group_path(@topic.group) %></div>
+  <div>&laquo; <%= link_to "Back to Group", group_path(@topic.group, :anchor => :discussion) %></div>
 </div>
