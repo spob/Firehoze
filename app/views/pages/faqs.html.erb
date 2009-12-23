@@ -1,6 +1,6 @@
 <% title "Frequently Asked Questions" -%>
 <%= javascript 'swfobject' %>
-<% account_settings_link = current_user ? (link_to "Account Settings", edit_account_path(current_user)) : "&apos;Account Settings&apos;" %>
+<% account_settings_link = current_user ? (link_to "Account Settings", edit_account_path(current_user)) : "'Account Settings'" %>
 <% content_for :head do -%>
   <a name="top" id="top" class="anchor"></a>
 <% end -%>
@@ -35,7 +35,7 @@
       <p>Ahh...no. But the functionality should be working so if any functionality doesn't seem to work, definitely let us know. You can do this a few ways – email us directly or go to the 'Feedback' tab and let us know there.</p>
     </div>
 
-    <h5>So, why doesn’t your site look very spiffy?</h5>
+    <h5>So, why doesn't your site look very spiffy?</h5>
 
     <div>
       <p>Well, prioritization...and while we have superstar developers, they're still stuck by physics and that darn 24 hour day. So top priority is getting great content loaded and tagged so we wanted to get something into your hands so you only had to load content once.</p>
@@ -96,7 +96,7 @@
 
     <h5>Where can I find a record of lessons I've purchased?</h5>
     <div>
-      <p>Your download history is stored in your account information. Click on the ‘<%= account_settings_link %>’ at the top of the site. Then click the ‘Credit History’ tab to see a list of all the download credits you've purchased and which ones you've redeemed for lessons.</p>
+      <p>Your download history is stored in your account information. Click on the '<%= account_settings_link %>' at the top of the site. Then click the 'Credit History' tab to see a list of all the download credits you've purchased and which ones you've redeemed for lessons.</p>
     </div>
 
     <h5>Where can I see how many credits I have left?</h5>
@@ -118,13 +118,13 @@
     <h5>How can I change my password?</h5>
 
     <div>
-      <p>To change your password, click on the ‘<%= account_settings_link %>’ link at the top of the site. Then go to the ‘Password’ tab.</p>
+      <p>To change your password, click on the '<%= account_settings_link %>' link at the top of the site. Then go to the 'Password' tab.</p>
     </div>
 
     <h5>How do I edit my email information?</h5>
 
     <div>
-      <p>To change your address or contact information, click on the ‘<%= account_settings_link %>’ link at the top of the site, then click on the 'Profile' tab.</p>
+      <p>To change your address or contact information, click on the '<%= account_settings_link %>' link at the top of the site, then click on the 'Profile' tab.</p>
     </div>
 
     <h5>How can I retrieve my password and/or member name?</h5>
@@ -169,7 +169,7 @@
     <h5>Where are my receipts/download history?</h5>
 
     <div>
-      <p>Your download history is stored in your account information. Click on the ‘<%= account_settings_link %>’ at the top of the site. Then click the ‘Credit History’ tab.</p>
+      <p>Your download history is stored in your account information. Click on the '<%= account_settings_link %>' at the top of the site. Then click the 'Credit History' tab.</p>
     </div>
 
     <h5>Do credits expire?</h5>
@@ -231,7 +231,7 @@
   <div class="answers">
     <h4>Contributing/Uploading Lessons</h4>
 
-    <h5>How do I become an instructor ?</h5>
+    <h5>How do I become an instructor?</h5>
     <div>
       <p>Easily...</p>
       <ol>
