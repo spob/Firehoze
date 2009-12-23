@@ -49,11 +49,9 @@ table.topic th {
 table.topic tr td {
     border: solid 1px #A9A9A9;
 }
-table.topic tr td.comment-count,
-table.topic tr td.icon {
-    width:75px;
-}
 
+table.topic tr td.comment-count { width:75px;}
+table.topic tr td.icon { width:40px; }
 table.topic tr td.icon a:link,
 table.topic tr td.icon a:visited,
 table.topic tr td.icon a:hover,
