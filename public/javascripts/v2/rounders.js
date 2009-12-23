@@ -40,13 +40,13 @@ $(function() {
         radius: 5
     });
 
-    $('#faqs_section #questions, #faqs_section .answers').cornerz({
+    $('div#faqs_section div#questions, div#faqs_section div.answers').cornerz({
         radius: 5
     });
 
     $('#faqs_section .answers h4').cornerz({
         radius: 5,
-        background: "#DBDBDB"
+        background: "#FFF"
     });
 
     $('#group-container').cornerz({

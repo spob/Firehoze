@@ -1,26 +1,26 @@
 $(function() {
-    $('.bio').truncate({
+    $('div.bio').truncate({
         max_length: 260,
         more : "more",
         less : "less",
         fade : 500
     });
 
-    $('.group-description').truncate({
+    $('div.group-description').truncate({
         max_length: 360,
         more : "more",
         less : "less",
         fade : 500
     });
 
-    $('.review-body').truncate({
+    $('div.review-body').truncate({
         max_length: 300,
         more : "more",
         less : "less",
         fade : 500
     });
 
-    $('.lessons-row-format .details .synopsis').truncate({
+    $('ul.lessons-row-format div.details div.synopsis').truncate({
         max_length: 240,
         more : "more",
         less : "less",

@@ -1,3 +1,3 @@
 $(function() {
-    $("select, :radio, :checkbox").uniform();
+    $("select, input:radio, input:checkbox").uniform();
 });
