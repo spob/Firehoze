@@ -321,7 +321,7 @@ class LessonsController < ApplicationController
       'content_in_tab'
     elsif %w(list_admin).include?(params[:action])
       'admin'
-    elsif %w(new create edit update advanced_search perform_advanced_search).include?(params[:action])
+    elsif %w(advanced_search create edit new perform_advanced_search show update).include?(params[:action])
       'application_v2'
     else
       'application'
