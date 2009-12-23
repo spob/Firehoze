@@ -1,6 +1,16 @@
-<h2>Topic "<%= h @topic.title %>" in Group "<%= link_to h(@topic.group_name), group_path(@topic.group) %>"</h2>
-<%= link_to "Edit", edit_topic_path(@topic) %> |
-<%= link_to "Add a Comment", new_topic_topic_comment_path(@topic) %>
-<br />
-<%= render :partial => 'comments/comment', :collection => Comment.numerate(@topic.topic_comments) %>
-<%= link_to "Back to Group", group_path(@topic.group) %>
+<div id="topic-comments-container">
+  <div id="actions">
+    <% if current_user %>
+      <%= link_to "Add a Comment", new_topic_topic_comment_path(@topic), :class => :rounded %>
+      <%= link_to "Edit", edit_topic_path(@topic), :class => :rounded %>
+    <% else %>
+      You must <%= link_to "login", login_path %> or <%= link_to "register", new_registration_path %> to post a reply
+    <% end %>
+  </div>
+
+  <h3 class="header"><span class="group-name">The <%= link_to h(@topic.group_name.titleize), group_path(@topic.group) %> Group</span> &raquo; <%= h @topic.title %></h3>
+  <div id="comments-container">
+    <%= render :partial => 'comments/comment', :collection => Comment.numerate(@topic.topic_comments) %>
+  </div>
+  <div>&laquo; <%= link_to "Back to Group", group_path(@topic.group) %></div>
+</div>

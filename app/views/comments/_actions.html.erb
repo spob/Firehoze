@@ -1,18 +1,19 @@
 <%
 comment = object
 
-   if comment.class == LessonComment
-       path = edit_lesson_comment_path(comment)
-   else
-       path = edit_topic_comment_path(comment) 
-   end
+if comment.class == LessonComment
+  path = edit_lesson_comment_path(comment)
+else
+  path = edit_topic_comment_path(comment)
+end
 %>
 
 <% if current_user and comment.can_edit? current_user %>
-  <div><%= link_to "Edit", path %></div>
+  <%= link_to "Edit", path, :class => :rounded %>
 <% end %>
+
+<%= flag_link comment %>
 
 <% unless comment.status == COMMENT_STATUS_ACTIVE %>
   <div>Status: <%= comment.status %></div>
 <% end %>
-<div><%= flag_link comment %></div>

@@ -1,35 +1,36 @@
 <% commenter = comment.user %>
 
-<div class="comment">
-  <div class="span-5">
-    <div class="commenter_avatar"><%= link_to avatar_tag(commenter, :size => :medium), user_path(commenter) %></div>
-    <div><%= link_to_profile(commenter) %></div>
+<div class="comment clearfix">
+  <div class="commenter-container">
+    <div class="commenter-avatar"><%= link_to avatar_tag(commenter, :size => :small), user_path(commenter) %></div>
+    <div><%= link_to_profile(commenter, :length => 15) %></div>
     <div>Member Since:<br /><%= l(commenter.created_at.to_date) %></div>
   </div>
 
-  <div class="prepend-5 last">
-    <% if comment.can_edit? current_user and !comment.public %>
-        <div class="private">
-          Private Comment
-        </div>
-    <% end %>
-
-    <div class="timestamp">
+  <div class="comment-container clearfix">
+    <div class="header">
       <%= l(comment.created_at) %>
     </div>
 
-    <div>
-      <b><%= comment.row_num %></b>
+    <div class="count">
+      <%= comment.row_num %>
     </div>
 
-    <div>
-      <%= rbs_formatter comment.body %>
+    <div class="body">
+      <% if comment.can_edit? current_user and !comment.public %>
+        <div class="private">Private Comment</div>
+      <% end %>
+
+      <div>
+        <%= rbs_formatter comment.body %>
+      </div>
     </div>
 
-    <div class="actions">
-      <%= render :partial => 'comments/actions', :object => comment %>
-    </div>
-
+    <% if current_user %>
+      <div class="actions">
+        <%= render :partial => 'comments/actions', :object => comment %>
+      </div>
+    <% end %>
   </div>
 </div>
 
