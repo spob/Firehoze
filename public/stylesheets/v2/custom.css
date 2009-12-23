@@ -475,7 +475,7 @@ div#group-container div.actions {
 }
 
 #group-container #status {
-    padding: 1px 5px;
+    padding: 4px 8px 2px 8px;
     margin:0;
     position:absolute;
     top:5px;
