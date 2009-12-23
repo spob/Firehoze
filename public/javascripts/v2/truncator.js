@@ -33,4 +33,13 @@ $(function() {
         less : "less",
         fade : 500
     });
+
+    $('div#lesson-synopsis, div#lesson-instructor-bio').truncate({
+        max_length: 450,
+        more : "more",
+        less : "less",
+        fade : 500
+    });
+
+
 });

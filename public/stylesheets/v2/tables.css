@@ -12,7 +12,6 @@ th, td {
     margin:0;
     text-align:left;
     padding:.5em;
-
 }
 th {
     background-color:#A9A9A9;
@@ -58,4 +57,24 @@ table.topic tr td.icon a:hover,
 table.topic tr td.icon a:active {
     border:0 none;
     text-decoration: none !important;
+}
+
+/* LESSON DETAILS*/
+table.lesson-details {
+    width:100%;
+    border-collapse:collapse;	
+}
+
+table.lesson-details tr td.header {
+    border-left: solid 1px #A9A9A9;
+
+    background-color:#E3E9F2;
+    color:#17587F;
+    text-shadow:none;
+    width:80px;
+    text-align:right;
+}
+
+table.lesson-details tr td  {
+    border: solid 1px #A9A9A9;
 }

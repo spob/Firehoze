@@ -1,3 +1,4 @@
+/* LESSONS (PLURAL) */
 .lessons-container {
     margin:0;
     padding:0;
@@ -370,4 +371,102 @@ ul.lessons-row-format li div.detail-container {
 ul.lessons-row-format li div.details {
     margin:0;
     padding:0;
+}
+
+
+/* LESSON (SINGULAR -- lessons#show page) */
+
+div#lesson-container {
+    margin:17px 0;
+    padding:0;
+}
+
+/* title area (title, author, and rating stars)*/
+div#title-container {
+    position:relative;
+}
+
+div#title-container h3 {
+    color: #17587F;
+    font-weight:bold;
+    margin:0 210px 4px 0;
+    line-height:24px;
+}
+
+div#lesson-show span#author {
+    font-weight:bold;
+    font-size:16px;
+    margin:0 210px 0 0;
+}
+
+div#rating-container {
+    position:absolute;
+    top:0;
+    right:0;
+}
+
+div#rating {
+    position:relative;
+    width:190px;
+    height:44px;
+}
+
+div#stats {
+    position:absolute;
+    right:0;
+    top:24px;
+    font-size:9px;
+}
+
+div#stars {
+    position:absolute;
+    right:0;
+    top:0;
+}
+
+/* lesson play div */
+div#lesson-player {
+    float:left;
+    width: 500px;
+}
+
+/* lesson details div */
+div#lesson-detail {
+    margin: 0 0 0 500px;
+    padding:0;
+}
+
+div#lesson-details-tabs div.panes {
+    padding:12px 0 0 0;
+    height:350px;
+    overflow:auto;
+    margin:0;
+}
+
+div#tab-lesson-instructor div#avatar-container {
+    float:left;
+}
+
+div#avatar-container {
+    padding: 3px;
+    border: solid 1px #999;
+    background:#ccc;
+    width:62px;
+}
+
+div#tab-lesson-instructor img.avatar {
+    border: solid 1px #999;
+    background:#fff;
+}
+
+div#tab-lesson-instructor div#bio {
+    margin:0 0 0 84px;
+}
+
+div#avatar-container a:link,
+div#avatar-container a:visited,
+div#avatar-container a:hover,
+div#avatar-container a:active {
+    border:0 none;
+    text-decoration: none !important;
 }

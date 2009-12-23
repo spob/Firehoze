@@ -1,123 +1,273 @@
 <% title "#{h @lesson.title}" -%>
+<% @current = 'lessons' %>
+
 <%= javascript 'swfobject' %>
 
-<div id="lesson_container" style="border: solid 1px red">
-  <% # TITLE BAR             -%>
-  <div id="banner">
-    <div class="span-12 last" id="banner_title">
-      <%= h @lesson.title -%> by <%= link_to_profile(@lesson.instructor) -%>
-    </div>
-
-    <div id="rating">
-      <div class="span-9 last" id="stats">
-        Average Rating:
-        <span id="<%= dom_id(@lesson) -%>_average" class="average"><%= current_average(@lesson) -%></span>
-        (<span id="<%= dom_id(@lesson) -%>_count"><%= vote_counts_phrase(@lesson) -%></span>)
-      </div>
-      <div class="span-6 last" id="stars">
-        <%= lesson_rating_for(@lesson, current_user) -%>
-      </div>
-    </div>
-  </div>
-
-  <% # LESSON SUMMARY             -%>
-  <div class="clear prepend-top span-40 last" id="lesson_summary_container">
-    <!-- VIDEO -->
-    <div class="span-20" id="lesson_container">
-      <%= render :partial => 'lessons/player', :object => @lesson -%>
-      <%= render :partial => "lessons/tag_links_for", :object => @lesson, :locals => { :options => { :css_classes => "tags_lesson_show" } } -%>
-      <%= render :partial => 'lessons/groups', :object => @lesson, :locals => { :options => { :css_classes => "tags_lesson_show" } } %>
-    </div>
-
-    <% # LESSON DESCRIPTION             -%>
-    <div class="span-19 last" id="lesson_description">
-      <div class="span-19 last"><%= render :partial => "lessons/actions", :object => @lesson -%></div>
-      <div>
-        <%= h(@lesson.synopsis) -%>
-      </div>
-      <div>
-        <b>Language:</b>
-        <%= h language_value(@lesson.language) -%>
-        <br />
-        <% if @lesson.finished_video_duration -%>
-            <b>Duration:</b>
-            <%= ChronicDuration.output(@lesson.finished_video_duration/1000, :format => :long) -%>
-            <br />
-        <% end -%>
-        <b>Released on:</b>
-        <%= l @lesson.created_at -%>
-        <br />
-        <b>Category:</b>
-        <%= bread_crumb(@lesson.category) -%>
-        <br />
-        <% if current_user.try("is_admin?") or @lesson.instructor == current_user -%>
-            <b>Status:</b>
-
-            <div id='show_lesson_status'>
-              <%= h translate("lesson.#{@lesson.status}") -%>
-                    <%= image_tag("general/spinners/ajax-loader_small_arrows.gif") if @lesson.status == LESSON_STATUS_CONVERTING %>
-              <% if @lesson.status == LESSON_STATUS_PENDING or @lesson.status == LESSON_STATUS_CONVERTING %>
-                  <%= periodically_call_remote(:update => 'show_lesson_status', :url =>
-                          { :action => :show_lesson_status, :id => @lesson },
-                                               :frequency => 5 ) %>
-              <% end %>
-            </div>
-            <br />
-        <% end -%>
-        <% @groups = @lesson.active_groups.public(:select => [:id, :name]) +
-                @lesson.active_groups.private(:select => [:id, :name]) %>
-        <% unless @groups.empty? %>
-            <b>Groups:</b>
-            <% @groups.each do |group| %>
-                <%= link_to h(group.name), group_path(group) %>&nbsp;
-            <% end %>
-            <br />
+<div id="lesson-show">
+  <div id="title-container">
+    <div id="title">
+      <h3>
+        <% if category = @lesson.category %>
+          <% AncestorCategory.category_id_equals(category.id).descend_by_generation(:select => [:ancestor_name]).each do |cat| %>
+            <%= link_to(cat.ancestor_name, (category_path(cat.ancestor_category).downcase)) %>  /
+          <% end %>
+          <%= link_to(category.name, (category_path(category).downcase)) %> /
         <% end %>
-        <%= number_of_students_phrase(@lesson) -%>
-        <br />
-        <%= content_tag(:p, free_remaining_text(@lesson)) if @lesson.has_free_credits? -%>
+        <%= h @lesson.title -%>
+      </h3>
+      <span id="author">by <%= link_to_profile(@instructor) -%></span>
+      <div id="rating-container">
+        <div id="rating">
+          <div id="stars">
+            <%= lesson_rating_for(@lesson, current_user) -%>
+          </div>
+          <div id="stats">
+            Average Rating:
+            <span id="<%= dom_id(@lesson) -%>_average" class="average"><%= current_average(@lesson) -%></span>
+            (<span id="<%= dom_id(@lesson) -%>_count"><%= vote_counts_phrase(@lesson) -%></span>)
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-<div class="clear prepend-top span-40 last">
-  <div class="span-29">
-    <% # LESSON TABS             -%>
-    <div id="lesson_tabs">
-      <%= render :partial => 'tabs' -%>
+  <div id="lesson-container">
+    <% # lesson player -%>
+    <div id="lesson-player">
+      <div><%= render :partial => 'lessons/player', :object => @lesson -%></div>
     </div>
 
-    <% # STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT...             -%>
-    <div>
-      <%#= render :partial => 'lesson_buy_pairs', :object => @lesson -%>
-    </div>
+    <% # lesson detail -%>
+    <div id="lesson-detail">
+      <div id="lesson-details-tabs" class="tab-container lesson-details">
+        <ul class="tabs">
+          <li><a href="#synopsis">Summary</a></li>
+          <li><a href="#detail">Details</a></li>
+          <li><a href="#instructor">Instructor</a></li>
+        </ul>
+        <div class="panes">
+          <div id="tab-lesson-summary">
+            <div id="lesson-synopsis">
+              <%= h(@lesson.synopsis) -%>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+          </div>
+          <div id="tab-lesson-detail">
+            <table class="lesson-details">
+              <% # language -%>
+              <tr>
+                <td class="header">Language:</td>
+                <td><%= h language_value(@lesson.language) -%></td>
+              </tr>
 
-    <% # WHAT DO STUDENTS ULTIMATELY BUY AFTER BROWSING THIS ITEM?             -%>
-    <div>
-      <%#= render :partial => 'lesson_buy_patterns', :object => @lesson -%>
-    </div>
+              <% # duration -%>
+              <% if @lesson.finished_video_duration -%>
+                <tr>
+                  <td class="header">Duration:</td>
+                  <td><%= ChronicDuration.output(@lesson.finished_video_duration/1000, :format => :long) -%></td>
+                </tr>
+              <% end -%>
+
+              <% # released on -%>
+              <tr>
+                <td class="header">Released on:</td>
+                <td><%= l @lesson.created_at -%></td>
+              </tr>
+
+              <% # status %>
+              <% if current_user.try("is_admin?") or @instructor == current_user -%>
+                <tr>
+                  <td class="header">Status:</td>
+                  <td>
+                    <div id='show_lesson_status'>
+                      <%= h translate("lesson.#{@lesson.status}") -%>
+                      <%= image_tag("general/spinners/ajax-loader_small_arrows.gif") if @lesson.status == LESSON_STATUS_CONVERTING %>
+                      <% if @lesson.status == LESSON_STATUS_PENDING or @lesson.status == LESSON_STATUS_CONVERTING %>
+                        <%= periodically_call_remote(:update => 'show_lesson_status', :url => { :action => :show_lesson_status, :id => @lesson }, :frequency => 5 ) %>
+                      <% end %>
+                    </div>
+                  </td>
+                </tr>
+              <% end -%>
+
+              <% # groups %>
+              <% @groups = @lesson.active_groups.public(:select => [:id, :name]) + @lesson.active_groups.private(:select => [:id, :name]) %>
+              <% unless @groups.empty? %>
+                <tr>
+                  <td class="header">Groups:</td>
+                  <td>
+                    <% @groups.each do |group| %>
+                      <%= link_to h(group.name), group_path(group) %>&nbsp;
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+
+              <% # students %>
+              <tr>
+                <td class="header">Students</td>
+                <td><%= number_of_students_phrase(@lesson) -%></td>
+              </tr>
+
+              <% # free credits %>
+              <% if @lesson.has_free_credits?  %>
+                <tr>
+                  <td class="header">Free lessons</td>
+                  <td><%= free_remaining_text(@lesson) %></td>
+                </tr>
+              <% end %>
+
+              <% # tags %>
+              <tr>
+                <td class="header">Tags:</td>
+                <td>
+                  <% @lesson.tag_counts.each do |tag| %>
+                    <%= link_to h(tag.name), tagged_with_lessons_path(:collection => :tagged_with, :tag => tag.name) %>
+                  <% end %>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div id="tab-lesson-instructor">
+            <div id="avatar-container"><%= avatar_link_to(@instructor, :size => :smaller) %></div>
+            <div id="bio">
+              <%= link_to_profile(@instructor) %><br />
+              <div id="lesson-instructor-bio">
+                <%= @instructor.bio %>
+              </div>
+            </div>
+          </div>
+        </div><!-- end panes -->
+      </div><!-- end lesson-details-tabs -->
+    </div><!-- end lesson-detail -->
   </div>
 
-  <div class="span-11 last">
-    <% # LESSON BY THIS INSTRUCTOR             %>
-    <% if @lesson.instructor.instructed_lessons.size > 1 %>
+  <div style="border: solid 0px red">
+    <div><%= render :partial => 'lessons/groups', :object => @lesson, :locals => { :options => { :css_classes => "tags_lesson_show" } } %></div>
+    <div><%= render :partial => "lessons/actions", :object => @lesson -%></div>
+  </div>
+
+
+
+  <div style="border: solid 0px red">
+    <div class="span-9" style="border: solid 0px green">
+      <% # LESSON TABS -%>
+
+      <div id="lesson-content-tabs" class="tab-container"   style="border: solid 0px lime">
+        <ul class="tabs">
+          <%= content_tag(:li, "#{ link_to h(t('lesson.notes')), lesson_notes_lesson_path(@lesson, :style => 'tab') }")  unless @lesson.notes.blank? and @lesson.attachments.empty? %>
+          <li><%= link_to h(t('lesson.reviews')), lesson_reviews_path(@lesson, :style => 'tab', :per_page => REVIEWS_ON_LESSON_SHOW_PER_PAGE) %></li>
+          <li><%= link_to h(t('lesson.discussion')), lesson_lesson_comments_path(@lesson, :style => 'tab', :per_page => COMMENTS_ON_LESSON_SHOW_PER_PAGE) %></li>
+        </ul>
+
+        <!-- single pane -->
+        <div class="panes">
+          <div style="display:block"></div>
+        </div>
+      </div>
+
+      <% # STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT...  -%>
+      <div>
+        <%= render :partial => 'lesson_buy_pairs', :object => @lesson -%>
+      </div>
+
+      <% # WHAT DO STUDENTS ULTIMATELY BUY AFTER BROWSING THIS ITEM?  -%>
+      <div>
+        <%= render :partial => 'lesson_buy_patterns', :object => @lesson -%>
+      </div>
+    </div>
+
+    <div class="span-3 last" style="border: solid 0px red">
+      <% # LESSON BY THIS INSTRUCTOR -%>
+      <% if @instructor.instructed_lessons.size > 1 %>
         <div id="instructor_accordion_container" class="append-bottom">
           <div id="instructor_accordion">
-            <h3><a href="#">Lessons by <%= truncate(h(@lesson.instructor.login), :length => 27) %></a></h3>
+            <h3><a href="#">Lessons by <%= truncate(h(@instructor.login), :length => 27) %></a></h3>
 
             <div class="content">
-              <%#= render :partial => "lessons/lesson_brief", :collection => (@lesson.instructor.instructed_lessons.reject{ |lesson| lesson == @lesson }) %>
+              <%= render :partial => "lessons/lesson_brief", :collection => (@instructor.instructed_lessons.reject{ |lesson| lesson == @lesson }) %>
             </div>
           </div>
         </div>
-    <% end %>
+      <% end %>
 
-    <% #TAG CLOUD             -%>
-    <%#= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts -%>
+      <% #TAG CLOUD -%>
+      <%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts -%>
+
+    </div>
+
+  </div>
+  <% # LESSON STATS (ACCORDIAN FOR INSTRUCTOR AND ADMINS ONLY) -%>
+
+  <%
+  show_purchases = false
+  show_video_stats = false
+  if current_user.try("is_admin?") or @lesson.instructor == current_user or current_user.try("is_paymentmgr?")
+    show_purchases = true
+  end
+
+  if current_user.try("is_admin?") or @lesson.instructor == current_user
+    show_video_stats = true
+  end
+%>
+
+  <div class="span-12">
+    <div id="lesson-stats-tabs" class="tab-container">
+      <ul class="tabs">
+        <% if show_purchases %>
+          <li><a href="#purchases">Lesson Purchases</a></li>
+        <% end %>
+        <% if show_video_stats %>
+          <li><a href="#detail">Video Stats</a></li>
+        <% end %>
+      </ul>
+      <div class="panes">
+        <% if show_purchases -%>
+          <div id="tab-lesson-purchases">
+            <table>
+              <tr>
+                <th>Purchased At</th>
+                <th>User</th>
+                <th>Price Paid</th>
+                <th>Commission Paid</th>
+                <th>Description</th>
+              </tr>
+              <%= render :partial => 'lessons/credit', :collection => @lesson.credits.descend_by_redeemed_at.all(:include => [:user, :sku]) -%>
+              <tr>
+                <td><b>TOTAL</b></td>
+                <td>&nbsp;</td>
+                <td><b><%=h number_to_currency(@lesson.credits.sum(:price)) -%></b></td>
+                <td><b><%=h number_to_currency(@lesson.credits.sum(:commission_paid)) -%></b></td>
+                <td>&nbsp;</td>
+              </tr>
+            </table>
+          </div>
+        <% end -%>
+
+        <% if current_user.try("is_admin?") or @lesson.instructor == current_user -%>
+          <div id="tab-video-stats">
+            <table>
+              <tr>
+                <th>Video</th>
+                <th>Status</th>
+                <% if current_user.try("is_admin?") -%>
+                  <th>Size</th>
+                  <th>Dimensions</th>
+                  <th>Filename</th>
+                  <th>File Type</th>
+                  <th>Conversion Costs<br />Input/Output</th>
+                  <th>Log</th>
+                  <th>Action</th>
+                <% end -%>
+              </tr>
+              <%= render :partial => "video", :collection => @lesson.videos.all(:include => (current_user.try("is_admin?") ? [:video_status_changes, :lesson] : [])) -%>
+            </table>
+          </div>
+        <% end -%>
+      </div>
+    </div>
 
   </div>
 </div>
-
-<% # LESSON STATS (ACCORDIAN FOR INSTRUCTOR AND ADMINS ONLY)             -%>
-<%#= render :partial => 'lesson_stats', :object => @lesson -%>

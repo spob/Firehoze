@@ -46,4 +46,19 @@ $(function() {
     $("#group-details-tabs ul.tabs").tabs("#group-details-tabs > div.panes > div", {
         effect: 'fade'
     });
+
+    // lesson details
+    $("#lesson-details-tabs ul.tabs").tabs("#lesson-details-tabs > div.panes > div", {
+        effect: 'fade'
+    });
+
+    // lesson content
+    $("#lesson-content-tabs ul.tabs").tabs("#lesson-content-tabs > div.panes > div", {
+        effect: 'ajax'
+    });
+
+    // lesson stats
+    $("#lesson-stats-tabs ul.tabs").tabs("#lesson-stats-tabs > div.panes > div", {
+        effect: 'fade'
+    });
 });
