@@ -56,17 +56,9 @@
           Looks like no one has added lessons to this group yet.
         <% end %>
       </div>
-      <div id="tabs-discussion">
+      <div id="tabs-discussion-topics">
         <div id="new-topic-link"><%= link_to "Post New Topic", new_group_topic_path(@group), :class => :rounded %></div>
-        <table class="topic">
-          <tr>
-            <th colspan="2">Topics</th>
-            <th class="center">Comments</th>
-            <th>Last Post</th>
-          </tr>
-          <%= render @topics %>
-          <%= will_paginate @topics %>
-        </table>
+        <%= render :partial => 'topics/topics', :object => @topics %>
       </div>
       <div id="tabs-members">
         <%= render :partial => 'users/v2/users_mosaic', :object => @members %>

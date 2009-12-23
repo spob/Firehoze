@@ -39,12 +39,21 @@ table.topic {
     border: solid 1px #A9A9A9;
     border-collapse:collapse;
 }
+
+table.topic th {
+    background-color:#E3E9F2;
+    color:#17587F;
+    text-shadow: none;
+}
+
 table.topic tr td {
     border: solid 1px #A9A9A9;
 }
+table.topic tr td.comment-count,
 table.topic tr td.icon {
-    width:42px;
+    width:75px;
 }
+
 table.topic tr td.icon a:link,
 table.topic tr td.icon a:visited,
 table.topic tr td.icon a:hover,

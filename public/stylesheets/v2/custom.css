@@ -8,7 +8,6 @@ a:link, a:visited {
     color: #666;
     text-decoration: underline;
     background-color: transparent;
-    /* border-bottom: dotted 1px #999;*/
 }
 
 a:hover, a:active {
@@ -482,9 +481,10 @@ div#group-container div.actions {
     top:5px;
     right: 5px;
     border: solid 1px #BEBEBE;
-    font-size: 9px;
+    font-size: 11px;
     background: #ecf3ff;
-    color:#666;
+    color:#17587F;
+    font-weight:bold;
     -moz-border-radius-bottomleft: 5px;
     -webkit-border-bottom-left-radius: 5px;
     -moz-border-radius-topright: 5px;
@@ -507,7 +507,7 @@ div#group-container hr {
 }
 
 div#group-container div#description h3 {
-    color: #17587f;
+    color: #17587F;
     font-weight:bold;
     margin:0 0 4px 0;
 }
@@ -522,9 +522,8 @@ div#group-details-tabs div.panes {
     padding-top:17px;
 }
 
-
 /* group topics*/
-div#tabs-discussion {
+div#tabs-discussion-topics {
     position:relative;
 }
 
@@ -533,7 +532,3 @@ div#new-topic-link {
     top:-50px;
     right:-5px;
 }
-
-
-
-
