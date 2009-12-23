@@ -7,6 +7,6 @@
   <td class="center comment-count"><%= topic.topic_comments.size - 1 %></td>
   <td>
     <%= time_ago_in_words l(topic.last_commented_at) %><br />
-    <b><%= h topic.last_topic_comment.user.login %></b>
+    <b><%= h topic.last_topic_comment.try('user.login') %></b>
   </td>
 </tr>

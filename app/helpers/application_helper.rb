@@ -61,16 +61,18 @@ module ApplicationHelper
   end
 
   def link_to_profile(user, options = {})
-      length = options[:length]
-      name = length ? (truncate(privacy_sensitive_username(user), :length => length)) : privacy_sensitive_username(user)
-      link_to_unless_current name, user_path(user)
+    length = options[:length]
+    name = length ? (truncate(privacy_sensitive_username(user), :length => length)) : privacy_sensitive_username(user)
+    link_to_unless_current name, user_path(user)
   end
 
   def privacy_sensitive_username(user)
-    if current_user.try("is_a_moderator?") or current_user.try("is_an_admin?") or user.try("show_real_name")
-      "#{h user.full_name} (#{h user.login})"
-    else
-      h(user.name_or_username)
+    if user
+      if current_user.try("is_a_moderator?") or current_user.try("is_an_admin?") or user.try("show_real_name")
+        "#{h user.full_name} (#{h user.login})"
+      else
+        h(user.name_or_username)
+      end
     end
   end
 
