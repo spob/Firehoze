@@ -454,11 +454,10 @@ div#account-settings-tabs div.panes {
     margin: 0 0 20px 0;
 }
 
-#group-container div#logo img {
+#group-container div#group-logo img {
     border: solid 1px #999;
-
 }
-#group-container div#logo {
+#group-container div#group-logo {
     float:left;
     padding: 3px;
     border: solid 1px #999;
