@@ -1,3 +1,4 @@
+<% if @topics.present? %>
 <table class="topic">
   <tr>
     <th colspan="2">Topics</th>
@@ -7,3 +8,6 @@
   <%= render topics %>
   <%= will_paginate topics %>
 </table>
+<% else %>
+<p>Got a question or want to share your thoughts? Post a topic and get a conversation started ...</p>
+<% end %>
