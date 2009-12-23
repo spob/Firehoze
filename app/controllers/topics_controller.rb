@@ -94,7 +94,7 @@ class TopicsController < ApplicationController
   end
 
   def layout_for_action
-    if %w(edit update new create).include?(params[:action])
+    if %w(create edit new show update).include?(params[:action])
       'application_v2'
     else
       'application'
