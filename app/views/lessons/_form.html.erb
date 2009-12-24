@@ -71,6 +71,13 @@
           <span class="required-field" />
         </span>
         </li>
+        <li>
+        <span>
+          <%= f.label :audience %>
+          <%= f.select :audience,  Lesson.audience_levels,  {:include_blank => 'Select...'} %>
+          <span class="required-field" />
+        </span>
+        </li>
         <li class="bottom">
         <span class="unlabelled">
         <%= f.submit "#{@lesson.new_record? ? "Create" : "Update"} Lesson" %>

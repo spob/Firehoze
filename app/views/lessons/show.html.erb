@@ -61,6 +61,10 @@
                 <td class="header">Language:</td>
                 <td><%= h language_value(@lesson.language) -%></td>
               </tr>
+              <tr>
+                <td class="header">Audience:</td>
+                <td><%= h audience_value(@lesson.audience) -%></td>
+              </tr>
 
               <% # duration -%>
               <% if @lesson.finished_video_duration -%>

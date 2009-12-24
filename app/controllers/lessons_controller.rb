@@ -23,6 +23,7 @@ class LessonsController < ApplicationController
   # The number of free download counts to display on the create lesson page
   @@free_download_counts = [ 0, 5, 10, 25 ]
 
+
   def index
     if params[:reset] == "y"
       # clear category browsing
@@ -105,7 +106,7 @@ class LessonsController < ApplicationController
   def advanced_search
     # disable the uniform plugin, otherwise the advanced search form is all @$@!# up
     @no_uniform_js = true
-    
+
     @advanced_search = AdvancedSearch.new
     @advanced_search.language = current_user.language if current_user
     @advanced_search.created_in = 30
@@ -116,7 +117,7 @@ class LessonsController < ApplicationController
   def perform_advanced_search
     # disable the uniform plugin, otherwise the advanced search form is all @$@!# up
     @no_uniform_js = true
-    
+
     # Dynamically setup the advanced search object so the search criteria will show properly in the screen
     @advanced_search = AdvancedSearch.new
     AdvancedSearch.public_instance_methods(false).find_all{|item| item.ends_with? "="}.each do |a|
@@ -232,7 +233,7 @@ class LessonsController < ApplicationController
                 @tag = params[:tag]
                 Lesson.fetch_tagged_with(current_user, @category_id, @tag, @per_page, params[:page])
               when 'recently_browsed'
-                Lesson.fetch_latest_browsed(current_user, @category_id, @per_page, params[:page])               
+                Lesson.fetch_latest_browsed(current_user, @category_id, @per_page, params[:page])
               when 'owned'
                 Lesson.fetch_owned(current_user, @per_page, params[:page])
               when 'wishlist'
@@ -341,15 +342,15 @@ class LessonsController < ApplicationController
   end
 
   def set_per_page
-    @per_page = 
-    if params[:per_page]
-      params[:per_page]
-    elsif %w(tabbed).include?(params[:action])
-      3
-    elsif %w(ajaxed).include?(params[:action])
-      5
-    else
-      Lesson.per_page
-    end
+    @per_page =
+            if params[:per_page]
+              params[:per_page]
+            elsif %w(tabbed).include?(params[:action])
+              3
+            elsif %w(ajaxed).include?(params[:action])
+              5
+            else
+              Lesson.per_page
+            end
   end
 end

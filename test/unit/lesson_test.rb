@@ -282,7 +282,7 @@ class LessonTest < ActiveSupport::TestCase
       end
     end
 
-    should_validate_presence_of :title, :instructor, :synopsis, :category
+    should_validate_presence_of :title, :instructor, :synopsis, :category, :audience
     should_allow_values_for :title, "blah blah blah"
     should_ensure_length_in_range :title, (0..50)
     should_ensure_length_in_range :synopsis, (0..500)

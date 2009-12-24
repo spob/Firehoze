@@ -27,6 +27,10 @@ module LessonsHelper
     end
   end
 
+  def audience_value(key)
+    t("lesson.#{key}_level")
+  end
+
   def vote_counts_phrase(lesson)
     "#{pluralize(lesson.total_rates, "vote")} cast"
   end

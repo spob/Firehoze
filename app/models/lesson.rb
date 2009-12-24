@@ -77,7 +77,7 @@ class Lesson < ActiveRecord::Base
   has_one :full_processed_video
   has_one :preview_processed_video
   has_and_belongs_to_many :lesson_wishers, :join_table => 'wishes', :class_name => 'User'
-  validates_presence_of :instructor, :title, :status, :synopsis, :category
+  validates_presence_of :instructor, :title, :status, :synopsis, :category, :audience
   validates_length_of :title, :maximum => 50, :allow_nil => true
   validates_length_of :synopsis, :maximum => 500, :allow_nil => true
   validates_uniqueness_of :title
@@ -147,6 +147,14 @@ class Lesson < ActiveRecord::Base
 
   def self.lesson_statuses
     @@lesson_statuses
+  end
+
+  def self.audience_levels
+    levels = []
+    LESSON_LEVELS.each do |l|
+      levels << [I18n.translate("lesson.#{l}_level"), l]
+    end
+    levels
   end
 
   def self.lesson_recommendations(user, limit=5)

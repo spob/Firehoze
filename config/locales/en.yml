@@ -201,6 +201,10 @@ en:
     watch_for_free: Watch For Free
     must_logon: Please log on or request an account in order to watch this video
     wishlist: Wishlist
+    high_school_level: High School
+    college_level: College
+    graduate_level: Post Graduate
+    other_level: Other
     # Lesson states
     Rejected: Rejected
     Converting: Converting
