@@ -97,6 +97,7 @@ class Lesson < ActiveRecord::Base
     indexes notes
     indexes status
     indexes language
+    indexes audience
     indexes instructor.login, :as => :instructor
     indexes tags.name, :as => :tag
     has rating_average

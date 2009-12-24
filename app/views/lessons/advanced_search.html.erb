@@ -81,6 +81,13 @@
             {:include_blank => true} %>
         </span>
       </li>
+      <li>
+        <span>
+          <%= f.label :audience %>
+          <%= f.select :audience, Lesson.audience_levels,
+            {:include_blank => true} %>
+        </span>
+      </li>
       <li class="bottom">
         <span class="unlabelled">
           <%= f.submit "Search" %>
