@@ -41,14 +41,16 @@ module GroupsHelper
   end
 
   def show_membership_text(group)
-    if current_user
-      member = group.includes_member?(current_user)
-      if member.nil?
-        "You are not a member of this group"
-      elsif member.member_type == MEMBER or member.member_type == MODERATOR
-        member_type = t("group_member.#{member.member_type.downcase}")
-        "You are a #{member_type.downcase} of this group"
-      end
+    if group.owned_by?(current_user)
+      "You are the owner of this group"
+    elsif group.moderated_by?(current_user)
+      "You are the moderator of this group"
+    elsif group.includes_member?(current_user)
+      "You are a member of this group"
+    elsif current_user.nil?
+      "You are not logged in"
+    else
+      "You are a #{member_type.downcase} of this group"
     end
   end
 
@@ -59,4 +61,5 @@ module GroupsHelper
     cdn_logo_url = Group.convert_logo_url_to_cdn(logo_url)
     image_tag cdn_logo_url, options.merge({ :alt => h(group.name), :class => 'logo' })
   end
+
 end

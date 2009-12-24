@@ -9,9 +9,8 @@
       <ul id="topic-comments-info" class="section">
         <li class="header">
           <span></span>
-
-          <h3>Edit Comment to the Topic "<%= h @topic_comment.topic.title %>"</h3>
-          <h4>Engage in an online discussion with other members of <%= link_to h(@topic_comment.topic.title), topic_path(@topic_comment.topic) %>.</h4>
+          <h3>Edit Comment to the Topic "<%= link_to h(@topic_comment.topic.title), topic_path(@topic_comment.topic) %>"</h3>
+          <h4>Engage in an online discussion with other members of <%= link_to h(@topic_comment.topic.group.name), group_path(@topic_comment.topic.group) %>.</h4>
         </li>
         <li>
         <span>
