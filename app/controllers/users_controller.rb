@@ -216,7 +216,13 @@ class UsersController < ApplicationController
   private
 
   def layout_for_action
-    %w(show_admin edit list).include?(params[:action]) ? 'admin' : 'application'
+    if %w(show_admin edit list).include?(params[:action])
+      'admin'
+    elsif %w(new create).include?(params[:action])
+      'application_v2'
+    else
+      'application'
+    end
   end
 
   def find_user
