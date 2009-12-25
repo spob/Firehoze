@@ -7,7 +7,7 @@ class PaymentLevelsController < ApplicationController
   # Admins only
   permit ROLE_ADMIN
 
-  layout 'admin'
+  layout 'admin_v2'
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
