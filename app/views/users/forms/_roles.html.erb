@@ -1,15 +1,30 @@
-<% form_for(:user, :url => update_roles_user_path(@user), :html => { :method => :put, :id => "roles" }) do |f| %>
-  <%= f.error_messages %>
-  <fieldset>
-    <legend>Update Roles</legend>
-    <% for role in Role.by_name %>
-      <%= check_box_tag "user[role_ids][]", role.id, @user.has_role?(role.name) %>
-      <%= h role.name %>
-    <% end %>
-    <%= hidden_field_tag "user[role_ids][]", '' %>
-  </fieldset>
-  <p>
-    <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
-    <%= link_to 'Cancel', home_path %>
-  </p>
-<% end -%>
+<div class="fh-form">
+  <% form_for(:user, :url => update_roles_user_path(@user), :html => { :method => :put, :id => "roles" }) do |f| %>
+      <%= f.error_messages %>
+      <ul id="profile-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3>Edit <%= link_to_profile @user%>'s Roles</h3>
+          <h4>Roles determines the functions a user has access to.</h4>
+        </li>
+        <% for role in Role.by_name %>
+            <li>
+        <span>
+           <%= check_box_tag "user[role_ids][]", role.id, @user.has_role?(role.name) %>
+          <%= h role.name %>
+        </span>
+            </li>
+        <% end %>
+        <%= hidden_field_tag "user[role_ids][]", '' %>
+        <li class="bottom">
+        <span class="unlabelled">
+        <%= f.submit "Update", :id => "update-profile" %>
+          <%= link_to 'Cancel', home_path %>
+        </span>
+
+          <div class="clear"/>
+        </li>
+      </ul>
+  <% end -%>
+</div>

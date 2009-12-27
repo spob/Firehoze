@@ -1,77 +1,100 @@
-<% form_for(:user, :url => update_instructor_user_path(@user), :html => { :method => :put, :id => "author" }) do |f| %>
-    <%= f.error_messages %>
-    <fieldset>
-      <legend>Instructor Status</legend>
-      <p>
-        This user is <%= (@user.verified_instructor? ? "" : "not ") %>an instructor:
-      </p>
-      <ul>
+<div class="fh-form">
+  <% form_for(:user, :url => update_instructor_user_path(@user), :html => { :method => :put, :id => "author" }) do |f| %>
+      <%= f.error_messages %>
+      <ul id="profile-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3>Edit <%= link_to_profile @user %>'s Instructor Status</h3>
+          <h4>The information below describes whether this user is an instructor and the
+            rate at which he or she will earn commissions for sales of their lessons.</h4>
+          <h4><strong>This user is <%= (@user.verified_instructor? ? "" : "not ") %>an instructor.</strong></h4>
+          <h4>
+            <ul>
+              <li>
+                <% if @user.author_agreement_accepted_on %>
+                    Author agreement was accepted on <%= l @user.author_agreement_accepted_on %>
+                <% else %>
+                    Author agreement has not been accepted
+                <% end %>
+              </li>
+              <li>
+                <% if @user.payment_level %>
+                    Payment level is <%= @user.payment_level.name %>
+                <% else %>
+                    Payment level (exclusivity) has not been chosen
+                <% end %>
+              </li>
+              <li>
+                Address has <%= (@user.address_provided? ? "" : "not ") %>been provided
+              </li>
+              <li>
+                <% if @user.verified_address_on %>
+                    Address was verified on <%= l @user.verified_address_on %>
+                <% else %>
+                    Address has not been verified
+                <% end %>
+              </li>
+            </ul>
+          </h4>
         <li>
-          <% if @user.author_agreement_accepted_on %>
-              Author agreement was accepted on <%= l @user.author_agreement_accepted_on %>
-          <% else %>
-              Author agreement has not been accepted
-          <% end %>
+        <span>
+          <%= f.label :payment_level %>
+          <%= f.select :payment_level,
+                       options_from_collection_for_select(PaymentLevel.ascend_by_name, 'id', 'name',
+                                                          @user.payment_level.try('id')),
+                       { :include_blank => true } %>
+        </span>
+        </li>
+        <h4>Postal Address</h4>
+
+        <li>
+        <span>
+          <%= f.label :address1 %>
+          <%= f.text_field :address1 %>
+        </span>
+        </li>
+
+        <li>
+        <span>
+          <%= f.label :address2 %>
+          <%= f.text_field :address2 %>
+        </span>
         </li>
         <li>
-          <% if @user.payment_level %>
-              Payment level is <%= @user.payment_level.name %>
-          <% else %>
-              Payment level (exclusivity) has not been chosen
-          <% end %>
+        <span>
+          <%= f.label :city %>
+          <%= f.text_field :city %>
+        </span>
         </li>
         <li>
-          Address has <%= (@user.address_provided? ? "" : "not ") %>been provided
+        <span>
+          <%= f.label :state, "State or Region" %>
+          <%= f.text_field :state %>
+        </span>
         </li>
+
         <li>
-          <% if @user.verified_address_on %>
-              Address was verified on <%= l @user.verified_address_on %>
-          <% else %>
-              Address has not been verified
-          <% end %>
+        <span>
+          <%= f.label :postal_code, "Postal Code or Zip Code" %>
+          <%= f.text_field :postal_code %>
+        </span>
+        </li>
+
+        <li>
+        <span>
+          <%= f.label :country %>
+          <%= f.localized_country_select(:country, ['US']) %>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+        <%= f.submit "Update", :id => "update-profile" %>
+          <%= link_to 'Cancel', home_path %>
+        </span>
+
+          <div class="clear"/>
         </li>
       </ul>
-      <legend>Payment Level</legend>
-      <p>
-        <%= f.select :payment_level,
-                     options_from_collection_for_select(PaymentLevel.ascend_by_name, 'id', 'name',
-                                                        @user.payment_level.try('id')),
-                     { :include_blank => true } %>
-      </p>
-      <legend>Postal Address</legend>
-
-      <p>
-        <%= f.label :address1 %>
-        <%= f.text_field :address1 %>
-      </p>
-
-      <p>
-        <%= f.label :address2 %>
-        <%= f.text_field :address2 %>
-      </p>
-
-      <p>
-        <%= f.label :city %>
-        <%= f.text_field :city %>
-      </p>
-
-      <p>
-        <%= f.label :state, "State or Region" %>
-        <%= f.text_field :state %>
-      </p>
-
-      <p>
-        <%= f.label :postal_code, "Postal Code or Zip Code" %>
-        <%= f.text_field :postal_code %>
-      </p>
-
-      <p>
-        <%= f.localized_country_select(:country, ['US']) %>
-      </p>
-
-    </fieldset>
-    <p>
-      <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
-      <%= link_to 'Cancel', home_path %>
-    </p>
-<% end %>                                            `
+  <% end %>
+</div>

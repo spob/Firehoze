@@ -1,11 +1,20 @@
 $(document).ready(function() {
-    $("#new_user").validate({
+    $("#new_user, #profile").validate({
         errorElement: "span",
         success: "valid",
         submitHandler: function(form) {
             $(form).find(":submit").attr("disabled", true).attr("value", "Please wait ...");
             form.submit();
         }
+    });
+
+    $('#user_login').simplyCountable({
+        counter: '#user_login_counter',
+        countType: 'characters',
+        maxCount: 25,
+        countDirection: 'down',
+        safeClass: 'safe',
+        overClass: 'over'
     });
 
     $('#user_first_name').simplyCountable({
