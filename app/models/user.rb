@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
 
   before_save :persist_user_logon
   before_validation :strip_fields
+  after_update :reprocess_avatar, :if => :cropping? 
 
   acts_as_authentic do |c|
     c.logged_in_timeout = 30.minutes # log out after 30 minutes of inactivity
@@ -83,6 +84,9 @@ class User < ActiveRecord::Base
   # Used to verify current password during password changes
   attr_accessor :current_password
 
+  # Used for cropping
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+
   validates_presence_of :login_count, :failed_login_count, :last_name, :instructor_status, :language
   validates_presence_of :user_agreement_accepted_on #, :message => :must_accept_agreement
   validates_presence_of :login#, :message => :login_required
@@ -101,8 +105,10 @@ class User < ActiveRecord::Base
                             :smaller => ["60x60#", :png],
                             :small => ["75x75#", :png],
                             :medium => ["110x110#", :png],
-                            :large => ["220x220#", :png]
+                            :large => ["220x220#", :png],
+                            :vlarge => ["500x500>", :png]
                     },
+                    :processors => [:cropper],
                     :storage => :s3,
                     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                     :s3_permissions => 'public-read',
@@ -329,6 +335,16 @@ END
     self.update_attribute(:activity_compiled_at, Time.now)
   end
 
+  # Are we currently cropping the graphic (see Railcasts episode #182)
+  def cropping?
+    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
+  end
+
+  def avatar_geometry(style = :original)
+    @geometry ||= {}
+    @geometry[style] ||= Paperclip::Geometry.from_file(avatar.url(style))
+  end
+
   private
 
   def strip_fields
@@ -356,5 +372,9 @@ END
 
   def not_blank_or_nil field
     !field.nil? and !field.blank?
+  end
+
+  def reprocess_avatar
+    avatar.reprocess!
   end
 end

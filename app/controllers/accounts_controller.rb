@@ -120,12 +120,20 @@ class AccountsController < ApplicationController
   end
 
   def update_avatar
+    redirect_set = false
     if params[:user][:avatar]
       if @user.update_attributes(:avatar => params[:user][:avatar])
-        flash[:notice] = t 'account_settings.avatar_success'
+        render :action => 'crop'
+        redirect_set = true
       end
-      redirect_to edit_account_path(@user, :anchor => :avatar)
+    elsif !params[:user][:crop_x].blank? and !params[:user][:crop_y].blank? and !params[:user][:crop_w].blank? and !params[:user][:crop_h].blank?
+      @user.crop_x = params[:user][:crop_x]
+      @user.crop_y = params[:user][:crop_y]
+      @user.crop_w = params[:user][:crop_w]
+      @user.crop_h = params[:user][:crop_h]
+      @user.touch
     end
+    redirect_to edit_account_path(@user, :anchor => :avatar) unless redirect_set
   end
 
   def instructor_agreement
