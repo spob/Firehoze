@@ -29,7 +29,7 @@
         <span>
           <%= f.label :parent_category %>
           <%= f.collection_select(:parent_category_id, Category.by_parent_sort_value, :id,
-                                  :name, { :include_blank => true }) %>
+                                  :name, {:include_blank => 'Select...'}) %>
           <span class="required-field"/>
         </span>
         </li>
