@@ -470,3 +470,11 @@ div#avatar-container a:active {
     border:0 none;
     text-decoration: none !important;
 }
+
+div#add-to-group a#title {}
+ul.group-list {
+    display:none;
+    margin:0;
+    padding:0;
+    list-style-type: none;
+}

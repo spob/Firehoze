@@ -46,4 +46,10 @@ $(document).ready(function(){
     $("form #search_criteria").focus(function () {
         $(this).val("");
     });
+
+    $("a#title").click(function () { 
+      $("ul.group-list").slideToggle("slow");
+      return false;
+    });
+
 });
