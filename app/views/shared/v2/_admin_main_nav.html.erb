@@ -2,54 +2,18 @@
 
 <%
 navigation = []
- navigation << [:users, {
-      :name => 'Users',
-      :location =>  list_users_path('search[order]' => 'ascend_by_login')
-    }] if current_user.is_admin?
- navigation << [:logons, {
-      :name => 'Logons',
-      :location =>  user_logons_path
-    }] if current_user.is_admin?
- navigation << [:lessons, {
-      :name => 'Lessons',
-      :location =>  list_admin_lessons_path('search[order]' => 'descend_by_created_at')
-    }] if current_user.is_admin? or current_user.is_moderator?
- navigation << [:groups, {
-      :name => 'Groups',
-      :location =>  list_admin_groups_path('search[order]' => 'ascend_by_name')
-    }] if current_user.is_admin? or current_user.is_moderator?
- navigation << [:categories, {
-      :name => 'Categories',
-      :location =>  list_admin_categories_path
-    }] if current_user.is_admin?
- navigation << [:flags, {
-      :name => 'Flags',
-      :location =>  flags_path
-    }] if current_user.is_moderator?
- navigation << [:jobs, {
-      :name => 'Jobs',
-      :location =>  periodic_jobs_path
-    }] if current_user.is_admin?
- navigation << [:orders, {
-      :name => 'Orders',
-      :location =>  orders_path
-    }] if current_user.is_admin? or current_user.is_paymentmgr?
- navigation << [:payments, {
-      :name => 'Payments',
-      :location =>  payments_path
-    }] if current_user.is_paymentmgr?
- navigation << [:giftcerts, {
-      :name => 'Gift Certs',
-      :location =>  list_admin_gift_certificates_path('search[order]' => 'ascend_by_id')
-    }] if current_user.is_paymentmgr?
- navigation << [:skus, {
-      :name => 'SKUs',
-      :location =>  skus_path
-    }] if current_user.is_admin?
- navigation << [:payment_levels, {
-      :name => 'Pay Levels',
-      :location =>  payment_levels_path
-    }] if current_user.is_admin?
+navigation << [:categories, {:name => 'Categories',:location =>  list_admin_categories_path }] if current_user.is_admin?
+navigation << [:lessons, { :name => 'Lessons', :location =>  list_admin_lessons_path('search[order]' => 'descend_by_created_at') }] if current_user.is_admin? or current_user.is_moderator?
+navigation << [:logons, { :name => 'Logons', :location =>  user_logons_path }] if current_user.is_admin?
+navigation << [:flags, {:name => 'Flags', :location =>  flags_path }] if current_user.is_moderator?
+navigation << [:giftcerts, { :name => 'Gift Certs', :location =>  list_admin_gift_certificates_path('search[order]' => 'ascend_by_id') }] if current_user.is_paymentmgr?  
+navigation << [:groups, { :name => 'Groups', :location =>  list_admin_groups_path('search[order]' => 'ascend_by_name') }] if current_user.is_admin? or current_user.is_moderator?
+navigation << [:jobs, { :name => 'Jobs', :location =>  periodic_jobs_path }] if current_user.is_admin?
+navigation << [:orders, { :name => 'Orders', :location =>  orders_path }] if current_user.is_admin? or current_user.is_paymentmgr?
+navigation << [:payment_levels, { :name => 'Pay Levels', :location =>  payment_levels_path }] if current_user.is_admin?
+navigation << [:payments, { :name => 'Payments', :location =>  payments_path }] if current_user.is_paymentmgr?
+navigation << [:skus, { :name => 'SKUs', :location =>  skus_path }] if current_user.is_admin?
+navigation << [:users, { :name => 'Users', :location =>  list_users_path('search[order]' => 'ascend_by_login') }] if current_user.is_admin?
 %>
 
 <ul id="main-navigation">
