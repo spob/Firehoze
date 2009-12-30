@@ -1,4 +1,5 @@
 <% title 'Crop User Avatar' %>
+
 <% content_for(:head) do %>
     <%= stylesheet_link_tag "jquery.Jcrop" %>
     <%= javascript_include_tag "jquery.Jcrop.min" %>
@@ -7,14 +8,14 @@
             $("#cropbox").Jcrop({
                 onChange: update_crop,
                 onSelect: update_crop,
-                setSelect: [0, 0, 500, 500],
+                setSelect: [0, 0, 400, 400],
                 aspectRatio: 1
             });
         });
 
         function update_crop(coords) {
-            var rx = 200 / coords.w;
-            var ry = 200 / coords.h;
+            var rx = 220 / coords.w;
+            var ry = 220 / coords.h;
             $('#preview').css({
                 width: Math.round(rx * <%= @user.avatar_geometry(:vlarge).width %>) + 'px',
                 height: Math.round(ry * <%= @user.avatar_geometry(:vlarge).height %>) + 'px',
@@ -29,17 +30,43 @@
         }
     </script>
 <% end %>
+<div class="fh-form">
+  <% form_for(@user, :url => update_avatar_account_url(@user)) do |f| %>
+      <%= f.error_messages %>
+      <ul id="avatar-info" class="section">
+        <li class="header">
+          <span></span>
 
-<%= image_tag @user.avatar.url(:vlarge), :id => :cropbox %>
+          <h3>Crop Your Avatar</h3>
+          <h4>Fine tune the way your avatar picture appears by cropping it.</h4>
+        </li>
+        <li>
+        <span>
+          <label>Your Avatar</label>
+        <div style="overflow: hidden;">
+          <%= image_tag @user.avatar.url(:vlarge), :id => :cropbox %>
+        </div>
+        </span>
+        </li>
+        <li>
+        <span>
+          <label>Preview</label>
+        <div style="width: 220px; height: 220px; overflow: hidden;">
+          <%= image_tag @user.avatar.url(:vlarge), :id => "preview" %>
+        </div>
+        </span>
+        </li>
+        <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
+            <%= f.hidden_field attribute, :id => attribute %>
+        <% end %>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= f.submit "Crop", :disable_with => translate('general.disable_with') %>
+          <%= link_to 'Keep As Is', edit_account_path(@user, :anchor => :avatar) %>
+        </span>
 
-<h4>Preview</h4>
-<div style="width: 200px; height: 200px; overflow: hidden;">
-  <%= image_tag @user.avatar.url(:vlarge), :id => "preview" %>
+          <div class="clear"/>
+        </li>
+      </ul>
+  <% end %>
 </div>
-
-<% form_for(@user, :url => update_avatar_account_url(@user)) do |f| %>
-    <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
-        <%= f.hidden_field attribute, :id => attribute %>
-    <% end %>
-    <p><%= f.submit "Crop" %></p>
-<% end %>

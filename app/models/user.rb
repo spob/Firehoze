@@ -106,7 +106,7 @@ class User < ActiveRecord::Base
                             :small => ["75x75#", :png],
                             :medium => ["110x110#", :png],
                             :large => ["220x220#", :png],
-                            :vlarge => ["500x500>", :png]
+                            :vlarge => ["400x400>", :png]
                     },
                     :processors => [:cropper],
                     :storage => :s3,

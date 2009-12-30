@@ -125,6 +125,7 @@ class AccountsController < ApplicationController
       if @user.update_attributes(:avatar => params[:user][:avatar])
         render :action => 'crop'
         redirect_set = true
+        flash[:notice] = t "account_settings.avatar_success"
       end
     elsif !params[:user][:crop_x].blank? and !params[:user][:crop_y].blank? and !params[:user][:crop_w].blank? and !params[:user][:crop_h].blank?
       @user.crop_x = params[:user][:crop_x]
@@ -132,6 +133,7 @@ class AccountsController < ApplicationController
       @user.crop_w = params[:user][:crop_w]
       @user.crop_h = params[:user][:crop_h]
       @user.touch
+      flash[:notice] = t "account_settings.avatar_cropped"
     end
     redirect_to edit_account_path(@user, :anchor => :avatar) unless redirect_set
   end
@@ -244,7 +246,7 @@ class AccountsController < ApplicationController
   end
 
   def layout_for_action
-    if %w(edit update).include?(params[:action])
+    if %w(edit update crop update_avatar).include?(params[:action])
       'application_v2'
     else
       'application'
