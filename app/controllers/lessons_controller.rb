@@ -165,8 +165,7 @@ class LessonsController < ApplicationController
 
   def show_groups
     @lesson = Lesson.find(params[:id])
-    @groups = @lesson.groups.public
-    @groups = @groups + @lesson.groups.private.a_member(current_user) if current_user
+    @groups = @lesson.lesson_groups(current_user)
   end
 
   def stats
