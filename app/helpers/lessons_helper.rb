@@ -103,7 +103,7 @@ module LessonsHelper
 
   def link_to_add_attachment(lesson)
     if lesson.can_edit?(current_user)
-      link_to "Add Attachment", new_lesson_lesson_attachment_path(lesson)
+      link_to "Add Attachment", new_lesson_lesson_attachment_path(lesson), :class => :rounded
     end
   end
 

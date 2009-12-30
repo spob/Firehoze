@@ -39,33 +39,11 @@
     <div id="lesson-detail" class="span-6">
       <div id="lesson-details-tabs" class="tab-container lesson-details">
         <ul class="tabs">
-          <li><a href="#instructor">Instructor</a></li>
           <li><a href="#synopsis">Summary</a></li>
           <li><a href="#detail">Details</a></li>
+          <li><a href="#instructor">Instructor</a></li>
         </ul>
         <div class="panes">
-
-          <div id="tab-lesson-instructor">
-            <div id="avatar-container"><%= avatar_link_to(@instructor, :size => :smaller) %></div>
-
-            <div id="bio">
-              <span class="h4"><%= link_to_profile(@instructor) %></span>
-              <div id="lesson-instructor-bio"><%= @instructor.bio %></div>
-            </div>
-
-            <% # LESSON BY THIS INSTRUCTOR -%>
-            <% if @instructor.instructed_lessons.size > 1 %>
-              <div id="lessons-by-instructor">
-                <h4>More lessons by <%= privacy_sensitive_username(@instructor) %></h4>
-                <div class="widget-box-content lessons">
-                  <ul class="lesson_brief">
-                    <%= render :partial => "lessons/v2/lesson_brief", :collection => (@instructor.instructed_lessons.reject{ |lesson| lesson == @lesson }), :locals => {:title_length => 50, :synopsis_length => 160 } %>
-                  </ul>
-                </div>
-              </div>
-            <% end %>
-
-          </div><!-- tab-lesson-instructor -->
 
           <div id="tab-lesson-summary">
             <div id="lesson-synopsis">
@@ -79,6 +57,27 @@
           <div id="tab-lesson-detail">
             <%= render :partial => "lessons/detail", :object => @lesson  %>
           </div>
+
+          <div id="tab-lesson-instructor">
+            <div id="avatar-container"><%= avatar_link_to(@instructor, :size => :smaller) %></div>
+
+            <div id="bio">
+              <span class="h4"><%= link_to_profile(@instructor) %></span>
+              <div id="lesson-instructor-bio"><%= @instructor.bio %></div>
+            </div>
+
+            <% # Lesson by This Instructor -%>
+            <% if @instructor.instructed_lessons.size > 1 %>
+              <div id="lessons-by-instructor">
+                <h4>More lessons by <%= privacy_sensitive_username(@instructor) %></h4>
+                <div class="widget-box-content lessons">
+                  <ul class="lesson_brief">
+                    <%= render :partial => "lessons/v2/lesson_brief", :collection => (@instructor.instructed_lessons.reject{ |lesson| lesson == @lesson }), :locals => {:title_length => 50, :synopsis_length => 160 } %>
+                  </ul>
+                </div>
+              </div>
+            <% end %>
+          </div><!-- tab-lesson-instructor -->
 
         </div><!-- end panes -->
       </div><!-- end lesson-details-tabs -->

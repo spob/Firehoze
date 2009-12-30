@@ -6,10 +6,10 @@
   <%= content_tag(:div, button_to_review(@lesson)) %>
   <p>Be the first to leave a review for this lesson</p>
 <% elsif @lesson.reviews.empty? %>
-  <p>Sometimes it's hard to share ones thoughts</p>
+  <p>We'd love to hear what you thought about this lesson.</p>
 <% else %>
   <%= content_tag(:div, button_to_review(@lesson), :class => "action_box") %>
-  <%= render @reviews %>
+  <%= render :partial => "reviews/v2/review", :collection => @reviews %>
 <% end %>
 
 <% if @style == 'tab'%>

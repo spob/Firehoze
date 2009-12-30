@@ -514,3 +514,13 @@ ul.group-list {
     padding:0;
     list-style-type: none;
 }
+
+div#lesson-content-tabs div.panes {
+    margin:17px 0 0 0;
+}
+
+div.lesson-notes ul#attachments {
+    margin-left:0;
+    padding:0;
+    list-style-type: none;
+}
