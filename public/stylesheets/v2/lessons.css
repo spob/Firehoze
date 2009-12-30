@@ -382,20 +382,24 @@ div#lesson-container {
 /* title area (title, author, and rating stars)*/
 div#title-container {
     position:relative;
-    border-bottom: solid 1px #999;
+    border-bottom:solid 1px #999;
+    min-height:45px;
+    margin:0 0 10px 0;
 }
 
 div#title-container h3 {
+  position:absolute;
+  bottom:0;
+  left:0;
     color: #17587F;
     font-weight:bold;
-    margin:0 210px 4px 0;
-    line-height:24px;
-}
+    padding:0;
+    margin:0 0 10px 0;
+ }
 
-div#lesson-show span#author {
+div#lesson-show div#author {
     font-weight:bold;
-    font-size:16px;
-    margin:0 210px 0 0;
+    margin:0 0 17px 0;
 }
 
 div#rating-container {
