@@ -38,9 +38,7 @@ module UsersHelper
       size = options[:size] || :medium
       url_type = options[:url] || :cdn
       avatar_url = user.avatar.file? ? user.avatar.url(size) : User.default_avatar_url(size)
-      puts avatar_url
       avatar_url = User.convert_avatar_url_to_cdn(avatar_url) if url_type == :cdn
-      puts avatar_url
       image_tag avatar_url, options.merge({ :alt => h(privacy_sensitive_username(user)), :class => 'avatar' })
     end
   end
