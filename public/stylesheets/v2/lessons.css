@@ -377,9 +377,9 @@ ul.lessons-row-format li div.details {
 /* LESSON (SINGULAR -- lessons#show page) */
 
 div#lesson-container {
-    margin:17px 0;
+/*    margin:17px 0;
     padding:0;
-}
+*/}
 
 /* title area (title, author, and rating stars)*/
 div#title-container {
@@ -426,15 +426,16 @@ div#stars {
 
 /* lesson play div */
 div#lesson-player {
-    float:left;
+/*    float:left;
     width: 500px;
+*/
 }
 
 /* lesson details div */
 div#lesson-detail {
-    margin: 0 0 0 500px;
+/*    margin: 0 0 0 500px;
     padding:0;
-}
+*/}
 
 div#lesson-details-tabs div.panes {
     padding:12px 0 0 0;

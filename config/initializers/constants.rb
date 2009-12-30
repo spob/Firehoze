@@ -82,8 +82,8 @@ LESSON_LEVELS = [LESSON_LEVEL_HIGH_SCHOOL, LESSON_LEVEL_COLLEGE, LESSON_LEVEL_GR
 # Lesson video player
 # Actual video size should be 4:3 480 X 360 (standard definition)
 PLAYER_MENU_BAR = 36
-PLAYER_WIDTH = 480
-PLAYER_HEIGHT = 360 + PLAYER_MENU_BAR # Play size is taller due to player controls 480 X 396  ==> 480 X 360 + 36px  
+PLAYER_WIDTH = 458
+PLAYER_HEIGHT = 305 + PLAYER_MENU_BAR # Play size is taller due to player controls 480 X 396  ==> 480 X 360 + 36px  
 
 # Hash codes
 HASH_PREFIX = "asdfas"

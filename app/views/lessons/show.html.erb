@@ -30,14 +30,10 @@
       </div>
     </div>
   </div>
-  <div id="lesson-container">
-    <% # lesson player -%>
-    <div id="lesson-player">
-      <div><%= render :partial => 'lessons/player', :object => @lesson -%></div>
-    </div>
+  <div id="lesson-container" style="border:solid 0px red;" class="span-12">
 
     <% # lesson detail -%>
-    <div id="lesson-detail">
+    <div id="lesson-detail" class="span-6">
       <div id="lesson-details-tabs" class="tab-container lesson-details">
         <ul class="tabs">
           <li><a href="#synopsis">Summary</a></li>
@@ -48,10 +44,6 @@
           <div id="tab-lesson-summary">
             <div id="lesson-synopsis">
               <%= h(@lesson.synopsis) -%>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
           </div>
           <div id="tab-lesson-detail">
@@ -146,9 +138,15 @@
         </div><!-- end panes -->
       </div><!-- end lesson-details-tabs -->
     </div><!-- end lesson-detail -->
+    
+    <% # lesson player -%>
+    <div id="lesson-player" class="span-6 last">
+      <div><%= render :partial => 'lessons/player', :object => @lesson -%></div>
+    </div>
+
   </div>
 
-  <div style="border: solid 0px red">
+  <div style="border: solid 0px red" class="span-12">
     <div><%= render :partial => 'lessons/groups', :object => @lesson %></div>
     <div><%= render :partial => "lessons/actions", :object => @lesson -%></div>
   </div>
