@@ -56,6 +56,7 @@ ActionController::Routing::Routes.draw do |map|
                         :rate => :post,
                         :recommend => :get,
                         :stats => :get,
+                        :show_groups => :get,
                         :watch => :get,
                         :unreject => :post
                 },

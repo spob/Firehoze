@@ -196,6 +196,17 @@ class LessonsControllerTest < ActionController::TestCase
         end
       end
 
+      fast_context "on GET to :show_groups" do
+        setup do
+          get :show_groups, :id => @lesson.id, :style => 'tab'
+        end
+        should_assign_to :lesson
+        should_assign_to :groups
+        should_respond_with :success
+        should_not_set_the_flash
+        should_render_template "groups"
+      end
+
       fast_context "on GET to :recommend" do
         setup do
           get :recommend, :id => @lesson.id, :style => 'tab'

@@ -148,7 +148,6 @@ class LessonsController < ApplicationController
     session[:lesson_to_buy] = nil
     @lesson = Lesson.find(params[:id], :include => [:instructor, :reviews])
     @instructor = @lesson.instructor
-    @groups = @lesson.groups      
 
     if @lesson.ready? or @lesson.instructed_by?(current_user) or (current_user and current_user.is_moderator?)
       LessonVisit.touch(@lesson, current_user, request.session.session_id)
@@ -162,6 +161,12 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
     @style = params[:style]
     render :layout => 'content_in_tab' if @style == 'tab'
+  end
+
+  def show_groups
+    @lesson = Lesson.find(params[:id])
+    @groups = @lesson.groups.public
+    @groups = @groups + @lesson.groups.private.a_member(current_user) if current_user
   end
 
   def stats
