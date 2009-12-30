@@ -75,9 +75,8 @@ class GiftCertificatesController < ApplicationController
         RunOncePeriodicJob.create(
                 :name => 'Deliver Gift Notification',
                 :job => "GiftCertificate.notify_of_gift(#{@gift_certificate.id}, #{current_user.id})")
-        flash[:notice] = t('gift_certificate.given',
-                           :code => @gift_certificate.formatted_code, :user => @to_user.login)
-        redirect_to gift_certificates_path
+        flash[:notice] = t('gift_certificate.given', :code => @gift_certificate.formatted_code, :user => @to_user.login)
+        redirect_to account_history_my_firehoze_path(:anchor => 'giftcerts')
       end
     end
   end
