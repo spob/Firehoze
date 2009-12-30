@@ -375,15 +375,14 @@ ul.lessons-row-format li div.details {
 
 
 /* LESSON (SINGULAR -- lessons#show page) */
-
 div#lesson-container {
-/*    margin:17px 0;
-    padding:0;
-*/}
+    position:relative;
+}
 
 /* title area (title, author, and rating stars)*/
 div#title-container {
     position:relative;
+    border-bottom: solid 1px #999;
 }
 
 div#title-container h3 {
@@ -424,18 +423,40 @@ div#stars {
     top:0;
 }
 
+/* Actions */
+div#lesson-container div#actions {
+    position:absolute;
+    top:0;
+    right:0;
+    padding:0;
+    margin:0;
+
+}
+div#lesson-container div#actions ul  {
+    margin:0;
+    padding:0;
+}
+
+div#lesson-container div#actions ul li {
+    float:left;
+    list-style-type: none;
+    margin-right:0 !important;
+    padding-right:0 !important;
+}
+
 /* lesson play div */
 div#lesson-player {
-/*    float:left;
-    width: 500px;
-*/
+    margin-top: 30px;
+    border-top: solid 3px #212121;
+    padding-top: 19px;
+
 }
 
 /* lesson details div */
 div#lesson-detail {
-/*    margin: 0 0 0 500px;
-    padding:0;
-*/}
+    /*    margin: 0 0 0 500px;
+        padding:0;
+    */}
 
 div#lesson-details-tabs div.panes {
     padding:12px 0 0 0;

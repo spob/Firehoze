@@ -82,7 +82,7 @@ module LessonsHelper
     end
   end
 
-  def button_to_buy(lesson)
+  def link_to_buy(lesson)
     if lesson.ready?
       unless lesson.owned_by?(current_user) or lesson.can_edit?(current_user)
         if lesson.free_credits.available.size > 0
@@ -90,14 +90,14 @@ module LessonsHelper
         else
           action_text = t('lesson.buy')
         end
-        button_to action_text, watch_lesson_path(lesson), :method => :get
+        link_to action_text, watch_lesson_path(lesson), :class => :rounded 
       end
     end
   end
 
-  def button_to_edit(lesson)
+  def link_to_edit(lesson)
     if lesson.can_edit?(current_user)
-      button_to t('lesson.edit'), edit_lesson_path(lesson), :method => :get
+      link_to t('lesson.edit'), edit_lesson_path(lesson), :class => :rounded
     end
   end
 
@@ -107,9 +107,9 @@ module LessonsHelper
     end
   end
 
-  def button_to_unreject(lesson)
+  def link_to_unreject(lesson)
     if current_user.try("is_moderator?") and lesson.status == LESSON_STATUS_REJECTED
-      button_to t('lesson.unreject'), unreject_lesson_path(lesson), :method => :post
+      link_to t('lesson.unreject'), unreject_lesson_path(lesson), :class => :rounded
     end
   end
 
@@ -131,12 +131,12 @@ module LessonsHelper
     button_to label, new_lesson_lesson_comment_path(lesson), :method => :get
   end
 
-  def button_to_wish(lesson)
+  def link_to_wish(lesson)
     unless lesson.instructed_by?(current_user) or lesson.owned_by?(current_user)
       if current_user and current_user.on_wish_list?(lesson)
-        button_to "Remove from Wish List", wish_list_path(lesson), :method => :delete, :disable_with => translate('general.disable_with')
+        link_to "Remove from Wish List", wish_list_path(lesson), :method => :delete, :disable_with => translate('general.disable_with'), :class => :rounded
       else
-        button_to "Add to Wish List", wish_lists_path(:id => lesson), :method => :post, :disable_with => translate('general.disable_with')
+        link_to "Add to Wish List", wish_lists_path(:id => lesson), :method => :post, :disable_with => translate('general.disable_with'), :class => :rounded
       end
     end
   end

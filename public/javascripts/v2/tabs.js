@@ -57,8 +57,4 @@ $(function() {
         effect: 'ajax'
     });
 
-    // lesson stats
-    $("#lesson-stats-tabs ul.tabs").tabs("#lesson-stats-tabs > div.panes > div", {
-        effect: 'fade'
-    });
 });

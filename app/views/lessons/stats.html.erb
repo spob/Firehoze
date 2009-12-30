@@ -1,53 +1,47 @@
-<ul>
-  <li>show_purchases: <%= @show_purchases %></li>
-  <li>show_video_stats: <%= @show_video_stats %></li>
-</ul>
-<div>
-  <div class="nested-navigation">
-    <ul class="links">
-      <% if @show_purchases %>
-      <li><a href="#purchases">Lesson Purchases</a></li>
-      <% end %>
-      <% if @show_video_stats %>
-      <li><a href="#detail">Video Stats</a></li>
-      <% end %>
-    </ul>
-    <div class="clear"></div>
+<div class="nested-navigation">
+  <ul class="links">
 
-    <div class="nested-navigation-panes">
-      <% if @show_purchases -%>
+    <% if @show_purchases %>
+      <li><a class="nested" href="#2">Lesson Purchases</a></li>
+    <% end %>
+    <% if @show_video_stats %>
+      <li><a class="nested" href="#2">Video Stats</a></li>
+    <% end %>
+  </ul>
+
+  <div class="clear"></div>
+
+  <div class="nested-navigation-panes">
+    <% if @show_purchases -%>
       <div>
-        <div id="tab-lesson-purchases">
-          <table>
-            <tr>
-              <th>Purchased At</th>
-              <th>User</th>
-              <th>Price Paid</th>
-              <th>Commission Paid</th>
-              <th>Description</th>
-            </tr>
-            <%= render :partial => 'lessons/credit', :collection => @lesson.credits.descend_by_redeemed_at.all(:include => [:user, :sku]) -%>
-            <tr>
-              <td><b>TOTAL</b></td>
-              <td>&nbsp;</td>
-              <td><b><%=h number_to_currency(@lesson.credits.sum(:price)) -%></b></td>
-              <td><b><%=h number_to_currency(@lesson.credits.sum(:commission_paid)) -%></b></td>
-              <td>&nbsp;</td>
-            </tr>
-          </table>
-        </div>
-        <div class="clear"></div>
+        <table>
+          <tr>
+            <th>Purchased At</th>
+            <th>User</th>
+            <th>Price Paid</th>
+            <th>Commission Paid</th>
+            <th>Description</th>
+          </tr>
+          <%= render :partial => 'lessons/credit', :collection => @lesson.credits.descend_by_redeemed_at.all(:include => [:user, :sku]) -%>
+          <tr>
+            <td><b>TOTAL</b></td>
+            <td>&nbsp;</td>
+            <td><b><%=h number_to_currency(@lesson.credits.sum(:price)) -%></b></td>
+            <td><b><%=h number_to_currency(@lesson.credits.sum(:commission_paid)) -%></b></td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
       </div>
-      <% end %>
+    <% end %>
 
-      <% if current_user.try("is_admin?") or @lesson.instructor == current_user -%>
+    <% if current_user.try("is_admin?") or @lesson.instructor == current_user -%>
       <div>
-        <div id="tab-video-stats">
-          <table>
-            <tr>
-              <th>Video</th>
-              <th>Status</th>
-              <% if current_user.try("is_admin?") -%>
+        <p></p>
+        <table>
+          <tr>
+            <th>Video</th>
+            <th>Status</th>
+            <% if current_user.try("is_admin?") -%>
               <th>Size</th>
               <th>Dimensions</th>
               <th>Filename</th>
@@ -55,15 +49,12 @@
               <th>Conversion Costs<br />Input/Output</th>
               <th>Log</th>
               <th>Action</th>
-              <% end -%>
-            </tr>
-            <%= render :partial => "video", :collection => @lesson.videos.all(:include => (current_user.try("is_admin?") ? [:video_status_changes, :lesson] : [])) -%>
-          </table>
-        </div>
-        <div class="clear"></div>
+            <% end -%>
+          </tr>
+          <%= render :partial => "video", :collection => @lesson.videos.all(:include => (current_user.try("is_admin?") ? [:video_status_changes, :lesson] : [])) -%>
+        </table>
       </div>
-      <% end %>
-    </div>
-    <!-- end secondary panes -->
-  </div>
+    <% end %>
+  </div><!-- nested-navigation-panes -->
 </div>
+

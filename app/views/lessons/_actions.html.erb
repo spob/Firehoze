@@ -1,12 +1,10 @@
-<%
-lesson = object
-%>
+<% lesson = object %>
 
-<ol>
-<li><%= button_to_buy(lesson) %></li>
-<li><%= button_to_wish(lesson) %></li>
-<li><%= button_to_edit(lesson) %></li>
-<li><%= button_to_unreject(lesson) %></li>
-<li><%= link_to_add_attachment(lesson) %></li>
-<li><%= flag_link lesson -%></li>
-</ol>
+<ul>
+  <%= content_tag(:li, link_to_buy(lesson)) if link_to_buy(lesson).present? %>
+  <%= content_tag(:li, link_to_wish(lesson)) if link_to_wish(lesson).present? %>
+  <%= content_tag(:li, link_to_edit(lesson)) if link_to_edit(lesson).present? %>
+  <%= content_tag(:li, link_to_unreject(lesson)) if link_to_unreject(lesson).present? %>
+  <%= content_tag(:li, link_to_unreject(lesson)) if link_to_unreject(lesson).present? %>
+  <%= content_tag(:li, flag_link(lesson)) if flag_link(lesson).present? %>
+</ul>

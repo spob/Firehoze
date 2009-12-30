@@ -4,7 +4,7 @@
 <%= javascript 'swfobject' %>
 
 <div id="lesson-show">
-  <div id="title-container">
+  <div id="title-container" class="span-12 append-bottom">
     <div id="title">
       <h3>
         <% if category = @lesson.category %>
@@ -30,7 +30,12 @@
       </div>
     </div>
   </div>
-  <div id="lesson-container" style="border:solid 0px red;" class="span-12">
+  <div id="lesson-container" class="span-12 append-bottom">
+
+    <div id="actions">
+<%#= render :partial => 'lessons/groups', :object => @lesson %>
+      <div><%= render :partial => "lessons/actions", :object => @lesson -%></div>
+    </div>
 
     <% # lesson detail -%>
     <div id="lesson-detail" class="span-6">
@@ -44,6 +49,10 @@
           <div id="tab-lesson-summary">
             <div id="lesson-synopsis">
               <%= h(@lesson.synopsis) -%>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
             </div>
           </div>
           <div id="tab-lesson-detail">
@@ -133,143 +142,52 @@
               <div id="lesson-instructor-bio">
                 <%= @instructor.bio %>
               </div>
+
+              <% # LESSON BY THIS INSTRUCTOR -%>
+              <% if @instructor.instructed_lessons.size > 1 %>
+                <div id="instructor_accordion_container" class="append-bottom">
+                  <div id="instructor_accordion">
+                    <h3><a href="#">Lessons by <%= truncate(h(@instructor.login), :length => 27) %></a></h3>
+
+                    <div class="content">
+                      <%= render :partial => "lessons/lesson_brief", :collection => (@instructor.instructed_lessons.reject{ |lesson| lesson == @lesson }) %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+
+
             </div>
           </div>
         </div><!-- end panes -->
       </div><!-- end lesson-details-tabs -->
     </div><!-- end lesson-detail -->
-    
+
     <% # lesson player -%>
     <div id="lesson-player" class="span-6 last">
       <div><%= render :partial => 'lessons/player', :object => @lesson -%></div>
     </div>
-
-  </div>
-
-  <div style="border: solid 0px red" class="span-12">
-    <div><%= render :partial => 'lessons/groups', :object => @lesson %></div>
-    <div><%= render :partial => "lessons/actions", :object => @lesson -%></div>
   </div>
 
 
-
-  <div style="border: solid 0px red">
-    <div class="span-9" style="border: solid 0px green">
+  <div>
+    <div class="span-12">
       <% # LESSON TABS -%>
-
       <div id="lesson-content-tabs" class="tab-container"   style="border: solid 0px lime">
         <ul class="tabs">
           <%= content_tag(:li, "#{ link_to h(t('lesson.notes')), lesson_notes_lesson_path(@lesson, :style => 'tab') }")  unless @lesson.notes.blank? and @lesson.attachments.empty? %>
           <li><%= link_to h(t('lesson.reviews')), lesson_reviews_path(@lesson, :style => 'tab', :per_page => REVIEWS_ON_LESSON_SHOW_PER_PAGE) %></li>
           <li><%= link_to h(t('lesson.discussion')), lesson_lesson_comments_path(@lesson, :style => 'tab', :per_page => COMMENTS_ON_LESSON_SHOW_PER_PAGE) %></li>
+          <li><%= link_to "Recommendations", recommendations_lesson_path(@lesson, :style => 'tab') %></li>
+          <li><%= link_to "Stats", stats_lesson_path(@lesson, :style => 'tab') %></li>
+          <li><%= link_to "Groups", stats_lesson_path(@lesson, :style => 'tab') %></li>
         </ul>
 
-        <!-- single pane -->
+        <!-- single pane (ajax'd)-->
         <div class="panes">
           <div style="display:block"></div>
         </div>
       </div>
-
-      <% # STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT...  -%>
-      <div>
-        <%= render :partial => 'lesson_buy_pairs', :object => @lesson -%>
-      </div>
-
-      <% # WHAT DO STUDENTS ULTIMATELY BUY AFTER BROWSING THIS ITEM?  -%>
-      <div>
-        <%= render :partial => 'lesson_buy_patterns', :object => @lesson -%>
-      </div>
     </div>
-
-    <div class="span-3 last" style="border: solid 0px red">
-      <% # LESSON BY THIS INSTRUCTOR -%>
-      <% if @instructor.instructed_lessons.size > 1 %>
-        <div id="instructor_accordion_container" class="append-bottom">
-          <div id="instructor_accordion">
-            <h3><a href="#">Lessons by <%= truncate(h(@instructor.login), :length => 27) %></a></h3>
-
-            <div class="content">
-              <%= render :partial => "lessons/lesson_brief", :collection => (@instructor.instructed_lessons.reject{ |lesson| lesson == @lesson }) %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-
-      <% #TAG CLOUD -%>
-      <%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts -%>
-
-    </div>
-
-  </div>
-  <% # LESSON STATS (ACCORDIAN FOR INSTRUCTOR AND ADMINS ONLY) -%>
-
-  <%
-  show_purchases = false
-  show_video_stats = false
-  if current_user.try("is_admin?") or @lesson.instructor == current_user or current_user.try("is_paymentmgr?")
-    show_purchases = true
-  end
-
-  if current_user.try("is_admin?") or @lesson.instructor == current_user
-    show_video_stats = true
-  end
-%>
-
-  <div class="span-12">
-    <div id="lesson-stats-tabs" class="tab-container">
-      <ul class="tabs">
-        <% if show_purchases %>
-          <li><a href="#purchases">Lesson Purchases</a></li>
-        <% end %>
-        <% if show_video_stats %>
-          <li><a href="#detail">Video Stats</a></li>
-        <% end %>
-      </ul>
-      <div class="panes">
-        <% if show_purchases -%>
-          <div id="tab-lesson-purchases">
-            <table>
-              <tr>
-                <th>Purchased At</th>
-                <th>User</th>
-                <th>Price Paid</th>
-                <th>Commission Paid</th>
-                <th>Description</th>
-              </tr>
-              <%= render :partial => 'lessons/credit', :collection => @lesson.credits.descend_by_redeemed_at.all(:include => [:user, :sku]) -%>
-              <tr>
-                <td><b>TOTAL</b></td>
-                <td>&nbsp;</td>
-                <td><b><%=h number_to_currency(@lesson.credits.sum(:price)) -%></b></td>
-                <td><b><%=h number_to_currency(@lesson.credits.sum(:commission_paid)) -%></b></td>
-                <td>&nbsp;</td>
-              </tr>
-            </table>
-          </div>
-        <% end -%>
-
-        <% if current_user.try("is_admin?") or @lesson.instructor == current_user -%>
-          <div id="tab-video-stats">
-            <table>
-              <tr>
-                <th>Video</th>
-                <th>Status</th>
-                <% if current_user.try("is_admin?") -%>
-                  <th>Size</th>
-                  <th>Dimensions</th>
-                  <th>Filename</th>
-                  <th>File Type</th>
-                  <th>Conversion Costs<br />Input/Output</th>
-                  <th>Log</th>
-                  <th>Action</th>
-                <% end -%>
-              </tr>
-              <%= render :partial => "video", :collection => @lesson.videos.all(:include => (current_user.try("is_admin?") ? [:video_status_changes, :lesson] : [])) -%>
-            </table>
-          </div>
-        <% end -%>
-      </div>
-    </div>
-
   </div>
 </div>
