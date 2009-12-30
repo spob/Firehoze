@@ -323,7 +323,7 @@ class LessonTest < ActiveSupport::TestCase
       end
       should "retrieve lesson groups with no user specified" do
         @groups = @lesson.lesson_groups(nil)
-        assert_equal 3, @groups.size
+        assert_equal 2, @groups.size
         assert @groups.include?(@group1)
         assert !@groups.include?(@group2)
         assert !@groups.include?(@group3)
