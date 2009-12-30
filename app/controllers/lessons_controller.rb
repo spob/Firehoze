@@ -12,7 +12,7 @@ class LessonsController < ApplicationController
 
   verify :method => :post, :only => [ :create, :convert, :unreject ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update, :conversion_notify ], :redirect_to => :home_path
-  before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :recommendations, :update, :watch, :unreject, :show_lesson_status ]
+  before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :recommendations, :stats, :update, :watch, :unreject, :show_lesson_status ]
   before_filter :set_per_page, :only => [ :ajaxed, :index, :list, :tabbed, :tagged_with ]
   before_filter :set_collection, :only => [ :ajaxed, :list, :tabbed ]
 
@@ -148,7 +148,8 @@ class LessonsController < ApplicationController
     session[:lesson_to_buy] = nil
     @lesson = Lesson.find(params[:id], :include => [:instructor, :reviews])
     @instructor = @lesson.instructor
-    @groups = @lesson.groups
+    @groups = @lesson.groups      
+
     if @lesson.ready? or @lesson.instructed_by?(current_user) or (current_user and current_user.is_moderator?)
       LessonVisit.touch(@lesson, current_user, request.session.session_id)
     else
@@ -160,6 +161,14 @@ class LessonsController < ApplicationController
   def recommendations
     @lesson = Lesson.find(params[:id], :include => [:instructor, :reviews])
     @style = params[:style]
+    render :layout => 'content_in_tab' if @style == 'tab'
+  end
+
+  def stats
+    @lesson = Lesson.find(params[:id], :include => [:instructor, :reviews])
+    @style = params[:style]
+    @show_purchases =  current_user.try("is_admin?") or @lesson.instructor == current_user or current_user.try("is_paymentmgr?") ? true : false
+    @show_video_stats = current_user.try("is_admin?") or @lesson.instructor == current_user ? true : false
     render :layout => 'content_in_tab' if @style == 'tab'
   end
 

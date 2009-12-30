@@ -55,6 +55,7 @@ ActionController::Routing::Routes.draw do |map|
                         :lesson_notes => :get,
                         :rate => :post,
                         :recommendations => :get,
+                        :stats => :get,
                         :watch => :get,
                         :unreject => :post
                 },
