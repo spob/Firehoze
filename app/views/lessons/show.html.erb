@@ -4,32 +4,30 @@
 <%= javascript 'swfobject' %>
 
 <div id="lesson-show">
-  <div id="title-container" class="span-12 append-bottom">
-    <div id="title">
-      <h3>
-        <% if category = @lesson.category %>
-          <% AncestorCategory.category_id_equals(category.id).descend_by_generation(:select => [:ancestor_name]).each do |cat| %>
-            <%= link_to(cat.ancestor_name, (category_path(cat.ancestor_category).downcase)) %>  /
-          <% end %>
-          <%= link_to(category.name, (category_path(category).downcase)) %> /
-        <% end %>
-        <%= h @lesson.title -%>
-      </h3>
-      <span id="author">by <%= link_to_profile(@instructor) -%></span>
-      <div id="rating-container">
-        <div id="rating">
-          <div id="stars">
-            <%= lesson_rating_for(@lesson, current_user) -%>
-          </div>
-          <div id="stats">
-            Average Rating:
-            <span id="<%= dom_id(@lesson) -%>_average" class="average"><%= current_average(@lesson) -%></span>
-            (<span id="<%= dom_id(@lesson) -%>_count"><%= vote_counts_phrase(@lesson) -%></span>)
-          </div>
+
+  <%= render :partial => "categories/v2/breadcrumbs", :object => @lesson.category, :locals => { :mode => "lessons" } %>
+
+  <div id="title-container" class="span-12">
+    <div class="span-9" id="title">
+      <h3><%= h @lesson.title -%></h3>
+    </div>
+    <div class="span-3 last" id="rating-container">
+      <div id="rating">
+        <div id="stars">
+          <%= lesson_rating_for(@lesson, current_user) -%>
+        </div>
+        <div id="stats">
+          Average Rating:
+          <span id="<%= dom_id(@lesson) -%>_average" class="average"><%= current_average(@lesson) -%></span>
+          (<span id="<%= dom_id(@lesson) -%>_count"><%= vote_counts_phrase(@lesson) -%></span>)
         </div>
       </div>
     </div>
   </div>
+
+  <div class="span-12" id="author">by <%= link_to_profile(@instructor) -%></div>
+
+
   <div id="lesson-container" class="span-12 append-bottom">
 
     <div id="actions">
@@ -178,7 +176,7 @@
           <%= content_tag(:li, "#{ link_to h(t('lesson.notes')), lesson_notes_lesson_path(@lesson, :style => 'tab') }")  unless @lesson.notes.blank? and @lesson.attachments.empty? %>
           <li><%= link_to h(t('lesson.reviews')), lesson_reviews_path(@lesson, :style => 'tab', :per_page => REVIEWS_ON_LESSON_SHOW_PER_PAGE) %></li>
           <li><%= link_to h(t('lesson.discussion')), lesson_lesson_comments_path(@lesson, :style => 'tab', :per_page => COMMENTS_ON_LESSON_SHOW_PER_PAGE) %></li>
-          <li><%= link_to "Recommendations", recommendations_lesson_path(@lesson, :style => 'tab') %></li>
+          <li><%= link_to "Recommendations", recommend_lesson_path(@lesson, :style => 'tab') %></li>
           <li><%= link_to "Stats", stats_lesson_path(@lesson, :style => 'tab') %></li>
           <li><%= link_to "Groups", stats_lesson_path(@lesson, :style => 'tab') %></li>
         </ul>
