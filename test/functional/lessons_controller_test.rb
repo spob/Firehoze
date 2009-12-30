@@ -28,7 +28,7 @@ class LessonsControllerTest < ActionController::TestCase
       should "not populate lesson visit" do
         assert LessonVisit.all.empty?
       end
-    end
+    end                         
 
     fast_context "on GET to :show with a lesson in the ready state" do
       setup do
