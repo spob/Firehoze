@@ -211,7 +211,6 @@ class LessonsControllerTest < ActionController::TestCase
           @lesson.instructor = Factory.create(:user)
           @lesson.save!
           assert !@lesson.instructed_by?(@user)
-          puts "====#{@lesson.instructed_by?(@user)}"
           get :stats, :id => @lesson.id
         end
         should_assign_to :lesson
