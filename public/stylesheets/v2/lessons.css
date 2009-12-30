@@ -243,23 +243,23 @@ position:relative;
 }
 
 /* Lessons you may like */
-.lessons-you-may-like .lesson_brief  {
+.lesson_brief  {
     font-size:11px;
 }
 
-.lessons-you-may-like .lesson_brief .title {
+.lesson_brief .title {
     font-style:italic;
 }
 
 .widget-box-content .lesson_brief li {
     position:relative;
     margin: 0;
-    padding: 8px 8px 8px 54px;
+    padding: 8px 8px 8px 86px;
     display:block;
-    min-height: 45px;
+    min-height: 46px;
 }
 
-.widget-box-content .lesson_brief li img.avatar {
+.widget-box-content .lesson_brief li img.lesson_tn {
     border: solid 1px #E3E3E3;
     position:absolute;
     left:8px;
@@ -388,14 +388,14 @@ div#title-container {
 }
 
 div#title-container h3 {
-  position:absolute;
-  bottom:0;
-  left:0;
+    position:absolute;
+    bottom:0;
+    left:0;
     color: #17587F;
     font-weight:bold;
     padding:0;
     margin:0 0 10px 0;
- }
+}
 
 div#lesson-show div#author {
     font-weight:bold;
@@ -457,10 +457,7 @@ div#lesson-player {
 }
 
 /* lesson details div */
-div#lesson-detail {
-    /*    margin: 0 0 0 500px;
-        padding:0;
-    */}
+div#lesson-detail { }
 
 div#lesson-details-tabs div.panes {
     padding:12px 0 0 0;
@@ -471,6 +468,7 @@ div#lesson-details-tabs div.panes {
 
 div#tab-lesson-instructor div#avatar-container {
     float:left;
+    margin:0 15px 0 0;
 }
 
 div#avatar-container {
@@ -483,10 +481,12 @@ div#avatar-container {
 div#tab-lesson-instructor img.avatar {
     border: solid 1px #999;
     background:#fff;
+    float:left;
 }
 
 div#tab-lesson-instructor div#bio {
-    margin:0 0 0 84px;
+    line-height: 18px;
+    margin: 0 17px 17px 0;
 }
 
 div#avatar-container a:link,
@@ -495,6 +495,16 @@ div#avatar-container a:hover,
 div#avatar-container a:active {
     border:0 none;
     text-decoration: none !important;
+}
+
+div#lessons-by-instructor { 
+    margin: 0 17px 0 0;
+    padding:17px 0;
+    border-top: dotted 1px #999;
+
+}
+div#lessons-by-instructor div.widget-box-content.lessons {
+    border: solid 1px #ccc;
 }
 
 div#add-to-group a#title {}

@@ -35,11 +35,9 @@ $(function() {
     });
 
     $('div#lesson-synopsis, div#lesson-instructor-bio').truncate({
-        max_length: 450,
+        max_length: 350,
         more : "more",
         less : "less",
         fade : 500
     });
-
-
 });
