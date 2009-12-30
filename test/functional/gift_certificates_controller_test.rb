@@ -126,7 +126,7 @@ class GiftCertificatesControllerTest < ActionController::TestCase
           should_assign_to :gift_certificate
           should_respond_with :redirect
           should_set_the_flash_to /successfully given/
-          should_redirect_to("gift certificates page") { gift_certificates_path }
+          should_redirect_to("account history in my firehoze") { account_history_my_firehoze_path(:anchor => 'giftcerts') }
         end
 
         #context "specifying email" do

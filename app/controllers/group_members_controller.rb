@@ -47,7 +47,7 @@ class GroupMembersController < ApplicationController
 
   def destroy
     @group_member = GroupMember.find_by_user_id_and_group_id(current_user.try(:id), params[:id])
-    @group.group_members.delete(@group_member)
+    @group_member.destroy
     flash[:notice] = t('group.left', :group => @group.name)
     if @group.can_see? current_user
       redirect_to group_path(@group)

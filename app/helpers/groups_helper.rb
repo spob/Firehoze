@@ -50,7 +50,7 @@ module GroupsHelper
     elsif current_user.nil?
       "You are not logged in"
     else
-      "You are a #{member_type.downcase} of this group"
+      "You are a not a member of this group"
     end
   end
 
