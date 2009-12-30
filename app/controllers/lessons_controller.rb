@@ -64,7 +64,7 @@ class LessonsController < ApplicationController
 
   def new
     if current_user.verified_instructor?
-      @lesson = Lesson.new
+      current_user.try("is_admin?") or @lesson = Lesson.new
     else
       flash[:error] = t 'lesson.must_be_instructor'
       redirect_to instructor_signup_wizard_account_path(current_user)
@@ -159,7 +159,7 @@ class LessonsController < ApplicationController
   end
 
   def recommend
-    @lesson = Lesson.find(params[:id], :include => [:instructor, :reviews])
+    @lesson = Lesson.find(params[:id])
     @style = params[:style]
     render :layout => 'content_in_tab' if @style == 'tab'
   end
@@ -167,8 +167,8 @@ class LessonsController < ApplicationController
   def stats
     @lesson = Lesson.find(params[:id], :include => [:instructor, :reviews])
     @style = params[:style]
-    @show_purchases =  current_user.try("is_admin?") or @lesson.instructor == current_user or current_user.try("is_paymentmgr?") ? true : false
-    @show_video_stats = current_user.try("is_admin?") or @lesson.instructor == current_user ? true : false
+    @show_purchases = (current_user.try("is_admin?") or @lesson.instructed_by?(current_user) or current_user.try("is_paymentmgr?"))
+    @show_video_stats = (current_user.try("is_admin?") or @lesson.instructed_by?(current_user))
     render :layout => 'content_in_tab' if @style == 'tab'
   end
 

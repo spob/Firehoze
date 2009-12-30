@@ -28,23 +28,28 @@ class LessonsControllerTest < ActionController::TestCase
       should "not populate lesson visit" do
         assert LessonVisit.all.empty?
       end
-    end                         
+    end
 
-    fast_context "on GET to :show with a lesson in the ready state" do
+    fast_context "with a lesson in the ready state" do
       setup do
-        assert LessonVisit.all.empty?
         @lesson = Factory.create(:lesson)
         @lesson. update_attribute(:status, LESSON_STATUS_READY)
         assert @lesson.ready?
-        get :show, :id => @lesson.id
       end
 
-      should_assign_to :lesson
-      should_respond_with :success
-      should_not_set_the_flash
-      should_render_template "show"
-      should "populate lesson visit" do
-        assert_equal 1, LessonVisit.all.size
+      fast_context "on GET to :show with a lesson in the ready state" do
+        setup do
+          assert LessonVisit.all.empty?
+          get :show, :id => @lesson.id
+        end
+
+        should_assign_to :lesson
+        should_respond_with :success
+        should_not_set_the_flash
+        should_render_template "show"
+        should "populate lesson visit" do
+          assert_equal 1, LessonVisit.all.size
+        end
       end
     end
 
@@ -189,6 +194,53 @@ class LessonsControllerTest < ActionController::TestCase
             end
           end
         end
+      end
+
+      fast_context "on GET to :recommend" do
+        setup do
+          get :recommend, :id => @lesson.id, :style => 'tab'
+        end
+        should_assign_to :lesson
+        should_respond_with :success
+        should_not_set_the_flash
+        should_render_template "recommend"
+      end
+
+      fast_context "on GET to :stats when not the instructor" do
+        setup do
+          @lesson.instructor = Factory.create(:user)
+          @lesson.save!
+          assert !@lesson.instructed_by?(@user)
+          puts "====#{@lesson.instructed_by?(@user)}"
+          get :stats, :id => @lesson.id
+        end
+        should_assign_to :lesson
+        should_assign_to :show_purchases
+        should_assign_to :show_video_stats
+        should "set values" do
+          assert_equal false, assigns(:show_purchases)
+          assert_equal false, assigns(:show_video_stats)
+        end
+        should_respond_with :success
+        should_not_set_the_flash
+        should_render_template "stats"
+      end
+
+      fast_context "on GET to :stats when the instructor" do
+        setup do
+          assert @lesson.instructed_by?(@user)
+          get :stats, :id => @lesson.id
+        end
+        should_assign_to :lesson
+        should_assign_to :show_purchases
+        should_assign_to :show_video_stats
+        should "set values" do
+          assert_equal true, assigns(:show_purchases)
+          assert_equal true, assigns(:show_video_stats)
+        end
+        should_respond_with :success
+        should_not_set_the_flash
+        should_render_template "stats"
       end
 
       fast_context "and not an admin" do
