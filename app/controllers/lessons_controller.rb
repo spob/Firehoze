@@ -12,7 +12,7 @@ class LessonsController < ApplicationController
 
   verify :method => :post, :only => [ :create, :convert, :unreject ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update, :conversion_notify ], :redirect_to => :home_path
-  before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :update, :watch, :unreject, :show_lesson_status ]
+  before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :recommendations, :update, :watch, :unreject, :show_lesson_status ]
   before_filter :set_per_page, :only => [ :ajaxed, :index, :list, :tabbed, :tagged_with ]
   before_filter :set_collection, :only => [ :ajaxed, :list, :tabbed ]
 
@@ -155,6 +155,10 @@ class LessonsController < ApplicationController
       flash[:error] = t 'lesson.not_ready'
       redirect_to lessons_path
     end
+  end
+
+  def recommendations
+    @lesson = Lesson.find(params[:id], :include => [:instructor, :reviews])
   end
 
   def unreject
@@ -324,7 +328,7 @@ class LessonsController < ApplicationController
       'content_in_tab'
     elsif %w(list_admin).include?(params[:action])
       'admin_v2'
-    elsif %w(advanced_search create edit new perform_advanced_search show update).include?(params[:action])
+    elsif %w(advanced_search create edit new perform_advanced_search recommendations show update).include?(params[:action])
       'application_v2'
     else
       'application'
