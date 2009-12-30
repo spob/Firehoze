@@ -32,7 +32,7 @@ class LessonTest < ActiveSupport::TestCase
 
     fast_context "with available credits" do
       setup do
-        @sku = Factory.create(:credit_sku)     
+        @sku = Factory.create(:credit_sku)
         @user.credits.create(:sku => @sku, :price => 0.99)
         assert @user.available_credits.present?
         @credit = @lesson.acquire(@user, "session")
@@ -267,18 +267,82 @@ class LessonTest < ActiveSupport::TestCase
 
     fast_context "and several groups" do
       setup do
+        @user = Factory.create(:user)
         @group1 = Factory.create(:group)
         @group2 = Factory.create(:group)
         @group3 = Factory.create(:group)
+        @group4 = Factory.create(:group)
+        @group5 = Factory.create(:group, :private => true)
+        @group6 = Factory.create(:group, :private => true)
+        @group7 = Factory.create(:group, :private => true)
+        @group8 = Factory.create(:group, :private => true)
         @group_lesson1 = GroupLesson.create!(:user => Factory.create(:user), :lesson => @lesson, :group => @group1)
         @group_lesson2 = GroupLesson.create!(:user => Factory.create(:user), :lesson => @lesson, :group => @group3,
                                              :active => false)
+        @group_lesson4 = GroupLesson.create!(:user => Factory.create(:user), :lesson => @lesson, :group => @group4)
+        @group_lesson5 = GroupLesson.create!(:user => Factory.create(:user), :lesson => @lesson, :group => @group5)
+        @group_lesson6 = GroupLesson.create!(:user => Factory.create(:user), :lesson => @lesson, :group => @group6,
+                                             :active => false)
+        @group_lesson8 = GroupLesson.create!(:user => Factory.create(:user), :lesson => @lesson, :group => @group8)
+
+        @group_member1 = GroupMember.create!(:user => @user, :group => @group1, :member_type => MEMBER)
+        @group_member2 = GroupMember.create!(:user => @user, :group => @group2, :member_type => MEMBER)
+        @group_member5 = GroupMember.create!(:user => @user, :group => @group5, :member_type => MEMBER)
+        @group_member6 = GroupMember.create!(:user => @user, :group => @group6, :member_type => MEMBER)
+
+        assert @group1.includes_member?(@user)
+        assert @group2.includes_member?(@user)
+        assert !@group3.includes_member?(@user)
+        assert !@group4.includes_member?(@user)
+        assert @group5.includes_member?(@user)
+        assert @group6.includes_member?(@user)
+        assert !@group7.includes_member?(@user)
+        assert !@group8.includes_member?(@user)
+      end
+
+#        group  private   lesson group    user a member    user show  no user show
+#          1       N            Y              Y             Y             Y
+#          2       N            N              Y             N             N
+#          3       N            N              N             N             N
+#          4       N            Y              N             Y             Y
+#          5       Y            Y              Y             Y             N
+#          6       Y            N              Y             N             N
+#          7       Y            N              N             N             N
+#          8       Y            Y              N             N             N
+      should "retrieve lesson groups with user specified" do
+        @groups = @lesson.lesson_groups(@user)
+        assert_equal 3, @groups.size
+        assert @groups.include?(@group1)
+        assert !@groups.include?(@group2)
+        assert !@groups.include?(@group3)
+        assert @groups.include?(@group4)
+        assert @groups.include?(@group5)
+        assert !@groups.include?(@group6)
+        assert !@groups.include?(@group7)
+        assert !@groups.include?(@group8)
+      end
+      should "retrieve lesson groups with no user specified" do
+        @groups = @lesson.lesson_groups(nil)
+        assert_equal 2, @groups.size
+        assert @groups.include?(@group1)
+        assert !@groups.include?(@group2)
+        assert !@groups.include?(@group3)
+        assert @groups.include?(@group4)
+        assert !@groups.include?(@group5)
+        assert !@groups.include?(@group6)
+        assert !@groups.include?(@group7)
+        assert !@groups.include?(@group8)
       end
 
       should "determine when group belongs to a lesson" do
         assert @lesson.belongs_to_group?(@group1)
         assert !@lesson.belongs_to_group?(@group2)
         assert !@lesson.belongs_to_group?(@group3)
+        assert @lesson.belongs_to_group?(@group4)
+        assert @lesson.belongs_to_group?(@group5)
+        assert !@lesson.belongs_to_group?(@group6)
+        assert !@lesson.belongs_to_group?(@group7)
+        assert @lesson.belongs_to_group?(@group8)
       end
     end
 

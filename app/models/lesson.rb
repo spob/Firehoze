@@ -150,6 +150,10 @@ class Lesson < ActiveRecord::Base
     @@lesson_statuses
   end
 
+  def lesson_groups(user)
+    active_groups.public + (user ? active_groups.private.a_member(user) : [])
+  end
+
   def self.audience_levels
     levels = []
     LESSON_LEVELS.each do |l|
