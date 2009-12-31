@@ -9,10 +9,15 @@
           <h4>An avatar is a great way to tailor how you appear to other Firehoze users.</h4>
         </li>
         <li>
-        <span>
-          <label>Current Avatar</label>
-          <%= avatar_tag @user, :size => :medium, :url => :s3 %>
+          <% gravatar = gravatar_as_source(current_user) %>
+          <span>
+          <label><%= gravatar ? "Gravatar" : "Current Avatar" %></label>
+            <%= avatar_tag @user, :size => :medium, :url => :s3 %>
         </span>
+          <% if gravatar %>
+          <span class="help">Your avatar is being provided by <%= link_to "Gravatar", "http://gravatar.com" %>. You can override your avatar by
+          selecting an image below</span>
+          <% end %>
         </li>
         <li>
         <span>
@@ -24,12 +29,12 @@
         <span class="unlabelled">
           <%= f.submit "Update", :id => "update-avatar" %>
           <%= link_to 'Cancel', home_path %>
-      <% if @user.avatar? %>
+          <% if @user.avatar? %>
           | <%= link_to('Delete current', clear_avatar_account_path(@user.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) %>
       <% end %>
         </span>
 
-          <div class="clear" />
+          <div class="clear"/>
         </li>
       </ul>
   <% end %>
