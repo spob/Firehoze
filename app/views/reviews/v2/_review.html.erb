@@ -5,7 +5,10 @@
   </div>
 
   <div class="span-10 last">
-    <span class="title h4"><%= h review.lesson.title %></span>
+    <% content_tag :span, :class => "title h4" do %>
+      <%= h review.lesson.title  %>
+    <% end unless params[:style] == "tab" -%>
+
     <% unless review.helpfuls.empty? %>
       <span class="helpful_phrase">&mdash;<%= review.helpfuls.helpful_yes.size %> of <%= review.helpfuls.size %> people found this review helpful</span>
     <% end %>
