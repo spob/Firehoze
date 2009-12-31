@@ -46,7 +46,7 @@ class LessonCommentsControllerTest < ActionController::TestCase
           should_assign_to :lesson_comment
           should_respond_with :redirect
           should_set_the_flash_to :lesson_comment_create_success
-          should_redirect_to("Lesson comments index page") { lesson_lesson_comments_url(@lesson) }
+          should_redirect_to("Lesson comments index page") { lesson_url(@lesson, :anchor => :lesson_comment) }
         end
 
         fast_context "with moderator access" do
@@ -71,7 +71,7 @@ class LessonCommentsControllerTest < ActionController::TestCase
             should_set_the_flash_to :lesson_comment_update_success
             should_assign_to :lesson_comment
             should_respond_with :redirect
-            should_redirect_to("lesson comments index page") { lesson_lesson_comments_url(@lesson_comment.lesson) }
+            should_redirect_to("lesson comments index page") { lesson_url(@lesson, :anchor => :lesson_comment) }
           end
         end
 
@@ -87,7 +87,7 @@ class LessonCommentsControllerTest < ActionController::TestCase
 
             should_respond_with :redirect
             should_set_the_flash_to /You do not have rights/
-            should_redirect_to("Lesson Comments") { lesson_lesson_comments_path(@lesson) }
+            should_redirect_to("Lesson Comments") { lesson_url(@lesson, :anchor => :lesson_comment) }
           end
 
           fast_context "on PUT to :update" do
@@ -98,7 +98,7 @@ class LessonCommentsControllerTest < ActionController::TestCase
 
             should_set_the_flash_to /You do not have rights/
             should_respond_with :redirect
-            should_redirect_to("Lesson Comments") { lesson_lesson_comments_path(@lesson) }
+            should_redirect_to("Lesson Comments") { lesson_url(@lesson, :anchor => :lesson_comment) }
           end
         end
       end
