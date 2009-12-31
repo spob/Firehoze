@@ -159,8 +159,6 @@ class LessonsController < ApplicationController
 
   def recommend
     @lesson = Lesson.find(params[:id])
-    @style = params[:style]
-    render :layout => 'content_in_tab' if @style == 'tab'
   end
 
   def show_groups
@@ -170,10 +168,8 @@ class LessonsController < ApplicationController
 
   def stats
     @lesson = Lesson.find(params[:id], :include => [:instructor, :reviews])
-    @style = params[:style]
     @show_purchases = (current_user.try("is_admin?") or @lesson.instructed_by?(current_user) or current_user.try("is_paymentmgr?"))
     @show_video_stats = (current_user.try("is_admin?") or @lesson.instructed_by?(current_user))
-    render :layout => 'content_in_tab' if @style == 'tab'
   end
 
   def unreject
@@ -188,11 +184,6 @@ class LessonsController < ApplicationController
   end
 
   def lesson_notes
-    @style = params[:style]
-#    if @style == 'tab'
-#      # render :layout => 'content_in_tab'
-#      return
-#    end
   end
 
   def edit
@@ -345,6 +336,8 @@ class LessonsController < ApplicationController
       'admin_v2'
     elsif %w(advanced_search create edit new perform_advanced_search show update).include?(params[:action])
       'application_v2'
+    elsif params[:style] == 'tab'
+      'content_in_tab'
     else
       'application'
     end
