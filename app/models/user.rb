@@ -175,10 +175,10 @@ class User < ActiveRecord::Base
     @@flag_reasons
   end
 
-  def self.default_avatar_url(style)
-    "http://#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}/users/avatars/missing/%s/missing.png" % style.to_s
+#  def self.default_avatar_url(style)
+#    "http://#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}/users/avatars/missing/%s/missing.png" % style.to_s
 #    "/images/users/avatars/%s/missing.png" % style.to_s
-  end
+#  end
 
   # convert an amazon url for an avator to a cdn url                       
   def self.convert_avatar_url_to_cdn(url)

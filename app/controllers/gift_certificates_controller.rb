@@ -53,8 +53,7 @@ class GiftCertificatesController < ApplicationController
 
   def confirm_give
     @to_user = User.find_by_login_or_email(params[:to_user], params[:to_user_email])
-    user_str = params[:to_user]
-    user_str = params[:to_user_email] if user_str.nil? or user_str.blank?
+    user_str = params[:to_user] || params[:to_user_email]
     if @to_user.nil?
       flash.now[:error] = t('gift_certificate.no_such_user', :user => user_str)
       render 'pregive'
