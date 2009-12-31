@@ -49,14 +49,13 @@ module UsersHelper
   end
 
   def gravatar_as_source(user)
-    return false
-    return false if user.avatar.file?
+    return false if user.avatar.path
 
-    Net::HTTP.get_response( URI.parse( user.gravatar_url(:default => 'xxxxxxx'))).code == "200"
+    Net::HTTP.get_response( URI.parse( user.avatar.url(:small, :default => 'xxxxxxx'))).code == "200"
   end
 
   def avatar_link_to(user, options)
-    link_to avatar_tag(user, options),  user_path(user),  :title => h(privacy_sensitive_username(user)) if user
+    link_to avatar_tag(user, options), user_path(user),  :title => h(privacy_sensitive_username(user)) if user
   end
 
   def payment_levels_for_select

@@ -109,6 +109,7 @@ class User < ActiveRecord::Base
     size = nil
     # style should be :tiny, :small, or :regular
     # size_data is assumed to be "16x16#", "20x20#", or "25x25#", i.e., a string
+#    puts "====================>#{style}"
     size_data = attachment.styles[style][:geometry]
     if size_data
       # get the width of the icon in pixels
