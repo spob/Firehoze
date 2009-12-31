@@ -18,11 +18,6 @@ class LessonCommentsController < ApplicationController
 
   layout :layout_for_action
 
-#  def index
-#    @lesson_comments = LessonComment.list @lesson, params[:page], current_user
-#    render :layout => 'content_in_tab'
-#  end
-
   def index
     @lesson_comments = LessonComment.list @lesson, params[:page], current_user
     @style = params[:style]
@@ -45,7 +40,7 @@ class LessonCommentsController < ApplicationController
     @lesson_comment.user = current_user
     if @lesson_comment.save
       flash[:notice] = t 'lesson_comment.create_success'
-      redirect_to lesson_lesson_comments_path(@lesson)
+      redirect_to lesson_path(@lesson, :anchor => :lesson_comment)
     else
       render :action => 'new'
     end
@@ -54,7 +49,7 @@ class LessonCommentsController < ApplicationController
   def edit
     unless @lesson_comment.can_edit? current_user
       flash[:error] = t 'lesson_comment.cannot_edit'
-      redirect_to lesson_lesson_comments_path(@lesson_comment.lesson)
+      redirect_to lesson_path(@lesson_comment.lesson, :anchor => :lesson_comment)
     end
   end
 
@@ -63,13 +58,13 @@ class LessonCommentsController < ApplicationController
       params[:lesson_comment][:public] ||= false
       if @lesson_comment.update_attributes(params[:lesson_comment])
         flash[:notice] = t 'lesson_comment.update_success'
-        redirect_to lesson_lesson_comments_url(@lesson_comment.lesson)
+        redirect_to lesson_url(@lesson_comment.lesson, :anchor => :lesson_comment)
       else
         render :action => 'edit'
       end
     else
       flash[:error] = t 'lesson_comment.cannot_edit'
-      redirect_to lesson_lesson_comments_path(@lesson_comment.lesson)
+      redirect_to lesson_path(@lesson_comment.lesson, :anchor => :lesson_comment)
     end
   end
 
