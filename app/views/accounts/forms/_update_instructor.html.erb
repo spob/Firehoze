@@ -20,7 +20,7 @@
         <span>
           <%= f.label :last_name %>
           <%= f.text_field :last_name, :maxlength => "40", :title => "You must enter your last name", :class => "required", :id => 'olast_name' %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
           <div class="counter"><span id="olast_name_counter"></span> characters left</div>
         </li>
@@ -28,7 +28,7 @@
         <span>
           <%= f.label :address1 %>
           <%= f.text_field :address1 %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
         </li>
         <li>
@@ -41,28 +41,28 @@
         <span>
           <%= f.label :city %>
           <%= f.text_field :city %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
           <%= f.label :state, "State or Region" %>
           <%= f.text_field :state %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
           <%= f.label :postal_code, "Postal Code or Zip Code" %>
           <%= f.text_field :postal_code %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
           <%= f.label :country, "Country" %>
           <%= f.localized_country_select(:country, ['US']) %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
         </li>
         <li class="bottom">
