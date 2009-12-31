@@ -35,11 +35,13 @@ module UsersHelper
   end
 
   def avatar_tag(user, options = {})
-    image_tag user.avatar.url(options[:size] || :medium), options.merge({ :alt => h(privacy_sensitive_username(user)), :class => 'avatar' })
+    if user
+      url_type = options[:url] || :cdn
+      image_tag convert_to_cdn(user, user.avatar.url(options[:size] || :medium), url_type), options.merge({ :alt => h(privacy_sensitive_username(user)), :class => 'avatar' })
+    end
     # pass a value
     #for :url other than :cdn in order to force the avatar to be rendered from S3 (as opposed to
     # the cdn
-#    if user
 #      size = options[:size] || :medium
 #      url_type = options[:url] || :cdn
 #      avatar_url = user.avatar.file? ? convert_to_cdn(user.avatar.url(size), url_type) :
@@ -68,8 +70,8 @@ module UsersHelper
 
   private
 
-  def convert_to_cdn(url, url_type)
-    if url_type == :cdn
+  def convert_to_cdn(user, url, url_type)
+    if url_type == :cdn and user.avatar.path
       User.convert_avatar_url_to_cdn(url)
     else
       url
