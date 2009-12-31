@@ -44,7 +44,7 @@ namespace :db do
   task :seed_jobs => :environment do
     create_job RunIntervalPeriodicJob, 'SessionCleaner', 'SessionCleaner.clean', 3600 * 24  #once a day
     create_job RunIntervalPeriodicJob, 'SessionExpiry', 'SessionCleaner.sweep', 1800  #once every 30 minutes
-    create_job RunIntervalPeriodicJob, 'ActivityFeed', 'Activity.compile', 900  #once every 15 minutes
+    create_job RunIntervalPeriodicJob, 'ActivityFeed', 'Activity.compile', 150  #once every 2 1/2 minutes
     create_job RunIntervalPeriodicJob, 'TwitterFeed', 'Tweet.fetch_firehoze_tweets("FIREHOZE", "firehoze")', 600  #once every 10 minutes
     create_job RunIntervalPeriodicJob, 'PeriodicJobCleanup', 'PeriodicJob.cleanup', 3600  #once an hour
     create_job RunIntervalPeriodicJob, 'CreditExpiration', 'Credit.expire_unused_credits', 3600 * 24  #once a day
