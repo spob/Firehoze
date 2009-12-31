@@ -100,6 +100,29 @@ class User < ActiveRecord::Base
   validates_length_of :first_name, :maximum => 40, :allow_nil => true
   validates_length_of :login, :maximum => 25, :allow_nil => true
 
+  DEFAULT_AVATAR_URL = "http://#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}/users/avatars/missing/%s/missing.png"
+
+  # Paperclip lets you specify custom interpolations for your paths and such. We're going to exploit that!
+
+
+  Paperclip.interpolates(:gravatar_url) do |attachment, style|
+    size = nil
+    # style should be :tiny, :small, or :regular
+    # size_data is assumed to be "16x16#", "20x20#", or "25x25#", i.e., a string
+    size_data = attachment.styles[style][:geometry]
+    if size_data
+      # get the width of the icon in pixels
+      if thumb_size = size_data.match(/\d+/).to_a.first
+        size = thumb_size.to_i
+      end
+    end
+    # obtain the url from the model
+    # replace nil with "identicon", "monsterid", or "wavatar" as desired
+    # personally I would reorder the parameters so that size is first
+    # and default is second
+    attachment.instance.gravatar_url(sprintf(DEFAULT_AVATAR_URL, style), size)
+  end
+
   # PAPERCLIP
   has_attached_file :avatar,
                     :styles => {
@@ -110,12 +133,21 @@ class User < ActiveRecord::Base
                             :large => ["220x220#", :png],
                             :vlarge => ["400x400>", :png]
                     },
+                    :default_style => :medium,
+                    :default_url => ":gravatar_url",
                     :processors => [:cropper],
                     :storage => :s3,
                     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                     :s3_permissions => 'public-read',
                     :path => "#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/users/:attachment/:id/:style/:basename.:extension",
                     :bucket => APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]
+
+  # Constructs a gravatar URL from size information. We can pass in a custom default image URL, if we want.
+  # This assumes you have an "email" field on your model!
+  def gravatar_url(default = "", size = 220)
+    hash = Digest::MD5.hexdigest(email.downcase.strip)[0..31]
+    "http://www.gravatar.com/avatar/#{hash}.jpg?size=#{size}&d=#{CGI::escape default}"
+  end
 
   validates_attachment_size :avatar, :less_than => 1.megabytes, :message => "All uploaded images must be less then 1 megabyte"
   validates_attachment_content_type :avatar, :content_type => [ 'image/gif', 'image/png', 'image/x-png', 'image/jpeg', 'image/pjpeg', 'image/jpg' ]
@@ -143,7 +175,7 @@ class User < ActiveRecord::Base
   end
 
   def self.default_avatar_url(style)
-     "http://#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}/users/avatars/missing/%s/missing.png" % style.to_s
+    "http://#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}/users/avatars/missing/%s/missing.png" % style.to_s
 #    "/images/users/avatars/%s/missing.png" % style.to_s
   end
 

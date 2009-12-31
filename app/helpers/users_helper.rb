@@ -35,19 +35,21 @@ module UsersHelper
   end
 
   def avatar_tag(user, options = {})
+    image_tag user.avatar.url(options[:size] || :medium), options.merge({ :alt => h(privacy_sensitive_username(user)), :class => 'avatar' })
     # pass a value
     #for :url other than :cdn in order to force the avatar to be rendered from S3 (as opposed to
     # the cdn
-    if user
-      size = options[:size] || :medium
-      url_type = options[:url] || :cdn
-      avatar_url = user.avatar.file? ? convert_to_cdn(user.avatar.url(size), url_type) :
-              user.gravatar_url(:size => convert_size_to_pixels(size), :default => convert_to_cdn(User.default_avatar_url(size), url_type))
-      image_tag avatar_url, options.merge({ :alt => h(privacy_sensitive_username(user)), :class => 'avatar' })
-    end
+#    if user
+#      size = options[:size] || :medium
+#      url_type = options[:url] || :cdn
+#      avatar_url = user.avatar.file? ? convert_to_cdn(user.avatar.url(size), url_type) :
+#              user.gravatar_url(:size => convert_size_to_pixels(size), :default => convert_to_cdn(User.default_avatar_url(size), url_type))
+#      image_tag avatar_url, options.merge({ :alt => h(privacy_sensitive_username(user)), :class => 'avatar' })
+#    end
   end
 
   def gravatar_as_source(user)
+    return false
     return false if user.avatar.file?
 
     Net::HTTP.get_response( URI.parse( user.gravatar_url(:default => 'xxxxxxx'))).code == "200"
