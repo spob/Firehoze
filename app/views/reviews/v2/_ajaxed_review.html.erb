@@ -1,10 +1,15 @@
-<% reviewer = review.user %>
+<% 
+review = object
+reviewer = review.user 
+%>
+
 <div class="review clearfix">
-  <div class="span-1">
-    <div id="avatar-container"><%= avatar_link_to(reviewer, :size => :smaller) %></div>
+  <div class="span-2">
+    <div><%= img_tag_lesson_tn(review.lesson, :small) %></div>
   </div>
 
-  <div class="span-11 last">
+  <div class="span-10 last">
+    <span class="title h4"><%= h review.lesson.title %></span>
     <% unless review.helpfuls.empty? %>
       <span class="helpful_phrase">&mdash;<%= review.helpfuls.helpful_yes.size %> of <%= review.helpfuls.size %> people found this review helpful</span>
     <% end %>

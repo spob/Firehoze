@@ -1,6 +1,6 @@
 <% title "Review for &quot;#{h(@lesson.title)}&quot;" -%>
 
-<%= content_tag(:h3, "Reviews for Lesson: #{ link_to h(@lesson.title), lesson_path(@lesson) }")  unless @style == 'tab' %>
+<%= content_tag(:h3, "Reviews for Lesson: #{ link_to h(@lesson.title), lesson_path(@lesson, :anchor => :reviews) }")  unless @style == 'tab' %>
 
 <% if @lesson.reviews.empty? and !@lesson.reviewed_by?(current_user) and @lesson.owned_by?(current_user) %>
   <%= content_tag(:div, link_to_review(@lesson)) %>
@@ -15,5 +15,5 @@
 <% if @style == 'tab'%>
   <%= show_all_reviews_link(@lesson, current_user) %>
 <% else %>
-  <%= link_to "Back to Lesson", lesson_path(@lesson) %> | <%= link_to "Write a Review", new_lesson_review_path(@lesson)  unless @lesson.reviewed_by? current_user %>
+  <%= link_to "Back to Lesson", lesson_path(@lesson, :anchor => :reviews) %> | <%= link_to "Write a Review", new_lesson_review_path(@lesson)  unless @lesson.reviewed_by? current_user %>
 <% end %>

@@ -6,6 +6,6 @@
     You haven't reviewed any lessons yet.
   <% else %>
     <%= will_paginate reviews, :params => { :pane => pane } %>
-    <%= render :partial => "reviews/v2/review", :collection => reviews %>
+    <%= render :partial => "reviews/v2/ajaxed_review", :collection => reviews %>
   <% end %>
 </div>
