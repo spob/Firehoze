@@ -1,3 +1,3 @@
 <% title "Add a comment" -%>
 
-<%= render :partial => 'form', :locals => { :heading => "Join the discussion for #{link_to h(@lesson.title), lesson_path(@lesson)}", :subtext => "Converse with the instructor or other students of this lesson."} %>
+<%= render :partial => 'form', :locals => { :heading => "Join the discussion for #{link_to h(@lesson.title), lesson_path(@lesson, :anchor => :lesson_comment)}", :subtext => "Converse with the instructor or other students of this lesson."} %>
