@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
 
   has_friendly_id :login
 
+  is_gravtastic!
+
   # Ajaxful-rating plugin
   ajaxful_rater
 
@@ -13,7 +15,7 @@ class User < ActiveRecord::Base
 
   before_save :persist_user_logon
   before_validation :strip_fields
-  after_update :reprocess_avatar, :if => :cropping? 
+  after_update :reprocess_avatar, :if => :cropping?
 
   acts_as_authentic do |c|
     c.logged_in_timeout = 30.minutes # log out after 30 minutes of inactivity
@@ -141,8 +143,8 @@ class User < ActiveRecord::Base
   end
 
   def self.default_avatar_url(style)
-    # "http://#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}/users/avatars/missing/%s/missing.png" % style.to_s
-    "/images/users/avatars/%s/missing.png" % style.to_s
+     "http://#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}/users/avatars/missing/%s/missing.png" % style.to_s
+#    "/images/users/avatars/%s/missing.png" % style.to_s
   end
 
   # convert an amazon url for an avator to a cdn url                       
