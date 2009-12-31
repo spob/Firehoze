@@ -3,12 +3,12 @@
 <%= content_tag(:h3, "Reviews for Lesson: #{ link_to h(@lesson.title), lesson_path(@lesson) }")  unless @style == 'tab' %>
 
 <% if @lesson.reviews.empty? and !@lesson.reviewed_by?(current_user) and @lesson.owned_by?(current_user) %>
-  <%= content_tag(:div, button_to_review(@lesson)) %>
+  <%= content_tag(:div, link_to_review(@lesson)) %>
   <p>Be the first to leave a review for this lesson</p>
 <% elsif @lesson.reviews.empty? %>
   <p>We'd love to hear what you thought about this lesson.</p>
 <% else %>
-  <%= content_tag(:div, button_to_review(@lesson), :class => "action_box") %>
+  <%= content_tag(:div, link_to_review(@lesson), :class => "action_box") %>
   <%= render :partial => "reviews/v2/review", :collection => @reviews %>
 <% end %>
 
