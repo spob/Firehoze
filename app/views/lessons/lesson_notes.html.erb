@@ -1,22 +1,23 @@
-<% unless @lesson.notes.blank? %>
+<div class="lesson-notes">
+  <% unless @lesson.notes.blank? %>
     <%= rbs_formatter(@lesson.notes) %>
-<% end %>
+  <% end %>
 
-<% unless @lesson.attachments.empty? %>
-    <b>Attachments:</b>
-    <br />
-    <ul>
+  <% unless @lesson.attachments.empty? %>
+    <h4>Attachments:</h4>
+    <ul id="attachments">
       <% @lesson.attachments.each do |attachment| %>
-          <li>
-            <%= link_to attachment.title, attachment.attachment.url, :popup => true %>
-            (<%= number_to_human_size(attachment.attachment.size) %>)
-            <% if @lesson.can_edit?(current_user) %>
-                <%= link_to 'edit', edit_lesson_attachment_path(attachment) %> |
-                <%= link_to 'delete', lesson_attachment_path(attachment), :confirm => 'Are you sure?', :method => :delete %>
-            <% end %>
-          </li>
+        <li>
+          <%= link_to attachment.title, attachment.attachment.url, :popup => true %>
+          (<%= number_to_human_size(attachment.attachment.size) %>)
+          <% if @lesson.can_edit?(current_user) %>
+            <%= link_to 'edit', edit_lesson_attachment_path(attachment) %> |
+            <%= link_to 'delete', lesson_attachment_path(attachment), :confirm => 'Are you sure?', :method => :delete %>
+          <% end %>
+        </li>
       <% end %>
     </ul>
-<% end %>
-
-<%= link_to_add_attachment(@lesson) %>
+  <% end %>
+  
+  <%= link_to_add_attachment(@lesson) %>
+</div>  
