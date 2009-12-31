@@ -52,6 +52,7 @@ en:
   security:
     you_must_be_logged_in: You must be logged in to access that page
     you_must_be_logged_out: You must not be logged in to access that page
+    invalid_token: It looks like your session expired. Please try logging on again.
 
   attachment:
     create_success: Successfully created attachment
