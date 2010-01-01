@@ -9,4 +9,16 @@ module LessonCommentsHelper
       ""
     end
   end
+
+  def show_discussion_text lesson, lesson_comments, user
+    if @lesson_comments.empty? and @lesson.owned_by?(current_user)
+      "Need some help? #{link_to_comment(@lesson, 'Ask a question')}"
+    elsif @lesson.can_comment?(current_user)
+      link_to_comment(@lesson, "Post a reply")
+    elsif current_user
+      t('lesson.must_own')
+    else
+      "You must #{link_to 'login', login_path} or #{link_to 'register', new_registration_path} to contribute to this discussion."
+    end
+  end
 end
