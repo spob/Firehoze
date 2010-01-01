@@ -1,4 +1,4 @@
-# This class interactions with the authlogic gem to acutally control logging in and logging out
+# This class interacts with the authlogic gem to actually control logging in and logging out
 class UserSessionsController < ApplicationController
   include SslRequirement
 

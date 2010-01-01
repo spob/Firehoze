@@ -63,9 +63,8 @@ class LessonsController < ApplicationController
   end
 
   def new
-    if current_user.verified_instructor?
-      current_user.try("is_admin?") or @lesson = Lesson.new
-    else
+    @lesson = Lesson.new
+    unless current_user.verified_instructor? or current_user.try("is_admin?")
       flash[:error] = t 'lesson.must_be_instructor'
       redirect_to instructor_signup_wizard_account_path(current_user)
     end
