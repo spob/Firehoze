@@ -25,24 +25,22 @@ class LessonCommentsController < ApplicationController
   end
 
   def new
-    if current_user
+    if can_comment? current_user, @lesson
       @lesson_comment = @lesson.comments.build
       @lesson_comment.public = true
-    else
-      store_location new_lesson_lesson_comment_path(@lesson)
-      flash[:error] = t('lesson.must_logon')
-      redirect_to new_user_session_url
     end
   end
 
   def create
-    @lesson_comment = @lesson.comments.build(params[:lesson_comment])
-    @lesson_comment.user = current_user
-    if @lesson_comment.save
-      flash[:notice] = t 'lesson_comment.create_success'
-      redirect_to lesson_path(@lesson, :anchor => :lesson_comment)
-    else
-      render :action => 'new'
+    if can_comment? current_user, @lesson
+      @lesson_comment = @lesson.comments.build(params[:lesson_comment])
+      @lesson_comment.user = current_user
+      if @lesson_comment.save
+        flash[:notice] = t 'lesson_comment.create_success'
+        redirect_to lesson_path(@lesson, :anchor => :lesson_comment)
+      else
+        render :action => 'new'
+      end
     end
   end
 
@@ -85,6 +83,21 @@ class LessonCommentsController < ApplicationController
       'application_v2'
     else
       'application'
+    end
+  end
+
+  def can_comment? user, lesson
+    if lesson.can_comment? user
+      true
+    elsif !user
+      store_location new_lesson_lesson_comment_path(@lesson)
+      flash[:error] = t('lesson.must_logon')
+      redirect_to new_user_session_url
+      false
+    else
+      flash[:error] = t('lesson.must_own')
+      redirect_to lesson_path(@lesson, :anchor => :lesson_comment)
+      false
     end
   end
 end

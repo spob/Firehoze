@@ -3,6 +3,22 @@ require 'fast_context'
 
 class LessonCommentsControllerTest < ActionController::TestCase
 
+
+  def self.test_create_success
+    should_assign_to :lesson_comment
+    should_respond_with :redirect
+    should_set_the_flash_to :lesson_comment_create_success
+    should_redirect_to("Lesson comments index page") { lesson_url(@lesson, :anchor => :lesson_comment) }
+  end
+
+  def self.test_new_success
+    should_assign_to :lesson_comment
+    should_assign_to :lesson
+    should_respond_with :success
+    should_not_set_the_flash
+    should_render_template "new"
+  end
+
   fast_context "with a lesson defined" do
     setup { @lesson = Factory.create(:lesson)}
 
@@ -30,11 +46,97 @@ class LessonCommentsControllerTest < ActionController::TestCase
         fast_context "on GET to :new" do
           setup { get :new, :lesson_id => @lesson }
 
-          should_assign_to :lesson_comment
+          should_not_assign_to :lesson_comment
           should_assign_to :lesson
-          should_respond_with :success
-          should_not_set_the_flash
-          should_render_template "new"
+          should_respond_with :redirect
+          should_set_the_flash_to /You must first purchase/
+          should_redirect_to("Lesson show page") { lesson_url(@lesson, :anchor => :lesson_comment) }
+        end
+
+        fast_context "when having instructed the lesson" do
+          setup do
+            @lesson.update_attribute(:instructor, @user)
+            assert @lesson.instructed_by?(@user)
+          end
+
+          fast_context "on GET to :new" do
+            setup { get :new, :lesson_id => @lesson }
+
+            test_new_success
+          end
+
+          fast_context "on POST to :create" do
+            setup do
+              @new_lesson_comment_attrs = Factory.attributes_for(:lesson_comment)
+              post :create, :lesson_comment => @new_lesson_comment_attrs, :lesson_id => @lesson
+            end
+
+            test_create_success
+          end
+        end
+
+        fast_context "when a moderator lesson" do
+          setup do
+            @user.is_moderator
+          end
+
+          fast_context "on GET to :new" do
+            setup { get :new, :lesson_id => @lesson }
+
+            test_new_success
+          end
+
+          fast_context "on POST to :create" do
+            setup do
+              @new_lesson_comment_attrs = Factory.attributes_for(:lesson_comment)
+              post :create, :lesson_comment => @new_lesson_comment_attrs, :lesson_id => @lesson
+            end
+
+            test_create_success
+          end
+        end
+
+        fast_context "when an admin" do
+          setup do
+            @user.is_admin
+          end
+
+          fast_context "on GET to :new" do
+            setup { get :new, :lesson_id => @lesson }
+
+            test_new_success
+          end
+
+          fast_context "on POST to :create" do
+            setup do
+              @new_lesson_comment_attrs = Factory.attributes_for(:lesson_comment)
+              post :create, :lesson_comment => @new_lesson_comment_attrs, :lesson_id => @lesson
+            end
+
+            test_create_success
+          end
+        end
+
+        fast_context "when owns the lessons" do
+          setup do
+          @user.credits.create!(:price => 0.99, :lesson => @lesson)
+          assert @user.owns_lesson?(@lesson)
+          end
+
+          fast_context "on GET to :new" do
+            setup { get :new, :lesson_id => @lesson }
+
+            test_new_success
+          end
+
+          fast_context "on POST to :create" do
+            setup do
+              @new_lesson_comment_attrs = Factory.attributes_for(:lesson_comment)
+              post :create, :lesson_comment => @new_lesson_comment_attrs, :lesson_id => @lesson
+            end
+
+            test_create_success
+          end
         end
 
         fast_context "on POST to :create" do
@@ -43,10 +145,10 @@ class LessonCommentsControllerTest < ActionController::TestCase
             post :create, :lesson_comment => @new_lesson_comment_attrs, :lesson_id => @lesson
           end
 
-          should_assign_to :lesson_comment
+          should_not_assign_to :lesson_comment
           should_respond_with :redirect
-          should_set_the_flash_to :lesson_comment_create_success
-          should_redirect_to("Lesson comments index page") { lesson_url(@lesson, :anchor => :lesson_comment) }
+          should_set_the_flash_to /You must first purchase/
+          should_redirect_to("Lesson show page") { lesson_url(@lesson, :anchor => :lesson_comment) }
         end
 
         fast_context "with moderator access" do

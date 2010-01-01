@@ -282,7 +282,11 @@ END
 
   # The lesson can be edited by an admin or the instructor who created it
   def can_edit? user
-    user and (user.is_admin? or user.is_moderator? or instructor == user)
+    user.try("is_admin?") or user.try("is_moderator?") or instructed_by?(user)
+  end
+
+  def can_comment? user
+    owned_by?(user) or can_edit?(user)
   end
 
   # Has this user reviewed this lesson already?
