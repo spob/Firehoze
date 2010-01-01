@@ -16,7 +16,7 @@
         <span>
           <%= f.label :first_name %>
           <%= f.text_field :first_name, :maxlength => "50", :title => "You must provide your first name", :class => "required" %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
 
           <div class="counter"><span id="order_first_name_counter"></span> characters left</div>
@@ -25,7 +25,7 @@
         <span>
           <%= f.label :last_name %>
           <%= f.text_field :last_name, :maxlength => "50", :title => "You must provide your first name", :class => "required" %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
 
           <div class="counter"><span id="order_last_name_counter"></span> characters left</div>
@@ -37,7 +37,7 @@
         <span>
           <%= f.label :billing_name %>
           <%= f.text_field :billing_name, :maxlength => "100", :title => "You must enter the name on the credit card", :class => "required" %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
 
           <div class="counter"><span id="order_billing_name_counter"></span> characters left</div>
@@ -46,7 +46,7 @@
         <span>
           <%= f.label :address1 %>
           <%= f.text_field :address1, :maxlength => "150", :title => "You must enter the your street address", :class => "required" %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
 
           <div class="counter"><span id="order_address1_counter"></span> characters left</div>
@@ -63,7 +63,7 @@
         <span>
           <%= f.label :city %>
           <%= f.text_field :city, :maxlength => "50", :title => "You must provide your billing city", :class => "required" %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
 
           <div class="counter"><span id="order_city_counter"></span> characters left</div>
@@ -72,7 +72,7 @@
         <span>
           <%= f.label :state %>
           <%= f.text_field :state, :maxlength => "50", :title => "You must provide your billing state", :class => "required" %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
 
           <div class="counter"><span id="order_state_counter"></span> characters left</div>
@@ -81,7 +81,7 @@
         <span>
           <%= f.label :zip, "Postal Code" %>
           <%= f.text_field :zip, :maxlength => "25", :title => "You must provide your billing postal code", :class => "required" %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
 
           <div class="counter"><span id="order_zip_counter"></span> characters left</div>
@@ -90,7 +90,7 @@
         <span>
           <%= f.label :country %>
           <%= localized_country_select(:order, :country, []) %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
         </li>
 
@@ -108,21 +108,21 @@
         <span>
           <%= f.label :card_type %>
           <%= f.select :card_type, Order.card_types, :prompt => 'Please select...', :value => "", :class => "required" %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
           <%= f.label :card_number %>
           <%= f.text_field :card_number, :title => "You must provide your credit card number", :class => "required" %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
           <%= f.label :card_verification, "Card Verification (CVV)" %>
           <%= f.text_field :card_verification, :title => "You must provide your credit card verification number", :class => "required" %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
         </li>
         <li>
@@ -130,7 +130,7 @@
           <%= f.label :card_expires_on %>
           <%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year,
                             :end_year => Date.today.year + 10, :add_month_numbers => true %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
         </li>
         <li class="bottom">

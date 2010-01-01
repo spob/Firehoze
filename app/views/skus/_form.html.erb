@@ -14,7 +14,7 @@
         <span>
           <%= f.label :sku %>
           <%= f.text_field :sku, :maxlength => "30", :title => "You must enter a name for the SKU", :class => "required" %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
 
           <div class="counter"><span id="sku_counter"></span> characters left</div>
@@ -24,7 +24,7 @@
         <span>
           <%= f.label :type %>
           <%= f.select :type, SkusController.types, { :prompt => "Please select..." } %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
             </li>
         <% end %>
@@ -32,21 +32,21 @@
         <span>
           <%= f.label :num_credits %>
           <%= f.text_field :num_credits, :class => "required" %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
           <%= f.label :price %>
           <%= f.text_field :price, :class => "required" %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
           <%= f.label :description %>
           <%= f.text_field :description, :maxlength => "150", :title => "You must enter a description for the SKU", :class => "required" %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
 
           <div class="counter"><span id="sku_description_counter"></span> characters left</div>

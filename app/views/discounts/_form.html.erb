@@ -15,7 +15,7 @@
         <span>
           <%= f.label :type %>
           <%= f.select :type, @sku.discount_types %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
             </li>
         <% end %>
@@ -23,14 +23,14 @@
         <span>
           <%= f.label :minimum_quantity %>
           <%= f.text_field :minimum_quantity, :class => "required" %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
           <%= f.label :percent_discount %>
           <%= f.text_field :percent_discount, :class => "required" %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
           <span class="help">(enter 0.05 for 5%)</span>
         </li>

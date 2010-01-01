@@ -19,7 +19,7 @@
         <span>
           <%= f.label :title %>
           <%= f.text_field :title, :maxlength => "200", :title => "You must provide a topic title", :class => "required" %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
 
           <div class="counter"><span id="topic_title_counter"></span> characters left</div>
@@ -28,7 +28,7 @@
         <span>
           <%= f.label :comments %>
           <%= f.text_area :comments, :title => "You must provide a comment for your topic", :class => "required" %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
           <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
         </li>

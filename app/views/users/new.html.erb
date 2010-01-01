@@ -35,14 +35,14 @@
         <span>
         <%= f.label :password %>
           <%= f.password_field :password, :title => "You must provide a password", :class => "required" %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
         <%= f.label :password_confirmation %>
           <%= f.password_field :password_confirmation, :title => "You must confirm your password", :class => "required" %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
         </li>
         <li>
@@ -57,7 +57,7 @@
         <span>
         <%= f.label :last_name %>
           <%= f.text_field :last_name, :maxlength => "40", :title => "You must enter a last name", :class => "required" %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
 
           <div class="counter"><span id="user_last_name_counter"></span> characters left</div>
@@ -73,14 +73,14 @@
         <span>
           <%= f.label :time_zone %>
           <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
           <%= f.label :language %>
           <%= f.select :language, User.supported_languages %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
         </li>
 

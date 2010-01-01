@@ -39,7 +39,7 @@
         <span>
         <%= f.label :username %>
           <%= f.text_field :username, :maxlength => "25", :title => "You must enter a username", :class => "required" %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
 
           <div class="counter"><span id="registration_username_counter"></span> characters left</div>
@@ -48,7 +48,7 @@
         <span>
         <%= f.label :email %>
           <%= f.text_field :email, :maxlength => "100", :title => "You must enter an email address", :class => "required" %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
 
           <div class="counter"><span id="registration_email_counter"></span> characters left</div>
@@ -59,7 +59,7 @@
         <span>
           <%= f.label :registration_code %>
           <%= f.text_field :registration_code %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
             </li>
         <% end %>
@@ -67,7 +67,7 @@
         <span>
           <%= f.label :captcha, "Verify that you are human" %>
           <%= recaptcha_tags :display => {:theme => 'white', :tabindex => 3 } %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
         </li>
         <li class="bottom">

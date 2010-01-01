@@ -12,7 +12,7 @@
         <span>
           <%= f.label :title %>
           <%= f.text_field :title, :maxlength => "50", :title => "You must provide a title for your lesson", :class => "required" %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
 
           <div class="counter"><span id="lesson_title_counter"></span> characters left</div>
@@ -21,7 +21,7 @@
         <span>
           <%= f.label :synopsis %>
           <%= f.text_area :synopsis, :maxlength => "500", :title => "You must provide a synopsis for your lesson", :class => "required" %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
 
           <div class="counter"><span id="lesson_synopsis_counter"></span> characters left</div>
@@ -45,14 +45,14 @@
         <span>
           <%= f.label :video %>
           <%= f.file_field :video, :title => "You must provide a video for your lesson", :class => "required" %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
             </li>
             <li>
         <span>
           <%= f.label :initial_free_download_count, 'Free Downloads' %>
           <%= select_tag :initial_free_download_count, options_for_select(LessonsController.free_download_counts) %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
             </li>
         <% end %>
@@ -61,21 +61,21 @@
           <%= f.label :category %>
           <%= f.collection_select(:category_id, Category.ascend_by_compiled_sort, :id,
                                   :formatted_name,  {:include_blank => 'Select...'}) %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
           <%= f.label :language %>
           <%= f.select :language, User.supported_languages %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
           <%= f.label :audience %>
           <%= f.select :audience,  Lesson.audience_levels,  {:include_blank => 'Select...'} %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
         </li>
         <li class="bottom">

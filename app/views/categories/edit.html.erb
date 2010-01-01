@@ -20,7 +20,7 @@
         <span>
           <%= f.label :name %>
           <%= f.text_field :name, :maxlength => "50", :title => "You must enter a category name", :class => "required" %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
 
           <div class="counter"><span id="category_name_counter"></span> characters left</div>
@@ -30,14 +30,14 @@
           <%= f.label :parent_category %>
           <%= f.collection_select(:parent_category_id, Category.by_parent_sort_value, :id,
                                   :name, {:include_blank => 'Select...'}) %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
           <%= f.label :sort_value %>
           <%= f.text_field :sort_value, :class => "required" %>
-          <span class="required-field"/>
+          <span class="required-field"></span>
         </span>
         </li>
         <li class="bottom">

@@ -17,7 +17,7 @@
         <span>
           <%= f.label :login, "Username" %>
           <%= f.text_field :login, :maxlength => "25", :title => "You must enter a username", :class => "required" %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
           <div class="counter"><span id="user_login_counter"></span> characters left</div>
         </li>
@@ -25,7 +25,7 @@
         <span>
           <%= f.label :email %>
           <%= f.text_field :email, :maxlength => "100", :title => "You must enter an email address", :class => "required" %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
           <div class="counter"><span id="user_email_counter"></span> characters left</div>
         </li>
@@ -40,7 +40,7 @@
         <span>
           <%= f.label :last_name %>
           <%= f.text_field :last_name, :maxlength => "40", :title => "You must enter a last name", :class => "required" %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
           <div class="counter"><span id="user_last_name_counter"></span> characters left</div>
         </li>
@@ -60,14 +60,14 @@
         <span>
           <%= f.label :time_zone %>
           <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
           <%= f.label :language %>
           <%= f.select :language, User.supported_languages %>
-          <span class="required-field" />
+          <span class="required-field"></span>
         </span>
         </li>
         <li class="bottom">
