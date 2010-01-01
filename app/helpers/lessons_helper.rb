@@ -127,8 +127,8 @@ module LessonsHelper
     end
   end
 
-  def button_to_comment(lesson, label)
-    button_to label, new_lesson_lesson_comment_path(lesson), :method => :get
+  def link_to_comment(lesson, label)
+    link_to label, new_lesson_lesson_comment_path(lesson), :class => :rounded
   end
 
   def link_to_wish(lesson)

@@ -1,17 +1,49 @@
-<% title "Comments" -%>
+<% title "Comments for Lesson: #{ h(@lesson.title)}" -%>
+<% @current = 'lessons' %>
+<div id="lesson-comments-container">
+  <div class="lesson-comment-header clearfix">
+    <% if @style == 'tab' %>
+      <div class="span-12 right">
+        <% if @lesson_comments.empty? and @lesson.owned_by?(current_user) %>
+          Need some help? <%= link_to_comment(@lesson, "Ask a question") %>
+        <% elsif current_user and (@lesson.owned_by?(current_user) or current_user.instructor?(@lesson) or @current_user.is_admin?) %>
+          <%= link_to_comment(@lesson, "Post a reply") %>
+        <% elsif current_user %>
+          You must own this lesson to ask a question
+        <% else %>
+          You must <%= link_to "login", login_path %> or <%= link_to "register", new_registration_path %> to contribute to this discussion.
+        <% end %>
+      </div>
+    <% else %>
+      <div class="span-9">
+        <% unless @style == 'tab'%>
+          <h3 class="header">Comments for Lesson: <%= link_to h(@lesson.title.titleize), lesson_path(@lesson, :anchor => :lesson_comment) %></h3>
+        <% end %>
+      </div>
+      <div class="span-3 last right">
+        <% if @lesson_comments.empty? and @lesson.owned_by?(current_user) %>
+          Need some help? <%= link_to_comment(@lesson, "Ask a question") %>
+        <% elsif current_user and (@lesson.owned_by?(current_user) or current_user.instructor?(@lesson) or @current_user.is_admin?) %>
+          <%= link_to_comment(@lesson, "Post a reply") %>
+        <% elsif current_user %>
+          You must own this lesson to ask a question
+        <% else %>
+          You must <%= link_to "login", login_path %> or <%= link_to "register", new_registration_path %> to contribute to this discussion.
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 
-<%= content_tag(:h3, "Discussion for Lesson: #{ link_to h(@lesson.title), lesson_path(@lesson) }")  unless @style == 'tab' %>
+  <div id="comments-container">
+    <%= render :partial => 'comments/comment', :collection => @lesson_comments %>
+  </div>
 
-<% if @lesson_comments.empty? %>
-  <p>Need some help?  Leave a question here.</p>
-  <%= content_tag(:div, button_to_comment(@lesson, "Ask a question"), :class => "action_box") %>
-<% else %>
-  <%= content_tag(:div, button_to_comment(@lesson, "Post reply"), :class => "action_box") %>
-  <%= render :partial => 'comments/comment', :collection => @lesson_comments %>
-<% end %>
+  <div>
+    <% if @style == 'tab'%>
+      <%= show_all_lesson_comments_link(@lesson, current_user) %>
+    <% else %>
+      <%= link_to "&laquo; Back to Lesson", lesson_path(@lesson, :anchor => :lesson_comment) %>
+    <% end %>
+  </div>
+</div>
 
-<% if @style == 'tab'%>
-  <%= show_all_lesson_comments_link(@lesson, current_user) %>
-<% else %>
-  <%= link_to "Back to Lesson", lesson_path(@lesson, :anchor => :lesson_comment) %> | <%= link_to("Write a Comment", new_lesson_lesson_comment_path(@lesson)) if @lesson.owned_by? current_user %>
-<% end %>
