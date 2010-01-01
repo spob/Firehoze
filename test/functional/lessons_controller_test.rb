@@ -98,7 +98,7 @@ class LessonsControllerTest < ActionController::TestCase
     fast_context "on GET to :new when not an instructor" do
       setup { get :new }
 
-      should_not_assign_to :lesson
+      should_assign_to :lesson
       should_respond_with :redirect
       should_set_the_flash_to :must_be_instructor
       should_redirect_to("first wizard step") {instructor_signup_wizard_account_path(@user) }
