@@ -1,7 +1,14 @@
 <% title "Comments for Lesson: #{ h(@lesson.title)}" -%>
 <% @current = 'lessons' %>
+
+
 <div id="lesson-comments-container">
   <div class="lesson-comment-header clearfix">
+
+<% 
+# THIS IS AN AWFUL BLOCK OF CODE ... needs to be dried up and needs to be smarter about being in a 
+# being on it's own -- or when it's nested in a tab
+%>
     <% if @style == 'tab' %>
       <div class="span-12 right">
         <% if @lesson_comments.empty? and @lesson.owned_by?(current_user) %>
@@ -33,6 +40,9 @@
       </div>
     <% end %>
   </div>
+<% 
+# END AWFUL CODE
+%>
 
   <div id="comments-container">
     <%= render :partial => 'comments/comment', :collection => @lesson_comments %>
