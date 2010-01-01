@@ -534,20 +534,29 @@ div#new-topic-link {
 
 /* topics (comments) */
 /* general container */
+div#lesson-comments-container,
 div#topic-comments-container {
     position:relative;
 }
 
 /* header */
-div#topic-comments-container h3.header {
-    padding-right:260px;
+
+div.lesson-comment-header {
+  min-height: 2.8em;
 }
+div.lesson-comment-header h3.header {
+    padding-right:260px;
+    color: #17587F;
+    font-weight:bold;
+}
+
 div#topic-comments-container h3.header .group-name {
     color: #17587F;
     font-weight:bold;
 }
 
 /* actions */
+
 div#topic-comments-container div#actions {
     position:absolute;
     top:0;
@@ -572,6 +581,7 @@ div.commenter-container div.commenter-avatar img.avatar {
 }
 
 /* comment >> parent */
+div#lesson-comments-container div.comment,
 div#topic-comments-container div.comment  {
     position:relative;
     background: #E3E9F2;
