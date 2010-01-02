@@ -6,7 +6,7 @@
   </td>
   <td class="center comment-count"><%= topic.topic_comments.size %></td>
   <td>
-    <%= time_ago_in_words l(topic.last_commented_at) %><br />
+    <%= h time_ago_in_words topic.last_commented_at %><br />
     <b><%= h topic.last_topic_comment.try(:user).try(:login) %></b>
   </td>
 </tr>
