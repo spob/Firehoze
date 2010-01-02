@@ -15,8 +15,6 @@ class LessonsController < ApplicationController
   before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :recommend, :stats, :show_lesson_status, :show_groups, :update, :watch, :unreject ]
   before_filter :set_per_page, :only => [ :ajaxed, :index, :list, :tabbed, :tagged_with ]
   before_filter :set_collection, :only => [ :ajaxed, :list, :tabbed ]
-  before_filter :show_purchases, :only => [:show, :stats]
-  before_filter :show_video_stats, :only => [:show, :stats]
 
   LIST_COLLECTIONS = %w(newest most_popular highest_rated tagged_with recently_browsed tagged_with)
 
@@ -148,6 +146,9 @@ class LessonsController < ApplicationController
   def show
     session[:lesson_to_buy] = nil
     @lesson = Lesson.find(params[:id], :include => [:instructor, :reviews])
+    show_purchases(@lesson)
+    show_video_stats(@lesson)
+    
     @instructor = @lesson.instructor
 
     if @lesson.ready? or @lesson.instructed_by?(current_user) or (current_user and current_user.is_moderator?)
@@ -162,11 +163,14 @@ class LessonsController < ApplicationController
   end
 
   def show_groups
+    # @lesson = Lesson.find(params[:id])
     @groups = @lesson.lesson_groups(current_user)
   end
 
   def stats
     @lesson = Lesson.find(params[:id], :include => [:instructor, :reviews])
+    show_purchases(@lesson)
+    show_video_stats(@lesson)
   end
 
   def unreject
@@ -344,12 +348,12 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
   end
 
-  def show_purchases
-    @show_purchases = (current_user and (current_user.try("is_admin?") or @lesson.instructed_by?(current_user) or current_user.try("is_paymentmgr?")))
+  def show_purchases(lesson)
+    @show_purchases = (current_user and (current_user.try("is_admin?") or lesson.instructed_by?(current_user) or current_user.try("is_paymentmgr?")))
   end
 
-  def show_video_stats
-    @show_video_stats = (current_user and (current_user.try("is_admin?") or @lesson.instructed_by?(current_user)))
+  def show_video_stats(lesson)
+    @show_video_stats = (current_user and (current_user.try("is_admin?") or lesson.instructed_by?(current_user)))
   end
 
   def set_collection
