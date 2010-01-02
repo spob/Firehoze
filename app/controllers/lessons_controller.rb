@@ -15,6 +15,8 @@ class LessonsController < ApplicationController
   before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :recommend, :stats, :update, :watch, :unreject, :show_lesson_status ]
   before_filter :set_per_page, :only => [ :ajaxed, :index, :list, :tabbed, :tagged_with ]
   before_filter :set_collection, :only => [ :ajaxed, :list, :tabbed ]
+  before_filter :show_purchases, :only => [:show, :stats]
+  before_filter :show_video_stats, :only => [:show, :stats]
 
   LIST_COLLECTIONS = %w(newest most_popular highest_rated tagged_with recently_browsed tagged_with)
 
@@ -167,8 +169,6 @@ class LessonsController < ApplicationController
 
   def stats
     @lesson = Lesson.find(params[:id], :include => [:instructor, :reviews])
-    @show_purchases = (current_user.try("is_admin?") or @lesson.instructed_by?(current_user) or current_user.try("is_paymentmgr?"))
-    @show_video_stats = (current_user.try("is_admin?") or @lesson.instructed_by?(current_user))
   end
 
   def unreject
@@ -344,6 +344,14 @@ class LessonsController < ApplicationController
 
   def find_lesson
     @lesson = Lesson.find(params[:id])
+  end
+
+  def show_purchases
+    @show_purchases = (current_user and (current_user.try("is_admin?") or @lesson.instructed_by?(current_user) or current_user.try("is_paymentmgr?")))
+  end
+
+  def show_video_stats
+    @show_video_stats = (current_user and (current_user.try("is_admin?") or @lesson.instructed_by?(current_user)))
   end
 
   def set_collection
