@@ -146,8 +146,8 @@ class LessonsController < ApplicationController
   def show
     session[:lesson_to_buy] = nil
     @lesson = Lesson.find(params[:id], :include => [:instructor, :reviews])
-    show_purchases(@lesson)
-    show_video_stats(@lesson)
+    @show_purchases = @lesson.can_view_purchases?(current_user)
+    @show_video_stats = @lesson.can_view_lesson_stats?(current_user)
     
     @instructor = @lesson.instructor
 
@@ -169,8 +169,9 @@ class LessonsController < ApplicationController
 
   def stats
     @lesson = Lesson.find(params[:id], :include => [:instructor, :reviews])
-    show_purchases(@lesson)
-    show_video_stats(@lesson)
+
+    @show_purchases = @lesson.can_view_purchases?(current_user)
+    @show_video_stats = @lesson.can_view_lesson_stats?(current_user)
   end
 
   def unreject
@@ -346,14 +347,6 @@ class LessonsController < ApplicationController
 
   def find_lesson
     @lesson = Lesson.find(params[:id])
-  end
-
-  def show_purchases(lesson)
-    @show_purchases = (current_user and (current_user.try("is_admin?") or lesson.instructed_by?(current_user) or current_user.try("is_paymentmgr?")))
-  end
-
-  def show_video_stats(lesson)
-    @show_video_stats = (current_user and (current_user.try("is_admin?") or lesson.instructed_by?(current_user)))
   end
 
   def set_collection

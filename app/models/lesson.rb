@@ -285,6 +285,14 @@ END
     user.try("is_admin?") or user.try("is_moderator?") or instructed_by?(user)
   end
 
+  def can_view_purchases? user
+    user.try("is_admin?") or user.try("is_paymentmgr?") or instructed_by?(user)
+  end
+
+  def can_view_lesson_stats? user
+    user.try("is_admin?") or instructed_by?(user)
+  end
+
   def can_comment? user
     owned_by?(user) or can_edit?(user)
   end
