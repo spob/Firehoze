@@ -45,6 +45,89 @@ class LessonTest < ActiveSupport::TestCase
         assert @lesson.owned_by?(@user)
       end
     end
+
+    fast_context "given a user" do
+      setup { @user = Factory.create(:user) }
+
+      fast_context "who is a plan old user" do
+        should "not allow any operations" do
+          assert !@lesson.can_edit?(@user)
+          assert !@lesson.can_view_purchases?(@user)
+          assert !@lesson.can_view_lesson_stats?(@user)
+          assert !@lesson.can_comment?(@user)
+        end
+      end
+
+      fast_context "who has purchased the lesson" do
+        setup do
+          @user.credits.create!(:price => 0.99, :lesson => @lesson)
+          assert @user.owns_lesson?(@lesson)
+        end
+
+        should "allow user to add a comment" do
+          assert @lesson.can_comment?(@user)
+        end
+
+        should "not allow other operations" do
+          assert !@lesson.can_edit?(@user)
+          assert !@lesson.can_view_purchases?(@user)
+          assert !@lesson.can_view_lesson_stats?(@user)
+        end
+      end
+
+      fast_context "who is the instructor" do
+        setup do
+          @lesson.update_attribute :instructor, @user
+          assert @lesson.instructed_by?(@user)
+        end
+
+        should "allow user to do pretty much anything" do
+          assert @lesson.can_comment?(@user)
+          assert @lesson.can_edit?(@user)
+          assert @lesson.can_view_purchases?(@user)
+          assert @lesson.can_view_lesson_stats?(@user)
+        end
+      end
+
+      fast_context "who is an admin" do
+        setup { @user.has_role 'admin' }
+
+        should "allow user to do pretty much anything" do
+          assert @lesson.can_comment?(@user)
+          assert @lesson.can_edit?(@user)
+          assert @lesson.can_view_purchases?(@user)
+          assert @lesson.can_view_lesson_stats?(@user)
+        end
+      end
+
+      fast_context "who is a moderator" do
+        setup { @user.has_role 'moderator' }
+
+        should "allow user to moderator the lesson and comments" do
+          assert @lesson.can_edit?(@user)
+          assert @lesson.can_comment?(@user)
+        end
+
+        should "not allow other operations" do
+          assert !@lesson.can_view_purchases?(@user)
+          assert !@lesson.can_view_lesson_stats?(@user)
+        end
+      end
+
+      fast_context "who is a payment mgr" do
+        setup { @user.has_role 'paymentmgr' }
+                                            
+        should "allow user to see information having to do with purchases" do
+          assert @lesson.can_view_purchases?(@user)
+        end
+
+        should "not allow other operations" do
+          assert !@lesson.can_comment?(@user)
+          assert !@lesson.can_edit?(@user)
+          assert !@lesson.can_view_lesson_stats?(@user)
+        end
+      end
+    end
   end
 
   subject { @lesson }
