@@ -27,6 +27,15 @@ class LessonAttachmentsControllerTest < ActionController::TestCase
         UserSession.create @attachment.lesson.instructor
       end
 
+      fast_context "on POST to :create with bad values" do
+        setup { post :create, :lesson_id => @attachment.lesson }
+
+        should_assign_to :lesson
+        should_assign_to :attachment
+        should_render_template 'new'
+        should_not_set_the_flash
+      end
+
       fast_context "on GET to :edit" do
         setup { get :edit, :id => @attachment }
 

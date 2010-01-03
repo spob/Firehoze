@@ -18,7 +18,7 @@ class SearchTestTest < ActionController::IntegrationTest
         assert @lesson1.ready?
       end
 
-      should "find lessons" do
+      should "find lessons with normal search" do
         visit login_url
         fill_in "user_session[login]", :with => @user.login
         fill_in "user_session[password]", :with => "xxxxx"
@@ -27,6 +27,14 @@ class SearchTestTest < ActionController::IntegrationTest
         fill_in "search_criteria", :with => "test"
         click_button 'searchbox_submit'
         assert_contain "Search Results"
+        assert_contain "no results"
+      end
+
+      should "find lessons with advanced search" do
+        visit advanced_search_lessons_path
+        fill_in "advanced_search_title", :with => 'blah'
+        click_button 'advanced_search_submit'
+        assert_contain "Advanced Lesson Search"
         assert_contain "no results"
       end
     end
