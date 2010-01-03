@@ -144,6 +144,16 @@ class LessonsControllerTest < ActionController::TestCase
       should_not_set_the_flash
     end
 
+    fast_context "on POST to :create when not an instructor" do
+      setup do
+        assert !@user.verified_instructor?
+        post :create, :lesson => Factory.attributes_for(:lesson, :title => "")
+      end
+
+      should_not_assign_to :lesson
+      should_redirect_to("instructor signup") { instructor_signup_wizard_account_path(@user) }
+    end
+
     fast_context "with at least one existing lesson" do
       setup do
         Factory.create(:user)
