@@ -1,25 +1,25 @@
 module GroupsHelper
-  def show_join_link(group)
-    if !group.private and !group.includes_member?(current_user)
+  def show_join_link(group, user)
+    if !group.private and !group.includes_member?(user)
       link_to "Join", group_members_path(:id => group.id), :method => :post, :class => :rounded
     end
   end
 
-  def show_leave_link(group)
-    group_member = group.includes_member?(current_user)
+  def show_leave_link(group, user)
+    group_member = group.includes_member?(user)
     if group_member and group_member.member_type != OWNER
       link_to "Leave Group", group_member_path(group.id), :method => :delete, :class => :rounded
     end
   end
 
-  def show_invite_link(group)
-    if group.private and (group.owned_by?(current_user) or group.moderated_by?(current_user))
+  def show_invite_link(group, user)
+    if group.private and (group.owned_by?(user) or group.moderated_by?(user))
       link_to "Invite a User", new_group_invitation_path(:id => group), :class => :rounded
     end
   end
 
-  def show_remove_link(group_member)
-    if group_member.group.private and group_member.can_edit?(current_user)
+  def show_remove_link(group_member, user)
+    if group_member.group.private and group_member.can_edit?(user)
       link_to "Remove", remove_group_member_path(group_member), :method => :delete, :confirm => "Are you sure?"
     end
   end
@@ -34,23 +34,23 @@ module GroupsHelper
     end
   end
 
-  def show_edit_link(group)
-    if group.owned_by?(current_user)
+  def show_edit_link(group, user)
+    if group.owned_by?(user)
       link_to "Edit", edit_group_path(group), :class => :rounded
     end
   end
 
-  def show_membership_text(group)
-    if group.owned_by?(current_user)
+  def show_membership_text(group, user)
+    if group.owned_by?(user)
       "You are the owner of this group"
-    elsif group.moderated_by?(current_user)
+    elsif group.moderated_by?(user)
       "You are the moderator of this group"
-    elsif group.includes_member?(current_user)
+    elsif group.includes_member?(user)
       "You are a member of this group"
-    elsif current_user.nil?
+    elsif user.nil?
       "You are not logged in"
     else
-      "You are a not a member of this group"
+      "You are not a member of this group"
     end
   end
 

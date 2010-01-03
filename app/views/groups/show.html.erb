@@ -15,17 +15,17 @@
       </ul>
       <hr />
       <div class="actions clearfix">
-        <%= show_join_link(@group)  %>
-        <%= show_leave_link(@group) %>
-        <%= show_invite_link(@group) %>
-        <%= show_edit_link(@group) %>
+        <%= show_join_link(@group, current_user)  %>
+        <%= show_leave_link(@group, current_user) %>
+        <%= show_invite_link(@group, current_user) %>
+        <%= show_edit_link(@group, current_user) %>
         <%= flag_link @group unless @group.private-%>
         <div id="status">
           <ul>
             <li><%= image_tag 'icons/16-check.png' %> This group is <%= @group.private ? "by invitation only" : "open to the public" %></li>
             <% content_tag :li  do -%>
               <%= image_tag 'icons/16-check.png' %>
-              <%= show_membership_text @group %>
+              <%= show_membership_text @group, current_user %>
             <% end if current_user -%>
           </ul>
         </div>

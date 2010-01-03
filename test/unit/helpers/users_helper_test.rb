@@ -4,7 +4,6 @@ class UsersHelperTest < ActionView::TestCase
   tests UsersHelper
 
   context "possessive_helper" do
-
     should "Form possessive" do
       assert_equal "dog's", possessive_helper("dog")
       assert_equal "dogs'", possessive_helper("dogs")
