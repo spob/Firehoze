@@ -90,7 +90,7 @@ class LessonsControllerTest < ActionController::TestCase
     end
 
     fast_context "on GET to :index" do
-      setup { get :index }
+      setup { get :index, :reset => "y" }
       should_respond_with :redirect
       should_redirect_to("home page") { home_path }
     end
@@ -260,6 +260,60 @@ class LessonsControllerTest < ActionController::TestCase
           should_not_assign_to :lesson
           should_redirect_to("lessons index") { lessons_path }
           should_set_the_flash_to /Permission denied/
+        end
+
+        fast_context "on GET to :list" do
+          setup { post :list }
+
+          should_assign_to :lessons
+          should_render_template 'list'
+          should_not_set_the_flash
+        end
+
+        fast_context "on GET to :list, with newest" do
+          setup { post :list, :collection => 'newest' }
+
+          should_assign_to :lessons
+          should_render_template 'list'
+          should_not_set_the_flash
+        end
+
+        fast_context "on GET to :list, with highest_rated" do
+          setup { post :list, :collection => 'highest_rated' }
+
+          should_assign_to :lessons
+          should_render_template 'list'
+          should_not_set_the_flash
+        end
+
+        fast_context "with tags defined" do
+          setup do
+            assert !@lesson.nil?
+            @lesson.tag_list = 'taggy'
+            @lesson.save!
+          end
+
+          fast_context "on GET to :tagged_with and a good tag" do
+            setup { post :tagged_with, :tag => 'taggy' }
+
+            should_assign_to :lessons
+            should "have a lesson returned" do
+              assert 1, assigns(:lessons).size
+            end
+            should_render_template 'tagged_with'
+            should_not_set_the_flash
+          end
+
+          fast_context "on GET to :tagged_with and a bad tag" do
+            setup { post :tagged_with, :tag => 'blah' }
+
+            should_assign_to :lessons
+            should "have a lesson returned" do
+              assert assigns(:lessons).empty?
+            end
+            should_render_template 'tagged_with'
+            should_not_set_the_flash
+          end
         end
       end
 

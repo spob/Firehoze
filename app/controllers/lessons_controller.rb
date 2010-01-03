@@ -350,7 +350,7 @@ class LessonsController < ApplicationController
   end
 
   def set_collection
-    @collection = params[:collection]
+    @collection = params[:collection] || 'most_popular'
     raise "Invalid collection" unless (LIST_COLLECTIONS).include?(@collection)
   rescue
     false
