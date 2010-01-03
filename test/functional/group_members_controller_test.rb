@@ -140,6 +140,23 @@ class GroupMembersControllerTest < ActionController::TestCase
           end
         end
 
+        fast_context "on POST to :promote when not a moderator" do
+          setup do
+            @group.update_attribute(:owner, Factory.create(:user))
+            assert_equal MEMBER, @group_member.member_type
+            post :promote, :id => @group_member
+          end
+
+          should_set_the_flash_to /do not have permissions/
+          should_assign_to :group_member
+          should_respond_with :redirect
+          should_redirect_to("Group page") { group_url(@group) }
+          should "not promote user to moderator" do
+            @group_member = GroupMember.find(@group_member)
+            assert_equal MEMBER, @group_member.member_type
+          end
+        end
+
         fast_context "on POST to :demote" do
           setup do
             assert_equal MODERATOR, @group_moderator.member_type
@@ -153,6 +170,23 @@ class GroupMembersControllerTest < ActionController::TestCase
           should "demote user to member" do
             @group_moderator = GroupMember.find(@group_moderator)
             assert_equal MEMBER, @group_moderator.member_type
+          end
+        end
+
+        fast_context "on POST to :demote without permissions" do
+          setup do
+            @group.update_attribute(:owner, Factory.create(:user))
+            assert_equal MODERATOR, @group_moderator.member_type
+            post :demote, :id => @group_moderator
+          end
+
+          should_set_the_flash_to /do not have permissions/
+          should_assign_to :group_member
+          should_respond_with :redirect
+          should_redirect_to("Group page") { group_url(@group) }
+          should "not demote user to moderator" do
+            @group_moderator = GroupMember.find(@group_moderator)
+            assert_equal MODERATOR, @group_moderator.member_type
           end
         end
       end
