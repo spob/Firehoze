@@ -1,10 +1,12 @@
 #profile-box {
-    z-index:1;
-    position:relative;
-    margin:0;
-    padding:20px;
-    border: solid 1px #CCC;
-    height:62px;
+  background-color: rgba(227, 233, 242);
+  background-color: rgba(227, 233, 242, 1.0000);
+  z-index:1;
+  position:relative;
+  margin:0;
+  padding:20px;
+  border: solid 1px #CCC;
+  height:62px;
 }
 
 #profile-box .avatar {
