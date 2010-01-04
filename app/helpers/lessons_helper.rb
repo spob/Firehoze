@@ -76,8 +76,8 @@ module LessonsHelper
     end
   end
 
-  def owned_it_phase(lesson)
-    if current_user and current_user.owns_lesson?(lesson)
+  def owned_it_phrase(lesson, user)
+    if user and user.owns_lesson?(lesson)
       t('lesson.owned')
     end
   end
@@ -101,25 +101,25 @@ module LessonsHelper
     end
   end
 
-  def link_to_add_attachment(lesson)
-    if lesson.can_edit?(current_user)
+  def link_to_add_attachment(lesson, user)
+    if lesson.can_edit?(user)
       link_to "Add Attachment", new_lesson_lesson_attachment_path(lesson), :class => :rounded
     end
   end
 
-  def link_to_unreject(lesson)
-    if current_user.try("is_moderator?") and lesson.status == LESSON_STATUS_REJECTED
+  def link_to_unreject(lesson, user)
+    if user.try("is_moderator?") and lesson.status == LESSON_STATUS_REJECTED
       link_to t('lesson.unreject'), unreject_lesson_path(lesson), :class => :rounded
     end
   end
 
-  def button_to_preview(lesson)
-    if lesson.ready?
-      unless lesson.owned_by?(current_user) or lesson.instructed_by?(current_user)
-        button_to "Preview", nil, { :alt => '#FIXME (when preview functionality is coded by Bob)', :disabled => true }
-      end
-    end
-  end
+#  def button_to_preview(lesson)
+#    if lesson.ready?
+#      unless lesson.owned_by?(current_user) or lesson.instructed_by?(current_user)
+#        button_to "Preview", nil, { :alt => '#FIXME (when preview functionality is coded by Bob)', :disabled => true }
+#      end
+#    end
+#  end
 
   def link_to_review(lesson)
     if !lesson.reviewed_by?(current_user) and lesson.owned_by?(current_user)

@@ -3,7 +3,7 @@
 <%= render :partial => "lessons/lesson_image_block", :object => lesson %>
 
 <div class="span-15 lesson_center">
-  <div><%= link_to h(lesson.title), lesson_path(lesson), :class => :lesson_title_link %> <%= content_tag(:span, "(#{owned_it_phase(lesson)})" ) unless owned_it_phase(lesson).blank? %></div>
+  <div><%= link_to h(lesson.title), lesson_path(lesson), :class => :lesson_title_link %> <%= content_tag(:span, "(#{owned_it_phrase(lesson, current_user)})" ) unless owned_it_phrase(lessonm current_user).blank? %></div>
   <div><%= h lesson.synopsis %></div>
   <%= render :partial => "lessons/tag_links_for", :object => lesson, :locals => { :options => { :css_classes =>  "lesson_center" } } %>
   <div><%#= render :partial => "lessons/actions", :object => lesson %></div>
