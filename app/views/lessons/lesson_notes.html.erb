@@ -1,23 +1,27 @@
 <div class="lesson-notes">
-  <% unless @lesson.notes.blank? %>
+  <div class="span-9">
+    <% unless @lesson.notes.blank? %>
     <%= rbs_formatter(@lesson.notes) %>
-  <% end %>
-
-  <% unless @lesson.attachments.empty? %>
-    <h4>Attachments:</h4>
-    <ul id="attachments">
-      <% @lesson.attachments.each do |attachment| %>
+    <% end %>
+  </div>
+  <div class="span-3 last">
+    <div class="box">
+      <h3>Attachments</h3>
+      <% unless @lesson.attachments.empty? %>
+      <ul id="attachments">
+        <% @lesson.attachments.each do |attachment| %>
         <li>
           <%= link_to attachment.title, attachment.attachment.url, :popup => true %>
           (<%= number_to_human_size(attachment.attachment.size) %>)
           <% if @lesson.can_edit?(current_user) %>
-            <%= link_to 'edit', edit_lesson_attachment_path(attachment) %> |
-            <%= link_to 'delete', lesson_attachment_path(attachment), :confirm => 'Are you sure?', :method => :delete %>
+          <%= link_to 'edit', edit_lesson_attachment_path(attachment) %> |
+          <%= link_to 'delete', lesson_attachment_path(attachment), :confirm => 'Are you sure?', :method => :delete %>
           <% end %>
         </li>
+        <% end %>
+      </ul>
       <% end %>
-    </ul>
-  <% end %>
-  
-  <%= link_to_add_attachment(@lesson, current_user) %>
-</div>  
+    </div>
+      <%= link_to_add_attachment(@lesson, current_user) %>
+  </div>
+</div>
