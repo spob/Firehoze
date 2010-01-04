@@ -1,1 +1,4 @@
+<% title "Groups that include &quot;#{h @lesson.title}&quot;" -%>
+<% @current = 'groups' %>
+
 <%= render :partial => "groups/v2/groups", :collection => @groups %>

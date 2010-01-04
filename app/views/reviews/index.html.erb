@@ -1,4 +1,5 @@
-<% title "Review for &quot;#{h(@lesson.title)}&quot;" -%>
+<% title "Reviews for &quot;#{h(@lesson.title)}&quot;" -%>
+<% @current = 'lessons' %>
 
 <%= content_tag(:h3, "Reviews for Lesson: #{ link_to h(@lesson.title), lesson_path(@lesson, :anchor => :reviews) }")  unless @style == 'tab' %>
 

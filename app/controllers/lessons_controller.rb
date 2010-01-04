@@ -332,14 +332,14 @@ class LessonsController < ApplicationController
   private
 
   def layout_for_action
-    if %w(lesson_notes tabbed).include?(params[:action])
+    if params[:style] == 'tab'
+      'content_in_tab'
+    elsif %w(tabbed).include?(params[:action])
       'content_in_tab'
     elsif %w(list_admin).include?(params[:action])
       'admin_v2'
-    elsif %w(advanced_search create edit new perform_advanced_search show update).include?(params[:action])
+    elsif %w(advanced_search create edit lesson_notes new perform_advanced_search recommend show show_groups update).include?(params[:action])
       'application_v2'
-    elsif params[:style] == 'tab'
-      'content_in_tab'
     else
       'application'
     end
