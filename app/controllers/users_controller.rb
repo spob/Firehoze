@@ -22,6 +22,10 @@ class UsersController < ApplicationController
   end
 
   def new
+    # disable the uniform plugin, otherwise the advanced search form is all @$@!# up
+    @no_uniform_js = true
+
+
     # The registration record is unmarshalled based upon the URL that was created by ActiveURL
     # when the user requested the account in the first placed. If we get here, it means the user
     # clicked on the link in their registration email, in which case we can be sure that the email
