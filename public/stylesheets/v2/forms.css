@@ -28,6 +28,8 @@
     margin-right:10px;
 }
 
+.fh-form .unlabelled  { margin-left:175px;display:block; }
+
 .fh-form .field-separator {
     display:block;
     margin-left:82px;
@@ -38,9 +40,6 @@
     margin-left:175px;
     display:block;
 }
-
-.fh-form .unlabelled  { margin-left:175px;display:block; }
-
 
 .fh-form textarea,
 .fh-form input[type=text],
@@ -136,6 +135,50 @@
     height:62px;
     top:-15px;
     left:15px;
+}
+
+div.selector select#user_time_zone  {
+    color: red !important;
+    width: 300px !important;
+}
+
+/* USER AGREEMENT */
+div#user-agreement h4 {
+    color:#0350a6;
+    margin-left:0;
+    font-weight:bold;
+    text-transform:uppercase;
+}
+ul#registation-info li span.heading { 
+    padding:0;
+    color:#0350a6;
+    padding:0;
+    margin: 1em;
+    text-transform:uppercase;
+}
+
+ul#registation-info div#user-agreement {
+    background-color: #f1f7fe;
+    margin:1em;
+    padding: 1em;
+    overflow:auto;
+    height:100px;
+    border:1px solid #c1cad5;
+}
+
+a.printer-friendly {
+    position:absolute;
+    top:1em;
+    right: 2em;
+}
+a.printer-friendly:hover {
+    border:0 none;
+    text-decoration:underline;
+}
+
+.fh-form span.accept-agreement  {
+    text-align:center;
+    display:block;
 }
 
 .fh-form ul#password-info.section li.header span {
