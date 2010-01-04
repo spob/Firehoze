@@ -542,7 +542,7 @@ div#topic-comments-container {
 /* header */
 
 div.lesson-comment-header {
-  min-height: 2.8em;
+    min-height: 2.8em;
 }
 div.lesson-comment-header h3.header {
     padding-right:260px;
@@ -571,13 +571,24 @@ div.commenter-container {
     width:105px;
 }
 div.commenter-avatar {
+    width:77px;
     padding: 3px;
     border: solid 1px #999;
     background:#ccc;
-    width:77px;
+    -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+    -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+    box-shadow: 0 1px 10px rgba(0,0,0,.3);
 }
 div.commenter-container div.commenter-avatar img.avatar {
     border: solid 1px #999;
+}
+
+div.commenter-avatar a:link,
+div.commenter-avatar a:visited,
+div.commenter-avatar a:hover,
+div.commenter-avatar a:active {
+    border:0 none;
+    text-decoration: none !important;
 }
 
 /* comment >> parent */
