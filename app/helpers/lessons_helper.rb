@@ -151,9 +151,9 @@ module LessonsHelper
 
   def link_to_add_remove_group lesson, group
     if lesson.belongs_to_group?(group)
-      link_to "Remove from Group", group_lesson_path(group.id, :lesson_id => lesson.id), :method => :delete
+      link_to("Remove", group_lesson_path(group.id, :lesson_id => lesson.id), :method => :delete) + " from &quot;#{group.name.titleize}&quot; Group"
     else
-      link_to "Add to Group", group_lessons_path(:id => group.id, :lesson_id => lesson.id), :method => :post
+      link_to("Add", group_lessons_path(:id => group.id, :lesson_id => lesson.id), :method => :post) + " to &quot;#{group.name.titleize}&quot; Group"
     end
   end
 

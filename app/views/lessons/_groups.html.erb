@@ -3,7 +3,7 @@
   <div class="box">
     <ul class="group-lists">
       <% groups.each do |group| %>
-        <li><%= link_to h(group.name), group_path(group) %>&nbsp;&nbsp;<%= link_to_add_remove_group lesson, group %></li>
+        <li><%= link_to_add_remove_group lesson, group %></li>
       <% end %>
     </ul>
   </div>

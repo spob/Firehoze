@@ -628,8 +628,13 @@ ul#what-do-students-ultimately-buy li img.lesson_tn {
 }
 
 ul.group-lists {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
 }
 
+ul.group-lists li {
+    margin: 0;
+    padding: 0;
+    display:block;
+}
