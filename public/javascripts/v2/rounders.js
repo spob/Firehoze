@@ -4,7 +4,7 @@ $(function() {
         background: "#FFF"
     });
 
-    $('#tag_cloud, #bought_this_video_also_bought, #what_do_students_ultimately').cornerz({
+    $('#tag_cloud, #bought-this-video-also-bought, #what-do-students-ultimately').cornerz({
         radius: 5
     });
 

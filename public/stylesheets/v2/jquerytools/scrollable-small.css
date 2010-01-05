@@ -2,10 +2,11 @@
     /* required settings */
     position:relative;
     overflow:hidden;
-    width:868px;
+    width:830px;
     height:186px;
-    border:1px solid #ccc;
-    background:url(../../../images/scrollable/h300.png) repeat-x;
+    border:solid 1px #ccc;
+    background-color:#f1f7fe;
+    /* background:url(../../../images/scrollable/h300.png) repeat-x; */
 }
 
 .scrollable .items {
@@ -18,8 +19,8 @@
 .scrollable .item_container {
     float:left;
     padding: 0px;
-    margin:15px 2px 20px 15px;
-    width:126px;
+    margin:15px 2px 20px 26px;
+    width:106px;
 }
 
 /* single scrollable item */
@@ -28,10 +29,11 @@
     padding:2px;
     border:1px solid #ccc;
     cursor:pointer;
-    width:120px;
-    height:90px;
-    -moz-border-radius:3px;
-    -webkit-border-radius:3px;
+    width: 100px;
+    height: 75px; /* 4:3 aspect ratio */
+    -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+    -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+    box-shadow: 0 1px 10px rgba(0,0,0,.3);
 }
 
 .item_container	.tn {
@@ -52,20 +54,20 @@ div.items div.item_container div.tn div.duration-scroller {
 }
 
 .item_container	.title {
-	font-size: 11px;
-	line-height: 16px;
-  font-weight:bold;
+    font-size: 11px;
+    line-height: 16px;
+    font-weight:bold;
 }
 .item_container	.title, .item_container	.created_at, .item_container	.instructor {
-	font-size: 11px;
-	line-height: 16px;
-	}
+    font-size: 11px;
+    line-height: 16px;
+}
 
 /* active item */
+/*
 .scrollable .active {
-    /*
-    border:1px solid #ccc;
-    z-index:9999;
-    position:relative;
-    */
+border:1px solid #ccc;
+z-index:9999;
+position:relative;
 }
+*/

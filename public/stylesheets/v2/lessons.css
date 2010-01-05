@@ -520,9 +520,13 @@ div.lesson-notes ul#attachments {
     list-style-type: none;
 }
 
+/* STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT... */
+#bought-this-video-also-bought {
+    padding:17px 17px 34px 17px;
+    background-color:  #e3e9f2;
+}
 
 /* WHAT DO STUDENTS ULTIMATELY BUY AFTER BROWSING THIS ITEM? */
-
 ul#what-do-students-ultimately {
     list-style-type: none;
     margin: 0;
