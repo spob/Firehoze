@@ -1,14 +1,10 @@
-<% lesson = object %>
-
 <% if lesson.owned_by?(current_user) or lesson.can_edit?(current_user) or lesson.owned_by?(current_user) %>
   <% groups = current_user.groups(:select => [:id, :name]) %>
-  <div id="add-to-group">
-    <p><a href="#" id="title">Add Lesson to <%= groups.size > 1 ? 'Groups' : 'Group' %></a></p>
-    <ul class="group-list">
+  <div class="box">
+    <ul class="group-lists">
       <% groups.each do |group| %>
         <li><%= link_to h(group.name), group_path(group) %>&nbsp;&nbsp;<%= link_to_add_remove_group lesson, group %></li>
       <% end %>
     </ul>
-    <%= link_to "Create a New Group", new_group_path %>
   </div>
 <% end %>

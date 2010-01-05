@@ -626,3 +626,10 @@ ul#what-do-students-ultimately-buy li img.lesson_tn {
 #what-do-students-ultimately-buy div.lesson-detail {
     margin-left: 124px;
 }
+
+ul.group-lists {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
