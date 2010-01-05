@@ -10,10 +10,15 @@ ul.groups li img.logo {
     float:left;
 }
 
-ul.users li .details,
-ul.groups li .details {
+ul.users li .details {
     border-bottom: dotted 1px #ccc;
     margin-bottom: 17px;
+}
+
+ul.groups li {
+    border-bottom: dotted 1px #ccc;
+    margin-bottom: 1em;
+    padding:1em;
 }
 
 ul.users li .details {
