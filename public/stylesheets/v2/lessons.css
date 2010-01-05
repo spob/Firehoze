@@ -522,7 +522,8 @@ div.lesson-notes ul#attachments {
 
 /* STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT... */
 #bought-this-video-also-bought {
-    padding:17px 17px 34px 17px;
+    border: solid 1px #CCC;
+    padding:10px 17px 24px 17px;
     background-color:  #e3e9f2;
 }
 
