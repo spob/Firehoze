@@ -4,7 +4,7 @@
     <div id="avatar-container"><%= avatar_link_to(reviewer, :size => :smaller) %></div>
   </div>
 
-  <div class="span-11 last">
+  <div class="span-10 last">
     <% unless review.helpfuls.empty? %>
       <span class="helpful_phrase">&mdash;<%= review.helpfuls.helpful_yes.size %> of <%= review.helpfuls.size %> people found this review helpful</span>
     <% end %>

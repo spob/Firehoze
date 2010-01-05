@@ -31,7 +31,7 @@
   <div id="lesson-container" class="span-12 append-bottom">
 
     <div id="actions">
-<%#= render :partial => 'lessons/groups', :object => @lesson %>
+      <%#= render :partial => 'lessons/groups', :object => @lesson %>
       <div><%= render :partial => "lessons/actions", :object => @lesson -%></div>
     </div>
 
@@ -48,9 +48,6 @@
           <div id="tab-lesson-summary">
             <div id="lesson-synopsis">
               <%= h(@lesson.synopsis) -%>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
           </div>
 
@@ -91,8 +88,7 @@
 
   <% # LESSON TABS -%>
   <div class="span-12">
-    <div id="lesson-content-tabs" class="tab-container"   style="border: solid 0px lime">
-
+    <div id="lesson-content-tabs" class="tab-container">
       <ul class="tabs">
         <%= content_tag(:li, "#{ link_to h(t('lesson.notes')), lesson_notes_lesson_path(@lesson, :style => 'tab') }")  unless @lesson.notes.blank? and @lesson.attachments.empty? %>
         <li><%= link_to h(t('lesson.reviews')), lesson_reviews_path(@lesson, :style => 'tab', :per_page => REVIEWS_ON_LESSON_SHOW_PER_PAGE) %></li>
@@ -103,7 +99,9 @@
 
       <!-- single pane (ajax'd)-->
       <div class="panes">
-        <div style="display:block"></div>
+        <div id="interior-pane" class='clearfix'>
+          <div style="display:block"></div>
+        </div>
       </div>
     </div>
   </div>

@@ -511,7 +511,28 @@ ul.group-list {
 }
 
 div#lesson-content-tabs div.panes {
-    margin:17px 0 0 0;
+    margin:0;
+    min-height:400px;
+    padding: 17px;
+    background-color:#E8E8E8;
+    background-color:#E3E9F2;
+    border-bottom-left-radius:8px;
+    border-bottom-right-radius:8px;
+    -webkit-border-bottom-left-radius:8px;
+    -webkit-border-bottom-right-radius:8px;
+    -moz-border-radius-bottomleft:8px;
+    -moz-border-radius-bottomright:8px;
+}
+div#lesson-content-tabs div.panes div#interior-pane {
+    min-height:366px;
+    padding: 17px;
+    background-color:#FFF;
+    border-radius:5px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+    -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.2);
+    box-shadow: 0 1px 10px rgba(0,0,0,.3); 
 }
 
 div.lesson-notes ul#attachments {
@@ -527,6 +548,7 @@ div.widget-box-content h3 {
     font-size:1.5em;
     color:#0350a6;
     line-height:2em;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.3);
 }
 
 div#bought-this-video-also-bought h3 {

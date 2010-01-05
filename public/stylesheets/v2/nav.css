@@ -1,12 +1,14 @@
 #profile-box {
-  background-color: rgba(227, 233, 242);
-  background-color: rgba(227, 233, 242, 1.0000);
-  z-index:1;
-  position:relative;
-  margin:0;
-  padding:20px;
-  border: solid 1px #CCC;
-  height:62px;
+    /*background-color:#E3E9F2;*/
+    z-index:1;
+    position:relative;
+    margin:0;
+    padding:20px;
+    border: solid 1px #CCC;
+    height:62px;
+    border-radius:8px;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
 }
 
 #profile-box .avatar {
@@ -49,11 +51,11 @@ ul.third-level-nav li {
     border-right: solid 1px #ccc;
 }
 
-ul.third-level-nav li:first-child { 
+ul.third-level-nav li:first-child {
     padding-left: 0;
 }
 
-ul.third-level-nav li:last-child { 
+ul.third-level-nav li:last-child {
     border: none;
 }
 
@@ -111,7 +113,7 @@ dl.third-level-nav dd a {
     border-bottom: solid 1px #999;
 }
 
-dl.third-level-nav dd:last-child { 
+dl.third-level-nav dd:last-child {
     border: none;
 }
 

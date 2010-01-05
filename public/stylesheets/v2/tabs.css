@@ -1,7 +1,6 @@
 /* root element for tabs  */
 .tab-container {
     position:relative;
-    margin-bottom: 17px;
 }
 
 .tab-container img.loader {

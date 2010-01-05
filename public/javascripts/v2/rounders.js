@@ -22,10 +22,10 @@ $(function() {
         background: "#FFF"
     });
 
-    $('div#profile-box').cornerz({
-        radius: 5,
-        background: "#FFF"
-    });
+    // $('div#profile-box').cornerz({
+    //     radius: 5,
+    //     background: "#FFF"
+    // });
 
     $('div.category-container').cornerz({
         radius: 8,

@@ -2,7 +2,7 @@
 <% @current = 'lessons' %>
 
 <div class="lesson-notes">
-  <div class="span-9">
+  <div class="span-8">
     <% unless @lesson.notes.blank? %>
     <%= rbs_formatter(@lesson.notes) %>
     <% end %>
