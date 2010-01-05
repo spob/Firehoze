@@ -4,7 +4,6 @@
       <ul id="profile-info" class="section">
         <li class="header">
           <span></span>
-
           <h3><%= params[:action] == "edit_admin" ? "Edit User Profile" : "Update Your Profile" %></h3>
           <h4><%= "View your public profile #{link_to 'here', user_path(current_user)}" %></h4>
         </li>

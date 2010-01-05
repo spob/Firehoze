@@ -95,13 +95,9 @@
     float:left;
 }
 
+
 .fh-form h3 {
-    font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
-    font-weight:bold;
-    font-size:18px;
-    line-height:22px;
-    color:#0350a6;
-    margin:8px 0 6px 82px;
+  margin:8px 0 6px 82px;
 }
 
 .fh-form h4 {
@@ -181,7 +177,8 @@ a.printer-friendly:hover {
     display:block;
 }
 
-.fh-form ul#password-info.section li.header span {
+
+.fh-form ul#lesson-info.section li.header span {
     background: url(images/forms/signup-icon-company.png) no-repeat top left;
 }
 .fh-form ul#avatar-info.section li.header span {

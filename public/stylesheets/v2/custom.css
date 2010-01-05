@@ -27,7 +27,7 @@ div {
     /*text-align:justify*/
 }
 
-h1,h2,h3,h4,h5,h6 { font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif; }
+
 
 /* psuedo-header classes */
 .h1,.h2,.h3,.h4,.h5,.h6 { font-weight: normal; color: #111; }
@@ -35,6 +35,14 @@ h1,h2,h3,h4,h5,h6 { font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-
 .h2 { font-size: 2em; margin-bottom: 0.75em; }
 .h3 { font-size: 1.5em; line-height: 1; margin-bottom: 1em; }
 .h4 { font-size: 1.2em; line-height: 1.25; margin-bottom: 1.25em; }
+
+
+h3 {
+  font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
+  font-weight:bold;
+  font-size:1.5em;
+  color:#0350a6;
+}
 
 a.no-border:hover {
     border: 0 none;
@@ -514,7 +522,6 @@ div#group-container hr {
 
 div#group-container div#description h3 {
     color: #17587F;
-    font-weight:bold;
     margin:0 0 4px 0;
 }
 
@@ -557,7 +564,6 @@ div.lesson-comment-header h3.header {
 
 div#topic-comments-container h3.header .group-name {
     color: #17587F;
-    font-weight:bold;
 }
 
 /* actions */

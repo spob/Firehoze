@@ -148,8 +148,6 @@ position:relative;
 }
 
 .blue-box h3 {
-    font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
-    font-weight:bold;
     font-size:24px;
     color:#0350a6;
 }
@@ -543,9 +541,6 @@ div.lesson-notes ul#attachments {
 
 div.widget-box-content h3 {
     margin:0 0 0.5em 0;
-    font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
-    font-weight:bold;
-    font-size:1.5em;
     color:#0350a6;
     line-height:2em;
     text-shadow: 1px 1px 1px rgba(0,0,0,.3);
