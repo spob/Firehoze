@@ -15,7 +15,7 @@
             <th>Description</th>
           </tr>
           <%= render :partial => 'lessons/credit', :collection => @lesson.credits.descend_by_redeemed_at.all(:include => [:user, :sku]) -%>
-          <tr>
+          <tr class="sum">
             <td><b>TOTAL</b></td>
             <td>&nbsp;</td>
             <td><b><%=h number_to_currency(@lesson.credits.sum(:price)) -%></b></td>

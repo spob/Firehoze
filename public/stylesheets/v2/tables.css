@@ -4,8 +4,7 @@ table, td { font:100% Arial, Helvetica, sans-serif;}
 table { 
     width:100%;
     border: solid 1px #A9A9A9;
-    /*border-collapse:collapse;*/
-    /* margin:1em 0; */
+    border-collapse:collapse;
 }
 
 th, td {
@@ -17,12 +16,19 @@ th {
     background-color:#A9A9A9;
     color:#fff;
     text-shadow: #333 0 1px 1px;
+    border-bottom: solid 1px #A9A9A9;
+    background-color:#E3E9F2;
+    color:#17587F;
+    text-shadow: none;
 }
-td {  /*background:#efefef;*/ }
+
+tr.sum {
+    border-top: double #A9A9A9;
+}
 
 /* tablecloth styles */
-tr.even td { background:#eee; }
-tr.odd td { background:#f8fbfc; }
+tr.even td { background:#f8fbfc; }
+tr.odd td { background:#eee; }
 th.over, tr.even th.over, tr.odd th.over { background:#4a98af; }
 td.over, tr.even td.over, tr.odd td.over { background:#ecfbd4; }
 
