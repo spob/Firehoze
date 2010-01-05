@@ -13,11 +13,9 @@ th, td {
     padding:.5em;
 }
 th {
-    background-color:#A9A9A9;
-    color:#fff;
     text-shadow: #333 0 1px 1px;
-    border-bottom: solid 1px #A9A9A9;
     background-color:#E3E9F2;
+    border-bottom: double #A9A9A9;
     color:#17587F;
     text-shadow: none;
 }
@@ -73,7 +71,6 @@ table.lesson-details {
 
 table.lesson-details tr td.header {
     border-left: solid 1px #A9A9A9;
-
     background-color:#E3E9F2;
     color:#17587F;
     text-shadow:none;
