@@ -4,9 +4,12 @@
     overflow:hidden;
     width:830px;
     height:186px;
-    border:solid 1px #ccc;
-    background-color:#f2f2f2;
-    /* background:url(../../../images/scrollable/h300.png) repeat-x; */
+    background-color:#fff;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+    -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+    box-shadow: 0 1px 10px rgba(0,0,0,.3);
 }
 
 .scrollable .items {
@@ -38,6 +41,7 @@
 
 .item_container	.tn {
     position:relative;
+    margin-bottom:4px;
 }
 
 div.items div.item_container div.tn div.duration-scroller {
@@ -49,8 +53,9 @@ div.items div.item_container div.tn div.duration-scroller {
     position:absolute;
     bottom:2px;
     right:2px;
-    -moz-border-radius:2px;
+    border-radius:2px;
     -webkit-border-radius:2px;
+    -moz-border-radius:2px;
 }
 
 .item_container	.title {

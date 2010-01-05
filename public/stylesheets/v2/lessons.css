@@ -520,50 +520,92 @@ div.lesson-notes ul#attachments {
     list-style-type: none;
 }
 
+div.widget-box-content h3 {
+    margin:0 0 0.5em 0;
+    font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
+    font-weight:bold;
+    font-size:1.5em;
+    color:#0350a6;
+    line-height:2em;
+}
+
+div#bought-this-video-also-bought h3 {
+    background: transparent url(images/icons/buy-also_32.png)  no-repeat;
+    padding-left:1.8em;    
+    margin-left:0.4em;
+}
+
+
+div#what-do-students-ultimately-buy-container div.widget-box-content h3 {
+    background: transparent url(images/icons/buy_32.png)  no-repeat;
+    padding-left:2.4em;  
+}
+
 /* STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT... */
 #bought-this-video-also-bought {
-    border: solid 1px #CCC;
     padding:10px 17px 24px 17px;
-    background-color:  #e3e9f2;
+    background-color: #e3e9f2;
+    border-radius:8px;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
 }
 
 /* WHAT DO STUDENTS ULTIMATELY BUY AFTER BROWSING THIS ITEM? */
-ul#what-do-students-ultimately {
+div#what-do-students-ultimately-buy-container {
+    padding:24px;
+    background-color: #e3e9f2;
+    border-radius:8px;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+}
+
+ul#what-do-students-ultimately-buy {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    border-top: solid 1px #cfcfcf;
-    border-left: solid 1px #cfcfcf;
-    border-right: solid 1px #cfcfcf;
-}
-
-ul#what-do-students-ultimately li.lesson-container {
-    background:url(../../../images/scrollable/h300.png) repeat-x;
-    padding:0;
-    margin:0;
-    border-bottom: solid 1px #cfcfcf;
-}
-
-ul#what-do-students-ultimately li.lesson-container div.lesson-tn-container {
-    float:left;
-    padding:0;
-    margin:0 17px 17px 17px;
+    border-radius:8px;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
     -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
     -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
     box-shadow: 0 1px 10px rgba(0,0,0,.3); 
 }
 
-#what-do-students-ultimately img.lesson_tn  {
+ul#what-do-students-ultimately-buy li.lesson-container {
+    padding:17px;
+    margin:0;
+}
+
+ul#what-do-students-ultimately-buy li:first-child {
+    border-top-left-radius:8px;
+    border-top-right-radius:8px;
+    -webkit-border-top-left-radius:8px;
+    -webkit-border-top-right-radius:8px;
+    -moz-border-radius-topleft:8px;
+    -moz-border-radius-topright:8px;
+}
+
+ul#what-do-students-ultimately-buy li:last-child {
+    border-bottom-left-radius:8px;
+    border-bottom-right-radius:8px;
+    -webkit-border-bottom-left-radius:8px;
+    -webkit-border-bottom-right-radius:8px;
+    -moz-border-radius-bottomleft:8px;
+    -moz-border-radius-bottomright:8px;
+}
+
+ul#what-do-students-ultimately-buy li img.lesson_tn {
+    float:left;
+    padding:0;
     border: solid 1px #cfcfcf;
     padding:3px;
     width: 100px;
     height: 75px; /* 4:3 aspect ratio */
+    -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+    -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+    box-shadow: 0 1px 10px rgba(0,0,0,.3); 
 }
 
-#what-do-students-ultimately .lesson-detail {
-    margin: 17px 17px 0px 122px;
+#what-do-students-ultimately-buy div.lesson-detail {
+    margin-left: 124px;
 }
-
-#what-do-students-ultimately .even  { }
-
-#what-do-students-ultimately .odd  { }

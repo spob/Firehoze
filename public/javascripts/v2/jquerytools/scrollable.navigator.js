@@ -1,6 +1,6 @@
 $(function() {
-    $("#browsable").scrollable().navigator();
-    $("div.scrollable").scrollable().navigator();
+    // $("#browsable").scrollable().navigator();
+    $("div.scrollable").scrollable();
 
 // for some reason the navigator is failing
 // $("div.scrollable").scrollable({

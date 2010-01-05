@@ -4,9 +4,9 @@ $(function() {
         background: "#FFF"
     });
 
-    $('#tag_cloud, #bought-this-video-also-bought, #what-do-students-ultimately').cornerz({
-        radius: 5
-    });
+    // $('#tag_cloud, #bought-this-video-also-bought, #what-do-students-ultimately').cornerz({
+    //     radius: 5
+    // });
 
     $('.box').cornerz({
         radius: 5
