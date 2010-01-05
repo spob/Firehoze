@@ -1,46 +1,44 @@
+  <% if @show_purchases -%>
+    <div>
+    <h3>Lesson Purchases</h3>
+      <table>
+        <tr>
+          <th>Purchased At</th>
+          <th>User</th>
+          <th>Price Paid</th>
+          <th>Commission Paid</th>
+          <th>Description</th>
+        </tr>
+        <%= render :partial => 'lessons/credit', :collection => @lesson.credits.descend_by_redeemed_at.all(:include => [:user, :sku]) -%>
+        <tr class="sum">
+          <td><b>TOTAL</b></td>
+          <td>&nbsp;</td>
+          <td><b><%=h number_to_currency(@lesson.credits.sum(:price)) -%></b></td>
+          <td><b><%=h number_to_currency(@lesson.credits.sum(:commission_paid)) -%></b></td>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+    </div>
+  <% end %>
 
-  <div class="nested-navigation-panes">
-    <% if @show_purchases -%>
-      <h3>Lesson Purchases</h3>
-      <div>
-        <table>
-          <tr>
-            <th>Purchased At</th>
-            <th>User</th>
-            <th>Price Paid</th>
-            <th>Commission Paid</th>
-            <th>Description</th>
-          </tr>
-          <%= render :partial => 'lessons/credit', :collection => @lesson.credits.descend_by_redeemed_at.all(:include => [:user, :sku]) -%>
-          <tr class="sum">
-            <td><b>TOTAL</b></td>
-            <td>&nbsp;</td>
-            <td><b><%=h number_to_currency(@lesson.credits.sum(:price)) -%></b></td>
-            <td><b><%=h number_to_currency(@lesson.credits.sum(:commission_paid)) -%></b></td>
-            <td>&nbsp;</td>
-          </tr>
-        </table>
-      </div>
-    <% end %>
-
-    <% if current_user.try("is_admin?") or @lesson.instructor == current_user -%>
-      <div>
+  <% if current_user.try("is_admin?") or @lesson.instructor == current_user -%>
+    <div>
       <h3>Video Stats</h3>
-        <table>
-          <tr>
-            <th>Video</th>
-            <th>Status</th>
-            <% if current_user.try("is_admin?") -%>
-              <th>Size</th>
-              <th>Dimensions</th>
-              <th>Filename</th>
-              <th>File Type</th>
-              <th>Conversion Costs<br />Input/Output</th>
-              <th>Log</th>
-              <th>Action</th>
-            <% end -%>
-          </tr>
-          <%= render :partial => "video", :collection => @lesson.videos.all(:include => (current_user.try("is_admin?") ? [:video_status_changes, :lesson] : [])) -%>
-        </table>
-      </div>
-    <% end %>
+      <table>
+        <tr>
+          <th>Video</th>
+          <th>Status</th>
+          <% if current_user.try("is_admin?") -%>
+            <th>Size</th>
+            <th>Dimensions</th>
+            <th>Filename</th>
+            <th>File Type</th>
+            <th>Conversion Costs<br />Input/Output</th>
+            <th>Log</th>
+            <th>Action</th>
+          <% end -%>
+        </tr>
+        <%= render :partial => "video", :collection => @lesson.videos.all(:include => (current_user.try("is_admin?") ? [:video_status_changes, :lesson] : [])) -%>
+      </table>
+    </div>
+  <% end %>
