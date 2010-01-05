@@ -524,9 +524,7 @@ div#group-container div#description ul {
     padding:0;
 }
 
-div#group-details-tabs div.panes {
-    padding-top:17px;
-}
+div#group-details-tabs div.panes { }
 
 /* group topics */
 div#tabs-discussion-topics {
