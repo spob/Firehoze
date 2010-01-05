@@ -1,0 +1,90 @@
+#scrollable_container {
+    margin: 0 0 25px 0;
+    padding:20px 0 38px 0;
+    width: 980px ;
+    background-color:#EFEFEF;
+    border: solid 1px #ccc;
+}
+
+#scrollable_container_header {
+    margin: 0;
+    padding:15px 0 0 10px;
+    width: 970px ;
+    background-color:#fff;
+    border-top: solid 1px #ccc;
+    border-left: solid 1px #ccc;
+    border-right: solid 1px #ccc;
+}
+
+#scrollable_container_header h3 {
+    color: #444;
+}
+
+.scrollable #thumbs img.lesson_tn  {
+    display:block;
+    width: 146px;
+    height: 110px; /* 4:3 aspect ratio */
+    margin:20px 30px;
+    padding: 5px;
+    border: solid 1px #888;
+}
+
+/* root element for the whole scrollable setup */
+div.scrollable {  
+    /*border:2px solid lime;*/
+    position:relative;
+    overflow:hidden;
+    width: 898px;
+    height:300px;
+}
+
+/* 
+	root element for scrollable items. It is 
+	absolutely positioned with large width. 
+*/
+#thumbs {	
+    position:absolute;
+    width:20000em;
+    clear:both;
+    border:1px solid #222;
+}
+
+/* custom positioning for navigational links */
+a.prev, a.next {
+    margin-top:118px;
+}
+
+/* single item */
+#thumbs div {
+    float:left;
+    width:224px;
+    height:300px;
+    background:#333 url(../../../images/scrollable/h150.png) repeat-x 0 158px;
+    color:#fff;
+    border-left:1px solid #333;
+    cursor:pointer;
+}
+
+/* style when mouse is over the item */
+#thumbs div.hover {
+    background-color:#444;
+}
+
+/* style when element is active (clicked) */
+#thumbs div.active {
+    background-color:#066;
+    cursor:default;
+}
+
+#thumbs h4 {
+    margin:8px 0px 13px 13px;
+    font-size:13px;
+    color:#D6D6D6;
+    white-space:nowrap;
+}
+
+#thumbs p, #thumbs span {
+    margin:13px;
+    font-size:11px;
+    color:#ccc;
+}

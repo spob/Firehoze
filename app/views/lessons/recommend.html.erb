@@ -1,18 +1,15 @@
 <% title "#{h @lesson.title}" -%>
 <% @current = 'lessons' %>
 
-
-  <%= javascript 'jquerytools/scrollable.navigator' %>
-  <%= stylesheet 'jquerytools/scrollable-small', 'jquerytools/scrollable-buttons-small', 'jquerytools/scrollable-navigator-small' %>
-
-
+<%= javascript 'v2/jquerytools/scrollable.navigator' %>
+<%= stylesheet 'v2/jquerytools/scrollable-small', 'v2/jquerytools/scrollable-buttons-small', 'v2/jquerytools/scrollable-navigator-small' %>
 
 <% # STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT...  -%>
-<div>
-  <%= render :partial => 'lesson_buy_pairs', :object => @lesson -%>
+<div class="span-12">
+  <%= render :partial => 'lessons/v2/lesson_buy_pairs', :object => @lesson -%>
 </div>
 
 <% # WHAT DO STUDENTS ULTIMATELY BUY AFTER BROWSING THIS ITEM?  -%>
-<div>
-  <%= render :partial => 'lesson_buy_patterns', :object => @lesson -%>
+<div class="span-12">
+  <%= render :partial => 'lessons/v2/lesson_buy_patterns', :object => @lesson -%>
 </div>

@@ -1,0 +1,39 @@
+<% lesson = object %>
+
+<% unless lesson.lesson_buy_pairs.ready.all(:select => ["lesson_buy_pairs.id"]).empty? %>
+  <%= javascript 'v2/jquerytools/scrollable.navigator' %>
+  <%= stylesheet 'v2/jquerytools/scrollable-small', 'v2/jquerytools/scrollable-buttons-small', 'v2/jquerytools/scrollable-navigator-small' %>
+  <div class="prepend-top">
+    <div id="bought_this_video_also_bought">
+      <h3>Students who bought this video also bought...</h3>
+
+      <!-- wrapper for navigator elements -->
+
+      <div class="navi"></div>
+
+      <!-- "previous page" action -->
+      <a class="prevPage browse left"></a>
+
+      <!-- root element for scrollable -->
+      <div class="scrollable" id="browsable">
+        <!-- root element for the items -->
+        <div class="items">
+          <% for buy_pair in lesson.lesson_buy_pairs.ready.all(:include => [:other_lesson])[0..APP_CONFIG[CONFIG_NUMBER_OF_BUY_PATTERNS_TO_SHOW]] %>
+            <div class="item_container">
+              <div class="tn">
+                <%= img_tag_lesson_tn(buy_pair.other_lesson, :small) %>
+                <div class="duration-scroller transparent">(<%= ChronicDuration.output(lesson.finished_video_duration/1000, :format => :chrono) -%>)</div>
+              </div>
+              <div class="title"><%= link_to truncate(h(buy_pair.other_lesson.title), :length => 38), lesson_path(buy_pair.other_lesson) %></div>
+              <div class="instructor"><%= link_to(truncate(h(lesson.instructor.login)), lesson.instructor) %></div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- "next page" action -->
+      <a class="nextPage browse right"></a>
+      <br clear="all" />
+    </div>
+  </div>
+<% end %>

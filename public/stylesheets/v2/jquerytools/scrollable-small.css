@@ -1,0 +1,71 @@
+.scrollable {
+    /* required settings */
+    position:relative;
+    overflow:hidden;
+    width:868px;
+    height:186px;
+    border:1px solid #ccc;
+    background:url(../../../images/scrollable/h300.png) repeat-x;
+}
+
+.scrollable .items {
+    /* this cannot be too large */
+    width:20000em;
+    position:absolute;
+    clear:both;
+}
+
+.scrollable .item_container {
+    float:left;
+    padding: 0px;
+    margin:15px 2px 20px 15px;
+    width:126px;
+}
+
+/* single scrollable item */
+.scrollable img {
+    background-color:#fff;
+    padding:2px;
+    border:1px solid #ccc;
+    cursor:pointer;
+    width:120px;
+    height:90px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+}
+
+.item_container	.tn {
+    position:relative;
+}
+
+div.items div.item_container div.tn div.duration-scroller {
+    padding: 0 3px;
+    background: #333;
+    color: #fff;
+    font-weight: bold;
+    font-size: 10px;
+    position:absolute;
+    bottom:2px;
+    right:2px;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+}
+
+.item_container	.title {
+	font-size: 11px;
+	line-height: 16px;
+  font-weight:bold;
+}
+.item_container	.title, .item_container	.created_at, .item_container	.instructor {
+	font-size: 11px;
+	line-height: 16px;
+	}
+
+/* active item */
+.scrollable .active {
+    /*
+    border:1px solid #ccc;
+    z-index:9999;
+    position:relative;
+    */
+}
