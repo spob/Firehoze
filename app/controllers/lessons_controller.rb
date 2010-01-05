@@ -163,7 +163,6 @@ class LessonsController < ApplicationController
   end
 
   def show_groups
-    # @lesson = Lesson.find(params[:id])
     @groups = @lesson.lesson_groups(current_user)
   end
 
