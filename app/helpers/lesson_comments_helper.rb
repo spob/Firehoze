@@ -10,33 +10,9 @@ module LessonCommentsHelper
     end
   end
 
-  def show_discussion_text lesson, lesson_comments, user
-    if lesson_comments.empty? and lesson.owned_by?(user)
-      "Need some help? #{link_to_comment(lesson, 'Ask a question')}"
-    elsif lesson.can_comment?(user)
-      link_to_comment(lesson, "Post a reply")
-    elsif user
-      t('lesson.must_own')
-    else
-      "You must #{link_to 'login', login_path} or #{link_to 'register', new_registration_path} to contribute to this discussion."
-    end
-  end
-
-  def show_discussion_text_2(lesson, user)
-    if lesson.comments.empty? and lesson.owned_by?(user)
-      "Need some help? #{link_to_comment(lesson, 'Ask a question')}"
-    elsif lesson.can_comment?(user)
-      link_to_comment(lesson, "Post a reply")
-    elsif current_user
-      t('lesson.must_own')
-    else
-      "You must #{link_to 'login', login_path} or #{link_to 'register', new_registration_path} to contribute to this discussion."
-    end
-  end
-
-  def show_discussion_text_3(lesson)
+  def show_discussion_text(lesson)
     if lesson.comments.empty?
-      "Discussions allow you to interact withe the instructor and with other users. You can ask a question or make a comment on the lesson. #{link_to_comment(lesson, 'Start the Discussion')}"
+      "Discussions allow you to interact with the instructor and with other users.<br />You can ask a question or comment on the lesson.<br />#{link_to_comment(lesson, 'Start the Discussion')}"
     else
       link_to_comment(lesson, "Post a Reply")
     end

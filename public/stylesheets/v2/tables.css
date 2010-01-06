@@ -3,7 +3,8 @@
 table, td { font:100% Arial, Helvetica, sans-serif;}
 table { 
     width:100%;
-    border: solid 1px #A9A9A9;
+    border-top: solid 1px #A9A9A9;
+    border-bottom: solid 1px #A9A9A9;
     border-collapse:collapse;
 }
 
