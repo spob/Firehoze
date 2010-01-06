@@ -10,9 +10,9 @@ module ReviewsHelper
 
   def show_review_text(lesson, user)
     if lesson.reviews.empty? and ok_to_review?(lesson, user)
-      "Be the first to leave a review for this lesson -- #{link_to_review(lesson, user)} "
+      "<p>Help the Firehoze community by being the first to review this lesson.</p>#{link_to_review(lesson, user)} "
     elsif user and lesson.reviews.empty? and ok_to_review?(lesson, user)
-      "#{link_to_review(lesson, user)}<p>We'd love to hear what you thought about this lesson.</p>"
+      "<p>We'd love to hear what you thought about this lesson.</p>#{link_to_review(lesson, user)}"
     elsif ok_to_review?(lesson, user)
       link_to_review(lesson, user)
     end
