@@ -4,17 +4,16 @@
 <div id="lesson-comments-container">
   <div class="clearfix">
     <% if @style == 'tab' %>
-      <% content_tag :div, :class => "span-12 right" do
-        show_review_text(@lesson, current_user)
-      end if show_review_text(@lesson, current_user).present? -%>
+      <% content_tag :div, :class => "action" do %>
+        <%= show_review_text(@lesson, current_user) %>
+      <% end if show_review_text(@lesson, current_user).present? -%>
     <% else %>
       <div class="span-8">
-        <% unless @style == 'tab'%>
-          <h3>Reviews for Lesson: <%= link_to h(@lesson.title.titleize), lesson_path(@lesson, :anchor => :reviews) %></h3>
-        <% end %>
+        <h3>Reviews for Lesson: <%= link_to h(@lesson.title.titleize), lesson_path(@lesson, :anchor => :reviews) %></h3>
       </div>
+
       <div class="span-4 last right">
-        <%= show_review_text(@lesson, current_user) %>
+        <%= content_tag(:div, show_review_text(@lesson, current_user)) %>
       </div>
     <% end %>
   </div>

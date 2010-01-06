@@ -639,3 +639,14 @@ div.comment-container div.count {
     font-size:28px;
     font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
 }
+
+.info {
+    background: #f1f7fe url(images/icons/info_32.png) 1em 1em no-repeat;
+    padding: 1em 1em 1em 5em;
+    border: solid 2px #e3e9f2;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    min-height:3em;
+}
+
