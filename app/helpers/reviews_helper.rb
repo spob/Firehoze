@@ -18,6 +18,18 @@ module ReviewsHelper
     end
   end
 
+  def show_review_text_2(lesson, user)
+    if ok_to_review?(lesson, user)
+      if lesson.reviews.empty?
+        "<p>Help the Firehoze community by being the first to review this lesson.</p>#{link_to_review(lesson, user)}"
+      else
+        link_to_review(lesson, user)
+      end
+    elsif lesson.reviews.empty?
+      "Looks like no one has reviewed this lesson yet."
+    end
+  end
+
   def ok_to_review?(lesson, user)
     (!lesson.reviewed_by?(user) and !lesson.instructed_by?(user))
   end
