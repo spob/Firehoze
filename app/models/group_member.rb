@@ -10,8 +10,7 @@ class GroupMember < ActiveRecord::Base
 
   def can_edit?(user)
     self.group.owned_by?(user) or
-            (self.group.moderated_by?(user) and
-                    (self.member_type == MEMBER or self.member_type == PENDING))
+            (self.group.moderated_by?(user) and [MEMBER, PENDING].include?(self.member_type))
   end
 
   def compile_activity
