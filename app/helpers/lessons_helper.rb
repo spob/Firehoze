@@ -121,8 +121,8 @@ module LessonsHelper
 #    end
 #  end
 
-  def link_to_review(lesson)
-    if !lesson.reviewed_by?(current_user) and lesson.owned_by?(current_user)
+  def link_to_review(lesson, user)
+    if !lesson.reviewed_by?(user) and lesson.owned_by?(user)
       link_to "Write a Review", new_lesson_review_path(lesson), :class => :rounded
     end
   end
