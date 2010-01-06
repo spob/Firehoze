@@ -641,6 +641,7 @@ div.comment-container div.count {
 }
 
 .info {
+    text-align:left;
     margin-bottom:1em;
     background: #f1f7fe url(images/icons/info_32.png) 1em 1em no-repeat;
     padding: 1em 1em 1em 5em;
@@ -649,5 +650,16 @@ div.comment-container div.count {
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
     min-height:3em;
+}
+
+.with-button {
+  padding-right:16em;
+}
+
+.with-button a.rounded {
+  position:absolute;
+  top:1.5em;
+  right:1em;
+  margin:0;
 }
 

@@ -12,7 +12,9 @@ module LessonCommentsHelper
 
   def show_discussion_text(lesson)
     if lesson.comments.empty?
-      "<div class='info left'>Discussions allow you to interact with the instructor and with other students.<br />You can ask a question or comment on this lesson.</div>#{link_to_comment(lesson, 'Start the Discussion')}"
+      "<div class='info with-button'>Discussions allow you to interact with the instructor and with other students.<br />You can ask a question or comment on this lesson.
+      #{link_to_comment(lesson, 'Start the Discussion')}
+      </div>"
     else
       link_to_comment(lesson, "Post a Reply")
     end

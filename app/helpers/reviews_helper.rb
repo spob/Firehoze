@@ -11,7 +11,7 @@ module ReviewsHelper
   def show_review_text(lesson, user)
     if ok_to_review?(lesson, user)
       if lesson.reviews.empty?
-        "<div class='info'>Help the Firehoze community by being the first to review this lesson.</div>#{link_to_review(lesson, user)}"
+        "<div class='info with-button'>Help the Firehoze community by being the first to review this lesson.#{link_to_review(lesson, user)}</div>"
       else
         link_to_review(lesson, user)
       end
