@@ -57,4 +57,8 @@ $(function() {
         effect: 'ajax'
     });
 
+    // admin edit user tabs
+    $("#admin-user-tabs ul.tabs").tabs("#admin-user-tabs > div.panes > div", {
+        effect: 'fade'
+    });
 });

@@ -12,11 +12,11 @@ $(function() {
         }
     });
 
-    $('#admin_user_tabs').tabs(
+    $('#admin-user-tabs').tabs(
     {
         cookie: {
             expires: 30,
-            name: 'admin_user_tabs'
+            name: 'admin-user-tabs'
         },
         fx: {
             opacity: 'toggle',
