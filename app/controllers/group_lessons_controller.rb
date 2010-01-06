@@ -18,7 +18,7 @@ class GroupLessonsController < ApplicationController
         flash[:error] = t('group_lesson.already_added')
       end
     end
-    redirect_to lesson_path(@lesson.id)
+    redirect_to lesson_path(@lesson.id, :anchor => "groups")
   end
 
   def destroy
