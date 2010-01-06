@@ -21,6 +21,10 @@ ul.groups li {
     padding:1em;
 }
 
+ul.groups li:last-child {
+    border: none;
+}
+
 ul.users li .details {
     padding: 0 17px 17px 77px;
 }

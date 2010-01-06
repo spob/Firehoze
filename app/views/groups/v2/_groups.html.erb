@@ -1,2 +1,14 @@
-<% groups = object %>
-<%= render :partial => 'groups/v2/group', :object => groups %>
+<% show_member ||= false %>
+<ul class="groups">
+<% for group in groups %>
+<% member = group.includes_member?(current_user) %>
+  <li class='clearfix'>
+    <div><%= logo_tag group, :size => :small %></div>
+    <div class="details">
+      <strong><%= link_to(h(group.name), group_path(group)) %></strong>
+      <%= "<i>(" + t("group_member.#{member.member_type.downcase}") + ")</i>" if member and (show_member  or member.member_type == OWNER or member.member_type == MODERATOR) %>
+      <div class="group-description"><%= h group.category.name %>: <%= h group.description %></div>
+    </div>
+  </li>
+<% end %>
+</ul>
