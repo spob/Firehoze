@@ -175,6 +175,6 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   config.active_record.observers = :payment_observer, :lesson_observer, :review_observer, :comment_observer,
-        :group_observer, :group_lesson_observer, :group_member_observer
+        :group_observer, :group_lesson_observer, :group_member_observer, :user_observer
   #:cacher, :garbage_collector
 end
