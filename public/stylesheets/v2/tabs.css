@@ -75,10 +75,7 @@ ul.tabs a.current {
     padding-right:12px;
 }
 
-/*
-.tab-container.lesson-details ul li a {
-    padding-left:12px;
-    padding-right:12px;
+div#admin_user_tabs ul li a {
+    padding-left:23px;
+    padding-right:23px;
 }
-*/
-
