@@ -146,9 +146,9 @@ en:
     already_member: You are already a member of this group
 
   group_lesson:
-    lesson_added: Lesson successfully added to the {{group}}} group
+    lesson_added: Lesson successfully added to the {{group}} group
     already_added: Lesson is already associated to this group
-    lesson_removed: Lesson removed from the {{group}}} group
+    lesson_removed: Lesson removed from the {{group}} group
     does_not_belong: Lesson is not a member of the {{group}} group
 
   group_member:
