@@ -122,7 +122,7 @@ module LessonsHelper
   #  end
 
   def link_to_review(lesson, user)
-    if (!lesson.reviewed_by?(user) and !lesson.instructed_by?(user))
+    if lesson.show_review_button?(user)
       link_to "Write a Review", new_lesson_review_path(lesson), :class => :rounded
     end
   end

@@ -244,6 +244,10 @@ END
     !self.group_lessons.scoped_by_group_id(group).scoped_by_active(true).first(:select => [:id]).nil?
   end
 
+  def show_review_button?(user)
+    (!reviewed_by?(user) and !instructed_by?(user))
+  end
+
   def instructed_by?(user)
     instructor == user
   end
