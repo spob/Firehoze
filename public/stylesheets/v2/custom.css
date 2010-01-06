@@ -250,6 +250,13 @@ ul#main-navigation  {
     text-decoration:none;
     border: 0 none;
 }
+
+/* make admin nav a tiny bit narrower */
+ul.admin li a {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+}
+
 #main-navigation li a:hover,
 #main-navigation li a:focus {
     color: #BF1701;  /*RED LINK*/
