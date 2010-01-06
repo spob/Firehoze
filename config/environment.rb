@@ -174,6 +174,6 @@ Rails::Initializer.run do |config|
   # config.active_record.schema_format = :sql                       
 
   # Activate observers that should always be running
-  config.active_record.observers = :payment_observer
+  config.active_record.observers = :payment_observer, :lesson_observer
   #:cacher, :garbage_collector
 end

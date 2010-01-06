@@ -23,6 +23,8 @@ class Activity < ActiveRecord::Base
                 } }
 
   def self.compile
+    # Strictly speaking, these calls are redundant since they've been shifted to observers...but, they can't hurt,
+    # and will make sure nothing slips through the cracks.
     Lesson.ready.activity_compiled_at_null(:lock => true).each do |lesson|
       Lesson.transaction do
         lesson.compile_activity
