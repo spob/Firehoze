@@ -89,7 +89,7 @@
   <div class="span-12">
     <div id="lesson-content-tabs" class="tab-container">
       <ul class="tabs">
-        <%= content_tag(:li, "#{ link_to h(t('lesson.notes')), lesson_notes_lesson_path(@lesson, :style => 'tab') }")  unless @lesson.notes.blank? and @lesson.attachments.empty? %>
+        <%= content_tag(:li, "#{ link_to h(t('lesson.notes')), lesson_notes_lesson_path(@lesson, :style => 'tab') }")  if (@lesson.notes.present? or @lesson.attachments.present? or @lesson.can_edit?(current_user)) %>
         <li><%= link_to h(t('lesson.reviews')), lesson_reviews_path(@lesson, :style => 'tab', :per_page => REVIEWS_ON_LESSON_SHOW_PER_PAGE) %></li>
         <li><%= link_to h(t('lesson.discussion')), lesson_lesson_comments_path(@lesson, :style => 'tab', :per_page => COMMENTS_ON_LESSON_SHOW_PER_PAGE) %></li>
         <%= content_tag(:li, "#{ link_to "Stats", stats_lesson_path(@lesson, :style => 'tab') }")  if (@show_purchases or @show_video_stats) %>

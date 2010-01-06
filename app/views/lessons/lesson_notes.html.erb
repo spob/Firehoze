@@ -2,29 +2,33 @@
 <% @current = 'lessons' %>
 
 <div class="lesson-notes">
-  <div class="span-8">
-    <% unless @lesson.notes.blank? %>
-    <%= rbs_formatter(@lesson.notes) %>
+  <div>
+    <% if @lesson.notes.blank? and @lesson.can_edit?(current_user)%>
+      <div class="info">
+        You might consider adding notes and attachments to this lesson. Notes and attachments are a great way to provide additional information for your students, such as supplemental materials, times within the video when specific topics are addressed, clarifications, or links to other lessons or sits that users might consider visiting for additional information.
+      </div>
+    <% else @lesson.notes.present? %>
+      <%= rbs_formatter(@lesson.notes) %>
     <% end %>
   </div>
-  <div class="span-3 last">
-    <div class="box">
-      <h3>Attachments</h3>
-      <% unless @lesson.attachments.empty? %>
-      <ul id="attachments">
-        <% @lesson.attachments.each do |attachment| %>
-        <li>
-          <%= link_to attachment.title, attachment.attachment.url, :popup => true %>
-          (<%= number_to_human_size(attachment.attachment.size) %>)
-          <% if @lesson.can_edit?(current_user) %>
-          <%= link_to 'edit', edit_lesson_attachment_path(attachment) %> |
-          <%= link_to 'delete', lesson_attachment_path(attachment), :confirm => 'Are you sure?', :method => :delete %>
+  <div>
+    <% unless @lesson.attachments.empty? %>
+      <div class="box-header h3">Lesson Attachments</div>
+      <div class="box-content">
+        <ul id="attachments">
+          <% @lesson.attachments.each do |attachment| %>
+            <li>
+              <%= link_to attachment.title, attachment.attachment.url, :popup => true %>
+              (<%= number_to_human_size(attachment.attachment.size) %>)
+              <% if @lesson.can_edit?(current_user) %>
+                <%= link_to 'edit', edit_lesson_attachment_path(attachment) %> |
+                <%= link_to 'delete', lesson_attachment_path(attachment), :confirm => 'Are you sure?', :method => :delete %>
+              <% end %>
+            </li>
           <% end %>
-        </li>
-        <% end %>
-      </ul>
-      <% end %>
-    </div>
-      <%= link_to_add_attachment(@lesson, current_user) %>
+        </ul>
+      </div>
+    <% end %>
+    <%= link_to_add_attachment(@lesson, current_user) %>
   </div>
 </div>
