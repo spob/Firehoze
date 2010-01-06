@@ -21,6 +21,6 @@ module ReviewsHelper
   end
 
   def ok_to_review?(lesson, user)
-    (!lesson.reviewed_by?(user) and !lesson.instructed_by?(user) and lesson.owned_by?(user))
+    (!lesson.reviewed_by?(user) and !lesson.instructed_by?(user))
   end
 end
