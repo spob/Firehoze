@@ -31,7 +31,7 @@ class GroupLessonsController < ApplicationController
         flash[:notice] = t('group_lesson.lesson_removed', :group => @group.name)
       end
     end
-    redirect_to lesson_path(@lesson.id)
+    redirect_to lesson_path(@lesson.id, :anchor => "groups")
   end
 
   private

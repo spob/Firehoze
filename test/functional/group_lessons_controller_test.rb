@@ -23,7 +23,7 @@ class GroupLessonsControllerTest < ActionController::TestCase
         should_assign_to :group
         should_assign_to :lesson
         should_respond_with :redirect
-        should_redirect_to("Lesson page") { lesson_url(@lesson.id) }
+        should_redirect_to("Lesson page") { lesson_url(@lesson.id, :anchor => "groups") }
         should "add lesson to group" do
           assert @lesson.belongs_to_group?(@group)
         end
@@ -36,7 +36,7 @@ class GroupLessonsControllerTest < ActionController::TestCase
         should_assign_to :group
         should_assign_to :lesson
         should_respond_with :redirect
-        should_redirect_to("Lesson page") { lesson_url(@lesson.id) }
+        should_redirect_to("Lesson page") { lesson_url(@lesson.id, :anchor => "groups") }
         should "add lesson to group" do
           assert !@lesson.belongs_to_group?(@group)
         end
@@ -54,7 +54,7 @@ class GroupLessonsControllerTest < ActionController::TestCase
           should_assign_to :group
           should_assign_to :lesson
           should_respond_with :redirect
-          should_redirect_to("Lesson page") { lesson_url(@lesson.id) }
+          should_redirect_to("Lesson page") { lesson_url(@lesson.id, :anchor => "groups") }
           should "add lesson to group" do
             assert @lesson.belongs_to_group?(@group)
           end
@@ -67,7 +67,7 @@ class GroupLessonsControllerTest < ActionController::TestCase
           should_assign_to :group
           should_assign_to :lesson
           should_respond_with :redirect
-          should_redirect_to("Lesson page") { lesson_url(@lesson.id) }
+          should_redirect_to("Lesson page") { lesson_url(@lesson.id, :anchor => "groups") }
           should "add lesson to group" do
             assert !@lesson.belongs_to_group?(@group)
           end
@@ -85,7 +85,7 @@ class GroupLessonsControllerTest < ActionController::TestCase
             should_assign_to :group
             should_assign_to :lesson
             should_respond_with :redirect
-            should_redirect_to("Lesson page") { lesson_url(@lesson.id) }
+            should_redirect_to("Lesson page") { lesson_url(@lesson.id, :anchor => "groups") }
             should "add lesson to group" do
               assert @lesson.belongs_to_group?(@group)
             end
@@ -98,7 +98,7 @@ class GroupLessonsControllerTest < ActionController::TestCase
             should_assign_to :group
             should_assign_to :lesson
             should_respond_with :redirect
-            should_redirect_to("Lesson page") { lesson_url(@lesson.id) }
+            should_redirect_to("Lesson page") { lesson_url(@lesson.id, :anchor => "groups") }
             should "add lesson to group" do
               assert !@lesson.belongs_to_group?(@group)
             end
