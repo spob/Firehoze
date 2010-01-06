@@ -641,6 +641,7 @@ div.comment-container div.count {
 }
 
 .info {
+    margin-bottom:1em;
     background: #f1f7fe url(images/icons/info_32.png) 1em 1em no-repeat;
     padding: 1em 1em 1em 5em;
     border: solid 2px #e3e9f2;
