@@ -9,7 +9,7 @@ module ReviewsHelper
   end
 
   def show_review_text(lesson, user)
-    if ok_to_review?(lesson, user)
+    if lesson.show_review_button?(user)
       if lesson.reviews.empty?
         "<div class='info with-button'>Help the Firehoze community by being the first to review this lesson.#{link_to_review(lesson, user)}</div>"
       else
@@ -18,9 +18,5 @@ module ReviewsHelper
     elsif lesson.reviews.empty?
       "<div class='info'>Looks like no one has reviewed this lesson yet.</div>"
     end
-  end
-
-  def ok_to_review?(lesson, user)
-    (!lesson.reviewed_by?(user) and !lesson.instructed_by?(user))
   end
 end
