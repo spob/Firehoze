@@ -11,11 +11,11 @@ module LessonCommentsHelper
   end
 
   def show_discussion_text lesson, lesson_comments, user
-    if lesson_comments.empty? and lesson.owned_by?(current_user)
+    if lesson_comments.empty? and lesson.owned_by?(user)
       "Need some help? #{link_to_comment(lesson, 'Ask a question')}"
-    elsif lesson.can_comment?(current_user)
+    elsif lesson.can_comment?(user)
       link_to_comment(lesson, "Post a reply")
-    elsif current_user
+    elsif user
       t('lesson.must_own')
     else
       "You must #{link_to 'login', login_path} or #{link_to 'register', new_registration_path} to contribute to this discussion."
@@ -31,6 +31,18 @@ module LessonCommentsHelper
       t('lesson.must_own')
     else
       "You must #{link_to 'login', login_path} or #{link_to 'register', new_registration_path} to contribute to this discussion."
+    end
+  end
+
+  def show_discussion_text_3(lesson, user)
+    if lesson.can_comment?(user)
+      if lesson.comments.empty?
+        "Need some help? #{link_to_comment(lesson, 'Ask a question')}"
+      else
+        link_to_comment(lesson, "Post a reply")
+      end
+    else
+      t('lesson.must_own')
     end
   end
 end
