@@ -38,22 +38,22 @@ module LessonsHelper
   def lessons_header(collection, *args)
     if controller.action_name == 'list'
       header =
-              case collection
-                when :most_popular
-                  t('lesson.most_popular')
-                when :highest_rated
-                  t('lesson.highest_rated')
-                when :newest
-                  t('lesson.newest')
-                when :recently_browsed
-                  t('lesson.recently_browsed')
-                when :owned_lessons
-                  t('lesson.lessons_you_own')
-                when :instructed_lessons
-                  t('lesson.lessons_you_instructed')
-                when :tagged_with
-                  "#{t('lesson.tagged_with')} &quot;#{args.first}&quot;"
-              end
+        case collection
+      when :most_popular
+        t('lesson.most_popular')
+      when :highest_rated
+        t('lesson.highest_rated')
+      when :newest
+        t('lesson.newest')
+      when :recently_browsed
+        t('lesson.recently_browsed')
+      when :owned_lessons
+        t('lesson.lessons_you_own')
+      when :instructed_lessons
+        t('lesson.lessons_you_instructed')
+      when :tagged_with
+        "#{t('lesson.tagged_with')} &quot;#{args.first}&quot;"
+      end
       "<h3>#{header}</h3>"
     end
   end
@@ -113,13 +113,13 @@ module LessonsHelper
     end
   end
 
-#  def button_to_preview(lesson)
-#    if lesson.ready?
-#      unless lesson.owned_by?(current_user) or lesson.instructed_by?(current_user)
-#        button_to "Preview", nil, { :alt => '#FIXME (when preview functionality is coded by Bob)', :disabled => true }
-#      end
-#    end
-#  end
+  #  def button_to_preview(lesson)
+  #    if lesson.ready?
+  #      unless lesson.owned_by?(current_user) or lesson.instructed_by?(current_user)
+  #        button_to "Preview", nil, { :alt => '#FIXME (when preview functionality is coded by Bob)', :disabled => true }
+  #      end
+  #    end
+  #  end
 
   def link_to_review(lesson, user)
     if !lesson.reviewed_by?(user) and lesson.owned_by?(user)
