@@ -297,6 +297,10 @@ END
     owned_by?(user) or can_edit?(user)
   end
 
+  def can_review? user
+    (owned_by?(user) and !reviewed_by?(user) and !instructed_by?(user))
+  end
+
   # Has this user reviewed this lesson already?
   def reviewed_by? user
     !Review.scoped_by_user_id(user).scoped_by_lesson_id(self).all(:select => [:id]).empty?

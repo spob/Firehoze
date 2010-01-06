@@ -286,6 +286,7 @@ en:
     must_view_to_review: You can only review videos which you own
     update_success: Review updated
     add_your_review: Add Your Review of the Lesson
+    must_logon: Please sign in or signup for an account in order to review a lesson
 
   sku:
     create_success: SKU created

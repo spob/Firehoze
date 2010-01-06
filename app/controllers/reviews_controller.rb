@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
   include SslRequirement
 
   if APP_CONFIG[CONFIG_ALLOW_UNRECOGNIZED_ACCESS]
-    before_filter :require_user, :except => [:index]
+    before_filter :require_user, :except => [:index, :new]
   else
     before_filter :require_user
   end
@@ -50,16 +50,7 @@ class ReviewsController < ApplicationController
   def new
     @review = @lesson.reviews.build
     # A user can only write a review for a lesson once
-    if @lesson.reviewed_by? current_user
-      flash[:error] = t 'review.already_reviewed'
-      redirect_to lesson_reviews_path(@lesson)
-    elsif !current_user.owns_lesson? @lesson
-      flash[:error] = t 'review.must_view_to_review'
-      redirect_to lesson_reviews_path(@lesson)
-    elsif @lesson.instructor == current_user
-      flash[:error] = t 'review.cannot_review_own_lesson'
-      redirect_to lesson_reviews_path(@lesson)
-    end
+    can_review?
   end
 
   def create
@@ -68,12 +59,14 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        if @review.save
-          flash[:notice] = t 'review.create_success'
-          redirect_to lesson_reviews_path(@lesson)
-        else
-          flash[:error] = t 'review.create_failure'
-          render :action => 'new'
+        if can_review? @lesson
+          if @review.save
+            flash[:notice] = t 'review.create_success'
+            redirect_to lesson_reviews_path(@lesson)
+          else
+            flash[:error] = t 'review.create_failure'
+            render :action => 'new'
+          end
         end
       end
       format.js do
@@ -116,11 +109,11 @@ class ReviewsController < ApplicationController
 
   def set_per_page
     @per_page =
-    if params[:per_page]
-      params[:per_page]
-    else
-      5
-    end
+            if params[:per_page]
+              params[:per_page]
+            else
+              5
+            end
   end
 
   def layout_for_action
@@ -131,5 +124,28 @@ class ReviewsController < ApplicationController
     else
       'application'
     end
+  end
+
+  def can_review? lesson
+    return true if lesson.can_review? current_user
+    if lesson.reviewed_by? current_user
+      flash[:error] = t 'review.already_reviewed'
+      redirect_back_to_reviews lesson
+    elsif !lesson.owned_by?(current_user)
+      flash[:error] = t 'review.must_view_to_review'
+      redirect_back_to_reviews lesson
+    elsif lesson.instructed_by?(current_user)
+      flash[:error] = t 'review.cannot_review_own_lesson'
+      redirect_back_to_reviews lesson
+    elsif !current_user
+      store_location new_review_path(@lesson)
+      flash[:error] = t('review.must_logon')
+      redirect_to new_user_session_url
+    end
+    false
+  end
+
+  def redirect_back_to_reviews lesson
+    redirect_to lesson_reviews_path(lesson, :anchor => "reviews")
   end
 end
