@@ -4,7 +4,7 @@
 <div id="lesson-comments-container">
   <div class="clearfix">
     <% if @style == 'tab' %>
-      <% content_tag :div, :class => "action" do %>
+      <% content_tag :div, :class => "action right" do %>
         <%= show_review_text(@lesson, current_user) %>
       <% end if show_review_text(@lesson, current_user).present? -%>
     <% else %>

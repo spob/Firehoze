@@ -426,6 +426,11 @@ div#stars {
 }
 
 /* Actions */
+
+div.action {
+  margin-bottom: 1em;
+}
+
 div#lesson-container div#actions {
     position:absolute;
     top:0;
