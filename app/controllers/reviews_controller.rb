@@ -146,6 +146,6 @@ class ReviewsController < ApplicationController
   end
 
   def redirect_back_to_reviews lesson
-    redirect_to lesson_reviews_path(lesson, :anchor => "reviews")
+    redirect_to lesson_path(lesson, :anchor => "reviews")
   end
 end
