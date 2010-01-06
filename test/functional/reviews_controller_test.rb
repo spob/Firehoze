@@ -69,7 +69,7 @@ class ReviewsControllerTest < ActionController::TestCase
           should_assign_to :review
           should_respond_with :redirect
           should_set_the_flash_to :review_create_success
-          should_redirect_to("Reviews index page") { lesson_reviews_url(@lesson) }
+          should_redirect_to("lesson page") { lesson_url(@lesson, :anchor => "reviews") }
         end
 
         fast_context "on GET to :new when already reviewed" do
@@ -90,7 +90,7 @@ class ReviewsControllerTest < ActionController::TestCase
           should_assign_to :review
           should_respond_with :redirect
           should_set_the_flash_to /You can only write a review for a lesson once/
-          should_redirect_to("Reviews index page") { lesson_reviews_url(@credit.lesson) }
+          should_redirect_to("lesson page") { lesson_url(@credit.lesson, :anchor => "reviews") }
         end
 
         fast_context "on GET to :new when not owned" do
@@ -103,7 +103,7 @@ class ReviewsControllerTest < ActionController::TestCase
           should_assign_to :review
           should_respond_with :redirect
           should_set_the_flash_to /You can only review videos which you own/
-          should_redirect_to("Reviews index page") { lesson_reviews_url(@lesson2) }
+          should_redirect_to("lesson page") { lesson_url(@lesson2, :anchor => "reviews") }
         end
 
         fast_context "on GET to :show with a rejected review" do
