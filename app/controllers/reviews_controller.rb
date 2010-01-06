@@ -62,7 +62,7 @@ class ReviewsController < ApplicationController
         if can_review? @lesson
           if @review.save
             flash[:notice] = t 'review.create_success'
-            redirect_to lesson_reviews_path(@lesson)
+            redirect_to lesson_path(@lesson, :anchor => 'reviews')
           else
             flash[:error] = t 'review.create_failure'
             render :action => 'new'
