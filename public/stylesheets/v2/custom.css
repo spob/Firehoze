@@ -30,7 +30,7 @@ div {
 
 
 /* psuedo-header classes */
-.h1,.h2,.h3,.h4,.h5,.h6 { font-family: "Helvetica Neue", helvetica, Arial, sans-serif; font-weight: normal; color: #0350a6; }
+.h1,.h2,.h3,.h4,.h5,.h6 { font-family: "Helvetica Neue", helvetica, Arial, sans-serif; font-weight: normal; }
 .h1 { font-size: 3em; line-height: 1; margin-bottom: 0.5em; }
 .h2 { font-size: 2em; margin-bottom: 0.75em; }
 .h3 { font-size: 1.5em; line-height: 1; margin-bottom: 1em; font-weight:bold; }
@@ -71,7 +71,10 @@ a.no-border:hover {
   -webkit-border-top-left-radius: 5px;
   -moz-border-radius-topright: 5px;
   -webkit-border-top-right-radius: 5px;
-  font-weight: bold; 
+  font-family: "Helvetica Neue", helvetica, Arial, sans-serif; 
+  font-weight: bold;
+  font-size: 1.5em;
+  color:#0350a6;
   padding: 0.5em;
   margin:1em 0 0 0;
   background: #e3e9f2;
@@ -247,6 +250,13 @@ ul#main-navigation  {
     text-decoration:none;
     border: 0 none;
 }
+
+/* make admin nav a tiny bit narrower */
+ul.admin li a {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+}
+
 #main-navigation li a:hover,
 #main-navigation li a:focus {
     color: #BF1701;  /*RED LINK*/

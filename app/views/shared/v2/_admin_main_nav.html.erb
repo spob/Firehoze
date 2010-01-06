@@ -16,7 +16,7 @@ navigation << [:skus, { :name => 'SKUs', :location =>  skus_path }] if current_u
 navigation << [:users, { :name => 'Users', :location =>  list_users_path('search[order]' => 'ascend_by_login') }] if current_user.is_admin?
 %>
 
-<ul id="main-navigation">
+<ul id="main-navigation" class="admin">
   <% navigation.each do |key, item| %>
     <% if navigation.first[0] == key and @current.to_s == key.to_s %>
       <li id="first"></li>
