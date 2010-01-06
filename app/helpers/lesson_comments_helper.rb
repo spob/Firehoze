@@ -34,11 +34,11 @@ module LessonCommentsHelper
     end
   end
 
-  def show_discussion_text_3(lesson, user)
+  def show_discussion_text_3(lesson)
     if lesson.comments.empty?
-      "Need some help? #{link_to_comment(lesson, 'Ask a question')}"
+      "Discussions allow you to interact withe the instructor and with other users. You can ask a question or make a comment on the lesson. #{link_to_comment(lesson, 'Start the Discussion')}"
     else
-      link_to_comment(lesson, "Join the Discussion")
+      link_to_comment(lesson, "Post a Reply")
     end
   end
 end

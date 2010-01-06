@@ -7,7 +7,7 @@
 
     <% if @style == 'tab' %>
       <div class="span-12">
-        <%= show_discussion_text @lesson, @lesson_comments, current_user %>
+        <%= show_discussion_text_3 @lesson %>
       </div>
     <% else %>
       <div class="span-9">
@@ -16,7 +16,7 @@
         <% end %>
       </div>
       <div class="span-3 last right">
-        <%= show_discussion_text @lesson, @lesson_comments, current_user %>
+        <%= show_discussion_text_3 @lesson %>
       </div>
     <% end %>
   </div>
