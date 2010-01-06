@@ -91,7 +91,7 @@ class LessonCommentsController < ApplicationController
       true
     elsif !user
       store_location new_lesson_lesson_comment_path(@lesson)
-      flash[:error] = t('lesson.must_logon')
+      flash[:error] = t('lesson.must_logon_to_comment')
       redirect_to new_user_session_url
       false
     else

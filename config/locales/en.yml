@@ -200,7 +200,7 @@ en:
     updated: Lesson updated
     watch: Watch
     watch_for_free: Watch For Free
-    must_logon: Please sign in or signup for an account in order to watch this video or comment on it
+    must_logon_to_watch: Please sign in or signup for an account in order to watch this video
     must_own: You must first purchase this lesson in order to join the discussion
     wishlist: Wishlist
     high_school_level: High School
@@ -212,7 +212,7 @@ en:
     Converting: Converting
     Pending: Lesson created and awaiting transcoding
     Ready: Ready
-    must_logon: Please log on or request an account in order to join the discussion
+    must_logon_to_comment: Please log on or request an account in order to join the discussion
     must_be_instructor: Please complete your instructor information before creating a lesson 
 
   lesson_comment:

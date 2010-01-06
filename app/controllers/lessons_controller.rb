@@ -284,7 +284,7 @@ class LessonsController < ApplicationController
       end
     else
       store_location lesson_path(@lesson)
-      flash[:error] = t('lesson.must_logon')
+      flash[:error] = t('lesson.must_logon_to_watch')
       redirect_to new_user_session_url
     end
   end
