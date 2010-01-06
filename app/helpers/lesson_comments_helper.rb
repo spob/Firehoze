@@ -35,14 +35,10 @@ module LessonCommentsHelper
   end
 
   def show_discussion_text_3(lesson, user)
-    if lesson.can_comment?(user)
-      if lesson.comments.empty?
-        "Need some help? #{link_to_comment(lesson, 'Ask a question')}"
-      else
-        link_to_comment(lesson, "Post a reply")
-      end
+    if lesson.comments.empty?
+      "Need some help? #{link_to_comment(lesson, 'Ask a question')}"
     else
-      t('lesson.must_own')
+      link_to_comment(lesson, "Join the Discussion")
     end
   end
 end
