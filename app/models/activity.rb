@@ -25,41 +25,41 @@ class Activity < ActiveRecord::Base
   def self.compile
     # Strictly speaking, these calls are redundant since they've been shifted to observers...but, they can't hurt,
     # and will make sure nothing slips through the cracks.
-#    Lesson.ready.activity_compiled_at_null(:lock => true).each do |lesson|
-#      Lesson.transaction do
-#        lesson.compile_activity
-#      end
-#    end
-#
-#    Review.activity_compiled_at_null(:lock => true).each do |review|
-#      Review.transaction do
-#        review.compile_activity
-#      end
-#    end
-#
-#    Comment.public.activity_compiled_at_null(:lock => true).each do |comment|
-#      Comment.transaction do
-#        comment.compile_activity
-#      end
-#    end
-#
-#    Group.activity_compiled_at_null(:lock => true).each do |group|
-#      Group.transaction do
-#        group.compile_activity
-#      end
-#    end
+    Lesson.ready.activity_compiled_at_null(:lock => true).each do |lesson|
+      Lesson.transaction do
+        lesson.compile_activity
+      end
+    end
 
-#    GroupLesson.active.activity_compiled_at_null(:lock => true).each do |group_lesson|
-#      GroupLesson.transaction do
-#        group_lesson.compile_activity
-#      end
-#    end
-#
-#    GroupMember.active.activity_compiled_at_null(:lock => true).each do |group_member|
-#      GroupMember.transaction do
-#        group_member.compile_activity
-#      end
-#    end
+    Review.activity_compiled_at_null(:lock => true).each do |review|
+      Review.transaction do
+        review.compile_activity
+      end
+    end
+
+    Comment.public.activity_compiled_at_null(:lock => true).each do |comment|
+      Comment.transaction do
+        comment.compile_activity
+      end
+    end
+
+    Group.activity_compiled_at_null(:lock => true).each do |group|
+      Group.transaction do
+        group.compile_activity
+      end
+    end
+
+    GroupLesson.active.activity_compiled_at_null(:lock => true).each do |group_lesson|
+      GroupLesson.transaction do
+        group_lesson.compile_activity
+      end
+    end
+
+    GroupMember.active.activity_compiled_at_null(:lock => true).each do |group_member|
+      GroupMember.transaction do
+        group_member.compile_activity
+      end
+    end
 
     User.active.activity_compiled_at_null(:lock => true).each do |user|
       User.transaction do
