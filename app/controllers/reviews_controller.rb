@@ -50,7 +50,7 @@ class ReviewsController < ApplicationController
   def new
     @review = @lesson.reviews.build
     # A user can only write a review for a lesson once
-    can_review?
+    can_review? @lesson
   end
 
   def create
