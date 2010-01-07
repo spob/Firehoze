@@ -25,6 +25,7 @@ body {
 
 div {
     /*text-align:justify*/
+    /*border: solid 1px red;*/
 }
 
 
@@ -251,11 +252,15 @@ ul#main-navigation  {
     border: 0 none;
 }
 
-/* make admin nav a tiny bit narrower */
+/* MAKE ADMIN NAV A TINY BIT NARROWER */
 ul.admin li a {
     padding-left: 16px !important;
     padding-right: 16px !important;
 }
+ul.admin li.selected.first a {
+    padding-left: 0px !important;
+}
+/* end admin deviations */
 
 #main-navigation li a:hover,
 #main-navigation li a:focus {
@@ -273,6 +278,7 @@ ul.admin li a {
     text-decoration: none;
     padding-left: 21px;
 }
+ul.admin li.selected.first a,
 #main-navigation li.selected.first a,
 #main-navigation li.selected.first a:hover {
     padding-left: 0px;
@@ -701,3 +707,12 @@ div.comment-container div.count {
   margin:0;
 }
 
+/* ADMIN */
+.search-box-container {
+  border: solid 1px #ccc;
+  margin-bottom:1em;
+}
+.search-box {
+  background-color: #efefef;
+  padding: 1em 0;
+}

@@ -1,14 +1,15 @@
 <% title "Gift Certificates" -%>
+<% @current = 'giftcerts' %>
 
 <h3>Gift Certificates</h3>
-<%= link_to "Grant", new_grant_gift_certificate_path %>
-<div>
-  <% form_for(@search, :html => { :class => "search_box" }) do |f| %>
-    <div class="span-15">
+<p><%= link_to "Grant", new_grant_gift_certificate_path %></p>
+<div class="span-12 last search-box-container">
+  <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
+    <div class="span-7 right">
       <%= f.label :user_login_like, "Username" %>
-      <%= f.text_field :user_login_like, :style => "width:290px;" %>
+      <%= f.text_field :user_login_like, :style => "width:400px;" %>
     </div>
-    <div class="last" style="padding-top:5px;text-align:left">
+    <div class="span-5 last left" style="padding:5px 0 0 0;">
       <b>Order by:</b>
       <%= order @search, :by => :user_login, :as => "Username" %>&nbsp;
       <%= order @search, :by => :id, :as => "Created At" %>
@@ -30,5 +31,5 @@
 </table>
 
 <%= will_paginate @gift_certificates %>
-<br />
-Rows to Display Per Page: <%= per_page_select(list_admin_gift_certificates_path) %>
+
+<p>Rows to Display Per Page: <%= per_page_select(list_admin_gift_certificates_path) %></p>

@@ -1,7 +1,8 @@
 <% title "Payment Levels" -%>
+<% @current = 'payment_levels' %>
 
 <h3>Payment Levels</h3>
-<%= link_to "New Payment Level", new_payment_level_path %>
+<p><%= link_to "New Payment Level", new_payment_level_path %></p>
 <table>
   <tr>
     <th>Name</th>
@@ -16,5 +17,5 @@
 
 </table>
 <%= will_paginate @payment_levels %>
-<br />
-Rows to Display Per Page: <%= per_page_select(payment_levels_path) %>
+
+<p>Rows to Display Per Page: <%= per_page_select(payment_levels_path) %></p>

@@ -1,17 +1,18 @@
 <% title "Users" -%>
+<% @current = 'users' %>
 
 <h3>Users</h3>
-<div>
-  <% form_for(@search, :html => { :class => "search_box" }) do |f| %>
-    <div class="span-15">
+
+<div class="span-12 last search-box-container">
+  <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
+    <div class="span-5 right">
       <%= f.label :login_like, "Username" %>
       <%= f.text_field :login_like, :style => "width:290px;" %>
     </div>
-    <div class="span-14">
+    <div class="span-7 last left">
       <%= f.label :email_like, "Email" %>
-      <%= f.text_field :email_like, :style => "width:290px;" %>
-    </div>
-    <div class="last" style="padding-top:5px;text-align:left">
+      <%= f.text_field :email_like, :style => "width:245px;" %>
+
       <b>Order by:</b>
       <%= order @search, :by => :login, :as => "Username" %>&nbsp;
       <%= order @search, :by => :email %>

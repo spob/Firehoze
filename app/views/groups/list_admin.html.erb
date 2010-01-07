@@ -1,24 +1,23 @@
 <% title "Browse by Groups" -%>
+<% @current = 'groups' %>
 
 <h3>Groups</h3>
-<%= link_to "New Group", new_group_path %>
-<div>
-  <% form_for(@search, :html => { :class => "search_box" }) do |f| %>
-      <div class="span-10">
-        <%= f.label :name_like, "Name" %>:
-        <%= f.text_field :name_like, :style => "width:120px;" %>
-      </div>
-      <div class="span-10">
-        <%= f.label :owner_login_like, "Owner" %>:
-        <%= f.text_field :owner_login_like, :style => "width:150px;" %>
-      </div>
-      <div class="last" style="padding-top:5px;text-align:right">
-        <b>Order by:</b>
-        <%= order @search, :by => :name %>&nbsp;
-        <%= order @search, :by => :owner_login %>&nbsp;
-        <%= order @search, :by => :category_name %>&nbsp;
-        <%= f.submit "Search" %>
-      </div>
+<p><%= link_to "New Group", new_group_path %></p>
+<div class="span-12 last search-box-container">
+  <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
+    <div class="span-4 right">
+      <%= f.label :name_like, "Name" %>:
+      <%= f.text_field :name_like, :style => "width:220px;" %>
+    </div>
+    <div class="span-8 left last">
+      <%= f.label :owner_login_like, "Owner" %>:
+      <%= f.text_field :owner_login_like, :style => "width:210px;" %>
+      <b>Order by:</b>
+      <%= order @search, :by => :name %>&nbsp;
+      <%= order @search, :by => :owner_login %>&nbsp;
+      <%= order @search, :by => :category_name %>&nbsp;
+      <%= f.submit "Search" %>
+    </div>
   <% end %>
 </div>
 <table>
