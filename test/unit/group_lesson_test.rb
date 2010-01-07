@@ -15,11 +15,6 @@ class GroupLessonTest < ActiveSupport::TestCase
     fast_context "compile_activity" do
       setup do
         @group_lesson2 = Factory.create(:group_lesson, :active => false)
-        assert @group_lesson.activities.empty?
-        assert @group_lesson2.activities.empty?
-        Activity.compile
-        @group_lesson = GroupLesson.find(@group_lesson.id)
-        @group_lesson2 = GroupLesson.find(@group_lesson2.id)
       end
 
       should "generate activity records" do

@@ -63,7 +63,7 @@ module ApplicationHelper
   def link_to_profile(user, options = {})
     length = options[:length]
     name = length ? (truncate(privacy_sensitive_username(user), :length => length)) : privacy_sensitive_username(user)
-    link_to_unless_current name, user_path(user)
+    link_to_unless_current name.strip, user_path(user)
   end
 
   def privacy_sensitive_username(user)
