@@ -1,19 +1,18 @@
 <% title "Orders" -%>
 
 <h3>Orders</h3>
-<div>
-  <% form_for(@search, :html => { :class => "search_box" }) do |f| %>
-      <div class="span-15">
-        <%= f.label :user_login_like, "Username" %>
-        <%= f.text_field :user_login_like, :style => "width:290px;" %>
-      </div>
-      <div class="span-14">
-        <%= f.label :id_equals, "Order Number" %>
-        <%= f.text_field :id_equals, :style => "width:70px;" %>
-      </div>
-      <div class="last" style="padding-top:5px;text-align:left">
-        <%= f.submit "Search" %>
-      </div>
+
+<div class="span-12 last search-box-container">
+  <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
+    <div class="span-6 right">
+      <%= f.label :user_login_like, "Username" %>
+      <%= f.text_field :user_login_like, :style => "width:360px;" %>
+    </div>
+    <div class="span-6 last">
+      <%= f.label :id_equals, "Order Number" %>
+      <%= f.text_field :id_equals, :style => "width:270px;" %>
+      <%= f.submit "Search" %>
+    </div>
   <% end %>
 </div>
 
@@ -28,5 +27,5 @@
 </table>
 
 <%= will_paginate @orders %>
-<br />
-Rows to Display Per Page: <%= per_page_select(orders_path) %>
+
+<p>Rows to Display Per Page: <%= per_page_select(orders_path) %></p>
