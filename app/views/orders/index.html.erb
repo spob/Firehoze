@@ -3,7 +3,7 @@
 
 <h3>Orders</h3>
 
-<div class="span-12 last search-box-container">
+<div class="span-12 search-box-container">
   <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
     <div class="span-6 right">
       <%= f.label :user_login_like, "Username" %>
@@ -17,16 +17,16 @@
   <% end %>
 </div>
 
-<table>
-  <tr>
-    <th>Order Number</th>
-    <th>Ordered Date</th>
-    <th>User</th>
-    <th>Amount</th>
-  </tr>
-  <%= render @orders %>
-</table>
-
-<%= will_paginate @orders %>
-
+<div class="span-12">
+  <table>
+    <tr>
+      <th>Order Number</th>
+      <th>Ordered Date</th>
+      <th>User</th>
+      <th>Amount</th>
+    </tr>
+    <%= render @orders %>
+  </table>
+</div>
+<p><%= will_paginate @orders %></p>
 <p>Rows to Display Per Page: <%= per_page_select(orders_path) %></p>

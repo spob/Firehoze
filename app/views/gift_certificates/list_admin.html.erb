@@ -3,7 +3,7 @@
 
 <h3>Gift Certificates</h3>
 <p><%= link_to "Grant", new_grant_gift_certificate_path %></p>
-<div class="span-12 last search-box-container">
+<div class="span-12 search-box-container">
   <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
     <div class="span-7 right">
       <%= f.label :user_login_like, "Username" %>
@@ -17,19 +17,20 @@
     </div>
   <% end %>
 </div>
-<table>
-  <tr>
-    <th>Code</th>
-    <th>Belongs To</th>
-    <th>Credits</th>
-    <th>Price Paid</th>
-    <th>Redeemed At</th>
-    <th>Expires At</th>
-    <th>Comments</th>
-  </tr>
-  <%= render :partial => 'gift_certificate_admin', :collection => @gift_certificates %>
-</table>
 
-<%= will_paginate @gift_certificates %>
-
+<div class="span-12">
+  <table>
+    <tr>
+      <th>Code</th>
+      <th>Belongs To</th>
+      <th>Credits</th>
+      <th>Price Paid</th>
+      <th>Redeemed At</th>
+      <th>Expires At</th>
+      <th>Comments</th>
+    </tr>
+    <%= render :partial => 'gift_certificate_admin', :collection => @gift_certificates %>
+  </table>
+</div>
+<p><%= will_paginate @gift_certificates %></p>
 <p>Rows to Display Per Page: <%= per_page_select(list_admin_gift_certificates_path) %></p>

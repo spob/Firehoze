@@ -2,7 +2,7 @@
 <% @current = 'logons' %>
 
 <h3>User Logons</h3>
-<div class="span-12 last search-box-container">
+<div class="span-12 search-box-container">
   <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
     <div class="span-6 right">
       <%= f.label :user_login_like, "Username" %>
@@ -16,16 +16,17 @@
   <% end %>
 </div>
 
-<table>
-  <tr>
-    <th>User</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Login IP</th>
-    <th>Logged In At</th>
-  </tr>
-  <%= render @user_logons %>
-</table>
-<%= will_paginate @user_logons %>
-<br />
-Rows to Display Per Page: <%= per_page_select(user_logons_path) %>
+<div class="span-12">
+  <table>
+    <tr>
+      <th>User</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Login IP</th>
+      <th>Logged In At</th>
+    </tr>
+    <%= render @user_logons %>
+  </table>
+</div>
+<p><%= will_paginate @user_logons %></p>
+<p>Rows to Display Per Page: <%= per_page_select(user_logons_path) %></p>

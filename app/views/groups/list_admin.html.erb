@@ -3,7 +3,7 @@
 
 <h3>Groups</h3>
 <p><%= link_to "New Group", new_group_path %></p>
-<div class="span-12 last search-box-container">
+<div class="span-12 search-box-container">
   <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
     <div class="span-4 right">
       <%= f.label :name_like, "Name" %>:
@@ -20,18 +20,19 @@
     </div>
   <% end %>
 </div>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Owner</th>
-    <th>Category</th>
-    <th>Members</th>
-    <th>Private</th>
-    <th>Active</th>
-  </tr>
-  <%= render @groups %>
-</table>
 
-<%= will_paginate @groups %>
-<br />
-Rows to Display Per Page: <%= per_page_select(list_admin_groups_path) %>
+<div class="span-12">
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Owner</th>
+      <th>Category</th>
+      <th>Members</th>
+      <th>Private</th>
+      <th>Active</th>
+    </tr>
+    <%= render @groups %>
+  </table>
+</div>
+<p><%= will_paginate @groups %></p>
+<p>Rows to Display Per Page: <%= per_page_select(list_admin_groups_path) %></p>

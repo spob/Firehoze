@@ -2,7 +2,7 @@
 <% @current = 'lessons' %>
 
 <h3>Lessons</h3>
-<div class="span-12 last search-box-container">
+<div class="span-12 search-box-container">
   <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
     <div class="span-4 right">
       <%= f.label :title_like, "Title" %>
@@ -41,8 +41,6 @@
     </tr>
     <%= render @lessons %>
   </table>
-
-  <%= will_paginate @lessons %>
-  <br />
-  Rows to Display Per Page: <%= per_page_select(list_admin_lessons_path) %>
 </div>
+<p><%= will_paginate @lessons %></p>
+<p>Rows to Display Per Page: <%= per_page_select(list_admin_lessons_path) %></p>

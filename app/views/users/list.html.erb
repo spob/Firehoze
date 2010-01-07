@@ -3,7 +3,7 @@
 
 <h3>Users</h3>
 
-<div class="span-12 last search-box-container">
+<div class="span-12 search-box-container">
   <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
     <div class="span-5 right">
       <%= f.label :login_like, "Username" %>
@@ -21,23 +21,24 @@
   <% end %>
 </div>
 
-<table>
-  <tr>
-    <th>Username</th>
-    <th>Email</th>
-    <th>Name</th>
-    <th>Active</th>
-    <th>Instructor?</th>
-    <th>Time Zone</th>
-    <th>Success/Failure<br />Login Count</th>
-    <th>Last Login At</th>
-    <th>Last Login IP</th>
-    <th>Current Login At</th>
-    <th>Current Login IP</th>
-    <th>Action</th>
-  </tr>
-  <%= render @users %>
-</table>
-<%= will_paginate @users %>
-<br />
-Rows to Display Per Page: <%= per_page_select(list_users_path) %>
+<div class="span-12">
+  <table>
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Name</th>
+      <th>Active</th>
+      <th>Instructor?</th>
+      <th>Time Zone</th>
+      <th>Success/Failure<br />Login Count</th>
+      <th>Last Login At</th>
+      <th>Last Login IP</th>
+      <th>Current Login At</th>
+      <th>Current Login IP</th>
+      <th>Action</th>
+    </tr>
+    <%= render @users %>
+  </table>
+</div>
+<p><%= will_paginate @users %></p>
+<p>Rows to Display Per Page: <%= per_page_select(list_users_path) %></p>
