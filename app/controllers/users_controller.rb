@@ -223,7 +223,7 @@ class UsersController < ApplicationController
   def layout_for_action
     if %w(show_admin edit list).include?(params[:action])
       'admin_v2'
-    elsif %w(new create).include?(params[:action])
+    elsif %w(create new show).include?(params[:action])
       'application_v2'
     else
       'application'

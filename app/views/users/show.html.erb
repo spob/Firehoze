@@ -1,63 +1,67 @@
 <% title "#{@user.name_or_username}" -%>
 
 <div id="user_show">
-  <div class="clear span-40 last append-bottom" id="name_plate">
-    <span class="h3" id="name"><%= link_to_profile(@user) %></span>
-  </div>
 
-  <div class="span-40 last">
-
-    <div class="span-10">
-      <div id="avatar"><%= avatar_tag @user, :size => :large %></div>
-      <div class="prepend-top">
-        <% if @user.followers.size > 0 %>
-            <%= pluralize @user.followers.size, 'follower' %>
-        <% end %>
+  <div id="user-public-container" class="span-12 last">
+    <div id="name-plate">
+      <span class="h3" id="name"><%= link_to_profile(@user) %></span>
+      <div id="user-actions">
         <% if @user.can_contact? current_user %>
-            <div><%= link_to 'Contact This User', new_contact_user_path(:id => @user.id) %></div>
+        <%= link_to 'Contact This User', new_contact_user_path(:id => @user.id), :class => :rounded %>
         <% end %>
         <% if @user.can_edit? current_user %>
-            <div><%= link_to "Edit", edit_user_path(@user) %></div>
+        <%= link_to "Edit", edit_user_path(@user), :class => :rounded %>
         <% end %>
-        <div><%= flag_link @user %></div>
-        <div><%= follow_link @user, current_user %></div>
+        <%= flag_link @user %>
+        <%= follow_link @user, current_user %>
+      </div>
+    </div>
+    <div id="avatar-container1">
+      <div id="avatar"><%= avatar_tag @user, :size => :small %></div>
+      <div class="prepend-top">
+        <% if @user.followers.size > 0 %>
+          <%= pluralize @user.followers.size, 'follower' %>
+        <% end %>
       </div>
     </div>
 
-    <div class="span-30 last">
-      <div id="user_show_tabs">
-        <ul>
+    <div class="details1">
+      <div id="user-show-tabs">
+        <ul class="tabs">
           <% unless @user.bio.blank? %>
-              <li><a href="#tabs-1"><%= t 'user.about_me' %></a></li>
+            <li><a href="#about-me"><%= t 'user.about_me' %></a></li>
           <% end %>
 
           <% unless @lessons.empty? %>
-              <li><a href="#tabs-2"><%= t 'user.instructor_of', :user => h(@user.name_or_username) %></a></li>
+            <li><a href="#lessons-by"><%= t 'user.instructor_of', :user => h(@user.name_or_username) %></a></li>
           <% end %>
 
           <% unless @reviews.empty? %>
-              <li><a href="#tabs-3"><%= t 'user.reviews_of', :user => h(@user.name_or_username) %></a></li>
+            <li><a href="#reviews-by"><%= t 'user.reviews_of', :user => h(@user.name_or_username) %></a></li>
           <% end %>
 
           <% unless @groups.empty? %>
-              <li><a href="#tabs-4"><%= possessive_helper(h(@user.name_or_username)) %> <%= t 'group.groups' %></a></li>
+            <li><a href="#groups"><%= possessive_helper(h(@user.name_or_username)) %> <%= t 'group.groups' %></a></li>
           <% end %>
         </ul>
 
-        <% unless @user.bio.blank? %>
-            <div id="tabs-1"><%= rbs_formatter show_bio %></div>
-        <% end %>
+        <div class="panes">
+          <% unless @user.bio.blank? %>
+            <div id="pane-about-me"><%= rbs_formatter show_bio %></div>
+          <% end %>
 
-        <% unless @lessons.empty? %>
-            <div id="tabs-2"><%= render :partial => "lessons/lesson_narrow", :collection => @lessons %></div>
-        <% end %>
+          <% unless @lessons.empty? %>
+            <div id="pane-lessons-by"><%= render :partial => "lessons/v2/lessons_row_format", :object => @lessons %></div>
+          <% end %>
 
-        <% unless @reviews.empty? %>
-            <div id="tabs-3"><%= render :partial => "reviews/review_with_lesson", :collection => @reviews %></div>
-        <% end %>
-        <% unless @groups.empty? %>
-            <div id="tabs-4"><%= render :partial => "groups", :locals => { :groups => @groups } %></div>
-        <% end %>
+          <% unless @reviews.empty? %>
+          <!-- TODO make this partial smarter -->
+            <div id="pane-reviews-by"><%= render :partial => "reviews/v2/reviews", :collection => @reviews %></div>
+          <% end %>
+          <% unless @groups.empty? %>
+            <div id="pane-group"><%= render :partial => "groups", :locals => { :groups => @groups } %></div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

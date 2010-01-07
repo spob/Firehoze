@@ -61,4 +61,11 @@ $(function() {
     $("#admin-user-tabs ul.tabs").tabs("#admin-user-tabs > div.panes > div", {
         effect: 'fade'
     });
+
+    // public user tabs
+    $("#user-show-tabs ul.tabs").tabs("#user-show-tabs > div.panes > div", {
+        effect: 'fade'
+    });
+
+
 });
