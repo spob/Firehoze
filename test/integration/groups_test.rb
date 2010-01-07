@@ -62,7 +62,7 @@ class GroupsTest < ActionController::IntegrationTest
           assert_contain @group3.name
           assert_contain @group4.name
           click_link @group2.name
-          assert_contain 'Alas'
+          assert_contain 'created the group'
           click_link 'on me'
           assert_contain 'Alas'
           click_link 'by me'

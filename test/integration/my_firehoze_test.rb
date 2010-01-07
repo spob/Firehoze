@@ -13,7 +13,7 @@ class MyFirehozeTest < ActionController::IntegrationTest
       click_button "Login"
       assert_contain "my firehoze"
       assert_contain "Recent Activity"
-      assert_contain "Alas, no activity to report"
+      assert_contain "joined the Firehoze community"
       assert_contain "Latest Tweets"
       click_link "by me"
       click_link "on me"
