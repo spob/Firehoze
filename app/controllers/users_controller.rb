@@ -80,6 +80,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @no_uniform_js = true
   end
 
   def update_instructor
