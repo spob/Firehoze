@@ -75,7 +75,7 @@ ul.tabs a.current {
     padding-right:12px;
 }
 
-div#admin-user-tabs ul li a {
+div#admin-user-tabs > ul li a {
     padding-left:23px;
     padding-right:23px;
 }
