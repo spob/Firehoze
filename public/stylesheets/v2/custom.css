@@ -25,6 +25,7 @@ body {
 
 div {
     /*text-align:justify*/
+    /*border: solid 1px red;*/
 }
 
 
@@ -701,3 +702,12 @@ div.comment-container div.count {
   margin:0;
 }
 
+/* ADMIN */
+.search-box-container {
+  border: solid 1px #ccc;
+  margin-bottom:1em;
+}
+.search-box {
+  background-color: #efefef;
+  padding: 1em 0;
+}
