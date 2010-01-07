@@ -97,7 +97,7 @@
 
 
 .fh-form h3 {
-  margin:8px 0 6px 82px;
+    margin:8px 0 6px 82px;
 }
 
 .fh-form h4 {
@@ -124,6 +124,13 @@
     padding:0 12px 0 0;
 }
 
+.fh-form ul.section li.minor-header {
+    display:block;
+    padding-left:2em;
+    font-weight:bold;
+    background-color:transparent;
+}
+
 .fh-form ul.section li.header span {
     position:absolute;
     display:block;
@@ -145,7 +152,7 @@ div#user-agreement h4 {
     font-weight:bold;
     text-transform:uppercase;
 }
-ul#registation-info li span.heading { 
+ul#registation-info li span.heading {
     padding:0;
     color:#0350a6;
     padding:0;
@@ -532,11 +539,11 @@ span.valid {
 }
 
 /* CHARACTER COUNTER */
-div.counter { 
+div.counter {
     margin:3px 0 0 175px;
 }
 
-div.counter .safe, 
+div.counter .safe,
 div.counter .over {
     padding:3px;
     font-weight:bold;
