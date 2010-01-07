@@ -1,4 +1,5 @@
 <% title "SKUs" -%>
+<% @current = 'skus' %>
 
 <h3>SKUs</h3>
 <p><%= link_to "New SKU", new_sku_path if current_user.is_admin? %></p>

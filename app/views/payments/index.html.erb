@@ -1,4 +1,5 @@
 <% title "Payments" -%>
+<% @current = 'payments' %>
 
 <h3>Payments</h3>
 <table>
@@ -13,6 +14,5 @@
   <%= render :partial => 'user', :collection => @users %>
 </table>
 
-<%= will_paginate @users %>
-<br />
-Rows to Display Per Page: <%= per_page_select(payments_path) %>
+<div><%= will_paginate @users %></div>
+<div style="margin-top:1em;">Rows to Display Per Page: <%= per_page_select(payments_path) %></div>
