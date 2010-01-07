@@ -15,6 +15,7 @@ class LessonsController < ApplicationController
   before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :recommend, :stats, :show_lesson_status, :show_groups, :update, :watch, :unreject ]
   before_filter :set_per_page, :only => [ :ajaxed, :index, :list, :tabbed, :tagged_with ]
   before_filter :set_collection, :only => [ :ajaxed, :list, :tabbed ]
+  before_filter :set_no_uniform_js
 
   LIST_COLLECTIONS = %w(newest most_popular highest_rated tagged_with recently_browsed tagged_with)
 
@@ -103,9 +104,6 @@ class LessonsController < ApplicationController
   end
 
   def advanced_search
-    # disable the uniform plugin, otherwise the advanced search form is all @$@!# up
-    @no_uniform_js = true
-
     @advanced_search = AdvancedSearch.new
     @advanced_search.language = current_user.language if current_user
     @advanced_search.created_in = 30
@@ -114,9 +112,6 @@ class LessonsController < ApplicationController
   end
 
   def perform_advanced_search
-    # disable the uniform plugin, otherwise the advanced search form is all @$@!# up
-    @no_uniform_js = true
-
     # Dynamically setup the advanced search object so the search criteria will show properly in the screen
     @advanced_search = AdvancedSearch.new
     AdvancedSearch.public_instance_methods(false).find_all{|item| item.ends_with? "="}.each do |a|
@@ -329,6 +324,13 @@ class LessonsController < ApplicationController
   end
 
   private
+
+  # disable the uniform plugin, otherwise the advanced search form is all @$@!# up
+  def set_no_uniform_js
+    if %w(advanced_search list_admin perform_advanced_search).include?(params[:action])
+      @no_uniform_js = true
+    end
+  end
 
   def layout_for_action
     if params[:style] == 'tab'
