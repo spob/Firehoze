@@ -284,9 +284,9 @@ END
     if username.blank? and username.blank?
       'Firehoze member'
     elsif self.show_real_name
-      full_name
+      full_name.titleize
     else
-      username
+      username.titleize
     end
   end
 
