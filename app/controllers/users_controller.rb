@@ -67,6 +67,7 @@ class UsersController < ApplicationController
       @lessons = @user.instructed_lessons.ready.all(:include => [:instructor, :tags])
       @reviews = @user.reviews.ready.all(:include => [:user, :lesson])
     end
+    @activities = Activity.visible_to_user(current_user).actor_user_id_equals(@user).descend_by_acted_upon_at.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
   end
 
   def show_admin

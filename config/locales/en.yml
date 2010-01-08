@@ -54,6 +54,9 @@ en:
     you_must_be_logged_out: You must not be logged in to access that page
     invalid_token: It looks like your session expired. Please try logging on again.
 
+  activity:
+    activities: Activities
+
   attachment:
     create_success: Successfully created attachment
     update_success: Successfully updated attachment
