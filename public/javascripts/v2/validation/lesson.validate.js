@@ -6,7 +6,7 @@ $(document).ready(function() {
             $(form).find(":submit").attr("disabled", true).attr("value", "Please wait ...");
             form.submit();
         }
-    })
+    });
 
     $('#lesson_title').simplyCountable({
         counter: '#lesson_title_counter',
@@ -19,6 +19,7 @@ $(document).ready(function() {
         counter: '#lesson_synopsis_counter',
         countType: 'characters',
         maxCount: 500,
+        strictMax: false,
         countDirection: 'down'
     });
 });
