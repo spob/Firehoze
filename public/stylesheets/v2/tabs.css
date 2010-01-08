@@ -79,3 +79,7 @@ div#admin-user-tabs > ul li a {
     padding-left:23px;
     padding-right:23px;
 }
+div#user-show-tabs > ul li a {
+    padding-left:23px;
+    padding-right:23px;
+}

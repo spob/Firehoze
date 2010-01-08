@@ -345,6 +345,11 @@ ul.lessons-row-format li {
     min-height: 74px;
 }
 
+ul.lessons-row-format li:last-child {
+    border-bottom: 0 none;
+    padding-bottom:0;
+}
+
 ul.lessons-row-format li div.tn_container {
     position:absolute;
     top:0;

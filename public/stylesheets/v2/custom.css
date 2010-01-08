@@ -28,8 +28,6 @@ div {
     /*border: solid 1px red;*/
 }
 
-
-
 /* psuedo-header classes */
 .h1,.h2,.h3,.h4,.h5,.h6 { font-family: "Helvetica Neue", helvetica, Arial, sans-serif; font-weight: normal; }
 .h1 { font-size: 3em; line-height: 1; margin-bottom: 0.5em; }
@@ -65,6 +63,12 @@ a.no-border:hover {
     -moz-opacity:0.5;
     -khtml-opacity: 0.5;
     opacity: 0.5;
+}
+
+ul.bulletless  {
+    list-style-type: none;
+    margin:0;
+    padding:0;
 }
 
 .box-header {
@@ -376,6 +380,10 @@ div.review {
     margin-bottom:17px;
     border-bottom: dotted 1px #8F8F8F;
 }
+div.review:last-child {
+    border-bottom: 0 none;
+}
+
 
 div.review .helpful_phrase {
     color: #8F8F8F;

@@ -17,20 +17,32 @@
         <%= follow_link @user, current_user %>
       </div>
     </div>
-    <div id="avatar-container1">
-      <div id="avatar"><%= avatar_tag @user, :size => :small %></div>
-      <div class="prepend-top">
-        <% if @user.followers.size > 0 %>
-            <%= pluralize @user.followers.size, 'follower' %>
-        <% end %>
+
+    <div id="user-stats-container">
+      <div id="user-avatar-container">
+        <div id="avatar"><%= avatar_tag @user, :size => :small %></div>
+      </div>
+
+      <div>
+        <ul class="bulletless">
+          <li>Joined: <%= h(l(@user.created_at.to_date)) %></li>
+          <% if @user.verified_instructor? and @user.students.size > 0 %> <% # let's not embarass anyone if they have no students %>
+          <li>Lesson taught: <%= @user.lessons.size %></li>
+          <li>Students: <%= @user.students.size %></li>
+          <% end %>
+          <% if @user.followers.size > 0 %>
+          <li>Followers: <%= @user.followers.size %></li>
+          <li>Following: <%= @user.followed_instructors.size %></li> <%#=  #TODO BOB, is this right? Currently only instructors can be followed, right? %>
+          <% end %>
+        </ul>
       </div>
     </div>
 
-    <div class="details1">
+    <div class="details">
       <div id="user-show-tabs">
         <ul class="tabs">
           <% unless @user.bio.blank? %>
-              <li><a href="#about-me"><%= t 'user.about_me' %></a></li>
+              <li><a href="#about-me"><%= t 'user.bio' %></a></li>
           <% end %>
 
           <% unless @lessons.empty? %>
