@@ -25,7 +25,7 @@
           <%= f.submit "Update", :id => "update-avatar" %>
           <%= link_to 'Cancel', home_path %>
       <% if @user.avatar? %>
-          | <%= link_to('Delete current', clear_avatar_account_path(@user.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) %>
+          | <%= link_to('Delete current', clear_avatar_user_path(@user.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) %>
       <% end %>
         </span>
 

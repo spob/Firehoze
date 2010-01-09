@@ -246,7 +246,7 @@ class AccountsController < ApplicationController
   end
 
   def layout_for_action
-    if %w(edit update crop update_avatar).include?(params[:action])
+    if %w(edit update crop clear_avatar update_address update_instructor update_privacy update_avatar).include?(params[:action])
       'application_v2'
     else
       'application'

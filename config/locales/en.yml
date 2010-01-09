@@ -322,6 +322,7 @@ en:
     account_update_failure: Account not updated
     address_incomplete: The address you entered appears to be incomplete
     avatar: Avatar
+    avatar_cleared: You have successfully removed the avatar
     author_info: Instructor Info
     bio: Bio
     credit_history: Credit History

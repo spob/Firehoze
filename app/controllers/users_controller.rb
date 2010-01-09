@@ -100,11 +100,11 @@ class UsersController < ApplicationController
       flash[:error] = t 'account_settings.update_error'
     end
 
-    redirect_to edit_user_path(@user)
+    redirect_to edit_user_path(@user, :anchor => 'author_info')
 
   rescue Exception => e
     flash[:error] = e.message
-    redirect_to edit_user_path(@user)
+    redirect_to edit_user_path(@user, :anchor => 'author_info')
   end
 
   def update
@@ -158,11 +158,11 @@ class UsersController < ApplicationController
       flash[:error] = t 'account_settings.update_error'
     end
 
-    redirect_to edit_user_path(@user)
+    redirect_to edit_user_path(@user, :anchor => 'privacy')
 
   rescue Exception => e
     flash[:error] = e.message
-    redirect_to edit_user_path(@user)
+    redirect_to edit_user_path(@user, :anchor => 'privacy')
   end
 
   #  temp: saving for "roles code"
@@ -178,7 +178,7 @@ class UsersController < ApplicationController
 
     if @user.update_attributes(params[:user])
       flash[:notice] = t 'user.account_update_success'
-      redirect_to edit_user_path(@user)
+      redirect_to edit_user_path(@user, :anchor => 'roles')
     else
       render :action => :edit
     end
@@ -188,7 +188,7 @@ class UsersController < ApplicationController
     if params[:user][:avatar]
       if @user.update_attributes(:avatar => params[:user][:avatar])
         flash[:notice] = t 'account_settings.avatar_success'
-        redirect_to edit_user_path(@user)
+        redirect_to edit_user_path(@user, :anchor => 'avatar')
       else
         render :action => :edit
       end
@@ -198,12 +198,12 @@ class UsersController < ApplicationController
   def clear_avatar
     @user.avatar.clear
     if @user.save
-      flash[:notice] = t 'account_settings.avatar_cleared'
+      flash[:notice] = t 'user.avatar_cleared'
     else
       # getting here because not all (required) fields are getting passed in ...
       flash[:error] = t 'account_settings.update_error'
     end
-    redirect_to edit_user_path(@user)
+    redirect_to edit_user_path(@user, :anchor => 'avatar')
   end
 
   def reset_password
@@ -212,7 +212,7 @@ class UsersController < ApplicationController
     else
       flash[:error] = t 'account_settings.update_error'
     end
-    redirect_to edit_user_path(@user)
+    redirect_to edit_user_path(@user, :anchor => 'password')
   end
 
   def user_agreement
