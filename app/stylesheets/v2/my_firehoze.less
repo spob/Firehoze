@@ -1,0 +1,158 @@
+/* PANES */
+.panes {
+    z-index:100;
+    position:relative;
+    margin:0;
+    padding:0;
+    margin-top: 17px;
+}
+
+.panes p {
+    margin-bottom: 12px;
+}
+
+.tab-container {
+    /*border: solid 1px orange;*/
+}
+
+/* PAGINATION */
+div.ajax-pagination {
+    top:0;
+    right:0;
+    position: absolute;
+    padding: 1px 0;
+}
+
+div#lessons_pagination.pagination {
+    position: static;
+    text-align:center;
+    margin:0;
+    padding: 12px 0;
+    border: solid 1px #CCC;
+}
+
+div#activities_pagination  {
+    position:static;
+    text-align:center;
+    margin:17px 0;
+    padding: 1px 0;
+}
+
+/* WIDGET-BOX */
+div.widget-box {
+    margin:0 0 34px 0;
+    padding: 0px;
+    border: solid 1px #ccc;
+    background-color: #fff;
+}
+div.widget-box-header {
+    position: relative;
+    margin:0;
+    padding:12px;
+    border-bottom: solid 1px #ccc;
+    z-index: 1;
+    text-shadow: #999 0 1px 1px;
+    background: url(images/backgrounds/widget-box-header-tile.png) repeat-x bottom center;
+}
+.widget-box-header img.loader {
+    display:none;
+    z-index: 10;
+    position: absolute;
+    top:6px;
+    right:8px;
+}
+.widget-box-content {
+    margin:0;
+}
+.widget-box-content ul {
+    margin:0;
+}
+.widget-box-content ul li {
+    list-style-type:none;
+    padding:2px 8px;
+    border-top:solid 1px #DBDBDB;
+}
+.widget-box-content ul li.even {
+    background: #FFF;
+}
+.widget-box-content ul li.odd {
+    background: #F2F2F2;
+}
+.widget-box-content ul li:first-child {
+    border-top:0 none;
+    margin-top:0;
+}
+.widget-box-footer {
+    margin:0;
+    padding:12px;
+    border-top: solid 1px #ccc;
+    background: #FFF;
+}
+.widget-box-content .activity-feed  {
+    border-top: solid 1px #E3E3E3;
+    border-bottom: solid 1px #E3E3E3;
+}
+
+/* Widget Box : Activity Feed */
+.widget-box-content .activity-feed li {
+    position:relative;
+    margin: 0;
+    padding: 8px 8px 8px 54px;
+    display:block;
+    min-height: 45px;
+}
+
+.widget-box-content .activity-feed li img.avatar {
+    border: solid 1px #E3E3E3;
+    position:absolute;
+    left:8px;
+    top:8px;
+}
+
+.filter-activity-by  {
+    border-bottom: solid 1px #E3E3E3;
+    padding: 12px;
+}
+
+table {
+    width:100%;
+}
+
+/* FIXME: lousy solution here */
+div.no-nested-nav-potentially-paginated {
+    padding-top:34px;
+}
+
+/* FOLLOWERS MOSAIC */
+
+ul.users-mosaic {
+    margin:0;
+    padding:0;
+    list-style-type: none;
+}
+
+ul.users-mosaic li {
+    float: left;
+    margin-right: 8px;
+    margin-bottom: 4px;
+}
+
+ul.users-mosaic .avatar {
+    padding:0;
+    margin:0;
+    border:solid 1px #D4D4D4;
+}
+
+
+ul.users-mosaic a {
+    border:0 none;
+    text-decoration: none;
+
+}
+
+ul.users-mosaic a:hover .avatar {
+    padding:0;
+    margin:0;
+    border:solid 1px #9E9E9E;
+    text-decoration: none;
+}

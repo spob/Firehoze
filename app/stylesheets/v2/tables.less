@@ -1,0 +1,86 @@
+@import "partials/_colors";
+
+/* Site-wide Table styles */
+
+
+table, td { font:100% Arial, Helvetica, sans-serif;}
+table { 
+    width:100%;
+    border-top: solid 1px @medium-gray;
+    border-bottom: solid 1px @medium-gray;
+    border-collapse:collapse;
+}
+
+th, td {
+    margin:0;
+    text-align:left;
+    padding:.5em;
+}
+th {
+    text-shadow: #333 0 1px 1px;
+    background-color:@medium-blue;
+    border-bottom: double @medium-gray;
+    color: @dark-blue;
+    text-shadow: none;
+}
+
+tr.sum {
+    border-top: double @medium-gray;
+}
+
+tr.even td { background: #FFF; }
+tr.odd td { background: @off-white; }
+th.over, tr.even th.over, tr.odd th.over { background:#4a98af; }
+td.over, tr.even td.over, tr.odd td.over { background:#ecfbd4; }
+
+/* use this if you want to apply different styleing to empty table cells*/
+td.empty, tr.odd td.empty, tr.even td.empty { background: #FFFFFF; }
+
+.right { text-align:right;}
+.left { text-align:left;}
+.center { text-align:center;}
+
+/* TOPICS */
+table.topic {
+    border: solid 1px @medium-gray;
+    border-collapse:collapse;
+}
+
+table.topic th {
+    background-color:@medium-blue;
+    color:@dark-blue;
+    text-shadow: none;
+}
+
+table.topic tr td {
+    border: solid 1px @medium-gray;
+}
+
+table.topic tr td.comment-count { width:75px;}
+table.topic tr td.icon { width:40px; }
+table.topic tr td.icon a:link,
+table.topic tr td.icon a:visited,
+table.topic tr td.icon a:hover,
+table.topic tr td.icon a:active {
+    border:0 none;
+    text-decoration: none !important;
+}
+
+/* LESSON DETAILS*/
+table.lesson-details {
+    width:100%;
+    border-collapse:collapse;	
+}
+
+table.lesson-details tr td.header {
+    border-left: solid 1px @medium-gray;
+    background-color:@medium-blue;
+    color:@dark-blue;
+    text-shadow:none;
+    width:80px;
+    text-align:right;
+}
+
+table.lesson-details tr td  {
+    border: solid 1px @medium-gray;
+}
