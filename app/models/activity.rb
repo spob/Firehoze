@@ -43,6 +43,12 @@ class Activity < ActiveRecord::Base
       end
     end
 
+    Credit.used.activity_compiled_at_null(:lock => true).each do |credit|
+      Comment.transaction do
+        credit.compile_activity
+      end
+    end
+
     Group.activity_compiled_at_null(:lock => true).each do |group|
       Group.transaction do
         group.compile_activity

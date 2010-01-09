@@ -18,6 +18,7 @@ class Credit < ActiveRecord::Base
   belongs_to :lesson, :counter_cache => true
   belongs_to :line_item
   belongs_to :payment
+  has_many :activities, :as => :trackable, :dependent => :destroy
 
   before_create :set_acquired_at_and_will_expire_at
   before_validation :set_redeemed_at
@@ -87,6 +88,18 @@ class Credit < ActiveRecord::Base
     unless credit.lesson.reviewed_by? credit.user
       Notifier.deliver_remember_review(credit)
     end
+  end
+  
+  def compile_activity
+    self.activities.create!(:actor_user => self.user,
+                            :actee_user => nil,
+                            :acted_upon_at => self.created_at,
+                            :group => nil,
+                            :activity_string => "credit.activity",
+                            :activity_object_id => self.id,
+                            :activity_object_human_identifier => self.lesson.title,
+                            :activity_object_class => self.class.to_s)
+    self.update_attribute(:activity_compiled_at, Time.now)
   end
 
   private
