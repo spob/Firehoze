@@ -75,6 +75,9 @@ Rails::Initializer.run do |config|
   # Using jRails, you can get all of the same default Rails helpers for javascript functionality using the lighter jQuery library.
   config.gem 'jrails', :version => '0.6', :source => 'http://gemcutter.org'
 
+  # The LESS Ruby gem compiles LESS code to CSS -- learn more at http://lesscss.org/
+  config.gem 'less', :source => 'http://gemcutter.org'
+
   # Gem for secret url (for user signup requests)
   config.gem "mholling-active_url", :lib => "active_url", :source => "http://gems.github.com"
 
