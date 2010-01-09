@@ -148,7 +148,7 @@ class UsersControllerTest < ActionController::TestCase
           should_assign_to :user
           should_respond_with :redirect
           should_set_the_flash_to /updated/
-          should_redirect_to("edit account page") { edit_user_path(assigns(:user)) }
+          should_redirect_to("edit account page") { edit_user_path(assigns(:user), :anchor => 'privacy') }
           should "set show real name" do
             assert @user.show_real_name
           end
@@ -169,7 +169,7 @@ class UsersControllerTest < ActionController::TestCase
           should_assign_to :user
           should_respond_with :redirect
           should_set_the_flash_to /successfully updated/
-          should_redirect_to("edit user") {edit_user_path(assigns(:user)) }
+          should_redirect_to("edit user") {edit_user_path(assigns(:user), :anchor => 'author_info') }
         end
       end
 
