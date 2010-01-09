@@ -47,7 +47,7 @@ class ActivityTest < ActiveSupport::TestCase
 
       should "populate activities" do
         assert !Activity.all.empty?
-        assert_equal 8, Activity.all.size
+        assert_equal 9, Activity.all.size
       end
     end
 
