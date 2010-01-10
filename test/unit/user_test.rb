@@ -191,17 +191,18 @@ class UserTest < ActiveSupport::TestCase
 
           should "start and stop following" do
             @follower.follow(@user)
+            @follower = User.find(@follower.id)
             assert @user.followed_by?(@follower)
             assert !@follower.followed_by?(@user)
             assert !@user.following?(@follower)
             assert @follower.following?(@user)
-            assert_equal 1, @user.followers.size
             assert @user.followed_instructors.empty?
+            assert_equal 1, @user.followers.size
             assert @follower.followers.empty?
-            assert @follower.followed_instructors.empty?
             assert_equal 1, @follower.followed_instructors.size
             
             @follower.stop_following(@user)
+            @follower = User.find(@follower.id)
             assert !@user.followed_by?(@follower)
             assert !@user.followed_by?(@follower)
             assert !@follower.followed_by?(@user)

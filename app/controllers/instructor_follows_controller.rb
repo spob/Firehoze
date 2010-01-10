@@ -8,7 +8,7 @@ class InstructorFollowsController < ApplicationController
 
   def create
     if @instructor.verified_instructor?
-      @instructor.follow(current_user)
+      current_user.follow(@instructor)
       flash[:notice] = t('instructor_follows.create_success', :instructor => @instructor.login)
     else
       flash[:error] = t('instructor_follows.not_an_instructor', :user => @instructor.login)
@@ -17,7 +17,7 @@ class InstructorFollowsController < ApplicationController
   end
 
   def destroy
-    @instructor.stop_following(current_user)
+    current_user.stop_following(@instructor)
     flash[:notice] = t('instructor_follows.delete_success', :instructor => @instructor.login)
     redirect_to user_path(@instructor)
   end

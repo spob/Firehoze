@@ -60,8 +60,8 @@ class User < ActiveRecord::Base
                           :class_name => 'User', :foreign_key => 'user_id', :association_foreign_key => 'instructor_id',
                           :order => 'login ASC'
   has_and_belongs_to_many :followers, :join_table => 'instructor_follows',
-                          :class_name => 'User', :foreign_key => 'instructor_idquit
-', :association_foreign_key => 'user_id', :order => 'login ASC'
+                          :class_name => 'User', :foreign_key => 'instructor_id',
+                          :association_foreign_key => 'user_id', :order => 'login ASC'
 
   # Active users
   named_scope :active, :conditions => {:active => true}
