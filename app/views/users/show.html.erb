@@ -30,9 +30,9 @@
           <li>Lesson taught: <%= @user.instructed_lessons.ready.size %></li>
           <li>Students: <%= @user.students.size %></li>
           <% end %>
-          <% if @user.followers.size > 0 %>
-          <li>Followers: <%= @user.followers.size %></li>
-          <li>Following: <%= @user.followed_instructors.size %></li> <%#=  #TODO BOB, is this right? Currently only instructors can be followed, right? %>
+          <% if @user.followers.active.size > 0 or @user.followed_instructors.active.size %>
+          <li>Followers: <%= @user.followers.active.size %></li>
+          <li>Following: <%= @user.followed_instructors.active.size %></li> <%#=  #TODO BOB, is this right? Currently only instructors can be followed, right? %>
           <% end %>
         </ul>
       </div>
