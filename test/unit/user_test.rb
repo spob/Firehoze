@@ -183,6 +183,10 @@ class UserTest < ActiveSupport::TestCase
             assert !@follower.followed_by?(@user)
             assert !@user.following?(@follower)
             assert !@follower.following?(@user)
+            assert @user.followers.empty?
+            assert @user.followed_instructors.empty?
+            assert @follower.followers.empty?
+            assert @follower.followed_instructors.empty?
           end
 
           should "start and stop following" do
@@ -191,6 +195,11 @@ class UserTest < ActiveSupport::TestCase
             assert !@follower.followed_by?(@user)
             assert !@user.following?(@follower)
             assert @follower.following?(@user)
+            assert_equal 1, @user.followers.size
+            assert @user.followed_instructors.empty?
+            assert @follower.followers.empty?
+            assert @follower.followed_instructors.empty?
+            assert_equal 1, @follower.followed_instructors.size
             
             @follower.stop_following(@user)
             assert !@user.followed_by?(@follower)
@@ -198,6 +207,10 @@ class UserTest < ActiveSupport::TestCase
             assert !@follower.followed_by?(@user)
             assert !@user.following?(@follower)
             assert !@follower.following?(@user)
+            assert @user.followers.empty?
+            assert @user.followed_instructors.empty?
+            assert @follower.followers.empty?
+            assert @follower.followed_instructors.empty?
           end
         end
       end
