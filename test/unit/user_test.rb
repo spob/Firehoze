@@ -175,6 +175,31 @@ class UserTest < ActiveSupport::TestCase
         should "be an instructor" do
           assert @user.verified_instructor?
         end
+
+        fast_context "and a second non-instructor" do
+          setup do
+            @follower = Factory.create(:user)
+            assert !@user.followed_by?(@follower)
+            assert !@follower.followed_by?(@user)
+            assert !@user.following?(@follower)
+            assert !@follower.following?(@user)
+          end
+
+          should "start and stop following" do
+            @follower.follow(@user)
+            assert @user.followed_by?(@follower)
+            assert !@follower.followed_by?(@user)
+            assert !@user.following?(@follower)
+            assert @follower.following?(@user)
+            
+            @follower.stop_following(@user)
+            assert !@user.followed_by?(@follower)
+            assert !@user.followed_by?(@follower)
+            assert !@follower.followed_by?(@user)
+            assert !@user.following?(@follower)
+            assert !@follower.following?(@user)
+          end
+        end
       end
     end
 

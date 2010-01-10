@@ -8,7 +8,7 @@ class InstructorFollowsController < ApplicationController
 
   def create
     if @instructor.verified_instructor?
-      @instructor.followers << current_user unless @instructor.followed_by?(current_user)
+      @instructor.follow(current_user)
       flash[:notice] = t('instructor_follows.create_success', :instructor => @instructor.login)
     else
       flash[:error] = t('instructor_follows.not_an_instructor', :user => @instructor.login)
@@ -17,7 +17,7 @@ class InstructorFollowsController < ApplicationController
   end
 
   def destroy
-    @instructor.followers.delete(current_user) if @instructor.followed_by?(current_user)
+    @instructor.stop_following(current_user)
     flash[:notice] = t('instructor_follows.delete_success', :instructor => @instructor.login)
     redirect_to user_path(@instructor)
   end
@@ -44,10 +44,10 @@ class InstructorFollowsController < ApplicationController
 
   def set_per_page
     @per_page =
-    if params[:per_page]
-      params[:per_page]
-    else
-      5
-    end
+            if params[:per_page]
+              params[:per_page]
+            else
+              5
+            end
   end
 end

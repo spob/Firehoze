@@ -57,7 +57,9 @@ class User < ActiveRecord::Base
   belongs_to :payment_level
   has_and_belongs_to_many :wishes, :join_table => 'wishes', :class_name => 'Lesson'
   has_and_belongs_to_many :followed_instructors, :join_table => 'instructor_follows',
-                          :class_name => 'User', :foreign_key => 'instructor_id', :order => 'login ASC'
+                          :class_name => 'User', :foreign_key => 'instructor_id',
+                          :association_foreign_key => 'user_id',
+                          :order => 'login ASC'
   has_and_belongs_to_many :followers, :join_table => 'instructor_follows',
                           :class_name => 'User', :association_foreign_key => 'instructor_id', :order => 'login ASC'
 
@@ -230,6 +232,14 @@ END
     to_user
   end
 
+  def follow(instructor)
+    instructor.followers << self unless instructor.followed_by?(self)
+  end
+
+  def stop_following(instructor)
+    instructor.followers.delete(self) if instructor.followed_by?(self)
+  end
+
   # used to verify whether the user typed their correct password when, for example,
   # the user updates their password
   def valid_current_password?
@@ -356,6 +366,10 @@ END
 
   def followed_by?(user)
     self.followers.find_by_id(user, :select => [:id])
+  end
+
+  def following?(instructor)
+    self.followed_instructors.find_by_id(instructor, :select => [:id])
   end
 
   def compile_activity
