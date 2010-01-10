@@ -10,5 +10,5 @@
       Category
     </th>
   </tr>
-  <%= render :partial => 'categories/group', :collection => groups %>
+  <%= render :partial => 'categories/group', :collection => groups, :locals => { :user => user } %>
 </table>
