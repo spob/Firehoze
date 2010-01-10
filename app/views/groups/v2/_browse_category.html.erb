@@ -10,6 +10,7 @@
     </div>
     <div class="widget-box-footer treeview"></div>
   </div>
+    <%= link_to "Create a New Group", new_group_path, :class => :rounded %>
 </div>
 
 <div id="category-show" class="span-8 last">
@@ -22,7 +23,7 @@
       </tr>
       <%= render :partial => 'categories/group', :collection => @groups, :locals => { :show_member => true } %>
     </table>
-    <%= link_to "Create a New Group", new_group_path %>
+    <%= link_to "Create a New Group", new_group_path, :class => :rounded %>
   <% else %>
     Looks like no one has created a group for this category yet. Why not be the first to
     <%= link_to "create a group", new_group_path %>?
