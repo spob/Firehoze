@@ -2,6 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'fast_context'
 
 class FlagTest < ActiveSupport::TestCase
+
   fast_context "given an existing record" do
     setup do
       @lesson = Factory.create(:lesson)
@@ -10,6 +11,12 @@ class FlagTest < ActiveSupport::TestCase
       assert !@lesson.nil?
       assert !Flag.all.empty?
       assert !Flag.pending.empty?
+    end
+
+    should "retrieve statuses" do
+      statuses = Flag.flag_statuses_select_list
+      assert !statuses.empty?
+      assert_equal 4, statuses.size
     end
 
     fast_context "when calling user.has_flaggable?" do
