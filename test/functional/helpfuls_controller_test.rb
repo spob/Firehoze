@@ -34,7 +34,7 @@ class HelpfulsControllerTest < ActionController::TestCase
         should_assign_to :review
         should_respond_with :redirect
         should_set_the_flash_to I18n.t('helpful.create_success')
-        should_redirect_to("Review page") { lesson_reviews_url(@review.lesson) }
+        should_redirect_to("Show lessons page") { lesson_url(@review.lesson, :anchor => 'reviews') }
       end
 
       fast_context "as the author" do
@@ -45,7 +45,7 @@ class HelpfulsControllerTest < ActionController::TestCase
           should_assign_to :review
           should_respond_with :redirect
           should_set_the_flash_to I18n.t('helpful.cant_helpful_as_instructor')
-          should_redirect_to("Review page") { lesson_reviews_url(@review.lesson) }
+          should_redirect_to("Show lessons page") { lesson_url(@review.lesson, :anchor => 'reviews') }
         end
       end
     end
