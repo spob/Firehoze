@@ -24,8 +24,10 @@
       <%= render :partial => 'categories/group', :collection => @groups, :locals => { :show_member => true } %>
     </table>
   <% else %>
+  <div class="info">
     Looks like no one has created a group for this category yet. Why not be the first to
     <%= link_to "create a group", new_group_path %>?
+  </div>
   <% end %>
   <!-- end tab-container -->
 </div>
