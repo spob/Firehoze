@@ -75,7 +75,7 @@
               <div id="pane-reviews-by"><%= render :partial => "reviews/v2/reviews", :object => @reviews %></div>
           <% end %>
           <% unless @groups.empty? %>
-              <div id="pane-group"><%= render :partial => "groups", :locals => { :groups => @groups, :user => @user } %></div>
+              <div id="pane-group"><%= render :partial => "groups/v2/groups", :locals => { :groups => @groups, :user => @user } %></div>
           <% end %>
           <div id="pane-activity">
             <%= render :partial => 'users/v2/activities', :locals => { :activities => @activities } %>
