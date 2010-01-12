@@ -8,25 +8,33 @@
 
 
 
-*/ul.users, ul.groups {
+*/ul.users {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 ul.users li img.avatar { float: left; }
-ul.groups li img.logo { float: left; }
 ul.users li .details {
   border-bottom: dotted 1px #cccccc;
-  margin-bottom: 17px;
+  margin-bottom: 1em;
+  padding: 0 17px 17px 77px;
 }
+ul.groups {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul.groups li img.logo { float: left; }
 ul.groups li {
   border-bottom: dotted 1px #cccccc;
-  margin-bottom: 1em;
   padding: 1em;
+  min-height: 6.4em;
 }
 ul.groups li:last-child { border: none; }
-ul.users li .details { padding: 0 17px 17px 77px; }
-ul.groups li .details { padding: 0 17px 17px 94px; }
+ul.groups li .details {
+  padding: 0 17px 17px 94px;
+  padding: 0 1em 1em 7.6em;
+}
 #user-public-container {
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -41,7 +49,6 @@ div#user_show div#name-plate {
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
-  background-color: #f1f7fe;
   background-color: #ffffff;
   -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
@@ -67,7 +74,7 @@ div#user-actions {
 }
 #user-public-container > #user-stats-container > #user-avatar-container {
   padding: 3px 3px 12px 3px;
-  border: solid 1px #d8d8d8;
+  border: solid 1px #cccccc;
   width: 77px;
   -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);

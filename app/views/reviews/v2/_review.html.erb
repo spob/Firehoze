@@ -11,13 +11,13 @@
 
     <%= ratings_for(review.lesson, reviewer, { :static => true } ) %>
 
-    <% unless controller.action_name == 'show' and controller.controller_name == "users"  %>
-      <span class="headline h5">&quot;<%= h review.headline %>&quot;</span><br />
-      By <%= link_to_profile(reviewer) %><span class="timestamp">&mdash;written on <%= l review.created_at %></span>
-    <% else %>
+    <% if controller.action_name == 'show' and controller.controller_name == "users"  %>
       <span class="headline h5"><%= review.lesson.title %></span><br />
       <span class="headline h5">&quot;<%= h review.headline %>&quot;</span><br />
       <span class="timestamp">&mdash;written on <%= l review.created_at %></span>
+    <% else %>
+      <span class="headline h5">&quot;<%= h review.headline %>&quot;</span><br />
+      By <%= link_to_profile(reviewer) %><span class="timestamp">&mdash;written on <%= l review.created_at %></span>
     <% end %>
 
     <div class="review-body"><%= rbs_formatter review.body %></div>

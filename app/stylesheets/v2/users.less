@@ -1,55 +1,65 @@
-ul.users,
+@import "partials/_colors";
+
+/* User stuff */
+ul.users {
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+
+ul.users li img.avatar {
+  float:left;
+}
+
+ul.users li .details {
+  border-bottom: dotted 1px @light-medium-gray;
+  margin-bottom: 1em;
+  padding: 0 17px 17px 77px;
+}
+
+
+/* Group stuff */
 ul.groups {
   list-style:none;
   margin:0;
   padding:0;
 }
 
-ul.users li img.avatar,
 ul.groups li img.logo {
   float:left;
 }
 
-ul.users li .details {
-  border-bottom: dotted 1px #ccc;
-  margin-bottom: 17px;
-}
-
 ul.groups li {
-  border-bottom: dotted 1px #ccc;
-  margin-bottom: 1em;
+  border-bottom: dotted 1px @light-medium-gray;
   padding:1em;
+  min-height:6.4em;
 }
 
 ul.groups li:last-child {
   border: none;
 }
 
-ul.users li .details {
-  padding: 0 17px 17px 77px;
-}
-
 ul.groups li .details {
   padding: 0 17px 17px 94px;
+  padding: 0 1em 1em 7.6em;
 }
 
 #user-public-container {
   border-radius:5px;
   -webkit-border-radius:5px;
   -moz-border-radius:5px;
-  background-color:#e3e9f2;
+  background-color:@medium-blue;
 }
 
 div#user_show div#name-plate {
   position:relative;
   padding:17px;
   margin:17px 17px 0 17px ;
-  color:#17587f;
+  color:@dark-blue;
   border-radius:5px;
   -webkit-border-radius:5px;
   -moz-border-radius:5px;
-  background-color:#f1f7fe;
-  background-color:#FFF;
+  background-color:@white;
   -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
   -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
   box-shadow: 1px 1px 3px rgba(0,0,0,.3);
@@ -68,7 +78,7 @@ div#user-actions {
   border-radius:5px;
   -webkit-border-radius:5px;
   -moz-border-radius:5px;
-  background-color:#fff;
+  background-color:@white;
   width:130px;
   -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
   -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
@@ -77,7 +87,7 @@ div#user-actions {
 
 #user-public-container > #user-stats-container > #user-avatar-container  {
   padding:3px 3px 12px 3px;
-  border: solid 1px #D8D8D8;
+  border: solid 1px @light-medium-gray;
   width: 77px;
   -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
   -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
@@ -102,7 +112,7 @@ div#user-actions {
   border-radius:5px;
   -webkit-border-radius:5px;
   -moz-border-radius:5px;
-  background-color:#fff;
+  background-color: @white;
   -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
   -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
   box-shadow: 1px 1px 3px rgba(0,0,0,.3);
