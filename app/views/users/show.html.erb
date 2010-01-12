@@ -46,18 +46,18 @@
           <% end %>
 
           <% unless @lessons.empty? %>
-              <li><a href="#lessons-by"><%= t 'user.instructor_of', :user => h(@user.name_or_username) %></a></li>
+              <li><a href="#lessons-by"><%= t 'general.lessons' %></a></li>
           <% end %>
 
           <% unless @reviews.empty? %>
-              <li><a href="#reviews-by"><%= t 'user.reviews_of', :user => h(@user.name_or_username) %></a></li>
+              <li><a href="#reviews-by"><%= t 'user.reviews' %></a></li>
           <% end %>
 
           <% unless @groups.empty? %>
-              <li><a href="#groups"><%= possessive_helper(h(@user.name_or_username)) %> <%= t 'group.groups' %></a></li>
+              <li><a href="#groups"><%= t 'group.groups' %></a></li>
           <% end %>
           <li>
-            <a href="#activities"><%= possessive_helper(h(@user.name_or_username)) %> <%= t 'activity.activities' %></a>
+            <a href="#activities"><%= t 'activity.activities' %></a>
           </li>
         </ul>
 
@@ -75,7 +75,7 @@
               <div id="pane-reviews-by"><%= render :partial => "reviews/v2/reviews", :object => @reviews %></div>
           <% end %>
           <% unless @groups.empty? %>
-              <div id="pane-group"><%= render :partial => "groups", :locals => { :groups => @groups, :user => @user } %></div>
+              <div id="pane-group"><%= render :partial => "groups/v2/groups", :locals => { :groups => @groups, :user => @user } %></div>
           <% end %>
           <div id="pane-activity">
             <%= render :partial => 'users/v2/activities', :locals => { :activities => @activities } %>
