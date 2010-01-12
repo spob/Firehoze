@@ -10,7 +10,7 @@ class SearchesController < ApplicationController
       :conditions => { :status => 'Ready'},
       :include => :instructor,
       :page => params[:lesson_page],
-      :per_page => 2,
+      :per_page => SEARCH_RESULTS_PER_PAGE,
       :retry_stale => true
 
     # member_groups = [-1] + (current_user ? current_user.member_groups : [])
@@ -18,12 +18,12 @@ class SearchesController < ApplicationController
       :conditions => { :private => 0},
       :include => [:owner ],
       :page => params[:group_page],
-      :per_page => 2,
+      :per_page => SEARCH_RESULTS_PER_PAGE,
       :retry_stale => true
 
     @users = User.search @search_criteria,
       :page => params[:user_page],
-      :per_page => 2,
+      :per_page => SEARCH_RESULTS_PER_PAGE,
       :retry_stale => true
   end
 end
