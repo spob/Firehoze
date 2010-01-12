@@ -286,7 +286,9 @@ class LessonTest < ActiveSupport::TestCase
         fast_context "and lessons in the ready state" do
           setup do
             @lesson.update_attribute(:status, LESSON_STATUS_READY)
+            @lesson2.reload
             @lesson2.update_attribute(:status, LESSON_STATUS_READY)
+            @lesson3.reload
             @lesson3.update_attribute(:status, LESSON_STATUS_READY)
             @user.wishes << @lesson3
             assert_equal 1, @user.wishes.size

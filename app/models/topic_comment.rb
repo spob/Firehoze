@@ -45,6 +45,8 @@ class TopicComment < Comment
   private
 
   def update_topic
-    self.topic.update_attribute(:last_commented_at, self.created_at)
+    topic = self.topic
+    topic.reload
+    topic.update_attribute(:last_commented_at, self.created_at)
   end
 end

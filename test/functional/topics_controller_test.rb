@@ -94,6 +94,7 @@ class TopicsControllerTest < ActionController::TestCase
 
         fast_context "as the owner" do
           setup do
+            @group.reload
             @group.update_attribute(:owner, @user)
             @group_member.update_attribute(:member_type, OWNER)
           end

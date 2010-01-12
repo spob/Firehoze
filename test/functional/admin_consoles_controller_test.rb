@@ -7,6 +7,7 @@ class AdminConsolesControllerTest < ActionController::TestCase
       activate_authlogic
       @user = Factory(:user)
       @other_user = Factory(:user)
+      @user.reload
       UserSession.create @user
     end
 

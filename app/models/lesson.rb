@@ -403,6 +403,7 @@ END
   Tag.destroy_unused = true
 
   def update_status_attribute(status)
+    self.reload
     self.update_attribute(:status, status)
   end
 

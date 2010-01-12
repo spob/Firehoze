@@ -74,6 +74,7 @@ class ProcessedVideo < Video
                                       :to_status => new_status,
                                       :lesson => self.lesson,
                                       :message => msg)
+    self.reload
     self.update_attributes!(:status => new_status,
                             :video_transcoding_error => (status == VIDEO_STATUS_FAILED ? msg : nil))
     self.lesson.update_status

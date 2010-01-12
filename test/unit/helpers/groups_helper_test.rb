@@ -25,6 +25,7 @@ class GroupsHelperTest < ActionView::TestCase
     context "and with user as owner" do
       setup do
         @group_member = GroupMember.create!(:user => @user, :group => @group, :member_type => OWNER)
+        @group.reload
         @group.update_attribute(:owner, @user)
       end
 
@@ -63,7 +64,10 @@ class GroupsHelperTest < ActionView::TestCase
       end
 
       context "and group is private" do
-        setup { @group.update_attribute(:private, true) }
+        setup do
+          @group.reload
+          @group.update_attribute(:private, true)
+        end
 
         should "show invite link" do
           assert_match /Invite/, show_invite_link(@group, @user)
@@ -83,7 +87,10 @@ class GroupsHelperTest < ActionView::TestCase
         end
 
         context "and group is private" do
-          setup { @group.update_attribute(:private, true) }
+          setup do
+            @group.reload
+            @group.update_attribute(:private, true)
+          end
 
           should "show remove link" do
             assert_match /Remove/, show_remove_link(@group_member1, @user)

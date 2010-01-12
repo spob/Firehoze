@@ -57,8 +57,8 @@ Rails::Initializer.run do |config|
   # tagging
   config.gem 'jviney-acts_as_taggable_on_steroids', :lib => 'acts_as_taggable', :source => 'http://gems.github.com', :version => '~>1.1'
 
-  # authologic provides authenticaiton
-  config.gem "authlogic"
+  # authologic provides authentication
+  config.gem "authlogic", :version => '~>2.1.3'
 
   # For generating XML
   config.gem 'builder', :version => '~>2.1.2'

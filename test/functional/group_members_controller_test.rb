@@ -142,6 +142,7 @@ class GroupMembersControllerTest < ActionController::TestCase
 
         fast_context "on POST to :promote when not a moderator" do
           setup do
+            @group.reload
             @group.update_attribute(:owner, Factory.create(:user))
             assert_equal MEMBER, @group_member.member_type
             post :promote, :id => @group_member
@@ -175,6 +176,7 @@ class GroupMembersControllerTest < ActionController::TestCase
 
         fast_context "on POST to :demote without permissions" do
           setup do
+            @group.reload
             @group.update_attribute(:owner, Factory.create(:user))
             assert_equal MODERATOR, @group_moderator.member_type
             post :demote, :id => @group_moderator

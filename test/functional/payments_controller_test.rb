@@ -120,7 +120,7 @@ class PaymentsControllerTest < ActionController::TestCase
 
       fast_context "as an instructor" do
         setup do
-          @user = @lesson.instructor
+          @user = @lesson.instructor.reload
           UserSession.create @user
         end
 
