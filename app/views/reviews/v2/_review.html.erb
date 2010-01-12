@@ -6,12 +6,20 @@
 
   <div style="margin-left:120px;">
     <% unless review.helpfuls.empty? %>
-      <span class="helpful_phrase">&mdash;<%= review.helpfuls.helpful_yes.size %> of <%= review.helpfuls.size %> people found this review helpful</span>
+      <span class="helpful_phrase"><%= review.helpfuls.helpful_yes.size %> of <%= review.helpfuls.size %> people found this review helpful:</span>
     <% end %>
 
     <%= ratings_for(review.lesson, reviewer, { :static => true } ) %>
 
-    <span class="headline h5">&quot;<%= h review.headline %>&quot;</span><span class="timestamp">&mdash;written on <%= l review.created_at %></span><br />
+    <% unless controller.action_name == 'show' and controller.controller_name == "users"  %>
+      <span class="headline h5">&quot;<%= h review.headline %>&quot;</span><br />
+      By <%= link_to_profile(reviewer) %><span class="timestamp">&mdash;written on <%= l review.created_at %></span>
+    <% else %>
+      <span class="headline h5"><%= review.lesson.title %></span><br />
+      <span class="headline h5">&quot;<%= h review.headline %>&quot;</span><br />
+      <span class="timestamp">&mdash;written on <%= l review.created_at %></span>
+    <% end %>
+
     <div class="review-body"><%= rbs_formatter review.body %></div>
 
     <div class="actions"><%= render :partial => 'reviews/v2/actions', :object => review %></div>
