@@ -23,6 +23,7 @@ class UsersHelperTest < ActionView::TestCase
 
     context "and user a is an instructor" do
       setup do
+        @instructor.reload
         set_instructor(@instructor)
         assert @instructor.verified_instructor?
       end
