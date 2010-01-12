@@ -9,12 +9,24 @@ class MyFirehozeController < ApplicationController
 
   layout :layout_for_action
 
+  def goto_remembered_tab
+    if cookies[:my_firehoze_tab] and params[:clear].nil? and cookies[:my_firehoze_tab] != params[:action]
+      redirect_to :controller => 'my_firehoze', :action => cookies[:my_firehoze_tab]
+      return true
+    end
+    false
+  end
+
   def index
     fetch_activities
     fetch_tweets
 
     respond_to do |format|
-      format.html
+      format.html do
+        unless goto_remembered_tab
+          cookies[:my_firehoze_tab] = { :value => params[:action], :expires => 1.hour.from_now }
+        end
+      end
       format.js
     end
   end
@@ -25,13 +37,15 @@ class MyFirehozeController < ApplicationController
     fetch_groups
     fetch_followed_instructors
     respond_to do |format|
-      format.html
+      format.html do
+          cookies[:my_firehoze_tab] = { :value => params[:action], :expires => 1.hour.from_now }
+      end
       format.js do
         case params[:pane]
-        when 'owned', 'latest_browsed', 'wishlist'
-          render :action => "lessons"
-        else
-          render :action => params[:pane]
+          when 'owned', 'latest_browsed', 'wishlist'
+            render :action => "lessons"
+          else
+            render :action => params[:pane]
         end
       end
     end
@@ -43,15 +57,17 @@ class MyFirehozeController < ApplicationController
     fetch_payments
 
     respond_to do |format|
-      format.html
+      format.html do
+          cookies[:my_firehoze_tab] = { :value => params[:action], :expires => 1.hour.from_now }
+      end
       format.js do
         case params[:pane]
-        when 'lessons_instructed_tn_view'
-          render :action => "lessons"
-        when 'lessons_instructed_table_view'
-          render :action => "lessons_instructed_table_view"
-        else
-          render :action => params[:pane]
+          when 'lessons_instructed_tn_view'
+            render :action => "lessons"
+          when 'lessons_instructed_table_view'
+            render :action => "lessons_instructed_table_view"
+          else
+            render :action => params[:pane]
         end
       end
     end
@@ -63,7 +79,9 @@ class MyFirehozeController < ApplicationController
     fetch_gift_certificates
 
     respond_to do |format|
-      format.html
+      format.html do
+          cookies[:my_firehoze_tab] = { :value => params[:action], :expires => 1.hour.from_now }
+      end
       format.js
     end
   end
@@ -79,14 +97,14 @@ class MyFirehozeController < ApplicationController
   def fetch_activities
     activites_per_page = 8
     @activities = case set_session_param(:browse_activities_by, "ALL")
-    when 'BY_ME'
-      Activity.visible_to_user(current_user).actor_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
-    when 'ON_ME'
-      Activity.visible_to_user(current_user).actor_user_id_not_equal_to(current_user).actee_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
-    when 'BY_FOLLOWED'
-      Activity.by_followed_instructors(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
-    else
-      Activity.visible_to_user(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
+      when 'BY_ME'
+        Activity.visible_to_user(current_user).actor_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
+      when 'ON_ME'
+        Activity.visible_to_user(current_user).actor_user_id_not_equal_to(current_user).actee_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
+      when 'BY_FOLLOWED'
+        Activity.by_followed_instructors(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
+      else
+        Activity.visible_to_user(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
     end
   end
 
@@ -154,13 +172,13 @@ class MyFirehozeController < ApplicationController
 
   def set_per_page
     @per_page =
-      if params[:per_page]
-      params[:per_page]
-    elsif %w(my_stuff instructor show).include?(params[:action])
-      10
-    else
-      Lesson.per_page
-    end
+            if params[:per_page]
+              params[:per_page]
+            elsif %w(my_stuff instructor show).include?(params[:action])
+              10
+            else
+              Lesson.per_page
+            end
   end
 
   def set_session_param(parameter, default_value)
