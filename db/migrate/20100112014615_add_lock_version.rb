@@ -11,7 +11,6 @@ class AddLockVersion < ActiveRecord::Migration
     add_column :flags, :lock_version, :integer, :default=>0
     add_column :free_credits, :lock_version, :integer, :default=>0
     add_column :gift_certificates, :lock_version, :integer, :default=>0
-    add_column :group_invitations, :lock_version, :integer, :default=>0
     add_column :group_members, :lock_version, :integer, :default=>0
     add_column :groups, :lock_version, :integer, :default=>0
     add_column :helpfuls, :lock_version, :integer, :default=>0
@@ -50,7 +49,6 @@ class AddLockVersion < ActiveRecord::Migration
     remove_column :flags, :lock_version
     remove_column :free_credits, :lock_version
     remove_column :gift_certificates, :lock_version
-    remove_column :group_invitations, :lock_version
     remove_column :group_lessons, :lock_version
     remove_column :group_members, :lock_version
     remove_column :groups, :lock_version
