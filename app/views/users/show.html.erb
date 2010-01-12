@@ -72,7 +72,7 @@
 
           <% unless @reviews.empty? %>
               <!-- TODO make this partial smarter -->
-              <div id="pane-reviews-by"><%= render :partial => "reviews/v2/reviews", :collection => @reviews %></div>
+              <div id="pane-reviews-by"><%= render :partial => "reviews/v2/reviews", :object => @reviews %></div>
           <% end %>
           <% unless @groups.empty? %>
               <div id="pane-group"><%= render :partial => "groups", :locals => { :groups => @groups, :user => @user } %></div>
