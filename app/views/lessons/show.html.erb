@@ -5,7 +5,7 @@
 
 <div id="lesson-show">
 
-  <%= render :partial => "categories/v2/breadcrumbs", :object => @lesson.category, :locals => { :mode => "lessons" } %>
+  <%= render :partial => "categories/v2/breadcrumbs", :object => @lesson.category, :locals => { :mode => "lessons", :linkable_leaf => true } %>
 
   <div id="title-container" class="span-12">
     <div class="span-9" id="title">
