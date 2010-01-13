@@ -96,7 +96,7 @@ class Credit < ActiveRecord::Base
                             :acted_upon_at => Time.now,
                             :group => nil,
                             :activity_string => "credit.activity",
-                            :activity_object_id => self.id,
+                            :activity_object_id => self.lesson.id,
                             :activity_object_human_identifier => self.lesson.title,
                             :activity_object_class => self.class.to_s)
     self.update_attribute(:activity_compiled_at, Time.now)
