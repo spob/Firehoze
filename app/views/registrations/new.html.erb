@@ -38,7 +38,7 @@
         <li>
         <span>
         <%= f.label :username %>
-          <%= f.text_field :username, :maxlength => "25", :title => "You must enter a username", :class => "required" %>
+          <%= f.text_field :username, :minlength => "3", :maxlength => "25", :title => "You must enter a valid username between 3 and 25 characters long", :class => "required" %>
           <span class="required-field"></span>
         </span>
 
@@ -47,7 +47,7 @@
         <li>
         <span>
         <%= f.label :email %>
-          <%= f.text_field :email, :maxlength => "100", :title => "You must enter a valid email address", :class => "required email" %>
+          <%= f.text_field :email, :maxlength => "100",  :title => "You must enter a valid email address", :class => "required email" %>
           <span class="required-field"></span>
         </span>
 

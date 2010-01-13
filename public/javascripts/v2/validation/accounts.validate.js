@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("#profile").validate({
+    $("#profile, #password_form").validate({
         errorElement: "span",
         success: "valid",
         submitHandler: function(form) {

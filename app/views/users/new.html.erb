@@ -34,7 +34,7 @@
       <li>
         <span>
           <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, :title => "You must confirm your password", :class => "required" %>
+          <%= f.password_field :password_confirmation, :title => "Password confirmation must match password", :equalTo => '#user_password', :class => "required" %>
           <span class="required-field"></span>
         </span>
       </li>
