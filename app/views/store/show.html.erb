@@ -1,7 +1,7 @@
 <% title "Buy Credits" -%>
 
 <%= javascript 'always_at_bottom', 'footer' %>
-<h3>Buy Lesson Credits</h3>
+<h3>Buy Download Credits</h3>
 
 <ul class="bulletless inline buy-credits">
   <li><%= link_to "#{pluralize(APP_CONFIG['min_credit_purchase'].to_i, 'Credit')}", line_items_path(:sku => CreditSku.find_by_sku(CREDIT_SKU).try(:sku), :quantity => APP_CONFIG['min_credit_purchase']), :method => :post, :class => :rounded %></li>
