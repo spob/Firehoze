@@ -65,6 +65,7 @@ task :after_deploy, :roles => [:app, :web, :db] do
   if ENV['DEPLOY'] == 'PRODUCTION'
     run "chown -R www-data:www-data /var/#{base_dir}/#{application}"
   end
+  run "chmod -R 777 #{current_path}/public/stylesheets/v2"
 end
 
 # Thinking Sphinx
