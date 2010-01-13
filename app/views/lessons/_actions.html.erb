@@ -1,7 +1,18 @@
 <% lesson = object %>
 
 <ul>
-  <li><script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#publisher=4c9f1a35-27ec-477c-b9a2-c495092a2fc8&amp;type=website&amp;buttonText=Share%20Lesson&amp;embeds=true"></script></li>
+  <li>
+    <script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#publisher=4c9f1a35-27ec-477c-b9a2-c495092a2fc8&amp;type=website&amp;button=false"></script>
+    <script language="javascript" type="text/javascript">
+                        SHARETHIS.addEntry({
+                            title:'Firehoze lesson: <%= h(lesson.title) %>',
+                            summary:'I thought you might be interested in this Firehoze lesson',
+                        }, {button:true, buttonText:'Share Lesson'} );
+                    </script>
+    
+  </li>
+
+
   <%= content_tag(:li, link_to_buy(lesson)) if link_to_buy(lesson).present? %>
   <%= content_tag(:li, link_to_wish(lesson)) if link_to_wish(lesson).present? %>
   <%= content_tag(:li, link_to_edit(lesson)) if link_to_edit(lesson).present? %>
