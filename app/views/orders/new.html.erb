@@ -121,7 +121,7 @@
         <li>
         <span>
           <%= f.label :card_verification, "Card Verification (CVV)" %>
-          <%= f.text_field :card_verification, :title => "You must provide your credit card verification number", :class => "required" %>
+          <%= f.text_field :card_verification, :title => "You must provide your credit card verification number", :minlength=>3, :maxlength => 4, :class => "required digits" %>
           <span class="required-field"></span>
         </span>
         </li>

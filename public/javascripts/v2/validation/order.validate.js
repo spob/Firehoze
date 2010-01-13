@@ -6,7 +6,7 @@ $(document).ready(function() {
             $(form).find(":submit").attr("disabled", true).attr("value", "Please wait ...");
             form.submit();
         }
-    })
+    });
 
     $('#order_first_name').simplyCountable({
         counter: '#order_first_name_counter',
