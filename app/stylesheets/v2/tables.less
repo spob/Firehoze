@@ -3,7 +3,7 @@
 /* Site-wide Table styles */
 
 
-table, td { font:100% Arial, Helvetica, sans-serif;}
+table, td { font:100% Arial, Helvetica, sans-serif; background:@white;}
 table { 
     width:100%;
     border-top: solid 1px @medium-gray;
@@ -18,7 +18,7 @@ th, td {
 }
 th {
     text-shadow: #333 0 1px 1px;
-    background-color:@medium-blue;
+    background-color:@light-blue;
     border-bottom: double @medium-gray;
     color: @dark-blue;
     text-shadow: none;
@@ -47,7 +47,7 @@ table.topic {
 }
 
 table.topic th {
-    background-color:@medium-blue;
+    background-color:@light-blue;
     color:@dark-blue;
     text-shadow: none;
 }
@@ -74,7 +74,7 @@ table.lesson-details {
 
 table.lesson-details tr td.header {
     border-left: solid 1px @medium-gray;
-    background-color:@medium-blue;
+    background-color:@light-blue;
     color:@dark-blue;
     text-shadow:none;
     width:80px;
@@ -83,4 +83,15 @@ table.lesson-details tr td.header {
 
 table.lesson-details tr td  {
     border: solid 1px @medium-gray;
+}
+
+table.order-summary {
+  border-left:solid 1px @medium-gray;
+  border-right:solid 1px @medium-gray;
+}
+
+table.order-summary th {
+    border-bottom: solid 1px @medium-gray;
+    background-color: @medium-blue-2;
+    color:@white;
 }

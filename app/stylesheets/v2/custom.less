@@ -1,3 +1,5 @@
+@import "partials/_colors";
+
 * {
   outline: none;
 }
@@ -738,3 +740,24 @@ ul.bulletless.buy-credits {
 ul.bulletless.buy-credits li {
   margin: 2em 0;
 }
+
+
+div.rounded-shadowbox {
+  padding:17px;
+  border-radius:5px;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  background-color:@white;
+  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+}
+
+div.rounded-bluebox {
+  border-radius:5px;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  background-color:@light-blue;
+  padding:1em;
+}
+

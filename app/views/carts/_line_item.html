@@ -1,4 +1,4 @@
-<tr class="<%= cycle :odd, :even %>">
+<tr class="<%= cycle :even, :odd %>">
     <td>
         <%= h line_item.sku.description %>
         <% if line_item.sku.class == GiftCertificateSku and !line_item.gift_certificates.empty? %>
