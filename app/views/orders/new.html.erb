@@ -107,7 +107,7 @@
         <li>
         <span>
           <%= f.label :card_type %>
-          <%= f.select :card_type, Order.card_types, :prompt => 'Please select...', :value => "", :class => "required" %>
+          <%= f.select :card_type, Order.card_types, { :include_blank => 'Please select...'} %>
           <span class="required-field"></span>
         </span>
         </li>

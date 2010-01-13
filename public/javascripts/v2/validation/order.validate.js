@@ -1,5 +1,10 @@
 $(document).ready(function() {
     $("#order").validate({
+        rules: {
+            order_card_type: {
+                required: true
+            }
+        },
         errorElement: "span",
         success: "valid",
         submitHandler: function(form) {
