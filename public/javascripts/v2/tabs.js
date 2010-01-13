@@ -67,5 +67,10 @@ $(function() {
         effect: 'fade'
     });
 
+    // public user tabs
+    $("#help-center-tabs ul.tabs").tabs("#help-center-tabs > div.panes > div", {
+        effect: 'fade'
+    });
+
 
 });
