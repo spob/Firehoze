@@ -16,15 +16,15 @@
     <link rel="copyright" href="#copyright" />
     <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
     <title>Firehoze - <%= truncate(yield(:title), :length => 75) || "You're on Fire. We Can Help" %></title>
-    <%= stylesheet_link_tag 'blueprint/screen', :media => "screen, projection" -%>
-    <%= stylesheet_link_tag 'blueprint/print', :media => "print" -%>
-    <%= stylesheet_link_tag 'print', :media => "print" -%>
-    <%= stylesheet_link_tag 'custom', :media => "screen, projection" -%>
-    <%= stylesheet_link_tag 'errors', :media => "screen, projection" -%>
-    <%= stylesheet_link_tag 'jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" -%>
-    <%= stylesheet_link_tag 'tables', :media => "screen, projection" -%>
+    <%= stylesheet_link_tag 'v1/blueprint/screen', :media => "screen, projection" -%>
+    <%= stylesheet_link_tag 'v1/blueprint/print', :media => "print" -%>
+    <%= stylesheet_link_tag 'v1/print', :media => "print" -%>
+    <%= stylesheet_link_tag 'v1/custom', :media => "screen, projection" -%>
+    <%= stylesheet_link_tag 'v1/errors', :media => "screen, projection" -%>
+    <%= stylesheet_link_tag 'v1/jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" -%>
+    <%= stylesheet_link_tag 'v1/tables', :media => "screen, projection" -%>
     <!--[if lt IE 8]>
-    <%= stylesheet_link_tag 'blueprint/ie', :media => "screen, projection" -%>
+    <%= stylesheet_link_tag 'v1/blueprint/ie', :media => "screen, projection" -%>
     <![endif]-->
 
     <% # The order of these is very important. Keep them in this order %>
