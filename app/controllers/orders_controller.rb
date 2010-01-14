@@ -101,7 +101,7 @@ class OrdersController < ApplicationController
   def layout_for_action
     if %w(index).include?(params[:action]) || (params[:action] == 'show' and current_user.is_admin?)
       'admin_v2'
-    elsif %w(new create update).include?(params[:action])
+    elsif %w(create new show update).include?(params[:action])
       'application_v2'
     else
       'application'
