@@ -26,3 +26,5 @@ vendor/plugins/safe_erb
 config/development.sphinx.conf
 log/searchd.development.pid
 webrat*
+public/stylesheets/v2/*.css
+public/stylesheets/v2/*/*.css
