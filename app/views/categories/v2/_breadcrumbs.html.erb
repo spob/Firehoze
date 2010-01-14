@@ -2,7 +2,7 @@
 <% category = object %>
 
 <ul id="breadcrumb">
-  <li><%= link_to image_tag("/stylesheets/images/breadcrumbs/home.png", :class => :home), (mode == "groups" ? groups_path : categories_path), :title => :Home %></li>
+  <li><%= link_to image_tag("/stylesheets/v2/images/breadcrumbs/home.png", :class => :home), (mode == "groups" ? groups_path : categories_path), :title => :Home %></li>
   <% if category %>
       <% AncestorCategory.category_id_equals(category.id).descend_by_generation(:select => [:ancestor_name]).each do |cat| %>
           <li><%= link_to(h(cat.ancestor_name), (mode == "groups" ? groups_path(:category => cat.ancestor_category).downcase : category_path(cat.ancestor_category).downcase)) %></li>
