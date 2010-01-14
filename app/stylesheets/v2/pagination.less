@@ -1,0 +1,47 @@
+@import "partials/_colors";
+
+
+/* Site-wide Pagination Styling */
+.pagination a, .pagination span, 
+.ajax-pagination a, .ajax-pagination span {
+    padding: .2em .5em;
+    display: inline;
+    margin-right: 1px;
+}
+.pagination span.disabled,
+.ajax-pagination span.disabled {
+    color: @gray-50;
+    border: 1px solid @gray-40;
+}
+.pagination span.current,
+.ajax-pagination span.current {
+    background: @charcoal-20;
+    color: @gray-10;
+    border: 1px solid @charcoal-20;
+}
+.pagination a, .ajax-pagination a {
+    text-decoration: none;
+    border: 1px solid @gray-50;
+}
+.pagination a:hover, .pagination a:focus,
+.ajax-pagination a:hover, .ajax-pagination a:focus {
+    color: @charcoal-10;
+    border: 1px solid @charcoal-30;
+}
+
+.pagination:after,
+.ajax-pagination:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+* html .pagination,
+* html .ajax-pagination {
+    height: 1%;
+}
+*:first-child+html .pagination,
+*:first-child+html .ajax-pagination {
+    overflow: hidden;
+}
