@@ -1,14 +1,10 @@
 <% tags = object %>
 
 <% if tags %>
-  <% content_for :head do -%>
-    <%= stylesheet_link_tag 'tag_cloud', :media => "screen, projection" %>
-  <% end %>
-
   <div id="tag_cloud">
     <h4>Tags</h4>
-      <% tag_cloud tags[0..100], %w(css1 css2 css3 css4) do |tag, css_class| %>
-        <%= link_to h(tag.name), tagged_with_lessons_path(:collection => :tagged_with, :tag => tag.name), :class => css_class %>
-      <% end %>
+    <% tag_cloud tags[0..100], %w(css1 css2 css3 css4) do |tag, css_class| %>
+    <%= link_to h(tag.name), tagged_with_lessons_path(:collection => :tagged_with, :tag => tag.name), :class => css_class %>
+    <% end %>
   </div>
 <% end %>
