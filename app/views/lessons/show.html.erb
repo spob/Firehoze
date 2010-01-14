@@ -1,8 +1,6 @@
 <% title "#{h @lesson.title}" -%>
 <% @current = 'lessons' %>
 
-<%= javascript 'swfobject' %>
-
 <div id="lesson-show">
 
   <%= render :partial => "categories/v2/breadcrumbs", :object => @lesson.category, :locals => { :mode => "lessons", :linkable_leaf => true } %>
