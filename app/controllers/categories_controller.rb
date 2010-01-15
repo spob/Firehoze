@@ -62,7 +62,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    session[:browse_sort] = params[:sort_by] ? params[:sort_by] : "most_popular"
+    cookies[:browse_sort] = params[:sort_by] ? params[:sort_by] : "most_popular"
     id = params[:id]
     if id == "all"
       redirect_to categories_path
@@ -70,18 +70,22 @@ class CategoriesController < ApplicationController
       @category = Category.find(id)
       category_id = @category.id
 
-      @lessons = case session[:browse_sort]
+
+      @ids = Lesson.ready.not_owned_by(current_user).by_category(category_id).ids
+      @ids = [-1] if @ids.empty?
+      @tags = Lesson.ready.tag_counts(:conditions => ["lessons.id IN (?)", @ids], :order => 'name ASC')
+      @lessons = case cookies[:browse_sort]
         when 'most_popular'
-          Lesson.ready.most_popular.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+          Lesson.most_popular.find(:all, :conditions => { :id => @ids}).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
         when 'highest_rated'
-          Lesson.ready.highest_rated.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+          Lesson.highest_rated.find(:all, :conditions => { :id => @ids}).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
         else
-          session[:browse_sort] = 'newest'
-          Lesson.ready.newest.not_owned_by(current_user).by_category(category_id).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+          cookies[:browse_sort] = 'newest'
+          Lesson.newest.find(:all, :conditions => { :id => @ids}).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
       end
 
       #FIXME can we get rid of the following line?
-#      @collection = session[:browse_sort]
+#      @collection = cookies[:browse_sort]
     end
   end
 

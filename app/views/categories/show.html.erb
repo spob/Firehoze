@@ -22,7 +22,7 @@
         <span class="h4">Tags</span>
       </div>
       <div class="widget-box-content tags">
-        <%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts(:order => 'name ASC') %>
+        <%= render :partial => "lessons/tag_cloud", :object => @tags %>
       </div>
     </div>
   </div>

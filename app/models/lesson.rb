@@ -116,6 +116,7 @@ class Lesson < ActiveRecord::Base
   named_scope :pending, :conditions => {:status => LESSON_STATUS_PENDING }
   named_scope :failed, :conditions => {:status => LESSON_STATUS_FAILED }
   named_scope :rejected, :conditions => {:status => LESSON_STATUS_REJECTED }
+  named_scope :ids, :select => ["lessons.id"]
   named_scope :by_category,
               lambda{ |category_id| return {} if category_id.nil?;
               {:joins => {:category => :exploded_categories},
