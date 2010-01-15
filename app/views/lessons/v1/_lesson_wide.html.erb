@@ -1,6 +1,6 @@
 <% lesson = object %>
 
-<%= render :partial => "lessons/lesson_image_block", :object => lesson %>
+<%= render :partial => "lessons/v1/lesson_image_block", :object => lesson %>
 
 <div class="span-26 lesson_center">
   <div><%= link_to h(lesson.title), lesson_path(lesson), :class => :lesson_title_link %> <%= content_tag(:span, "(#{owned_it_phrase(lesson, current_user)})" ) unless owned_it_phrase(lesson, current_user).blank? %></div>
