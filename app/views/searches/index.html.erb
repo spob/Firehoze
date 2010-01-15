@@ -38,7 +38,7 @@
     <% # GROUPS  -%>
     <% if @groups.present? %>
         <div>
-          <%= render :partial => 'groups/v2/groups', :object => @groups %>
+          <%= render :partial => 'groups/groups', :object => @groups %>
           <%= will_paginate @groups, :param_name => :group_page, :params => {:lesson_page => @lessons.current_page, :user_page => @users.current_page, :anchor => :groups} %>
         </div>
     <% end %>
