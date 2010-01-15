@@ -1,1 +1,11 @@
-<%= render :partial => 'activities/activity', :collection => activities %>
+<div class="widget-box-content">
+  <div id="recent-activities">
+    <ul class="activity-feed">
+      <% if activities.empty? %>
+      <li>Alas, no activity to report.</li>
+      <% else %>
+      <%= render :partial => 'activities/activity', :collection => activities %>
+      <% end %>
+    </ul>
+  </div>
+</div>

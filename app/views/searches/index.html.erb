@@ -46,7 +46,7 @@
     <% # USERS  -%>
     <% if @users.present? %>
         <div>
-          <%= render :partial => "users/v2/users", :collection => @users %>
+          <%= render :partial => "users/users", :collection => @users %>
           <%= will_paginate @users, :param_name => :user_page, :params => {:lesson_page => @lessons.current_page, :group_page => @groups.current_page, :anchor => :users} %>
         </div>
     <% end %>

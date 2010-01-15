@@ -57,11 +57,11 @@
 
             <div class="nested-navigation-panes">
               <div>
-                <%= render :partial => "users/v2/students", :locals => { :students => @students, :pane => :students } %>
+                <%= render :partial => "users/students", :locals => { :students => @students, :pane => :students } %>
                 <div class="clear"></div>
               </div>
               <div>
-                <%= render :partial => 'users/v2/followers', :locals => { :followers => @followers, :pane => :followers } %>
+                <%= render :partial => 'users/followers', :locals => { :followers => @followers, :pane => :followers } %>
                 <div class="clear"></div>
               </div>
             </div><!-- end (interior) panes -->
