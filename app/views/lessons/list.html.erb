@@ -2,21 +2,23 @@
 
 <% @current = 'lessons' %>
 
-
 <div class="span-12">
-  <div class="tab-container">
+  <div class="tab-container non-ajaxed-lessons">
     <ul class="tabs">
       <% %w(most_popular highest_rated newest).each do | collection | %>
       <% if collection == @collection %>
-      <li><a href="#tabs-1" class="current"><%= h(t("lesson.#{collection}")) %></a></li>
-      <% else %>
-      <li><%= link_to h(t("lesson.#{collection}")), list_lessons_path(:collection => collection) %></li>
-      <% end %>
+        <li><a href="#tabs-1" class="current"><%= h(t("lesson.#{collection}")) %></a></li>
+        <% else %>
+        <li><%= link_to h(t("lesson.#{collection}")), list_lessons_path(:collection => collection) %></li>
+        <% end %>
       <% end %>
     </ul>
     <div class="panes clearfix">
-      <div id="tabs-1">
-        <%= render :partial => "lessons/lessons_row_format", :object => @lessons %>
+      <div id="tab-<%= h(t("lesson.#{@collection.humanize}")) %>">
+
+        <%= will_paginate @lessons %>
+
+        <%= render :partial => "lessons/lesson_tns", :object => @lessons %>
       </div>
     </div>
   </div>
