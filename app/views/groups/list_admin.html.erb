@@ -2,7 +2,7 @@
 <% @current = 'groups' %>
 
 <h3>Groups</h3>
-<p><%= link_to "New Group", new_group_path %></p>
+<p><%= link_to("New Group", new_group_path, :class => :rounded) %></p>
 <div class="span-12 search-box-container">
   <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
     <div class="span-4 right">
