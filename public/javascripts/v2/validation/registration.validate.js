@@ -1,12 +1,13 @@
 $(document).ready(function() {
     $(".register").validate({
         rules: {
-            "registration[username]": {required: true, minlength: 3, maxlength: 25, remote:"/registrations/check_user" }
+            "registration[username]": {required: true, minlength: 3, maxlength: 25, regex : /^\w*$/, remote:"/registrations/check_user" }
         },
         messages: {
             "registration[username]": {
                 required: 'You must specify a username',
-                remote: 'Username already taken'
+                remote: 'Username already taken',
+                regex: 'Username cannot contain spaces or special characters'
             }},
         errorElement: "span",
         success: "valid",
@@ -34,3 +35,12 @@ $(document).ready(function() {
         overClass: 'over'
     });
 });
+  
+$.validator.addMethod(
+    "regex",
+    function(value, element, regexp) {
+        var check = false;
+        return this.optional(element) || regexp.test(value);
+    },
+    "Please check your input."
+);
