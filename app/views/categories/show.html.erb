@@ -3,7 +3,7 @@
 <% @current = 'lessons' %>
 
 <div class="span-12 last">
-  <%= render :partial => "categories/v2/breadcrumbs", :object => @category, :locals => { :mode => "lessons" } %>
+  <%= render :partial => "categories/breadcrumbs", :object => @category, :locals => { :mode => "lessons" } %>
 
   <div class="span-4">
     <div class="widget-box">
@@ -11,7 +11,7 @@
         <span class="h4">Explore Firehoze Categories</span>
       </div>
       <div class="tree-view">
-        <%= render :partial => "categories/v2/tree_view", :locals => { :category => @category, :mode => "lessons" } %>
+        <%= render :partial => "categories/tree_view", :locals => { :category => @category, :mode => "lessons" } %>
       </div>
 
       <div class="widget-box-footer treeview"></div>

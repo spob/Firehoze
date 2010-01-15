@@ -1,7 +1,7 @@
 <% title "Group #{h @group.name}" -%>
 <% @current = 'groups' %>
 
-<%= render :partial => "categories/v2/breadcrumbs", :object => @group.category, :locals => { :mode => "groups" } %>
+<%= render :partial => "categories/breadcrumbs", :object => @group.category, :locals => { :mode => "groups" } %>
 
 <% # group details -%>
 <div class="span-12 append-bottom">

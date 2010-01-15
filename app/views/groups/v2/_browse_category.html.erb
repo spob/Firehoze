@@ -1,4 +1,4 @@
-<%= render :partial => "categories/v2/breadcrumbs", :object => @category, :locals => { :mode => "groups" } %>
+<%= render :partial => "categories/breadcrumbs", :object => @category, :locals => { :mode => "groups" } %>
 
 <div class="span-4">
   <div class="widget-box">
@@ -6,7 +6,7 @@
       <span class="h4">Firehoze Groups</span>
     </div>
     <div class="tree-view">
-      <%= render :partial => "categories/v2/tree_view", :locals => { :category => @category, :mode => "groups" } %>
+      <%= render :partial => "categories/tree_view", :locals => { :category => @category, :mode => "groups" } %>
     </div>
     <div class="widget-box-footer treeview"></div>
   </div>
