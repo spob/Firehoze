@@ -37,4 +37,12 @@ class RegistrationsController < ApplicationController
       render :action => "new"
     end
   end
+
+  def check_user
+    @user = User.find_by_login(params[:registration][:username].try(:strip))
+
+    respond_to do |format|
+      format.js
+    end
+  end
 end

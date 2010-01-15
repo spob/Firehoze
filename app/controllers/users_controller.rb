@@ -73,6 +73,7 @@ class UsersController < ApplicationController
   def show_admin
   end
 
+
   def private
     unless @user == @current_user
       flash[:notice] = t 'user.not_permitted_to_view'
