@@ -29,8 +29,7 @@ class GiftCertificatesController < ApplicationController
   # Redeem certificate
   def create
     code = params[:gift_certificate][:code]
-    code = code.strip.gsub("-", "") unless code.nil? # strip dashes
-    gift_certificate = GiftCertificate.find_by_code(code)
+    gift_certificate = GiftCertificate.find_by_code(cleanup_code(code))
     if gift_certificate.nil?
       flash[:error] = t('gift_certificate.invalid_gift_certificate', :code => code)
       render 'new'
@@ -80,6 +79,15 @@ class GiftCertificatesController < ApplicationController
     end
   end
 
+  def check_gift_certificate_code
+    code = params[:gift_certificate][:code]
+    @gift_certificate = GiftCertificate.find_by_code(cleanup_code(code))
+    @gift_certificate = nil if @gift_certificate.try(:redeemed_at)
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def layout_for_action
@@ -108,5 +116,9 @@ class GiftCertificatesController < ApplicationController
         true
       end
     end
+  end
+
+  def cleanup_code(code)
+    code.strip.gsub("-", "") unless code.nil? # strip dashes
   end
 end

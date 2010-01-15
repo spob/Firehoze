@@ -1,6 +1,5 @@
 $(document).ready(function() {
     $(".register").validate({
-        debug: true,
         rules: {
             "registration[username]": {required: true, minlength: 3, maxlength: 25, remote:"/registrations/check_user" }
         },
