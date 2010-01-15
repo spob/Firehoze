@@ -17,6 +17,6 @@
     <% end %>
   <% else %>
     <%= will_paginate lessons, :id => true, :params => { :pane => pane }, :class => "ajax-pagination" %>
-    <%= render :partial => "lessons/v2/lesson_tns", :object => lessons, :locals => {:per_row => 5 } %>
+    <%= render :partial => "lessons/lesson_tns", :object => lessons, :locals => {:per_row => 5 } %>
   <% end %>
 </div>

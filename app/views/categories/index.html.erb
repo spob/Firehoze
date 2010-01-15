@@ -25,7 +25,7 @@
       </div>
       <div class="widget-box-content lessons-you-may-like">
         <ul class="lesson_brief">
-          <%= render :partial => "lessons/v2/lesson_brief", :collection => @suggested_lessons %>
+          <%= render :partial => "lessons/lesson_brief", :collection => @suggested_lessons %>
         </ul>
       </div>
     </div>
@@ -35,7 +35,7 @@
         <span class="h4">Tags</span>
       </div>
       <div class="widget-box-content tags">
-        <%= render :partial => "lessons/v2/tag_cloud", :object => Lesson.tag_counts(:order => 'name ASC') %>
+        <%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts(:order => 'name ASC') %>
       </div>
     </div>
   </div>

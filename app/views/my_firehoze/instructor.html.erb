@@ -35,11 +35,11 @@
 
             <div class="nested-navigation-panes">
               <div>
-                <%= render :partial => "lessons/v2/ajaxed_lessons", :locals => { :lessons => @instructed_lessons, :pane => :lessons_instructed_tn_view } %>
+                <%= render :partial => "lessons/ajaxed_lessons", :locals => { :lessons => @instructed_lessons, :pane => :lessons_instructed_tn_view } %>
                 <div class="clear"></div>
               </div>
               <div>
-                <%= render :partial => "lessons/v2/ajaxed_instructed_lessons", :locals => { :lessons => @instructed_lessons, :pane => :lessons_instructed_table_view } %>
+                <%= render :partial => "lessons/ajaxed_instructed_lessons", :locals => { :lessons => @instructed_lessons, :pane => :lessons_instructed_table_view } %>
                 <div class="clear"></div>
               </div>
             </div><!-- end (interior) panes -->

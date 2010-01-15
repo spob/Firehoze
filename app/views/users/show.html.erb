@@ -67,7 +67,7 @@
           <% end %>
 
           <% unless @lessons.empty? %>
-              <div id="pane-lessons-by"><%= render :partial => "lessons/v2/lessons_row_format", :object => @lessons %></div>
+              <div id="pane-lessons-by"><%= render :partial => "lessons/lessons_row_format", :object => @lessons %></div>
           <% end %>
 
           <% unless @reviews.empty? %>

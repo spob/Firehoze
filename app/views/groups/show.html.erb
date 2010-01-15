@@ -54,7 +54,7 @@
     <div class="panes clearfix">
       <div id="tabs-lessons">
         <% if @lessons.present? %>
-          <%= render :partial => "lessons/v2/lesson_tns", :object => @lessons, :locals => { :per_row => 3 } %>
+          <%= render :partial => "lessons/lesson_tns", :object => @lessons, :locals => { :per_row => 3 } %>
         <% else %>
           Looks like no one has added lessons to this group yet.
         <% end %>

@@ -30,7 +30,7 @@
     <% # LESSONS  -%>
     <% if @lessons.present? %>
         <div>
-          <%= render :partial => "lessons/v2/lessons_row_format", :object => @lessons %>
+          <%= render :partial => "lessons/lessons_row_format", :object => @lessons %>
           <%= will_paginate @lessons, :param_name => :lesson_page, :params => {:group_page => @groups.current_page, :user_page => @users.current_page, :anchor => :lessons} %>
         </div>
     <% end %>

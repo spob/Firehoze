@@ -4,7 +4,7 @@
   <div>
     <h3><%= "#{t('lesson.tagged_with')} &quot;#{@tag}&quot;" %></h3>
     <div>
-      <%= render :partial => "lessons/v2/lessons_row_format", :object => @lessons, :locals => { :lesson_format => @lesson_format, :collection => @collection } %>
+      <%= render :partial => "lessons/lessons_row_format", :object => @lessons, :locals => { :lesson_format => @lesson_format, :collection => @collection } %>
     </div>
     <div>
       <%= render :partial => "lessons/pagination", :object => @lessons, :locals => { :collection => :tagged_with  } %>
@@ -18,7 +18,7 @@
       <span class="h4">Tags</span>
     </div>
     <div class="widget-box-content tags">
-      <%= render :partial => "lessons/v2/tag_cloud", :object => Lesson.tag_counts(:order => 'name ASC') %>
+      <%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts(:order => 'name ASC') %>
     </div>
   </div>
 </div>

@@ -1,16 +1,23 @@
 <% title "#{@collection.humanize} lessons" -%>
 
-<div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
-  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-    <% %w(most_popular highest_rated newest).each do | collection | %>
+<% @current = 'lessons' %>
+
+
+<div class="span-12">
+  <div class="tab-container">
+    <ul class="tabs">
+      <% %w(most_popular highest_rated newest).each do | collection | %>
       <% if collection == @collection %>
-        <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-1"><%= h(t("lesson.#{collection}")) %></a></li>
+      <li><a href="#tabs-1" class="current"><%= h(t("lesson.#{collection}")) %></a></li>
       <% else %>
-        <li class="ui-state-default ui-corner-top"><%= link_to h(t("lesson.#{collection}")), list_lessons_path(:collection => collection) %></li>
+      <li><%= link_to h(t("lesson.#{collection}")), list_lessons_path(:collection => collection) %></li>
       <% end %>
-    <% end %>
-  </ul>
-  <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-1">
-    <%= render :partial => "lessons", :object => @lessons, :locals => { :lesson_format => @lesson_format } %>
+      <% end %>
+    </ul>
+    <div class="panes clearfix">
+      <div id="tabs-1">
+        <%= render :partial => "lessons/lessons_row_format", :object => @lessons %>
+      </div>
+    </div>
   </div>
 </div>

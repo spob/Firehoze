@@ -106,7 +106,7 @@
     Your query returned no results
   <% else %>
     <div>
-      <%= render :partial => "lessons/v2/lessons_row_format", :object => @lessons %>
+      <%= render :partial => "lessons/lessons_row_format", :object => @lessons %>
       <%= will_paginate @lessons %>
     </div>
   <% end %>
