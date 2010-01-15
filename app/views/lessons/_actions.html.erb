@@ -3,6 +3,8 @@
 <ul>
   <%= content_tag(:li, link_to_buy(lesson)) if link_to_buy(lesson).present? %>
   <%= content_tag(:li, link_to_wish(lesson)) if link_to_wish(lesson).present? %>
+
+<% unless g_browser_is?( :name => 'ie') %>
   <li>
     <script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#publisher=4c9f1a35-27ec-477c-b9a2-c495092a2fc8&amp;type=website&amp;button=false"></script>
     <script language="javascript" type="text/javascript">
@@ -17,6 +19,8 @@
         object.attachButton(element);
     </script>
   </li>
+<% end %>
+
   <%= content_tag(:li, link_to_edit(lesson)) if link_to_edit(lesson).present? %>
   <%= content_tag(:li, link_to_unreject(lesson, current_user)) if link_to_unreject(lesson, current_user).present? %>
   <%= content_tag(:li, link_to_unreject(lesson, current_user)) if link_to_unreject(lesson, current_user).present? %>
