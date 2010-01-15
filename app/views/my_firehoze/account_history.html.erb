@@ -43,7 +43,7 @@
           <div class="nested-navigation-panes">
             <div>
               <p>
-                Available credits are available to use to purchase lessons.
+                <div class="info">Available credits are available to use to purchase lessons.</div>
                 <% if @available_credits.empty? %>
                     You have no available credits...but you can easily purchase credits in
                     the <%= link_to "online store", store_path(0) %>.
@@ -54,7 +54,7 @@
             </div>
             <div>
               <p>
-                Used credits are credits that you have redeemed to purchase lessons.
+                <div class="info">Used credits are credits that you have redeemed to purchase lessons.</div>
                 <% if @used_credits.empty? %>
                     You have not yet redeemed any credits.
                 <% end %>
@@ -64,10 +64,11 @@
             </div>
             <div>
               <p>
-                Credits expire if they are unused and you have not logged in for one year.
+                <div class="info">Credits expire if they are unused and you have not logged in for one year.
                 <% if @expired_credits.empty? %>
                     Phew...you don't have any credits that have expired.
                 <% end %>
+                </div>
               </p>
               <%= render :partial => "credits/credits", :locals => { :user => current_user, :credits => @expired_credits, :show_redeemed => false, :show_expired => true, :pane => :expired } if @expired_credits.present? %>
               <div class="clear"></div>

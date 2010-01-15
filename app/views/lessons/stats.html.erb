@@ -25,7 +25,7 @@
 <% end %>
 
 <% if current_user.try("is_admin?") or @lesson.instructor == current_user -%>
-  <div>
+  <div class="prepend-top">
     <h3>Video Stats</h3>
     <table>
       <tr>
