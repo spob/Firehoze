@@ -1,0 +1,42 @@
+<% reviewer = review.user %>
+
+<div class="review">
+  <div class="span-5">
+    <div class="instructor_avatar"><%= link_to avatar_tag(reviewer, :size => :medium), user_path(reviewer) %></div>
+    <div><%= link_to_profile(reviewer) %></div>
+    <div>Member Since:<br /><%= h(l(reviewer.created_at.to_date)) %></div>
+  </div>
+
+  <div class="prepend-5 last">
+    <div class="helpful_phrase" >
+      <% unless review.helpfuls.empty? %>
+        <%= review.helpfuls.helpful_yes.size %> of <%= review.helpfuls.size %> people found this review helpful
+      <% end %>
+    </div>
+
+    <div>
+      <% if reviewer == current_user %>
+        <div id="stars"><%= ratings_for(review.lesson, current_user, { :static => false }) %></div>
+      <% else %>
+        <%= ratings_for(review.lesson, reviewer, { :static => true } ) %>
+      <% end %>
+
+        <strong><em>&quot;<%= h review.headline %>&quot;</em></strong>
+    </div>
+
+    <div class="timestamp">
+      written on <%= l review.created_at %>
+    </div>
+
+    <div>
+      <%= rbs_formatter review.body %>
+    </div>
+
+    <div class="actions">
+      <%= render :partial => 'reviews/actions', :object => review %>
+    </div>
+  </div>
+
+</div>
+
+<div class="spacer"></div>

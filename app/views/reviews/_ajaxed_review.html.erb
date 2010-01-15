@@ -19,6 +19,6 @@ reviewer = review.user
     <span class="headline h5">&quot;<%= h review.headline %>&quot;</span><span class="timestamp">&mdash;written on <%= l review.created_at %></span><br />
     <div class="review-body"><%= rbs_formatter review.body %></div>
 
-    <div class="actions"><%= render :partial => 'reviews/v2/actions', :object => review %></div>
+    <div class="actions"><%= render :partial => 'reviews/actions', :object => review %></div>
   </div>
 </div>

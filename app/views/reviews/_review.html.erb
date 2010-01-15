@@ -1,42 +1,27 @@
 <% reviewer = review.user %>
-
-<div class="review">
-  <div class="span-5">
-    <div class="instructor_avatar"><%= link_to avatar_tag(reviewer, :size => :medium), user_path(reviewer) %></div>
-    <div><%= link_to_profile(reviewer) %></div>
-    <div>Member Since:<br /><%= h(l(reviewer.created_at.to_date)) %></div>
+<div class="review clearfix">
+  <div style="width:90px; float:left">
+    <div><%= img_tag_lesson_tn(review.lesson, :small, :size => "100x67") %></div>
   </div>
 
-  <div class="prepend-5 last">
-    <div class="helpful_phrase" >
-      <% unless review.helpfuls.empty? %>
-        <%= review.helpfuls.helpful_yes.size %> of <%= review.helpfuls.size %> people found this review helpful
-      <% end %>
-    </div>
+  <div style="margin-left:120px;">
+    <% unless review.helpfuls.empty? %>
+      <span class="helpful_phrase"><%= review.helpfuls.helpful_yes.size %> of <%= review.helpfuls.size %> people found this review helpful:</span>
+    <% end %>
 
-    <div>
-      <% if reviewer == current_user %>
-        <div id="stars"><%= ratings_for(review.lesson, current_user, { :static => false }) %></div>
-      <% else %>
-        <%= ratings_for(review.lesson, reviewer, { :static => true } ) %>
-      <% end %>
+    <%= ratings_for(review.lesson, reviewer, { :static => true } ) %>
 
-        <strong><em>&quot;<%= h review.headline %>&quot;</em></strong>
-    </div>
+    <% if controller.action_name == 'show' and controller.controller_name == "users"  %>
+      <span class="headline h5"><%= review.lesson.title %></span><br />
+      <span class="headline h5">&quot;<%= h review.headline %>&quot;</span><br />
+      <span class="timestamp">&mdash;written on <%= l review.created_at %></span>
+    <% else %>
+      <span class="headline h5">&quot;<%= h review.headline %>&quot;</span><br />
+      By <%= link_to_profile(reviewer) %><span class="timestamp">&mdash;written on <%= l review.created_at %></span>
+    <% end %>
 
-    <div class="timestamp">
-      written on <%= l review.created_at %>
-    </div>
+    <div class="review-body"><%= rbs_formatter review.body %></div>
 
-    <div>
-      <%= rbs_formatter review.body %>
-    </div>
-
-    <div class="actions">
-      <%= render :partial => 'reviews/actions', :object => review %>
-    </div>
+    <div class="actions"><%= render :partial => 'reviews/actions', :object => review %></div>
   </div>
-
 </div>
-
-<div class="spacer"></div>
