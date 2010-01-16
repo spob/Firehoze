@@ -61,12 +61,12 @@
             </div>
 
             <% # Lesson by This Instructor -%>
-            <% if @instructor.instructed_lessons.size > 1 %>
+            <% if @instructor.instructed_lessons.ready.size > 1 %>
               <div id="lessons-by-instructor">
                 <h4>More lessons by <%= privacy_sensitive_username(@instructor) %></h4>
                 <div class="widget-box-content lessons">
                   <ul class="lesson_brief">
-                    <%= render :partial => "lessons/lesson_brief", :collection => (@instructor.instructed_lessons.reject{ |lesson| lesson == @lesson }), :locals => {:title_length => 50, :synopsis_length => 160 } %>
+                    <%= render :partial => "lessons/lesson_brief", :collection => (@instructor.instructed_lessons.ready.reject{ |lesson| lesson == @lesson }), :locals => {:title_length => 50, :synopsis_length => 160 } %>
                   </ul>
                 </div>
               </div>
