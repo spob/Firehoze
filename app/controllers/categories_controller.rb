@@ -71,8 +71,7 @@ class CategoriesController < ApplicationController
       category_id = @category.id
 
 
-      @ids = Lesson.ready.not_owned_by(current_user).by_category(category_id).ids
-      @ids = [-1] if @ids.empty?
+      @ids = Lesson.ready.not_owned_by(current_user).by_category(category_id).ids + [-1]
       @tags = Lesson.ready.tag_counts(:conditions => ["lessons.id IN (?)", @ids], :order => 'name ASC')
       @lessons = case cookies[:browse_sort]
         when 'most_popular'
@@ -83,9 +82,6 @@ class CategoriesController < ApplicationController
           cookies[:browse_sort] = 'newest'
           Lesson.newest.find(:all, :conditions => { :id => @ids}).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
       end
-
-      #FIXME can we get rid of the following line?
-#      @collection = cookies[:browse_sort]
     end
   end
 
