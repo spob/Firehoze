@@ -70,7 +70,6 @@ class CategoriesController < ApplicationController
       @category = Category.find(id)
       category_id = @category.id
 
-
       @ids = Lesson.ready.not_owned_by(current_user).by_category(category_id).ids + [-1]
       @tags = Lesson.ready.tag_counts(:conditions => ["lessons.id IN (?)", @ids], :order => 'name ASC')
       @lessons = case cookies[:browse_sort]
