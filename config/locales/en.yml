@@ -285,7 +285,7 @@ en:
     create_failure: There were problems
     not_ready: The review you requested is not available for viewing
     found_helpful: You found this review helpful
-    found_unhelpful: You found this review unhelpful
+    found_unhelpful: You did not find this review helpful
     must_view_to_review: You can only review videos which you own
     update_success: Review updated
     add_your_review: Add Your Review of the Lesson
