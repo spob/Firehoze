@@ -49,6 +49,7 @@ en:
     no_permissions: You do not have permissions to perform that action
     my_firehoze: My Firehoze
     lessons: Lessons
+    optimistic_lock_error: It looks like another user updated the same record at the same time you were performing your transaction. Can you please try again?
   security:
     you_must_be_logged_in: You must be logged in to access that page
     you_must_be_logged_out: You must not be logged in to access that page

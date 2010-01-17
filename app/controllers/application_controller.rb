@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
     redirect_to login_path
   end
 
+  rescue_from ActiveRecord::StaleObjectError do |exception|
+    flash[:error] = t('general.optimistic_lock_error')
+    redirect_to my_firehoze_index_path
+  end
+
   helper :all
   helper_method :current_user_session, :current_user
   filter_parameter_logging :password, :password_confirmation, :current_password, :card_number, :card_verification
