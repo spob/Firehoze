@@ -1,9 +1,41 @@
-@import "partials/_colors";
+// LESS CSS Variables
+// blue colors
+@light-blue: #E3E9F2;
+@medium-blue: #5B83AD;
+@medium-blue-2: #9cb6d5;
+@dark-blue: #17587F;
 
-// @import "less/custom";
-/* Custom.css
--------------------------------------------------------------- */
-@import "partials/_colors";
+// white
+@white:#FFFFFF;
+@off-white:#F2F2F2;
+
+// gray colors
+
+@ivory:#EEEEEE;
+@light-gray: #F8F8F8;
+@light-medium-gray: #CCC;
+@medium-gray: #A8A8A8;
+
+@gray-10: #F2F2F2;
+@gray-20: #E3E3E3;
+@gray-30: #D6D6D6;
+@gray-40: #CCCCCC;
+@gray-50: #BFBFBF;
+@gray-60: #B5B5B5;
+@gray-70: #A9A9A9;
+@gray-80: #9E9E9E;
+@gray-90: #8F8F8F;
+@gray-100: #616161;
+
+@charcoal-10: #4A4A4A;
+@charcoal-20: #2B2B2B;
+@charcoal-30: #212121;
+
+@black: #000;
+
+/*---------------------------------------------------------------------------------------------- */
+/* custom.css
+------------------------------------------------------------------------------------------------ */
 
 * {
   outline: none;
@@ -766,9 +798,11 @@ div.rounded-bluebox {
   padding:1em;
 }
 
-// @import "less/top_navigation";
-/* top_avigation.css
--------------------------------------------------------------- */
+
+/*---------------------------------------------------------------------------------------------- */
+/* top_navigation.css
+------------------------------------------------------------------------------------------------ */
+
 #top-navigation {
     float: right;
     margin: 8px 0 0 0;
@@ -966,11 +1000,9 @@ html ul#top-navigation li ul.subnav li a:hover {
 }
 
 
-// @import "less/tables";
-/* Custom.css
--------------------------------------------------------------- */
-
-
+/*---------------------------------------------------------------------------------------------- */
+/* tables.css
+------------------------------------------------------------------------------------------------ */
 /* Site-wide Table styles */
 
 
@@ -1067,17 +1099,2236 @@ table.order-summary th {
     color:@white;
 }
 
+/*---------------------------------------------------------------------------------------------- */
+/* tabs.css
+------------------------------------------------------------------------------------------------ */
+/* root element for tabs  */
+.tab-container {
+    position:relative;
+}
+
+.tab-container img.loader {
+    display:none;
+    height:32px;
+    width:32px;
+    position: absolute;
+    top:-6px;
+    right:4px;
+}
+
+ul.tabs {
+    margin:0;
+    padding:0;
+    height:30px;
+    border-bottom:3px solid #212121;
+}
+
+/* single tab */
+ul.tabs li {
+    float:left;
+    padding:0;
+    margin:0;
+    list-style-type:none;
+    font-style: italic;
+}
+
+/* link inside the tab */
+ul.tabs a {
+    position:relative;
+    float:left;
+    font-size:13px;
+    display:block;
+    padding:5px 30px;
+    text-decoration:none;
+    height:18px;
+    color:#444;
+    background-color:#FFF;
+    border:1px solid #C4C4C4;
+    border-width:1px 1px 0 1px;
+    margin-right:3px;
+    -moz-border-radius-topleft: 4px;
+    -moz-border-radius-topright:4px;
+    -webkit-border-top-left-radius:4px;
+    -webkit-border-top-right-radius:4px;
+    top:1px;
+}
+
+ul.tabs a:hover {
+    border: 0 none;
+    background-color:#8C8C8C;
+    color:#222;
+    border:1px solid #8C8C8C;
+    border-width:1px 1px 0 1px;
+}
+
+ul.tabs a.current {
+    background-color:#212121;
+    color:#F2F2F2;
+    cursor:default;
+    border:0 none;
+    border:1px solid #212121;
+    border-width:0 0 1px 0;
+}
+
+/********* DEVIATIONS *****************
+ 		Policies Tabs (deviates from norm)
+***************************************/
+
+.tab-container.policies ul li a {
+    padding-left:12px;
+    padding-right:12px;
+}
+
+div#admin-user-tabs > ul li a {
+    padding-left:23px;
+    padding-right:23px;
+}
+div#user-show-tabs > ul li a {
+    padding-left:23px;
+    padding-right:23px;
+}
 
 
-@import "less/tabs";
-@import "less/nav";
-@import "less/my_firehoze";
-@import "less/lessons";
-@import "less/nested_navigation";
-@import "less/pagination";
-@import "less/buttons";
-@import "less/tooltip";
-@import "less/tag_cloud";
-@import "less/forms";
-@import "less/users";
-@import "less/tipTip";
+/*---------------------------------------------------------------------------------------------- */
+/* some nav elements 
+------------------------------------------------------------------------------------------------ */
+#profile-box {
+    /*background-color:#E3E9F2;*/
+    z-index:1;
+    position:relative;
+    margin:0;
+    padding:20px;
+    border: solid 1px #CCC;
+    height:62px;
+    border-radius:8px;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+}
+
+#profile-box .avatar {
+    float:left;
+    border: solid 1px #ccc;
+}
+
+#profile-box #content {
+    padding:0;
+    margin:0 0 0 80px;
+}
+
+#profile-box #content #balance {
+    z-index:1;
+    position: absolute;
+    top:17px;
+    right:17px;
+}
+
+#profile-box #content #action {
+    z-index:1;
+    padding:0;
+    position: absolute;
+    bottom:17px;
+    right:17px;
+}
+
+/* Profile links */
+ul.third-level-nav {
+    display: block;
+    margin: 0;
+    padding:0;
+}
+
+ul.third-level-nav li {
+    list-style: none;
+    display: inline;
+    margin: 0px;
+    padding: 0 12px;
+    border-right: solid 1px #ccc;
+}
+
+ul.third-level-nav li:first-child {
+    padding-left: 0;
+}
+
+ul.third-level-nav li:last-child {
+    border: none;
+}
+
+ul.third-level-nav li a {
+    border: 0 none;
+    text-decoration: none;
+    border-bottom: solid 1px #999;
+}
+
+ul.third-level-nav li a:hover {
+    border-bottom: solid 2px #999;
+}
+
+ul.third-level-nav li.current a {
+    font-weight:bold;
+    text-decoration: none;
+    border: 0 none;
+}
+
+/* filter by links */
+dl.third-level-nav {
+    width: auto;
+    height: 19px;
+    margin: 0;
+}
+dl.third-level-nav dt, dl.third-level-nav dd {
+    float: left;
+    display: inline;
+}
+dl.third-level-nav dt {
+    font-weight: bold;
+    letter-spacing: 0.02em;
+}
+dl.third-level-nav dd {
+    margin: 0px;
+    padding: 0 14px;
+    border-right: solid 1px #ccc;
+}
+
+/* my_firehoze page */
+dl.third-level-nav.my_firehoze dd {
+    padding: 0 14px;
+}
+
+/* groups page */
+dl.third-level-nav.groups dd {
+    padding: 0 7px;
+}
+
+dl.third-level-nav dd a {
+    margin: 0px;
+    text-decoration: none;
+    border: 0 none;
+    text-decoration: none;
+    border-bottom: solid 1px #999;
+}
+
+dl.third-level-nav dd:last-child {
+    border: none;
+}
+
+
+dl.third-level-nav a:hover {
+    border-bottom: solid 2px #999;
+}
+
+dl.nav dd.active a {
+    /*color: #fff;*/
+}
+
+/**********************************/
+/*    NOT USING THIS RIGHT NOW    */
+/**********************************/
+ul.top-level-navigation {
+    display: block;
+    width: auto;
+    height: 27px;
+    margin: 0 0 16px 0;
+}
+
+ul.top-level-navigation li {
+    list-style: none;
+    float: left;
+    display: inline;
+    margin-right: 8px;
+    border: solid 2px #F2F2F2;
+    padding: 5px 12px  5px 12px ;
+    color: #295F6D;
+    background: #FFF;
+}
+
+ul.top-level-navigation li a {
+    border: 0 none;
+    text-decoration: none;
+}
+
+ul.top-level-navigation li:hover {
+    border: solid 2px #F2F2F2;
+    background: #F2F2F2;
+}
+
+ul.top-level-navigation li.current  {
+    background: #CCC;
+    border: solid 1px #CCC;
+}
+
+ul.top-level-navigation li.current a {
+    text-shadow: #666 0 1px 1px;
+    font-weight:bold;
+    color: #fff;
+}
+
+/*---------------------------------------------------------------------------------------------- */
+/* my_firehoze.css 
+------------------------------------------------------------------------------------------------ */
+
+/* PANES */
+.panes {
+    z-index:100;
+    position:relative;
+    margin:0;
+    padding:0;
+    margin-top: 17px;
+}
+
+.panes p {
+    margin-bottom: 12px;
+}
+
+.tab-container {
+    /*border: solid 1px orange;*/
+}
+
+/* PAGINATION */
+div.ajax-pagination {
+    top:0;
+    right:0;
+    position: absolute;
+    padding: 1px 0;
+}
+
+div#lessons_pagination.pagination {
+    position: static;
+    text-align:center;
+    margin:0;
+    padding: 12px 0;
+    border: solid 1px #CCC;
+}
+
+div#activities_pagination  {
+    position:static;
+    text-align:center;
+    margin:17px 0;
+    padding: 1px 0;
+}
+
+/* WIDGET-BOX */
+div.widget-box {
+    margin:0 0 34px 0;
+    padding: 0px;
+    border: solid 1px #ccc;
+    background-color: #fff;
+}
+div.widget-box-header {
+    position: relative;
+    margin:0;
+    padding:12px;
+    border-bottom: solid 1px #ccc;
+    z-index: 1;
+    text-shadow: #999 0 1px 1px;
+    background: url(images/backgrounds/widget-box-header-tile.png) repeat-x bottom center;
+}
+.widget-box-header img.loader {
+    display:none;
+    z-index: 10;
+    position: absolute;
+    top:6px;
+    right:8px;
+}
+.widget-box-content {
+    margin:0;
+}
+.widget-box-content ul {
+    margin:0;
+}
+.widget-box-content ul li {
+    list-style-type:none;
+    padding:2px 8px;
+    border-top:solid 1px #DBDBDB;
+}
+.widget-box-content ul li.even {
+    background: #FFF;
+}
+.widget-box-content ul li.odd {
+    background: #F2F2F2;
+}
+.widget-box-content ul li:first-child {
+    border-top:0 none;
+    margin-top:0;
+}
+.widget-box-footer {
+    margin:0;
+    padding:12px;
+    border-top: solid 1px #ccc;
+    background: #FFF;
+}
+.widget-box-content .activity-feed  {
+    border-top: solid 1px #E3E3E3;
+    border-bottom: solid 1px #E3E3E3;
+}
+
+/* Widget Box : Activity Feed */
+.widget-box-content .activity-feed li {
+    position:relative;
+    margin: 0;
+    padding: 8px 8px 8px 54px;
+    display:block;
+    min-height: 45px;
+}
+
+.widget-box-content .activity-feed li img.avatar {
+    border: solid 1px #E3E3E3;
+    position:absolute;
+    left:8px;
+    top:8px;
+}
+
+.filter-activity-by  {
+    border-bottom: solid 1px #E3E3E3;
+    padding: 12px;
+}
+
+table {
+    width:100%;
+}
+
+/* FIXME: lousy solution here */
+div.no-nested-nav-potentially-paginated {
+    padding-top:34px;
+}
+
+/* FOLLOWERS MOSAIC */
+
+ul.users-mosaic {
+    margin:0;
+    padding:0;
+    list-style-type: none;
+}
+
+ul.users-mosaic li {
+    float: left;
+    margin-right: 8px;
+    margin-bottom: 4px;
+}
+
+ul.users-mosaic .avatar {
+    padding:0;
+    margin:0;
+    border:solid 1px #D4D4D4;
+}
+
+
+ul.users-mosaic a {
+    border:0 none;
+    text-decoration: none;
+
+}
+
+ul.users-mosaic a:hover .avatar {
+    padding:0;
+    margin:0;
+    border:solid 1px #9E9E9E;
+    text-decoration: none;
+}
+
+/*---------------------------------------------------------------------------------------------- */
+/* lessons.css
+------------------------------------------------------------------------------------------------ */
+/* LESSONS (PLURAL) */
+
+.lessons-container {
+    margin:0;
+    padding:0;
+}
+
+div.non-ajaxed-lessons div.pagination {
+  position: absolute;
+  top: -45px;
+  right: 0;
+}
+
+div#group-details-tabs div.lessons-container {
+    padding:0 0 0 17px;
+}
+
+div#category-show div.lessons-container {
+    padding-top:17px;
+}
+
+.lessons-container .title {
+    font-size:11px;
+    color:#fff;
+    font-weight:bold;
+}
+
+.small-lesson-container {
+    position:relative;
+    float:left;
+    margin: 0 6px 22px 0;
+    padding:12px 5px 10px 11px;
+    background: url('/stylesheets/images/backgrounds/image_holder.png') no-repeat scroll 0 0;
+    width:168px;
+    height:168px;
+    font: 11px Arial, Helvetica, sans-serif;
+    color: #999;
+}
+div#group-details-tabs .small-lesson-container,
+#category-show .small-lesson-container {
+    margin: 0 26px 11px 0;
+    padding:12px 5px 10px 11px;
+}
+
+div#group-details-tabs .small-lesson-container.last,
+#category-show .small-lesson-container.last {
+    margin-right:0;
+    padding-right:0;
+}
+
+#category-show div.tab-container div.panes {
+    padding:0 0 0 17px;
+}
+
+.small-lesson-container img {
+    display: block;
+    margin:0 0 6px 0;
+}
+
+.small-lesson-container .title {
+    padding:0;
+    margin:0;
+    width:140px;
+}
+
+div.duration {
+    font-size:9px;
+    padding: 0 2px;
+    color: #fff;
+    font-weight: bold;
+    position:absolute;
+    top:110px;
+    left:11px;
+    background: #555;
+    filter: alpha(opacity=65);
+    -moz-opacity: 0.65;
+    opacity: 0.65;
+}
+
+/* single scrollable item */
+.item_container img {
+    background-color:#fff;
+    padding:2px;
+    border:1px solid #ccc;
+    cursor:pointer;
+    width:120px;
+    height:90px;
+}
+
+.item_container	.tn {
+    position:relative;
+}
+
+.item_container	.duration {
+    font-size:9px;
+    padding: 0 2px;
+    color: #fff;
+    font-weight: bold;
+    position:absolute;
+    bottom:3px;
+    left:3px;
+    background: #555;
+    filter: alpha(opacity=65);
+    -moz-opacity: 0.65;
+    opacity: 0.65;
+}
+
+.item_container	.title, .item_container	.created_at, .item_container	.instructor {
+    font-size:11px;
+}
+
+/* active item */
+/*
+.scrollable .active {
+border:1px solid #ccc;
+z-index:9999;
+position:relative;
+}
+*/
+
+/*  SIMPLE BLUE THEMED BOX */
+.blue-box  {
+    margin:0;
+    padding:0;
+    font-size: 12px;
+    font-family: "Helvetica", "Arial", sans-serif;
+}
+
+.blue-box ol,
+.blue-box ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.blue-box ul li {
+    background-color:#e3e9f2;
+    border-top:1px solid #f3f6f9;
+    border-bottom:1px solid #c1cad5;
+    position:relative;
+    zoom:1;
+}
+
+.blue-box ul.section {
+    /* this dictates the overall width of the form */
+    width:626px;
+    border: 1px solid #c1cad5;
+    border-top:1px solid #8f9aa7;
+    border-radius:5px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    background-color:#f1f7fe;
+    margin-bottom:20px;
+    float:left;
+}
+
+.blue-box h3 {
+    font-size:24px;
+    color:#0350a6;
+}
+
+.blue-box .header h3 {
+    margin:8px 0 6px 84px;
+}
+
+.blue-box .header h4 {
+    font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
+    font-size:12px;
+    color:#011934;
+    margin-left:84px;
+}
+
+.blue-box ul.section li.header {
+    border:0;
+    border-bottom: 1px solid #c1cad5;
+    min-height:52px;
+    background-color:transparent;
+    position:relative;
+    padding:0 12px 0 0;
+}
+
+.blue-box ul.section li.header span {
+    position:absolute;
+    display:block;
+    width:59px;
+    height:62px;
+    top:-15px;
+    left:15px;
+}
+
+.blue-box ul.section li.bottom {
+    border:0;
+    min-height:5px;
+    background-color:transparent;
+}
+
+/* CATEGORY ROUND UP */
+.blue-box ul#categories-header.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+
+.blue-box ul li#categories-roundup {
+    padding:17px 0 17px 17px;
+}
+
+.category-container {
+    position: relative;
+    float: left;
+    padding:12px;
+    margin: 0 18px 17px 0;
+    height: 62px;
+    width: 262px;
+    background:#e8f5fb;
+    background:#fff;
+    color:#777;
+    font-weight:bold;
+}
+.category-container a {
+    text-decoration:none;
+    color:#2786c2;
+    font-weight:bold;
+}
+
+.category-container .arrow-link {
+    position: absolute;
+    top: 30px;
+    right: 6px;
+
+}
+
+.category-container h3 {
+    margin-bottom:11px;
+}
+.category-container h3 a:hover {
+    text-decoration:underline;
+    color:#17587F;
+    border:0 none;
+}
+.category-container:hover {
+    background:#bee5fc;
+    color:#555;
+}
+
+
+/* Tags box */
+.widget-box-content.tags {
+    padding:17px;
+}
+
+/* Lessons you may like */
+.lesson_brief  {
+    font-size:11px;
+}
+
+.lesson_brief .title {
+    font-style:italic;
+}
+
+.widget-box-content .lesson_brief li {
+    position:relative;
+    margin: 0;
+    padding: 8px 8px 8px 86px;
+    display:block;
+    min-height: 46px;
+}
+
+.widget-box-content .lesson_brief li img.lesson_tn {
+    border: solid 1px #E3E3E3;
+    position:absolute;
+    left:8px;
+    top:8px;
+}
+
+/* Explore Categories */
+.tree-view { /*background-color:#AAAAAA;*/}
+.widget-box-footer.treeview {
+    margin:0;
+    padding:0;
+    height: 22px;
+    background: url(images/backgrounds/widget-box-header-tile.png) repeat-x bottom center;
+    border-top:none;
+}
+
+.tree-view ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.tree-view li { margin: 0 0 1px 0; }
+
+.tree-view .current {
+    border: 0 none;
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    background-color: #336699;
+    color: #fff;
+}
+
+.tree-view a:hover, .tree-view a:active {
+    border-bottom: 0 none;
+    text-decoration: none;
+    background-color: #69C;
+    color: #fff;
+}
+
+.tree-view a {
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    background-color: #fff;
+    color: #212121;
+}
+
+.tree-view ul ul li { margin: 0 0 1px 0; }
+
+.tree-view ul ul a {
+    display: block;
+    padding: 5px 5px 5px 30px;
+    color: #212121;
+    text-decoration: none;
+}
+
+
+/* SEARCH RESULT LESSON ROW FORMAT PARTIAL _lesson_row_format.html.erb */
+
+#search-results {
+    position:relative;
+    z-index:1;
+}
+
+#advanced-search-link {
+    position:absolute;
+    top:-7px;
+    right:0px;
+    margin:0;
+    z-index:100;
+}
+
+ul.lessons-row-format {
+    list-style:none;
+    margin:0 0 17px 0;
+    padding:0;
+}
+
+ul.lessons-row-format li {
+    position:relative;
+    padding:0 0 17px 0;
+    margin:0 0 17px 0;
+    border-bottom: dotted 1px #ccc;
+    min-height: 74px;
+}
+
+ul.lessons-row-format li:last-child {
+    border-bottom: 0 none;
+    padding-bottom:0;
+}
+
+ul.lessons-row-format li div.tn_container {
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+ul.lessons-row-format li a:hover {
+    border: 0 none;
+}
+
+ul.lessons-row-format li div.instructor_container {
+    position:absolute;
+    top:0;
+    right:0;
+}
+
+ul.lessons-row-format li div.detail-container {
+    padding:0;
+    margin: 0 77px 0px 97px;
+}
+
+ul.lessons-row-format li div.details {
+    margin:0;
+    padding:0;
+}
+
+
+/* LESSON (SINGULAR -- lessons#show page) */
+div#lesson-container {
+    position:relative;
+}
+
+/* title area (title, author, and rating stars)*/
+div#title-container {
+    position:relative;
+    border-bottom:solid 1px #999;
+    min-height:45px;
+    margin:0 0 10px 0;
+}
+
+div#title-container h3 {
+    position:absolute;
+    bottom:0;
+    left:0;
+    color: #17587F;
+    font-weight:bold;
+    padding:0;
+    margin:0 0 10px 0;
+}
+
+div#lesson-show div#author {
+    font-weight:bold;
+    margin:0 0 17px 0;
+}
+
+div#rating-container {
+    position:absolute;
+    top:0;
+    right:0;
+}
+
+div#rating {
+    position:relative;
+    width:190px;
+    height:44px;
+}
+
+div#stats {
+    position:absolute;
+    right:0;
+    top:24px;
+    font-size:9px;
+}
+
+div#stars {
+    position:absolute;
+    right:0;
+    top:0;
+}
+
+/* Actions */
+
+div.action {
+    margin-bottom: 1em;
+}
+
+div#lesson-container div#actions {
+    position:absolute;
+    top:0;
+    right:0;
+    padding:0;
+    margin:0;
+
+}
+div#lesson-container div#actions ul  {
+    margin:0;
+    padding:0;
+}
+
+div#lesson-container div#actions ul li {
+    float:left;
+    list-style-type: none;
+    margin-right:0 !important;
+    padding-right:0 !important;
+}
+
+/* lesson play div */
+div#lesson-player {
+    margin-top: 30px;
+    border-top: solid 3px #212121;
+    padding-top: 19px;
+}
+
+/* lesson details div */
+div#lesson-detail { }
+
+div#lesson-details-tabs div.panes {
+    padding:12px 0 0 0;
+    height:350px;
+    overflow:auto;
+    margin:0;
+}
+
+div#tab-lesson-instructor div#avatar-container {
+    float:left;
+    margin:0 15px 0 0;
+}
+
+div#avatar-container {
+    padding: 3px;
+    border: solid 1px #999;
+    background:#ccc;
+    width:62px;
+    -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+    -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+    box-shadow: 0 1px 10px rgba(0,0,0,.3);
+}
+
+div#tab-lesson-instructor img.avatar {
+    border: solid 1px #999;
+    background:#fff;
+    float:left;
+}
+
+div#tab-lesson-instructor div#bio {
+    line-height: 18px;
+    margin: 0 17px 17px 0;
+    min-height:6em;
+}
+
+div#lessons-by-instructor {
+    margin: 0 17px 0 0;
+    padding:17px 0;
+    border-top: dotted 1px #999;
+
+}
+div#lessons-by-instructor div.widget-box-content.lessons {
+    border: solid 1px #ccc;
+}
+
+div#add-to-group a#title {}
+ul.group-list {
+    display:none;
+    margin:0;
+    padding:0;
+    list-style-type: none;
+}
+
+div#lesson-content-tabs div.panes {
+    margin:0;
+    min-height:300px;
+    padding: 17px;
+    background-color:#E8E8E8;
+    background-color:#E3E9F2;
+    border-bottom-left-radius:8px;
+    border-bottom-right-radius:8px;
+    -webkit-border-bottom-left-radius:8px;
+    -webkit-border-bottom-right-radius:8px;
+    -moz-border-radius-bottomleft:8px;
+    -moz-border-radius-bottomright:8px;
+}
+div#lesson-content-tabs div.panes div#interior-pane {
+    min-height:266px;
+    padding: 17px;
+    background-color:#FFF;
+    border-radius:5px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+    -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.2);
+    box-shadow: 0 1px 10px rgba(0,0,0,.3);
+}
+
+div.lesson-notes ul#attachments {
+    margin-left:0;
+    padding:0;
+    list-style-type: none;
+}
+
+div.widget-box-content h3 {
+    margin:0 0 0.5em 0;
+    color:#0350a6;
+    line-height:2em;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+}
+
+div#bought-this-video-also-bought h3 {
+    background: transparent url(images/icons/buy-also_32.png)  no-repeat;
+    padding-left:1.8em;
+    margin-left:0.4em;
+}
+
+
+div#what-do-students-ultimately-buy-container div.widget-box-content h3 {
+    background: transparent url(images/icons/buy_32.png)  no-repeat;
+    padding-left:2.4em;
+}
+
+/* STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT... */
+#bought-this-video-also-bought {
+    padding:10px 17px 24px 17px;
+    background-color: #e3e9f2;
+    border-radius:8px;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+}
+
+/* WHAT DO STUDENTS ULTIMATELY BUY AFTER BROWSING THIS ITEM? */
+div#what-do-students-ultimately-buy-container {
+    padding:24px;
+    background-color: #e3e9f2;
+    border-radius:8px;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+}
+
+ul#what-do-students-ultimately-buy {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border-radius:8px;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+    -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+    box-shadow: 0 1px 10px rgba(0,0,0,.3);
+}
+
+ul#what-do-students-ultimately-buy li.lesson-container {
+    padding:17px;
+    margin:0;
+}
+
+ul#what-do-students-ultimately-buy li:first-child {
+    border-top-left-radius:8px;
+    border-top-right-radius:8px;
+    -webkit-border-top-left-radius:8px;
+    -webkit-border-top-right-radius:8px;
+    -moz-border-radius-topleft:8px;
+    -moz-border-radius-topright:8px;
+}
+
+ul#what-do-students-ultimately-buy li:last-child {
+    border-bottom-left-radius:8px;
+    border-bottom-right-radius:8px;
+    -webkit-border-bottom-left-radius:8px;
+    -webkit-border-bottom-right-radius:8px;
+    -moz-border-radius-bottomleft:8px;
+    -moz-border-radius-bottomright:8px;
+}
+
+ul#what-do-students-ultimately-buy li img.lesson_tn {
+    float:left;
+    padding:0;
+    border: solid 1px #cfcfcf;
+    padding:3px;
+    width: 100px;
+    height: 75px; /* 4:3 aspect ratio */
+    -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+    -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+    box-shadow: 0 1px 10px rgba(0,0,0,.3);
+}
+
+#what-do-students-ultimately-buy div.lesson-detail {
+    margin-left: 124px;
+}
+
+ul.group-lists {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+ul.group-lists li {
+    margin: 0;
+    padding: 0;
+    display:block;
+}
+
+
+/*---------------------------------------------------------------------------------------------- */
+/* nested_navigation.css
+------------------------------------------------------------------------------------------------ */
+
+div.nested-navigation {
+    position: relative;
+    z-index: 1;
+}
+
+.nested-navigation ul.links {
+    padding:0;
+    margin:0 0 23px 0;
+}
+
+.nested-navigation ul.links li {
+    display: inline;
+}
+
+.nested-navigation ul.links li a {
+    border:0 none;
+    margin-right: 6px;
+    text-decoration: none;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+}
+
+.nested-navigation ul.links li a:link,
+.nested-navigation ul.links li a:visited {
+    color: @gray-100;
+    background: @gray-20;
+    padding:4px 20px 6px 20px;
+    letter-spacing: 0.05em;
+    font-weight: normal;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.nested-navigation ul.links li a:hover {
+    color: @gray-10;
+    background: @gray-90;
+}
+
+.nested-navigation ul.links li a.current {
+    color: @gray-10;
+    background: @gray-90;
+}
+
+.nested-navigation-panes { }
+
+/* Rounded links */
+
+a.rounded  {
+    border:0 none;
+    margin-right: 6px;
+    text-decoration: none;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+}
+
+a.rounded:link,
+a.rounded:visited {
+    color: @gray-100;
+   background: @gray-30;
+    padding:4px 20px 6px 20px;
+    letter-spacing: 0.05em;
+    font-weight: normal;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+a.rounded:hover {
+    color: @gray-10;
+    background: @gray-100;
+}
+
+a.rounded.current {
+    color: @gray-10;
+    background: @gray-90;
+}
+
+div#group-container a.rounded:link,
+div#group-container a.rounded:visited {
+    color: @gray-10;
+    background: @gray-90;
+}
+
+div#group-container a.rounded:hover {
+    background: @charcoal-20;
+}
+div#group-container a.rounded.current {
+    background: @charcoal-30;
+}
+
+.nested-navigation-panes { }
+
+
+/*---------------------------------------------------------------------------------------------- */
+/* pagination.css
+------------------------------------------------------------------------------------------------ */
+
+/* Site-wide Pagination Styling */
+.pagination a, .pagination span, 
+.ajax-pagination a, .ajax-pagination span {
+    padding: .2em .5em;
+    display: inline;
+    margin-right: 1px;
+}
+.pagination span.disabled,
+.ajax-pagination span.disabled {
+    color: @gray-50;
+    border: 1px solid @gray-40;
+}
+.pagination span.current,
+.ajax-pagination span.current {
+    background: @charcoal-20;
+    color: @gray-10;
+    border: 1px solid @charcoal-20;
+}
+.pagination a, .ajax-pagination a {
+    text-decoration: none;
+    border: 1px solid @gray-50;
+}
+.pagination a:hover, .pagination a:focus,
+.ajax-pagination a:hover, .ajax-pagination a:focus {
+    color: @charcoal-30;
+    border: 1px solid @gray-100;
+    background:@gray-90;
+}
+
+.pagination:after,
+.ajax-pagination:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+* html .pagination,
+* html .ajax-pagination {
+    height: 1%;
+}
+*:first-child+html .pagination,
+*:first-child+html .ajax-pagination {
+    overflow: hidden;
+}
+
+/*---------------------------------------------------------------------------------------------- */
+/* buttons.css
+------------------------------------------------------------------------------------------------ */
+
+/*
+    awesome buttons are based on a blog post by ZERB
+    Read there blog post for more information:
+    "Super awesome Buttons with CSS3 and RGBA":http://www.zurb.com/article/266/super-awesome-buttons-with-css3-and-rgba
+
+    this buttons are even more awesome, as the need only one color for all three states,
+    and have an super awesome onclick state
+*/
+
+/* set an awesome color for the buttons */
+button.awesome,
+input.awesome,
+a.button.awesome {
+    background-color: #111;
+}
+/* Touch the rest at your onw risk. */
+button.awesome,
+input.awesome,
+a.button.awesome {
+
+    font: inherit;
+    background-repeat: repeat-x;
+    color: #fff !important;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+    border: 0;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+
+    padding: 5px 10px 6px;
+    font-size: 13px;
+    margin:0;
+
+    /* IE only stuff */
+/*    margin: 0 -2px -2px 0 \9;*/
+
+    /* not all browser support these, but who cares? */
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.25), -2px 0 1px rgba(0,0,0,0.25);
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    filter: progid:DXImageTransform.Microsoft.Shadow(color=#000000,direction=135,strength=2);
+
+    /* one image for all states
+       see http://www.alistapart.com/articles/sprites */
+    background-image: url(images/backgrounds/button-overlay-sprite.png);
+    background-position: 0 0;
+
+    /* cross browser inline block hack
+       see http://blog.mozilla.com/webdev/2009/02/20/cross-browser-inline-block/ */
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: middle;
+    *display: inline !important;
+    position: relative;
+
+    /* help IE to calm down a bit */
+    zoom: 1;
+
+    /*disable text selection (Firefox only)*/
+    -moz-user-select: none;
+}
+/* hide selection background color */
+.awesome::selection {
+    background: transparent;
+}
+
+button.awesome:hover,
+input.awesome:hover,
+a.button.awesome:hover {
+    background-position: 0 -50px;
+    color: #fff;
+}
+button.awesome:active,
+input.awesome:active,
+a.button.awesome:active	{
+    outline: 0; /*remove dotted line*/
+    background-position: 0 100%;
+    -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.7);
+    /* unfortunately, Safari seems not to support inset yet */
+    -webkit-box-shadow: none;
+
+/*    filter: progid:DXImageTransform.Microsoft.Shadow(color=#000000,direction=315,strength=1) !important;*/
+/*    border: 1px solid transparent \9;*/
+/*    border-width: 0 1px 1px 0 \9;*/
+}
+
+button.awesome.small,         input.awesome.small,          a.button.awesome.small 	        { padding: 4px 7px 5px; font-size: 10px; }
+button.awesome.small:active,  input.awesome.small:active,   a.button.awesome.small:active   { padding: 5px 7px 4px; }
+button.awesome.medium,        input.awesome.medium,         a.button.awesome.medium         { /* default */ }
+button.awesome.medium:active, input.awesome.medium:active,  a.button.awesome.medium:active	{ padding: 6px 10px 5px; }
+button.awesome.large,         input.awesome.large,          a.button.awesome.large          { padding: 8px 14px 9px; font-size: 14px; }
+button.awesome.large:active,  input.awesome.large:active,   a.button.awesome.large:active   { padding: 9px 14px 8px; }
+
+.awesome.blue 		{ background-color: #2088c2 !important; }
+.awesome.steel-blue 		{ background-color: #568cb7 !important; }
+.awesome.orange 			{ background-color: #ff8000 !important; }
+.awesome.red 			{ background-color: #e33100 !important; }
+.awesome.green 		{ background-color: #3ACC00 !important; }
+.awesome.gray 		{ background-color: #b3b3b3 !important; }
+
+button.awesome.no-box-shadow,
+input.awesome.no-box-shadow,
+a.button.awesome.no-box-shadow {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+
+
+/*---------------------------------------------------------------------------------------------- */
+/* tooltip.css
+------------------------------------------------------------------------------------------------ */
+
+/* TOP CENTER */
+div.lesson-tooltip {
+    position:relative;
+    z-index:9000;
+    display:none;
+    background: url('/stylesheets/images/tooltip/black-arrow-big.png') no-repeat scroll 0 0;
+    height:163px;
+    padding:40px 30px 10px 30px;
+    width:310px;
+    font-size:11px;
+    color:#fff;
+}
+
+/* LEFT HAND SIDE TOP */
+/*
+.lesson-tooltip.right {
+    text-align:left;
+    background: url('/stylesheets/images/tooltip/black-arrow-big-tl.png') no-repeat scroll 0 0;
+}
+*/
+
+/* RIGHT HAND SIDE TOP */
+/*
+.lesson-tooltip.left {
+    background: url('/stylesheets/images/tooltip/black-arrow-big-tr.png') no-repeat scroll 0 0;
+}
+*/
+
+.lesson-tooltip .duration {
+    position:absolute;
+    top:22px;
+    right:24px;
+    text-align:right;
+    background:none;
+}
+
+/* BOTTOM CENTER */
+.lesson-tooltip.bottom {
+    background: url('/stylesheets/images/tooltip/black-arrow-big-bottom.png') no-repeat scroll 0 0;
+    height:163px;
+    padding:70px 30px 10px 30px;
+    width:310px;
+}
+
+/* LEFT SIDE OF PAGE */
+/*
+.lesson-tooltip.bottom.right {
+    background: url('/stylesheets/images/tooltip/black-arrow-big-bl.png') no-repeat scroll 0 0;
+    text-align:left;
+}
+*/
+/* RIGHT SIDE OF PAGE */
+/*
+.lesson-tooltip.bottom.left {
+    background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat scroll 0 0;
+}
+*/
+
+.lesson-tooltip.bottom .duration
+{
+    position:absolute;
+    top:50px;
+}
+
+.lesson-tooltip a {
+    color:#ad4;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.lesson-tooltip .ajaxful-rating-wrapper {
+    position:absolute;
+    top:22px;
+    left:24px;
+}
+
+.lesson-tooltip.bottom .ajaxful-rating-wrapper {
+    position:absolute;
+    top:48px;
+}
+
+.lesson-tooltip .content {
+    margin:10px 0 0 0;
+}
+
+/*---------------------------------------------------------------------------------------------- */
+/* tag_cloud.css
+------------------------------------------------------------------------------------------------ */
+
+.css1 { font-size: 1.0em; }
+.css2 { font-size: 1.2em; }
+.css3 { font-size: 1.4em; }
+.css4 { font-size: 1.6em; }
+
+
+/*---------------------------------------------------------------------------------------------- */
+/* forms.css
+------------------------------------------------------------------------------------------------ */
+
+.fh-form ol,
+.fh-form ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+.fh-form li {
+    position: relative;
+}
+
+.fh-form  {
+    margin:0;
+    padding:0;
+    font-size: 12px;
+    font-family: "Helvetica", "Arial", sans-serif;
+}
+
+.fh-form label {
+    font-size:13px;
+    font-weight:bold;
+    color:#29384c;
+    width:165px;
+    text-align:right;
+    display:block;
+    float:left;
+    /*line-height:32px;*/
+    margin-top:8px;
+    margin-right:10px;
+}
+
+.fh-form .unlabelled  { margin-left:175px;display:block; }
+
+.fh-form .field-separator {
+    display:block;
+    margin-left:82px;
+    font-weight:bold;
+}
+
+.fh-form .help {
+    margin-left:175px;
+    display:block;
+}
+
+.fh-form textarea,
+.fh-form input[type=text],
+.fh-form input[type=password] {
+    width:400px;
+    height:20px;
+    border: 1px solid #8d9095;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    background: #fff url(images/backgrounds/background-signup-inputs.png) repeat-x top left;
+    font-size:13px;
+    color:#29384c;
+    padding:5px;
+    padding-top:7px
+}
+
+.fh-form input[type=file] {
+    width:420px;
+    height:20px;
+    border: 1px solid #8d9095;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    background: #fff url(images/backgrounds/background-signup-inputs.png) repeat-x top left;
+    font-size:13px;
+    color:#29384c;
+    padding:5px;
+    padding-top:7px
+}
+
+.fh-form textarea {
+    height:100px;
+}
+
+.fh-form select{
+    font-size:13px;
+    color:#29384c;
+    margin-bottom:5px;
+    margin-top:5px;
+}
+
+.fh-form ul.section {
+    /* this dictates the overall width of the form */
+    width:626px;
+    border: 1px solid #c1cad5;
+    border-top:1px solid #8f9aa7;
+    border-radius:5px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    background-color:#f1f7fe;
+    margin-bottom:20px;
+    float:left;
+}
+
+
+.fh-form h3 {
+    margin:8px 0 6px 82px;
+}
+
+.fh-form h4 {
+    font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
+    font-size:12px;
+    color:#011934;
+    margin-left:82px;
+}
+.fh-form ul.section li {
+    background-color:#e3e9f2;
+    border-top:1px solid #f3f6f9;
+    border-bottom:1px solid #c1cad5;
+    padding:8px;
+    position:relative;
+    zoom:1;
+}
+
+.fh-form ul.section li.header {
+    border:0;
+    border-bottom: 1px solid #c1cad5;
+    min-height:52px;
+    background-color:transparent;
+    position:relative;
+    padding:0 12px 0 0;
+}
+
+.fh-form ul.section li.minor-header {
+    display:block;
+    padding-left:2em;
+    font-weight:bold;
+    background-color:transparent;
+}
+
+.fh-form ul.section li.header span {
+    position:absolute;
+    display:block;
+    width:59px;
+    height:62px;
+    top:-15px;
+    left:15px;
+}
+
+div.selector select#user_time_zone  {
+    color: red !important;
+    width: 300px !important;
+}
+
+/* USER AGREEMENT */
+div#user-agreement h4 {
+    color:#0350a6;
+    margin-left:0;
+    font-weight:bold;
+    text-transform:uppercase;
+}
+ul#registation-info li span.heading {
+    padding:0;
+    color:#0350a6;
+    padding:0;
+    margin: 1em;
+    text-transform:uppercase;
+}
+
+ul#registation-info div#user-agreement {
+    background-color: #f1f7fe;
+    margin:1em;
+    padding: 1em;
+    overflow:auto;
+    height:100px;
+    border:1px solid #c1cad5;
+}
+
+a.printer-friendly {
+    position:absolute;
+    top:1em;
+    right: 2em;
+}
+a.printer-friendly:hover {
+    border:0 none;
+    text-decoration:underline;
+}
+
+.fh-form span.accept-agreement  {
+    text-align:center;
+    display:block;
+}
+
+
+.fh-form ul#lesson-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#avatar-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#privacy-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#profile-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#instructor-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#send-a-message-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#flag-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#give-gift-certificate-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#gift-certificate-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#confirm-give-gift-certificate-path-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#group-invitation-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#invitation-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#group-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#attachment-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#attachment-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#lesson-comment-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#lesson-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#advanced-search-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#order-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#password-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#password-reset-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#request-registration-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#registation-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#review-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#topic-comments-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#edit-topic-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+.fh-form ul#group-topics-info.section li.header span {
+    background: url(images/forms/signup-icon-company.png) no-repeat top left;
+}
+
+.fh-form ul.section li.heading {
+    font-weight:bold;
+    background-color:transparent;
+    color:#0350A6;
+    font-size:13px;
+    padding-left:81px;
+    padding-top:10px;
+}
+
+.fh-form ul.section li span.heading {
+    font-weight:bold;
+    color:#0350A6;
+    font-size:13px;
+    padding-left:81px;
+    padding-top:10px;
+}
+
+.fh-form ul.section li.bottom {
+    border:0;
+    min-height:5px;
+    background-color:transparent;
+}
+
+/* rating stars */
+.fh-form  ul.ajaxful-rating li {
+    padding:1px 0 0 0;
+    border:0 none;
+    position:static;
+}
+
+.fh-form #rating_average {
+    position:absolute;
+    left: 318px;
+    top:16px;
+}
+
+.fh-form .ajaxful-rating .current-rating{
+    position: absolute  !important;
+}
+
+
+/* UNIFORM JQUERY PLUGIN CSS */
+div.checker {
+    height: 18px;
+    width: 18px;
+    overflow: hidden;
+    border: solid 1px #ddd;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: #fff url(images/forms/bg.png) repeat-x left 10px;
+    float: left;
+    display: inline;
+    margin-right: 10px;
+    position: relative;
+    margin-left:175px;
+}
+
+div.checker.focus {
+    border-color: #999;
+}
+
+div.checker.focus span {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+div.checker span {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+div.checker span.checked {
+    background: url(images/forms/check.gif) no-repeat center center;
+}
+
+div.checker span input {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Radio box */
+
+div.radio {
+    height: 19px;
+    width: 19px;
+    overflow: hidden;
+    background: #fff url(images/forms/bg.png) repeat-x left 10px;
+    float: left;
+    display: inline;
+    margin-right: 10px;
+    position: relative;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+    border: solid 1px #ddd;
+}
+
+div.radio.focus {
+    border-color: #999;
+}
+
+div.radio.focus span {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-position: center center;
+}
+
+div.radio span {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+div.radio span.checked {
+    background: url(images/forms/radio.gif) no-repeat center center;
+}
+
+div.radio span input {
+    position: absolute;
+    opacity: 0;
+}
+
+/* Select Box */
+
+div.selector {
+    display: block;
+    width: 150px;
+    border: solid 1px #ddd;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    position: relative;
+    background: #f2f2f2 url(images/forms/bg.png) repeat-x left 12px;
+    line-height: 22px;
+    margin-top: 3px;
+    text-shadow: 0 1px 0 #fff;
+    height: 22px;
+    color: #444;
+    margin-left:175px;
+}
+
+div.selector select {
+    width: 150px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+div.selector.focus {
+    border-color: #999;
+}
+
+div.selector span {
+    position: absolute;
+    left: 6px;
+    top: 0px;
+    font-size: 1.1em;
+    padding: 0;
+    display: block;
+    padding-right: 20px;
+    background: url(images/forms/select.gif) no-repeat right 60%;
+    right: 0;
+}
+
+div.selector.focus span {
+    left: 5px;
+}
+
+div.selector select {
+    position: relative;
+    font-size: 1.1em;
+    padding: 0;
+    line-height: 23px;
+    border: 0;
+    margin: 0;
+    padding-right: 40px;
+}
+
+/*  FORM ERRORS */
+
+span.required-field {
+    z-index: 1;
+    background:transparent url("images/forms/asterisk.png") no-repeat top right;
+    width:16px;
+    height:16px;
+    position:absolute;
+    top:6px;
+    right:10px;
+}
+
+span.error {
+    color:#0350a6;
+    top:9px;
+    left:640px;
+    width:276px;
+    text-align:left;
+    position:absolute;
+    padding: 5px 5px 5px 26px;
+    background: #fdffdf url("images/forms/error-circle.png") no-repeat 3px 3px;
+    border:solid 2px #E3E9F2;
+    border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+}
+span.valid {
+    border: 0 none;
+    position:absolute;
+    top:24px;
+    left:600px;
+    height:16px;
+    width:16px;
+    background:url("images/forms/ok-circle.png") no-repeat 0px 0px;
+}
+
+.fh-form .errorExplanation {
+    border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+}
+
+.fieldWithErrors {
+    padding: 2px;
+    display: table;
+}
+
+#errorExplanation {
+    /* this dictates the overall width of the errorExplaination box */
+    width:612px;
+    border: 2px solid #801609;
+    padding: 7px;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    background-color: #fdffdf;
+}
+
+#errorExplanation h2 {
+    background-color: #801609;
+    letter-spacing: 0.5px;
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 10px;
+    font-size: 14px;
+    margin: -7px;
+    color: #f2f2f2;
+    text-shadow: #333 2px 2px 1px;
+}
+
+#errorExplanation p {
+    font-size: 12px;
+    color: #333;
+    margin-bottom: 0;
+    margin: 14px 5px 5px 10px;
+}
+
+#errorExplanation ul {
+    font-size: 12px;
+    margin: 5px 5px 5px 10px;
+}
+
+/* CHARACTER COUNTER */
+div.counter {
+    margin:3px 0 0 175px;
+}
+
+div.counter .safe,
+div.counter .over {
+    padding:3px;
+    font-weight:bold;
+}
+
+div.counter .safe { color: inherit;}
+div.counter .over { color:red }
+
+
+/* Deviation Advanced search form */
+.fh-form.advanced ul.section {
+    /* this dictates the overall width of the form */
+    width:950px;
+}
+
+.fh-form.advanced div.collection {
+    margin:0 0 0 175px;
+}
+
+.fh-form.advanced span.item {
+    float: left;
+    width:150px;
+}
+
+/*---------------------------------------------------------------------------------------------- */
+/* users.css
+------------------------------------------------------------------------------------------------ */
+
+/* User stuff */
+ul.users {
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+
+ul.users li img.avatar {
+  float:left;
+}
+
+ul.users li .details {
+  border-bottom: dotted 1px @light-medium-gray;
+  margin-bottom: 1em;
+  padding: 0 17px 17px 77px;
+}
+
+
+/* Group stuff */
+ul.groups {
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+
+ul.groups li img.logo {
+  float:left;
+}
+
+ul.groups li {
+  border-bottom: dotted 1px @light-medium-gray;
+  padding:1em;
+  min-height:6.4em;
+}
+
+ul.groups li:last-child {
+  border: none;
+}
+
+ul.groups li .details {
+  padding: 0 17px 17px 94px;
+  padding: 0 1em 1em 7.6em;
+}
+
+#user-public-container {
+  border-radius:5px;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  background-color:@light-blue;
+}
+
+div#user_show div#name-plate {
+  position:relative;
+  padding:17px;
+  margin:17px 17px 0 17px ;
+  color:@dark-blue;
+  border-radius:5px;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  background-color:@white;
+  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+}
+
+div#user-actions {
+  position:absolute;
+  top:17px;
+  right:8px;
+}
+
+#user-public-container > #user-stats-container {
+  margin:17px 0 17px 17px;
+  float:left;
+  padding:17px;
+  border-radius:5px;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  background-color:@white;
+  width:130px;
+  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+}
+
+#user-public-container > #user-stats-container > #user-avatar-container  {
+  padding:3px 3px 12px 3px;
+  border: solid 1px @light-medium-gray;
+  width: 77px;
+  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  /*******
+  wish to center avatar? Do this.
+  margin-left: auto;
+  margin-right: auto;
+  *******/
+}
+
+#user-avatar-container img.avatar {
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+#user-public-container > .details {
+  margin:17px 0 17px 198px;
+  padding:17px;
+  width:702px;
+  border-radius:5px;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  background-color: @white;
+  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+}
+
+div#user-stats-container ul {
+  margin:1em 0 0;
+  font-size:0.92em;
+}
+
+
+/*---------------------------------------------------------------------------------------------- */
+/* tiptip.css
+------------------------------------------------------------------------------------------------ */
+
+#tiptip_holder {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+}
+#tiptip_holder.tip_top { padding-bottom: 5px; }
+#tiptip_holder.tip_bottom { padding-top: 5px; }
+#tiptip_holder.tip_right { padding-left: 5px; }
+#tiptip_holder.tip_left { padding-right: 5px; }
+#tiptip_content {
+  font-size: 11px;
+  color: #ffffff;
+  text-shadow: 0 0 2px #000000;
+  padding: 4px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background-color: #191919;
+  background-color: rgba(25, 25, 25, 0.92);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(transparent), to(#000000));
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  box-shadow: 0 0 3px #555555;
+  -webkit-box-shadow: 0 0 3px #555555;
+  -moz-box-shadow: 0 0 3px #555555;
+}
+#tiptip_arrow, #tiptip_arrow_inner {
+  position: absolute;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 6px;
+  height: 0;
+  width: 0;
+}
+#tiptip_holder.tip_top #tiptip_arrow {
+  border-top-color: #ffffff;
+  border-top-color: rgba(255, 255, 255, 0.35);
+}
+#tiptip_holder.tip_bottom #tiptip_arrow {
+  border-bottom-color: #ffffff;
+  border-bottom-color: rgba(255, 255, 255, 0.35);
+}
+#tiptip_holder.tip_right #tiptip_arrow {
+  border-right-color: #ffffff;
+  border-right-color: rgba(255, 255, 255, 0.35);
+}
+#tiptip_holder.tip_left #tiptip_arrow {
+  border-left-color: #ffffff;
+  border-left-color: rgba(255, 255, 255, 0.35);
+}
+#tiptip_holder.tip_top #tiptip_arrow_inner {
+  margin-top: -7px;
+  margin-left: -6px;
+  border-top-color: #191919;
+  border-top-color: rgba(25, 25, 25, 0.92);
+}
+#tiptip_holder.tip_bottom #tiptip_arrow_inner {
+  margin-top: -5px;
+  margin-left: -6px;
+  border-bottom-color: #191919;
+  border-bottom-color: rgba(25, 25, 25, 0.92);
+}
+#tiptip_holder.tip_right #tiptip_arrow_inner {
+  margin-top: -6px;
+  margin-left: -5px;
+  border-right-color: #191919;
+  border-right-color: rgba(25, 25, 25, 0.92);
+}
+#tiptip_holder.tip_left #tiptip_arrow_inner {
+  margin-top: -6px;
+  margin-left: -7px;
+  border-left-color: #191919;
+  border-left-color: rgba(25, 25, 25, 0.92);
+}
