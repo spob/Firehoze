@@ -65,7 +65,7 @@ class UsersController < ApplicationController
       @reviews = @user.reviews.all(:include => [:user, :lesson])
     else
       @lessons = @user.instructed_lessons.ready.all(:include => [:instructor, :tags])
-      @reviews = @user.reviews.ready.all(:include => [:user, :lesson])
+      @reviews = @user.reviews.ready.ready_lesson(:include => [:user, :lesson])
     end
     @activities = Activity.visible_to_user(current_user).actor_user_id_equals(@user).descend_by_acted_upon_at.paginate :per_page => 25, :page => 1
   end
