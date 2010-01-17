@@ -4,7 +4,7 @@
 class ApplicationController < ActionController::Base
   include SslRequirement
   rescue_from ActionController::InvalidAuthenticityToken do |exception|
-    flash[:error] =  t('security.invalid_token')
+    flash[:error] = t('security.invalid_token')
     redirect_to login_path
   end
 
@@ -80,7 +80,11 @@ class ApplicationController < ActionController::Base
   # helper method to require that a user is logged on...used within controllers
   def require_user url=nil
     unless current_user
-      store_location url
+      if (url)
+        store_location url
+      else
+        store_location
+      end
       flash[:error] = t 'security.you_must_be_logged_in'
       redirect_to new_user_session_url
       return false
@@ -93,7 +97,7 @@ class ApplicationController < ActionController::Base
     if current_user
       store_location
       flash[:error] = t 'security.you_must_be_logged_out'
-      redirect_to  my_firehoze_index_path
+      redirect_to my_firehoze_index_path
       return false
     end
   end
