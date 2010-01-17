@@ -23,11 +23,11 @@
 
   <!--[if IE]>
     <%= stylesheet_link_tag 'blueprint/ie', :media => "screen, projection" %>
-    <%= stylesheet_link_tag 'ie', :media => "screen, projection" %>
+    <%= stylesheet_link_tag 'ie/ie', :media => "screen, projection" %>
     <![endif]-->
-  <!--[if IE 8]><%= stylesheet_link_tag 'ie8', :media => "screen, projection" %><![endif]-->
-  <!--[if IE 7]><%= stylesheet_link_tag 'ie7', :media => "screen, projection" %><![endif]-->
-  <!--[if IE 6]><%= stylesheet_link_tag 'ie6', :media => "screen, projection" %><![endif]-->
+  <!--[if IE 8]><%= stylesheet_link_tag 'ie/ie8', :media => "screen, projection" %><![endif]-->
+  <!--[if IE 7]><%= stylesheet_link_tag 'ie/ie7', :media => "screen, projection" %><![endif]-->
+  <!--[if IE 6]><%= stylesheet_link_tag 'ie/ie6', :media => "screen, projection" %><![endif]-->
 
   <%= google_jquery(:version => '1.3.2', :local => Rails.env.development?) %><%# JQuery %>
   <%= javascript_include_tag 'v2/jrails' %>
