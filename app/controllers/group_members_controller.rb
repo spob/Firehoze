@@ -1,7 +1,7 @@
 class GroupMembersController < ApplicationController
-  before_filter :require_user
-  before_filter :find_group, :only => [:create, :destroy]
-  before_filter :find_group_member, :only => [ :remove, :promote, :demote, :create_private ]
+  before_filter :require_logged_in
+  prepend_before_filter :find_group, :only => [:create, :destroy]
+  prepend_before_filter :find_group_member, :only => [ :remove, :promote, :demote, :create_private ]
   verify :method => :post, :only => [:create, :promote, :demote, :create_private ], :redirect_to => :home_path
   verify :method => :delete, :only => [:destroy, :remove ], :redirect_to => :home_path
 
@@ -123,7 +123,7 @@ class GroupMembersController < ApplicationController
   end
 
   def find_group
-    @group = Group.find(params[:id])
+    @group = Group.find(params[:id]) 
   end
 
   def populate_invitation
@@ -139,5 +139,10 @@ class GroupMembersController < ApplicationController
     else
       'application'
     end
+  end
+
+  def require_logged_in
+    @group = @group_member.group unless @group
+    require_user(group_path(@group))
   end
 end

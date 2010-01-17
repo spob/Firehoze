@@ -78,13 +78,14 @@ class ApplicationController < ActionController::Base
   end
 
   # helper method to require that a user is logged on...used within controllers
-  def require_user
+  def require_user url=nil
     unless current_user
-      store_location
+      store_location url
       flash[:error] = t 'security.you_must_be_logged_in'
       redirect_to new_user_session_url
       return false
     end
+    true
   end
 
   # helper method to require that a user is NOT logged on...used within controllers
