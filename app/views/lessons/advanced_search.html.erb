@@ -91,7 +91,7 @@
       <li class="bottom">
         <span class="unlabelled">
           <%= f.submit "Search" %>
-          <%= link_to 'Cancel', my_firehoze_index_path %>
+          <%= link_to 'Cancel', (current_user ? my_firehoze_index_path : categories_path) %>
         </span>
 
         <div class="clear" />
