@@ -92,7 +92,7 @@ class ApplicationController < ActionController::Base
     if current_user
       store_location
       flash[:error] = t 'security.you_must_be_logged_out'
-      redirect_to account_url(current_user)
+      redirect_to  my_firehoze_index_path
       return false
     end
   end
