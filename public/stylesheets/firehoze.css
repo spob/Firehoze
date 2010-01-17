@@ -1427,7 +1427,7 @@ ul.lessons-row-format li {
   padding: 0 0 17px 0;
   margin: 0 0 17px 0;
   border-bottom: dotted 1px #cccccc;
-  min-height: 74px;
+  min-height: 84px;
 }
 ul.lessons-row-format li:last-child {
   border-bottom: 0 none;
@@ -1450,6 +1450,10 @@ ul.lessons-row-format li div.instructor_container {
 ul.lessons-row-format li div.detail-container {
   padding: 0;
   margin: 0 97px 0px 97px;
+}
+ul.lessons-row-format li div.detail-container.instructors {
+  padding: 0;
+  margin: 0 0 0 97px;
 }
 ul.lessons-row-format li div.details {
   margin: 0;

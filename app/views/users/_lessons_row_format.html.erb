@@ -6,17 +6,13 @@
     <div class="tn_container">
       <div><%= img_tag_lesson_tn(lesson, :small, :size => "80x60") %></div>
     </div>
-    <div class="detail-container">
+    <div class="detail-container instructors">
       <div class="details">
         <div><%= ratings_for(lesson, :static, :small_stars => true) %></div>
         <strong><%= lesson.category.name -%>: <%= link_to h(lesson.title), lesson_path(lesson), :class => :lesson_title_link %></strong> <%= content_tag(:span, "(#{owned_it_phrase(lesson, current_user)})" ) unless owned_it_phrase(lesson, current_user).blank? %>
         <div class="synopsis"><%= h lesson.synopsis %></div>
         <%= render :partial => "lessons/tag_links_for", :object => lesson, :locals => { :options => { :css_classes =>  "lesson_center" } } %>
       </div>
-    </div>
-    <div class="instructor_container">
-      <%= link_to avatar_tag(lesson.instructor, :size => :smaller), user_path(lesson.instructor), :title => privacy_sensitive_username(lesson.instructor) %>
-      <%= link_to_profile(lesson.instructor, :length => 22) %>
     </div>
   </li>
   <% end %>
