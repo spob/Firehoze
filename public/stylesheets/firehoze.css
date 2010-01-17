@@ -1173,7 +1173,7 @@ div#category-show div.lessons-container { padding-top: 17px; }
   float: left;
   margin: 0 6px 22px 0;
   padding: 12px 5px 10px 11px;
-  background: url('/stylesheets/v2/images/backgrounds/image_holder.png') no-repeat scroll 0 0;
+  background: url('/stylesheets/images/backgrounds/image_holder.png') no-repeat scroll 0 0;
   width: 168px;
   height: 168px;
   font: 11px Arial, Helvetica, sans-serif;
@@ -1932,7 +1932,7 @@ div.lesson-tooltip {
   position: relative;
   z-index: 9000;
   display: none;
-  background: url('/stylesheets/v2/images/tooltip/black-arrow-big.png') no-repeat scroll 0 0;
+  background: url('/stylesheets/images/tooltip/black-arrow-big.png') no-repeat scroll 0 0;
   height: 163px;
   padding: 40px 30px 10px 30px;
   width: 310px;
@@ -1947,7 +1947,7 @@ div.lesson-tooltip {
   background: none;
 }
 .lesson-tooltip.bottom {
-  background: url('/stylesheets/v2/images/tooltip/black-arrow-big-bottom.png') no-repeat scroll 0 0;
+  background: url('/stylesheets/images/tooltip/black-arrow-big-bottom.png') no-repeat scroll 0 0;
   height: 163px;
   padding: 70px 30px 10px 30px;
   width: 310px;
