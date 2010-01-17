@@ -1,9 +1,9 @@
 class TopicsController < ApplicationController
-  before_filter :require_user, :except => [ :show ]
+  before_filter :require_logged_in, :except => [ :show ]
   # Since this controller is nested, in most cases we'll need to retrieve the group first, so I made it a
   # before filter
-  before_filter :retrieve_group, :except => [ :edit, :update, :show ]
-  before_filter :retrieve_topic, :only => [ :edit, :show, :update ]
+  prepend_before_filter :retrieve_group, :except => [ :edit, :update, :show ]
+  prepend_before_filter :retrieve_topic, :only => [ :edit, :show, :update ]
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
@@ -99,5 +99,9 @@ class TopicsController < ApplicationController
     else
       'application'
     end
+  end
+
+  def require_logged_in
+    require_user(group_path(@group || @topic.group, :anchor => "discussion"))
   end
 end

@@ -142,7 +142,6 @@ class GroupMembersController < ApplicationController
   end
 
   def require_logged_in
-    @group = @group_member.group unless @group
-    require_user(group_path(@group))
+    require_user(group_path(@group || @group_member.group))
   end
 end
