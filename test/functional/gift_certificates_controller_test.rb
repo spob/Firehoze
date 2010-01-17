@@ -48,7 +48,7 @@ class GiftCertificatesControllerTest < ActionController::TestCase
         should_assign_to :gift_certificate
         should_respond_with :redirect
         should_set_the_flash_to /redeemed/
-        should_redirect_to("account page") { account_history_my_firehoze_path }
+        should_redirect_to("account page") { account_history_my_firehoze_path(:anchor => "giftcerts") }
       end
 
       fast_context "on POST to :create" do
@@ -57,7 +57,7 @@ class GiftCertificatesControllerTest < ActionController::TestCase
         should_not_assign_to :gift_certificate
         should_respond_with :redirect
         should_set_the_flash_to /redeemed/
-        should_redirect_to("account page") { account_history_my_firehoze_path }
+        should_redirect_to("account page") { account_history_my_firehoze_path(:anchor => "giftcerts") }
       end
 
       fast_context "on GET to :pregive" do
@@ -73,7 +73,7 @@ class GiftCertificatesControllerTest < ActionController::TestCase
         end
 
         fast_context "specifying the username" do
-          setup { post :confirm_give, :id => @gift_certificate, :to_user => @to_user.login, :comments => 'hello' }
+          setup { post :confirm_give, :id => @gift_certificate, :gift_certificate => { :to_user => @to_user.login, :give_comments => 'hello' } }
 
           should_assign_to :gift_certificate
           should_respond_with :success
@@ -82,7 +82,7 @@ class GiftCertificatesControllerTest < ActionController::TestCase
         end
 
         fast_context "specifying the email" do
-          setup { post :confirm_give, :id => @gift_certificate, :to_user_email => @to_user.email, :comments => 'hello' }
+          setup { post :confirm_give, :id => @gift_certificate, :gift_certificate => { :to_user_email => @to_user.email, :give_comments => 'hello' } }
 
           should_assign_to :gift_certificate
           should_respond_with :success
@@ -92,7 +92,7 @@ class GiftCertificatesControllerTest < ActionController::TestCase
 
         fast_context "with a bogus user" do
           setup do
-            post :confirm_give, :id => @gift_certificate, :to_user => 'xyz'
+            post :confirm_give, :id => @gift_certificate, :gift_certificate => { :to_user => 'xyz' }
           end
           should_assign_to :gift_certificate
           should_respond_with :success
