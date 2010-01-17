@@ -10,6 +10,9 @@ class GiftCertificate < ActiveRecord::Base
   before_validation_on_create :populate_code
   before_create :populate_expires_at
 
+  # Used when gifting a gift certificate
+  attr_accessor :to_user, :to_user_email, :give_comments
+
   named_scope :active, :conditions => [ "redeemed_at is null and expires_at > ?", Time.now ]
 
   # Basic paginated listing finder

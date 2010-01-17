@@ -14,7 +14,7 @@
             code, you can enter it below.
             <% if current_user.gift_certificates.active.present? %>
                 Alternatively, you may find it easier to
-                redeem them from your <%= link_to "My Firehoze", account_history_my_firehoze_path %> page.
+                redeem them from your <%= link_to "My Firehoze", account_history_my_firehoze_path(:anchor => "giftcerts") %> page.
             <% end %>
           </h4>
         </li>

@@ -34,7 +34,7 @@ class GiftCertificatesController < ApplicationController
       flash[:error] = t('gift_certificate.invalid_gift_certificate', :code => code)
       render 'new'
     elsif redeem_certificate(gift_certificate)
-      redirect_to account_history_my_firehoze_path
+      redirect_to account_history_my_firehoze_path(:anchor => 'giftcerts')
     else
       render 'new'
     end
@@ -43,7 +43,7 @@ class GiftCertificatesController < ApplicationController
   # Redeem a gift certificate
   def redeem
     redeem_certificate(@gift_certificate)
-      redirect_to account_history_my_firehoze_path
+      redirect_to account_history_my_firehoze_path(:anchor => 'giftcerts')
   end
 
   def pregive
@@ -51,13 +51,16 @@ class GiftCertificatesController < ApplicationController
   end
 
   def confirm_give
-    @to_user = User.find_by_login_or_email(params[:to_user], params[:to_user_email])
-    user_str = params[:to_user] || params[:to_user_email]
+    @gift_certificate.to_user = params[:gift_certificate][:to_user]
+    @gift_certificate.to_user_email = params[:gift_certificate][:to_user_email]
+    @gift_certificate.give_comments = params[:gift_certificate][:give_comments]
+    
+    @to_user = User.find_by_login_or_email(@gift_certificate.to_user, @gift_certificate.to_user_email)
+    user_str = (@gift_certificate.to_user.blank? ? @gift_certificate.to_user_email : @gift_certificate.to_user)
     if @to_user.nil?
       flash.now[:error] = t('gift_certificate.no_such_user', :user => user_str)
       render 'pregive'
     end
-    @comments = params[:comments]
   end
 
   # give a certificate to someone else
