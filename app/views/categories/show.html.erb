@@ -40,8 +40,10 @@
           <% if @lessons.present? %>
               <%= render :partial => "lessons/lesson_tns", :object => @lessons, :locals => { :per_row => 3 } %>
           <% else %>
-              Looks like no one has created a lesson for this category yet. Why not be the first to
-              <%= link_to "create a lesson", new_lesson_path %>?
+          <div class="info">
+            Looks like no one has created a lesson for this category yet. Why not be the first to
+            <%= link_to "create a lesson", new_lesson_path %>?
+          </div>  
           <% end %>
         </div>
       </div>
