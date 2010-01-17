@@ -1437,16 +1437,19 @@ ul.lessons-row-format li div.tn_container {
   position: absolute;
   top: 0;
   left: 0;
+  width: 80px;
 }
 ul.lessons-row-format li a:hover { border: 0 none; }
 ul.lessons-row-format li div.instructor_container {
   position: absolute;
   top: 0;
   right: 0;
+  width: 80px;
+  font-size: 0.83em;
 }
 ul.lessons-row-format li div.detail-container {
   padding: 0;
-  margin: 0 77px 0px 97px;
+  margin: 0 97px 0px 97px;
 }
 ul.lessons-row-format li div.details {
   margin: 0;

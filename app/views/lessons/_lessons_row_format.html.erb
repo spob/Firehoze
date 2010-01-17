@@ -16,6 +16,7 @@
     </div>
     <div class="instructor_container">
       <%= link_to avatar_tag(lesson.instructor, :size => :smaller), user_path(lesson.instructor), :title => privacy_sensitive_username(lesson.instructor) %>
+      <%= link_to_profile(lesson.instructor) %>
     </div>
   </li>
   <% end %>
