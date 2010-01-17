@@ -1,7 +1,8 @@
 <% title "Purchase #{@lesson.title}" -%>
 
-<p>Looks like you're ready to purchase the &quot;<%= h @lesson.title %>&quot; lesson!</p>
+<div class="info">
+  <p>Great!<br />Ready to purchase the &quot;<%= h @lesson.title %>&quot; lesson?</p>
+  <%= link_to "Yes, Apply Credit Now", acquire_lessons_url(:id => @lesson, :protocol => SECURE_PROTOCOL),:method => :post, :disable_with => translate('general.disable_with'), :class => :rounded %>&nbsp;
+  <%= link_to "No, I changed me mind", lesson_path(@lesson) %>
+</div>
 
-<%= link_to "Apply Credit Now", acquire_lessons_url(:id => @lesson, :protocol => SECURE_PROTOCOL),:method => :post, :disable_with => translate('general.disable_with') %>
-&nbsp;
-<%= link_to "Cancel", lesson_path(@lesson) %>
