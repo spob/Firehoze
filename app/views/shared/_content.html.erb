@@ -17,31 +17,17 @@
   <link rel="copyright" href="#copyright"/>
   <link rel="shortcut icon" type="image/ico" href="/favicon.ico"/>
   <title>Firehoze - <%= truncate(yield(:title), :length => 75) || "You're on Fire. We Can Help" %></title>
-  <%= stylesheet_link_tag 'v2/blueprint/screen', :media => "screen, projection" %>
-  <%= stylesheet_link_tag 'v2/blueprint/print', :media => "print" %>
-  <%= stylesheet_link_tag 'v2/custom', :media => "screen, projection" %>
-  <%= stylesheet_link_tag 'v2/top_navigation', :media => "screen, projection" %>
-  <%= stylesheet_link_tag 'v2/tables', :media => "screen, projection" %>
-  <%= stylesheet_link_tag 'v2/tabs', :media => "screen, projection" %>
-  <%= stylesheet_link_tag 'v2/nav', :media => "screen, projection" %>
-  <%= stylesheet_link_tag 'v2/my_firehoze', :media => "screen, projection" %>
-  <%= stylesheet_link_tag 'v2/lessons', :media => "screen, projection" %>
-  <%= stylesheet_link_tag 'v2/nested_navigation', :media => "screen, projection" %>
-  <%= stylesheet_link_tag 'v2/pagination', :media => "screen, projection" %>
-  <%= stylesheet_link_tag 'v2/buttons', :media => "screen, projection" %>
-  <%= stylesheet_link_tag 'v2/tooltip', :media => "screen, projection" unless Rails.env.test? or g_browser_name == 'ie' %>
-  <%= stylesheet_link_tag 'v2/tag_cloud', :media => "screen, projection" %>
-  <%= stylesheet_link_tag 'v2/forms', :media => "screen, projection" %>
-  <%= stylesheet_link_tag 'v2/users', :media => "screen, projection" %>
-  <%= stylesheet_link_tag 'v2/tipTip.css', :media => "screen, projection" %>
+  <%= stylesheet_link_tag 'blueprint/screen', :media => "screen, projection" %>
+  <%= stylesheet_link_tag 'blueprint/print', :media => "print" %>
+  <%= stylesheet_link_tag 'firehoze', :media => "screen, projection" %>
 
   <!--[if IE]>
-    <%= stylesheet_link_tag 'v2/blueprint/ie', :media => "screen, projection" %>
-    <%= stylesheet_link_tag 'v2/ie', :media => "screen, projection" %>
+    <%= stylesheet_link_tag 'blueprint/ie', :media => "screen, projection" %>
+    <%= stylesheet_link_tag 'ie', :media => "screen, projection" %>
     <![endif]-->
-  <!--[if IE 8]><%= stylesheet_link_tag 'v2/ie8', :media => "screen, projection" %><![endif]-->
-  <!--[if IE 7]><%= stylesheet_link_tag 'v2/ie7', :media => "screen, projection" %><![endif]-->
-  <!--[if IE 6]><%= stylesheet_link_tag 'v2/ie6', :media => "screen, projection" %><![endif]-->
+  <!--[if IE 8]><%= stylesheet_link_tag 'ie8', :media => "screen, projection" %><![endif]-->
+  <!--[if IE 7]><%= stylesheet_link_tag 'ie7', :media => "screen, projection" %><![endif]-->
+  <!--[if IE 6]><%= stylesheet_link_tag 'ie6', :media => "screen, projection" %><![endif]-->
 
   <%= google_jquery(:version => '1.3.2', :local => Rails.env.development?) %><%# JQuery %>
   <%= javascript_include_tag 'v2/jrails' %>

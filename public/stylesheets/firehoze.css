@@ -110,14 +110,14 @@ h4.banner {
 }
 #header {
   height: 145px;
-  background-image: url('/stylesheets/v2/images/header/header-bg-tile-tall.png');
+  background-image: url('/stylesheets/images/header/header-bg-tile-tall.png');
   background-repeat: repeat-x;
 }
 #header .content {
   position: relative;
   background-repeat: no-repeat;
   height: 77px;
-  background: url('/stylesheets/v2/images/header/header-shine.png') no-repeat 50% 0;
+  background: url('/stylesheets/images/header/header-shine.png') no-repeat 50% 0;
 }
 #header #logo {
   position: absolute;
@@ -131,7 +131,7 @@ h4.banner {
   display: block;
   width: 224px;
   height: 67px;
-  background-image: url('/stylesheets/v2/images/header/sprite-logo.png');
+  background-image: url('/stylesheets/images/header/sprite-logo.png');
   background-position: top;
   text-indent: -9999px;
   border: 0 none;
@@ -140,7 +140,7 @@ h4.banner {
   display: block;
   width: 224px;
   height: 67px;
-  background-image: url('/stylesheets/v2/images/header/sprite-logo.png');
+  background-image: url('/stylesheets/images/header/sprite-logo.png');
   background-position: top;
   text-indent: -9999px;
   border: 0 none;
@@ -156,7 +156,7 @@ h4.banner {
 }
 #shadowbox-top {
   z-index: 10;
-  background: transparent url('/stylesheets/v2/images/main_navigation/main-navigation-bg.png') no-repeat;
+  background: transparent url('/stylesheets/images/main_navigation/main-navigation-bg.png') no-repeat;
   margin: -50px 0 0 0;
   padding: 0;
   width: 1000px;
@@ -165,7 +165,7 @@ h4.banner {
   margin-right: auto;
 }
 #shadowbox-middle {
-  background: transparent url('/stylesheets/v2/images/shadow_box/shadow-box-middle.png') repeat-y;
+  background: transparent url('/stylesheets/images/shadow_box/shadow-box-middle.png') repeat-y;
   width: 1000px;
   margin-left: auto;
   margin-right: auto;
@@ -180,7 +180,7 @@ h4.banner {
   border-bottom: solid 4px #333333;
 }
 #shadowbox-bottom {
-  background-image: url('/stylesheets/v2/images/shadow_box/shadow-box-bottom.png');
+  background-image: url('/stylesheets/images/shadow_box/shadow-box-bottom.png');
   background-repeat: no-repeat;
   margin: 0;
   width: 1000px;
@@ -205,10 +205,10 @@ ul#main-navigation {
 #main-navigation li {
   padding-right: 2px;
   float: left;
-  background: url('/stylesheets/v2/images/main_navigation/main-navigation-li.png') no-repeat right;
+  background: url('/stylesheets/images/main_navigation/main-navigation-li.png') no-repeat right;
 }
 #main-navigation li#first {
-  background: url('/stylesheets/v2/images/main_navigation/main-navigation-li-first.png') no-repeat left;
+  background: url('/stylesheets/images/main_navigation/main-navigation-li-first.png') no-repeat left;
   width: 19px;
   height: 40px;
 }
@@ -258,13 +258,13 @@ ul.admin li.selected.first a { padding-left: 0px; }
 #main-navigation li.selected a:focus { color: #006699; }
 #footer {
   height: 320px;
-  background-image: url('/stylesheets/v2/images/footer/footer-bg-tile-tall.png');
+  background-image: url('/stylesheets/images/footer/footer-bg-tile-tall.png');
 }
 #footer { color: #999999; }
 #footer a { color: #999999; }
 #footer .content {
   height: 320px;
-  background-image: url('/stylesheets/v2/images/footer/footer-watermark.png');
+  background-image: url('/stylesheets/images/footer/footer-watermark.png');
   background-repeat: no-repeat;
   background-position: right bottom;
 }
@@ -1434,11 +1434,16 @@ ul.lessons-row-format li:last-child {
   padding-bottom: 0;
 }
 ul.lessons-row-format li div.tn_container {
-  width: 300px;
-  float: left;
-  border: solid 1px red;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 ul.lessons-row-format li a:hover { border: 0 none; }
+ul.lessons-row-format li div.instructor_container {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 ul.lessons-row-format li div.detail-container {
   padding: 0;
   margin: 0 77px 0px 97px;
@@ -1446,11 +1451,6 @@ ul.lessons-row-format li div.detail-container {
 ul.lessons-row-format li div.details {
   margin: 0;
   padding: 0;
-}
-ul.lessons-row-format li div.instructor_container {
-  border: solid 1px red;
-  width: 300px;
-  float: right;
 }
 div#lesson-container { position: relative; }
 div#title-container {
