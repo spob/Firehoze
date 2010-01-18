@@ -1,4 +1,5 @@
 <% title "Invite a User to a Group" -%>
+<%= javascript 'v2/validation/group_invitation.validate.js' %>
 
 <div class="fh-form">
   <% form_for(:group_invitation, :url => group_invitations_path, :html => {'accept-charset' => "utf-8", :id => "inline", :class => "register" }) do |f| %>
@@ -17,7 +18,7 @@
           <%= f.text_field :to_user %>
           <span class="field-separator">&mdash;or&mdash;</span>
           <%= f.label :to_user, "Invitee Email Address" %>
-          <%= f.text_field :to_user_email %>
+          <%= f.text_field :to_user_email, :class => "email" %>
         </span>
         </li>
         <li>
