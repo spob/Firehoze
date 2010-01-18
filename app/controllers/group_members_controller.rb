@@ -1,5 +1,6 @@
 class GroupMembersController < ApplicationController
-  before_filter :require_logged_in
+  before_filter :require_logged_in, :except => [:new_private]
+  before_filter :require_user, :only  => [:new_private]
   prepend_before_filter :find_group, :only => [:create, :destroy]
   prepend_before_filter :find_group_member, :only => [ :remove, :promote, :demote, :create_private ]
   verify :method => :post, :only => [:create, :promote, :demote, :create_private ], :redirect_to => :home_path
