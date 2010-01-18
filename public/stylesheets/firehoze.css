@@ -2607,3 +2607,14 @@ div#user-stats-container ul {
   border-left-color: #191919;
   border-left-color: rgba(25, 25, 25, 0.92);
 }
+
+
+.upload_warning {
+    display:none;
+    background:#FFFFE8 url(images/icons/48_warning.png) 10px 20px no-repeat;
+    margin: 20px 0;
+    padding: 10px 0 10px 70px;
+}
+.upload_warning h4 {
+   margin:10px 0;
+}

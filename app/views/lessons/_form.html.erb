@@ -1,6 +1,7 @@
 <%= javascript 'v2/validation/lesson.validate' %>
 
 <div class="fh-form">
+  <%= render :partial => 'upload_warning' %>
   <% form_for(@lesson, :html => { :multipart => true, :id => "lesson" }) do |f| %>
       <%= f.error_messages %>
       <ul id="lesson-info" class="section">

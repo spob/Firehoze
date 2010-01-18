@@ -4,6 +4,7 @@ $(document).ready(function() {
         success: "valid",
         submitHandler: function(form) {
             $(form).find(":submit").attr("disabled", true).attr("value", "Please wait ...");
+            $('.upload_warning').show();
             form.submit();
         }
     });
