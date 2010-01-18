@@ -9,7 +9,10 @@
           <span></span>
           <h3>Add Attachment to the Lesson "<%= h @lesson.title %>"</h3>
           <h4>You can associate lesson notes, presentation files, code samples or other files to your lesson.
-          Files that you attach to your lesson must be less than <%= number_to_human_size(APP_CONFIG[CONFIG_MAX_ATTACHMENT_SIZE].megabytes) %>.</h4>
+            </h4>
+          <h4>
+          Files that you attach to your lesson must be less than <%= number_to_human_size(APP_CONFIG[CONFIG_MAX_ATTACHMENT_SIZE].megabytes) %>.
+          Allowed file types include text files, Microsoft Office files, OpenOffice files, and images.</h4>
         </li>
         <li>
         <span>

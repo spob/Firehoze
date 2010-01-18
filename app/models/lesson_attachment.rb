@@ -28,5 +28,5 @@ class LessonAttachment < ActiveRecord::Base
                                                                     "application/pdf",
                                                                     "application/vnd.oasis.opendocument.presentation",
                                                                     "application/octet-stream",
-                                                                    "text/html" ]
+                                                                    "text/html", "text/plain"]
 end
