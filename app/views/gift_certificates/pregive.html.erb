@@ -1,8 +1,9 @@
 <% title "Give Gift Certificate" -%>
+<%= javascript 'v2/validation/gift_certificates.validate.js' %>
 
 <div class="fh-form">
 
-  <% form_for(:gift_certificate, :url => confirm_give_gift_certificate_path) do |f| %>
+  <% form_for(:gift_certificate, :url => confirm_give_gift_certificate_path, :html => {:id => "gift_certificate" }) do |f| %>
       <%= f.error_messages %>
       <ul id="confirm-give-gift-certificate-path-info" class="section">
         <li class="header">
@@ -21,7 +22,7 @@
           <%= f.text_field :to_user %>
           <span class="field-separator">&mdash;or&mdash;</span>
           <%= f.label :to_user_email, "Recipient Email Address" %>
-          <%= f.text_field :to_user_email %>
+          <%= f.text_field :to_user_email, :class => "email" %>
         </span>
         </li>
         <li>
