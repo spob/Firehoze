@@ -4,7 +4,7 @@ class LessonsController < ApplicationController
   if APP_CONFIG[CONFIG_ALLOW_UNRECOGNIZED_ACCESS]
     before_filter :require_user, :only => [:new, :create, :edit, :update, :unreject]
   else
-    before_filter :require_user, :except => [:conversion_notify]
+    before_filter :require_user, :except => [:conversion_notify, :index]
   end
   permit ROLE_ADMIN, :only => [:convert]
   permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [:list_admin]
@@ -33,8 +33,11 @@ class LessonsController < ApplicationController
     end
     if current_user
       redirect_to home_path
-    else
+    elsif APP_CONFIG[CONFIG_ALLOW_UNRECOGNIZED_ACCESS]
       @lessons = Lesson.list(params[:page], current_user)
+    else
+      # We're running in closed beta mode...redirect to the login page
+      redirect_to login_path
     end
   end
 
@@ -144,7 +147,7 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id], :include => [:instructor, :reviews])
     @show_purchases = @lesson.can_view_purchases?(current_user)
     @show_video_stats = @lesson.can_view_lesson_stats?(current_user)
-    
+
     @instructor = @lesson.instructor
 
     if @lesson.ready? or @lesson.instructed_by?(current_user) or (current_user and current_user.is_moderator?)
@@ -204,12 +207,12 @@ class LessonsController < ApplicationController
     end
   end
 
-  # update lesson status via ajax
+# update lesson status via ajax
   def show_lesson_status
     render :inline => "<%= translate('lesson.#{@lesson.status}') %> <%= image_tag('general/spinners/ajax-loader_small_arrows.gif') if @lesson.status == LESSON_STATUS_CONVERTING %>"
   end
 
-  # SUPPORTING AJAX TABS
+# SUPPORTING AJAX TABS
   def tabbed
     @lesson_format = current_user ? 'narrow' : 'wide'
     @category_id = session[:browse_category_id].to_i if session[:browse_category_id]
@@ -224,7 +227,7 @@ class LessonsController < ApplicationController
             end
   end
 
-  # SUPPORTING AJAX PAGINATION (keeping this around for a little while, just in case we need it later)
+# SUPPORTING AJAX PAGINATION (keeping this around for a little while, just in case we need it later)
   def ajaxed
     @lesson_format = 'wide'
     @category_id = session[:browse_category_id].to_i if session[:browse_category_id]
@@ -285,16 +288,16 @@ class LessonsController < ApplicationController
     end
   end
 
-  # Trigger a conversion to occur at flixcloud. This will normally be triggered to occur
-  # automatically when a new file is uploaded...but the admin can trigger it manually
+# Trigger a conversion to occur at flixcloud. This will normally be triggered to occur
+# automatically when a new file is uploaded...but the admin can trigger it manually
   def convert
     @lesson.trigger_conversion conversion_notify_lessons_url
     flash[:notice] = t('lesson.conversion_triggered')
     redirect_to lesson_path(@lesson)
   end
 
-  # This method is the callback that flixcloud will invoke when the video has completed
-  # processing
+# This method is the callback that flixcloud will invoke when the video has completed
+# processing
   def conversion_notify
     render :text => "OK"
     job = FlixCloud::Notification.new(params)
@@ -319,14 +322,14 @@ class LessonsController < ApplicationController
     end
   end
 
-  # Used to populate the free download count drop down
+# Used to populate the free download count drop down
   def self.free_download_counts
     @@free_download_counts
   end
 
   private
 
-  # disable the uniform plugin, otherwise the advanced search form is all @$@!# up
+# disable the uniform plugin, otherwise the advanced search form is all @$@!# up
   def set_no_uniform_js
     if %w(advanced_search list_admin perform_advanced_search).include?(params[:action])
       @no_uniform_js = true
@@ -370,4 +373,5 @@ class LessonsController < ApplicationController
               Lesson.per_page
             end
   end
+
 end
