@@ -1,6 +1,6 @@
 class GroupInvitationsController < ApplicationController
   before_filter :require_user
-  before_filter :find_group
+  before_filter :find_group, :except => [ :check_user_by_login, :check_user]
 
   layout 'application_v2'
 
@@ -36,6 +36,15 @@ class GroupInvitationsController < ApplicationController
       end
     else
       redirect_to group_path(@group)
+    end
+  end
+
+  def check_user
+    @user = User.find_by_login(params[:group_invitation][:to_user].try(:strip))
+    @user ||= User.find_by_email(params[:group_invitation][:to_user_email].try(:strip))
+
+    respond_to do |format|
+      format.js
     end
   end
 

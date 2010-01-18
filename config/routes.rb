@@ -26,7 +26,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :contact_users, :only => [ :create, :new ]
 #  map.resources :credits
   map.resources :flags, :only => [ :new, :create, :index, :show, :update, :edit ]
-  map.check_user "gift_certificates/check_gift_certificate_code", :controller => "gift_certificates", :action => "check_gift_certificate_code"
+  map.check_gift_code "gift_certificates/check_gift_certificate_code", :controller => "gift_certificates", :action => "check_gift_certificate_code"
   map.resources :gift_certificates,
                 :collection => { :list_admin => :get },
                 :member => { :redeem => :post,
@@ -38,6 +38,7 @@ ActionController::Routing::Routes.draw do |map|
                 :collection => { :list_admin => :get, :ajaxed => :get },
                 :member => { :clear_logo => :post, :activate => :post },
                 :has_many => :topics, :shallow => true
+  map.check_group_invite_user "group_invitations/check_user", :controller => "group_invitations", :action => "check_user"
   map.resources :group_invitations, :only => [ :create, :new ]
   map.resources :group_lessons, :only => [ :create, :destroy ]
   map.resources :group_members, :only => [ :create, :destroy ],
