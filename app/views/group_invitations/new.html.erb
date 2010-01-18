@@ -13,17 +13,17 @@
         </li>
         <li>
         <span>
-          <%= label_tag :to_user, "Invitee Username" %>
-          <%= text_field_tag :to_user %>
+          <%= f.label :to_user, "Invitee Username" %>
+          <%= f.text_field :to_user %>
           <span class="field-separator">&mdash;or&mdash;</span>
-          <%= label_tag :to_user, "Invitee Email Address" %>
-          <%= text_field_tag :to_user_email %>
+          <%= f.label :to_user, "Invitee Email Address" %>
+          <%= f.text_field :to_user_email %>
         </span>
         </li>
         <li>
         <span>
-          <%= label_tag :message %>
-          <%= text_area_tag :message %>
+          <%= f.label :message %>
+          <%= f.text_area :message %>
         </span>
         </li>
         <li class="bottom">

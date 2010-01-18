@@ -7,6 +7,7 @@ class GroupInvitationsController < ApplicationController
   verify :method => :post, :only => [:create], :redirect_to => :home_path
 
   def new
+    @group_invitation ||= GroupInvitation.new
     unless can_invite(@group)
       redirect_to group_path(@group)
     end
@@ -14,19 +15,19 @@ class GroupInvitationsController < ApplicationController
 
   def create
     if can_invite(@group)
-      @to_user = User.find_by_login_or_email(params[:to_user], params[:to_user_email])
-      user_str = params[:to_user]
-      user_str = params[:to_user_email] if user_str.nil? or user_str.blank?
-      if @to_user.nil?
+      @group_invitation ||= GroupInvitation.new
+      @group_invitation.to_user = params[:group_invitation][:to_user]
+      @group_invitation.to_user_email = params[:group_invitation][:to_user_email]
+      user_str = (@group_invitation.to_user.blank? ? @group_invitation.to_user_email : @group_invitation.to_user)
+      @group_invitation.user = User.find_by_login_or_email(@group_invitation.to_user, @group_invitation.to_user_email)
+      @group_invitation.group = @group
+      @group_invitation.message = params[:group_invitation][:message]
+      if @group_invitation.user.nil?
         flash.now[:error] = t('group.no_such_user', :user => user_str)
         render 'new'
       else
-        invite = GroupInvitation.new
-        invite.user = @to_user
-        invite.group = @group
-        invite.message = params[:message]
-        if invite.save
-          @group_member = @group.invite(@to_user)
+        if @group_invitation.save
+          @group_member = @group.invite(@group_invitation.user)
           flash[:notice] = t('group.invitation_success', :user => user_str)
           redirect_to group_path(@group)
         else
