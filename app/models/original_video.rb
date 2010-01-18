@@ -25,7 +25,8 @@ class OriginalVideo < Video
                                                                'video/x-m4v',
                                                                'video/mpeg',
                                                                'video/x-flv',
-                                                               'application/x-flash-video']
+                                                               'application/x-flash-video',
+                                                               'application/x-itunes-itlp']
   # 'application/x-swf',
   # 'application/x-shockwave-flash'
 
