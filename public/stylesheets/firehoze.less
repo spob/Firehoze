@@ -93,13 +93,13 @@ ul.inline li  {
   color:#0350a6;
   padding: 0.5em;
   margin:1em 0 0 0;
-  background: #e3e9f2;
+  background: @light-blue;
 }
 
 .box-content {
   padding:1em;
   margin-bottom: 1.5em;
-  background: #F2f2f2;
+  background: @off-white;
   -moz-border-radius-bottomleft: 5px;
   -webkit-border-bottom-left-radius: 5px;
   -moz-border-radius-bottomright: 5px;
@@ -108,7 +108,7 @@ ul.inline li  {
 
 .box {
   padding:1em;
-  background: #F2f2f2;
+  background: @off-white;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -526,7 +526,7 @@ div#account-settings-tabs div.panes {
   position:relative;
   padding: 20px;
   border: solid 1px #ccc;
-  background-color: #e3e9f2;
+  background-color: @light-blue;
   margin: 0 0 20px 0;
 }
 
@@ -558,7 +558,7 @@ div#group-container div.actions {
   border: solid 1px #BEBEBE;
   font-size: 11px;
   background: #ecf3ff;
-  color:#17587F;
+  color:@dark-blue;
   font-weight:bold;
   -moz-border-radius-bottomleft: 5px;
   -webkit-border-bottom-left-radius: 5px;
@@ -582,7 +582,7 @@ div#group-container hr {
 }
 
 div#group-container div#description h3 {
-  color: #17587F;
+  color: @dark-blue;
   margin:0 0 4px 0;
 }
 
@@ -619,12 +619,12 @@ div.lesson-comment-header {
 }
 div.lesson-comment-header h3.header {
   padding-right:260px;
-  color: #17587F;
+  color: @dark-blue;
   font-weight:bold;
 }
 
 div#topic-comments-container h3.header .group-name {
-  color: #17587F;
+  color: @dark-blue;
 }
 
 /* actions */
@@ -667,7 +667,7 @@ div.commenter-avatar a:active {
 div#lesson-comments-container div.comment,
 div#topic-comments-container div.comment  {
   position:relative;
-  background: #E3E9F2;
+  background: @light-blue;
   border: solid 1px #AAA;
   margin-bottom:5px;
 }
@@ -707,11 +707,26 @@ div.comment-container div.count {
   margin-bottom:1em;
   background: #f1f7fe url(images/icons/info_32.png) 1em 1em no-repeat;
   padding: 1em 1em 1em 5em;
-  border: solid 2px #e3e9f2;
+  border: solid 2px @light-blue;
   border-radius:3px;
   -moz-border-radius:3px;
   -webkit-border-radius:3px;
   min-height:3em;
+}
+
+.blue-box-medium {
+  text-align:left;
+  padding: 1em;
+  border: solid 2px @medium-blue-2;
+  border-radius:3px;
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+  min-height:2.6em;
+}
+
+.blue-box-medium img { 
+  float:left;
+  padding:0 1em 0 0;
 }
 
 .warning {
@@ -1146,7 +1161,7 @@ ul.tabs a:hover {
 
 ul.tabs a.current {
   background-color:#212121;
-  color:#F2F2F2;
+  color:@off-white;
   cursor:default;
   border:0 none;
   border:1px solid #212121;
@@ -1176,7 +1191,7 @@ div#user-show-tabs > ul li a {
 /* some nav elements 
 ------------------------------------------------------------------------------------------------ */
 #profile-box {
-  /*background-color:#E3E9F2;*/
+  /*background-color:@light-blue;*/
   z-index:1;
   position:relative;
   margin:0;
@@ -1318,7 +1333,7 @@ ul.top-level-navigation li {
   float: left;
   display: inline;
   margin-right: 8px;
-  border: solid 2px #F2F2F2;
+  border: solid 2px @off-white;
   padding: 5px 12px  5px 12px ;
   color: #295F6D;
   background: #FFF;
@@ -1330,8 +1345,8 @@ ul.top-level-navigation li a {
 }
 
 ul.top-level-navigation li:hover {
-  border: solid 2px #F2F2F2;
-  background: #F2F2F2;
+  border: solid 2px @off-white;
+  background: @off-white;
 }
 
 ul.top-level-navigation li.current  {
@@ -1427,7 +1442,7 @@ div.widget-box-header {
   background: #FFF;
 }
 .widget-box-content ul li.odd {
-  background: #F2F2F2;
+  background: @off-white;
 }
 .widget-box-content ul li:first-child {
   border-top:0 none;
@@ -1647,7 +1662,7 @@ position:relative;
 }
 
 .blue-box ul li {
-  background-color:#e3e9f2;
+  background-color:@light-blue;
   border-top:1px solid #f3f6f9;
   border-bottom:1px solid #c1cad5;
   position:relative;
@@ -1746,7 +1761,7 @@ position:relative;
 }
 .category-container h3 a:hover {
   text-decoration:underline;
-  color:#17587F;
+  color:@dark-blue;
   border:0 none;
 }
 .category-container:hover {
@@ -1923,7 +1938,7 @@ div#title-container h3 {
   position:absolute;
   bottom:0;
   left:0;
-  color: #17587F;
+  color: @dark-blue;
   font-weight:bold;
   padding:0;
   margin:0 0 10px 0;
@@ -2052,7 +2067,7 @@ div#lesson-content-tabs div.panes {
   min-height:300px;
   padding: 17px;
   background-color:#E8E8E8;
-  background-color:#E3E9F2;
+  background-color:@light-blue;
   border-bottom-left-radius:8px;
   border-bottom-right-radius:8px;
   -webkit-border-bottom-left-radius:8px;
@@ -2100,7 +2115,7 @@ div#what-do-students-ultimately-buy-container div.widget-box-content h3 {
 /* STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT... */
 #bought-this-video-also-bought {
   padding:10px 17px 24px 17px;
-  background-color: #e3e9f2;
+  background-color: @light-blue;
   border-radius:8px;
   -webkit-border-radius:8px;
   -moz-border-radius:8px;
@@ -2109,7 +2124,7 @@ div#what-do-students-ultimately-buy-container div.widget-box-content h3 {
 /* WHAT DO STUDENTS ULTIMATELY BUY AFTER BROWSING THIS ITEM? */
 div#what-do-students-ultimately-buy-container {
   padding:24px;
-  background-color: #e3e9f2;
+  background-color: @light-blue;
   border-radius:8px;
   -webkit-border-radius:8px;
   -moz-border-radius:8px;
@@ -2656,7 +2671,7 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
   margin-left:82px;
 }
 .fh-form ul.section li {
-  background-color:#e3e9f2;
+  background-color:@light-blue;
   border-top:1px solid #f3f6f9;
   border-bottom:1px solid #c1cad5;
   padding:8px;
@@ -3027,7 +3042,7 @@ span.error {
   position:absolute;
   padding: 5px 5px 5px 26px;
   background: #fdffdf url("images/forms/error-circle.png") no-repeat 3px 3px;
-  border:solid 2px #E3E9F2;
+  border:solid 2px @light-blue;
   border-radius:5px;
   -moz-border-radius:5px;
   -webkit-border-radius:5px;
@@ -3071,7 +3086,7 @@ span.valid {
   padding: 5px 5px 5px 10px;
   font-size: 14px;
   margin: -7px;
-  color: #f2f2f2;
+  color: @off-white;
   text-shadow: #333 2px 2px 1px;
 }
 
