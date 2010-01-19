@@ -2657,3 +2657,32 @@ div#user-stats-container ul {
   border-left-color: #191919;
   border-left-color: rgba(25, 25, 25, 0.92);
 }
+#marketing_banner h2 {
+  color: #333333;
+  padding: 6px 0 6px 5px;
+  margin: 0;
+  border-top: solid 2px #cccccc;
+  border-bottom: solid 2px #cccccc;
+}
+#marketing_fpo {
+  color: #777777;
+  border: solid 2px #cccccc;
+  background-color: #efefef;
+}
+#marketing_fpo_left h2 {
+  text-align: center;
+  color: #333333;
+}
+#marketing_fpo_right h2 {
+  text-align: center;
+  color: #333333;
+}
+#marketing_fpo p { font-size: 16px; }
+#marketing_fpo_left {
+  padding: 30px 30px 10px 30px;
+  border-right: solid 2px #cccccc;
+}
+#marketing_fpo_right {
+  padding: 30px 30px 10px 30px;
+  border: 0;
+}
