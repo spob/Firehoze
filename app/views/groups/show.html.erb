@@ -22,7 +22,11 @@
         <%= flag_link @group unless @group.private-%>
         <div id="status">
           <ul>
-            <li><%= image_tag 'icons/16-check.png' %> This group is <%= @group.private ? "by invitation only" : "open to the public" %></li>
+            <% if @group.private? %>
+            <li><%= image_tag 'icons/16-lock.png' %> This group is by invitation only</li>
+            <% else %>
+            <li><%= image_tag 'icons/16-check.png' %> This group is open to the public</li>
+            <% end %>
             <% content_tag :li  do -%>
               <%= image_tag 'icons/16-check.png' %>
               <%= show_membership_text @group, current_user %>
