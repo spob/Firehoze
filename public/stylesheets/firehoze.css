@@ -404,7 +404,18 @@ div.review #stars { margin: 5px 0 0 0; }
   cursor: pointer;
 }
 #faqs_section .answers img { margin: 20px 0 40px 0; }
-div#account-settings-tabs div.panes { margin-top: 2em; }
+div#account-settings-tabs div.panes {
+  margin: 0;
+  min-height: 300px;
+  padding: 17px;
+  background-color: #e3e9f2;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  -webkit-border-bottom-left-radius: 8px;
+  -webkit-border-bottom-right-radius: 8px;
+  -moz-border-radius-bottomleft: 8px;
+  -moz-border-radius-bottomright: 8px;
+}
 #group-container {
   position: relative;
   padding: 20px;
@@ -1316,7 +1327,7 @@ div.duration {
 .blue-box ul.section li.header {
   border: 0;
   border-bottom: 1px solid #c1cad5;
-  min-height: 52px;
+  min-height: 72px;
   background-color: transparent;
   position: relative;
   padding: 0 12px 0 0;
@@ -1326,15 +1337,15 @@ div.duration {
   display: block;
   width: 59px;
   height: 62px;
-  top: -15px;
-  left: 15px;
+  top: 0px;
+  left: 10px;
 }
 .blue-box ul.section li.bottom {
   border: 0;
   min-height: 5px;
   background-color: transparent;
 }
-.blue-box ul#categories-header.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
+.blue-box ul#categories-header.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
 .blue-box ul li#categories-roundup { padding: 17px 0 17px 17px; }
 .category-container {
   position: relative;
@@ -2087,6 +2098,16 @@ div.lesson-tooltip {
   padding: 5px;
   padding-top: 7px;
 }
+.fh-form input:focus {
+  background-image: none;
+  background-color: #ffffe0;
+  border: 1px solid #616161;
+}
+.fh-form textarea:focus {
+  background-image: none;
+  background-color: #ffffe0;
+  border: 1px solid #616161;
+}
 .fh-form input[type=file] {
   width: 420px;
   height: 20px;
@@ -2110,14 +2131,20 @@ div.lesson-tooltip {
 .fh-form ul.section {
   width: 626px;
   border: 1px solid #c1cad5;
-  border-top: 1px solid #8f9aa7;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   background-color: #f1f7fe;
   margin-bottom: 20px;
   float: left;
+  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
+div.tab-container div.panes div.fh-form ul.section { background-color: #f2f2f2; }
+div.tab-container div.panes div.fh-form ul.section li.header { background-color: #f2f2f2; }
+div.tab-container div.panes div.fh-form ul.section li.bottom { background-color: #f2f2f2; }
+div.tab-container div.panes div.fh-form ul.section li { background-color: #f1f7fe; }
 .fh-form h3 { margin: 8px 0 6px 82px; }
 .fh-form h4 {
   font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
@@ -2136,7 +2163,7 @@ div.lesson-tooltip {
 .fh-form ul.section li.header {
   border: 0;
   border-bottom: 1px solid #c1cad5;
-  min-height: 52px;
+  min-height: 68px;
   background-color: transparent;
   position: relative;
   padding: 0 12px 0 0;
@@ -2152,8 +2179,8 @@ div.lesson-tooltip {
   display: block;
   width: 59px;
   height: 62px;
-  top: -15px;
-  left: 15px;
+  top: 0px;
+  left: 10px;
 }
 div.selector select#user_time_zone {
   color: red !important;
@@ -2193,33 +2220,34 @@ a.printer-friendly:hover {
   text-align: center;
   display: block;
 }
-.fh-form ul#lesson-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#avatar-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#privacy-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#profile-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#instructor-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#send-a-message-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#flag-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#give-gift-certificate-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#gift-certificate-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#confirm-give-gift-certificate-path-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#group-invitation-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#invitation-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#group-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#attachment-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#attachment-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#lesson-comment-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#lesson-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#advanced-search-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
+.fh-form ul#signin-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#lesson-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#avatar-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#privacy-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#profile-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#instructor-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#send-a-message-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#flag-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#give-gift-certificate-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#gift-certificate-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#confirm-give-gift-certificate-path-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#group-invitation-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#invitation-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#group-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#attachment-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#attachment-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#lesson-comment-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#lesson-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#advanced-search-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
 .fh-form ul#order-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#password-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#password-reset-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#request-registration-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#registation-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#review-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#topic-comments-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#edit-topic-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#group-topics-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
+.fh-form ul#password-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#password-reset-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#request-registration-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#registation-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#review-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#topic-comments-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#edit-topic-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#group-topics-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
 .fh-form ul.section li.heading {
   font-weight: bold;
   background-color: transparent;
@@ -2236,9 +2264,11 @@ a.printer-friendly:hover {
   padding-top: 10px;
 }
 .fh-form ul.section li.bottom {
-  border: 0;
   min-height: 5px;
-  background-color: transparent;
+  -moz-border-radius-bottomleft: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -webkit-border-bottom-right-radius: 5px;
 }
 .fh-form ul.ajaxful-rating li {
   padding: 1px 0 0 0;

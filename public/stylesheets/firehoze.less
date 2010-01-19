@@ -517,8 +517,20 @@ div.review #stars {
 
 
 /* ACCOUNT SETTINGS SCREENS */
+
+/* GOOD */
 div#account-settings-tabs div.panes {
-  margin-top: 2em;
+  margin: 0;
+  min-height:300px;
+  padding: 17px;
+  /*  background-color:@light-gray;*/
+  background-color:@light-blue;
+  border-bottom-left-radius:8px;
+  border-bottom-right-radius:8px;
+  -webkit-border-bottom-left-radius:8px;
+  -webkit-border-bottom-right-radius:8px;
+  -moz-border-radius-bottomleft:8px;
+  -moz-border-radius-bottomright:8px;
 }
 
 /* GROUPS */
@@ -675,7 +687,7 @@ div#topic-comments-container div.comment  {
 /* comment */
 div.comment-container {
   margin:0 0 0 135px;
-  background: #F1F7FE;
+  background: @pale-blue;
   border-left: solid 1px #AAA;
   min-height:120px;
 }
@@ -691,7 +703,7 @@ div.comment-container div.body {
 div.comment-container div.actions {
   text-align:right;
   padding:8px 7px 11px 7px;
-  background: #F1F7FE;
+  background: @pale-blue;
 }
 div.comment-container div.count {
   position:absolute;
@@ -733,7 +745,7 @@ div.comment-container div.count {
   position:relative;
   text-align:left;
   margin-bottom:1em;
-/*  background: #f1f7fe url(images/icons/info_32.png) 1em 1em no-repeat;*/
+  /*  background: #f1f7fe url(images/icons/info_32.png) 1em 1em no-repeat;*/
   background: #fafdbf url(images/icons/32_warning.png) 8px 10px no-repeat;
   padding: 1em 1em 1em 5em;
   border: solid 2px #d1d59d;
@@ -1664,7 +1676,7 @@ position:relative;
 .blue-box ul li {
   background-color:@light-blue;
   border-top:1px solid #f3f6f9;
-  border-bottom:1px solid #c1cad5;
+  border-bottom:1px solid @steel-blue;
   position:relative;
   zoom:1;
 }
@@ -1672,12 +1684,12 @@ position:relative;
 .blue-box ul.section {
   /* this dictates the overall width of the form */
   width:626px;
-  border: 1px solid #c1cad5;
+  border: 1px solid @steel-blue;
   border-top:1px solid #8f9aa7;
   border-radius:5px;
   -webkit-border-radius:5px;
   -moz-border-radius:5px;
-  background-color:#f1f7fe;
+  background-color:@pale-blue;
   margin-bottom:20px;
   float:left;
 }
@@ -1700,8 +1712,8 @@ position:relative;
 
 .blue-box ul.section li.header {
   border:0;
-  border-bottom: 1px solid #c1cad5;
-  min-height:52px;
+  border-bottom: 1px solid @steel-blue;
+  min-height:72px;
   background-color:transparent;
   position:relative;
   padding:0 12px 0 0;
@@ -1712,8 +1724,8 @@ position:relative;
   display:block;
   width:59px;
   height:62px;
-  top:-15px;
-  left:15px;
+  top:0px;
+  left:10px;
 }
 
 .blue-box ul.section li.bottom {
@@ -1724,7 +1736,7 @@ position:relative;
 
 /* CATEGORY ROUND UP */
 .blue-box ul#categories-header.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
+  background: url(images/forms/fh-icon.png) no-repeat top left;
 }
 
 .blue-box ul li#categories-roundup {
@@ -1753,7 +1765,6 @@ position:relative;
   position: absolute;
   top: 30px;
   right: 6px;
-
 }
 
 .category-container h3 {
@@ -2062,6 +2073,7 @@ ul.group-list {
   list-style-type: none;
 }
 
+/* GOOD */
 div#lesson-content-tabs div.panes {
   margin:0;
   min-height:300px;
@@ -2587,7 +2599,6 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
   text-align:right;
   display:block;
   float:left;
-  /*line-height:32px;*/
   margin-top:8px;
   margin-right:10px;
 }
@@ -2621,6 +2632,12 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
   padding-top:7px
 }
 
+.fh-form input:focus, .fh-form textarea:focus{
+  background-image:none;
+  background-color: @light-yellow;
+  border: 1px solid @gray-100;
+}
+
 .fh-form input[type=file] {
   width:420px;
   height:20px;
@@ -2649,16 +2666,27 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
 .fh-form ul.section {
   /* this dictates the overall width of the form */
   width:626px;
-  border: 1px solid #c1cad5;
-  border-top:1px solid #8f9aa7;
+  border: 1px solid @steel-blue;
   border-radius:5px;
   -webkit-border-radius:5px;
   -moz-border-radius:5px;
-  background-color:#f1f7fe;
+  background-color:@pale-blue;
   margin-bottom:20px;
   float:left;
+  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  box-shadow: 1px 1px 3px rgba(0,0,0,.3);
 }
 
+div.tab-container div.panes div.fh-form ul.section, 
+div.tab-container div.panes div.fh-form ul.section li.header, 
+div.tab-container div.panes div.fh-form ul.section li.bottom {
+  background-color:@off-white;
+}
+
+div.tab-container div.panes div.fh-form ul.section li {
+  background-color:@pale-blue;
+}
 
 .fh-form h3 {
   margin:8px 0 6px 82px;
@@ -2673,7 +2701,7 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
 .fh-form ul.section li {
   background-color:@light-blue;
   border-top:1px solid #f3f6f9;
-  border-bottom:1px solid #c1cad5;
+  border-bottom:1px solid @steel-blue;
   padding:8px;
   position:relative;
   zoom:1;
@@ -2681,8 +2709,8 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
 
 .fh-form ul.section li.header {
   border:0;
-  border-bottom: 1px solid #c1cad5;
-  min-height:52px;
+  border-bottom: 1px solid @steel-blue;
+  min-height:68px;
   background-color:transparent;
   position:relative;
   padding:0 12px 0 0;
@@ -2700,8 +2728,8 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
   display:block;
   width:59px;
   height:62px;
-  top:-15px;
-  left:15px;
+  top:0px;
+  left:10px;
 }
 
 div.selector select#user_time_zone  {
@@ -2725,12 +2753,12 @@ ul#registation-info li span.heading {
 }
 
 ul#registation-info div#user-agreement {
-  background-color: #f1f7fe;
+  background-color: @pale-blue;
   margin:1em;
   padding: 1em;
   overflow:auto;
   height:100px;
-  border:1px solid #c1cad5;
+  border:1px solid @steel-blue;
 }
 
 a.printer-friendly {
@@ -2748,88 +2776,34 @@ a.printer-friendly:hover {
   display:block;
 }
 
-
-.fh-form ul#lesson-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#avatar-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#privacy-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#profile-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#instructor-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#send-a-message-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#flag-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#give-gift-certificate-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#gift-certificate-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#confirm-give-gift-certificate-path-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#group-invitation-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#invitation-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#group-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#attachment-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#attachment-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#lesson-comment-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#lesson-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#advanced-search-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#order-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#password-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#password-reset-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#request-registration-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#registation-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#review-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#topic-comments-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#edit-topic-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
-.fh-form ul#group-topics-info.section li.header span {
-  background: url(images/forms/signup-icon-company.png) no-repeat top left;
-}
+.fh-form ul#signin-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#lesson-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#avatar-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#privacy-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#profile-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#instructor-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#send-a-message-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#flag-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#give-gift-certificate-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#gift-certificate-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#confirm-give-gift-certificate-path-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#group-invitation-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#invitation-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#group-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#attachment-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#attachment-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#lesson-comment-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#lesson-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#advanced-search-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#order-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
+.fh-form ul#password-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#password-reset-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#request-registration-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#registation-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#review-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#topic-comments-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#edit-topic-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#group-topics-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
 
 .fh-form ul.section li.heading {
   font-weight:bold;
@@ -2849,9 +2823,11 @@ a.printer-friendly:hover {
 }
 
 .fh-form ul.section li.bottom {
-  border:0;
   min-height:5px;
-  background-color:transparent;
+  -moz-border-radius-bottomleft:5px;
+  -webkit-border-bottom-left-radius:5px;
+  -moz-border-radius-bottomright:5px;
+  -webkit-border-bottom-right-radius:5px;
 }
 
 /* rating stars */
@@ -3260,13 +3236,13 @@ div#user-stats-container ul {
 }
 
 .upload_warning {
-    display:none;
-    background:#FFFFE8 url(images/icons/48_warning.png) 10px 20px no-repeat;
-    margin: 20px 0;
-    padding: 10px 0 10px 70px;
+  display:none;
+  background:#FFFFE8 url(images/icons/48_warning.png) 10px 20px no-repeat;
+  margin: 20px 0;
+  padding: 10px 0 10px 70px;
 }
 .upload_warning h4 {
-   margin:10px 0;
+  margin:10px 0;
 }
 
 
