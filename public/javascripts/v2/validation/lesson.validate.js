@@ -5,7 +5,7 @@ $(document).ready(function() {
         messages: {
             "lesson[title]": {
                 required: 'Please provide a title for your lesson',
-                remote: 'A lessons with this title already exists'
+                remote: 'A lesson with this title already exists'
             }},
         errorElement: "span",
         success: "valid",

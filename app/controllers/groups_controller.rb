@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   else
     before_filter :require_user
   end
-  before_filter :find_group, :except => [:list_admin, :create, :new, :ajaxed, :index]
+  before_filter :find_group, :except => [:list_admin, :create, :new, :ajaxed, :index, :check_group_by_name]
   before_filter :set_per_page, :only => [ :ajaxed, :list_admin ]
 
   # Admins only
@@ -15,6 +15,14 @@ class GroupsController < ApplicationController
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
 
   layout :layout_for_action
+  
+  def check_group_by_name
+    @group = Group.find_by_name(params[:group][:name].try(:strip))
+
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def list_admin
     @search = Group.searchlogic(params[:search])

@@ -34,6 +34,7 @@ ActionController::Routing::Routes.draw do |map|
                              :pregive => :get,
                              :confirm_give => :post }
   map.resources :grant_gift_certificates, :only => [ :create, :new ]
+  map.check_group_by_name "groups/check_group_by_name", :controller => "groups", :action => "check_group_by_name"
   map.resources :groups,
                 :collection => { :list_admin => :get, :ajaxed => :get },
                 :member => { :clear_logo => :post, :activate => :post },
