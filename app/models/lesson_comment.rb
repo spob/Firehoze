@@ -8,7 +8,7 @@ class LessonComment < Comment
   def self.list(lesson, page, current_user=nil)
     comments = Comment.numerate(LessonComment.find(:all,
              :conditions => list_conditions(lesson, current_user), :include => [:user, :lesson],
-             :order => 'id desc'))
+             :order => 'id'))
     comments.paginate :page => page, :per_page => ROWS_PER_PAGE
   end
 
