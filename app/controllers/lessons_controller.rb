@@ -67,6 +67,14 @@ class LessonsController < ApplicationController
     @lessons = @search.paginate :include => [:instructor, :category], :page => params[:page], :per_page => session[:per_page] || ROWS_PER_PAGE
   end
 
+  def check_lesson_by_title
+    @lesson = Lesson.find_by_title(params[:lesson][:title].try(:strip))
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def new
     @lesson = Lesson.new
     unless current_user.verified_instructor? or current_user.try("is_admin?")

@@ -51,6 +51,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :instructor_follows, :only => [ :create, :destroy ],
                 :collection => { :ajaxed => :get }
   map.resources :reviews, :collection => { :ajaxed => :get }
+  map.check_lesson_by_title "lessons/check_lesson_by_title", :controller => "lessons", :action => "check_lesson_by_title"
   map.resources :lessons, :has_many => :reviews, :shallow => true,
                 :member => {
                         :convert => :post,
