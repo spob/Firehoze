@@ -100,6 +100,22 @@ ul.inline li { display: inline; }
   background: #ededed;
   border: solid 1px #cfcfcf;
 }
+div.corner-box {
+  padding: 4px 8px 2px 8px;
+  margin: 0;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  border: solid 1px #bebebe;
+  font-size: 11px;
+  background: #ecf3ff;
+  color: #17587f;
+  font-weight: bold;
+  -moz-border-radius-bottomleft: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  -webkit-border-top-right-radius: 5px;
+}
 h4.banner {
   font-size: 18px;
   color: #555555;
@@ -419,7 +435,7 @@ div#account-settings-tabs div.panes {
 #group-container {
   position: relative;
   padding: 20px;
-  border: solid 1px #cccccc;
+  border: solid 2px #e3e9f2;
   background-color: #e3e9f2;
   margin: 0 0 20px 0;
 }
@@ -578,13 +594,26 @@ div.comment-container div.count {
 .blue-box-medium {
   text-align: left;
   padding: 1em;
-  border: solid 2px #9cb6d5;
+  background: #e3e9f2;
   border-radius: 3px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   min-height: 2.6em;
+  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
-.blue-box-medium img {
+.blue-box-pale {
+  text-align: left;
+  padding: 1em;
+  background: #f1f7fe;
+  border: solid 2px #9cb6d5;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  min-height: 2.6em;
+}
+.blue-box-pale.with-icon img {
   float: left;
   padding: 0 1em 0 0;
 }
@@ -954,11 +983,7 @@ div#user-show-tabs > ul li a {
   position: relative;
   margin: 0;
   padding: 20px;
-  border: solid 1px #cccccc;
   height: 62px;
-  border-radius: 8px;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
 }
 #profile-box .avatar {
   float: left;

@@ -5,7 +5,7 @@
 
 <% # group details -%>
 <div class="span-12 append-bottom">
-  <div id="group-container">
+  <div id="group-container" class="blue-box-medium">
     <div id="group-logo"><%= logo_tag @group, :size => :medium %></div>
     <div id="description">
       <h3>Group <%= h @group.name %></h3>
@@ -20,7 +20,7 @@
         <%= show_invite_link(@group, current_user) %>
         <%= show_edit_link(@group, current_user) %>
         <%= flag_link @group unless @group.private-%>
-        <div id="status">
+        <div class="corner-box">
           <ul>
             <% if @group.private? %>
             <li><%= image_tag 'icons/16-lock.png' %> This group is by invitation only</li>

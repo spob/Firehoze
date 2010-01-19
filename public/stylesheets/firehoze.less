@@ -114,8 +114,6 @@ ul.inline li  {
   -moz-border-radius: 5px;
 }
 
-
-
 .inner_box {
   background: #fff;
   border: solid 1px #CFCFCF;
@@ -132,6 +130,22 @@ ul.inline li  {
   border: solid 1px #CFCFCF;
 }
 
+div.corner-box {
+  padding: 4px 8px 2px 8px;
+  margin:0;
+  position:absolute;
+  top:5px;
+  right: 5px;
+  border: solid 1px #BEBEBE;
+  font-size: 11px;
+  background: #ecf3ff;
+  color:@dark-blue;
+  font-weight:bold;
+  -moz-border-radius-bottomleft: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  -webkit-border-top-right-radius: 5px;
+}
 
 h4.banner  {
   font-size: 18px;
@@ -537,7 +551,7 @@ div#account-settings-tabs div.panes {
 #group-container {
   position:relative;
   padding: 20px;
-  border: solid 1px #ccc;
+  border: solid 2px @light-blue;
   background-color: @light-blue;
   margin: 0 0 20px 0;
 }
@@ -717,7 +731,7 @@ div.comment-container div.count {
   position:relative;
   text-align:left;
   margin-bottom:1em;
-  background: #f1f7fe url(images/icons/info_32.png) 1em 1em no-repeat;
+  background: @pale-blue url(images/icons/info_32.png) 1em 1em no-repeat;
   padding: 1em 1em 1em 5em;
   border: solid 2px @light-blue;
   border-radius:3px;
@@ -729,23 +743,36 @@ div.comment-container div.count {
 .blue-box-medium {
   text-align:left;
   padding: 1em;
-  border: solid 2px @medium-blue-2;
+  background: @light-blue;
   border-radius:3px;
   -moz-border-radius:3px;
   -webkit-border-radius:3px;
   min-height:2.6em;
+  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  box-shadow: 1px 1px 3px rgba(0,0,0,.3);
 }
 
-.blue-box-medium img { 
-  float:left;
-  padding:0 1em 0 0;
+.blue-box-pale {
+  text-align:left;
+  padding: 1em;
+  background: @pale-blue;
+  border: solid 2px @medium-blue-2;
+  border-radius:5px;
+  -moz-border-radius:5px;
+  -webkit-border-radius:5px;
+  min-height:2.6em;
 }
+
+.blue-box-pale.with-icon img {
+  float: left;
+  padding: 0 1em 0 0;
+ }
 
 .warning {
   position:relative;
   text-align:left;
   margin-bottom:1em;
-  /*  background: #f1f7fe url(images/icons/info_32.png) 1em 1em no-repeat;*/
   background: #fafdbf url(images/icons/32_warning.png) 8px 10px no-repeat;
   padding: 1em 1em 1em 5em;
   border: solid 2px #d1d59d;
@@ -754,7 +781,6 @@ div.comment-container div.count {
   -webkit-border-radius:3px;
   min-height:3em;
 }
-
 
 .with-button {
   padding-right:16em;
@@ -1203,16 +1229,11 @@ div#user-show-tabs > ul li a {
 /* some nav elements 
 ------------------------------------------------------------------------------------------------ */
 #profile-box {
-  /*background-color:@light-blue;*/
   z-index:1;
   position:relative;
   margin:0;
   padding:20px;
-  border: solid 1px #CCC;
   height:62px;
-  border-radius:8px;
-  -webkit-border-radius:8px;
-  -moz-border-radius:8px;
 }
 
 #profile-box .avatar {
