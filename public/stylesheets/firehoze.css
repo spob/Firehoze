@@ -2325,7 +2325,7 @@ div.radio span input {
 }
 div.selector {
   display: block;
-  width: 150px;
+  width: 340px;
   border: solid 1px #dddddd;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -2340,7 +2340,7 @@ div.selector {
   margin-left: 175px;
 }
 div.selector select {
-  width: 150px;
+  width: 340px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 div.selector.focus { border-color: #999999; }
