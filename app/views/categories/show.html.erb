@@ -17,6 +17,7 @@
       <div class="widget-box-footer treeview"></div>
     </div>
 
+    <% if @tags.present? %>
     <div class="widget-box">
       <div class="widget-box-header">
         <span class="h4">Tags</span>
@@ -25,6 +26,7 @@
         <%= render :partial => "lessons/tag_cloud", :object => @tags %>
       </div>
     </div>
+    <% end %>
   </div>
 
   <div id="category-show" class="span-8 last">
