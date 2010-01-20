@@ -11,7 +11,7 @@ class AccountsController < ApplicationController
   verify :method => :put, :only => [ :update, :update_privacy, :update_instructor, :update_avatar, :update_instructor_wizard ], :redirect_to => :home_path
   verify :method => :post, :only => [ :clear_avatar ], :redirect_to => :home_path
 
-  layout :layout_for_action
+  layout 'application_v2'
 
 #  def show
 #  end
@@ -245,11 +245,4 @@ class AccountsController < ApplicationController
     end
   end
 
-  def layout_for_action
-    if %w(edit update crop clear_avatar update_address update_instructor update_privacy update_avatar).include?(params[:action])
-      'application_v2'
-    else
-      'application'
-    end
-  end
 end

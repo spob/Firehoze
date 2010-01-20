@@ -4,59 +4,58 @@
 <h3>Instructor Enrollment Wizard</h3>
 <%= render :partial => 'breadcrumbs', :locals => { :step => 3 } %>
 <% form_for(:user, :url => update_instructor_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
-  <%= f.error_messages %>
-  <%= hidden_field_tag :step, "3" %>
-  <fieldset>
-    <legend>Postal Address</legend>
-    <p>
-      Tell us where you'd like us to send all the money you're going to make.
-    </p>
-
-    <p>
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name %>
-    </p>
-
-    <p>
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name %>
-    </p>
-
-    <p>
-      <%= f.label :address1 %>
-      <%= f.text_field :address1 %>
-    </p>
-
-    <p>
-      <%= f.label :address2 %>
-      <%= f.text_field :address2 %>
-    </p>
-
-    <p>
-      <%= f.label :city %>
-      <%= f.text_field :city %>
-    </p>
-
-    <p>
-      <%= f.label :state, "State or Region" %>
-      <%= f.text_field :state %>
-    </p>
-
-    <p>
-      <%= f.label :postal_code, "Postal Code or Zip Code" %>
-      <%= f.text_field :postal_code %>
-    </p>
-
-    <p>
-      <%= f.localized_country_select(:country, ['US']) %>
-    </p>
-
-  </fieldset>
+<%= f.error_messages %>
+<%= hidden_field_tag :step, "3" %>
+<fieldset>
+  <legend>Postal Address</legend>
   <p>
-    <%= f.submit "Next", :disable_with => translate('general.disable_with') %>
-    <span  class="actions">
-      <%= link_to "Back", instructor_wizard_step2_account_path(current_user) %>
-      <%= link_to 'Cancel', edit_account_path(current_user) %>
-    </span>
+    Tell us where you'd like us to send all the money you're going to make.
   </p>
+
+  <p>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </p>
+
+  <p>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </p>
+
+  <p>
+    <%= f.label :address1 %><br />
+    <%= f.text_field :address1 %>
+  </p>
+
+  <p>
+    <%= f.label :address2 %><br />
+    <%= f.text_field :address2 %>
+  </p>
+
+  <p>
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </p>
+
+  <p>
+    <%= f.label :state, "State or Region" %><br />
+    <%= f.text_field :state %>
+  </p>
+
+  <p>
+    <%= f.label :postal_code, "Postal Code or Zip Code" %><br />
+    <%= f.text_field :postal_code %>
+  </p>
+
+  <p>
+    <%= f.localized_country_select(:country, ['US']) %>
+  </p>
+</fieldset>
+<p>
+  <%= f.submit "Next", :disable_with => translate('general.disable_with') %>
+  <span  class="actions">
+    <%= link_to "&laquo; Back", instructor_wizard_step2_account_path(current_user), :class => "ml-10" %> |
+    <%= link_to 'Cancel', edit_account_path(current_user) %>
+  </span>
+</p>
 <% end %>

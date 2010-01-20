@@ -50,6 +50,10 @@ a.no-border:hover { border: 0 none; }
 .append-top-half-gutter { margin-top: 17px; }
 .append-bottom { margin-bottom: 34px; }
 .hidden { display: none; }
+.pr-10 { padding-right: 10px; }
+.pl-10 { padding-left: 10px; }
+.mr-10 { padding-right: 10px; }
+.ml-10 { padding-left: 10px; }
 .transparent {
   filter: alpha(opacity=50);
   -moz-opacity: 0.5;
@@ -2851,3 +2855,12 @@ button.minibutton::-moz-focus-inner { margin: -1px -3px; }
 .tagbutton.mousedown { background-position: 0 -60px; }
 .tagbutton.mousedown > span { background-position: 100% -60px; }
 .tagbutton.danger.mousedown > span { background-position: 100% -120px; }
+#instructor_agreement {
+  font-size: 0.83em;
+  background-color: #ffffff;
+  padding: 0 20px;
+  margin: 20px 0;
+  border: solid 1px #999999;
+  height: 200px;
+  overflow: auto;
+}
