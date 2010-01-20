@@ -3384,3 +3384,42 @@ div#user-stats-container ul {
     padding: 30px 30px 10px 30px;
     border: 0;
 }
+
+
+/* Buttons */
+.minibutton{
+  display:inline-block;
+  height:23px;
+  padding:0 0 0 3px;
+  font-size:11px;
+  font-weight:bold;
+  color:#333;
+  text-shadow:1px 1px 1px #fff;
+  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 0 0 no-repeat;
+  white-space:nowrap;
+  border:none;
+  overflow:visible;
+  cursor:pointer;
+  text-decoration:none;
+  }
+input[type=text]+.minibutton{margin-left:5px;}
+button.minibutton::-moz-focus-inner{margin:-1px -3px;}
+.minibutton.danger{color:#900;}
+.minibutton>span{
+  display:block;
+  height:23px;
+  padding:0 10px 0 8px;
+  line-height:23px;
+  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 100% 0 no-repeat;
+  }
+
+.minibutton:hover{color:#fff;text-decoration:none;text-shadow:none;background-position:0 -30px;}
+.minibutton.danger:hover{background-position:0 -90px;}
+.minibutton:hover>span{background-position:100% -30px;}
+.minibutton.danger:hover>span{background-position:100% -90px;}
+.minibutton.mousedown{background-position:0 -60px;}
+.minibutton.danger.mousedown{background-position:0 -120px;}
+.minibutton.mousedown>span{background-position:100% -60px;}
+.minibutton.danger.mousedown>span{background-position:100% -120px;}
+.minibutton.current {color:#fff;text-decoration:none;text-shadow:none;background-position:0 -30px;}
+.minibutton.current>span{background-position:100% -30px;}

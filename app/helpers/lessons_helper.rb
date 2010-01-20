@@ -1,15 +1,6 @@
 #require 'markaby'
 
 module LessonsHelper
-  #def watch_text(lesson)
-  #  if current_user.nil? or current_user.owns_lesson?(lesson) or current_user == lesson.instructor
-  #    t('lesson.watch')
-  #  elsif lesson.free_credits.available.size > 0
-  #    t('lesson.watch_for_free')
-  #  else
-  #    t('lesson.buy')
-  #  end
-  #end
 
   # Not sure how to handle this with i18n???
   def free_remaining_text lesson
@@ -90,53 +81,45 @@ module LessonsHelper
         else
           action_text = t('lesson.buy')
         end
-        link_to action_text, watch_lesson_path(lesson), :class => :rounded 
+        link_to content_tag(:span, action_text), watch_lesson_path(lesson), :class => :minibutton 
       end
     end
   end
 
   def link_to_edit(lesson)
     if lesson.can_edit?(current_user)
-      link_to t('lesson.edit'), edit_lesson_path(lesson), :class => :rounded
+      link_to content_tag(:span, t('lesson.edit')), edit_lesson_path(lesson), :class => :minibutton
     end
   end
 
   def link_to_add_attachment(lesson, user)
     if lesson.can_edit?(user)
-      link_to "Add Attachment", new_lesson_lesson_attachment_path(lesson), :class => :rounded
+      link_to content_tag(:span, "Add Attachment"), new_lesson_lesson_attachment_path(lesson), :class => :minibutton
     end
   end
 
   def link_to_unreject(lesson, user)
     if user.try("is_moderator?") and lesson.status == LESSON_STATUS_REJECTED
-      link_to t('lesson.unreject'), unreject_lesson_path(lesson), :class => :rounded
+      link_to content_tag(:span, t('lesson.unreject')), unreject_lesson_path(lesson), :class => :minibutton
     end
   end
 
-  #  def button_to_preview(lesson)
-  #    if lesson.ready?
-  #      unless lesson.owned_by?(current_user) or lesson.instructed_by?(current_user)
-  #        button_to "Preview", nil, { :alt => '#FIXME (when preview functionality is coded by Bob)', :disabled => true }
-  #      end
-  #    end
-  #  end
-
   def link_to_review(lesson, user)
     if lesson.show_review_button?(user)
-      link_to "Write a Review", new_lesson_review_path(lesson), :class => :rounded
+      link_to content_tag(:span, "Write a Review"), new_lesson_review_path(lesson), :class => :minibutton
     end
   end
 
   def link_to_comment(lesson, label)
-    link_to label, new_lesson_lesson_comment_path(lesson), :class => :rounded
+    link_to content_tag(:span, label), new_lesson_lesson_comment_path(lesson), :class => :minibutton
   end
 
   def link_to_wish(lesson)
     unless lesson.instructed_by?(current_user) or lesson.owned_by?(current_user)
       if current_user and current_user.on_wish_list?(lesson)
-        link_to "Remove from Wish List", wish_list_path(lesson), :method => :delete, :disable_with => translate('general.disable_with'), :class => :rounded
+        link_to content_tag(:span, "Remove from Wish List"), wish_list_path(lesson), :method => :delete, :disable_with => translate('general.disable_with'), :class => :minibutton
       else
-        link_to "Add to Wish List", wish_lists_path(:id => lesson), :method => :post, :disable_with => translate('general.disable_with'), :class => :rounded
+        link_to content_tag(:span, "Add to Wish List"), wish_lists_path(:id => lesson), :method => :post, :disable_with => translate('general.disable_with'), :class => :minibutton
       end
     end
   end

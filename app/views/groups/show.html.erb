@@ -64,7 +64,7 @@
         <% end %>
       </div>
       <div id="tabs-discussion-topics">
-        <div id="new-topic-link"><%= link_to "Post New Topic", new_group_topic_path(@group), :class => :rounded %></div>
+        <div id="new-topic-link"><%= link_to content_tag(:span, "Post New Topic"), new_group_topic_path(@group), :class => :minibutton %></div>
         <%= render :partial => 'topics/topics', :object => @topics %>
       </div>
       <div id="tabs-members">

@@ -24,6 +24,6 @@ top_level_navigation << instructor_link if current_user.verified_instructor?
 
 <div class="third-level-nav">
   <% top_level_navigation.each do |key, item| %>
-    <%= link_to item[:name], item[:location], :class => "rounded #{'current' if @secondary_nav_current.to_s == key.to_s}" %>
+    <%= link_to content_tag(:span, item[:name]), item[:location], :class => "minibutton #{'current' if @secondary_nav_current.to_s == key.to_s}" %>
   <% end %>
 </div>

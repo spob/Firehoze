@@ -1,14 +1,14 @@
 module GroupsHelper
   def show_join_link(group, user)
     if !group.private and !group.includes_member?(user)
-      link_to "Join", group_members_path(:id => group.id), :method => :post, :class => :rounded
+      link_to content_tag(:span, 'Join'), group_members_path(:id => group.id), :method => :post, :class => :minibutton
     end
   end
 
   def show_leave_link(group, user)
     group_member = group.includes_member?(user)
     if group_member and group_member.member_type != OWNER
-      link_to "Leave Group", group_member_path(group.id), :method => :delete, :class => :rounded
+      link_to content_tag(:span, "Leave Group"), group_member_path(group.id), :method => :delete, :class => :minibutton
     end
   end
 

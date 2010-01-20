@@ -103,7 +103,7 @@ module ApplicationHelper
       end
     end
     if msg.nil?
-      link_to "Flag", new_flag_path(:flagger_type => flaggable.class.to_s, :flagger_id => flaggable), :class => :rounded
+      link_to content_tag(:span, "Flag"), new_flag_path(:flagger_type => flaggable.class.to_s, :flagger_id => flaggable), :class => :minibutton
     else
       msg
     end

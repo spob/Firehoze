@@ -11,7 +11,7 @@
     </tr>
     <%= render :partial => 'categories/group', :collection => groups, :locals => { :show_member => false } %>
   </table>
-  <%= link_to "Create a New Group", new_group_path, :class => :rounded %>
+    <%= link_to content_tag(:span, "Create a New Group"), new_group_path, :class => :minibutton %>
   <% else %>
   <div class="info">
     <p>You do not belong to any groups...yet</p>
