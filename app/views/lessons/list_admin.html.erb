@@ -37,7 +37,6 @@
       <th>Category</th>
       <th>Average Rating</th>
       <th>Owned?</th>
-      <th>Action</th>
     </tr>
 
     <% @lessons.each do |lesson| %>
@@ -51,8 +50,6 @@
       <td><%= h lesson.category.name %></td>
       <td><%= lesson.rating_average %></td>
       <td><%= (current_user ? current_user.owns_lesson?(lesson) : false) %></td>
-      <td><%= link_to "View", lesson_path(lesson) %>&nbsp;
-        <%= link_to("Edit", edit_lesson_path(lesson)) if lesson.can_edit?(current_user) %></td>
       </tr>
       <% end %>
 
