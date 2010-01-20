@@ -49,6 +49,6 @@
   </div>
 
   <div class="tag_cloud prepend-top">
-    <%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts %>
+    <%= render :partial => "lessons/tag_cloud", :object => Lesson.ready.tag_counts %>
   </div>
 </div>
