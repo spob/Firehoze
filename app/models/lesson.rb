@@ -352,8 +352,12 @@ END
       update_status_attribute(LESSON_STATUS_CONVERTING)
     elsif all_videos_match_by_status(LESSON_STATUS_READY)
       update_status_attribute(LESSON_STATUS_READY)
-      Notifier.deliver_lesson_ready(self)
-      self.notify_followers
+      unless self.ready_notified_at
+        Notifier.deliver_lesson_ready(self)
+        self.notify_followers
+        self.reload
+        self.update_attribute(:ready_notified_at, Time.now)
+      end
     else
       update_status_attribute("Unknown status")
     end
