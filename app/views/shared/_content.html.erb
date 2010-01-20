@@ -156,6 +156,6 @@
 <!--end footer -->
 
 <%= render "shared/google_analytics" -%>
-<%= render "shared/get_satifisfaction" -%>
+<%= render "shared/get_satifisfaction" unless  controller.controller_name == "pages" and params[:id] == 'help_center' -%>
 </body>
 </html>
