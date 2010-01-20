@@ -4,10 +4,6 @@ $(function() {
         background: "#FFF"
     });
 
-    // $('#tag_cloud, #bought-this-video-also-bought, #what-do-students-ultimately').cornerz({
-    //     radius: 5
-    // });
-
     $('.box').cornerz({
         radius: 5
     });
@@ -49,8 +45,8 @@ $(function() {
         background: "#FFF"
     });
 
-    $('#group-container').cornerz({
-        radius: 5
-    });
+    // $('#group-container').cornerz({
+    //     radius: 5
+    // });
 
 });

@@ -1,18 +1,18 @@
 <% # UNRECOGNIZED USER %>
 
-<div class="clear span-40 append-bottom last" id="marketing_banner">
+<div class="clear span-12 append-bottom" id="marketing_banner">
   <h2>Short video tutorials by those who know ... and want to help</h2>
 </div>
 
-<div class="clear span-40 append-bottom last" id="marketing_fpo">
-  <div class="span-20">
+<div class="clear span-12" id="marketing_fpo">
+  <div class="span-6">
     <div id="marketing_fpo_left">
       <h2>Get started learning</h2>
       <p>Learn at your own pace. Invest in your learning where it makes sense and focus on what you want to learn.</p>
       <p style="text-align:right"><%= link_to 'Take a Tour', "#" %> | <%= link_to 'Sign Up for Free', new_registration_path %></p>
     </div>
   </div>
-  <div class="span-19 last">
+  <div class="span-6 last">
     <div id="marketing_fpo_right">
       <h2>Get started teaching</h2>
       <p>Reach beyond your institution and the classroom ... and get paid for what you do best.</p>
@@ -20,8 +20,7 @@
   </div>
 </div>
 
-<%= browse_category_navigation %>
-<div class="clear span-40 last" id="lesson_tabs">
+<div class="clear span-12" id="lesson_tabs">
   <div id="lessons_tabs" >
     <ul>
       <!--<li><%= link_to h(t('lesson.most_popular')), tabbed_lessons_path(:collection => 'most_popular') %></li>-->
@@ -30,7 +29,15 @@
     </ul>
     <div style="display:block"></div>
   </div>
-
 </div>
 
-<%= render :partial => "tag_cloud", :object => Lesson.ready.tag_counts if current_user %>
+<div class="clear span-12">
+  <div class="widget-box">
+    <div class="widget-box-header">
+      <span class="h4">Tags</span>
+    </div>
+    <div class="widget-box-content tags">
+      <%= render :partial => "lessons/tag_cloud", :object => Lesson.ready.tag_counts(:order => 'name ASC') %>
+    </div>
+  </div>
+</div>
