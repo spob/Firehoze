@@ -18,11 +18,6 @@ $(function() {
         background: "#FFF"
     });
 
-    // $('div#profile-box').cornerz({
-    //     radius: 5,
-    //     background: "#FFF"
-    // });
-
     $('div.category-container').cornerz({
         radius: 8,
         background: "#e3e9f2"
@@ -44,9 +39,4 @@ $(function() {
         radius: 5,
         background: "#FFF"
     });
-
-    // $('#group-container').cornerz({
-    //     radius: 5
-    // });
-
 });

@@ -767,7 +767,7 @@ div.comment-container div.count {
 .blue-box-pale.with-icon img {
   float: left;
   padding: 0 1em 0 0;
- }
+}
 
 .warning {
   position:relative;
@@ -2581,15 +2581,6 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
   margin:10px 0 0 0;
 }
 
-/*---------------------------------------------------------------------------------------------- */
-/* tag_cloud.css
------------------------------------------------------------------------------------------------- */
-
-.css1 { font-size: 1.0em; }
-.css2 { font-size: 1.2em; }
-.css3 { font-size: 1.4em; }
-.css4 { font-size: 1.6em; }
-
 
 /*---------------------------------------------------------------------------------------------- */
 /* forms.css
@@ -3350,39 +3341,39 @@ div#user-stats-container ul {
 
 /* marketing upsell text */
 #marketing_banner h2 {
-    color:#333;
-    padding:6px 0 6px 5px;
-    margin:0;
-    border-top:solid 2px #ccc;
-    border-bottom:solid 2px #ccc;
+  color:#333;
+  padding:6px 0 6px 5px;
+  margin:0;
+  border-top:solid 2px #ccc;
+  border-bottom:solid 2px #ccc;
 }
 
 #marketing_fpo {
 /*    width:980px;*/
-    color: #777;
-    border: solid 2px #ccc;
-    background-color: #efefef;
+color: #777;
+border: solid 2px #ccc;
+background-color: #efefef;
 }
 
 #marketing_fpo_left h2, 
 #marketing_fpo_right h2 {
-    text-align:center;
-    color:#333;
+  text-align:center;
+  color:#333;
 }
 
 #marketing_fpo p {
-    font-size:16px;
+  font-size:16px;
 }
 
 
 #marketing_fpo_left {
-    padding: 30px 30px 10px 30px;
-    border-right: solid 2px #ccc;
+  padding: 30px 30px 10px 30px;
+  border-right: solid 2px #ccc;
 }
 
 #marketing_fpo_right {
-    padding: 30px 30px 10px 30px;
-    border: 0;
+  padding: 30px 30px 10px 30px;
+  border: 0;
 }
 
 
@@ -3395,13 +3386,15 @@ div#user-stats-container ul {
   font-weight:bold;
   color:#333;
   text-shadow:1px 1px 1px #fff;
-  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 0 0 no-repeat;
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+
+
   white-space:nowrap;
   border:none;
   overflow:visible;
   cursor:pointer;
   text-decoration:none;
-  }
+}
 input[type=text]+.minibutton{margin-left:5px;}
 button.minibutton::-moz-focus-inner{margin:-1px -3px;}
 .minibutton.danger{color:#900;}
@@ -3410,8 +3403,24 @@ button.minibutton::-moz-focus-inner{margin:-1px -3px;}
   height:23px;
   padding:0 10px 0 8px;
   line-height:23px;
-  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 100% 0 no-repeat;
-  }
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+}
+
+
+.call-to-action.minibutton {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background-position:0 -272px;
+  background-position:0 -335px;
+}
+.call-to-action.minibutton>span {
+  color:@white;
+  text-shadow: #333 0 1px 1px;
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background-position:100% -272px;
+  background-position:100% -335px;
+}
+
+
 
 .minibutton:hover{color:#fff;text-decoration:none;text-shadow:none;background-position:0 -30px;}
 .minibutton.danger:hover{background-position:0 -90px;}
@@ -3423,3 +3432,111 @@ button.minibutton::-moz-focus-inner{margin:-1px -3px;}
 .minibutton.danger.mousedown>span{background-position:100% -120px;}
 .minibutton.current {color:#fff;text-decoration:none;text-shadow:none;background-position:0 -30px;}
 .minibutton.current>span{background-position:100% -30px;}
+
+/* CSS Buttons */
+
+/*---------------------------------------------------------------------------------------------- */
+/* tag_cloud.css
+------------------------------------------------------------------------------------------------ */
+
+.tag {
+  margin:0 0 4px 0;
+}
+
+.css1.tagbutton {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background-position:0 -272px;
+  background-position:0 -335px;
+}
+.css1.tagbutton>span {
+  color:@white;
+  text-shadow: #333 0 1px 1px;
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background-position:100% -272px;
+  background-position:100% -335px;
+}
+
+.css2.tagbutton {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background-position:0 -210px;
+}
+.css2.tagbutton>span {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background-position:100% -210px;
+}
+
+.css3.tagbutton {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background-position:0 -150px;
+}
+.css3.tagbutton>span {
+  color:@white;
+  text-shadow: #333 0 1px 1px;
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background-position:100% -150px;
+}
+
+.css4.tagbutton {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background-position:0 -90px;
+}
+.css4.tagbutton>span {
+  color:@white;
+  text-shadow: #333 0 1px 1px;
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background-position:100% -90px;
+}
+
+.tagbutton{
+  display:inline-block;
+  height:23px;
+  padding:0 0 0 3px;
+  font-size:11px;
+  font-weight:bold;
+  color:#333;
+  text-shadow:1px 1px 1px #fff;
+  border: solid 1px @gray-70;
+  white-space:nowrap;
+  border:none;
+  overflow:visible;
+  cursor:pointer;
+  text-decoration:none;
+}
+
+.tagbutton>span{
+  display:block;
+  height:23px;
+  padding:0 10px 0 8px;
+  line-height:23px;
+}
+
+.tagbutton.current,
+.tagbutton:hover{
+  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 0 0 no-repeat;
+  color:#fff;
+  text-decoration:none;
+  text-shadow:none;
+  background-position:0 -30px;
+}
+.tagbutton.current>span,
+.tagbutton:hover>span{
+  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 100% 0 no-repeat;
+  background-position:100% -30px;
+}
+.tagbutton.mousedown{
+  background-position:0 -60px;
+}
+.tagbutton.mousedown>span{background-position:100% -60px;}
+.tagbutton.danger.mousedown>span{background-position:100% -120px;}
+
+
+
+
+
+
+
+
+
+
+
+/* Footer */

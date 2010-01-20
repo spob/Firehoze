@@ -2039,10 +2039,6 @@ div.lesson-tooltip {
   top: 48px;
 }
 .lesson-tooltip .content { margin: 10px 0 0 0; }
-.css1 { font-size: 1em; }
-.css2 { font-size: 1.2em; }
-.css3 { font-size: 1.4em; }
-.css4 { font-size: 1.6em; }
 .fh-form ol {
   list-style: none;
   margin: 0;
@@ -2719,7 +2715,7 @@ div#user-stats-container ul {
   font-weight: bold;
   color: #333333;
   text-shadow: 1px 1px 1px #ffffff;
-  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 0 0 no-repeat;
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
   white-space: nowrap;
   border: none;
   overflow: visible;
@@ -2734,7 +2730,19 @@ button.minibutton::-moz-focus-inner { margin: -1px -3px; }
   height: 23px;
   padding: 0 10px 0 8px;
   line-height: 23px;
-  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 100% 0 no-repeat;
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+}
+.call-to-action.minibutton {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background-position: 0 -272px;
+  background-position: 0 -335px;
+}
+.call-to-action.minibutton > span {
+  color: #ffffff;
+  text-shadow: #333333 0 1px 1px;
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background-position: 100% -272px;
+  background-position: 100% -335px;
 }
 .minibutton:hover {
   color: #ffffff;
@@ -2756,3 +2764,90 @@ button.minibutton::-moz-focus-inner { margin: -1px -3px; }
   background-position: 0 -30px;
 }
 .minibutton.current > span { background-position: 100% -30px; }
+.tag { margin: 0 0 4px 0; }
+.css1.tagbutton {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background-position: 0 -272px;
+  background-position: 0 -335px;
+}
+.css1.tagbutton > span {
+  color: #ffffff;
+  text-shadow: #333333 0 1px 1px;
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background-position: 100% -272px;
+  background-position: 100% -335px;
+}
+.css2.tagbutton {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background-position: 0 -210px;
+}
+.css2.tagbutton > span {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background-position: 100% -210px;
+}
+.css3.tagbutton {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background-position: 0 -150px;
+}
+.css3.tagbutton > span {
+  color: #ffffff;
+  text-shadow: #333333 0 1px 1px;
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background-position: 100% -150px;
+}
+.css4.tagbutton {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background-position: 0 -90px;
+}
+.css4.tagbutton > span {
+  color: #ffffff;
+  text-shadow: #333333 0 1px 1px;
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background-position: 100% -90px;
+}
+.tagbutton {
+  display: inline-block;
+  height: 23px;
+  padding: 0 0 0 3px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #333333;
+  text-shadow: 1px 1px 1px #ffffff;
+  border: solid 1px #a9a9a9;
+  white-space: nowrap;
+  border: none;
+  overflow: visible;
+  cursor: pointer;
+  text-decoration: none;
+}
+.tagbutton > span {
+  display: block;
+  height: 23px;
+  padding: 0 10px 0 8px;
+  line-height: 23px;
+}
+.tagbutton.current {
+  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 0 0 no-repeat;
+  color: #ffffff;
+  text-decoration: none;
+  text-shadow: none;
+  background-position: 0 -30px;
+}
+.tagbutton:hover {
+  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 0 0 no-repeat;
+  color: #ffffff;
+  text-decoration: none;
+  text-shadow: none;
+  background-position: 0 -30px;
+}
+.tagbutton.current > span {
+  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 100% 0 no-repeat;
+  background-position: 100% -30px;
+}
+.tagbutton:hover > span {
+  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 100% 0 no-repeat;
+  background-position: 100% -30px;
+}
+.tagbutton.mousedown { background-position: 0 -60px; }
+.tagbutton.mousedown > span { background-position: 100% -60px; }
+.tagbutton.danger.mousedown > span { background-position: 100% -120px; }
