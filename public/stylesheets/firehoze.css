@@ -280,8 +280,8 @@ ul.admin li.selected.first a { padding-left: 0px; }
   height: 320px;
   background-image: url('/stylesheets/images/footer/footer-bg-tile-tall.png');
 }
-#footer { color: #999999; }
-#footer a { color: #999999; }
+#footer { color: #a9a9a9; }
+#footer a { color: #a9a9a9; }
 #footer .content {
   height: 320px;
   background-image: url('/stylesheets/images/footer/footer-watermark.png');
@@ -301,6 +301,81 @@ ul.admin li.selected.first a { padding-left: 0px; }
   position: absolute;
   top: 45%;
 }
+div#footer h4 {
+  font-variant: small-caps;
+  font-size: 22px;
+  text-shadow: #000000 0 1px 1px;
+  padding: 0;
+  margin-bottom: 0.7em;
+  color: #9e9e9e;
+  font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
+}
+table.quick-links {
+  padding: 0;
+  background: transparent !important;
+  border: 0 none;
+  font-variant: small-caps;
+  font-size: 16px;
+  text-shadow: #000000 0 1px 1px;
+}
+table.quick-links tr {
+  padding: 0;
+  background: transparent !important;
+  border: 0 none;
+  font-variant: small-caps;
+  font-size: 16px;
+  text-shadow: #000000 0 1px 1px;
+}
+table.quick-links td {
+  padding: 0;
+  background: transparent !important;
+  border: 0 none;
+  font-variant: small-caps;
+  font-size: 16px;
+  text-shadow: #000000 0 1px 1px;
+}
+table.quick-links td.icon {
+  text-align: center;
+  padding: 0;
+}
+#footer blockquote {
+  padding: 0;
+  margin: 2.9em 0 0 2em;
+  width: 320px;
+}
+.bqstart {
+  float: left;
+  height: 45px;
+  margin: -40px 0 -50px -40px;
+  padding: 40px 0 0 0;
+  font-size: 700%;
+}
+.bqend {
+  float: right;
+  height: 25px;
+  margin-top: 0px;
+  padding-top: 45px;
+  font-size: 700%;
+}
+#footer .middle { position: relative; }
+div.bordered {
+  position: absolute;
+  width: 0px;
+  height: 234px;
+  border-left: solid 1px #4a4a4a;
+  border-right: solid 1px #212121;
+  padding: 0;
+  margin: 0;
+}
+div.bordered.left {
+  top: -18px;
+  left: -26px;
+}
+div.bordered.right {
+  top: -18px;
+  right: -6px;
+}
+div#footer div.in-touch > div { margin: 0 0 3em 0; }
 .flash {
   text-align: left;
   display: none;
