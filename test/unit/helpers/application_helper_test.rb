@@ -47,7 +47,7 @@ END
     setup do
       @raw_text = "this *is* link http://www.google.com _yes_!"
       @formatted_raw_text =
-"<p>this <b>is</b> link <a href=\"http://www.google.com\">http://www.google.com</a> <i>yes</i>!</p>"
+"<p>this <b>is</b> link <a href=\"http://www.google.com\" target=\"_blank\">http://www.google.com</a> <i>yes</i>!</p>"
     end
 
     should 'bulletize text' do
