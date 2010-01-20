@@ -314,29 +314,25 @@ table.quick-links {
   padding: 0;
   background: transparent !important;
   border: 0 none;
-  font-variant: small-caps;
-  font-size: 16px;
-  text-shadow: #000000 0 1px 1px;
 }
 table.quick-links tr {
   padding: 0;
   background: transparent !important;
   border: 0 none;
-  font-variant: small-caps;
-  font-size: 16px;
-  text-shadow: #000000 0 1px 1px;
 }
 table.quick-links td {
   padding: 0;
   background: transparent !important;
   border: 0 none;
+}
+table.quick-links, a.quick-links {
   font-variant: small-caps;
   font-size: 16px;
   text-shadow: #000000 0 1px 1px;
 }
 table.quick-links td.icon {
   text-align: center;
-  padding: 0;
+  padding: 4px 0;
 }
 #footer blockquote {
   padding: 0;
