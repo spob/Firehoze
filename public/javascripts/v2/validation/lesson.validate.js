@@ -41,7 +41,7 @@ $(document).ready(function() {
         counter: '#lesson_synopsis_counter',
         countType: 'characters',
         maxCount: 500,
-        strictMax: false,
+        strictMax: true,
         countDirection: 'down'
     });
 });
