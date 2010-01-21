@@ -50,18 +50,14 @@ a.no-border:hover { border: 0 none; }
 .append-top-half-gutter { margin-top: 17px; }
 .append-bottom { margin-bottom: 34px; }
 .hidden { display: none; }
-
 .pr-10 { padding-right: 10px; }
 .pl-10 { padding-left: 10px; }
 .mr-10 { margin-right: 10px; }
 .ml-10 { margin-left: 10px; }
-
 .pt-1em { padding-top: 1em; }
 .pb-1em { padding-bottom: 1em; }
 .mt-1em { margin-top: 1em; }
 .mb-1em { margin-bottom: 1em; }
-
-
 .transparent {
   filter: alpha(opacity=50);
   -moz-opacity: 0.5;
