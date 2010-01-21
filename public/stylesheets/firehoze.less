@@ -1,5 +1,6 @@
 @import "shared/colors";
 @import "shared/corners";
+@import "shared/fonts";
 
 
 /*---------------------------------------------------------------------------------------------- */
@@ -23,7 +24,7 @@ a:hover, a:active {
 
 body {
   background-color:@gray-10;
-  font: 12px/18px "Lucida Grande", Verdana, sans-serif;
+  font: 12px/18px @lucida;
   color: @charcoal-20;
 }
 
@@ -33,7 +34,7 @@ div {
 }
 
 /* psuedo-header classes */
-.h1,.h2,.h3,.h4,.h5,.h6 { font-family: "Helvetica Neue", helvetica, Arial, sans-serif; font-weight: normal; }
+.h1,.h2,.h3,.h4,.h5,.h6 { font-family: @helvetica; font-weight: normal; }
 .h1 { font-size: 3em; line-height: 1; margin-bottom: 0.5em; }
 .h2 { font-size: 2em; margin-bottom: 0.75em; }
 .h3 { font-size: 1.5em; line-height: 1; margin-bottom: 1em; font-weight:bold; }
@@ -41,7 +42,7 @@ div {
 
 
 h3 {
-  font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
+  font-family: @helvetica;
   font-weight:bold;
   font-size:1.5em;
   color:@dark-blue-10;
@@ -91,7 +92,7 @@ ul.inline li  {
 
 .box-header {
   .rounded_top_corners(5px);
-  font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
+  font-family: @helvetica;
   font-weight: bold;
   font-size: 1.5em;
   color:@dark-blue-10;
@@ -244,7 +245,7 @@ h4.banner  {
   z-index:20;
   position:relative;
   height: 40px;
-  font: bold 13px/36px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: bold 13px/36px @helvetica;
   text-transform: lowercase;
   width:980px;
   margin-left: auto;
@@ -344,13 +345,13 @@ ul.admin li.selected.first a,
 }
 
 div#footer h4 {
+  .text-shadow;
   font-variant: small-caps;
   font-size:22px;
-  text-shadow: @black 0 1px 1px;
   padding:0;
   margin-bottom: 0.7em;
   color: @gray-80;
-  font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
+  font-family: @helvetica;
 }
 
 table.quick-links,table.quick-links tr, table.quick-links td {
@@ -363,7 +364,7 @@ table.quick-links,
 a.quick-links {
   font-variant: small-caps;
   font-size:16px;
-  text-shadow: @black 0 1px 1px;
+  .text-shadow;
 }
 
 table.quick-links td.icon {
@@ -516,7 +517,7 @@ div.review #stars {
 
 /* BREADCRUMB */
 #breadcrumb {
-  font: 12px Arial, Helvetica, sans-serif;
+  font: 12px @arial;
   height:30px;
   line-height:30px;
   color:@gray-80;
@@ -788,7 +789,7 @@ div.comment-container div.count {
   top:7px;
   right:7px;
   font-size:28px;
-  font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+  font-family: @helvetica;
 }
 
 .info {
@@ -896,9 +897,9 @@ div.rounded-bluebox {
 #top-navigation {
   float: right;
   margin: 8px 0 0 0;
-  font: bold 13px/30px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: bold 13px/30px @helvetica;
   text-transform: lowercase;
-  text-shadow: @white 0 1px 1px;
+  .text-shadow(@white);
 }
 
 #top-navigation li {
@@ -1048,7 +1049,7 @@ ul#top-navigation li span.subhover {
 /*--Hover effect for trigger--*/
 ul#top-navigation li ul.subnav {
   .rounded_bottom_corners(6px);
-  font: normal 13px/30px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: normal 13px/30px @helvetica;
   text-shadow: none;
   list-style: none;
   position: absolute; /*--Important - Keeps subnav from affecting main navigation flow--*/
@@ -1091,7 +1092,7 @@ html ul#top-navigation li ul.subnav li a:hover {
 /* Site-wide Table styles */
 
 
-table, td { font:100% Arial, Helvetica, sans-serif; background:@white;}
+table, td { font:100% @arial; background:@white;}
 table { 
   width:100%;
   border-top: solid 1px @medium-gray;
@@ -1105,11 +1106,9 @@ th, td {
   padding:.5em;
 }
 th {
-  text-shadow: @charcoal-20 0 1px 1px;
   background-color:@light-blue-30;
   border-bottom: double @medium-gray;
   color: @dark-blue-10;
-  text-shadow: none;
 }
 
 tr.sum {
@@ -1434,7 +1433,7 @@ ul.top-level-navigation li.current  {
 }
 
 ul.top-level-navigation li.current a {
-  text-shadow: @gray-100 0 1px 1px;
+  .text-shadow(@gray-100);
   font-weight:bold;
   color: @white;
 }
@@ -1491,12 +1490,12 @@ div.widget-box {
   background-color: @white;
 }
 div.widget-box-header {
+  .text-shadow(@gray-80);
   position: relative;
   margin:0;
   padding:12px;
   border-bottom: solid 1px @gray-40;
   z-index: 1;
-  text-shadow: @gray-80 0 1px 1px;
   background: url(images/backgrounds/widget-box-header-tile.png) repeat-x bottom center;
 }
 .widget-box-header img.loader {
@@ -1640,7 +1639,7 @@ div#category-show div.lessons-container {
   background: url('/stylesheets/images/backgrounds/image_holder.png') no-repeat scroll 0 0;
   width:168px;
   height:168px;
-  font: 11px Arial, Helvetica, sans-serif;
+  font: 11px @arial;
   color: @gray-80;
 }
 div#group-details-tabs .small-lesson-container,
@@ -1730,7 +1729,7 @@ position:relative;
   margin:0;
   padding:0;
   font-size: 12px;
-  font-family: "Helvetica", "Arial", sans-serif;
+  font-family: @helvetica;
 }
 
 .blue-box ol,
@@ -1769,7 +1768,7 @@ position:relative;
 }
 
 .blue-box .header h4 {
-  font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
+  font-family: @helvetica;
   font-size:12px;
   color:@dark-blue-10;
   margin-left:84px;
@@ -2165,10 +2164,10 @@ div.lesson-notes ul#attachments {
 }
 
 div.widget-box-content h3 {
+  .text-shadow(rgba(0,0,0,.3));
   margin:0 0 0.5em 0;
   color:@dark-blue-10;
   line-height:2em;
-  text-shadow: 1px 1px 1px rgba(0,0,0,.3);
 }
 
 div#bought-this-video-also-bought h3 {
@@ -2505,7 +2504,7 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
   margin:0;
   padding:0;
   font-size: 12px;
-  font-family: "Helvetica", "Arial", sans-serif;
+  font-family: @helvetica;
 }
 
 .fh-form label {
@@ -2604,7 +2603,7 @@ div.tab-container div.panes div.fh-form ul.section li {
 }
 
 .fh-form h4 {
-  font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
+  font-family: @helvetica;
   font-size:12px;
   color:@dark-blue-20;
   margin-left:82px;
@@ -2852,6 +2851,7 @@ div.radio span input {
 
 div.selector {
   .rounded_corners;
+  .text-shadow(@white);
   display: block;
   width: 340px;
   border: solid 1px @gray-30;
@@ -2859,7 +2859,6 @@ div.selector {
   background: @gray-30 url(images/forms/bg.png) repeat-x left 12px;
   line-height: 22px;
   margin-top: 3px;
-  text-shadow: 0 1px 0 @white;
   height: 22px;
   color: @charcoal-10;
   margin-left:175px;
@@ -2867,7 +2866,7 @@ div.selector {
 
 div.selector select {
   width: 340px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: @helvetica;
 }
 
 div.selector.focus {
@@ -2962,7 +2961,7 @@ span.valid {
   font-size: 14px;
   margin: -7px;
   color: @off-white;
-  text-shadow: @charcoal-20 2px 2px 1px;
+  .text-shadow(@charcoal-20);
 }
 
 #errorExplanation p {
@@ -3257,16 +3256,14 @@ background-color: @gray-10;
 /* buttons.css
 ------------------------------------------------------------------------------------------------ */
 .minibutton{
+  .text-shadow(@white);
   display:inline-block;
   height:23px;
   padding:0 0 0 3px;
   font-size:11px;
   font-weight:bold;
   color:@charcoal-20;
-  text-shadow:1px 1px 1px @white;
   background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
-
-
   white-space:nowrap;
   border:none;
   overflow:visible;
@@ -3293,7 +3290,7 @@ button.minibutton::-moz-focus-inner{margin:-1px -3px;}
 }
 .call-to-action.minibutton>span {
   color:@white;
-  text-shadow: @charcoal-20 0 1px 1px;
+  .text-shadow(@charcoal-20);
   background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
   background-position:100% -272px;
   background-position:100% -335px;
@@ -3329,7 +3326,7 @@ button.minibutton::-moz-focus-inner{margin:-1px -3px;}
 }
 .css1.tagbutton>span {
   color:@white;
-  text-shadow: @charcoal-20 0 1px 1px;
+  .text-shadow(@charcoal-20);
   background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
   background-position:100% -272px;
   background-position:100% -335px;
@@ -3350,7 +3347,7 @@ button.minibutton::-moz-focus-inner{margin:-1px -3px;}
 }
 .css3.tagbutton>span {
   color:@white;
-  text-shadow: @charcoal-20 0 1px 1px;
+  .text-shadow(@charcoal-20);
   background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
   background-position:100% -150px;
 }
@@ -3361,7 +3358,7 @@ button.minibutton::-moz-focus-inner{margin:-1px -3px;}
 }
 .css4.tagbutton>span {
   color:@white;
-  text-shadow: @charcoal-20 0 1px 1px;
+  .text-shadow(@charcoal-20);
   background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
   background-position:100% -90px;
 }
@@ -3373,7 +3370,7 @@ button.minibutton::-moz-focus-inner{margin:-1px -3px;}
   font-size:11px;
   font-weight:bold;
   color:@charcoal-20;
-  text-shadow:1px 1px 1px @white;
+  .text-shadow(@white);
   border: solid 1px @gray-70;
   white-space:nowrap;
   border:none;

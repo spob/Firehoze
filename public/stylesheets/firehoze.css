@@ -17,7 +17,7 @@ body {
   color: #2b2b2b;
 }
 .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
   font-weight: normal;
 }
 .h1 {
@@ -41,7 +41,7 @@ body {
   margin-bottom: 1.25em;
 }
 h3 {
-  font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
   font-weight: bold;
   font-size: 1.5em;
   color: #17587f;
@@ -77,7 +77,7 @@ ul.inline li { display: inline; }
   -webkit-border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
   font-weight: bold;
   font-size: 1.5em;
   color: #17587f;
@@ -222,7 +222,7 @@ h4.banner {
   z-index: 20;
   position: relative;
   height: 40px;
-  font: bold 13px/36px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: bold 13px/36px "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
   text-transform: lowercase;
   width: 980px;
   margin-left: auto;
@@ -312,13 +312,13 @@ ul.admin li.selected.first a { padding-left: 0px; }
   top: 45%;
 }
 div#footer h4 {
+  text-shadow: #000000 0 1px 1px;
   font-variant: small-caps;
   font-size: 22px;
-  text-shadow: #000000 0 1px 1px;
   padding: 0;
   margin-bottom: 0.7em;
   color: #9e9e9e;
-  font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
 }
 table.quick-links {
   padding: 0;
@@ -765,7 +765,7 @@ div.rounded-bluebox {
 #top-navigation {
   float: right;
   margin: 8px 0 0 0;
-  font: bold 13px/30px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: bold 13px/30px "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
   text-transform: lowercase;
   text-shadow: #ffffff 0 1px 1px;
 }
@@ -893,7 +893,7 @@ ul#top-navigation li ul.subnav {
   -webkit-border-bottom-right-radius: 6px;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
-  font: normal 13px/30px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: normal 13px/30px "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
   text-shadow: none;
   list-style: none;
   position: absolute;
@@ -939,11 +939,9 @@ th, td {
   padding: 0.5em;
 }
 th {
-  text-shadow: #2b2b2b 0 1px 1px;
   background-color: #e3e9f2;
   border-bottom: double #a8a8a8;
   color: #17587f;
-  text-shadow: none;
 }
 tr.sum { border-top: double #a8a8a8; }
 tr.even td { background: #ffffff; }
@@ -1233,12 +1231,12 @@ div.widget-box {
   background-color: #ffffff;
 }
 div.widget-box-header {
+  text-shadow: #9e9e9e 0 1px 1px;
   position: relative;
   margin: 0;
   padding: 12px;
   border-bottom: solid 1px #cccccc;
   z-index: 1;
-  text-shadow: #9e9e9e 0 1px 1px;
   background: url(images/backgrounds/widget-box-header-tile.png) repeat-x bottom center;
 }
 .widget-box-header img.loader {
@@ -1410,7 +1408,7 @@ div.duration {
   margin: 0;
   padding: 0;
   font-size: 12px;
-  font-family: "Helvetica", "Arial", sans-serif;
+  font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
 }
 .blue-box ol {
   list-style: none;
@@ -1446,7 +1444,7 @@ div.duration {
 }
 .blue-box .header h3 { margin: 8px 0 6px 84px; }
 .blue-box .header h4 {
-  font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
   font-size: 12px;
   color: #17587f;
   margin-left: 84px;
@@ -1758,10 +1756,10 @@ div.lesson-notes ul#attachments {
   list-style-type: none;
 }
 div.widget-box-content h3 {
+  text-shadow: rgba(0, 0, 0, 0.3) 0 1px 1px;
   margin: 0 0 0.5em 0;
   color: #17587f;
   line-height: 2em;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 div#bought-this-video-also-bought h3 {
   background: transparent url(images/icons/buy-also_32.png) no-repeat;
@@ -2068,7 +2066,7 @@ div.lesson-tooltip {
   margin: 0;
   padding: 0;
   font-size: 12px;
-  font-family: "Helvetica", "Arial", sans-serif;
+  font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
 }
 .fh-form label {
   font-size: 13px;
@@ -2182,7 +2180,7 @@ div.tab-container div.panes div.fh-form ul.section li.bottom { background-color:
 div.tab-container div.panes div.fh-form ul.section li { background-color: #f1f7fe; }
 .fh-form h3 { margin: 8px 0 6px 82px; }
 .fh-form h4 {
-  font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
   font-size: 12px;
   color: #29384c;
   margin-left: 82px;
@@ -2395,6 +2393,7 @@ div.selector {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
+  text-shadow: #ffffff 0 1px 1px;
   display: block;
   width: 340px;
   border: solid 1px #d6d6d6;
@@ -2402,14 +2401,13 @@ div.selector {
   background: #d6d6d6 url(images/forms/bg.png) repeat-x left 12px;
   line-height: 22px;
   margin-top: 3px;
-  text-shadow: 0 1px 0 #ffffff;
   height: 22px;
   color: #4a4a4a;
   margin-left: 175px;
 }
 div.selector select {
   width: 340px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
 }
 div.selector.focus { border-color: #9e9e9e; }
 div.selector span {
@@ -2491,7 +2489,7 @@ span.valid {
   font-size: 14px;
   margin: -7px;
   color: #f2f2f2;
-  text-shadow: #2b2b2b 2px 2px 1px;
+  text-shadow: #2b2b2b 0 1px 1px;
 }
 #errorExplanation p {
   font-size: 12px;
@@ -2725,13 +2723,13 @@ div#user-stats-container ul {
   border: 0;
 }
 .minibutton {
+  text-shadow: #ffffff 0 1px 1px;
   display: inline-block;
   height: 23px;
   padding: 0 0 0 3px;
   font-size: 11px;
   font-weight: bold;
   color: #2b2b2b;
-  text-shadow: 1px 1px 1px #ffffff;
   background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
   white-space: nowrap;
   border: none;
@@ -2829,7 +2827,7 @@ button.minibutton::-moz-focus-inner { margin: -1px -3px; }
   font-size: 11px;
   font-weight: bold;
   color: #2b2b2b;
-  text-shadow: 1px 1px 1px #ffffff;
+  text-shadow: #ffffff 0 1px 1px;
   border: solid 1px #a9a9a9;
   white-space: nowrap;
   border: none;
