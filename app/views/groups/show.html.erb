@@ -1,4 +1,4 @@
-<% title "Group #{h @group.name}" -%>
+<% title "Group / #{h @group.name}" -%>
 <% @current = 'groups' %>
 
 <%= render :partial => "categories/breadcrumbs", :object => @group.category, :locals => { :mode => "groups" } %>
@@ -8,7 +8,7 @@
   <div id="group-container" class="blue-box-medium">
     <div id="group-logo"><%= logo_tag @group, :size => :medium %></div>
     <div id="description">
-      <h3>Group <%= h @group.name %></h3>
+      <h3>Group: <%= h @group.name %></h3>
       <ul>
         <li><%= link_to_profile(@group.owner) %>&mdash;Owner</li>
         <li class="description"><%= h @group.description %></li>
