@@ -106,73 +106,8 @@
 
 <div id="shadowbox-bottom"></div>
 
-<!-- Start footer -->
-<div id="footer">
-  <div class="container">
-    <div class="span-12 last content">
-      <div id="upper">
-        <div class="prepend-top">
-          <!-- Three Columns -->
-          <div class="clear span-3">
-            <h4>Quick Links</h4>
-            <table class="quick-links">
-              <tr>  
-                <td class="icon"><%= link_to image_tag('/images/icons/48-new-orange.png', :alt => "Newest Lessons"), list_lessons_path(:collection => 'newest') %></td>
-                <td><%= link_to "Newest Lessons", list_lessons_path(:collection => 'newest') %></td>
-              </tr>
-              <tr>
-                <td class="icon"><%= link_to image_tag('/images/icons/32-star.png', :alt => "Highest Rated Lessons"), list_lessons_path(:collection => 'highest_rated') %></td>
-                <td><%= link_to "Highest Rated", list_lessons_path(:collection => 'highest_rated') %></td>
-              </tr>
-              <tr>
-                <td class="icon"><%= link_to image_tag('/images/icons/32-popular.png', :alt => "Most Popular"), list_lessons_path(:collection => 'most_popular') %></td>
-                <td><%= link_to "Most Popular", list_lessons_path(:collection => 'most_popular') %></td>
-              </tr>
-            </table>
-          </div>
-          <div class="span-5 middle">
-            <div class="bordered left"></div>
-            <h4>What People are Saying</h4>
-            <blockquote><span class="bqstart">&#8220;</span>The only thing that interferes with my learning is my education. Education is what remains after one has forgotten everything he learned in school. &mdash;Albert Einstein<span class="bqend">&#8221;</span></blockquote>
-            <div class="bordered right"></div>
-          </div>
-          <div class="span-4 last in-touch">
-            <div>
-              <h4>Stay in Touch</h4>
-              <%= link_to image_tag('/images/icons/48-twitter.png', :alt => "Follow Us on Twitter"), "http://www.twitter.com/firehoze" %>
-              <%= link_to image_tag('/images/icons/48-facebook.png', :alt => "Became a Fan"), "http://www.facebook.com/pages/Firehoze/138841701802" %>
-              <!--<%= link_to image_tag('/images/icons/48-feed.png', :alt => "Subscribe to our RSS Feed"), "#" %>-->
-            </div>
-            <div>
-              <h4>Feedback</h4>
-              <%= link_to image_tag('/images/icons/126-get-satifaction.png', :alt => "Get Satisfaction"), "http://getsatisfaction.com/firehoze/products/firehoze_firehoze_website" %>
-            </div>  
-
-          </div>
-        </div>
-      </div>
-      <!--End upper -->
-
-      <div id="lower">
-        <div id="inner">
-          <%= link_to_unless_current "About Firehoze", page_path("about") %> |
-          <a href="javascript:location='mailto:\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d';void 0">Contact
-            Us</a> |
-            <%= link_to_unless_current "Help Center", page_path("help_center") %> |
-            <%= link_to_unless_current "FAQs", page_path("faqs") %> |
-            <%= link_to_unless_current "Policies", page_path("policies") %> |
-            &copy; 2009-2010 Firehoze, Inc (<%= FirehozeVersion::VERSION %>)
-          </div>
-        </div>
-        <!--end lower -->
-      </div>
-      <!--end content -->
-    </div>
-    <!--end container -->
-  </div>
-  <!--end footer -->
-
-  <%= render "shared/google_analytics" -%>
-  <%= render "shared/get_satifisfaction" unless  controller.controller_name == "pages" and params[:id] == 'help_center' -%>
+<%= render :partial => 'shared/footer' %>
+<%= render "shared/google_analytics" -%>
+<%= render "shared/get_satifisfaction" unless  controller.controller_name == "pages" and params[:id] == 'help_center' -%>
 </body>
 </html>
