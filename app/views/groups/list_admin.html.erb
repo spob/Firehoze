@@ -2,7 +2,7 @@
 <% @current = 'groups' %>
 
 <h3>Groups</h3>
-<p><%= link_to("New Group", new_group_path, :class => :rounded) %></p>
+<p><%= link_to(content_tag(:span, 'New Group'), new_group_path, :class => :minibutton) %></p>
 <div class="span-12 search-box-container">
   <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
   <div class="span-4 right">
@@ -47,4 +47,4 @@
 </div>
 
 <p><%= will_paginate @groups %></p>
-<p>Rows to Display Per Page: <%= per_page_select(list_admin_groups_path) %></p>
+<p style='margin-top:20px'>Rows to Display Per Page: <%= per_page_select(list_admin_groups_path) %></p>

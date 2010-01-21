@@ -3,10 +3,10 @@
 <h3>Buy Download Credits</h3>
 
 <ul class="bulletless inline buy-credits">
-  <li><%= link_to "#{pluralize(APP_CONFIG['min_credit_purchase'].to_i, 'Credit')}", line_items_path(:sku => CreditSku.find_by_sku(CREDIT_SKU).try(:sku), :quantity => APP_CONFIG['min_credit_purchase']), :method => :post, :class => :rounded %></li>
-  <li><%= link_to "#{pluralize(APP_CONFIG['min_credit_purchase'].to_i * 2, 'Credit')}", line_items_path(:sku => CreditSku.find_by_sku(CREDIT_SKU).try(:sku), :quantity => APP_CONFIG['min_credit_purchase'].to_i * 2), :method => :post, :class => :rounded %></li>
-  <li><%= link_to "Gift Certificate", line_items_path(:sku => GiftCertificateSku.find_by_sku(GIFT_CERTIFICATE_SKU).try(:sku), :quantity => APP_CONFIG['min_credit_purchase'].to_i), :method => :post, :class => :rounded %></li>
+  <li><%= link_to content_tag(:span, "#{pluralize(APP_CONFIG['min_credit_purchase'].to_i, 'Credit')}"), line_items_path(:sku => CreditSku.find_by_sku(CREDIT_SKU).try(:sku), :quantity => APP_CONFIG['min_credit_purchase']), :method => :post, :class => :minibutton %></li>
+  <li><%= link_to content_tag(:span, "#{pluralize(APP_CONFIG['min_credit_purchase'].to_i * 2, 'Credit')}"), line_items_path(:sku => CreditSku.find_by_sku(CREDIT_SKU).try(:sku), :quantity => APP_CONFIG['min_credit_purchase'].to_i * 2), :method => :post, :class => :minibutton %></li>
+  <li><%= link_to content_tag(:span, "Gift Certificate"), line_items_path(:sku => GiftCertificateSku.find_by_sku(GIFT_CERTIFICATE_SKU).try(:sku), :quantity => APP_CONFIG['min_credit_purchase'].to_i), :method => :post, :class => :minibutton %></li>
 </ul>
 
 <h3>Redeem</h3>
-<p><%= link_to "Gift Certificate", new_gift_certificate_path, :class => :rounded %></p>
+<p><%= link_to content_tag(:span, "Gift Certificate"), new_gift_certificate_path, :class => :minibutton %></p>

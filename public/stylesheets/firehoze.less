@@ -882,13 +882,15 @@ div.comment-container div.count {
   padding-right:16em;
 }
 
-.with-button a.rounded {
+.with-button a.rounded, 
+.with-button a.minibutton {
   z-index:100;
   position:absolute;
-  top:1.5em;
-  right:1em;
   margin:0;
 }
+
+.with-button a.rounded { top:1.5em; right:1em; }
+.with-button a.minibutton { top:1em; right:1em; }
 
 /* ADMIN */
 .search-box-container {
@@ -2805,6 +2807,7 @@ div.tab-container div.panes div.fh-form ul.section li {
   font-size:12px;
   color:#011934;
   margin-left:82px;
+  line-height:2em;
 }
 .fh-form ul.section li {
   background-color:@light-blue;

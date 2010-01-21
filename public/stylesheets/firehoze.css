@@ -708,9 +708,20 @@ div.comment-container div.count {
 .with-button a.rounded {
   z-index: 100;
   position: absolute;
+  margin: 0;
+}
+.with-button a.minibutton {
+  z-index: 100;
+  position: absolute;
+  margin: 0;
+}
+.with-button a.rounded {
   top: 1.5em;
   right: 1em;
-  margin: 0;
+}
+.with-button a.minibutton {
+  top: 1em;
+  right: 1em;
 }
 .search-box-container {
   border: solid 1px #cccccc;
@@ -2247,6 +2258,7 @@ div.tab-container div.panes div.fh-form ul.section li { background-color: #f1f7f
   font-size: 12px;
   color: #011934;
   margin-left: 82px;
+  line-height: 2em;
 }
 .fh-form ul.section li {
   background-color: #e3e9f2;

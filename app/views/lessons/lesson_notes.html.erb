@@ -7,7 +7,7 @@
       <div class="info with-button">
         <em>You might consider adding notes and attachments to this lesson.</em><br />
         Notes and attachments are a great way to provide additional information for your students, such as supplemental materials, times within the video when specific topics are addressed, clarifications, or links to other lessons or sits that users might consider visiting for additional information.
-        <%= link_to 'Edit Lesson', edit_lesson_path(@lesson), :class => :rounded %>
+        <%= link_to content_tag(:span, 'Edit Lesson'), edit_lesson_path(@lesson), :class => :minibutton %>
       </div>
     </div>
   <% else @lesson.notes.present? %>

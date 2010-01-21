@@ -5,9 +5,9 @@ module UsersHelper
   def follow_link user, current_user
     if current_user
       if user.followed_by?(current_user)
-        link_to("Stop Following", instructor_follow_path(user), :method => :delete, :class => :rounded)
+        link_to(content_tag(:span, "Stop Following"), instructor_follow_path(user), :method => :delete, :class => :minibutton)
       elsif user.verified_instructor? and user != current_user
-        link_to("Follow this instructor", instructor_follows_path(:id => user), :method => :post, :class => :rounded)
+        link_to(content_tag(:span, "Follow this instructor"), instructor_follows_path(:id => user), :method => :post, :class => :minibutton)
       end
     end
   end

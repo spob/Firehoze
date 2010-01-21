@@ -4,8 +4,8 @@
 <div id="topic-comments-container">
   <div id="actions">
     <% if current_user %>
-      <%= link_to "Add a Comment", new_topic_topic_comment_path(@topic), :class => :rounded %>
-      <%= link_to "Edit", edit_topic_path(@topic), :class => :rounded %>
+      <%= link_to content_tag(:span, "Add a Comment"), new_topic_topic_comment_path(@topic), :class => :minibutton %>
+      <%= link_to content_tag(:span, "Edit"), edit_topic_path(@topic), :class => :minibutton %>
     <% else %>
       You must <%= link_to "login", login_path %> or <%= link_to "register", new_registration_path %> to post a reply
     <% end %>

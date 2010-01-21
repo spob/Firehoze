@@ -2,7 +2,7 @@
 <% @current = 'skus' %>
 
 <h3>SKUs</h3>
-<p><%= link_to("New SKU", new_sku_path, :class => :rounded) if current_user.is_admin? %></p>
+<p><%= link_to(content_tag(:span, 'New SKU'), new_sku_path, :class => :minibutton) if current_user.is_admin? %></p>
 <table>
   <tr>
     <th>SKU</th>

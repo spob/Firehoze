@@ -2,7 +2,7 @@
 <% @current = 'categories' %>
 
 <h3>Categories</h3>
-<p><%= link_to("Explode Categories", explode_categories_path, :method => :post, :class => :rounded) %></p>
+<p><%= link_to(content_tag(:span, 'Explode Categories'), explode_categories_path, :method => :post, :class => :minibutton) %></p>
 <%= error_messages_for 'category' %>
 <table>
   <tr>

@@ -9,7 +9,7 @@ end
 %>
 
 <% if current_user and comment.can_edit? current_user %>
-  <%= link_to "Edit", path, :class => :rounded %>
+  <%= link_to content_tag(:span, "Edit"), path, :class => :minibutton %>
 <% end %>
 
 <%= flag_link comment %>

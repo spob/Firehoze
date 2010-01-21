@@ -8,10 +8,10 @@
 
       <div id="user-actions">
         <% if @user.can_contact? current_user %>
-            <%= link_to 'Contact This User', new_contact_user_path(:id => @user.id), :class => :rounded %>
+            <%= link_to content_tag(:span, 'Contact This User'), new_contact_user_path(:id => @user.id), :class => :minibutton %>
         <% end %>
         <% if @user.can_edit? current_user %>
-            <%= link_to "Edit", edit_user_path(@user), :class => :rounded %>
+            <%= link_to content_tag(:span, 'Edit'), edit_user_path(@user), :class => :minibutton %>
         <% end %>
         <%= flag_link @user %>
         <%= follow_link @user, current_user %>

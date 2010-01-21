@@ -2,7 +2,7 @@
 <% @current = 'giftcerts' %>
 
 <h3>Gift Certificates</h3>
-<p><%= link_to "Grant", new_grant_gift_certificate_path, :class => :rounded %></p>
+<p><%= link_to content_tag(:span, 'Grant'), new_grant_gift_certificate_path, :class => :minibutton %></p>
 <div class="span-12 search-box-container">
   <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
   <div class="span-7 right">

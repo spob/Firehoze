@@ -14,7 +14,7 @@ module GroupsHelper
 
   def show_invite_link(group, user)
     if group.private and (group.owned_by?(user) or group.moderated_by?(user))
-      link_to "Invite a User", new_group_invitation_path(:id => group), :class => :rounded
+      link_to content_tag(:span, "Invite a User"), new_group_invitation_path(:id => group), :class => :minibutton
     end
   end
 
@@ -36,7 +36,7 @@ module GroupsHelper
 
   def show_edit_link(group, user)
     if group.owned_by?(user)
-      link_to "Edit", edit_group_path(group), :class => :rounded
+      link_to content_tag(:span, "Edit"), edit_group_path(group), :class => :minibutton
     end
   end
 

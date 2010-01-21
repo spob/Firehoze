@@ -39,7 +39,7 @@
         <div class="notice">
           <p>This group is inactive because of inappropriate content. Please address this concern and notify the system administration if you think this group is ready to be re-activated.</p>
           <% if current_user.try(:is_moderator?) %>
-            <%= link_to('Reactivate?', activate_group_path(@group.id), html_options = {:method => :post, :confirm => 'Are you sure?', :class => rounded } )%>
+            <%= link_to(content_tag(:span, 'Reactivate?'), activate_group_path(@group.id), html_options = {:method => :post, :confirm => 'Are you sure?', :class => :minibutton } )%>
           <% end %>
         </div>
       <% end %>
