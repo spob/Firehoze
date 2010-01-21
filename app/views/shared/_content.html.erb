@@ -106,8 +106,8 @@
 
 <div id="shadowbox-bottom"></div>
 
-<%= render :partial => 'shared/footer' %>
-<%= render "shared/google_analytics" -%>
-<%= render "shared/get_satifisfaction" unless  controller.controller_name == "pages" and params[:id] == 'help_center' -%>
+<%= render :partial => 'shared/footer' unless admin %>
+<%= render "shared/google_analytics"  unless admin -%>
+<%= render "shared/get_satifisfaction" unless (admin or (controller.controller_name == "pages" and params[:id] == 'help_center')) -%>
 </body>
 </html>
