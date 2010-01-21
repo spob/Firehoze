@@ -1,6 +1,7 @@
 @import "shared/colors";
 @import "shared/corners";
 @import "shared/fonts";
+@import "shared/shadows";
 
 
 /*---------------------------------------------------------------------------------------------- */
@@ -738,9 +739,7 @@ div.commenter-avatar {
   padding: 3px;
   border: solid 1px @gray-80;
   background:@gray-40;
-  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  box-shadow: 0 1px 10px rgba(0,0,0,.3);
+  .box-shadow;
 }
 div.commenter-container div.commenter-avatar img.avatar {
   border: solid 1px @gray-80;
@@ -809,9 +808,7 @@ div.comment-container div.count {
   padding: 1em;
   background: @light-blue-30;
   min-height:2.6em;
-  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  .box-shadow;
 }
 
 .blue-box-pale {
@@ -878,9 +875,7 @@ div.rounded-shadowbox {
   .rounded_corners(5px);
   padding:17px;
   background-color:@white;
-  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  .box-shadow;
 }
 
 div.rounded-bluebox {
@@ -2101,9 +2096,7 @@ div#avatar-container {
   border: solid 1px @gray-80;
   background:@gray-40;
   width:62px;
-  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  box-shadow: 0 1px 10px rgba(0,0,0,.3);
+  .box-shadow;
 }
 
 div#tab-lesson-instructor img.avatar {
@@ -2152,9 +2145,7 @@ div#lesson-content-tabs div.panes div#interior-pane {
   min-height:266px;
   padding: 17px;
   background-color:@white;
-  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.2);
-  box-shadow: 0 1px 10px rgba(0,0,0,.3);
+  .box-shadow;
 }
 
 div.lesson-notes ul#attachments {
@@ -2201,9 +2192,7 @@ ul#what-do-students-ultimately-buy {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  box-shadow: 0 1px 10px rgba(0,0,0,.3);
+  .box-shadow;
 }
 
 ul#what-do-students-ultimately-buy li.lesson-container {
@@ -2226,9 +2215,7 @@ ul#what-do-students-ultimately-buy li img.lesson_tn {
   padding:3px;
   width: 100px;
   height: 75px; /* 4:3 aspect ratio */
-  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  box-shadow: 0 1px 10px rgba(0,0,0,.3);
+  .box-shadow;
 }
 
 #what-do-students-ultimately-buy div.lesson-detail {
@@ -2583,11 +2570,10 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
   background-color:@light-blue-10;
   margin-bottom:20px;
   float:left;
-  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  .box-shadow;
 }
 
+/* we style forms a little differently when nested inside a tab group */
 div.tab-container div.panes div.fh-form ul.section, 
 div.tab-container div.panes div.fh-form ul.section li.header, 
 div.tab-container div.panes div.fh-form ul.section li.bottom {
@@ -2609,6 +2595,27 @@ div.tab-container div.panes div.fh-form ul.section li {
   margin-left:82px;
   line-height:2em;
 }
+/*  8888888888*/
+div.key {
+  .rounded_corners(3px);
+  .box-shadow;
+  position:absolute;
+  top:-1px;
+  right:7px;
+  padding: 2px 4px 2px 4px;
+  border: solid 1px @gray-60;
+  font-size: 11px;
+  background: @light-blue-20;
+  color:@dark-blue-20;
+  font-weight:bold;
+}
+
+div.key img {
+  float:left;
+  margin:0;
+  padding:2px 2px 0 0;
+}
+
 .fh-form ul.section li {
   background-color:@light-blue-30;
   border-top:1px solid @light-blue-10;
@@ -3066,9 +3073,7 @@ div#user_show div#name-plate {
   margin:17px 17px 0 17px ;
   color:@dark-blue-10;
   background-color:@white;
-  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  .box-shadow;
 }
 
 div#user-actions {
@@ -3084,18 +3089,14 @@ div#user-actions {
   padding:17px;
   background-color:@white;
   width:130px;
-  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  .box-shadow;
 }
 
 #user-public-container > #user-stats-container > #user-avatar-container  {
   padding:3px 3px 12px 3px;
   border: solid 1px @light-medium-gray;
   width: 77px;
-  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  .box-shadow;
   /*******
   wish to center avatar? Do this.
   margin-left: auto;
@@ -3115,9 +3116,7 @@ div#user-actions {
   padding:17px;
   width:702px;
   background-color: @white;
-  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
-  box-shadow: 1px 1px 3px rgba(0,0,0,.3);
+  .box-shadow;
 }
 
 div#user-stats-container ul {
@@ -3225,9 +3224,9 @@ div#user-stats-container ul {
 }
 
 #marketing_fpo {
-color: @gray-100;
-border: solid 2px @gray-40;
-background-color: @gray-10;
+  color: @gray-100;
+  border: solid 2px @gray-40;
+  background-color: @gray-10;
 }
 
 #marketing_fpo_left h2, 
