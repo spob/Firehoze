@@ -69,6 +69,9 @@ Rails::Initializer.run do |config|
   # For periodic job processing
   config.gem 'daemons'
 
+  # Notifier for application errors
+  config.gem 'hoptoad_notifier'
+
   # Not sure why this is required...but rake is failing without it. Some gems must require it -- RBS
   config.gem "hpricot", :source => "http://code.whytheluckystiff.net"
 
