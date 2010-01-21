@@ -1,4 +1,5 @@
 @import "shared/colors";
+@import "shared/corners";
 
 
 /*---------------------------------------------------------------------------------------------- */
@@ -89,10 +90,7 @@ ul.inline li  {
 }
 
 .box-header {
-  -moz-border-radius-topleft: 5px;
-  -webkit-border-top-left-radius: 5px;
-  -moz-border-radius-topright: 5px;
-  -webkit-border-top-right-radius: 5px;
+  .rounded_top_corners(5px);
   font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: 1.5em;
@@ -103,21 +101,16 @@ ul.inline li  {
 }
 
 .box-content {
+  .rounded_bottom_corners(5px);
   padding:1em;
   margin-bottom: 1.5em;
   background: @off-white;
-  -moz-border-radius-bottomleft: 5px;
-  -webkit-border-bottom-left-radius: 5px;
-  -moz-border-radius-bottomright: 5px;
-  -webkit-border-bottom-right-radius: 5px;
 }
 
 .box {
+  .rounded_corners(5px);
   padding:1em;
   background: @off-white;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
 }
 
 .inner_box {
@@ -137,6 +130,7 @@ ul.inline li  {
 }
 
 div.corner-box {
+  .rounded_bottom_corners(5px);
   padding: 4px 8px 2px 8px;
   margin:0;
   position:absolute;
@@ -147,10 +141,6 @@ div.corner-box {
   background: @light-blue-20;
   color:@dark-blue-10;
   font-weight:bold;
-  -moz-border-radius-bottomleft: 5px;
-  -webkit-border-bottom-left-radius: 5px;
-  -moz-border-radius-topright: 5px;
-  -webkit-border-top-right-radius: 5px;
 }
 
 h4.banner  {
@@ -617,17 +607,11 @@ div.review #stars {
 
 /* GOOD */
 div#account-settings-tabs div.panes {
+  .rounded_bottom_corners(8px);
   margin: 0;
   min-height:300px;
   padding: 17px;
-  /*  background-color:@light-gray;*/
   background-color:@light-blue-30;
-  border-bottom-left-radius:8px;
-  border-bottom-right-radius:8px;
-  -webkit-border-bottom-left-radius:8px;
-  -webkit-border-bottom-right-radius:8px;
-  -moz-border-radius-bottomleft:8px;
-  -moz-border-radius-bottomright:8px;
 }
 
 /* GROUPS */
@@ -659,6 +643,7 @@ div#group-container div.actions {
 }
 
 #group-container #status {
+  .rounded_bottom_corners;
   padding: 4px 8px 2px 8px;
   margin:0;
   position:absolute;
@@ -669,10 +654,6 @@ div#group-container div.actions {
   background: @light-blue-20;
   color:@dark-blue-10;
   font-weight:bold;
-  -moz-border-radius-bottomleft: 5px;
-  -webkit-border-bottom-left-radius: 5px;
-  -moz-border-radius-topright: 5px;
-  -webkit-border-top-right-radius: 5px;
 }
 
 div#group-container div.notice {
@@ -811,25 +792,21 @@ div.comment-container div.count {
 }
 
 .info {
+  .rounded_corners(3px);
+  border: solid 2px @light-blue-30;
   position:relative;
   text-align:left;
   margin-bottom:1em;
   background: @light-blue-10 url(images/icons/info_32.png) 1em 1em no-repeat;
   padding: 1em 1em 1em 5em;
-  border: solid 2px @light-blue-30;
-  border-radius:3px;
-  -moz-border-radius:3px;
-  -webkit-border-radius:3px;
   min-height:3em;
 }
 
 .blue-box-medium {
+  .rounded_corners(3px);
   text-align:left;
   padding: 1em;
   background: @light-blue-30;
-  border-radius:3px;
-  -moz-border-radius:3px;
-  -webkit-border-radius:3px;
   min-height:2.6em;
   -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
   -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
@@ -837,13 +814,11 @@ div.comment-container div.count {
 }
 
 .blue-box-pale {
+  .rounded_corners(5px);
   text-align:left;
   padding: 1em;
   background: @light-blue-10;
   border: solid 2px @medium-blue-2;
-  border-radius:5px;
-  -moz-border-radius:5px;
-  -webkit-border-radius:5px;
   min-height:2.6em;
 }
 
@@ -853,15 +828,13 @@ div.comment-container div.count {
 }
 
 .warning {
+  .rounded_corners(3px);
   position:relative;
   text-align:left;
   margin-bottom:1em;
   background: @light-yellow url(images/icons/32_warning.png) 8px 10px no-repeat;
   padding: 1em 1em 1em 5em;
   border: solid 2px @mustard;
-  border-radius:3px;
-  -moz-border-radius:3px;
-  -webkit-border-radius:3px;
   min-height:3em;
 }
 
@@ -901,10 +874,8 @@ ul.bulletless.buy-credits li {
 
 
 div.rounded-shadowbox {
+  .rounded_corners(5px);
   padding:17px;
-  border-radius:5px;
-  -webkit-border-radius:5px;
-  -moz-border-radius:5px;
   background-color:@white;
   -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
   -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
@@ -912,9 +883,7 @@ div.rounded-shadowbox {
 }
 
 div.rounded-bluebox {
-  border-radius:5px;
-  -webkit-border-radius:5px;
-  -moz-border-radius:5px;
+  .rounded_corners(5px);
   background-color:@light-blue-30;
   padding:1em;
 }
@@ -1078,6 +1047,7 @@ ul#top-navigation li span.subhover {
 
 /*--Hover effect for trigger--*/
 ul#top-navigation li ul.subnav {
+  .rounded_bottom_corners(6px);
   font: normal 13px/30px "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-shadow: none;
   list-style: none;
@@ -1089,10 +1059,6 @@ ul#top-navigation li ul.subnav {
   display: none;
   float: left;
   width: 168px;
-  -moz-border-radius-bottomleft: 6px;
-  -moz-border-radius-bottomright: 6px;
-  -webkit-border-bottom-left-radius: 6px;
-  -webkit-border-bottom-right-radius: 6px;
   background: @charcoal-20;
   border: 1px solid @charcoal-10;
 }
@@ -1253,6 +1219,7 @@ ul.tabs li {
 
 /* link inside the tab */
 ul.tabs a {
+  .rounded_top_corners(4px);
   position:relative;
   float:left;
   font-size:13px;
@@ -1265,10 +1232,6 @@ ul.tabs a {
   border:1px solid @gray-60;
   border-width:1px 1px 0 1px;
   margin-right:3px;
-  -moz-border-radius-topleft: 4px;
-  -moz-border-radius-topright:4px;
-  -webkit-border-top-left-radius:4px;
-  -webkit-border-top-right-radius:4px;
   top:1px;
 }
 
@@ -1787,12 +1750,10 @@ position:relative;
 
 .blue-box ul.section {
   /* this dictates the overall width of the form */
+  .rounded_corners(5px);
   width:626px;
   border: 1px solid @steel-blue;
   border-top:1px solid @steel-blue;
-  border-radius:5px;
-  -webkit-border-radius:5px;
-  -moz-border-radius:5px;
   background-color:@light-blue-10;
   margin-bottom:20px;
   float:left;
@@ -1879,7 +1840,7 @@ position:relative;
   border:0 none;
 }
 .category-container:hover {
-  background:@light-blue-20;
+  background:@bright-blue-10;
   color:@charcoal-10;
 }
 
@@ -2178,6 +2139,7 @@ ul.group-list {
 
 /* GOOD */
 div#lesson-content-tabs div.panes {
+  .rounded_bottom_corners(8px);
   margin:0;
   min-height:300px;
   padding: 17px;
@@ -2185,18 +2147,12 @@ div#lesson-content-tabs div.panes {
   background-color:@light-blue-30;
   border-bottom-left-radius:8px;
   border-bottom-right-radius:8px;
-  -webkit-border-bottom-left-radius:8px;
-  -webkit-border-bottom-right-radius:8px;
-  -moz-border-radius-bottomleft:8px;
-  -moz-border-radius-bottomright:8px;
 }
 div#lesson-content-tabs div.panes div#interior-pane {
+  .rounded_corners(5px);
   min-height:266px;
   padding: 17px;
   background-color:@white;
-  border-radius:5px;
-  -webkit-border-radius:5px;
-  -moz-border-radius:5px;
   -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
   -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.2);
   box-shadow: 0 1px 10px rgba(0,0,0,.3);
@@ -2229,29 +2185,23 @@ div#what-do-students-ultimately-buy-container div.widget-box-content h3 {
 
 /* STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT... */
 #bought-this-video-also-bought {
+  .rounded_corners(8px);
   padding:10px 17px 24px 17px;
   background-color: @light-blue-30;
-  border-radius:8px;
-  -webkit-border-radius:8px;
-  -moz-border-radius:8px;
 }
 
 /* WHAT DO STUDENTS ULTIMATELY BUY AFTER BROWSING THIS ITEM? */
 div#what-do-students-ultimately-buy-container {
+  .rounded_corners(8px);
   padding:24px;
   background-color: @light-blue-30;
-  border-radius:8px;
-  -webkit-border-radius:8px;
-  -moz-border-radius:8px;
 }
 
 ul#what-do-students-ultimately-buy {
+  .rounded_corners(8px);
   list-style-type: none;
   margin: 0;
   padding: 0;
-  border-radius:8px;
-  -webkit-border-radius:8px;
-  -moz-border-radius:8px;
   -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
   -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
   box-shadow: 0 1px 10px rgba(0,0,0,.3);
@@ -2263,21 +2213,11 @@ ul#what-do-students-ultimately-buy li.lesson-container {
 }
 
 ul#what-do-students-ultimately-buy li:first-child {
-  border-top-left-radius:8px;
-  border-top-right-radius:8px;
-  -webkit-border-top-left-radius:8px;
-  -webkit-border-top-right-radius:8px;
-  -moz-border-radius-topleft:8px;
-  -moz-border-radius-topright:8px;
+  .rounded_top_corners(8px);
 }
 
 ul#what-do-students-ultimately-buy li:last-child {
-  border-bottom-left-radius:8px;
-  border-bottom-right-radius:8px;
-  -webkit-border-bottom-left-radius:8px;
-  -webkit-border-bottom-right-radius:8px;
-  -moz-border-radius-bottomleft:8px;
-  -moz-border-radius-bottomright:8px;
+  .rounded_bottom_corners(8px);
 }
 
 ul#what-do-students-ultimately-buy li img.lesson_tn {
@@ -2328,11 +2268,10 @@ div.nested-navigation {
 }
 
 .nested-navigation ul.links li a {
+  .rounded_corners(12px);
   border:0 none;
   margin-right: 6px;
   text-decoration: none;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
 }
 
 .nested-navigation ul.links li a:link,
@@ -2361,11 +2300,10 @@ div.nested-navigation {
 /* Rounded links */
 
 a.rounded  {
+  .rounded_corners(12px);
   border:0 none;
   margin-right: 6px;
   text-decoration: none;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
 }
 
 a.rounded:link,
@@ -2598,12 +2536,10 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
 .fh-form textarea,
 .fh-form input[type=text],
 .fh-form input[type=password] {
+  .rounded_corners(3px);
   width:400px;
   height:20px;
   border: 1px solid @gray-90;
-  border-radius:3px;
-  -moz-border-radius:3px;
-  -webkit-border-radius:3px;
   background: @white url(images/backgrounds/background-signup-inputs.png) repeat-x top left;
   font-size:13px;
   color:@dark-blue-20;
@@ -2618,12 +2554,10 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
 }
 
 .fh-form input[type=file] {
+  .rounded_corners(3px);
   width:420px;
   height:20px;
   border: 1px solid @gray-90;
-  border-radius:3px;
-  -moz-border-radius:3px;
-  -webkit-border-radius:3px;
   background: @white url(images/backgrounds/background-signup-inputs.png) repeat-x top left;
   font-size:13px;
   color:@dark-blue-20;
@@ -2644,11 +2578,9 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
 
 .fh-form ul.section {
   /* this dictates the overall width of the form */
+  .rounded_corners;
   width:626px;
   border: 1px solid @steel-blue;
-  border-radius:5px;
-  -webkit-border-radius:5px;
-  -moz-border-radius:5px;
   background-color:@light-blue-10;
   margin-bottom:20px;
   float:left;
@@ -2804,10 +2736,7 @@ a.printer-friendly:hover {
 
 .fh-form ul.section li.bottom {
   min-height:5px;
-  -moz-border-radius-bottomleft:5px;
-  -webkit-border-bottom-left-radius:5px;
-  -moz-border-radius-bottomright:5px;
-  -webkit-border-bottom-right-radius:5px;
+  .rounded_bottom_corners;
 }
 
 /* rating stars */
@@ -2830,13 +2759,11 @@ a.printer-friendly:hover {
 
 /* UNIFORM JQUERY PLUGIN CSS */
 div.checker {
+  .rounded_corners;
   height: 18px;
   width: 18px;
   overflow: hidden;
   border: solid 1px @gray-30;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
   background: @white url(images/forms/bg.png) repeat-x left 10px;
   float: left;
   display: inline;
@@ -2878,6 +2805,7 @@ div.checker span input {
 /* Radio box */
 
 div.radio {
+  .rounded_corners(9px);
   height: 19px;
   width: 19px;
   overflow: hidden;
@@ -2886,9 +2814,6 @@ div.radio {
   display: inline;
   margin-right: 10px;
   position: relative;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 9px;
-  border-radius: 9px;
   border: solid 1px @gray-30;
 }
 
@@ -2926,12 +2851,10 @@ div.radio span input {
 /* Select Box */
 
 div.selector {
+  .rounded_corners;
   display: block;
   width: 340px;
   border: solid 1px @gray-30;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
   position: relative;
   background: @gray-30 url(images/forms/bg.png) repeat-x left 12px;
   line-height: 22px;
@@ -2990,6 +2913,7 @@ span.required-field {
 }
 
 span.error {
+  .rounded_corners;
   color:@dark-blue-10;
   top:9px;
   left:640px;
@@ -2999,9 +2923,6 @@ span.error {
   padding: 5px 5px 5px 26px;
   background: @light-yellow url("images/forms/error-circle.png") no-repeat 3px 3px;
   border:solid 2px @light-blue-30;
-  border-radius:5px;
-  -moz-border-radius:5px;
-  -webkit-border-radius:5px;
 }
 span.valid {
   border: 0 none;
@@ -3014,9 +2935,7 @@ span.valid {
 }
 
 .fh-form .errorExplanation {
-  border-radius:5px;
-  -moz-border-radius:5px;
-  -webkit-border-radius:5px;
+  .rounded_corners;
 }
 
 .fieldWithErrors {
@@ -3137,20 +3056,16 @@ ul.groups li .details {
 }
 
 #user-public-container {
-  border-radius:5px;
-  -webkit-border-radius:5px;
-  -moz-border-radius:5px;
+  .rounded_corners;
   background-color:@light-blue-30;
 }
 
 div#user_show div#name-plate {
+  .rounded_corners;
   position:relative;
   padding:17px;
   margin:17px 17px 0 17px ;
   color:@dark-blue-10;
-  border-radius:5px;
-  -webkit-border-radius:5px;
-  -moz-border-radius:5px;
   background-color:@white;
   -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
   -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
@@ -3164,12 +3079,10 @@ div#user-actions {
 }
 
 #user-public-container > #user-stats-container {
+  .rounded_corners;
   margin:17px 0 17px 17px;
   float:left;
   padding:17px;
-  border-radius:5px;
-  -webkit-border-radius:5px;
-  -moz-border-radius:5px;
   background-color:@white;
   width:130px;
   -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
@@ -3198,12 +3111,10 @@ div#user-actions {
 }
 
 #user-public-container > .details {
+  .rounded_corners;
   margin:17px 0 17px 198px;
   padding:17px;
   width:702px;
-  border-radius:5px;
-  -webkit-border-radius:5px;
-  -moz-border-radius:5px;
   background-color: @white;
   -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
   -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.3);
@@ -3242,6 +3153,7 @@ div#user-stats-container ul {
 #tiptip_holder.tip_right { padding-left: 5px; }
 #tiptip_holder.tip_left { padding-right: 5px; }
 #tiptip_content {
+  .rounded_corners(3px);
   font-size: 11px;
   color: @white;
   text-shadow: 0 0 2px @black;
@@ -3250,9 +3162,6 @@ div#user-stats-container ul {
   background-color: @charcoal-30;
   background-color: rgba(25, 25, 25, 0.92);
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(transparent), to(@black));
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   box-shadow: 0 0 3px @charcoal-10;
   -webkit-box-shadow: 0 0 3px @charcoal-10;
   -moz-box-shadow: 0 0 3px @charcoal-10;

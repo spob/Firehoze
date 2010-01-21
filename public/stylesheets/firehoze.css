@@ -75,6 +75,8 @@ ul.inline li { display: inline; }
   -webkit-border-top-left-radius: 5px;
   -moz-border-radius-topright: 5px;
   -webkit-border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
   font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: 1.5em;
@@ -84,20 +86,22 @@ ul.inline li { display: inline; }
   background: #e3e9f2;
 }
 .box-content {
-  padding: 1em;
-  margin-bottom: 1.5em;
-  background: #f2f2f2;
   -moz-border-radius-bottomleft: 5px;
   -webkit-border-bottom-left-radius: 5px;
   -moz-border-radius-bottomright: 5px;
   -webkit-border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 1em;
+  margin-bottom: 1.5em;
+  background: #f2f2f2;
 }
 .box {
-  padding: 1em;
-  background: #f2f2f2;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 1em;
+  background: #f2f2f2;
 }
 .inner_box {
   background: #ffffff;
@@ -109,6 +113,12 @@ ul.inline li { display: inline; }
   border: solid 1px #cccccc;
 }
 div.corner-box {
+  -moz-border-radius-bottomleft: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   padding: 4px 8px 2px 8px;
   margin: 0;
   position: absolute;
@@ -119,10 +129,6 @@ div.corner-box {
   background: #ecf3ff;
   color: #17587f;
   font-weight: bold;
-  -moz-border-radius-bottomleft: 5px;
-  -webkit-border-bottom-left-radius: 5px;
-  -moz-border-radius-topright: 5px;
-  -webkit-border-top-right-radius: 5px;
 }
 h4.banner {
   font-size: 18px;
@@ -500,16 +506,16 @@ div.review #stars { margin: 5px 0 0 0; }
 }
 #faqs_section .answers img { margin: 20px 0 40px 0; }
 div#account-settings-tabs div.panes {
+  -moz-border-radius-bottomleft: 8px;
+  -webkit-border-bottom-left-radius: 8px;
+  -moz-border-radius-bottomright: 8px;
+  -webkit-border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   margin: 0;
   min-height: 300px;
   padding: 17px;
   background-color: #e3e9f2;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  -webkit-border-bottom-left-radius: 8px;
-  -webkit-border-bottom-right-radius: 8px;
-  -moz-border-radius-bottomleft: 8px;
-  -moz-border-radius-bottomright: 8px;
 }
 #group-container {
   position: relative;
@@ -531,6 +537,12 @@ div#account-settings-tabs div.panes {
 }
 div#group-container div.actions { margin: 17px 0 0 0; }
 #group-container #status {
+  -moz-border-radius-bottomleft: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   padding: 4px 8px 2px 8px;
   margin: 0;
   position: absolute;
@@ -541,10 +553,6 @@ div#group-container div.actions { margin: 17px 0 0 0; }
   background: #ecf3ff;
   color: #17587f;
   font-weight: bold;
-  -moz-border-radius-bottomleft: 5px;
-  -webkit-border-bottom-left-radius: 5px;
-  -moz-border-radius-topright: 5px;
-  -webkit-border-top-right-radius: 5px;
 }
 div#group-container div.notice {
   margin: 17px 0 0 0;
@@ -659,37 +667,37 @@ div.comment-container div.count {
   font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
 }
 .info {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border: solid 2px #e3e9f2;
   position: relative;
   text-align: left;
   margin-bottom: 1em;
   background: #f1f7fe url(images/icons/info_32.png) 1em 1em no-repeat;
   padding: 1em 1em 1em 5em;
-  border: solid 2px #e3e9f2;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
   min-height: 3em;
 }
 .blue-box-medium {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
   text-align: left;
   padding: 1em;
   background: #e3e9f2;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
   min-height: 2.6em;
   -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 .blue-box-pale {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   text-align: left;
   padding: 1em;
   background: #f1f7fe;
   border: solid 2px #9cb6d5;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
   min-height: 2.6em;
 }
 .blue-box-pale.with-icon img {
@@ -697,15 +705,15 @@ div.comment-container div.count {
   padding: 0 1em 0 0;
 }
 .warning {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
   position: relative;
   text-align: left;
   margin-bottom: 1em;
   background: #ffffe0 url(images/icons/32_warning.png) 8px 10px no-repeat;
   padding: 1em 1em 1em 5em;
   border: solid 2px #efe468;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
   min-height: 3em;
 }
 .with-button { padding-right: 16em; }
@@ -738,19 +746,19 @@ div.comment-container div.count {
 ul.bulletless.buy-credits { margin-bottom: 4em; }
 ul.bulletless.buy-credits li { margin: 2em 0; }
 div.rounded-shadowbox {
-  padding: 17px;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding: 17px;
   background-color: #ffffff;
   -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 div.rounded-bluebox {
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   background-color: #e3e9f2;
   padding: 1em;
 }
@@ -879,6 +887,12 @@ ul#top-navigation li span.subhover {
   margin: 0;
 }
 ul#top-navigation li ul.subnav {
+  -moz-border-radius-bottomleft: 6px;
+  -webkit-border-bottom-left-radius: 6px;
+  -moz-border-radius-bottomright: 6px;
+  -webkit-border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
   font: normal 13px/30px "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-shadow: none;
   list-style: none;
@@ -891,10 +905,6 @@ ul#top-navigation li ul.subnav {
   display: none;
   float: left;
   width: 168px;
-  -moz-border-radius-bottomleft: 6px;
-  -moz-border-radius-bottomright: 6px;
-  -webkit-border-bottom-left-radius: 6px;
-  -webkit-border-bottom-right-radius: 6px;
   background: #2b2b2b;
   border: 1px solid #4a4a4a;
 }
@@ -1023,6 +1033,12 @@ ul.tabs li {
   font-style: italic;
 }
 ul.tabs a {
+  -moz-border-radius-topleft: 4px;
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  -webkit-border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   position: relative;
   float: left;
   font-size: 13px;
@@ -1035,10 +1051,6 @@ ul.tabs a {
   border: 1px solid #b5b5b5;
   border-width: 1px 1px 0 1px;
   margin-right: 3px;
-  -moz-border-radius-topleft: 4px;
-  -moz-border-radius-topright: 4px;
-  -webkit-border-top-left-radius: 4px;
-  -webkit-border-top-right-radius: 4px;
   top: 1px;
 }
 ul.tabs a:hover {
@@ -1418,12 +1430,12 @@ div.duration {
   zoom: 1;
 }
 .blue-box ul.section {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   width: 626px;
   border: 1px solid #c1cad5;
   border-top: 1px solid #c1cad5;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
   background-color: #f1f7fe;
   margin-bottom: 20px;
   float: left;
@@ -1490,7 +1502,7 @@ div.duration {
   border: 0 none;
 }
 .category-container:hover {
-  background: #ecf3ff;
+  background: #bee5fc;
   color: #4a4a4a;
 }
 .widget-box-content.tags { padding: 17px; }
@@ -1715,6 +1727,12 @@ ul.group-list {
   list-style-type: none;
 }
 div#lesson-content-tabs div.panes {
+  -moz-border-radius-bottomleft: 8px;
+  -webkit-border-bottom-left-radius: 8px;
+  -moz-border-radius-bottomright: 8px;
+  -webkit-border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   margin: 0;
   min-height: 300px;
   padding: 17px;
@@ -1722,18 +1740,14 @@ div#lesson-content-tabs div.panes {
   background-color: #e3e9f2;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  -webkit-border-bottom-left-radius: 8px;
-  -webkit-border-bottom-right-radius: 8px;
-  -moz-border-radius-bottomleft: 8px;
-  -moz-border-radius-bottomright: 8px;
 }
 div#lesson-content-tabs div.panes div#interior-pane {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   min-height: 266px;
   padding: 17px;
   background-color: #ffffff;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
   -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
@@ -1759,26 +1773,26 @@ div#what-do-students-ultimately-buy-container div.widget-box-content h3 {
   padding-left: 2.4em;
 }
 #bought-this-video-also-bought {
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
   padding: 10px 17px 24px 17px;
   background-color: #e3e9f2;
-  border-radius: 8px;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
 }
 div#what-do-students-ultimately-buy-container {
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
   padding: 24px;
   background-color: #e3e9f2;
-  border-radius: 8px;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
 }
 ul#what-do-students-ultimately-buy {
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
   list-style-type: none;
   margin: 0;
   padding: 0;
-  border-radius: 8px;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
   -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
@@ -1788,20 +1802,20 @@ ul#what-do-students-ultimately-buy li.lesson-container {
   margin: 0;
 }
 ul#what-do-students-ultimately-buy li:first-child {
+  -moz-border-radius-topleft: 8px;
+  -webkit-border-top-left-radius: 8px;
+  -moz-border-radius-topright: 8px;
+  -webkit-border-top-right-radius: 8px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  -webkit-border-top-left-radius: 8px;
-  -webkit-border-top-right-radius: 8px;
-  -moz-border-radius-topleft: 8px;
-  -moz-border-radius-topright: 8px;
 }
 ul#what-do-students-ultimately-buy li:last-child {
+  -moz-border-radius-bottomleft: 8px;
+  -webkit-border-bottom-left-radius: 8px;
+  -moz-border-radius-bottomright: 8px;
+  -webkit-border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  -webkit-border-bottom-left-radius: 8px;
-  -webkit-border-bottom-right-radius: 8px;
-  -moz-border-radius-bottomleft: 8px;
-  -moz-border-radius-bottomright: 8px;
 }
 ul#what-do-students-ultimately-buy li img.lesson_tn {
   float: left;
@@ -1835,11 +1849,12 @@ div.nested-navigation {
 }
 .nested-navigation ul.links li { display: inline; }
 .nested-navigation ul.links li a {
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  border-radius: 12px;
   border: 0 none;
   margin-right: 6px;
   text-decoration: none;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
 }
 .nested-navigation ul.links li a:link {
   color: #616161;
@@ -1868,11 +1883,12 @@ div.nested-navigation {
   background: #8f8f8f;
 }
 a.rounded {
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  border-radius: 12px;
   border: 0 none;
   margin-right: 6px;
   text-decoration: none;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
 }
 a.rounded:link {
   color: #616161;
@@ -2079,12 +2095,12 @@ div.lesson-tooltip {
   display: block;
 }
 .fh-form textarea {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
   width: 400px;
   height: 20px;
   border: 1px solid #8f8f8f;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
   background: #ffffff url(images/backgrounds/background-signup-inputs.png) repeat-x top left;
   font-size: 13px;
   color: #29384c;
@@ -2092,12 +2108,12 @@ div.lesson-tooltip {
   padding-top: 7px;
 }
 .fh-form input[type=text] {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
   width: 400px;
   height: 20px;
   border: 1px solid #8f8f8f;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
   background: #ffffff url(images/backgrounds/background-signup-inputs.png) repeat-x top left;
   font-size: 13px;
   color: #29384c;
@@ -2105,12 +2121,12 @@ div.lesson-tooltip {
   padding-top: 7px;
 }
 .fh-form input[type=password] {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
   width: 400px;
   height: 20px;
   border: 1px solid #8f8f8f;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
   background: #ffffff url(images/backgrounds/background-signup-inputs.png) repeat-x top left;
   font-size: 13px;
   color: #29384c;
@@ -2128,12 +2144,12 @@ div.lesson-tooltip {
   border: 1px solid #616161;
 }
 .fh-form input[type=file] {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
   width: 420px;
   height: 20px;
   border: 1px solid #8f8f8f;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
   background: #ffffff url(images/backgrounds/background-signup-inputs.png) repeat-x top left;
   font-size: 13px;
   color: #29384c;
@@ -2148,11 +2164,11 @@ div.lesson-tooltip {
   margin-top: 5px;
 }
 .fh-form ul.section {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   width: 626px;
   border: 1px solid #c1cad5;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
   background-color: #f1f7fe;
   margin-bottom: 20px;
   float: left;
@@ -2289,6 +2305,8 @@ a.printer-friendly:hover {
   -webkit-border-bottom-left-radius: 5px;
   -moz-border-radius-bottomright: 5px;
   -webkit-border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 .fh-form ul.ajaxful-rating li {
   padding: 1px 0 0 0;
@@ -2302,13 +2320,13 @@ a.printer-friendly:hover {
 }
 .fh-form .ajaxful-rating .current-rating { position: absolute !important; }
 div.checker {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   height: 18px;
   width: 18px;
   overflow: hidden;
   border: solid 1px #d6d6d6;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
   background: #ffffff url(images/forms/bg.png) repeat-x left 10px;
   float: left;
   display: inline;
@@ -2338,6 +2356,9 @@ div.checker span input {
   opacity: 0;
 }
 div.radio {
+  -moz-border-radius: 9px;
+  -webkit-border-radius: 9px;
+  border-radius: 9px;
   height: 19px;
   width: 19px;
   overflow: hidden;
@@ -2346,9 +2367,6 @@ div.radio {
   display: inline;
   margin-right: 10px;
   position: relative;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 9px;
-  border-radius: 9px;
   border: solid 1px #d6d6d6;
 }
 div.radio.focus { border-color: #9e9e9e; }
@@ -2374,12 +2392,12 @@ div.radio span input {
   opacity: 0;
 }
 div.selector {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   display: block;
   width: 340px;
   border: solid 1px #d6d6d6;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
   position: relative;
   background: #d6d6d6 url(images/forms/bg.png) repeat-x left 12px;
   line-height: 22px;
@@ -2425,6 +2443,9 @@ span.required-field {
   right: 10px;
 }
 span.error {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   color: #17587f;
   top: 9px;
   left: 640px;
@@ -2434,9 +2455,6 @@ span.error {
   padding: 5px 5px 5px 26px;
   background: #ffffe0 url("images/forms/error-circle.png") no-repeat 3px 3px;
   border: solid 2px #e3e9f2;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
 }
 span.valid {
   border: 0 none;
@@ -2448,9 +2466,9 @@ span.valid {
   background: url("images/forms/ok-circle.png") no-repeat 0px 0px;
 }
 .fh-form .errorExplanation {
-  border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+  border-radius: 5px;
 }
 .fieldWithErrors {
   padding: 2px;
@@ -2530,19 +2548,19 @@ ul.groups li .details {
   padding: 0 1em 1em 7.6em;
 }
 #user-public-container {
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   background-color: #e3e9f2;
 }
 div#user_show div#name-plate {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   position: relative;
   padding: 17px;
   margin: 17px 17px 0 17px;
   color: #17587f;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
   background-color: #ffffff;
   -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
@@ -2554,12 +2572,12 @@ div#user-actions {
   right: 8px;
 }
 #user-public-container > #user-stats-container {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   margin: 17px 0 17px 17px;
   float: left;
   padding: 17px;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
   background-color: #ffffff;
   width: 130px;
   -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
@@ -2580,12 +2598,12 @@ div#user-actions {
   margin-right: auto;
 }
 #user-public-container > .details {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   margin: 17px 0 17px 198px;
   padding: 17px;
   width: 702px;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
   background-color: #ffffff;
   -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
@@ -2614,6 +2632,9 @@ div#user-stats-container ul {
 #tiptip_holder.tip_right { padding-left: 5px; }
 #tiptip_holder.tip_left { padding-right: 5px; }
 #tiptip_content {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
   font-size: 11px;
   color: #ffffff;
   text-shadow: 0 0 2px #000000;
@@ -2622,9 +2643,6 @@ div#user-stats-container ul {
   background-color: #212121;
   background-color: rgba(25, 25, 25, 0.92);
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(transparent), to(#000000));
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   box-shadow: 0 0 3px #4a4a4a;
   -webkit-box-shadow: 0 0 3px #4a4a4a;
   -moz-box-shadow: 0 0 3px #4a4a4a;
