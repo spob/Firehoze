@@ -43,7 +43,7 @@ h3 {
   font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
   font-weight:bold;
   font-size:1.5em;
-  color:@dark-blue;
+  color:@dark-blue-10;
 }
 
 a.no-border:hover {
@@ -96,7 +96,7 @@ ul.inline li  {
   font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: 1.5em;
-  color:@dark-blue;
+  color:@dark-blue-10;
   padding: 0.5em;
   margin:1em 0 0 0;
   background: @light-blue-30;
@@ -145,7 +145,7 @@ div.corner-box {
   border: solid 1px @gray-60;
   font-size: 11px;
   background: @light-blue-20;
-  color:@dark-blue;
+  color:@dark-blue-10;
   font-weight:bold;
   -moz-border-radius-bottomleft: 5px;
   -webkit-border-bottom-left-radius: 5px;
@@ -582,7 +582,7 @@ div.review #stars {
 }
 #faqs_section .answers .top {
   text-decoration:underline;
-  color: @dark-blue;
+  color: @dark-blue-10;
   font-size: 12px;
   font-weight:bold;
 }
@@ -667,7 +667,7 @@ div#group-container div.actions {
   border: solid 1px @gray-60;
   font-size: 11px;
   background: @light-blue-20;
-  color:@dark-blue;
+  color:@dark-blue-10;
   font-weight:bold;
   -moz-border-radius-bottomleft: 5px;
   -webkit-border-bottom-left-radius: 5px;
@@ -678,7 +678,7 @@ div#group-container div.actions {
 div#group-container div.notice {
   margin: 17px 0 0 0;
   padding: 8px 8px 17px 47px;
-  background: #fafdbf url(images/icons/32_warning.png) 8px 10px no-repeat;
+  background: @light-yellow url(images/icons/32_warning.png) 8px 10px no-repeat;
 }
 
 div#group-container hr {
@@ -686,12 +686,12 @@ div#group-container hr {
   height: 0;
   clear: both;
   border-width: 0;
-  border-top: 1px solid #C4C4C4;
-  border-bottom: 1px solid #F5F5F5;
+  border-top: 1px solid @gray-60;
+  border-bottom: 1px solid @light-gray;
 }
 
 div#group-container div#description h3 {
-  color: @dark-blue;
+  color: @dark-blue-10;
   margin:0 0 4px 0;
 }
 
@@ -728,12 +728,12 @@ div.lesson-comment-header {
 }
 div.lesson-comment-header h3.header {
   padding-right:260px;
-  color: @dark-blue;
+  color: @dark-blue-10;
   font-weight:bold;
 }
 
 div#topic-comments-container h3.header .group-name {
-  color: @dark-blue;
+  color: @dark-blue-10;
 }
 
 /* actions */
@@ -777,7 +777,7 @@ div#lesson-comments-container div.comment,
 div#topic-comments-container div.comment  {
   position:relative;
   background: @light-blue-30;
-  border: solid 1px #AAA;
+  border: solid 1px @gray-70;
   margin-bottom:5px;
 }
 
@@ -785,13 +785,13 @@ div#topic-comments-container div.comment  {
 div.comment-container {
   margin:0 0 0 135px;
   background: @light-blue-10;
-  border-left: solid 1px #AAA;
+  border-left: solid 1px @gray-70;
   min-height:120px;
 }
 div.comment-container div.header {
   padding:7px 12px;
-  border-bottom: solid 1px #AAA;
-  background: #E5E5E5;
+  border-bottom: solid 1px @gray-70;
+  background: @gray-20;
 }
 div.comment-container div.body {
   min-height:120px;
@@ -856,9 +856,9 @@ div.comment-container div.count {
   position:relative;
   text-align:left;
   margin-bottom:1em;
-  background: #fafdbf url(images/icons/32_warning.png) 8px 10px no-repeat;
+  background: @light-yellow url(images/icons/32_warning.png) 8px 10px no-repeat;
   padding: 1em 1em 1em 5em;
-  border: solid 2px #d1d59d;
+  border: solid 2px @mustard;
   border-radius:3px;
   -moz-border-radius:3px;
   -webkit-border-radius:3px;
@@ -975,7 +975,7 @@ li#advanced-search-icon img {
 }
 
 #top-navigation li.selected a:focus {
-  color: #069;
+  color: @dark-blue-10;
 }
 
 #top-navigation li a:hover,
@@ -1038,7 +1038,7 @@ input.searchbox {
   left:11px;
   width:132px;
   height:16px;
-  color: #444;
+  color: @charcoal-10;
   font-size:12px;
   margin:0.5em 0;
 }
@@ -1094,13 +1094,13 @@ ul#top-navigation li ul.subnav {
   -webkit-border-bottom-left-radius: 6px;
   -webkit-border-bottom-right-radius: 6px;
   background: @charcoal-20;
-  border: 1px solid #4F4F4F;
+  border: 1px solid @charcoal-10;
 }
 ul#top-navigation li ul.subnav li{
   margin: 0;
   padding: 0;
   border-top: 1px solid @charcoal-10;
-  /* border-bottom: 1px solid #252525; */ /* Create bevel effect */
+  /* border-bottom: 1px solid @charcoal-30; */ /* Create bevel effect */
   clear: both;
   width: 168px;
 }
@@ -1109,7 +1109,7 @@ html ul#top-navigation li ul.subnav li a {
   color: @gray-40;
   float: left;
   width: 145px;
-  background: #444 url(images/top_navigation/dropdown_link_bg.gif) no-repeat 8px center;
+  background: @charcoal-10 url(images/top_navigation/dropdown_link_bg.gif) no-repeat 8px center;
   padding-left: 20px;
 }
 
@@ -1142,7 +1142,7 @@ th {
   text-shadow: @charcoal-20 0 1px 1px;
   background-color:@light-blue-30;
   border-bottom: double @medium-gray;
-  color: @dark-blue;
+  color: @dark-blue-10;
   text-shadow: none;
 }
 
@@ -1152,8 +1152,8 @@ tr.sum {
 
 tr.even td { background: @white; }
 tr.odd td { background: @off-white; }
-th.over, tr.even th.over, tr.odd th.over { background:#4a98af; }
-td.over, tr.even td.over, tr.odd td.over { background:#ecfbd4; }
+th.over, tr.even th.over, tr.odd th.over { background:@medium-blue-2; }
+td.over, tr.even td.over, tr.odd td.over { background:@medium-blue; }
 
 /* use this if you want to apply different styleing to empty table cells*/
 td.empty, tr.odd td.empty, tr.even td.empty { background: @white; }
@@ -1170,7 +1170,7 @@ table.topic {
 
 table.topic th {
   background-color:@light-blue-30;
-  color:@dark-blue;
+  color:@dark-blue-10;
   text-shadow: none;
 }
 
@@ -1197,7 +1197,7 @@ table.lesson-details {
 table.lesson-details tr td.header {
   border-left: solid 1px @medium-gray;
   background-color:@light-blue-30;
-  color:@dark-blue;
+  color:@dark-blue-10;
   text-shadow:none;
   width:80px;
   text-align:right;
@@ -1260,9 +1260,9 @@ ul.tabs a {
   padding:5px 30px;
   text-decoration:none;
   height:18px;
-  color:#444;
+  color:@charcoal-10;
   background-color:@white;
-  border:1px solid #C4C4C4;
+  border:1px solid @gray-60;
   border-width:1px 1px 0 1px;
   margin-right:3px;
   -moz-border-radius-topleft: 4px;
@@ -1274,9 +1274,9 @@ ul.tabs a {
 
 ul.tabs a:hover {
   border: 0 none;
-  background-color:#8C8C8C;
+  background-color:@gray-90;
   color:@charcoal-30;
-  border:1px solid #8C8C8C;
+  border:1px solid @gray-90;
   border-width:1px 1px 0 1px;
 }
 
@@ -1451,7 +1451,7 @@ ul.top-level-navigation li {
   margin-right: 8px;
   border: solid 2px @off-white;
   padding: 5px 12px  5px 12px ;
-  color: #295F6D;
+  color: @medium-blue-2;
   background: @white;
 }
 
@@ -1552,7 +1552,7 @@ div.widget-box-header {
 .widget-box-content ul li {
   list-style-type:none;
   padding:2px 8px;
-  border-top:solid 1px #DBDBDB;
+  border-top:solid 1px @gray-30;
 }
 .widget-box-content ul li.even {
   background: @white;
@@ -1571,8 +1571,8 @@ div.widget-box-header {
   background: @white;
 }
 .widget-box-content .activity-feed  {
-  border-top: solid 1px #E3E3E3;
-  border-bottom: solid 1px #E3E3E3;
+  border-top: solid 1px @gray-20;
+  border-bottom: solid 1px @gray-20;
 }
 
 /* Widget Box : Activity Feed */
@@ -1585,14 +1585,14 @@ div.widget-box-header {
 }
 
 .widget-box-content .activity-feed li img.avatar {
-  border: solid 1px #E3E3E3;
+  border: solid 1px @gray-20;
   position:absolute;
   left:8px;
   top:8px;
 }
 
 .filter-activity-by  {
-  border-bottom: solid 1px #E3E3E3;
+  border-bottom: solid 1px @gray-20;
   padding: 12px;
 }
 
@@ -1622,7 +1622,7 @@ ul.users-mosaic li {
 ul.users-mosaic .avatar {
   padding:0;
   margin:0;
-  border:solid 1px #D4D4D4;
+  border:solid 1px @gray-30;
 }
 
 
@@ -1635,7 +1635,7 @@ ul.users-mosaic a {
 ul.users-mosaic a:hover .avatar {
   padding:0;
   margin:0;
-  border:solid 1px #9E9E9E;
+  border:solid 1px @gray-80;
   text-decoration: none;
 }
 
@@ -1779,7 +1779,7 @@ position:relative;
 
 .blue-box ul li {
   background-color:@light-blue-30;
-  border-top:1px solid #f3f6f9;
+  border-top:1px solid @light-blue-10;
   border-bottom:1px solid @steel-blue;
   position:relative;
   zoom:1;
@@ -1789,7 +1789,7 @@ position:relative;
   /* this dictates the overall width of the form */
   width:626px;
   border: 1px solid @steel-blue;
-  border-top:1px solid #8f9aa7;
+  border-top:1px solid @steel-blue;
   border-radius:5px;
   -webkit-border-radius:5px;
   -moz-border-radius:5px;
@@ -1800,7 +1800,7 @@ position:relative;
 
 .blue-box h3 {
   font-size:24px;
-  color:@dark-blue;
+  color:@dark-blue-10;
 }
 
 .blue-box .header h3 {
@@ -1810,7 +1810,7 @@ position:relative;
 .blue-box .header h4 {
   font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
   font-size:12px;
-  color:#011934;
+  color:@dark-blue-10;
   margin-left:84px;
 }
 
@@ -1854,14 +1854,14 @@ position:relative;
   margin: 0 18px 17px 0;
   height: 62px;
   width: 262px;
-  background:#e8f5fb;
+  background:@light-blue-10;
   background:@white;
-  color:#777;
+  color:@gray-100;
   font-weight:bold;
 }
 .category-container a {
   text-decoration:none;
-  color:#2786c2;
+  color:@dark-blue-10;
   font-weight:bold;
 }
 
@@ -1876,11 +1876,10 @@ position:relative;
 }
 .category-container h3 a:hover {
   text-decoration:underline;
-  color:@dark-blue;
   border:0 none;
 }
 .category-container:hover {
-  background:#bee5fc;
+  background:@light-blue-20;
   color:@charcoal-10;
 }
 
@@ -1908,7 +1907,7 @@ position:relative;
 }
 
 .widget-box-content .lesson_brief li img.lesson_tn {
-  border: solid 1px #E3E3E3;
+  border: solid 1px @gray-20;
   position:absolute;
   left:8px;
   top:8px;
@@ -1937,14 +1936,14 @@ position:relative;
   display: block;
   padding: 5px 10px;
   text-decoration: none;
-  background-color: #336699;
+  background-color: @dark-blue-10;
   color: @white;
 }
 
 .tree-view a:hover, .tree-view a:active {
   border-bottom: 0 none;
   text-decoration: none;
-  background-color: #69C;
+  background-color: @medium-blue-2;
   color: @white;
 }
 
@@ -2053,7 +2052,7 @@ div#title-container h3 {
   position:absolute;
   bottom:0;
   left:0;
-  color: @dark-blue;
+  color: @dark-blue-10;
   font-weight:bold;
   padding:0;
   margin:0 0 10px 0;
@@ -2182,7 +2181,7 @@ div#lesson-content-tabs div.panes {
   margin:0;
   min-height:300px;
   padding: 17px;
-  background-color:#E8E8E8;
+  background-color:@gray-20;
   background-color:@light-blue-30;
   border-bottom-left-radius:8px;
   border-bottom-right-radius:8px;
@@ -2211,7 +2210,7 @@ div.lesson-notes ul#attachments {
 
 div.widget-box-content h3 {
   margin:0 0 0.5em 0;
-  color:@dark-blue;
+  color:@dark-blue-10;
   line-height:2em;
   text-shadow: 1px 1px 1px rgba(0,0,0,.3);
 }
@@ -2529,7 +2528,7 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
 }
 
 .lesson-tooltip a {
-  color:#ad4;
+  color:@medium-blue-2;
   font-size:11px;
   font-weight:bold;
 }
@@ -2574,7 +2573,7 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
 .fh-form label {
   font-size:13px;
   font-weight:bold;
-  color:#29384c;
+  color:@dark-blue-20;
   width:165px;
   text-align:right;
   display:block;
@@ -2601,13 +2600,13 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
 .fh-form input[type=password] {
   width:400px;
   height:20px;
-  border: 1px solid #8d9095;
+  border: 1px solid @gray-90;
   border-radius:3px;
   -moz-border-radius:3px;
   -webkit-border-radius:3px;
   background: @white url(images/backgrounds/background-signup-inputs.png) repeat-x top left;
   font-size:13px;
-  color:#29384c;
+  color:@dark-blue-20;
   padding:5px;
   padding-top:7px
 }
@@ -2621,13 +2620,13 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
 .fh-form input[type=file] {
   width:420px;
   height:20px;
-  border: 1px solid #8d9095;
+  border: 1px solid @gray-90;
   border-radius:3px;
   -moz-border-radius:3px;
   -webkit-border-radius:3px;
   background: @white url(images/backgrounds/background-signup-inputs.png) repeat-x top left;
   font-size:13px;
-  color:#29384c;
+  color:@dark-blue-20;
   padding:5px;
   padding-top:7px
 }
@@ -2638,7 +2637,7 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
 
 .fh-form select{
   font-size:13px;
-  color:#29384c;
+  color:@dark-blue-20;
   margin-bottom:5px;
   margin-top:5px;
 }
@@ -2675,13 +2674,13 @@ div.tab-container div.panes div.fh-form ul.section li {
 .fh-form h4 {
   font-family: "Helvetica Neue", helvetica, Arial, sans-serif;
   font-size:12px;
-  color:#011934;
+  color:@dark-blue-20;
   margin-left:82px;
   line-height:2em;
 }
 .fh-form ul.section li {
   background-color:@light-blue-30;
-  border-top:1px solid #f3f6f9;
+  border-top:1px solid @light-blue-10;
   border-bottom:1px solid @steel-blue;
   padding:8px;
   position:relative;
@@ -2720,14 +2719,14 @@ div.selector select#user_time_zone  {
 
 /* USER AGREEMENT */
 div#user-agreement h4 {
-  color:@dark-blue;
+  color:@dark-blue-10;
   margin-left:0;
   font-weight:bold;
   text-transform:uppercase;
 }
 ul#registation-info li span.heading {
   padding:0;
-  color:@dark-blue;
+  color:@dark-blue-10;
   padding:0;
   margin: 1em;
   text-transform:uppercase;
@@ -2789,7 +2788,7 @@ a.printer-friendly:hover {
 .fh-form ul.section li.heading {
   font-weight:bold;
   background-color:transparent;
-  color:@dark-blue;
+  color:@dark-blue-10;
   font-size:13px;
   padding-left:81px;
   padding-top:10px;
@@ -2797,7 +2796,7 @@ a.printer-friendly:hover {
 
 .fh-form ul.section li span.heading {
   font-weight:bold;
-  color:@dark-blue;
+  color:@dark-blue-10;
   font-size:13px;
   padding-left:81px;
   padding-top:10px;
@@ -2834,7 +2833,7 @@ div.checker {
   height: 18px;
   width: 18px;
   overflow: hidden;
-  border: solid 1px #ddd;
+  border: solid 1px @gray-30;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -2890,7 +2889,7 @@ div.radio {
   -webkit-border-radius: 10px;
   -moz-border-radius: 9px;
   border-radius: 9px;
-  border: solid 1px #ddd;
+  border: solid 1px @gray-30;
 }
 
 div.radio.focus {
@@ -2929,17 +2928,17 @@ div.radio span input {
 div.selector {
   display: block;
   width: 340px;
-  border: solid 1px #ddd;
+  border: solid 1px @gray-30;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
   position: relative;
-  background: #f2f2f2 url(images/forms/bg.png) repeat-x left 12px;
+  background: @gray-30 url(images/forms/bg.png) repeat-x left 12px;
   line-height: 22px;
   margin-top: 3px;
   text-shadow: 0 1px 0 @white;
   height: 22px;
-  color: #444;
+  color: @charcoal-10;
   margin-left:175px;
 }
 
@@ -2991,14 +2990,14 @@ span.required-field {
 }
 
 span.error {
-  color:@dark-blue;
+  color:@dark-blue-10;
   top:9px;
   left:640px;
   width:276px;
   text-align:left;
   position:absolute;
   padding: 5px 5px 5px 26px;
-  background: #fdffdf url("images/forms/error-circle.png") no-repeat 3px 3px;
+  background: @light-yellow url("images/forms/error-circle.png") no-repeat 3px 3px;
   border:solid 2px @light-blue-30;
   border-radius:5px;
   -moz-border-radius:5px;
@@ -3028,15 +3027,15 @@ span.valid {
 #errorExplanation {
   /* this dictates the overall width of the errorExplaination box */
   width:612px;
-  border: 2px solid #801609;
+  border: 2px solid @red-50;
   padding: 7px;
   padding-bottom: 12px;
   margin-bottom: 20px;
-  background-color: #fdffdf;
+  background-color: @light-yellow;
 }
 
 #errorExplanation h2 {
-  background-color: #801609;
+  background-color: @red-50;
   letter-spacing: 0.5px;
   text-align: left;
   font-weight: bold;
@@ -3148,7 +3147,7 @@ div#user_show div#name-plate {
   position:relative;
   padding:17px;
   margin:17px 17px 0 17px ;
-  color:@dark-blue;
+  color:@dark-blue-10;
   border-radius:5px;
   -webkit-border-radius:5px;
   -moz-border-radius:5px;
@@ -3218,7 +3217,7 @@ div#user-stats-container ul {
 
 .upload_warning {
   display:none;
-  background:#FFFFE8 url(images/icons/48_warning.png) 10px 20px no-repeat;
+  background:@light-yellow url(images/icons/48_warning.png) 10px 20px no-repeat;
   margin: 20px 0;
   padding: 10px 0 10px 70px;
 }
@@ -3248,7 +3247,7 @@ div#user-stats-container ul {
   text-shadow: 0 0 2px @black;
   padding: 4px 8px;
   border: 1px solid rgba(255, 255, 255, 0.25);
-  background-color: #191919;
+  background-color: @charcoal-30;
   background-color: rgba(25, 25, 25, 0.92);
   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(transparent), to(@black));
   border-radius: 3px;
@@ -3285,25 +3284,25 @@ div#user-stats-container ul {
 #tiptip_holder.tip_top #tiptip_arrow_inner {
   margin-top: -7px;
   margin-left: -6px;
-  border-top-color: #191919;
+  border-top-color: @charcoal-30;
   border-top-color: rgba(25, 25, 25, 0.92);
 }
 #tiptip_holder.tip_bottom #tiptip_arrow_inner {
   margin-top: -5px;
   margin-left: -6px;
-  border-bottom-color: #191919;
+  border-bottom-color: @charcoal-30;
   border-bottom-color: rgba(25, 25, 25, 0.92);
 }
 #tiptip_holder.tip_right #tiptip_arrow_inner {
   margin-top: -6px;
   margin-left: -5px;
-  border-right-color: #191919;
+  border-right-color: @charcoal-30;
   border-right-color: rgba(25, 25, 25, 0.92);
 }
 #tiptip_holder.tip_left #tiptip_arrow_inner {
   margin-top: -6px;
   margin-left: -7px;
-  border-left-color: #191919;
+  border-left-color: @charcoal-30;
   border-left-color: rgba(25, 25, 25, 0.92);
 }
 
@@ -3318,8 +3317,7 @@ div#user-stats-container ul {
 }
 
 #marketing_fpo {
-/*    width:980px;*/
-color: #777;
+color: @gray-100;
 border: solid 2px @gray-40;
 background-color: @gray-10;
 }
@@ -3501,8 +3499,6 @@ button.minibutton::-moz-focus-inner{margin:-1px -3px;}
 .tagbutton.mousedown>span{background-position:100% -60px;}
 .tagbutton.danger.mousedown>span{background-position:100% -120px;}
 
-
-
 /* Instructor Signup Wizard */
 #instructor_agreement {
   font-size:0.83em;  /* 0.83em == 10px */
@@ -3513,4 +3509,3 @@ button.minibutton::-moz-focus-inner{margin:-1px -3px;}
   height: 200px;
   overflow: auto;
 }
-
