@@ -3,3 +3,10 @@
   -moz-box-shadow: 1px 1px 3px @color;
   box-shadow: 1px 1px 3px @color;
 }
+
+.box-shadow-custom (@h: 0, @v: 0, @blur: 0, @color: none) {
+  box-shadow: @h @v @blur @color;
+  -moz-box-shadow: @h @v @blur @color;
+  -webkit-box-shadow: @h @v @blur @color;
+}
+

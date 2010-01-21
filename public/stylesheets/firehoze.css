@@ -113,18 +113,15 @@ ul.inline li { display: inline; }
   border: solid 1px #cccccc;
 }
 div.corner-box {
-  -moz-border-radius-bottomleft: 5px;
-  -webkit-border-bottom-left-radius: 5px;
-  -moz-border-radius-bottomright: 5px;
-  -webkit-border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
   padding: 4px 8px 2px 8px;
   margin: 0;
   position: absolute;
   top: 5px;
   right: 5px;
-  border: solid 1px #b5b5b5;
+  border: solid 1px #d6d6d6;
   font-size: 11px;
   background: #ecf3ff;
   color: #17587f;
@@ -684,11 +681,12 @@ div.comment-container div.count {
   border-radius: 3px;
   text-align: left;
   padding: 1em;
-  background: #e3e9f2;
+  background: #f2f2f2;
+  border: solid 1px #d6d6d6;
   min-height: 2.6em;
-  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 .blue-box-pale {
   -moz-border-radius: 5px;
@@ -1446,7 +1444,7 @@ div.duration {
 .blue-box .header h4 {
   font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
   font-size: 12px;
-  color: #17587f;
+  color: #4a4a4a;
   margin-left: 84px;
 }
 .blue-box ul.section li.header {
@@ -2186,27 +2184,20 @@ div.tab-container div.panes div.fh-form ul.section li { background-color: #f1f7f
   margin-left: 82px;
   line-height: 2em;
 }
+.key * { vertical-align: middle; }
 div.key {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
-  -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
   position: absolute;
-  top: -1px;
-  right: 7px;
-  padding: 2px 4px 2px 4px;
-  border: solid 1px #b5b5b5;
+  top: -3px;
+  right: 5px;
   font-size: 11px;
-  background: #ecf3ff;
+  padding: 2px 5px;
+  border: solid 1px #9cb6d5;
+  background: #e3e9f2;
   color: #29384c;
   font-weight: bold;
-}
-div.key img {
-  float: left;
-  margin: 0;
-  padding: 2px 2px 0 0;
 }
 .fh-form ul.section li {
   background-color: #e3e9f2;
