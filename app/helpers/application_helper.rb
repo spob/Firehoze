@@ -163,6 +163,10 @@ module ApplicationHelper
     end
   end
 
+  def random_quote 
+    ["The only thing that interferes with my learning is my education &mdash; Albert Einstein","Education is what remains after one has forgotten everything he learned in school &mdash; Albert Einstein"].rand
+  end
+
   private
 
   def link_to_command per_page, refresh_url, append_space=true
