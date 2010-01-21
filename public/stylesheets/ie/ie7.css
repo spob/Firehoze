@@ -5,3 +5,20 @@ div.bordered.left {
 div.bordered.right {
   top: -9px;
 }
+
+div.key {
+  top:5px;
+  right:5px;
+}
+
+/* position the form icon */
+.blue-box ul.section li.header span,
+.fh-form ul.section li.header span {
+  top:10px;
+  left:10px;
+}
+
+.blue-box ul.section li.header,
+.fh-form ul.section li.header {
+  min-height:82px;
+}
