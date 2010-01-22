@@ -22,7 +22,7 @@ class PasswordsController < ApplicationController
         flash[:notice] = t 'password.pwd_update_success'
         redirect_to edit_account_url(@user, :anchor => :password)
       else
-      redirect_to edit_account_url(@user, :anchor => :password)pass
+      redirect_to edit_account_url(@user, :anchor => :password)
       end
     else
       flash[:error] = t 'password.invalid_password'
