@@ -1,0 +1,51 @@
+/* SHADOWBOX */
+#shadowbox-top {
+  z-index:10;
+  background: transparent url('/stylesheets/images/main_navigation/main-navigation-bg-2.png') no-repeat;
+  margin:-50px 0 0 0;
+  padding:0;
+  width:1000px;
+  height:40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#shadowbox-middle {
+  background: transparent url('/stylesheets/images/shadow_box/shadow-box-middle.png') repeat-y;
+  width:1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top:17px;
+  /*position:relative;*/
+}
+
+
+#shadowbox-bottom {
+  background-image:url('/stylesheets/images/shadow_box/shadow-box-bottom.png');
+  background-repeat:no-repeat;
+  margin:0;
+  width:1000px;
+  height:120px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* CUBER */
+#cuber {
+  background: transparent url('/stylesheets/images/shadow_box/gallery_bg.gif') repeat-x;
+  height:344px;
+  -webkit-box-shadow: 0px 2px 10px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 2px 10px rgba(0,0,0,.3);
+  box-shadow: 0px 2px 10px rgba(0,0,0,.3);
+}
+
+#cuber .content {
+  margin-top:17px;
+  padding:17px;
+  position: relative;
+  background-repeat: no-repeat;
+  /*  height: 77px;*/
+  /*  background: url('/stylesheets/images/header/header-shine.png') no-repeat 50% 0;*/
+  background-color: #FFF;
+}
+
