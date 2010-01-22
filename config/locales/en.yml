@@ -252,6 +252,7 @@ en:
 
   password:
     pwd_update_success: Password updated
+    invalid_password: Invalid password specified
 
   per_page:
     per_page_updated: Rows to display per page set to {{per_page}}
@@ -261,6 +262,7 @@ en:
   
   account_settings:
     avatar_success: Hey, that's a nice picture!
+    avatar_not_specified: Please specify an avatar
     avatar_cleared: You have successfully removed your avatar
     avatar_cropped: Your avatar was successfully cropped
     update_error: Oops, something wasn't quite right with the information you entered

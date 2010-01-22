@@ -121,6 +121,7 @@ class AccountsController < ApplicationController
 
   def update_avatar
     redirect_set = false
+    params[:user] = "" if params[:user].nil?
     if params[:user][:avatar]
       if @user.update_attributes(:avatar => params[:user][:avatar])
         render :action => 'crop'
@@ -134,6 +135,8 @@ class AccountsController < ApplicationController
       @user.crop_h = params[:user][:crop_h]
       @user.touch
       flash[:notice] = t "account_settings.avatar_cropped"
+    else
+      flash[:error] = t "account_settings.avatar_not_specified"
     end
     redirect_to edit_account_path(@user, :anchor => :avatar) unless redirect_set
   end

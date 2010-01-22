@@ -1,5 +1,15 @@
 $(document).ready(function() {
-    $("#profile, #password_form").validate({
+    $("#profile").validate({
+        errorElement: "span",
+        success: "valid",
+        submitHandler: function(form) {
+            $(form).find(":submit").attr("disabled", true).attr("value", "Please wait ...");
+            form.submit();
+        }
+    });
+
+ $(document).ready(function() {
+    $("#password_form").validate({
         errorElement: "span",
         success: "valid",
         submitHandler: function(form) {
