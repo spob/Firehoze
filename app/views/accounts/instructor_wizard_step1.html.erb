@@ -16,7 +16,7 @@
       <% if @user.author_agreement_accepted_on.nil? %>
           <div>
             <%= check_box_tag :accept_agreement %>
-            <label>By checking this box I hereby agreement to be bound by the terms of this agreement.</label>
+            <label>By checking this box I hereby agree to be bound by the terms of this agreement.</label>
           </div>
           <% if RESTRICT_INSTRUCTOR_SIGNUP %>
               <div>
