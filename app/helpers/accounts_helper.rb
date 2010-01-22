@@ -21,7 +21,7 @@ module AccountsHelper
       instructor_wizard_step4_account_path(@user)) +
       "\n\t" +
 
-      link_text("Tax Witholding", 5, step,
+      link_text("Tax Withholding", 5, step,
       (@user.address_provided? and @user.author_agreement_accepted_on and @user.payment_level and @user.verified_address_on and @user.verified_address_on),
       instructor_wizard_step5_account_path(@user))
   end
