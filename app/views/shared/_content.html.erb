@@ -29,24 +29,27 @@
   <!--[if IE 7]><%= stylesheet_link_tag 'ie/ie7', :media => "screen, projection" %><![endif]-->
   <!--[if IE 6]><%= stylesheet_link_tag 'ie/ie6', :media => "screen, projection" %><![endif]-->
 
+  <% # Javascript Libraries %>
   <%= google_jquery(:version => '1.3.2', :local => Rails.env.development?) %><%# JQuery %>
   <%= javascript_include_tag 'v2/jrails' %>
-  <%= javascript_include_tag 'v2/application' %>
-  <%= javascript_include_tag 'v2/flash' %>
-  <%= javascript_include_tag 'v2/jquery.cornerz', 'v2/rounders' %><%# Cornerz for rounding %>
-  <%= javascript_include_tag 'v2/jquery.always_at_bottom', 'v2/footer' %>
-  <%= javascript_include_tag 'v2/top_navigation' %>
-  <%= javascript_include_tag 'v2/jquery.tools.min', 'v2/tabs' %>
-  <%= javascript_include_tag 'v2/jquery.truncator', 'v2/truncator' %>
-  <%= javascript_include_tag 'v2/pagination' %>
-  <%= javascript_include_tag 'v2/tooltip' unless Rails.env.test? or g_browser_name == 'ie' %>
-  <%= javascript_include_tag 'v2/jquery.uniform', 'v2/uniform' unless @no_uniform_js %>
+
+  <% # Javascript Plugins %>
+  <%= javascript_include_tag 'v2/jquery.cornerz' %>
+  <%= javascript_include_tag 'v2/jquery.always_at_bottom' %>
+  <%= javascript_include_tag 'v2/jquery.tools.min' %>
+  <%= javascript_include_tag 'v2/jquery.truncator' %>
+  <%= javascript_include_tag 'v2/jquery.uniform' %>
   <%= javascript_include_tag 'v2/jquery.validate.min' %>
   <%= javascript_include_tag 'v2/jquery.simplyCountable' %>
   <%= javascript_include_tag 'v2/jquery.anchor' %>
-  <%= javascript_include_tag 'v2/faqs' %>
   <%= javascript_include_tag 'v2/swfobject' %>
-  <%= javascript_include_tag 'v2/jquery.tipTip', 'v2/tipTip' %>
+  <%= javascript_include_tag 'v2/jquery.tipTip' %>
+  <%= javascript_include_tag 'v2/jquery.uniform' %>
+
+  <% # Firehoze Specific Javascript Code %>
+  <%=  javascript_include_tag'v2/uniform' unless @no_uniform_js %>
+  <%= javascript_include_tag 'v2/tooltip' unless Rails.env.test? or g_browser_name == 'ie' %>
+  <%= javascript_include_tag 'v2/application','v2/faqs','v2/flash','v2/footer','v2/pagination','v2/rounders','v2/tabs','v2/tipTip','v2/top_navigation','v2/truncator', :cache => 'firehoze' %>
 
   <%= ajaxful_rating_style %>
 
