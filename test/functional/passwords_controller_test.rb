@@ -39,9 +39,9 @@ class PasswordsControllerTest < ActionController::TestCase
                             :password_confirmation => "xxxxx2" } }
 
       should_assign_to :user
-      should_respond_with :success
-      should_not_set_the_flash
-      should_render_template "edit"
+      should_respond_with :redirect
+      should_set_the_flash_to /Invalid password/
+      should_redirect_to("profile page") { edit_account_url(assigns(:user), :anchor => 'password') }
     end
 
     fast_context "on PUT to :update with blank current password" do
@@ -50,9 +50,9 @@ class PasswordsControllerTest < ActionController::TestCase
                             :password_confirmation => "xxxxx2" } }
 
       should_assign_to :user
-      should_respond_with :success
-      should_not_set_the_flash
-      should_render_template "edit"
+      should_respond_with :redirect
+      should_set_the_flash_to /Invalid password/
+      should_redirect_to("profile page") { edit_account_url(assigns(:user), :anchor => 'password') }
     end
 
     fast_context "on PUT to :update with unmatching new passwords" do
@@ -62,9 +62,9 @@ class PasswordsControllerTest < ActionController::TestCase
                             :password_confirmation => "xxxxx3" } }
 
       should_assign_to :user
-      should_respond_with :success
+      should_respond_with :redirect
       should_not_set_the_flash
-      should_render_template "edit"
+      should_redirect_to("profile page") { edit_account_url(assigns(:user), :anchor => 'password') }
     end
   end
 end
