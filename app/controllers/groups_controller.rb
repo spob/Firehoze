@@ -71,9 +71,11 @@ class GroupsController < ApplicationController
   
   def new
     @group ||= Group.new
+    set_no_uniform_js
   end
 
   def create
+    set_no_uniform_js
     @group = Group.new(params[:group])
     @group.owner = current_user
     Group.transaction do
@@ -89,10 +91,12 @@ class GroupsController < ApplicationController
   end
 
   def edit
+    set_no_uniform_js
     can_edit?(@group)
   end
 
   def update
+    set_no_uniform_js
     if can_edit?(@group)
       if @group.update_attributes(params[:group])
         flash[:notice] = t('group.update_success')
@@ -135,6 +139,10 @@ class GroupsController < ApplicationController
 
   def find_group
     @group = Group.find params[:id]
+  end
+
+  def set_no_uniform_js
+    @no_uniform_js = true
   end
 
   def can_view?(group)

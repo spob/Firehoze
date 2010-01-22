@@ -54,7 +54,7 @@
             <li>
         <span>
           <%= f.label :initial_free_download_count, 'Free Downloads' %>
-          <%= select_tag :initial_free_download_count, options_for_select(LessonsController.free_download_counts) %>
+          <%= select_tag :initial_free_download_count, options_for_select(LessonsController.free_download_counts), :class => 'required' %>
           <span class="required-field"></span>
         </span>
             </li>
@@ -63,21 +63,21 @@
         <span>
           <%= f.label :category %>
           <%= f.collection_select(:category_id, Category.ascend_by_compiled_sort, :id,
-                                  :formatted_name,  {:include_blank => 'Select...'}) %>
+                                  :formatted_name,  {:include_blank => 'Select...'}, :class => 'required') %>
           <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
           <%= f.label :language %>
-          <%= f.select :language, User.supported_languages %>
+          <%= f.select :language, User.supported_languages, {}, :class => 'required' %>
           <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
           <%= f.label :audience %>
-          <%= f.select :audience,  Lesson.audience_levels,  {:include_blank => 'Select...'} %>
+          <%= f.select :audience,  Lesson.audience_levels,  {:include_blank => 'Select...'}, :class => 'required' %>
           <span class="required-field"></span>
         </span>
         </li>

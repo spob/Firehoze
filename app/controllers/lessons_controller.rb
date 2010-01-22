@@ -339,7 +339,7 @@ class LessonsController < ApplicationController
 
 # disable the uniform plugin, otherwise the advanced search form is all @$@!# up
   def set_no_uniform_js
-    if %w(advanced_search list_admin perform_advanced_search).include?(params[:action])
+    if %w(advanced_search list_admin perform_advanced_search new create edit update).include?(params[:action])
       @no_uniform_js = true
     end
   end

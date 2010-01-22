@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   include SslRequirement
 
   before_filter :require_user
+  before_filter :set_no_uniform_js
   layout :layout_for_action
 
   permit "#{ROLE_ADMIN} or #{ROLE_PAYMENT_MGR}", :only => [ :index ]
@@ -97,6 +98,13 @@ class OrdersController < ApplicationController
   end
 
   private
+
+# disable the uniform plugin, otherwise the advanced search form is all @$@!# up
+  def set_no_uniform_js
+    if %w(new create).include?(params[:action])
+      @no_uniform_js = true
+    end
+  end
 
   def layout_for_action
     if %w(index).include?(params[:action]) || (params[:action] == 'show' and current_user.is_admin?)
