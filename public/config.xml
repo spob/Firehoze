@@ -29,14 +29,14 @@
     </next_symbol>
 
     <description>
-      <defaults round_corners="10, 10, 10, 10" 
+      <defaults round_corners="0, 0, 0, 0" 
         heading_text_size="42" 
         heading_text_color="0xffffff" 
         heading_text_margin="0, 0, 0, 10"  
         paragraph_text_size="18" 
         paragraph_text_margin="0, 0, 20, 20" 
         paragraph_text_color="0xFFFFFF" />
-        <tweenIn x="10" y="155" width="930" height="80" alpha="0.70"/>
+        <tweenIn x="0" y="170" width="950" height="80" alpha="0.70"/>
         <tweenOver alpha="0.80"/>
       </description>
     </settings>
@@ -57,7 +57,7 @@
 
       <!-- slide 2 -->
       <slide>
-        <url>images/cuber/chalk-1.jpg</url>
+        <url>images/cuber/chalk.jpg</url>
         <description>
           <heading>Focus</heading>
           <paragraph>on what you NEED to learn ...</paragraph>
@@ -69,7 +69,7 @@
 
       <!-- slide 3 -->
       <slide>
-        <url>images/cuber/classroom-5.jpg</url>
+        <url>images/cuber/classroom-black-chairs.jpg</url>
         <description>
           <heading>Get started teaching</heading>
           <paragraph>beyond your classroom ...</paragraph>
@@ -81,7 +81,7 @@
 
       <!-- slide 4 -->
       <slide>
-        <url>images/cuber/pen-and-paper-1.jpg</url>
+        <url>images/cuber/pen-and-paper.jpg</url>
         <description>
           <heading>Teach & Earn</heading>
           <paragraph>get paid for what you do best ...</paragraph>
@@ -99,9 +99,11 @@
       </slide>
       <!-- transitions properties defined in transitions template -->
       <slide>
-        <url>images/cuber/slide_4.jpg</url>
-        <heading>Be Wise</heading>
-        <paragraph>...and invest where it makes sense ...</paragraph>
+        <url>images/cuber/campus-auburn.jpg</url>
+        <description>
+          <heading>Be Wise</heading>
+          <paragraph>...and invest where it makes sense ...</paragraph>
+        </description>
       </slide>
       <transition num="6" slicing="vertical" direction="up" shader="flat" delay="0.05" z_multiplier="4" />
       <slide>
