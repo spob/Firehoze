@@ -105,10 +105,11 @@
           <paragraph>...and invest where it makes sense ...</paragraph>
         </description>
       </slide>
-      <transition num="6" slicing="vertical" direction="up" shader="flat" delay="0.05" z_multiplier="4" />
+
+      <!-- <transition num="6" slicing="vertical" direction="up" shader="flat" delay="0.05" z_multiplier="4" />
       <slide>
         <url>images/cuber/slide_5.jpg</url>
-      </slide>
+      </slide> -->
 
     </slides>
   </cu3er>

@@ -58,6 +58,7 @@ div.unrecognized-content {
 div.box {
   padding:2em;
   background:transparent url('/stylesheets/images/shadow_box/corner.png') 0 0 no-repeat;
+  margin:0;
 }
 
 img.box-image {
