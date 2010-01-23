@@ -9,7 +9,7 @@
   <div class="tab-container non-ajaxed-lessons">
     <ul class="tabs">
       <li>
-        <a href="#tabs-1" class="current"><%= h(t('user.profile')) %></a>
+        <%= link_to h(t('user.profile')), edit_account_path(current_user) %>
       </li>
       <li>
         <%= link_to h(t('user.password')), edit_password_path(current_user) %>
@@ -21,10 +21,10 @@
         <%= link_to h(t('user.avatar')), edit_avatar_account_path(current_user) %>
       </li>
       <li>
-        <%= link_to h(t('user.privacy')), edit_privacy_account_path(current_user) %>
+        <a href="#tabs-1" class="current"><%= h(t('user.privacy')) %></a>
       </li>
     </ul>
   </div>
 </div>
 
-<%= render :partial => "accounts/forms/profile" %>
+<%= render :partial => "accounts/forms/privacy" %>

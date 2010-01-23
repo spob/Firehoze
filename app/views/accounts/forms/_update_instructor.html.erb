@@ -12,17 +12,17 @@
         <li>
         <span>
           <%= f.label :first_name %>
-          <%= f.text_field :first_name, :maxlength => "40", :id => 'ofirst_name' %>
+          <%= f.text_field :first_name, :maxlength => "40" %>
         </span>
-          <div class="counter"><span id="ofirst_name_counter"></span> characters left</div>
+          <div class="counter"><span id="first_name_counter"></span> characters left</div>
         </li>
         <li>
         <span>
           <%= f.label :last_name %>
-          <%= f.text_field :last_name, :maxlength => "40", :title => "You must enter your last name", :class => "required", :id => 'olast_name' %>
+          <%= f.text_field :last_name, :maxlength => "40", :title => "You must enter your last name", :class => "required" %>
           <span class="required-field"></span>
         </span>
-          <div class="counter"><span id="olast_name_counter"></span> characters left</div>
+          <div class="counter"><span id="last_name_counter"></span> characters left</div>
         </li>
         <li>
         <span>

@@ -119,14 +119,25 @@ class AccountsController < ApplicationController
     session[:lesson_to_buy] = nil
   end
 
+  def edit_author
+  end
+
+  def edit_avatar
+  end
+
+  def edit_privacy
+  end
+
   def update_avatar
     redirect_set = false
     params[:user] = "" if params[:user].nil?
     if params[:user][:avatar]
+      redirect_set = true
       if @user.update_attributes(:avatar => params[:user][:avatar])
         render :action => 'crop'
-        redirect_set = true
         flash[:notice] = t "account_settings.avatar_success"
+      else
+        render :action => "edit_avatar"
       end
     elsif !params[:user][:crop_x].blank? and !params[:user][:crop_y].blank? and !params[:user][:crop_w].blank? and !params[:user][:crop_h].blank?
       @user.crop_x = params[:user][:crop_x]
@@ -147,10 +158,10 @@ class AccountsController < ApplicationController
 
   def update_instructor
     update_address
-    if @user.save!
+    if @user.save
       flash[:notice] = t 'account_settings.update_success'
     else
-      flash[:error] = t 'account_settings.update_error'
+      render :action => "edit_author"
     end
     if @user.verified_address_on
       redirect_to edit_account_path
@@ -183,16 +194,11 @@ class AccountsController < ApplicationController
     if @user.save
       flash[:notice] = t 'account_settings.update_success'
     else
-      # getting here because not all (required) fields are getting passed in ...
-      flash[:error] = t 'account_settings.update_error'
+
     end
     # specify the id specifically because if the user updates the login, the user won't be
     # found because of the slugging
     redirect_to edit_account_path(@user.id)
-
-  rescue Exception => e
-    flash[:error] = e.message
-    redirect_to edit_account_path
   end
 
   def update_privacy
@@ -201,16 +207,10 @@ class AccountsController < ApplicationController
 
     if @user.save
       flash[:notice] = t 'account_settings.update_success'
+      redirect_to edit_account_path(:anchor => :privacy)
     else
-      # getting here because not all (required) fields are getting passed in ...
-      flash[:error] = t 'account_settings.update_error'
+      render :action => "edit_privacy"
     end
-
-    redirect_to edit_account_path(:anchor => :privacy)
-
-  rescue Exception => e
-    flash[:error] = e.message
-    redirect_to edit_account_path(:anchor => :privacy)
   end
 
   private

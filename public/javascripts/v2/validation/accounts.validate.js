@@ -7,6 +7,14 @@ $(document).ready(function() {
             form.submit();
         }
     });
+    $("#author").validate({
+        errorElement: "span",
+        success: "valid",
+        submitHandler: function(form) {
+            $(form).find(":submit").attr("disabled", true).attr("value", "Please wait ...");
+            form.submit();
+        }
+    });
     
     $("#password_form").validate({
         errorElement: "span",
@@ -72,8 +80,8 @@ $(document).ready(function() {
         overClass: 'over'
     });
 
-    $('#user_first_name').simplyCountable({
-        counter: '#first_name_counter',
+    $('#xuser_first_name').simplyCountable({
+        counter: '#author_first_name_counter',
         countType: 'characters',
         maxCount: 40,
         countDirection: 'down',
