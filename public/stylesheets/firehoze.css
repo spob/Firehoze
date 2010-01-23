@@ -302,7 +302,7 @@ ul.admin li.selected.first a { padding-left: 0px; }
 div#footer h4 {
   text-shadow: #000000 0 1px 1px;
   font-variant: small-caps;
-  font-size: 22px;
+  font-size: 20px;
   padding: 0;
   margin-bottom: 0.7em;
   color: #9e9e9e;
@@ -324,7 +324,6 @@ table.quick-links td {
   border: 0 none;
 }
 table.quick-links, a.quick-links {
-  font-variant: small-caps;
   font-size: 16px;
   text-shadow: #000000 0 1px 1px;
 }
