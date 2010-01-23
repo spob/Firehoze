@@ -170,7 +170,7 @@ module ApplicationHelper
   private
 
   def link_to_command per_page, refresh_url, append_space=true
-    if session[:per_page] == per_page.to_s
+    if cookies[:per_page] == per_page.to_s
       "#{per_page}#{append_space ? "&nbsp;" : ""}"
     else
       link_to(per_page, set_per_pages_path(:per_page => per_page, :refresh_url => refresh_url), :method => :post) +

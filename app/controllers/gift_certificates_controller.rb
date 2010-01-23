@@ -18,7 +18,7 @@ class GiftCertificatesController < ApplicationController
 
   def list_admin
     @search = GiftCertificate.redeemed_at_null.search(params[:search])
-    @gift_certificates = @search.paginate(:per_page => (session[:per_page] || ROWS_PER_PAGE),
+    @gift_certificates = @search.paginate(:per_page => (cookies[:per_page] || ROWS_PER_PAGE),
                                           :page => params[:page])
   end
 

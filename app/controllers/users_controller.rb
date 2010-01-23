@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def list
     @search = User.searchlogic(params[:search])
-    @users = @search.paginate(:page => params[:page], :per_page => (session[:per_page] || ROWS_PER_PAGE))
+    @users = @search.paginate(:page => params[:page], :per_page => (cookies[:per_page] || ROWS_PER_PAGE))
   end
 
   def new

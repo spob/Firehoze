@@ -4,8 +4,8 @@ class PerPagesController < ApplicationController
   verify :method => :post, :only => [:set ], :redirect_to => :home_path
 
   def set
-    session[:per_page] = params[:per_page]
-    flash[:notice] = t 'per_page.per_page_updated', :per_page => session[:per_page]
+    cookies[:per_page] = { :value => params[:per_page], :expires => 1.year.from_now }
+    flash[:notice] = t 'per_page.per_page_updated', :per_page => cookies[:per_page]
     redirect_to params[:refresh_url]
   end
 end

@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
   def index
     session[:lesson_to_buy] = nil
     @search = Order.cart_purchased_at_not_null.descend_by_id.search(params[:search])
-    @orders = @search.paginate(:page => params[:page], :per_page => (session[:per_page] || ROWS_PER_PAGE))
+    @orders = @search.paginate(:page => params[:page], :per_page => (cookies[:per_page] || ROWS_PER_PAGE))
   end
 
   def create

@@ -21,7 +21,7 @@ class PaymentsController < ApplicationController
     @user = User.find(params[:id])
     if current_user.is_paymentmgr? or current_user == @user
       @payments = @user.payments.paginate :page => params[:page],
-        :per_page => (session[:per_page] || ROWS_PER_PAGE)
+        :per_page => (cookies[:per_page] || ROWS_PER_PAGE)
     else
       flash[:error] = t 'payment.cannot_view'
       redirect_to home_path
@@ -78,7 +78,7 @@ class PaymentsController < ApplicationController
     if params[:per_page]
       params[:per_page]
     elsif %w(index).include?(params[:action])
-      (session[:per_page] || ROWS_PER_PAGE)
+      (cookies[:per_page] || ROWS_PER_PAGE)
     else
       5
     end

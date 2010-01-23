@@ -186,7 +186,7 @@ class GroupsController < ApplicationController
             if params[:per_page]
               params[:per_page]
             elsif %w(list_admin).include?(params[:action])
-              (session[:per_page] || ROWS_PER_PAGE)
+              (cookies[:per_page] || ROWS_PER_PAGE)
             else
               5
             end

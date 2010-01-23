@@ -22,7 +22,7 @@ class SkusController < ApplicationController
   end
 
   def index
-    @skus = Sku.list params[:page], session[:per_page] || ROWS_PER_PAGE
+    @skus = Sku.list params[:page], cookies[:per_page] || ROWS_PER_PAGE
   end
 
   def new

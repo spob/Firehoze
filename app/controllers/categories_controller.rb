@@ -29,7 +29,7 @@ class CategoriesController < ApplicationController
   def list_admin
     @no_uniform_js = true
     @category ||= Category.new(:sort_value => 10)
-    @categories = Category.list params[:page], session[:per_page] || ROWS_PER_PAGE
+    @categories = Category.list params[:page], cookies[:per_page] || ROWS_PER_PAGE
   end
 
   def create

@@ -15,7 +15,7 @@ class PaymentLevelsController < ApplicationController
 
   def index
     @payment_levels = PaymentLevel.ascend_by_name.paginate(:page => params[:page],
-                                                           :per_page => session[:per_page] || ROWS_PER_PAGE)
+                                                           :per_page => cookies[:per_page] || ROWS_PER_PAGE)
   end
 
   def new

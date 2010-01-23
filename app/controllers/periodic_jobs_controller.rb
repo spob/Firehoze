@@ -11,7 +11,7 @@ class PeriodicJobsController < ApplicationController
   layout 'admin_v2'
 
   def index
-    @periodic_jobs = PeriodicJob.list params[:page], session[:per_page] || ROWS_PER_PAGE
+    @periodic_jobs = PeriodicJob.list params[:page], cookies[:per_page] || ROWS_PER_PAGE
   end
 
   # Clicking rerun on a job that has completed will cause they job to run one time
