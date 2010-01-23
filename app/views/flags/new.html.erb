@@ -23,8 +23,8 @@
         </li>
         <li>
         <span>
-          <%= f.label :reason_type, "Reason", :style => "display:none" %>
-          <%= f.select(:reason_type, reason_select_list, :prompt => "Select Reason...") %>
+          <%= f.label :reason_type, "Reason" %>
+          <%= f.select(:reason_type, reason_select_list, { :prompt => "Select Reason..." }, { :class => "required"}) %>
           <span class="required-field"></span>
         </span>
         </li>

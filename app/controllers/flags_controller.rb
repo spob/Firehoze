@@ -4,6 +4,7 @@ class FlagsController < ApplicationController
   before_filter :require_user
   before_filter :find_flaggable, :only => [ :new, :create ]
   before_filter :find_flag, :only => [ :show, :update, :edit ]
+  before_filter :set_no_uniform_js
   helper_method :flaggable_show_path
   layout :layout_for_action
 
@@ -136,5 +137,12 @@ class FlagsController < ApplicationController
     params[:flagger_type] = @flag.flaggable.class.to_s
     params[:flagger_id] = @flag.flaggable.id
     find_flaggable
+  end
+
+# disable the uniform plugin, otherwise the advanced search form is all @$@!# up
+  def set_no_uniform_js
+    if %w(new create).include?(params[:action])
+      @no_uniform_js = true
+    end
   end
 end
