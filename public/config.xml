@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cu3er>
+  <settings>
+    <auto_play>
+      <defaults symbol="circular" time="4"/>
+      <tweenIn x="890" y="30" width="35" height="35" tint="0xFFFFFF"/>
+    </auto_play>
+
+    <prev_button>
+      <defaults round_corners="5,5,5,5"/>
+      <tweenIn scaleX="1.2" /> 
+      <tweenOver tint="0xFFFFFF" scaleX="1.1" scaleY="1.1"/>
+      <tweenOut tint="0x000000"/>
+    </prev_button>
+
+    <prev_symbol>
+      <tweenOver tint="0x000000"/>
+    </prev_symbol>
+
+    <next_button>
+      <defaults round_corners="5,5,5,5"/>
+      <tweenOver tint="0xFFFFFF" scaleX="1.1" scaleY="1.1"/>
+      <tweenOut tint="0x000000"/>
+      <tweenIn scaleX="1.2" /> 
+    </next_button>
+
+    <next_symbol>
+      <tweenOver tint="0x000000"/>
+    </next_symbol>
+
+    <description>
+      <defaults round_corners="0, 0, 0, 0" 
+        heading_text_size="42" 
+        heading_text_color="0xffffff" 
+        heading_text_margin="0, 0, 0, 10"  
+        paragraph_text_size="18" 
+        paragraph_text_margin="0, 0, 20, 20" 
+        paragraph_text_color="0xFFFFFF" />
+        <tweenIn x="0" y="170" width="950" height="80" alpha="0.70"/>
+        <tweenOver alpha="0.80"/>
+      </description>
+    </settings>
+
+
+    <slides> 
+      <!-- slide 1 -->
+      <slide>
+        <url>images/cuber/pencil-and-paper.jpg</url>
+        <description>
+          <heading>Learn Better, Faster</heading>
+          <paragraph>at your own pace ...</paragraph>
+        </description>
+      </slide>
+
+      <!-- transition 1-to-2  -->
+      <transition num="4" direction="left" shader="flat" />
+
+      <!-- slide 2 -->
+      <slide>
+        <url>images/cuber/chalk.jpg</url>
+        <description>
+          <heading>Focus</heading>
+          <paragraph>on what you NEED to learn ...</paragraph>
+        </description>
+      </slide>		
+
+      <!-- transition 2-to-3  -->
+      <transition num="4" direction="right" shader="flat" />
+
+      <!-- slide 3 -->
+      <slide>
+        <url>images/cuber/classroom-black-chairs.jpg</url>
+        <description>
+          <heading>Get started teaching</heading>
+          <paragraph>beyond your classroom ...</paragraph>
+        </description>
+      </slide>
+
+      <!-- transition 3-to-4  -->
+      <transition num="3" slicing="vertical" direction="down"/>
+
+      <!-- slide 4 -->
+      <slide>
+        <url>images/cuber/pen-and-paper.jpg</url>
+        <description>
+          <heading>Teach & Earn</heading>
+          <paragraph>get paid for what you do best ...</paragraph>
+        </description>
+      </slide>		
+
+      <!-- changing transition between second & third slide -->
+      <transition num="6" slicing="vertical" direction="down" shader="flat" delay="0.05" z_multiplier="4" />
+      <slide>
+        <url>images/cuber/classroom-yellow.jpg</url>
+        <description>
+          <heading>Teach Wider</heading>
+          <paragraph>beyond your institution...</paragraph>
+        </description>
+      </slide>
+      <!-- transitions properties defined in transitions template -->
+      <slide>
+        <url>images/cuber/campus-auburn.jpg</url>
+        <description>
+          <heading>Be Wise</heading>
+          <paragraph>...and invest where it makes sense ...</paragraph>
+        </description>
+      </slide>
+      <transition num="6" slicing="vertical" direction="up" shader="flat" delay="0.05" z_multiplier="4" />
+      <slide>
+        <url>images/cuber/slide_5.jpg</url>
+      </slide>
+
+    </slides>
+  </cu3er>
+

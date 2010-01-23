@@ -1,0 +1,46 @@
+/* SHADOWBOX */
+#shadowbox-top {
+  z-index:10;
+  background: transparent url('/stylesheets/images/main_navigation/main-navigation-bg-2.png') no-repeat;
+  margin:-50px 0 0 0;
+  padding:0;
+  width:1000px;
+  height:40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* CUBER */
+#shadow {
+  background:transparent url('/stylesheets/images/shadow_box/shadow.png') no-repeat scroll 0 150px;
+  height:300px;
+}
+#cu3er-container {
+  margin:0;
+  height:247px;
+  width:950px; 
+  outline:0;
+}
+
+#cu3er {
+  border-top: solid 2px #0d5c74;
+  border-bottom: solid 10px #0d5c74;
+  background: transparent url('/stylesheets/images/shadow_box/gallery_bg.gif') repeat-x;
+  height:300px;
+}
+
+#cu3er .content {
+  margin:17px 0 0 0;
+  padding:0;
+  position: relative;
+  background-color: transparent;
+}
+
+#header {
+  height: 100px;
+}
+#header .content {
+  height: 77px;
+}
+

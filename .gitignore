@@ -11,6 +11,7 @@ config/thin.yml
 private/images/*
 public/cache/*
 .DS_Store
+Thumbs.db
 .idea
 .idea/*
 .idea/dictionaries/*
