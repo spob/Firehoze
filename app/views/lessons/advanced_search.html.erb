@@ -2,45 +2,46 @@
 
 <div class="fh-form advanced clearfix">
   <% form_for(:advanced_search, :url => perform_advanced_search_lessons_path, :html => { :method => :get, :class => "search_box" }) do |f| %>
-    <ul id="advanced-search-info" class="section">
-      <li class="header">
-        <span></span>
-        <h3>Advanced Lesson Search</h3>
-        <h4>
-          Advanced search gives you greater control over the criteria you use to search for lessons
-        </h4>
-      </li>
-      <li>
+      <ul id="advanced-search-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3>Advanced Lesson Search</h3>
+          <h4>
+            Advanced search gives you greater control over the criteria you use to search for lessons
+          </h4>
+        </li>
+        <li>
         <span>
           <%= f.label :title %>
           <%= f.text_field :title %>
         </span>
-      </li>
-      <li>
+        </li>
+        <li>
         <span>
           <%= f.label :synopsis %>
           <%= f.text_field :synopsis %>
         </span>
-      </li>
-      <li>
+        </li>
+        <li>
         <span>
           <%= f.label :notes %>
           <%= f.text_field :notes %>
         </span>
-      </li>
-      <li>
+        </li>
+        <li>
         <span>
           <%= f.label :instructor, "Instructor Username" %>
           <%= f.text_field :instructor %>
         </span>
-      </li>
-      <li>
+        </li>
+        <li>
         <span>
           <%= f.label :tag %>
           <%= f.text_field :tag %>
         </span>
-      </li>
-      <li>
+        </li>
+        <li>
         <span>
           <%= f.label :rating_average, "Rating Greater Than" %>
           <div class="collection clearfix">
@@ -51,18 +52,18 @@
             <span class="item"><%= f.radio_button :rating_average, 4 %> 4 stars</span>
           </div>
         </span>
-      </li>
-      <li>
+        </li>
+        <li>
         <span>
           <%= f.label :category %>
           <div class="collection clearfix">
             <% Category.ascend_by_compiled_sort.each do |c| %>
-              <span class="item"><%= check_box_tag "advanced_search[category_ids][]", c.id, @advanced_search.categories.include?(c), :id => nil %> <%= truncate(h(c.name), :length => 18) %></span>
+                <span class="item"><%= check_box_tag "advanced_search[category_ids][]", c.id, @advanced_search.categories.include?(c), :id => nil %> <%= truncate(h(c.name), :length => 18) %></span>
             <% end %>
           </div>
         </span>
-      </li>
-      <li>
+        </li>
+        <li>
         <span>
           <%= f.label :created_in, "Created in the" %>
           <div class="collection clearfix">
@@ -73,41 +74,45 @@
             <span class="item"><%= f.radio_button :created_in, "9999" %> All</span>
           </div>
         </span>
-      </li>
-      <li>
+        </li>
+        <li>
         <span>
           <%= f.label :language %>
           <%= f.select :language, User.supported_languages,
-            {:include_blank => true} %>
+                       {:include_blank => true} %>
         </span>
-      </li>
-      <li>
+        </li>
+        <li>
         <span>
           <%= f.label :audience %>
           <%= f.select :audience, Lesson.audience_levels,
-            {:include_blank => true} %>
+                       {:include_blank => true} %>
         </span>
-      </li>
-      <li class="bottom">
+        </li>
+        <li class="bottom">
         <span class="unlabelled">
           <%= f.submit "Search" %>
           <%= link_to 'Cancel', (current_user ? my_firehoze_index_path : categories_path) %>
         </span>
 
-        <div class="clear" />
+          <div class="clear"/>
 
-      </li>
-    </ul>
+        </li>
+      </ul>
   <% end %>
 </div>
 
 <% if @lessons %>
-  <% if @lessons.empty? %>
-    Your query returned no results
-  <% else %>
-    <div>
-      <%= render :partial => "lessons/lessons_row_format", :object => @lessons %>
-      <%= will_paginate @lessons %>
-    </div>
-  <% end %>
+    <% if @lessons.empty? %>
+        Your query returned no results
+    <% else %>
+        <div>
+          <%= render :partial => "lessons/lessons_row_format", :object => @lessons %>
+
+          <% if @lessons.total_entries > ADVANCED_SEARCH_RESULTS_TO_DISPLAY %>
+              Displaying the first <%= @lessons.size %> of <%= pluralize @lessons.total_entries, "lesson" %> that
+              match your search criteria. Consider adding additional search parameters to further limit your search.
+          <% end %>
+        </div>
+    <% end %>
 <% end %>
