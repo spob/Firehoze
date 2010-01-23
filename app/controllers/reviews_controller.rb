@@ -89,7 +89,7 @@ class ReviewsController < ApplicationController
   def update
     if @review.update_attributes(params[:review])
       flash[:notice] = t 'review.update_success'
-      redirect_to lesson_path(@lesson, :anchor => 'reviews')
+      redirect_to lesson_path(@review.lesson, :anchor => 'reviews')
     else
       render :action => 'edit'
     end

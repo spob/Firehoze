@@ -106,17 +106,17 @@ class ReviewsControllerTest < ActionController::TestCase
           should_redirect_to("lesson page") { lesson_url(@lesson2, :anchor => "reviews") }
         end
 
-        fast_context "on GET to :show with a rejected review" do
-          setup do
-            @review = Factory.create(:review, :user => @user, :lesson => @lesson)
-            @review.update_attribute(:status, REVIEW_STATUS_REJECTED)
-            get :show, :id => @review
-          end
-
-          should_assign_to :review
-          should_respond_with :redirect
-          should_set_the_flash_to /not available/
-        end
+#        fast_context "on GET to :show with a rejected review" do
+#          setup do
+#            @review = Factory.create(:review, :user => @user, :lesson => @lesson)
+#            @review.update_attribute(:status, REVIEW_STATUS_REJECTED)
+#            get :show, :id => @review
+#          end
+#
+#          should_assign_to :review
+#          should_respond_with :redirect
+#          should_set_the_flash_to /not available/
+#        end
 
         fast_context "with moderator access" do
           setup do
@@ -145,20 +145,20 @@ class ReviewsControllerTest < ActionController::TestCase
             should_set_the_flash_to :review_update_success
             should_assign_to :review
             should_respond_with :redirect
-            should_redirect_to("Reviews index page") { review_path(@review) }
+            should_redirect_to("lesson page") { lesson_url(@lesson, :anchor => "reviews") }
           end
 
-          fast_context "on GET to :show" do
-            setup do
-              @review = Factory.create(:review, :user => @user, :lesson => @lesson)
-              get :show, :id => @review
-            end
-
-            should_assign_to :review
-            should_respond_with :success
-            should_not_set_the_flash
-            should_render_template "show"
-          end
+#          fast_context "on GET to :show" do
+#            setup do
+#              @review = Factory.create(:review, :user => @user, :lesson => @lesson)
+#              get :show, :id => @review
+#            end
+#
+#            should_assign_to :review
+#            should_respond_with :success
+#            should_not_set_the_flash
+#            should_render_template "show"
+#          end
         end
 
         fast_context "without moderator access" do
