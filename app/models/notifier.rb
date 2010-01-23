@@ -132,6 +132,8 @@ class Notifier < ActionMailer::Base
     from       from_user.email
 
     body       :msg => msg,
+               :url_of_sender =>  user_url(from_user),
+               :edit_account_url => edit_account_url(to_user),
                :to_user => to_user,
                :from_user => from_user,
                :url => login_url(url_options)
