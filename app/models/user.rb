@@ -252,9 +252,9 @@ END
   end
 
   def address_provided?
-    not_blank_or_nil(address1) and not_blank_or_nil(city) and
-            not_blank_or_nil(state) and not_blank_or_nil(postal_code) and
-            not_blank_or_nil(country)
+    not_blank_or_nil(self.address1) and not_blank_or_nil(self.city) and
+            not_blank_or_nil(self.state) and not_blank_or_nil(self.postal_code) and
+            not_blank_or_nil(self.country)
   end
 
   # Utility method to return either the last_name if no first name is specified, or the first and last

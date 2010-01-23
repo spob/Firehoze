@@ -17,14 +17,13 @@
         </li>
 
         <li>
-        <li>
         <span>
           <%= f.label :first_name %>
           <%= f.text_field :first_name, :maxlength => "50", :title => "You must provide your first name", :class => "required" %>
           <span class="required-field"></span>
         </span>
 
-          <div class="counter"><span id="order_first_name_counter"></span> characters left</div>
+          <div class="counter"><span id="user_first_name_counter"></span> characters left</div>
         </li>
         <li>
         <span>
@@ -33,7 +32,7 @@
           <span class="required-field"></span>
         </span>
 
-          <div class="counter"><span id="order_last_name_counter"></span> characters left</div>
+          <div class="counter"><span id="user_last_name_counter"></span> characters left</div>
         </li>
         <li>
         <span>
@@ -42,7 +41,7 @@
           <span class="required-field"></span>
         </span>
 
-          <div class="counter"><span id="order_address1_counter"></span> characters left</div>
+          <div class="counter"><span id="user_address1_counter"></span> characters left</div>
         </li>
         <li>
         <span>
@@ -50,7 +49,7 @@
           <%= f.text_field :address2, :maxlength => "150" %>
         </span>
 
-          <div class="counter"><span id="order_address2_counter"></span> characters left</div>
+          <div class="counter"><span id="user_address2_counter"></span> characters left</div>
         </li>
         <li>
         <span>
@@ -59,7 +58,7 @@
           <span class="required-field"></span>
         </span>
 
-          <div class="counter"><span id="order_city_counter"></span> characters left</div>
+          <div class="counter"><span id="user_city_counter"></span> characters left</div>
         </li>
         <li>
         <span>
@@ -68,7 +67,7 @@
           <span class="required-field"></span>
         </span>
 
-          <div class="counter"><span id="order_state_counter"></span> characters left</div>
+          <div class="counter"><span id="user_state_counter"></span> characters left</div>
         </li>
         <li>
         <span>
@@ -77,12 +76,12 @@
           <span class="required-field"></span>
         </span>
 
-          <div class="counter"><span id="order_zip_counter"></span> characters left</div>
+          <div class="counter"><span id="user_zip_counter"></span> characters left</div>
         </li>
         <li>
         <span>
           <%= f.label :country %>
-          <%= localized_country_select(:order, :country, ['US']) %>
+          <%= f.localized_country_select(:country, ['US']) %>
           <span class="required-field"></span>
         </span>
         </li>
