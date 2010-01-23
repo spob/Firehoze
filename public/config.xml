@@ -56,13 +56,15 @@
       <transition num="4" direction="left" shader="flat" />
 
       <!-- slide 2 -->
+
       <slide>
-        <url>images/cuber/chalk.jpg</url>
+        <url>images/cuber/glasses-and-notebook.jpg</url>
         <description>
           <heading>Focus</heading>
           <paragraph>on what you NEED to learn ...</paragraph>
         </description>
-      </slide>		
+      </slide>
+
 
       <!-- transition 2-to-3  -->
       <transition num="4" direction="right" shader="flat" />
@@ -77,7 +79,7 @@
       </slide>
 
       <!-- transition 3-to-4  -->
-      <transition num="3" slicing="vertical" direction="down"/>
+      <transition num="6" slicing="horizontal" direction="right" duration="0.8" delay="0.05" z_multiplier="5"/>
 
       <!-- slide 4 -->
       <slide>
@@ -88,29 +90,53 @@
         </description>
       </slide>		
 
-      <!-- changing transition between second & third slide -->
+      <!-- transition 4-to-5  -->
       <transition num="6" slicing="vertical" direction="down" shader="flat" delay="0.05" z_multiplier="4" />
+
+      <!-- slide 5 -->
       <slide>
         <url>images/cuber/classroom-yellow.jpg</url>
         <description>
           <heading>Teach Wider</heading>
-          <paragraph>beyond your institution...</paragraph>
+          <paragraph>extend beyond your institution ...</paragraph>
         </description>
       </slide>
-      <!-- transitions properties defined in transitions template -->
+
+      <!-- transition 5-to-6  -->
+      <transition num="6" slicing="vertical" direction="down" shader="phong" delay="0.05"/>
+
+      <!-- slide 6 -->
       <slide>
         <url>images/cuber/campus-auburn.jpg</url>
         <description>
           <heading>Be Wise</heading>
-          <paragraph>and invest where it makes sense ...</paragraph>
+          <paragraph>invest time where it makes sense ...</paragraph>
         </description>
       </slide>
 
-      <!-- <transition num="6" slicing="vertical" direction="up" shader="flat" delay="0.05" z_multiplier="4" />
-      <slide>
-        <url>images/cuber/slide_5.jpg</url>
-      </slide> -->
+      <!-- transition 6-to-7  -->
+      <transition num="6" slicing="vertical" direction="up" shader="flat" delay="0.05" z_multiplier="4" />
 
+      <!-- slide 7 -->
+      <slide>
+        <url>images/cuber/chalk.jpg</url>
+        <description>
+          <heading>Leave a Mark</heading>
+          <paragraph>and make a difference ...</paragraph>
+        </description>
+      </slide>
+
+      <!-- transition 7-to-8  -->
+      <transition num="6" slicing="horizontal" direction="right" duration="0.8" delay="0.05" z_multiplier="5"/>
+
+      <!-- slide 8 -->
+      <slide>
+        <url>images/cuber/test-tubes.jpg</url>
+        <description>
+          <heading>Advancement</heading>
+          <paragraph>is right in-front of you ...</paragraph>
+        </description>
+      </slide>
     </slides>
   </cu3er>
 

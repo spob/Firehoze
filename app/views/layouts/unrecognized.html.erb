@@ -54,72 +54,57 @@
 
 </head>
 <body>
-<%= render "shared/flash_msg" -%>
+  <%= render "shared/flash_msg" -%>
 
-<!-- start header -->
-<div id="header">
-  <div class="container">
-    <div class="span-12 last content">
-      <div id="logo">
-        <% if current_user %>
-        <%= link_to_unless_current("my firehoze", my_firehoze_index_path, :id => :home) %>
-        <% else %>
-        <%= link_to_unless_current("Firehoze", lessons_path, :id => :home) %>
-        <% end %>
-      </div>
-      <div id="top-navigation-container">
-        <%= render :partial => "shared/top_navigation" %>
-      </div>
-      <!-- end top-navigation-container-->
-    </div>
-    <!-- content -->
-  </div>
-  <!-- container -->
-</div>
-<!-- end header -->
-
-<!-- main-navigation -->
-
-<!-- end main-navigation -->
-<!-- end shadowbox-top -->
-
-<!-- start main_content -->
-<div id="cu3er">
-  <div class="container">
-    <div class="span-12 last content">
-      <div id="shadow">
-
-        <div id="cu3er-container">
-          <a href="http://www.adobe.com/go/getflashplayer">
-            <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
-          </a>
+  <!-- start header -->
+  <div id="header">
+    <div class="container">
+      <div class="span-12 last content">
+        <div id="logo">
+          <% if current_user %>
+          <%= link_to_unless_current("my firehoze", my_firehoze_index_path, :id => :home) %>
+          <% else %>
+          <%= link_to_unless_current("Firehoze", lessons_path, :id => :home) %>
+          <% end %>
         </div>
-      </div>
-
-    </div><!-- content -->
-  </div><!-- container -->
-</div><!-- end cuber -->
-
-
-<div class="container">
-  <%= yield -%>
-</div>
+        <div id="top-navigation-container">
+          <%= render :partial => "shared/top_navigation" %>
+        </div><!-- end top-navigation-container-->
+      </div><!-- content -->
+    </div><!-- container -->
+  </div><!-- end header -->
 
 
-<!-- end main_content -->
+  <!-- start main_content -->
+  <div id="cu3er">
+    <div class="container">
+      <div class="span-12 last content">
+        <div id="shadow">
+          <div id="cu3er-container">
+            <a href="http://www.adobe.com/go/getflashplayer">
+              <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+            </a>
+          </div>
+        </div>
+      </div><!-- content -->
+    </div><!-- container -->
+  </div><!-- end cuber -->
 
 
-<%= render :partial => 'shared/footer' %>
+  <div class="container">
+    <%= yield -%>
+  </div>
 
-<% # Javascript Plugins %>
-<%= javascript_include_tag 'v2/jquery.always_at_bottom','v2/jquery.cornerz','v2/jquery.tipTip', :cache => 'firehoze-plugins' %>
+  <%= render :partial => 'shared/footer' %>
 
-<% # Firehoze Specific Javascript Code %>
-<%= javascript_include_tag 'v2/application','v2/footer','v2/rounders','v2/tipTip','v2/top_navigation', :cache => 'firehoze' %>
-<%= javascript_include_tag 'v2/tooltip' unless Rails.env.test? or g_browser_name == 'ie' %>
+  <% # Javascript Plugins %>
+  <%= javascript_include_tag 'v2/jquery.cornerz' %>
 
-<% # External Service Javascripts %>
-<%= render "shared/google_analytics"   -%>
-<%= render "shared/get_satifisfaction"  -%>
+  <% # Firehoze Specific Javascript Code %>
+  <%= javascript_include_tag 'v2/application','v2/rounders','v2/top_navigation', :cache => 'firehoze' %>
+
+  <% # External Service Javascripts %>
+  <%= render "shared/google_analytics" -%>
+  <%= render "shared/get_satifisfaction" -%>
 </body>
 </html>
