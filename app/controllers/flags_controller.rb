@@ -82,6 +82,8 @@ class FlagsController < ApplicationController
   def flaggable_show_path(flag)
     if flag.flaggable.class == LessonComment
       lesson_lesson_comments_path(flag.flaggable(:include => [:lesson]).lesson, :anchor => "LessonComment#{flag.flaggable.id}")
+    elsif flag.flaggable.class == Review
+      lesson_path(flag.flaggable(:include => [:lesson]).lesson, :anchor => "reviews")
     elsif flag.flaggable.class == TopicComment
       topic_path(flag.flaggable(:include => [:topic]).topic, :anchor => "TopicComment#{flag.flaggable.id}")
     else

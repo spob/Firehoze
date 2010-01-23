@@ -9,8 +9,8 @@ class ReviewsController < ApplicationController
   end
   # Since this controller is nested, in most cases we'll need to retrieve the lesson first, so I made it a
   # before filter
-  before_filter :find_lesson, :except => [ :edit, :update, :show, :ajaxed ]
-  before_filter :find_review, :only => [ :edit, :update, :show ]
+  before_filter :find_lesson, :except => [ :edit, :update, :ajaxed ]
+  before_filter :find_review, :only => [ :edit, :update ]
   before_filter :set_per_page, :only => [ :ajaxed, :index ]
 
   layout :layout_for_action
@@ -38,14 +38,14 @@ class ReviewsController < ApplicationController
             end
   end
 
-  def show
-    if @review.status == REVIEW_STATUS_ACTIVE or (current_user and current_user.is_moderator?)
-      # view the review
-    else
-      flash[:error] = t 'review.not_ready'
-      redirect_to lesson_path(@review.lesson)
-    end
-  end
+#  def show
+#    if @review.status == REVIEW_STATUS_ACTIVE or (current_user and current_user.is_moderator?)
+#      # view the review
+#    else
+#      flash[:error] = t 'review.not_ready'
+#      redirect_to lesson_path(@review.lesson)
+#    end
+#  end
 
   def new
     @review = @lesson.reviews.build
@@ -82,14 +82,14 @@ class ReviewsController < ApplicationController
   def edit
     unless @review.can_edit? current_user
       flash[:error] = t 'review.cannot_edit'
-      redirect_to lesson_reviews_path(@lesson)
+      redirect_to lesson_path(@lesson, :anchor => 'reviews')
     end
   end
 
   def update
     if @review.update_attributes(params[:review])
       flash[:notice] = t 'review.update_success'
-      redirect_to review_path(@review)
+      redirect_to lesson_path(@lesson, :anchor => 'reviews')
     else
       render :action => 'edit'
     end
