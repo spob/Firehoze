@@ -30,7 +30,7 @@
     </fieldset>
     <p class="actions">
       <% if @user.author_agreement_accepted_on %>
-          <%= link_to content_tag(:span, 'Next &raquo;'), instructor_wizard_step2_account_path(current_user), :class => 'minibutton call-to-action' %>
+          <%= link_to content_tag(:span, 'Next &raquo;'), instructor_wizard_step2_account_path(current_user), :class => 'minibutton' %>
       <% else %>
           <%= f.submit "Next", :disable_with => translate('general.disable_with') %>
       <% end %>
