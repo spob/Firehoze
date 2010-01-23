@@ -70,7 +70,7 @@ class PaymentsController < ApplicationController
   private
   
   def layout_for_action
-    current_user.is_paymentmgr? ? 'admin_v2' : 'application'
+    current_user.is_paymentmgr? ? 'admin_v2' : 'application_v2'
   end
 
   def set_per_page
