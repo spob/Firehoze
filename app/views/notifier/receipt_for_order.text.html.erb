@@ -15,7 +15,7 @@
   Address:<br />
   <%= @order.address1 %><br />
   <% if @order.address2 %>
-      <%= @order.address1 %><br />
+      <%= @order.address2 %><br />
   <% end %>
   <%= @order.city %>, <%= @order.state %> <%= @order.zip %><br />
   <%= I18n.t(@order.country, :scope => 'countries') %>
