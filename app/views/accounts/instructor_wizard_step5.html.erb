@@ -1,49 +1,34 @@
 <% title "Instructor Agreement, Step 5" -%>
+<%= render :partial => "shared/infield_head_content" %>
 
 <h3>Instructor Enrollment Wizard</h3>
-<div class="fh-form">
-  <%= render :partial => 'breadcrumbs', :locals => { :step => 5 } %>
-  <% form_for(:user, :url => update_instructor_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
-      <%= f.error_messages %>
-      <%= hidden_field_tag :step, "5" %>
-      <ul id="wizard2-info" class="section">
-        <li class="header">
-          <span></span>
+<%= render :partial => 'breadcrumbs', :locals => { :step => 5 } %>
+<% form_for(:user, :url => update_instructor_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
+  <%= f.error_messages %>
+  <%= hidden_field_tag :step, "5" %>
+  <fieldset>
+    <legend>Tax Withholding</legend>
+    <p>That's it! You are now a Firehoze Instructor. Congratulations!</p>
 
-          <h3>Tax Withholding (Step 5 of 5)</h3>
-          <h4>That's it! You are now a Firehoze Instructor. Congratulations!</h4>
+    <p>One last thing...Uncle Sam requires that you pay your taxes. You have two choices:</p>
+    <ol>
+      <li>
+        Do nothing...we'll automatically withhold the required taxes from your sales and pay the required taxes
+        directly to the IRS.
+      </li>
+      <li>
+        Fill out the IRS <%= link_to "W9 form", "http://www.irs.gov/pub/irs-pdf/fw9.pdf" %>, sign it and email to
+        <a href="javascript:location='mailto:\u0077\u0039\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d';void 0"><script type="text/javascript">document.write('\u0077\u0039\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d')</script></a>
+        or fax it to 1.208.728.9313. In doing so, you are taking responsibilty for paying any required
+        taxes, and Firehoze will not withhold any taxes from the money owed to you.
+      </li>
+    </ol>
+    <p>The choice is yours.</p>
 
-          <h4>One last thing...Uncle Sam requires that you pay your taxes. You have two choices:</h4>
-          <h4>
-            <ol>
-              <li>
-                Do nothing...we'll automatically withold the required taxes from your sales and pay the required taxes
-                directly to the IRS.
-              </li>
-              <li>
-                Fill out the IRS <%= link_to "W9 form", "http://www.irs.gov/pub/irs-pdf/fw9.pdf" %>, sign it and email
-                to
-                <a href="javascript:location='mailto:\u0077\u0039\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d';void 0">
-                  <script type="text/javascript">document.write('\u0077\u0039\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d')</script>
-                </a>
-                or fax it to 1.208.728.9313. In doing so, you are taking responsibilty for paying any required
-                taxes, and Firehoze will not withold any taxes from the money owed to you.
-              </li>
-            </ol>
-          </h4>
-
-          <h4>The choice is yours.</h4>
-
-          <h4>Happy teaching!</h4>
-        </li>
-        <li class="bottom">
-        <span class="unlabelled">
-          <%= link_to "&laquo; Back", instructor_wizard_step4_account_path(current_user), :class => "mr-10" %>
-          <%= link_to content_tag(:span, 'DONE'), edit_account_path(current_user), :class => 'minibutton' %>
-        </span>
-
-          <div class="clear"/>
-        </li>
-      </ul>
-  <% end %>
-</div>
+    <p>Happy teaching!</p>
+  </fieldset>
+  <p class="actions">
+    <%= link_to "&laquo; Back", instructor_wizard_step4_account_path(current_user), :class => "mr-10" %>
+    <%= link_to content_tag(:span, 'DONE'), edit_account_path(current_user), :class => 'minibutton' %>
+  </p>
+<% end %>

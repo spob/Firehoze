@@ -1,99 +1,61 @@
 <% title "Instructor Agreement, Step 3" -%>
+<%= render :partial => "shared/infield_head_content" %>
 
-<%= javascript 'v2/validation/accounts.validate.js' %>
-
+<h3>Instructor Enrollment Wizard</h3>
 <%= render :partial => 'breadcrumbs', :locals => { :step => 3 } %>
+<% form_for(:user, :url => update_instructor_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
+<%= f.error_messages %>
+<%= hidden_field_tag :step, "3" %>
+<fieldset>
+  <legend>Postal Address</legend>
+  <p>
+    Tell us where you'd like us to send all the money you're going to make.
+  </p>
 
-<div class="fh-form">
-  <% form_for(:user, :url => update_instructor_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "instructor_address" }) do |f| %>
-      <%= f.error_messages %>
-      <%= hidden_field_tag :step, "3" %>
-      <ul id="wizard2-info" class="section">
-        <li class="header">
-          <span></span>
+  <p>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </p>
 
-          <h3>Postal Address (Step 3 of 5)</h3>
-          <h4>Tell us where you'd like us to send all the money you're going to make.</h4>
-        </li>
+  <p>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </p>
 
-        <li>
-        <span>
-          <%= f.label :first_name %>
-          <%= f.text_field :first_name, :maxlength => "50", :title => "You must provide your first name", :class => "required" %>
-          <span class="required-field"></span>
-        </span>
+  <p>
+    <%= f.label :address1 %><br />
+    <%= f.text_field :address1 %>
+  </p>
 
-          <div class="counter"><span id="user_first_name_counter"></span> characters left</div>
-        </li>
-        <li>
-        <span>
-          <%= f.label :last_name %>
-          <%= f.text_field :last_name, :maxlength => "50", :title => "You must provide your first name", :class => "required" %>
-          <span class="required-field"></span>
-        </span>
+  <p>
+    <%= f.label :address2 %><br />
+    <%= f.text_field :address2 %>
+  </p>
 
-          <div class="counter"><span id="user_last_name_counter"></span> characters left</div>
-        </li>
-        <li>
-        <span>
-          <%= f.label :address1 %>
-          <%= f.text_field :address1, :maxlength => "150", :title => "You must enter the your street address", :class => "required" %>
-          <span class="required-field"></span>
-        </span>
+  <p>
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </p>
 
-          <div class="counter"><span id="user_address1_counter"></span> characters left</div>
-        </li>
-        <li>
-        <span>
-          <%= f.label :address2 %>
-          <%= f.text_field :address2, :maxlength => "150" %>
-        </span>
+  <p>
+    <%= f.label :state, "State or Region" %><br />
+    <%= f.text_field :state %>
+  </p>
 
-          <div class="counter"><span id="user_address2_counter"></span> characters left</div>
-        </li>
-        <li>
-        <span>
-          <%= f.label :city %>
-          <%= f.text_field :city, :maxlength => "50", :title => "You must provide your billing city", :class => "required" %>
-          <span class="required-field"></span>
-        </span>
+  <p>
+    <%= f.label :postal_code, "Postal Code or Zip Code" %><br />
+    <%= f.text_field :postal_code %>
+  </p>
 
-          <div class="counter"><span id="user_city_counter"></span> characters left</div>
-        </li>
-        <li>
-        <span>
-          <%= f.label :state %>
-          <%= f.text_field :state, :maxlength => "50", :title => "You must provide your billing state", :class => "required" %>
-          <span class="required-field"></span>
-        </span>
-
-          <div class="counter"><span id="user_state_counter"></span> characters left</div>
-        </li>
-        <li>
-        <span>
-          <%= f.label :postal_code, "Postal Code" %>
-          <%= f.text_field :postal_code, :maxlength => "25", :title => "You must provide your billing postal code", :class => "required" %>
-          <span class="required-field"></span>
-        </span>
-
-          <div class="counter"><span id="user_zip_counter"></span> characters left</div>
-        </li>
-        <li>
-        <span>
-          <%= f.label :country %>
-          <%= f.localized_country_select(:country, ['US']) %>
-          <span class="required-field"></span>
-        </span>
-        </li>
-        <li class="bottom">
-        <span class="unlabelled">
-          <%= f.submit "Next", :disable_with => translate('general.disable_with') %>
-          <%= link_to "&laquo; Back", instructor_wizard_step2_account_path(current_user), :class => "ml-10" %> |
-          <%= link_to 'Cancel', edit_account_path(current_user) %>
-        </span>
-
-          <div class="clear"/>
-        </li>
-      </ul>
-  <% end %>
-</div>
+  <p>
+    <%= f.localized_country_select(:country, ['US']) %>
+  </p>
+</fieldset>
+<p>
+  <%= f.submit "Next", :disable_with => translate('general.disable_with') %>
+  <span  class="actions">
+    <%= link_to "&laquo; Back", instructor_wizard_step2_account_path(current_user), :class => "ml-10" %> |
+    <%= link_to 'Cancel', edit_account_path(current_user) %>
+  </span>
+</p>
+<% end %>

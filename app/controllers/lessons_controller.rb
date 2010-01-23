@@ -145,7 +145,7 @@ class LessonsController < ApplicationController
                              :with => with,
                              :include => :instructor,
                              :page => 1,
-                             :per_page => 25,
+                             :per_page => ADVANCED_SEARCH_RESULTS_TO_DISPLAY,
                              :retry_stale => true
     render :action => :advanced_search
   end
