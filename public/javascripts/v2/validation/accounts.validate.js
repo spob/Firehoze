@@ -7,8 +7,7 @@ $(document).ready(function() {
             form.submit();
         }
     });
-
- $(document).ready(function() {
+    
     $("#password_form").validate({
         errorElement: "span",
         success: "valid",
@@ -18,7 +17,7 @@ $(document).ready(function() {
         }
     });
 
-    $("#author").validate({
+    $("#author, #instructor_address").validate({
         errorElement: "span",
         success: "valid",
         submitHandler: function(form) {
