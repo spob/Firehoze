@@ -100,7 +100,7 @@ class Notifier < ActionMailer::Base
 
     body       :gift_certificate => gift_certificate,
                :from_user => from_user,
-               :gift_certificates_url => account_history_my_firehoze_url({:anchor => 'giftcerts'}, url_options),
+               :gift_certificates_url => account_history_my_firehoze_url(url_options),
                :redeem_url => new_gift_certificate_url(url_options),
                :url => login_url(url_options)
   end
