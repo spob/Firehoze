@@ -1,3 +1,8 @@
+body {
+  background-color:#fff;
+}
+
+
 /* SHADOWBOX */
 #shadowbox-top {
   z-index:10;
@@ -44,3 +49,17 @@
   height: 77px;
 }
 
+div.unrecognized-content {
+  margin-top:2em;
+  padding-top:3em;
+  background: #FFF url(http://www.progressivered.com/img/ui/post_bg_white.jpg) 0 -1px no-repeat;
+}
+
+div.box {
+  padding:2em;
+  background:transparent url('/stylesheets/images/shadow_box/corner.png') 0 0 no-repeat;
+}
+
+img.box-image {
+  float:left;
+}
