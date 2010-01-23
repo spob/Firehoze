@@ -1,44 +1,56 @@
 <% title "Instructor Agreement, Step 4" -%>
-<%= render :partial => "shared/infield_head_content" %>
 
-<h3>Instructor Enrollment Wizard</h3>
-<%= render :partial => 'breadcrumbs', :locals => { :step => 4 } %>
-<% form_for(:user, :url => update_instructor_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
-<%= f.error_messages %>
-<%= hidden_field_tag :step, "4" %>
-<fieldset>
-  <legend>Confirm Contact Information</legend>
-  <p>
-    At the risk of being anal, let's just confirm one last time that you've got your contact information correct.
-    After all, you want to make sure that your check will reach you, and that you'll be able to cash it!
-  </p>
+<%= javascript 'v2/validation/accounts.validate.js' %>
 
-  <p>
-    Payments will be sent to:
-  </p>
+  <%= render :partial => 'breadcrumbs', :locals => { :step => 4 } %>
 
-  <p>
-    <strong>
-      <%= h @user.full_name %>
-      <br />
-      <%= formatted_address("<br />") %>
-    </strong>
-  </p>
+<div class="fh-form">
+  <% form_for(:user, :url => update_instructor_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
+      <%= f.error_messages %>
+      <%= hidden_field_tag :step, "4" %>
+      <ul id="wizard2-info" class="section">
+      <li class="header">
+        <span></span>
 
-  <p>
-    <% if @user.verified_address_on %>
-    You confirmed your address on: <%= l @user.verified_address_on %>
-    <% else %>
-    I confirm that this information is correct
-    <%= check_box_tag :confirm_contact %>
-    <% end %>
-  </p>
-</fieldset>
-<p>
-  <%= f.submit "Next", :disable_with => translate('general.disable_with') %>
-  <span  class="actions">
-    <%= link_to "&laquo; Back", instructor_wizard_step3_account_path(current_user), :class => "ml-10" %> |
-    <%= link_to 'Cancel', edit_account_path(current_user) %>
-  </span>
-</p>
-<% end %>
+        <h3>Confirm Your Postal Address (Step 4 of 5)</h3>
+        <h4> At the risk of being anal, let's just confirm one last time that you've got your contact information
+          correct.
+          After all, you want to make sure that your check will reach you, and that you'll be able to cash it!</h4>
+
+        <h4>Payments will be sent to:</h4>
+
+        <h4>
+          <strong>
+            <%= h @user.full_name %>
+            <br/>
+            <%= formatted_address("<br />") %>
+          </strong>
+        </h4>
+      </li>
+
+      <li>
+        <span>
+        <% if @user.verified_address_on %>
+            You confirmed your address on: <%= l @user.verified_address_on %>
+        <% else %>
+            <%= check_box_tag :confirm_contact %> I confirm that this information is correct
+          <span class="required-field"></span>
+        <% end %>
+            </span>
+      </li>
+      <li class="bottom">
+        <span class="unlabelled">
+          <% if @user.verified_address_on %>
+              <%= link_to content_tag(:span, 'Next &raquo;'), instructor_wizard_step2_account_path(current_user), :class => 'minibutton call-to-action' %>
+          <% else %>
+              <%= f.submit "Next", :disable_with => translate('general.disable_with') %>
+          <% end %>
+          <%= link_to "&laquo; Back", instructor_wizard_step3_account_path(current_user), :class => "ml-10" %> |
+          <%= link_to 'Cancel', edit_account_path(current_user) %>
+        </span>
+
+        <div class="clear"/>
+      </li>
+          </ul>
+  <% end %>
+</div>
