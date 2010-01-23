@@ -90,7 +90,16 @@ module ApplicationHelper
     "#{h(address1)}#{newline_character}#{h(address2) + newline_character unless (address2.nil? or address2.empty?)}#{h(city)}, #{h(state)} #{h(postal_code)}#{newline_character}#{I18n.t(country, :scope => 'countries')}"
   end
 
-  def flag_link flaggable
+  def flag_link flaggable, show_msg=true
+    msg = flag_msg flaggable
+    if msg.nil?
+      link_to content_tag(:span, "Flag"), new_flag_path(:flagger_type => flaggable.class.to_s, :flagger_id => flaggable), :class => :minibutton
+    elsif show_msg
+      msg
+    end
+  end
+
+  def flag_msg flaggable
     msg = nil
     if current_user
       flags = current_user.get_flags(flaggable)
@@ -102,11 +111,7 @@ module ApplicationHelper
         end
       end
     end
-    if msg.nil?
-      link_to content_tag(:span, "Flag"), new_flag_path(:flagger_type => flaggable.class.to_s, :flagger_id => flaggable), :class => :minibutton
-    else
-      msg
-    end
+    msg
   end
 
   def per_page_select refresh_url
