@@ -37,7 +37,7 @@ class LessonCommentsController < ApplicationController
       @lesson_comment.user = current_user
       if @lesson_comment.save
         flash[:notice] = t 'lesson_comment.create_success'
-        redirect_to lesson_path(@lesson, :anchor => :lesson_comment)
+        redirect_to lesson_lesson_comments_path(@lesson)
       else
         render :action => 'new'
       end
@@ -54,9 +54,10 @@ class LessonCommentsController < ApplicationController
   def update
     if @lesson_comment.can_edit? current_user
       params[:lesson_comment][:public] ||= false
-      if @lesson_comment.update_attributes(params[:lesson_comment])
+      @lesson_comment.body = params[:lesson_comment][:body]
+      if @lesson_comment.save
         flash[:notice] = t 'lesson_comment.update_success'
-        redirect_to lesson_url(@lesson_comment.lesson, :anchor => :lesson_comment)
+        redirect_to lesson_lesson_comments_path(@lesson_comment.lesson)
       else
         render :action => 'edit'
       end
