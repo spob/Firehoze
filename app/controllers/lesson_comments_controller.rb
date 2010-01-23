@@ -19,7 +19,7 @@ class LessonCommentsController < ApplicationController
   layout :layout_for_action
 
   def index
-    @lesson_comments = LessonComment.list @lesson, params[:page], current_user
+    @lesson_comments = LessonComment.list @lesson, params[:page], current_user, params[:per_page] || 9999
     @style = params[:style]
     render :layout => 'content_in_tab' if @style == 'tab'
   end

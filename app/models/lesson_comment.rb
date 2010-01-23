@@ -5,11 +5,11 @@ class LessonComment < Comment
   has_many :flags, :as => :flaggable, :dependent => :destroy
 
 # Basic paginated listing finder
-  def self.list(lesson, page, current_user=nil)
+  def self.list(lesson, page, current_user=nil, per_page=ROWS_PER_PAGE)
     comments = Comment.numerate(LessonComment.find(:all,
              :conditions => list_conditions(lesson, current_user), :include => [:user, :lesson],
              :order => 'id'))
-    comments.paginate :page => page, :per_page => ROWS_PER_PAGE
+    comments.paginate :page => page, :per_page => per_page
   end
 
   def self.list_count(lesson, current_user)
