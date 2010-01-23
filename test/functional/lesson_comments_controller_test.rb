@@ -8,7 +8,7 @@ class LessonCommentsControllerTest < ActionController::TestCase
     should_assign_to :lesson_comment
     should_respond_with :redirect
     should_set_the_flash_to :lesson_comment_create_success
-    should_redirect_to("Lesson comments index page") { lesson_url(@lesson, :anchor => :lesson_comment) }
+    should_redirect_to("Lesson comments index page") { lesson_lesson_comments_path(@lesson) }
   end
 
   def self.test_new_success
@@ -168,12 +168,12 @@ class LessonCommentsControllerTest < ActionController::TestCase
 
           fast_context "on PUT to :update" do
             setup { put :update, :id => @lesson_comment, :lesson => @lesson_comment.lesson,
-                        :lesson_comment => { :public => true } }
+                        :lesson_comment => { :public => true, :body => 'hello' } }
 
             should_set_the_flash_to :lesson_comment_update_success
             should_assign_to :lesson_comment
             should_respond_with :redirect
-            should_redirect_to("lesson comments index page") { lesson_url(@lesson, :anchor => :lesson_comment) }
+            should_redirect_to("lesson comments index page") { lesson_lesson_comments_path(@lesson) }
           end
         end
 

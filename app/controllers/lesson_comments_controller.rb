@@ -54,6 +54,7 @@ class LessonCommentsController < ApplicationController
   def update
     if @lesson_comment.can_edit? current_user
       params[:lesson_comment][:public] ||= false
+      @lesson_comment.public = params[:lesson_comment][:public] if current_user.is_a_moderator?
       @lesson_comment.body = params[:lesson_comment][:body]
       if @lesson_comment.save
         flash[:notice] = t 'lesson_comment.update_success'
