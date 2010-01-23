@@ -1,3 +1,3 @@
 <% title "Create a lesson" -%>
 
-<%= render :partial => 'form', :locals => { :heading => "Create Lesson", :subtext => "Upload your lesson video to create your lesson. The video file for your lesson must be less than #{number_to_human_size(APP_CONFIG[CONFIG_MAX_VIDEO_SIZE].megabytes)}." } %>
+<%= render :partial => 'form', :locals => { :new_lesson => true, :heading => "Create Lesson", :subtext => "Upload your lesson video to create your lesson. The video file for your lesson must be less than #{number_to_human_size(APP_CONFIG[CONFIG_MAX_VIDEO_SIZE].megabytes)}." } %>

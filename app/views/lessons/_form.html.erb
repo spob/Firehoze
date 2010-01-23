@@ -43,7 +43,7 @@
         </span>
           <span class="help">(use commas to separate multiple tags)</span>
         </li>
-        <% if @lesson.new_record? %>
+        <% if new_lesson %>
             <li>
         <span>
           <%= f.label :video %>
@@ -83,7 +83,7 @@
         </li>
         <li class="bottom">
         <span class="unlabelled">
-        <%= f.submit "#{@lesson.new_record? ? "Create" : "Update"} Lesson" %>
+        <%= f.submit "#{new_lesson ? "Create" : "Update"} Lesson" %>
           <%= link_to "Cancel", lessons_path %>
         </span>
 
