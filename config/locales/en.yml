@@ -375,6 +375,7 @@ en:
   time:
     formats:
       default: "%b %d, %Y %I:%M%p"
+      w_timezone: "%b %d, %Y %I:%M%p %Z"
       time: "%H:%M"
       short: "%d %b %H:%M"
       long: "%b %d, %Y %I:%M:%S%p"

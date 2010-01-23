@@ -51,7 +51,7 @@ class Notifier < ActionMailer::Base
                :url => login_url(url_options)
   end
 
-  # Receipt for an order
+  # ReceA job failed
   def job_failure(job)
     subject    "Periodic Job Failed ##{job.id}"
     recipients   User.admins.active.collect(&:email)
@@ -70,7 +70,7 @@ class Notifier < ActionMailer::Base
                :url => new_lesson_review_url(credit.lesson, url_options)
   end
 
-  # Receipt for an order
+  # Payments...
   def payment_notification(payment_id)
     payment = Payment.find(payment_id)
     subject    "The check is in the mail!"
@@ -88,6 +88,7 @@ class Notifier < ActionMailer::Base
     from        APP_CONFIG[CONFIG_ADMIN_EMAIL]
 
     body       :order => order,
+               :order_date => I18n.l(order.cart.purchased_at.in_time_zone(order.user.time_zone),  :format => :w_timezone),
                :url => order_url(order, url_options)
   end
 
