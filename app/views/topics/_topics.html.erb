@@ -6,7 +6,7 @@
     <th>Last Post</th>
   </tr>
   <%= render topics %>
-  <%= will_paginate topics %>
+  <%= will_paginate topics, :params => { :anchor => "discussion"} %>
 </table>
 <% else %>
 <div class="info">
