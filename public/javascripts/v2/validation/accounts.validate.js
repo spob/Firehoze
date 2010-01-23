@@ -7,8 +7,7 @@ $(document).ready(function() {
             form.submit();
         }
     });
-
- $(document).ready(function() {
+    
     $("#password_form").validate({
         errorElement: "span",
         success: "valid",
