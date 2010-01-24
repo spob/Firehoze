@@ -492,18 +492,6 @@ div.review #stars { margin: 5px 0 0 0; }
   cursor: pointer;
 }
 #faqs_section .answers img { margin: 20px 0 40px 0; }
-div#account-settings-tabs div.panes {
-  -moz-border-radius-bottomleft: 8px;
-  -webkit-border-bottom-left-radius: 8px;
-  -moz-border-radius-bottomright: 8px;
-  -webkit-border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  margin: 0;
-  min-height: 300px;
-  padding: 17px;
-  background-color: #e3e9f2;
-}
 #group-container {
   position: relative;
   padding: 20px;
@@ -1007,6 +995,7 @@ div.tab-container.with-blue-panes div.panes {
   margin: 0;
   padding: 17px;
   background-color: #e3e9f2;
+  min-height: 300px;
 }
 .tab-container img.loader {
   display: none;
@@ -1722,21 +1711,6 @@ ul.group-list {
   margin: 0;
   padding: 0;
   list-style-type: none;
-}
-div#lesson-content-tabs div.panes {
-  -moz-border-radius-bottomleft: 8px;
-  -webkit-border-bottom-left-radius: 8px;
-  -moz-border-radius-bottomright: 8px;
-  -webkit-border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  margin: 0;
-  min-height: 300px;
-  padding: 17px;
-  background-color: #e3e3e3;
-  background-color: #e3e9f2;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
 }
 div#lesson-content-tabs div.panes div#interior-pane {
   -moz-border-radius: 5px;
