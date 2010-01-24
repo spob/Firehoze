@@ -1188,6 +1188,13 @@ table.order-summary th {
   position:relative;
 }
 
+div.tab-container.with-blue-panes div.panes {
+  .rounded_bottom_corners(8px);
+  margin: 0;
+  padding: 17px;
+  background-color:@light-blue-30;
+}
+
 .tab-container img.loader {
   display:none;
   height:32px;
@@ -2132,6 +2139,7 @@ ul.group-list {
 }
 
 /* GOOD */
+
 div#lesson-content-tabs div.panes {
   .rounded_bottom_corners(8px);
   margin:0;
@@ -2479,6 +2487,13 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
 /* forms.css
 ------------------------------------------------------------------------------------------------ */
 
+.fh-form  {
+  margin:0;
+  padding:0;
+  font-size: 12px;
+  font-family: @helvetica;
+}
+
 .fh-form ol,
 .fh-form ul {
   list-style:none;
@@ -2487,13 +2502,6 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
 }
 .fh-form li {
   position: relative;
-}
-
-.fh-form  {
-  margin:0;
-  padding:0;
-  font-size: 12px;
-  font-family: @helvetica;
 }
 
 .fh-form label {
@@ -2938,9 +2946,6 @@ span.valid {
   background:url("images/forms/ok-circle.png") no-repeat 0px 0px;
 }
 
-.fh-form .errorExplanation {
-  .rounded_corners;
-}
 
 .fieldWithErrors {
   padding: 2px;
@@ -2953,8 +2958,12 @@ span.valid {
   border: 2px solid @red-50;
   padding: 7px;
   padding-bottom: 12px;
-  margin-bottom: 20px;
+  margin: 0 0 20px 0;
   background-color: @light-yellow;
+}
+
+.fh-form .errorExplanation {
+  .rounded_corners;
 }
 
 #errorExplanation h2 {
@@ -3010,6 +3019,7 @@ div.counter .over { color:red }
   float: left;
   width:150px;
 }
+
 
 /*---------------------------------------------------------------------------------------------- */
 /* users.css

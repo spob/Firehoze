@@ -5,27 +5,19 @@
 
 <h3><%= h(t('user.account_settings')) %></h3>
 
-
 <div class="span-12">
-  <div class="tab-container non-ajaxed-lessons">
+  <div class="tab-container with-blue-panes">
     <ul class="tabs">
-      <li>
-        <%= link_to h(t('user.profile')), edit_account_path(current_user) %>
-      </li>
-      <li>
-        <a href="#tabs-1" class="current"><%= h(t('user.password')) %></a>
-      </li>
-      <li>
-        <%= link_to h(t('user.author_info')), edit_author_account_path(current_user) %>
-      </li>
-      <li>
-        <%= link_to h(t('user.avatar')), edit_avatar_account_path(current_user) %>
-      </li>
-      <li>
-        <%= link_to h(t('user.privacy')), edit_privacy_account_path(current_user) %>
-      </li>
+      <li><%= link_to h(t('user.profile')), edit_account_path(current_user) %></li>
+      <li><a href="#tabs-1" class="current"><%= h(t('user.password')) %></a></li>
+      <li><%= link_to h(t('user.author_info')), edit_author_account_path(current_user) %></li>
+      <li><%= link_to h(t('user.avatar')), edit_avatar_account_path(current_user) %></li>
+      <li><%= link_to h(t('user.privacy')), edit_privacy_account_path(current_user) %></li>
     </ul>
+    <div class="panes">
+      <div id="interior-pane" class='clearfix'>
+        <%= render :partial => "accounts/forms/password" %>
+      </div>
+    </div>
   </div>
 </div>
-
-<%= render :partial => "accounts/forms/password" %>

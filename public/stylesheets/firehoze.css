@@ -997,6 +997,17 @@ table.order-summary th {
   color: #ffffff;
 }
 .tab-container { position: relative; }
+div.tab-container.with-blue-panes div.panes {
+  -moz-border-radius-bottomleft: 8px;
+  -webkit-border-bottom-left-radius: 8px;
+  -moz-border-radius-bottomright: 8px;
+  -webkit-border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  margin: 0;
+  padding: 17px;
+  background-color: #e3e9f2;
+}
 .tab-container img.loader {
   display: none;
   height: 32px;
@@ -2039,6 +2050,12 @@ div.lesson-tooltip {
   top: 48px;
 }
 .lesson-tooltip .content { margin: 10px 0 0 0; }
+.fh-form {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+}
 .fh-form ol {
   list-style: none;
   margin: 0;
@@ -2050,12 +2067,6 @@ div.lesson-tooltip {
   padding: 0;
 }
 .fh-form li { position: relative; }
-.fh-form {
-  margin: 0;
-  padding: 0;
-  font-size: 12px;
-  font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
-}
 .fh-form label {
   font-size: 13px;
   font-weight: bold;
@@ -2466,11 +2477,6 @@ span.valid {
   width: 16px;
   background: url("images/forms/ok-circle.png") no-repeat 0px 0px;
 }
-.fh-form .errorExplanation {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-}
 .fieldWithErrors {
   padding: 2px;
   display: table;
@@ -2480,8 +2486,13 @@ span.valid {
   border: 2px solid #801609;
   padding: 7px;
   padding-bottom: 12px;
-  margin-bottom: 20px;
+  margin: 0 0 20px 0;
   background-color: #ffffe0;
+}
+.fh-form .errorExplanation {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
 }
 #errorExplanation h2 {
   background-color: #801609;
