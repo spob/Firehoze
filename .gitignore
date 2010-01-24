@@ -19,7 +19,10 @@ Thumbs.db
 .project
 public/assets
 nbproject
-tmp
+tmp/pids
+tmp/sessions
+tmp/sockets
+tmp/tmp
 script/s3.rb
 coverage
 coverage.data
