@@ -17,7 +17,7 @@ ActionController::Routing::Routes.draw do |map|
                              :update_instructor => :put,
                              :update_instructor_wizard => :put,
                              :update_privacy => :put,
-                             :edit_author => :get,
+                             :edit_instructor => :get,
                              :edit_avatar => :get,
                              :edit_privacy => :get },
                 :collection => { :instructor_agreement => :get }

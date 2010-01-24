@@ -119,7 +119,7 @@ class AccountsController < ApplicationController
     session[:lesson_to_buy] = nil
   end
 
-  def edit_author
+  def edit_instructor
   end
 
   def edit_avatar
@@ -161,7 +161,7 @@ class AccountsController < ApplicationController
     if @user.save
       flash[:notice] = t 'account_settings.update_success'
     else
-      render :action => "edit_author"
+      render :action => "edit_instructor"
     end
     if @user.verified_address_on
       redirect_to edit_account_path

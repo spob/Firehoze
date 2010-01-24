@@ -10,7 +10,7 @@
     <ul class="tabs">
       <li><%= link_to h(t('user.profile')), edit_account_path(current_user) %></li>
       <li><a href="#tabs-1" class="current"><%= h(t('user.password')) %></a></li>
-      <li><%= link_to h(t('user.author_info')), edit_author_account_path(current_user) %></li>
+      <li><%= link_to h(t('user.author_info')), edit_instructor_account_path(current_user) %></li>
       <li><%= link_to h(t('user.avatar')), edit_avatar_account_path(current_user) %></li>
       <li><%= link_to h(t('user.privacy')), edit_privacy_account_path(current_user) %></li>
     </ul>
