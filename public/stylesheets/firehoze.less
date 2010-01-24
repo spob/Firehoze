@@ -795,17 +795,24 @@ div.comment-container div.count {
   .rounded_corners(3px);
   text-align:left;
   padding: 1em;
-/*  background: @light-blue-30;*/
-  background: @gray-10;
+  background: @light-blue-30;
   border:solid 1px @gray-30;
   min-height:2.6em;
   .box-shadow-custom(0, 1px, 3px, rgba(0,0,0,.3));
 }
 
+.gray-box-medium {
+  .blue-box-medium;
+  background: @gray-10;
+}
+
+.white-box-medium {
+  .blue-box-medium;
+  background: @white;
+}
+
 .blue-box-pale {
-  .rounded_corners(5px);
-  text-align:left;
-  padding: 1em;
+  .blue-box-medium;
   background: @light-blue-10;
   border: solid 2px @medium-blue-2;
   min-height:2.6em;

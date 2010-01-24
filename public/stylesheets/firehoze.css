@@ -659,19 +659,53 @@ div.comment-container div.count {
   border-radius: 3px;
   text-align: left;
   padding: 1em;
-  background: #f2f2f2;
+  background: #e3e9f2;
   border: solid 1px #d6d6d6;
   min-height: 2.6em;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
-.blue-box-pale {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+.gray-box-medium {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
   text-align: left;
   padding: 1em;
+  background: #e3e9f2;
+  border: solid 1px #d6d6d6;
+  min-height: 2.6em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  background: #f2f2f2;
+}
+.white-box-medium {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  text-align: left;
+  padding: 1em;
+  background: #e3e9f2;
+  border: solid 1px #d6d6d6;
+  min-height: 2.6em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  background: #ffffff;
+}
+.blue-box-pale {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  text-align: left;
+  padding: 1em;
+  background: #e3e9f2;
+  border: solid 1px #d6d6d6;
+  min-height: 2.6em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   background: #f1f7fe;
   border: solid 2px #9cb6d5;
   min-height: 2.6em;
