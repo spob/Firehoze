@@ -99,7 +99,7 @@ Rails::Initializer.run do |config|
 
   # For interacting with AWS
   config.gem 'right_aws'
-  
+
   # For retrieving tweets
   config.gem 'twitter', :version => '0.7.0'
 
@@ -181,6 +181,7 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   config.active_record.observers = :payment_observer, :lesson_observer, :review_observer, :comment_observer,
-        :group_observer, :group_lesson_observer, :group_member_observer, :user_observer, :credit_observer
+          :group_observer, :group_lesson_observer, :group_member_observer, :user_observer, :credit_observer,
+          :flag_observer
   #:cacher, :garbage_collector
 end

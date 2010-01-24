@@ -70,6 +70,10 @@ class User < ActiveRecord::Base
               :joins => [:roles],
               :conditions => { :roles => {:name => 'admin'}},
               :order => :email
+  named_scope :moderators,
+              :joins => [:roles],
+              :conditions => { :roles => {:name => 'moderator'}},
+              :order => :email
 
   sql = %Q{
     address1 is not null and

@@ -61,6 +61,15 @@ class Notifier < ActionMailer::Base
                :url => periodic_jobs_url(url_options)
   end
 
+  def flag_created(flag)
+    flag = Flag.find(flag)
+    subject "A #{flag.flaggable_type} was flagged"
+    recipients   User.moderators.active.collect(&:email)
+    from        APP_CONFIG[CONFIG_ADMIN_EMAIL]
+    body        :flag => flag,
+                :url => edit_flag_url(flag, url_options)
+  end
+
   def remember_review(credit)
     subject     "#{credit.user.full_name}, please consider reviewing your purchase"
     recipients   credit.user.email

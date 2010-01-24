@@ -1,0 +1,13 @@
+<p>
+ The <%= h(@flag.flaggable_type) %> "<%= h(@flag.friendly_flagger_name) %>" was flagged.
+</p>
+<p><%= h(@flag.comments) %></p>
+<p>
+ Please <%= link_to "review", @url %> and take the appropriate action.
+</p>
+<p>
+  Thank you,
+</p>
+<p>
+  Firehoze
+</p>

@@ -1,6 +1,6 @@
 class FlagsController < ApplicationController
   include SslRequirement
-  
+
   before_filter :require_user
   before_filter :find_flaggable, :only => [ :new, :create ]
   before_filter :find_flag, :only => [ :show, :update, :edit ]
@@ -18,11 +18,13 @@ class FlagsController < ApplicationController
       @flag = @flaggable.flags.new(params[:flag])
       @flag.status = FLAG_STATUS_PENDING
       @flag.user = current_user
-      if @flag.save
-        flash[:notice] = t('flag.create_success')
-        redirect_to flaggable_show_path(@flag)
-      else
-        render :action => "new"
+      Flag.transaction do
+        if @flag.save
+          flash[:notice] = t('flag.create_success')
+          redirect_to flaggable_show_path(@flag)
+        else
+          render :action => "new"
+        end
       end
     end
   end
@@ -76,7 +78,7 @@ class FlagsController < ApplicationController
 
   def index
     @flags = Flag.pending(:order_by => object_id).all(:include => [:flaggable, :user]).paginate :page => params[:page],
-                                                           :per_page => cookies[:per_page] || ROWS_PER_PAGE
+                                                                                                :per_page => cookies[:per_page] || ROWS_PER_PAGE
   end
 
   def flaggable_show_path(flag)

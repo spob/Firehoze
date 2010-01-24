@@ -55,6 +55,17 @@ class Flag < ActiveRecord::Base
     end
   end
 
+  def notify_moderators
+    RunOncePeriodicJob.create!(
+            :name => 'Notify Flagging',
+            :job => "Flag.deliver_notifications #{self.id}")
+  end
+
+  def self.deliver_notifications flag_id
+    flag = Flag.find(flag_id)
+    Notifier.deliver_flag_created(flag)
+  end
+
   private
 
   def abbreviate str, len
