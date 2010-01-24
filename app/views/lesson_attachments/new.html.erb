@@ -7,12 +7,13 @@
       <ul id="attachment-info" class="section">
         <li class="header">
           <span></span>
-          <h3>Add Attachment to the Lesson "<%= h @lesson.title %>"</h3>
+          <h3>Add Attachment to the Lesson:</h3><h3>"<%= h @lesson.title %>"</h3>
           <h4>You can associate lesson notes, presentation files, code samples or other files to your lesson.
             </h4>
           <h4>
           Files that you attach to your lesson must be less than <%= number_to_human_size(APP_CONFIG[CONFIG_MAX_ATTACHMENT_SIZE].megabytes) %>.
           Allowed file types include text files, Microsoft Office files, OpenOffice files, images and PDFs.</h4>
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
         </li>
         <li>
         <span>

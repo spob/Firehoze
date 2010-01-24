@@ -10,8 +10,9 @@
         <li class="header">
           <span></span>
 
-          <h3>Add a Comment to the Topic "<%= link_to h(@topic_comment.topic.title), topic_path(@topic_comment.topic) %>"</h3>
+          <h3>Add a Comment to the Topic:</h3><h3>"<%= link_to h(@topic_comment.topic.title), topic_path(@topic_comment.topic) %>"</h3>
           <h4>Engage in an online discussion with other members of <%= link_to h(@topic.group.name), group_path(@topic.group) %>.</h4>
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
         </li>
         <li>
         <span>

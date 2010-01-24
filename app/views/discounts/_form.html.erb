@@ -8,7 +8,8 @@
           <span></span>
 
           <h3><%= heading %></h3>
-          <h4><%= subtext %></h4>
+          <h4><%= subtext %></h4> 
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
         </li>
         <% if @discount.new_record? %>
             <li>

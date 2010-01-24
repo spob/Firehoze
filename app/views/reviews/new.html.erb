@@ -9,8 +9,10 @@
       <li class="header">
         <span></span>
 
-        <h3>Write a review for <%= link_to h(@lesson.title), lesson_path(@lesson) %></h3>
+        <h3>Write a review for:</h3>
+        <h3><%= link_to h(@lesson.title), lesson_path(@lesson) %></h3>
         <h4>Help the Firehoze community by writing a review for this lesson.</h4>
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
       </li>
       <li>
         <span>

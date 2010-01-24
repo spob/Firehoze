@@ -10,6 +10,8 @@
 
           <h3>
             Flag Inappropriate <%= t("flag.#{@flag.flaggable.class.to_s.downcase}").capitalize %>:
+            </h3>
+          <h3>
             <%= link_to h(@flag.friendly_flagger_name), flaggable_show_path(@flag) %>
             <% unless @flag.flaggable.class == User %>
                 by <%= link_to_profile(offending_user) %>
@@ -20,6 +22,7 @@
             inappropriate content and will take the appropriate action. Please be as descriptive as possible
             as to why you believe Firehoze should remove this content.
           </h4>
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
         </li>
         <li>
         <span>
