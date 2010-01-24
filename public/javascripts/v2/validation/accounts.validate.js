@@ -80,8 +80,8 @@ $(document).ready(function() {
         overClass: 'over'
     });
 
-    $('#xuser_first_name').simplyCountable({
-        counter: '#author_first_name_counter',
+    $('#user_first_name').simplyCountable({
+        counter: '#first_name_counter',
         countType: 'characters',
         maxCount: 40,
         countDirection: 'down',
