@@ -1,72 +1,73 @@
 <div class="fh-form">
   <% form_for(:user, :url => account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "profile" }) do |f| %>
-      <%= f.error_messages %>
-      <ul id="profile-info" class="section">
-        <li class="header">
-          <span></span>
-          <h3><%= params[:action] == "edit_admin" ? "Edit User Profile" : "Update Your Profile" %></h3>
-          <h4><%= "View your public profile #{link_to 'here', user_path(current_user)}" %></h4>
-        </li>
-        <li>
-        <span>
-          <%= f.label :login, "Username" %>
-          <%= f.text_field :login, :minlength => "3", :maxlength => "25", :title => "You must enter your username", :class => "required" %>
-          <span class="required-field"></span>
-        </span>
-          <div class="counter"><span id="login_counter"></span> characters left</div>
-        </li>
-        <li>
-        <span>
-          <%= f.label :email %>
-          <%= f.text_field :email, :maxlength => "100", :title => "You must enter a valid email address", :class => "required email" %>
-          <span class="required-field"></span>
-        </span>
-          <div class="counter"><span id="email_counter"></span> characters left</div>
-        </li>
-        <li>
-        <span>
-          <%= f.label :first_name %>
-          <%= f.text_field :first_name, :maxlength => "40" %>
-        </span>
-          <div class="counter"><span id="first_name_counter"></span> characters left</div>
-        </li>
-        <li>
-        <span>
-          <%= f.label :last_name %>
-          <%= f.text_field :last_name, :maxlength => "40", :title => "You must enter your last name", :class => "required" %>
-          <span class="required-field"></span>
-        </span>
-          <div class="counter"><span id="last_name_counter"></span> characters left</div>
-        </li>
-        <li>
-        <span>
-          <%= f.label :bio %>
-          <%= f.text_area :bio %>
-        </span>
-          <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
-        </li>
-        <li>
-        <span>
-          <%= f.label :time_zone %>
-          <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
-          <span class="required-field"></span>
-        </span>
-        </li>
-        <li>
-        <span>
-          <%= f.label :language %>
-          <%= f.select :language, User.supported_languages %>
-          <span class="required-field"></span>
-        </span>
-        </li>
-        <li class="bottom">
-        <span class="unlabelled">
+  <%= f.error_messages %>
+  <ul id="profile-info" class="section">
+    <li class="header">
+      <span></span>
+      <h3><%= params[:action] == "edit_admin" ? "Edit User Profile" : "Update Your Profile" %></h3>
+      <h4><%= "View your public profile #{link_to 'here', user_path(current_user)}" %></h4>
+      <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
+    </li>
+    <li>
+      <span>
+        <%= f.label :login, "Username" %>
+        <%= f.text_field :login, :minlength => "3", :maxlength => "25", :title => "You must enter your username", :class => "required" %>
+        <span class="required-field"></span>
+      </span>
+      <div class="counter"><span id="login_counter"></span> characters left</div>
+    </li>
+    <li>
+      <span>
+        <%= f.label :email %>
+        <%= f.text_field :email, :maxlength => "100", :title => "You must enter a valid email address", :class => "required email" %>
+        <span class="required-field"></span>
+      </span>
+      <div class="counter"><span id="email_counter"></span> characters left</div>
+    </li>
+    <li>
+      <span>
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, :maxlength => "40" %>
+      </span>
+      <div class="counter"><span id="first_name_counter"></span> characters left</div>
+    </li>
+    <li>
+      <span>
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, :maxlength => "40", :title => "You must enter your last name", :class => "required" %>
+        <span class="required-field"></span>
+      </span>
+      <div class="counter"><span id="last_name_counter"></span> characters left</div>
+    </li>
+    <li>
+      <span>
+        <%= f.label :bio %>
+        <%= f.text_area :bio %>
+      </span>
+      <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
+    </li>
+    <li>
+      <span>
+        <%= f.label :time_zone %>
+        <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
+        <span class="required-field"></span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <%= f.label :language %>
+        <%= f.select :language, User.supported_languages %>
+        <span class="required-field"></span>
+      </span>
+    </li>
+    <li class="bottom">
+      <span class="unlabelled">
         <%= f.submit "Update", :id => "update-profile" %>
         <%= link_to 'Cancel', home_path %>
-        </span>
+      </span>
 
-          <div class="clear" />
-        </li>
-      </ul>
+      <div class="clear" />
+    </li>
+  </ul>
   <% end %>
 </div>

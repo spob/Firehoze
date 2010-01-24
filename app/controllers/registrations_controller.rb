@@ -24,7 +24,7 @@ class RegistrationsController < ApplicationController
       if @registration.save
         flash[:notice] = t 'registration.check_email_for_registration'
         if APP_CONFIG[CONFIG_ALLOW_UNRECOGNIZED_ACCESS]
-          redirect_to root_path
+          redirect_to registration_path(@registration)
         else
           redirect_to login_path
         end
@@ -36,6 +36,9 @@ class RegistrationsController < ApplicationController
       @registration.errors.add_to_base(I18n.t('registration.human_test_failed'))
       render :action => "new"
     end
+  end
+
+  def show
   end
 
   def check_user

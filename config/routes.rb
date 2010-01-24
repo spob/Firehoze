@@ -16,7 +16,10 @@ ActionController::Routing::Routes.draw do |map|
                              :update_avatar => :put,
                              :update_instructor => :put,
                              :update_instructor_wizard => :put,
-                             :update_privacy => :put },
+                             :update_privacy => :put,
+                             :edit_instructor => :get,
+                             :edit_avatar => :get,
+                             :edit_privacy => :get },
                 :collection => { :instructor_agreement => :get }
   map.resources :acquire_lessons, :only => [ :create, :new ],
                 :collection => { :ajaxed => :get }
@@ -118,7 +121,7 @@ ActionController::Routing::Routes.draw do |map|
                                  :user_agreement => :get }
   map.resources :user_logons
   map.resources :wish_lists, :only => [ :create, :destroy ]
-  map.resources :registrations, :only => [ :new, :create ] do |registration|
+  map.resources :registrations, :only => [ :new, :create, :show ] do |registration|
     registration.resources :users, :only => [ :new, :create ]
   end
 

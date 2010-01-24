@@ -58,6 +58,11 @@ a.no-border:hover { border: 0 none; }
 .pb-1em { padding-bottom: 1em; }
 .mt-1em { margin-top: 1em; }
 .mb-1em { margin-bottom: 1em; }
+.min-height-500 { min-height: 500px; }
+.min-height-400 { min-height: 400px; }
+.min-height-300 { min-height: 300px; }
+.min-height-200 { min-height: 200px; }
+.min-height-100 { min-height: 100px; }
 .transparent {
   filter: alpha(opacity=50);
   -moz-opacity: 0.5;
@@ -492,18 +497,6 @@ div.review #stars { margin: 5px 0 0 0; }
   cursor: pointer;
 }
 #faqs_section .answers img { margin: 20px 0 40px 0; }
-div#account-settings-tabs div.panes {
-  -moz-border-radius-bottomleft: 8px;
-  -webkit-border-bottom-left-radius: 8px;
-  -moz-border-radius-bottomright: 8px;
-  -webkit-border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  margin: 0;
-  min-height: 300px;
-  padding: 17px;
-  background-color: #e3e9f2;
-}
 #group-container {
   position: relative;
   padding: 20px;
@@ -671,19 +664,53 @@ div.comment-container div.count {
   border-radius: 3px;
   text-align: left;
   padding: 1em;
-  background: #f2f2f2;
+  background: #e3e9f2;
   border: solid 1px #d6d6d6;
   min-height: 2.6em;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
-.blue-box-pale {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+.gray-box-medium {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
   text-align: left;
   padding: 1em;
+  background: #e3e9f2;
+  border: solid 1px #d6d6d6;
+  min-height: 2.6em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  background: #f2f2f2;
+}
+.white-box-medium {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  text-align: left;
+  padding: 1em;
+  background: #e3e9f2;
+  border: solid 1px #d6d6d6;
+  min-height: 2.6em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  background: #ffffff;
+}
+.blue-box-pale {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  text-align: left;
+  padding: 1em;
+  background: #e3e9f2;
+  border: solid 1px #d6d6d6;
+  min-height: 2.6em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   background: #f1f7fe;
   border: solid 2px #9cb6d5;
   min-height: 2.6em;
@@ -997,6 +1024,18 @@ table.order-summary th {
   color: #ffffff;
 }
 .tab-container { position: relative; }
+div.tab-container.with-blue-panes div.panes {
+  -moz-border-radius-bottomleft: 8px;
+  -webkit-border-bottom-left-radius: 8px;
+  -moz-border-radius-bottomright: 8px;
+  -webkit-border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  margin: 0;
+  padding: 17px;
+  background-color: #e3e9f2;
+  min-height: 300px;
+}
 .tab-container img.loader {
   display: none;
   height: 32px;
@@ -1322,7 +1361,7 @@ div#category-show div.lessons-container { padding-top: 17px; }
   float: left;
   margin: 0 6px 22px 0;
   padding: 12px 5px 10px 11px;
-  background: url('/stylesheets/images/backgrounds/image_holder.png') no-repeat scroll 0 0;
+  background: transparent url('/stylesheets/images/backgrounds/image_holder.png') no-repeat scroll 0 0;
   width: 168px;
   height: 168px;
   font: 11px Arial, Helvetica, sans-serif;
@@ -1712,21 +1751,6 @@ ul.group-list {
   padding: 0;
   list-style-type: none;
 }
-div#lesson-content-tabs div.panes {
-  -moz-border-radius-bottomleft: 8px;
-  -webkit-border-bottom-left-radius: 8px;
-  -moz-border-radius-bottomright: 8px;
-  -webkit-border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  margin: 0;
-  min-height: 300px;
-  padding: 17px;
-  background-color: #e3e3e3;
-  background-color: #e3e9f2;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-}
 div#lesson-content-tabs div.panes div#interior-pane {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -2039,6 +2063,12 @@ div.lesson-tooltip {
   top: 48px;
 }
 .lesson-tooltip .content { margin: 10px 0 0 0; }
+.fh-form {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+}
 .fh-form ol {
   list-style: none;
   margin: 0;
@@ -2050,12 +2080,6 @@ div.lesson-tooltip {
   padding: 0;
 }
 .fh-form li { position: relative; }
-.fh-form {
-  margin: 0;
-  padding: 0;
-  font-size: 12px;
-  font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
-}
 .fh-form label {
   font-size: 13px;
   font-weight: bold;
@@ -2466,11 +2490,6 @@ span.valid {
   width: 16px;
   background: url("images/forms/ok-circle.png") no-repeat 0px 0px;
 }
-.fh-form .errorExplanation {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-}
 .fieldWithErrors {
   padding: 2px;
   display: table;
@@ -2480,8 +2499,13 @@ span.valid {
   border: 2px solid #801609;
   padding: 7px;
   padding-bottom: 12px;
-  margin-bottom: 20px;
+  margin: 0 0 20px 0;
   background-color: #ffffe0;
+}
+.fh-form .errorExplanation {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
 }
 #errorExplanation h2 {
   background-color: #801609;

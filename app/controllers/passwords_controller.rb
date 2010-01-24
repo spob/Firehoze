@@ -20,15 +20,12 @@ class PasswordsController < ApplicationController
       @user.password_confirmation = params[:user][:password_confirmation]
       if @user.save
         flash[:notice] = t 'password.pwd_update_success'
-        redirect_to edit_account_url(@user, :anchor => :password)
+        redirect_to edit_account_url(@user)
       else
-      redirect_to edit_account_url(@user, :anchor => :password)
+      render :action => 'edit'
       end
     else
-      flash[:error] = t 'password.invalid_password'
-      # user typed a bad value for current password
-      @user.password = params[:user][:password]
-      redirect_to edit_account_url(@user, :anchor => :password)
+      render :action => 'edit'
     end
   end
 

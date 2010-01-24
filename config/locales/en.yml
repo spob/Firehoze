@@ -273,7 +273,7 @@ en:
     must_provide_regcode: You must specify a valid registration code in order to become an instructor
   
   registration:
-    check_email_for_registration: Please check your email to complete the registration
+    check_email_for_registration: Please check your email to complete your registration.
     already_used: is already in use
     invalid_reg_code: is invalid. Contact support for a valid code.
     human_test_failed: Human test failed. Are you sure you are not a robot?

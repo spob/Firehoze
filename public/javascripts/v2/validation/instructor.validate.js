@@ -1,6 +1,6 @@
 $(document).ready(function() {  
-    $('#ofirst_name').simplyCountable({
-        counter: '#ofirst_name_counter',
+    $('#user_first_name').simplyCountable({
+        counter: '#first_name_counter',
         countType: 'characters',
         maxCount: 40,
         countDirection: 'down',
@@ -8,8 +8,8 @@ $(document).ready(function() {
         overClass: 'over'
     });
 
-    $('#olast_name').simplyCountable({
-        counter: '#olast_name_counter',
+    $('#user_last_name').simplyCountable({
+        counter: '#last_name_counter',
         countType: 'characters',
         maxCount: 40,
         countDirection: 'down',

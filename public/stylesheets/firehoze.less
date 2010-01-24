@@ -74,6 +74,12 @@ a.no-border:hover {
 .mt-1em { margin-top: 1em; }
 .mb-1em { margin-bottom: 1em; }
 
+.min-height-500 { min-height:500px; }
+.min-height-400 { min-height:400px; }
+.min-height-300 { min-height:300px; }
+.min-height-200 { min-height:200px; }
+.min-height-100 { min-height:100px; }
+
 .transparent {
   filter:alpha(opacity=50);
   -moz-opacity:0.5;
@@ -605,17 +611,6 @@ div.review #stars {
 #faqs_section .anchor { }
 
 
-/* ACCOUNT SETTINGS SCREENS */
-
-/* GOOD */
-div#account-settings-tabs div.panes {
-  .rounded_bottom_corners(8px);
-  margin: 0;
-  min-height:300px;
-  padding: 17px;
-  background-color:@light-blue-30;
-}
-
 /* GROUPS */
 #group-container {
   position:relative;
@@ -806,17 +801,24 @@ div.comment-container div.count {
   .rounded_corners(3px);
   text-align:left;
   padding: 1em;
-/*  background: @light-blue-30;*/
-  background: @gray-10;
+  background: @light-blue-30;
   border:solid 1px @gray-30;
   min-height:2.6em;
   .box-shadow-custom(0, 1px, 3px, rgba(0,0,0,.3));
 }
 
+.gray-box-medium {
+  .blue-box-medium;
+  background: @gray-10;
+}
+
+.white-box-medium {
+  .blue-box-medium;
+  background: @white;
+}
+
 .blue-box-pale {
-  .rounded_corners(5px);
-  text-align:left;
-  padding: 1em;
+  .blue-box-medium;
   background: @light-blue-10;
   border: solid 2px @medium-blue-2;
   min-height:2.6em;
@@ -1186,6 +1188,14 @@ table.order-summary th {
 /* root element for tabs  */
 .tab-container {
   position:relative;
+}
+
+div.tab-container.with-blue-panes div.panes {
+  .rounded_bottom_corners(8px);
+  margin: 0;
+  padding: 17px;
+  background-color:@light-blue-30;
+  min-height:300px;
 }
 
 .tab-container img.loader {
@@ -1633,7 +1643,7 @@ div#category-show div.lessons-container {
   float:left;
   margin: 0 6px 22px 0;
   padding:12px 5px 10px 11px;
-  background: url('/stylesheets/images/backgrounds/image_holder.png') no-repeat scroll 0 0;
+  background: transparent url('/stylesheets/images/backgrounds/image_holder.png') no-repeat scroll 0 0;
   width:168px;
   height:168px;
   font: 11px @arial;
@@ -2132,16 +2142,7 @@ ul.group-list {
 }
 
 /* GOOD */
-div#lesson-content-tabs div.panes {
-  .rounded_bottom_corners(8px);
-  margin:0;
-  min-height:300px;
-  padding: 17px;
-  background-color:@gray-20;
-  background-color:@light-blue-30;
-  border-bottom-left-radius:8px;
-  border-bottom-right-radius:8px;
-}
+
 div#lesson-content-tabs div.panes div#interior-pane {
   .rounded_corners(5px);
   min-height:266px;
@@ -2479,6 +2480,13 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
 /* forms.css
 ------------------------------------------------------------------------------------------------ */
 
+.fh-form  {
+  margin:0;
+  padding:0;
+  font-size: 12px;
+  font-family: @helvetica;
+}
+
 .fh-form ol,
 .fh-form ul {
   list-style:none;
@@ -2487,13 +2495,6 @@ background: url('/stylesheets/images/tooltip/black-arrow-big-br.png') no-repeat 
 }
 .fh-form li {
   position: relative;
-}
-
-.fh-form  {
-  margin:0;
-  padding:0;
-  font-size: 12px;
-  font-family: @helvetica;
 }
 
 .fh-form label {
@@ -2938,9 +2939,6 @@ span.valid {
   background:url("images/forms/ok-circle.png") no-repeat 0px 0px;
 }
 
-.fh-form .errorExplanation {
-  .rounded_corners;
-}
 
 .fieldWithErrors {
   padding: 2px;
@@ -2953,8 +2951,12 @@ span.valid {
   border: 2px solid @red-50;
   padding: 7px;
   padding-bottom: 12px;
-  margin-bottom: 20px;
+  margin: 0 0 20px 0;
   background-color: @light-yellow;
+}
+
+.fh-form .errorExplanation {
+  .rounded_corners;
 }
 
 #errorExplanation h2 {
@@ -3010,6 +3012,7 @@ div.counter .over { color:red }
   float: left;
   width:150px;
 }
+
 
 /*---------------------------------------------------------------------------------------------- */
 /* users.css
