@@ -121,7 +121,7 @@ ActionController::Routing::Routes.draw do |map|
                                  :user_agreement => :get }
   map.resources :user_logons
   map.resources :wish_lists, :only => [ :create, :destroy ]
-  map.resources :registrations, :only => [ :new, :create ] do |registration|
+  map.resources :registrations, :only => [ :new, :create, :show ] do |registration|
     registration.resources :users, :only => [ :new, :create ]
   end
 
