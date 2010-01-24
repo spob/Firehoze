@@ -23,6 +23,7 @@ tmp/pids
 tmp/sessions
 tmp/sockets
 tmp/tmp
+tmp/cache/*.html
 script/s3.rb
 coverage
 coverage.data

@@ -90,7 +90,6 @@ end
 
 namespace :deploy do
   task :finishing_touches, :roles => :app do
-    run "chmod -R 777 #{current_path}/tmp/cache"
     run "cp -pf #{deploy_to}/to_copy/production.rb #{current_path}/config/environments/production.rb"
     run "cp -pf #{deploy_to}/to_copy/database.yml #{current_path}/config/database.yml"
     run "cp -pf #{deploy_to}/to_copy/sphinx.yml #{current_path}/config/sphinx.yml"
@@ -101,6 +100,8 @@ namespace :deploy do
   end
 
   task :restart, :roles => :app do
+    run "rake log:clear RAILS_ENV=production -f #{current_path}/Rakefile"
+    run "chmod -R 777 #{current_path}/tmp/cache"
     run "touch #{current_path}/tmp/restart.txt"
   end
 end
