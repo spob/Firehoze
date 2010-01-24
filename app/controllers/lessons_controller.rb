@@ -10,6 +10,8 @@ class LessonsController < ApplicationController
   permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [:list_admin]
   permit ROLE_MODERATOR, :only => [:unreject]
 
+  caches_page :index
+
   verify :method => :post, :only => [ :create, :convert, :unreject ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update, :conversion_notify ], :redirect_to => :home_path
   before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :recommend, :stats, :show_lesson_status, :show_groups, :update, :watch, :unreject ]
