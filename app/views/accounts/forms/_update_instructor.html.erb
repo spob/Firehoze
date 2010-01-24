@@ -1,79 +1,79 @@
 <%= javascript 'v2/validation/instructor.validate.js' %>
 <div class="fh-form">
   <% form_for(:user, :url => update_instructor_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
-      <%= f.error_messages %>
-      <ul id="instructor-info" class="section">
-        <li class="header">
-          <span></span>
+  <%= f.error_messages %>
+  <ul id="instructor-info" class="section">
+    <li class="header">
+      <span></span>
 
-          <h3>Postal Address</h3>
-          <h4>Tell us where you'd like us to send all the money you're going to make.</h4>
-        </li>
-        <li>
-        <span>
-          <%= f.label :first_name %>
-          <%= f.text_field :first_name, :maxlength => "40", :id => 'ofirst_name' %>
-        </span>
-          <div class="counter"><span id="ofirst_name_counter"></span> characters left</div>
-        </li>
-        <li>
-        <span>
-          <%= f.label :last_name %>
-          <%= f.text_field :last_name, :maxlength => "40", :title => "You must enter your last name", :class => "required", :id => 'olast_name' %>
-          <span class="required-field"></span>
-        </span>
-          <div class="counter"><span id="olast_name_counter"></span> characters left</div>
-        </li>
-        <li>
-        <span>
-          <%= f.label :address1 %>
-          <%= f.text_field :address1 %>
-          <span class="required-field"></span>
-        </span>
-        </li>
-        <li>
-        <span>
-          <%= f.label :address2 %>
-          <%= f.text_field :address2 %>
-        </span>
-        </li>
-        <li>
-        <span>
-          <%= f.label :city %>
-          <%= f.text_field :city %>
-          <span class="required-field"></span>
-        </span>
-        </li>
-        <li>
-        <span>
-          <%= f.label :state, "State or Region" %>
-          <%= f.text_field :state %>
-          <span class="required-field"></span>
-        </span>
-        </li>
-        <li>
-        <span>
-          <%= f.label :postal_code, "Postal Code or Zip Code" %>
-          <%= f.text_field :postal_code %>
-          <span class="required-field"></span>
-        </span>
-        </li>
-        <li>
-        <span>
-          <%= f.label :country, "Country" %>
-          <%= f.localized_country_select(:country, ['US']) %>
-          <span class="required-field"></span>
-        </span>
-        </li>
-        <li class="bottom">
-        <span class="unlabelled">
+      <h3>Postal Address</h3>
+      <h4>Tell us where you'd like us to send all the money you're going to make.</h4>
+    </li>
+    <li>
+      <span>
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, :maxlength => "40" %>
+      </span>
+      <div class="counter"><span id="first_name_counter"></span> characters left</div>
+    </li>
+    <li>
+      <span>
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, :maxlength => "40", :title => "You must enter your last name", :class => "required" %>
+        <span class="required-field"></span>
+      </span>
+      <div class="counter"><span id="last_name_counter"></span> characters left</div>
+    </li>
+    <li>
+      <span>
+        <%= f.label :address1 %>
+        <%= f.text_field :address1 %>
+        <span class="required-field"></span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <%= f.label :address2 %>
+        <%= f.text_field :address2 %>
+      </span>
+    </li>
+    <li>
+      <span>
+        <%= f.label :city %>
+        <%= f.text_field :city %>
+        <span class="required-field"></span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <%= f.label :state, "State or Region" %>
+        <%= f.text_field :state %>
+        <span class="required-field"></span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <%= f.label :postal_code, "Postal Code or Zip Code" %>
+        <%= f.text_field :postal_code %>
+        <span class="required-field"></span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <%= f.label :country, "Country" %>
+        <%= f.localized_country_select(:country, ['US']) %>
+        <span class="required-field"></span>
+      </span>
+    </li>
+    <li class="bottom">
+      <span class="unlabelled">
         <%= f.submit "Update", :id => "instructor_update" %>
         <%= link_to 'Cancel', home_path %> |
         <%= link_to "Revisit Instructor Signup Wizard", instructor_signup_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :method => :get %>
-        </span>
+      </span>
 
-          <div class="clear"/>
-        </li>
-      </ul>
+      <div class="clear"/>
+    </li>
+  </ul>
   <% end %>
 </div>
