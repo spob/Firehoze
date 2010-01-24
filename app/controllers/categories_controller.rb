@@ -72,7 +72,7 @@ class CategoriesController < ApplicationController
 
       @ids = Lesson.ready.not_owned_by(current_user).by_category(category_id).ids + [-1]
       if fragment_exist?(Category.tag_cloud_cache_id("lesson", @category.id))
-        @tags = []
+        @tags = ["dummy"]
       else
         @tags = Lesson.ready.tag_counts(:conditions => ["lessons.id IN (?)", @ids], :order => 'name ASC')
       end

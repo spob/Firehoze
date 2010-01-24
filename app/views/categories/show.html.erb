@@ -17,17 +17,17 @@
       <div class="widget-box-footer treeview"></div>
     </div>
 
-    <% if @tags.present? %>
-        <div class="widget-box">
-          <div class="widget-box-header">
-            <span class="h4">Tags</span>
-          </div>
-          <div class="widget-box-content tags">
-            <% cache(Category.tag_cloud_cache_id("lesson", @category.id)) do %>
+    <% cache(Category.tag_cloud_cache_id("lesson", @category.id)) do %>
+        <% if @tags.present? %>
+            <div class="widget-box">
+              <div class="widget-box-header">
+                <span class="h4">Tags</span>
+              </div>
+              <div class="widget-box-content tags">
                 <%= render :partial => "lessons/tag_cloud", :object => @tags %>
-            <% end %>
-          </div>
-        </div>
+              </div>
+            </div>
+        <% end %>
     <% end %>
 
     <div class="widget-box">

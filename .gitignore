@@ -32,3 +32,4 @@ log/searchd.development.pid
 webrat*
 public/stylesheets/v2/*.css
 public/stylesheets/v2/*/*.css
+*.cache
