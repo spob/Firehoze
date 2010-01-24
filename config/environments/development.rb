@@ -41,6 +41,8 @@ config.action_mailer.smtp_settings = {
         :password       => "F1reh0ze"
 }
 
+#config.log_level = :info
+
 # ActiveMerchant configuration
 config.after_initialize do
   ActiveMerchant::Billing::Base.mode = :test
@@ -58,6 +60,4 @@ config.after_initialize do
   Bullet.growl = true
   Bullet.rails_logger = true
   Bullet.disable_browser_cache = true
-
-
 end

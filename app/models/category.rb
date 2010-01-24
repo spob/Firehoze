@@ -22,6 +22,10 @@ class Category < ActiveRecord::Base
 
   @@counter = 0
 
+  def self.tag_cloud_cache_id(type, id)
+    "#{type}_tag_cloud_category_#{id}"
+  end
+
   def self.list(page, per_page)
     Category.ascend_by_compiled_sort.paginate(:page => page,
                                               :per_page => per_page)
@@ -38,7 +42,7 @@ class Category < ActiveRecord::Base
   def self.sort_by_filters
     %w(most_popular highest_rated newest)
   end
-  
+
   def self.explode
     @@counter = 0
     Category.transaction do
@@ -101,5 +105,5 @@ class Category < ActiveRecord::Base
   rescue ActiveRecord::StatementInvalid
     # Won't work if run during migration - column is added later, so swallow it
     raise unless ActiveRecord::Migrator.current_version.to_i <= 20090927012532
-  end 
+  end
 end                                  

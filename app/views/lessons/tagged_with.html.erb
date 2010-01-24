@@ -5,6 +5,7 @@
 <div class="span-8">
   <div>
     <h3><%= "#{t('lesson.tagged_with')} &quot;#{@tag}&quot;" %></h3>
+
     <div>
       <%= render :partial => "lessons/lessons_row_format", :object => @lessons, :locals => { :lesson_format => @lesson_format, :collection => @collection } %>
     </div>
@@ -20,7 +21,9 @@
       <span class="h4">Tags</span>
     </div>
     <div class="widget-box-content tags">
-      <%= render :partial => "lessons/tag_cloud", :object => Lesson.ready.tag_counts(:limit => 40, :order => 'name ASC') %>
+      <% cache(Category.tag_cloud_cache_id("lesson", -1)) do %>
+          <%= render :partial => "lessons/tag_cloud", :object => Lesson.ready.tag_counts(:limit => 40, :order => 'name ASC') %>
+      <% end %>
     </div>
   </div>
 </div>

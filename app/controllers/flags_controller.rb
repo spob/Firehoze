@@ -12,6 +12,8 @@ class FlagsController < ApplicationController
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
+  
+  cache_sweeper :tag_cloud_sweeper, :only => [:update]
 
   def create
     if reflag_ok(@flaggable)

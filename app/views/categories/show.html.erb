@@ -18,14 +18,16 @@
     </div>
 
     <% if @tags.present? %>
-    <div class="widget-box">
-      <div class="widget-box-header">
-        <span class="h4">Tags</span>
-      </div>
-      <div class="widget-box-content tags">
-        <%= render :partial => "lessons/tag_cloud", :object => @tags %>
-      </div>
-    </div>
+        <div class="widget-box">
+          <div class="widget-box-header">
+            <span class="h4">Tags</span>
+          </div>
+          <div class="widget-box-content tags">
+            <% cache(Category.tag_cloud_cache_id("lesson", @category.id)) do %>
+                <%= render :partial => "lessons/tag_cloud", :object => @tags %>
+            <% end %>
+          </div>
+        </div>
     <% end %>
 
     <div class="widget-box">
@@ -36,7 +38,7 @@
         Can't find a lesson that meets your needs?
       </div>
       <div class="widget-box-content tags">
-          <%= link_to "Suggest a Lesson Topic", page_path("help_center", :anchor => "share-an-idea"), :class => :rounded %>
+        <%= link_to "Suggest a Lesson Topic", page_path("help_center", :anchor => "share-an-idea"), :class => :rounded %>
       </div>
     </div>
   </div>
@@ -54,10 +56,10 @@
           <% if @lessons.present? %>
               <%= render :partial => "lessons/lesson_tns", :object => @lessons, :locals => { :per_row => 3 } %>
           <% else %>
-          <div class="info">
-            Looks like no one has created a lesson for this category yet. Why not be the first to
-            <%= link_to "create a lesson", new_lesson_path %>?
-          </div>  
+              <div class="info">
+                Looks like no one has created a lesson for this category yet. Why not be the first to
+                <%= link_to "create a lesson", new_lesson_path %>?
+              </div>
           <% end %>
         </div>
       </div>

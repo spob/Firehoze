@@ -135,7 +135,7 @@ Rails::Initializer.run do |config|
   #config.plugins = [:authlogic]
 
   # Add additional load paths for your own custom dirs
-  config.load_paths += %W( #{RAILS_ROOT}/lib )
+  config.load_paths += %W( #{RAILS_ROOT}/lib #{RAILS_ROOT}/app/sweepers)
 
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)
@@ -154,6 +154,7 @@ Rails::Initializer.run do |config|
   config.action_controller.session = {
           :session_key => '_firehoze_session',
           :secret => 'j23jh4lkjhl536h3l45jhfdgh34563h6345h6l345jh63l45jhljkhlgdsfglwjrhl'
+
   }
 
   path = "#{RAILS_ROOT}/config/environment.yml"
@@ -184,4 +185,6 @@ Rails::Initializer.run do |config|
           :group_observer, :group_lesson_observer, :group_member_observer, :user_observer, :credit_observer,
           :flag_observer
   #:cacher, :garbage_collector
+  config.action_controller.page_cache_directory = "#{RAILS_ROOT}/tmp/cache/"
+  config.cache_store = :file_store, "#{RAILS_ROOT}/tmp/cache/"
 end

@@ -12,6 +12,8 @@ class LessonsController < ApplicationController
 
   caches_page :index
 
+  cache_sweeper :tag_cloud_sweeper, :only => [:update, :conversion_notify, :unreject]
+
   verify :method => :post, :only => [ :create, :convert, :unreject ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update, :conversion_notify ], :redirect_to => :home_path
   before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :recommend, :stats, :show_lesson_status, :show_groups, :update, :watch, :unreject ]

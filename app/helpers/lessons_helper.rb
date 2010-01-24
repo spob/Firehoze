@@ -100,7 +100,7 @@ module LessonsHelper
 
   def link_to_unreject(lesson, user)
     if user.try("is_moderator?") and lesson.status == LESSON_STATUS_REJECTED
-      link_to content_tag(:span, t('lesson.unreject')), unreject_lesson_path(lesson), :class => :minibutton
+      link_to content_tag(:span, t('lesson.unreject')), unreject_lesson_path(lesson), {:method => :post, :confirm => 'Are you sure?', :class => :minibutton}
     end
   end
 

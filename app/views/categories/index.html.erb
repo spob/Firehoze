@@ -4,10 +4,11 @@
 
 <div class="span-12 last">
   <div class="span-8">
-    <div class="blue-box">    
+    <div class="blue-box">
       <ul id="categories-header" class="section">
         <li class="header">
           <span></span>
+
           <h3>Browse Lessons by Categories</h3>
           <h4>Explore categories to find videos that match your interests.</h4>
         </li>
@@ -35,7 +36,9 @@
         <span class="h4">Tags</span>
       </div>
       <div class="widget-box-content tags">
-        <%= render :partial => "lessons/tag_cloud", :object => Lesson.ready.tag_counts(:limit => 40, :order => 'name ASC') %>
+        <% cache(Category.tag_cloud_cache_id("lesson", -1)) do %>
+            <%= render :partial => "lessons/tag_cloud", :object => Lesson.ready.tag_counts(:limit => 40, :order => 'name ASC') %>
+        <% end %>
       </div>
     </div>
 
