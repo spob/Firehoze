@@ -19,14 +19,14 @@ after "deploy:update", "deploy:cleanup"
 set :runner, user
 
 set :git_account, 'spob'
-set :scm_passphrase,  Proc.new { Capistrano::CLI.password_prompt('F1reh0ze') }
+set :scm_passphrase, Proc.new { Capistrano::CLI.password_prompt('F1reh0ze') }
 
 role :web, server_hostname
 role :app, server_hostname
 role :db, server_hostname, :primary => true
 
 default_run_options[:pty] = true
-set :repository,  "git@github.com:spob/Firehoze.git"
+set :repository, "git@github.com:spob/Firehoze.git"
 set :scm, :git
 #set :user, user
 
@@ -51,9 +51,10 @@ task :before_update, :roles => [:app] do
 end
 
 task :after_update, :roles => [:app] do
+  files.cleanup
   symlink_sphinx_indexes
   thinking_sphinx.configure
-  thinking_sphinx.start
+  thinking_sphinx.rebuild
 end
 
 desc "Link up Sphinx's indexes."
@@ -86,6 +87,16 @@ namespace :thinking_sphinx do
   task :restart, :roles => [:app] do
     run "cd #{current_path}; rake thinking_sphinx:restart RAILS_ENV=#{rails_env}"
   end
+  task :rebuild, :roles => [:app] do
+    run "cd #{current_path}; rake thinking_sphinx:rebuild RAILS_ENV=#{rails_env}"
+  end
+end
+
+namespace :files do
+  task :cleanup, :roles => [:app] do
+    run "rake log:clear RAILS_ENV=production -f #{current_path}/Rakefile"
+    run "chmod -R 777 #{current_path}/tmp/cache"
+  end
 end
 
 namespace :deploy do
@@ -100,8 +111,6 @@ namespace :deploy do
   end
 
   task :restart, :roles => :app do
-    run "rake log:clear RAILS_ENV=production -f #{current_path}/Rakefile"
-    run "chmod -R 777 #{current_path}/tmp/cache"
     run "touch #{current_path}/tmp/restart.txt"
   end
 end
