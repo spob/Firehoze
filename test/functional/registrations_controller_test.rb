@@ -20,7 +20,7 @@ class RegistrationsControllerTest < ActionController::TestCase
 
       should_respond_with :redirect
       should_set_the_flash_to /Please check your email/
-      should_redirect_to("root  page") { root_path }
+      should_redirect_to("reg confirmation") { registration_path(assigns(:registration)) }
     end
 
     fast_context "on POST to :create with bad value" do
