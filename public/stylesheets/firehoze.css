@@ -1322,7 +1322,7 @@ div#category-show div.lessons-container { padding-top: 17px; }
   float: left;
   margin: 0 6px 22px 0;
   padding: 12px 5px 10px 11px;
-  background: url('/stylesheets/images/backgrounds/image_holder.png') no-repeat scroll 0 0;
+  background: transparent url('/stylesheets/images/backgrounds/image_holder.png') no-repeat scroll 0 0;
   width: 168px;
   height: 168px;
   font: 11px Arial, Helvetica, sans-serif;

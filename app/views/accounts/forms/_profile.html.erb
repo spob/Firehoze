@@ -6,6 +6,7 @@
       <span></span>
       <h3><%= params[:action] == "edit_admin" ? "Edit User Profile" : "Update Your Profile" %></h3>
       <h4><%= "View your public profile #{link_to 'here', user_path(current_user)}" %></h4>
+      <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
     </li>
     <li>
       <span>
