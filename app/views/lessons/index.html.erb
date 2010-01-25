@@ -1,51 +1,35 @@
 <% # UNRECOGNIZED USER    %>
-<div class="span-12 prepend-top">
+
+<div class="span-12 prepend-top" id="intro">
   <div class="box">
     <h3>This is Firehoze</h3>
-
-    <p>Firehoze&trade; is a community-generated catalog of targeted, focused video tutorials. It is designed to
-      allow students to easily find the classroom help they need and empower tutors to earn the commissions they
-      deserve.</p>
+    <p>Firehoze&trade; is a community-generated catalog of targeted, focused video tutorials. It is designed to allow students to easily find the classroom help they need and empower tutors to earn the commissions they deserve.</p>
   </div>
 </div>
 
 <div class="span-12 unrecognized-content">
   <div class="span-4">
     <div class="box">
-      <%#= image_tag("/stylesheets/images/shadow_box/books.png", :class => 'box-image') %>
-      <h3>It's For Student </h3>
-
-      <p>Firehoze delivers video lessons focused on specific topics in an easy, searchable format.
-        Get additional affordable help that augments classroom learning regardless of where you are or when you need it.
-      </p>
-
-      <p><%= link_to("Browse Lessons", categories_path) %> |
-        <%= link_to "Sign Up", new_registration_path %> | <%= link_to("FAQs", page_path("faqs")) %></p>
+      <h3>It's For Student</h3>
+      <%= image_tag("/images/icons/checklist_64.png", :class => 'box-image') %>
+      <p>Firehoze delivers video lessons focused on specific topics in an easy, searchable format. Get additional affordable help that augments classroom learning regardless of where you are or when you need it.</p>
+      <p><%= link_to("Browse Lessons", categories_path) %> | <%= link_to "Sign Up", new_registration_path %> | <%= link_to("FAQs", page_path("faqs")) %></p>
     </div>
   </div>
   <div class="span-4 middle">
     <div class="box">
-      <%#= image_tag("/stylesheets/images/shadow_box/analysis.png", :class => 'box-image') %>
       <h3>And Instructors</h3>
-
-      <p>Firehoze gives instructors the opportunity to reach a wide audience, augment and complement traditional
-        tutoring services, help their peers
-        around the clock &mdash; and earn additional income.
-      </p>
-
-      <p><%= link_to "Take a Tour", page_path('under_construction') %>
-        | <%= link_to "Instructor Toolkit", page_path('under_construction') %></p>
+      <%= image_tag("/images/icons/grader-64.png", :class => 'box-image') %>
+      <p>Firehoze gives instructors the opportunity to reach a wide audience, augment and complement traditional tutoring services, help their peers around the clock &mdash; and earn additional income.</p>
+      <p><%= link_to "Take a Tour", page_path('under_construction') %> | <%= link_to "Instructor Toolkit", page_path('under_construction') %></p>
     </div>
   </div>
 
   <div class="span-4 last">
     <div class="box">
       <h3>And Schools</h3>
-
-      <p>Firehoze engages directly with tutors; at no cost or impact to the institution, you are able to promote
-        available tutoring resources and help those unable to take advantage of traditional
-        tutoring due to schedule, illness, or other challenges.</p>
-
+      <%= image_tag("/images/icons/university_56.png", :class => 'box-image') %>
+      <p>Firehoze engages directly with tutors; at no cost or impact to the institution, you are able to promote available tutoring resources and help those unable to take advantage of traditional tutoring due to schedule, illness, or other challenges.</p>
       <p><%= link_to "Firehoze for Schools", page_path('under_construction') %></p>
     </div>
   </div>
