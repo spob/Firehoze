@@ -37,6 +37,7 @@ div.unrecognized-content {
   padding-top: 2em;
   background: #ffffff url('images/backgrounds/post_bg_white.jpg') 0 -1px no-repeat;
 }
+div#intro h4 { color: #4a4a4a; }
 div.box {
   padding: 2em 2em 1em;
   background: transparent url('/stylesheets/images/shadow_box/corner.png') 0 0 no-repeat;
