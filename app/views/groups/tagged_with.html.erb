@@ -1,0 +1,29 @@
+<% title "Lessons tagged with &quot;#{@tag}&quot;" -%>
+
+<% @current = 'lessons' %>
+
+<div class="span-8">
+  <div>
+    <h3><%= "#{t('lesson.tagged_with')} &quot;#{@tag}&quot;" %></h3>
+
+    <div>
+      <%= render :partial => "lessons/lessons_row_format", :object => @lessons, :locals => { :lesson_format => @lesson_format, :collection => @collection } %>
+    </div>
+    <div>
+      <%= render :partial => "lessons/pagination", :object => @lessons, :locals => { :collection => :tagged_with  } %>
+    </div>
+  </div>
+</div>
+
+<% cache(Category.tag_cloud_cache_id("lesson_wide", -1)) do %>
+    <div class="span-4 last tag_cloud prepend-top">
+      <div class="widget-box">
+        <div class="widget-box-header">
+          <span class="h4">Tags</span>
+        </div>
+        <div class="widget-box-content tags">
+          <%= render :partial => "lessons/tag_cloud", :object => Lesson.ready.tag_counts(:limit => 40, :order => 'name ASC') %>
+        </div>
+      </div>
+    </div>
+<% end %>

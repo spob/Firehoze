@@ -20,3 +20,14 @@
     </ul>
   </div>
 </div>
+
+<div class="span-4 last">
+  <div class="widget-box">
+    <div class="widget-box-header">
+      <span class="h4">Tags</span>
+    </div>
+    <div class="widget-box-content tags">
+      <%= render :partial => "groups/tag_cloud", :object => Group.public.active.tag_counts(:limit => 40, :order => 'name ASC') %>
+    </div>
+  </div>
+</div>

@@ -2,9 +2,9 @@
 <% @current = 'groups' %>
 
 <div class="span-12 last">
-<% if @category %>
-    <%= render :partial => "browse_category" %>
-<% else %>
-    <%= render :partial => "category_roundup" %>
-<% end %>
+  <% if @category %>
+      <%= render :partial => "browse_category" %>
+  <% else %>
+      <%= render :partial => "category_roundup" %>
+  <% end %>
 </div>

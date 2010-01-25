@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
 
   layout :layout_for_action
-  
+
   def check_group_by_name
     @group = Group.find_by_name(params[:group][:name].try(:strip))
 
@@ -31,10 +31,17 @@ class GroupsController < ApplicationController
                                :per_page => @per_page)
   end
 
+  def tagged_with
+    @tag = params[:tag]
+    @groups = Group.fetch_tagged_with  nil, @tag, 10, params[:page]
+  end
+
   def index
     if params[:category]
       @category = Category.find(params[:category])
-      @groups = Group.public.active_or_owner_access_all(current_user.try(:is_moderator?), current_user ? current_user.id : -1).by_category(@category.id).ascend_by_name.paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+      @ids = Group.public.active_or_owner_access_all(current_user.try(:is_moderator?), current_user ? current_user.id : -1).by_category(@category.id)
+      @groups = Group.ascend_by_name.find(:all, :conditions => { :id => @ids}).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+      @tags = Group.public.active.tag_counts(:conditions => ["groups.id IN (?)", @ids], :order => 'name ASC')
     else
       @categories = Category.root.ascend_by_sort_value
     end
@@ -68,7 +75,7 @@ class GroupsController < ApplicationController
     end
 
   end
-  
+
   def new
     @group ||= Group.new
     set_no_uniform_js

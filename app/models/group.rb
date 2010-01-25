@@ -1,4 +1,5 @@
 class Group < ActiveRecord::Base
+  acts_as_taggable
   has_friendly_id :name, :use_slug => true
 
   belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"
@@ -23,9 +24,12 @@ class Group < ActiveRecord::Base
   named_scope :public, :conditions => { :private => false }
   named_scope :private, :conditions => { :private => true }
   named_scope :ascend_by_category_name_and_name, :joins => :category, :order => 'categories.name, groups.name'
+  named_scope :ascend_by_name, :order => 'groups.name'
+  named_scope :ids, :select => ["groups.id"]
+  named_scope :active, :conditions => { :active => true }
   named_scope :active_or_owner_access_all,
               lambda{ |access_all, user_id|
-              { :conditions => ["(groups.active = ? or ? = 1 or groups.owner_id = ?)", true, access_all, user_id] }
+                { :conditions => ["(groups.active = ? or ? = 1 or groups.owner_id = ?)", true, access_all, user_id] }
               }
   named_scope :not_a_member,
               lambda{ |user| return {} if user.nil?;
@@ -91,6 +95,10 @@ class Group < ActiveRecord::Base
     regex = Regexp.new("//.*#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}")
     regex2 = Regexp.new("https")
     url.gsub(regex, "//" + APP_CONFIG[CONFIG_CDN_OUTPUT_SERVER]).gsub(regex2, "http")
+  end
+
+  def self.fetch_tagged_with category_id, tag, per_page, page
+    Lesson.public.active.by_category(category_id).find_tagged_with(tag).paginate(:per_page => per_page, :page => page)
   end
 
   def owned_by?(user)

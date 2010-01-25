@@ -39,7 +39,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :grant_gift_certificates, :only => [ :create, :new ]
   map.check_group_by_name "groups/check_group_by_name", :controller => "groups", :action => "check_group_by_name"
   map.resources :groups,
-                :collection => { :list_admin => :get, :ajaxed => :get },
+                :collection => { :list_admin => :get,
+                                 :ajaxed => :get,
+                                 :tagged_with => :get },
                 :member => { :clear_logo => :post, :activate => :post },
                 :has_many => :topics, :shallow => true
   map.check_group_invite_user "group_invitations/check_user", :controller => "group_invitations", :action => "check_user"
@@ -92,7 +94,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :line_items, :only => [ :create, :destroy, :update ]
   map.resources :orders
   map.resources :pages, :controller => 'pages', :only => [:show]
-  map.login 'login',   :controller => 'user_sessions', :action => 'new'
+  map.login 'login', :controller => 'user_sessions', :action => 'new'
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
   map.resources :passwords, :only => [ :edit, :update ]
   map.resources :password_resets, :only => [ :create, :new, :edit, :update ]
