@@ -82,6 +82,36 @@ class GroupsControllerTest < ActionController::TestCase
         should_respond_with :redirect
         should_redirect_to("Group show page") { group_url(@group.id) }
       end
+
+      fast_context "with tags defined" do
+          setup do
+            assert !@group.nil?
+            @group.tag_list = 'taggy'
+            @group.save!
+          end
+
+          fast_context "on GET to :tagged_with and a good tag" do
+            setup { get :tagged_with, :tag => 'taggy' }
+
+            should_assign_to :groups
+            should "have a group returned" do
+              assert 1, assigns(:groups).size
+            end
+            should_render_template 'tagged_with'
+            should_not_set_the_flash
+          end
+
+          fast_context "on GET to :tagged_with and a bad tag" do
+            setup { get :tagged_with, :tag => 'blah' }
+
+            should_assign_to :groups
+            should "not have a lesson returned" do
+              assert assigns(:groups).empty?
+            end
+            should_render_template 'tagged_with'
+            should_not_set_the_flash
+          end
+        end
     end
   end
 end

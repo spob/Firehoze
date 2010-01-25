@@ -98,7 +98,7 @@ class Group < ActiveRecord::Base
   end
 
   def self.fetch_tagged_with category_id, tag, per_page, page
-    Lesson.public.active.by_category(category_id).find_tagged_with(tag).paginate(:per_page => per_page, :page => page)
+    Group.public.active.by_category(category_id).find_tagged_with(tag).paginate(:per_page => per_page, :page => page)
   end
 
   def owned_by?(user)

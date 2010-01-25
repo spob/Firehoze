@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   else
     before_filter :require_user
   end
-  before_filter :find_group, :except => [:list_admin, :create, :new, :ajaxed, :index, :check_group_by_name]
+  before_filter :find_group, :except => [:list_admin, :create, :new, :ajaxed, :index, :check_group_by_name, :tagged_with]
   before_filter :set_per_page, :only => [ :ajaxed, :list_admin ]
 
   # Admins only
@@ -39,7 +39,7 @@ class GroupsController < ApplicationController
   def index
     if params[:category]
       @category = Category.find(params[:category])
-      @ids = Group.public.active_or_owner_access_all(current_user.try(:is_moderator?), current_user ? current_user.id : -1).by_category(@category.id)
+      @ids = Group.public.active_or_owner_access_all(current_user.try(:is_moderator?), current_user ? current_user.id : -1).by_category(@category.id) + [-1]
       @groups = Group.ascend_by_name.find(:all, :conditions => { :id => @ids}).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
       @tags = Group.public.active.tag_counts(:conditions => ["groups.id IN (?)", @ids], :order => 'name ASC')
     else

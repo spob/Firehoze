@@ -142,6 +142,7 @@ en:
     no_thanks: Okay, thanks. You have not joined the group
     logo_cleared: You have successfully removed the group logo
     update_error: Oops, something wasn't quite right with the information you entered
+    tagged_with: Groups tagged with
 
   group_invitation:
     invitation_no_longer_valid: Invitation no longer valid

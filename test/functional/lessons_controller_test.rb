@@ -304,7 +304,7 @@ class LessonsControllerTest < ActionController::TestCase
           end
 
           fast_context "on GET to :tagged_with and a good tag" do
-            setup { post :tagged_with, :tag => 'taggy' }
+            setup { get :tagged_with, :tag => 'taggy' }
 
             should_assign_to :lessons
             should "have a lesson returned" do
@@ -315,10 +315,10 @@ class LessonsControllerTest < ActionController::TestCase
           end
 
           fast_context "on GET to :tagged_with and a bad tag" do
-            setup { post :tagged_with, :tag => 'blah' }
+            setup { get :tagged_with, :tag => 'blah' }
 
             should_assign_to :lessons
-            should "have a lesson returned" do
+            should "not have a lesson returned" do
               assert assigns(:lessons).empty?
             end
             should_render_template 'tagged_with'
