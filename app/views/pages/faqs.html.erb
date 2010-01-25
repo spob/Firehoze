@@ -1,6 +1,7 @@
 <% title "Frequently Asked Questions" -%>
 
 <% account_settings_link = current_user ? (link_to "Account Settings", edit_account_path(current_user)) : "'Account Settings'" %>
+<% my_firehoze_link = current_user ? (link_to "My Firehoze", my_firehoze_index_path) : "'My Firehoze'" %>
 <% content_for :head do -%>
     <a name="top" id="top" class="anchor"></a>
 <% end -%>
@@ -83,7 +84,7 @@
   <h5>What browsers are supported?</h5>
 
   <div>
-    <p>The big ones at the moment but more to come. Firefox 3.0 and higher, InternetExplorer 6.x and higher, Safari,
+    <p>The big ones at the moment but more to come. Firefox 3.0 and higher, InternetExplorer 7.x and higher, Safari,
       Chrome. Other browsers and versions may work just fine, but we don't guarantee it. If there's a browser you think
       we should support but don't, we'd love to hear from you.</p>
   </div>
@@ -134,13 +135,13 @@
   <h5>Where can I find a record of lessons I've purchased?</h5>
 
   <div>
-    <p>Navigate to "My Firehoze" and click on the "My Stuff" button.</p>
+    <p>Navigate to "<%= my_firehoze_link %>" and click on the "My Stuff" button.</p>
   </div>
 
   <h5>Where can I see how many credits I have left?</h5>
 
   <div>
-    <p>Navigate to "My Firehoze". You'll see your credits remaining in the top right corner of the page.</p>
+    <p>Navigate to "<%= my_firehoze_link %>". You'll see your credits remaining in the top right corner of the page.</p>
   </div>
 
   <h5>How do I change my user name?</h5>
@@ -200,7 +201,7 @@
   <h5>Where are my receipts/download history?</h5>
 
   <div>
-    <p>Navigate to "My Firehoze" and click on the "Account History" button.</p>
+    <p>Navigate to "<%= my_firehoze_link %>" and click on the "Account History" button.</p>
   </div>
 
   <h5>How can I give credits to someone else?</h5>
@@ -213,7 +214,7 @@
   <h5>Where are my receipts/download history?</h5>
 
   <div>
-    <p>Navigate to "My Firehoze" and click on the "Account History" button.</p>
+    <p>Navigate to "<%= my_firehoze_link %>" and click on the "Account History" button.</p>
   </div>
 
   <h5>Do credits expire?</h5>
@@ -270,7 +271,7 @@
   <h5>How can I see how much money I've made?</h5>
 
   <div>
-    <p>Navigate to "My Firehoze" and click on the "Instructor Dashboard" button. Note the Instructor Dashboard
+    <p>Navigate to "<%= my_firehoze_link %>" and click on the "Instructor Dashboard" button. Note the Instructor Dashboard
       button will only appear if you have signed up to be an instructor.</p>
   </div>
 
@@ -287,7 +288,7 @@
   <div>
     <p>Easily...</p>
     <ol>
-      <li>Navigate to My Firehoze.</li>
+      <li>Navigate to <%= my_firehoze_link %>.</li>
       <li>Click the "Become an Instructor" button to walk through the Instructor Signup Wizard.</li>
       <li>Complete all steps in the wizard.</li>
       <li>Start teaching!</li>
