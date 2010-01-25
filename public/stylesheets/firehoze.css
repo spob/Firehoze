@@ -2342,6 +2342,10 @@ div.lesson-tooltip {
   margin-left: 82px;
   font-weight: bold;
 }
+div.fh-form div#recaptcha_area {
+  border: solid 1px #9e9e9e;
+  margin-left: 175px;
+}
 .fh-form .help {
   margin-left: 175px;
   display: block;
