@@ -1,0 +1,206 @@
+@import "colors";
+@import "shadows";
+@import "fonts";
+
+/*---------------------------------------------------------------------------------------------- */
+/* buttons.css
+------------------------------------------------------------------------------------------------ */
+
+/* minibuttons */
+
+.minibutton{
+  .text-shadow(@white);
+  display:inline-block;
+  height:23px;
+  padding:0 0 0 3px;
+  font-size:11px;
+  font-weight:bold;
+  color:@charcoal-20;
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  white-space:nowrap;
+  border:none;
+  overflow:visible;
+  cursor:pointer;
+  text-decoration:none;
+}
+
+input[type=text]+.minibutton{margin-left:5px;}
+button.minibutton::-moz-focus-inner{margin:-1px -3px;}
+.minibutton.danger{color:#900;}
+.minibutton>span{
+  display:block;
+  height:23px;
+  padding:0 10px 0 8px;
+  line-height:23px;
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+}
+
+.call-to-action.minibutton {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background-position:0 -335px;
+}
+.call-to-action.minibutton>span {
+  color:@white;
+  .text-shadow(@charcoal-20);
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background-position:100% -335px;
+}
+
+.minibutton:hover{color:@white;text-decoration:none;text-shadow:none;background-position:0 -30px;}
+.minibutton.danger:hover{background-position:0 -90px;}
+.minibutton:hover>span{background-position:100% -30px;}
+.minibutton.danger:hover>span{background-position:100% -90px;}
+.minibutton.mousedown{background-position:0 -60px;}
+.minibutton.danger.mousedown{background-position:0 -120px;}
+.minibutton.mousedown>span{background-position:100% -60px;}
+.minibutton.danger.mousedown>span{background-position:100% -120px;}
+.minibutton.current {color:@white;text-decoration:none;text-shadow:none;background-position:0 -30px;}
+.minibutton.current>span{background-position:100% -30px;}
+
+/*---------------------------------------------------------------------------------------------- */
+/* tagbuttons */
+/*---------------------------------------------------------------------------------------------- */
+
+.tag {
+  margin:0 0 4px 0;
+}
+
+.css1.tagbutton {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background-position:0 -272px;
+}
+.css1.tagbutton>span {
+  color:@gray-90;
+  .text-shadow(@gray-10);
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background-position:100% -272px;
+}
+
+.css2.tagbutton {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background-position:0 -210px;
+}
+.css2.tagbutton>span {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background-position:100% -210px;
+}
+
+.css3.tagbutton {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background-position:0 -150px;
+}
+.css3.tagbutton>span {
+  color:@white;
+  .text-shadow(@charcoal-20);
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background-position:100% -150px;
+}
+
+.css4.tagbutton {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background-position:0 -90px;
+}
+.css4.tagbutton>span {
+  color:@white;
+  .text-shadow(@charcoal-20);
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background-position:100% -90px;
+}
+
+.tagbutton{
+  display:inline-block;
+  height:23px;
+  padding:0 0 0 3px;
+  font-size:11px;
+  font-weight:bold;
+  color:@charcoal-20;
+  .text-shadow(@white);
+  border: solid 1px @gray-70;
+  white-space:nowrap;
+  border:none;
+  overflow:visible;
+  cursor:pointer;
+  text-decoration:none;
+}
+
+.tagbutton>span{
+  display:block;
+  height:23px;
+  padding:0 10px 0 8px;
+  line-height:23px;
+}
+
+.tagbutton.current,
+.tagbutton:hover{
+  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 0 0 no-repeat;
+  color:@white;
+  text-decoration:none;
+  text-shadow:none;
+  background-position:0 -30px;
+}
+.tagbutton.current>span,
+.tagbutton:hover>span{
+  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 100% 0 no-repeat;
+  background-position:100% -30px;
+}
+.tagbutton.mousedown{
+  background-position:0 -60px;
+}
+.tagbutton.mousedown>span{background-position:100% -60px;}
+.tagbutton.danger.mousedown>span{background-position:100% -120px;}
+
+/*---------------------------------------------------------------------------------------------- */
+/* largebuttons */
+/*---------------------------------------------------------------------------------------------- */
+
+
+button.large-button,a.large-button{
+  height:36px;
+  padding:0 5px 0 0;
+  margin-left:10px;
+  font-family:helvetica,arial,freesans,clean,sans-serif;
+  font-weight:bold;
+  font-size:12px;
+  color:#333;
+  text-shadow:1px 1px 1px #fff;
+  white-space:nowrap;
+  border:none;
+  overflow:visible;
+  background:url('/stylesheets/images/general/bigbutton_matrix.gif') 100% 0 no-repeat #ddd;
+  cursor:pointer;
+  text-decoration:none;
+}
+
+/* call-to-action */
+button.large-button.call-to-action,a.large-button.call-to-action {color:#fff; text-shadow:1px 1px 1px #4c8cc4; background-position:100% -80px;}
+button.large-button.call-to-action span,a.large-button.call-to-action span{background-position:0 -80px;}
+/* call-to-action hover states  */
+button.large-button.call-to-action:hover,a.large-button.call-to-action:hover {color:#fff; text-shadow:1px 1px 1px #4c8cc4; background-position:100% -120px;}
+button.large-button.call-to-action:hover span,a.large-button.call-to-action:hover span{background-position:0 -120px;}
+
+a.large-button{display:inline-block;}
+button.large-button span,a.large-button span{display:block;
+  height:36px;
+  padding:0 10px 0 15px;
+  line-height:36px;
+  background:url('/stylesheets/images/general/bigbutton_matrix.gif') 0 0 no-repeat #ddd;
+}
+
+button.large-button.glowing,a.large-button.glowing{background-position:100% -40px;}
+button.large-button.glowing span,a.large-button.glowing span{background-position:0 -40px;}
+button.large-button:hover,a.large-button:hover{color:#fff;
+  text-shadow:1px 1px 1px #4c8cc4;
+  background-position:100% -80px;
+}
+button.large-button:hover span,a.large-button:hover span{background-position:0 -80px;}
+button.large-button.mousedown,a.large-button.mousedown{color:#fff;
+  text-shadow:1px 1px 1px #4c8cc4;
+  background-position:100% -120px;
+}
+button.large-button.mousedown span,a.large-button.mousedown span{background-position:0 -120px;}
+button.large-button::-moz-focus-inner{margin:-1px -3px;}
+button.large-button img,a.large-button img{position:relative;
+  top:-1px;
+  margin-right:3px;
+  vertical-align:middle;
+}

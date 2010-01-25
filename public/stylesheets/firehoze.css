@@ -1,3 +1,228 @@
+.minibutton {
+  text-shadow: #ffffff 0 1px 1px;
+  display: inline-block;
+  height: 23px;
+  padding: 0 0 0 3px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #2b2b2b;
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  white-space: nowrap;
+  border: none;
+  overflow: visible;
+  cursor: pointer;
+  text-decoration: none;
+}
+input[type=text] + .minibutton { margin-left: 5px; }
+button.minibutton::-moz-focus-inner { margin: -1px -3px; }
+.minibutton.danger { color: #990000; }
+.minibutton > span {
+  display: block;
+  height: 23px;
+  padding: 0 10px 0 8px;
+  line-height: 23px;
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+}
+.call-to-action.minibutton {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background-position: 0 -335px;
+}
+.call-to-action.minibutton > span {
+  color: #ffffff;
+  text-shadow: #2b2b2b 0 1px 1px;
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background-position: 100% -335px;
+}
+.minibutton:hover {
+  color: #ffffff;
+  text-decoration: none;
+  text-shadow: none;
+  background-position: 0 -30px;
+}
+.minibutton.danger:hover { background-position: 0 -90px; }
+.minibutton:hover > span { background-position: 100% -30px; }
+.minibutton.danger:hover > span { background-position: 100% -90px; }
+.minibutton.mousedown { background-position: 0 -60px; }
+.minibutton.danger.mousedown { background-position: 0 -120px; }
+.minibutton.mousedown > span { background-position: 100% -60px; }
+.minibutton.danger.mousedown > span { background-position: 100% -120px; }
+.minibutton.current {
+  color: #ffffff;
+  text-decoration: none;
+  text-shadow: none;
+  background-position: 0 -30px;
+}
+.minibutton.current > span { background-position: 100% -30px; }
+.tag { margin: 0 0 4px 0; }
+.css1.tagbutton {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background-position: 0 -272px;
+}
+.css1.tagbutton > span {
+  color: #8f8f8f;
+  text-shadow: #f2f2f2 0 1px 1px;
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background-position: 100% -272px;
+}
+.css2.tagbutton {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background-position: 0 -210px;
+}
+.css2.tagbutton > span {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background-position: 100% -210px;
+}
+.css3.tagbutton {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background-position: 0 -150px;
+}
+.css3.tagbutton > span {
+  color: #ffffff;
+  text-shadow: #2b2b2b 0 1px 1px;
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background-position: 100% -150px;
+}
+.css4.tagbutton {
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background-position: 0 -90px;
+}
+.css4.tagbutton > span {
+  color: #ffffff;
+  text-shadow: #2b2b2b 0 1px 1px;
+  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background-position: 100% -90px;
+}
+.tagbutton {
+  display: inline-block;
+  height: 23px;
+  padding: 0 0 0 3px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #2b2b2b;
+  text-shadow: #ffffff 0 1px 1px;
+  border: solid 1px #a9a9a9;
+  white-space: nowrap;
+  border: none;
+  overflow: visible;
+  cursor: pointer;
+  text-decoration: none;
+}
+.tagbutton > span {
+  display: block;
+  height: 23px;
+  padding: 0 10px 0 8px;
+  line-height: 23px;
+}
+.tagbutton.current {
+  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 0 0 no-repeat;
+  color: #ffffff;
+  text-decoration: none;
+  text-shadow: none;
+  background-position: 0 -30px;
+}
+.tagbutton:hover {
+  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 0 0 no-repeat;
+  color: #ffffff;
+  text-decoration: none;
+  text-shadow: none;
+  background-position: 0 -30px;
+}
+.tagbutton.current > span {
+  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 100% 0 no-repeat;
+  background-position: 100% -30px;
+}
+.tagbutton:hover > span {
+  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 100% 0 no-repeat;
+  background-position: 100% -30px;
+}
+.tagbutton.mousedown { background-position: 0 -60px; }
+.tagbutton.mousedown > span { background-position: 100% -60px; }
+.tagbutton.danger.mousedown > span { background-position: 100% -120px; }
+button.large-button, a.large-button {
+  height: 36px;
+  padding: 0 5px 0 0;
+  margin-left: 10px;
+  font-family: helvetica, arial, freesans, clean, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  color: #333333;
+  text-shadow: 1px 1px 1px #ffffff;
+  white-space: nowrap;
+  border: none;
+  overflow: visible;
+  background: url('/stylesheets/images/general/bigbutton_matrix.gif') 100% 0 no-repeat #dddddd;
+  cursor: pointer;
+  text-decoration: none;
+}
+button.large-button.call-to-action, a.large-button.call-to-action {
+  color: #ffffff;
+  text-shadow: 1px 1px 1px #4c8cc4;
+  background-position: 100% -80px;
+}
+button.large-button.call-to-action span { background-position: 0 -80px; }
+a.large-button.call-to-action span { background-position: 0 -80px; }
+button.large-button.call-to-action:hover {
+  color: #ffffff;
+  text-shadow: 1px 1px 1px #4c8cc4;
+  background-position: 100% -120px;
+}
+a.large-button.call-to-action:hover {
+  color: #ffffff;
+  text-shadow: 1px 1px 1px #4c8cc4;
+  background-position: 100% -120px;
+}
+button.large-button.call-to-action:hover span { background-position: 0 -120px; }
+a.large-button.call-to-action:hover span { background-position: 0 -120px; }
+a.large-button { display: inline-block; }
+button.large-button span {
+  display: block;
+  height: 36px;
+  padding: 0 10px 0 15px;
+  line-height: 36px;
+  background: url('/stylesheets/images/general/bigbutton_matrix.gif') 0 0 no-repeat #dddddd;
+}
+a.large-button span {
+  display: block;
+  height: 36px;
+  padding: 0 10px 0 15px;
+  line-height: 36px;
+  background: url('/stylesheets/images/general/bigbutton_matrix.gif') 0 0 no-repeat #dddddd;
+}
+button.large-button.glowing, a.large-button.glowing { background-position: 100% -40px; }
+button.large-button.glowing span { background-position: 0 -40px; }
+a.large-button.glowing span { background-position: 0 -40px; }
+button.large-button:hover {
+  color: #ffffff;
+  text-shadow: 1px 1px 1px #4c8cc4;
+  background-position: 100% -80px;
+}
+a.large-button:hover {
+  color: #ffffff;
+  text-shadow: 1px 1px 1px #4c8cc4;
+  background-position: 100% -80px;
+}
+button.large-button:hover span { background-position: 0 -80px; }
+a.large-button:hover span { background-position: 0 -80px; }
+button.large-button.mousedown, a.large-button.mousedown {
+  color: #ffffff;
+  text-shadow: 1px 1px 1px #4c8cc4;
+  background-position: 100% -120px;
+}
+button.large-button.mousedown span { background-position: 0 -120px; }
+a.large-button.mousedown span { background-position: 0 -120px; }
+button.large-button::-moz-focus-inner { margin: -1px -3px; }
+button.large-button img {
+  position: relative;
+  top: -1px;
+  margin-right: 3px;
+  vertical-align: middle;
+}
+a.large-button img {
+  position: relative;
+  top: -1px;
+  margin-right: 3px;
+  vertical-align: middle;
+}
 * { outline: none; }
 * a:active { outline: none; }
 a:focus { outline: none; }
@@ -1143,7 +1368,7 @@ div#user-show-tabs > ul li a {
   padding: 0;
   position: absolute;
   bottom: 17px;
-  right: 17px;
+  right: 3px;
 }
 ul.third-level-nav {
   display: block;
@@ -2770,146 +2995,6 @@ div#user-stats-container ul {
   padding: 30px 30px 10px 30px;
   border: 0;
 }
-.minibutton {
-  text-shadow: #ffffff 0 1px 1px;
-  display: inline-block;
-  height: 23px;
-  padding: 0 0 0 3px;
-  font-size: 11px;
-  font-weight: bold;
-  color: #2b2b2b;
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
-  white-space: nowrap;
-  border: none;
-  overflow: visible;
-  cursor: pointer;
-  text-decoration: none;
-}
-input[type=text] + .minibutton { margin-left: 5px; }
-button.minibutton::-moz-focus-inner { margin: -1px -3px; }
-.minibutton.danger { color: #990000; }
-.minibutton > span {
-  display: block;
-  height: 23px;
-  padding: 0 10px 0 8px;
-  line-height: 23px;
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
-}
-.call-to-action.minibutton {
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
-  background-position: 0 -335px;
-}
-.call-to-action.minibutton > span {
-  color: #ffffff;
-  text-shadow: #2b2b2b 0 1px 1px;
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
-  background-position: 100% -335px;
-}
-.minibutton:hover {
-  color: #ffffff;
-  text-decoration: none;
-  text-shadow: none;
-  background-position: 0 -30px;
-}
-.minibutton.danger:hover { background-position: 0 -90px; }
-.minibutton:hover > span { background-position: 100% -30px; }
-.minibutton.danger:hover > span { background-position: 100% -90px; }
-.minibutton.mousedown { background-position: 0 -60px; }
-.minibutton.danger.mousedown { background-position: 0 -120px; }
-.minibutton.mousedown > span { background-position: 100% -60px; }
-.minibutton.danger.mousedown > span { background-position: 100% -120px; }
-.minibutton.current {
-  color: #ffffff;
-  text-decoration: none;
-  text-shadow: none;
-  background-position: 0 -30px;
-}
-.minibutton.current > span { background-position: 100% -30px; }
-.tag { margin: 0 0 4px 0; }
-.css1.tagbutton {
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
-  background-position: 0 -272px;
-}
-.css1.tagbutton > span {
-  color: #8f8f8f;
-  text-shadow: #f2f2f2 0 1px 1px;
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
-  background-position: 100% -272px;
-}
-.css2.tagbutton {
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
-  background-position: 0 -210px;
-}
-.css2.tagbutton > span {
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
-  background-position: 100% -210px;
-}
-.css3.tagbutton {
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
-  background-position: 0 -150px;
-}
-.css3.tagbutton > span {
-  color: #ffffff;
-  text-shadow: #2b2b2b 0 1px 1px;
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
-  background-position: 100% -150px;
-}
-.css4.tagbutton {
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
-  background-position: 0 -90px;
-}
-.css4.tagbutton > span {
-  color: #ffffff;
-  text-shadow: #2b2b2b 0 1px 1px;
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
-  background-position: 100% -90px;
-}
-.tagbutton {
-  display: inline-block;
-  height: 23px;
-  padding: 0 0 0 3px;
-  font-size: 11px;
-  font-weight: bold;
-  color: #2b2b2b;
-  text-shadow: #ffffff 0 1px 1px;
-  border: solid 1px #a9a9a9;
-  white-space: nowrap;
-  border: none;
-  overflow: visible;
-  cursor: pointer;
-  text-decoration: none;
-}
-.tagbutton > span {
-  display: block;
-  height: 23px;
-  padding: 0 10px 0 8px;
-  line-height: 23px;
-}
-.tagbutton.current {
-  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 0 0 no-repeat;
-  color: #ffffff;
-  text-decoration: none;
-  text-shadow: none;
-  background-position: 0 -30px;
-}
-.tagbutton:hover {
-  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 0 0 no-repeat;
-  color: #ffffff;
-  text-decoration: none;
-  text-shadow: none;
-  background-position: 0 -30px;
-}
-.tagbutton.current > span {
-  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 100% 0 no-repeat;
-  background-position: 100% -30px;
-}
-.tagbutton:hover > span {
-  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 100% 0 no-repeat;
-  background-position: 100% -30px;
-}
-.tagbutton.mousedown { background-position: 0 -60px; }
-.tagbutton.mousedown > span { background-position: 100% -60px; }
-.tagbutton.danger.mousedown > span { background-position: 100% -120px; }
 #instructor_agreement {
   font-size: 0.83em;
   background-color: #ffffff;
