@@ -1,6 +1,8 @@
 <% title "#{h @lesson.title}" -%>
 <% @current = 'lessons' %>
 
+
+
 <div id="lesson-show">
 
   <%= render :partial => "categories/breadcrumbs", :object => @lesson.category, :locals => { :mode => "lessons", :linkable_leaf => true } %>
@@ -25,9 +27,8 @@
 
   <div class="span-12" id="author">by <%= link_to_profile(@instructor) -%></div>
 
-
   <div id="lesson-container" class="span-12 append-bottom">
-
+    <%= flag_msg(@lesson) %>
     <div id="actions">
       <div><%= render :partial => "lessons/actions", :object => @lesson -%></div>
     </div>

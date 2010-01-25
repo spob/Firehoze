@@ -654,9 +654,21 @@ div.comment-container div.count {
   position: relative;
   text-align: left;
   margin-bottom: 1em;
-  background: #f1f7fe url(images/icons/info_32.png) 1em 1em no-repeat;
+  background: #f1f7fe url('images/icons/info_32.png') 1em 1em no-repeat;
   padding: 1em 1em 1em 5em;
   min-height: 3em;
+}
+.flagging * { vertical-align: middle; }
+.flagging {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding: 4px 5px 3px 8px;
+  border: solid 2px #9cb6d5;
+  background: #e3e9f2;
+  color: #29384c;
+  font-size: 11px;
+  font-weight: bold;
 }
 .blue-box-medium {
   -moz-border-radius: 3px;
@@ -1688,6 +1700,11 @@ div#stars {
   top: 0;
 }
 div.action { margin-bottom: 1em; }
+div#lesson-container div.flagging {
+  position: absolute;
+  top: -36px;
+  right: 0;
+}
 div#lesson-container div#actions {
   position: absolute;
   top: 0;

@@ -792,9 +792,21 @@ div.comment-container div.count {
   position:relative;
   text-align:left;
   margin-bottom:1em;
-  background: @light-blue-10 url(images/icons/info_32.png) 1em 1em no-repeat;
+  background: @light-blue-10 url('images/icons/info_32.png') 1em 1em no-repeat;
   padding: 1em 1em 1em 5em;
   min-height:3em;
+}
+
+.flagging * { vertical-align: middle; }
+
+.flagging  { 
+  .rounded_corners(5px);
+  padding: 4px 5px 3px 8px;
+  border: solid 2px @medium-blue-2;
+  background: @light-blue-30;
+  color:@dark-blue-20;
+  font-size: 11px;
+  font-weight:bold;
 }
 
 .blue-box-medium {
@@ -2059,6 +2071,12 @@ div#stars {
 
 div.action {
   margin-bottom: 1em;
+}
+
+div#lesson-container div.flagging {
+  position:absolute;
+  top:-36px;
+  right:0;
 }
 
 div#lesson-container div#actions {
