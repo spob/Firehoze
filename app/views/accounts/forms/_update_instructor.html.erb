@@ -1,4 +1,7 @@
-<%= javascript 'v2/validation/instructor.validate.js' %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'v2/validation/instructor.validate.js' -%>
+<% end -%>
+
 <div class="fh-form">
   <% form_for(:user, :url => update_instructor_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
   <%= f.error_messages %>
