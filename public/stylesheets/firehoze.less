@@ -2947,8 +2947,14 @@ span.error {
   background: @light-yellow url("images/forms/error-circle.png") no-repeat 3px 3px;
   border:solid 2px @light-blue-30;
 }
-span.valid {
-  border: 0 none;
+
+div.with-blue-panes span.error {
+  width:244px;
+  border:solid 2px @medium-blue-2;
+}
+
+span.error.valid {
+  border: 0 none !important;
   position:absolute;
   top:24px;
   left:600px;
@@ -2956,7 +2962,6 @@ span.valid {
   width:16px;
   background:url("images/forms/ok-circle.png") no-repeat 0px 0px;
 }
-
 
 .fieldWithErrors {
   padding: 2px;

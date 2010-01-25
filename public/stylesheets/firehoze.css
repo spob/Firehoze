@@ -2498,8 +2498,12 @@ span.error {
   background: #ffffe0 url("images/forms/error-circle.png") no-repeat 3px 3px;
   border: solid 2px #e3e9f2;
 }
-span.valid {
-  border: 0 none;
+div.with-blue-panes span.error {
+  width: 244px;
+  border: solid 2px #9cb6d5;
+}
+span.error.valid {
+  border: 0 none !important;
   position: absolute;
   top: 24px;
   left: 600px;
