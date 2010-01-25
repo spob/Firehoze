@@ -1,6 +1,8 @@
 <% title "Edit Category &quot;#{h(@category.name)}&quot;" -%>
 
-<%= javascript 'v2/validation/categories.validate.js' %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'v2/validation/categories.validate.js' -%>
+<% end -%>
 
 <div class="fh-form">
   <% form_for :category, :url => category_path(@category), :html => { :method => :put, :id => 'edit_category' } do |f| %>
