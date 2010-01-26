@@ -112,7 +112,7 @@ Rails::Initializer.run do |config|
   # Query optimization
   #config.gem 'methodmissing-scrooge', :source => "http://gems.github.com"
 
-  config.gem 'thinking-sphinx', :lib => 'thinking_sphinx', :version => '1.2.12', :source => "http://gemcutter.org"
+  config.gem 'thinking-sphinx', :lib => 'thinking_sphinx', :version => '1.3.14', :source => "http://gemcutter.org"
 
 
   # Shoulda
