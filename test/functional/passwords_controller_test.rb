@@ -29,7 +29,7 @@ class PasswordsControllerTest < ActionController::TestCase
       should_assign_to :user
       should_respond_with :redirect
       should_set_the_flash_to :pwd_update_success
-      should_redirect_to("profile page") { edit_account_url(assigns(:user)) }
+      should_redirect_to("edit password page") { edit_password_url(assigns(:user)) }
     end
 
     fast_context "on PUT to :update with bad current password" do
