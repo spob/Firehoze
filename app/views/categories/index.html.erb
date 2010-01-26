@@ -37,7 +37,7 @@
             <span class="h4">Tags</span>
           </div>
           <div class="widget-box-content tags">
-            <%= render :partial => "lessons/tag_cloud", :object => Lesson.ready.tag_counts(:limit => 40, :order => 'name ASC') %>
+            <%= render :partial => "lessons/tag_cloud", :object => Lesson.ready.tag_counts(:limit => 40, :order => "count DESC").sort{|x,y| x.name <=> y.name} %>
           </div>
         </div>
     <% end %>

@@ -74,7 +74,7 @@ class CategoriesController < ApplicationController
       if fragment_exist?(Category.tag_cloud_cache_id("lesson", @category.id))
         @tags = ["dummy"]
       else
-        @tags = Lesson.ready.tag_counts(:conditions => ["lessons.id IN (?)", @ids], :order => 'name ASC')
+        @tags = Lesson.ready.tag_counts(:conditions => ["lessons.id IN (?)", @ids], :limit => 40, :order => "count DESC").sort{|x,y| x.name <=> y.name}
       end
       @lessons = case cookies[:browse_sort]
         when 'most_popular'
