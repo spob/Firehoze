@@ -1,4 +1,6 @@
-<%= javascript 'v2/validation/groups.validate.js' %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'v2/validation/groups.validate.js' -%>
+<% end -%>
 
 <div class="fh-form">
   <% form_for(@group, :html => { :multipart => true }) do |f| %>

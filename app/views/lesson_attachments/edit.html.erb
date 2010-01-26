@@ -1,5 +1,8 @@
 <% title "Edit Attachment" -%>
-<%= javascript 'v2/validation/lesson_attachments.validate.js' %>
+
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'v2/validation/lesson_attachments.validate.js' -%>
+<% end -%>
 
 <div class="fh-form">
   <% form_for :attachment, :url => lesson_attachment_path(@attachment), :html => { :method => :put, :id => "edit_attachment" } do |form| %>

@@ -1,6 +1,8 @@
 <% title "editing #{@user.name_or_username}'s account" %>
 
-<%= javascript 'v2/validation/user.validate.js' %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'v2/validation/user.validate.js' -%>
+<% end -%>
 
 <h3><%= t 'user.account_settings' %> for <%= link_to_profile(@user) %></h3>
 

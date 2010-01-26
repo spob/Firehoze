@@ -1,4 +1,6 @@
-<%= javascript 'v2/validation/payment_levels.validate.js' %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'v2/validation/payment_levels.validate.js' -%>
+<% end -%>
 
 <div class="fh-form">
   <% form_for(@payment_level, :html => {:id => 'payment_level'}) do |f| %>

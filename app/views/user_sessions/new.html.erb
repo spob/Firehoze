@@ -1,6 +1,8 @@
 <% title "Sign In" -%>
 
-<%= javascript 'v2/validation/login.validate.js' %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'v2/validation/login.validate.js' -%>
+<% end -%>
 
 <div class="fh-form">
   <% form_for @user_session, :url => user_session_url(:protocol => SECURE_PROTOCOL), :html => {'accept-charset' => "utf-8", :id => "inline", :class => "login" } do |f| %>

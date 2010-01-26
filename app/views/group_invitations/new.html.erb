@@ -1,5 +1,8 @@
 <% title "Invite a User to a Group" -%>
-<%= javascript 'v2/validation/group_invitation.validate.js' %>
+
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'v2/validation/group_invitation.validate.js' -%>
+<% end -%>
 
 <div class="fh-form">
   <% form_for(:group_invitation, :url => group_invitations_path, :html => {'accept-charset' => "utf-8", :id => "inline", :class => "register" }) do |f| %>

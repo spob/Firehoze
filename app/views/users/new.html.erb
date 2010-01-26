@@ -1,6 +1,8 @@
 <% title "Complete the Account Registration Process" -%>
 
-<%= javascript 'v2/validation/user.validate.js' %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'v2/validation/user.validate.js' -%>
+<% end -%>
 
 <div class="fh-form">
   <% form_for([ @registration, @user ], :protocol => SECURE_PROTOCOL, :html => { :class => "new_user", :id => "new_user" }) do |f| %>

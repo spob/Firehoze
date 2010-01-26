@@ -1,5 +1,8 @@
 <% title "Give Gift Certificate" -%>
-<%= javascript 'v2/validation/gift_certificates.validate.js' %>
+
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'v2/validation/gift_certificates.validate.js' -%>
+<% end -%>
 
 <div class="fh-form">
 

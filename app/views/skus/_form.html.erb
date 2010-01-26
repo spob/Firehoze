@@ -1,4 +1,6 @@
-<%= javascript 'v2/validation/skus.validate.js' %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'v2/validation/skus.validate.js' -%>
+<% end -%>
 
 <div class="fh-form">
   <% form_for(:sku, :url => (@sku.new_record? ? skus_path : sku_path(@sku)), :html => { :method => (@sku.new_record? ? :post : :put), :id => "sku" }) do |f| %>

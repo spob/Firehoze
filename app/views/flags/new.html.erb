@@ -1,5 +1,8 @@
 <% title "Flag Inappropriate #{t("flag.#{@flag.flaggable.class.to_s.downcase}").capitalize}" -%>
-<%= javascript 'v2/validation/flags.validate.js' %>
+
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'v2/validation/flags.validate.js' -%>
+<% end -%>
 
 <div class="fh-form">
   <% form_for :flag, :url => flags_url(@flag, :flagger_type => @flag.flaggable.class.to_s, :flagger_id =>@flag.flaggable.id),  :html => { :class => "flag", :id => "flag" } do |f| %>
