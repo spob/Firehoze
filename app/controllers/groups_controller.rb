@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   if APP_CONFIG[CONFIG_ALLOW_UNRECOGNIZED_ACCESS]
-    before_filter :require_user, :except => [ :index, :show, :list_admin ]
+    before_filter :require_user, :except => [ :index, :show, :list_admin, :tagged_with ]
   else
     before_filter :require_user
   end
@@ -181,7 +181,7 @@ class GroupsController < ApplicationController
   def layout_for_action
     if %w(list_admin).include?(params[:action])
       'admin_v2'
-    elsif %w(create edit index new show update).include?(params[:action])
+    elsif %w(create edit index new show tagged_with update).include?(params[:action])
       'application_v2'
     else
       'application'

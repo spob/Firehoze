@@ -16,14 +16,14 @@
 </div>
 
 <% cache(Category.tag_cloud_cache_id("lesson_wide", -1)) do %>
-    <div class="span-4 last tag_cloud prepend-top">
-      <div class="widget-box">
-        <div class="widget-box-header">
-          <span class="h4">Tags</span>
-        </div>
-        <div class="widget-box-content tags">
-          <%= render :partial => "lessons/tag_cloud", :object => Lesson.ready.tag_counts(:limit => 40, :order => 'name ASC') %>
-        </div>
-      </div>
+<div class="span-4 last tag_cloud prepend-top">
+  <div class="widget-box">
+    <div class="widget-box-header">
+      <span class="h4">Tags</span>
     </div>
+    <div class="widget-box-content tags">
+      <%= render :partial => "lessons/tag_cloud", :object => Lesson.ready.tag_counts(:limit => 40, :order => 'name ASC') %>
+    </div>
+  </div>
+</div>
 <% end %>
