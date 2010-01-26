@@ -1,0 +1,8 @@
+<%  lesson = object  %>
+
+<% unless lesson.tag_counts.empty? %>
+  <strong>Tags:</strong>
+  <% lesson.tag_counts.each do |tag| %>
+    <%= link_to h(tag.name), tagged_with_lessons_path(:collection => :tagged_with, :tag => tag.name) %>
+  <% end %>
+<% end %>

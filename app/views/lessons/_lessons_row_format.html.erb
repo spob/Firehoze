@@ -11,7 +11,7 @@
         <div><%= ratings_for(lesson, :static, :small_stars => true) %></div>
         <strong><%= lesson.category.name -%>: <%= link_to h(lesson.title), lesson_path(lesson), :class => :lesson_title_link %></strong> <%= content_tag(:span, "(#{owned_it_phrase(lesson, current_user)})" ) unless owned_it_phrase(lesson, current_user).blank? %>
         <div class="synopsis"><%= h lesson.synopsis %></div>
-        <%= render :partial => "lessons/tag_links_for", :object => lesson, :locals => { :options => { :css_classes =>  "lesson_center" } } %>
+        <div><%= render :partial => "lessons/tags", :object => lesson %></div>
       </div>
     </div>
     <div class="instructor_container">
