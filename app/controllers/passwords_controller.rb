@@ -5,7 +5,7 @@ class PasswordsController < ApplicationController
   before_filter :require_user
   before_filter :find_user
   ssl_required :update if Rails.env.production?
-  ssl_allowed :edit if Rails.env.production?
+  # ssl_allowed :edit if Rails.env.production?
 
   layout 'application_v2'
 
@@ -21,7 +21,7 @@ class PasswordsController < ApplicationController
       @user.password_confirmation = params[:user][:password_confirmation]
       if @user.save
         flash[:notice] = t 'password.pwd_update_success'
-        redirect_to edit_password_path(@user)
+        redirect_to edit_account_path(@user)
       else
       render :action => 'edit'
       end
