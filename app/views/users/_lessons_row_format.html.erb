@@ -1,19 +1,18 @@
 <% lessons = object %>
-
-<ul class="lessons-row-format">
+<div>
   <% lessons.each do |lesson| %>
-  <li>
-    <div class="tn_container">
-      <div><%= img_tag_lesson_tn(lesson, :small, :size => "80x60") %></div>
+  <div class="lesson-row clearfix">
+    <div style="width:90px; float:left">
+      <div><%= img_tag_lesson_tn(lesson, :small, :size => "100x67") %></div>
     </div>
-    <div class="detail-container instructors">
-      <div class="details">
-        <div><%= ratings_for(lesson, :static, :small_stars => true) %></div>
-        <strong><%= lesson.category.name -%>: <%= link_to h(lesson.title), lesson_path(lesson), :class => :lesson_title_link %></strong> <%= content_tag(:span, "(#{owned_it_phrase(lesson, current_user)})" ) unless owned_it_phrase(lesson, current_user).blank? %>
-        <div class="synopsis"><%= h lesson.synopsis %></div>
-        <%= render :partial => "lessons/tag_links_for", :object => lesson, :locals => { :options => { :css_classes =>  "lesson_center" } } %>
-      </div>
+
+    <div style="margin-left:120px;">
+      <%= ratings_for(lesson, :static ) %>
+      <span class="headline h5"><strong><%= lesson.category.name -%>: <%= link_to h(lesson.title), lesson_path(lesson), :class => :lesson_title_link %></strong> <%= content_tag(:span, "(#{owned_it_phrase(lesson, current_user)})" ) unless owned_it_phrase(lesson, current_user).blank? %></span><br />
+      <span class="timestamp">&mdash;created on <%= l lesson.created_at %></span>
+      <div class="synopsis"><%= h lesson.synopsis %></div>
+      <div><%= render :partial => "lessons/tags", :object => lesson %></div>
     </div>
-  </li>
+  </div>
   <% end %>
-</ul>
+</div>

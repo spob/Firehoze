@@ -20,7 +20,7 @@ $(function() {
         fade : 500
     });
 
-    $('ul.lessons-row-format div.details div.synopsis').truncate({
+    $('div.lesson-row div.synopsis').truncate({
         max_length: 240,
         more : "more",
         less : "less",

@@ -629,11 +629,12 @@ div#footer div.in-touch > div { margin: 0 0 3em 0; }
 #error a { color: #6f2234; }
 #error .h4 { color: #6f2234; }
 #error #centered { background: transparent url(images/icons/32_warning.png) 0px 10px no-repeat; }
-div.review {
+div.lesson-row, div.review {
   padding-bottom: 17px;
   margin-bottom: 17px;
   border-bottom: dotted 1px #8f8f8f;
 }
+div.lesson-row:last-child { border-bottom: 0 none; }
 div.review:last-child { border-bottom: 0 none; }
 div.review .helpful_phrase {
   color: #8f8f8f;
@@ -646,6 +647,10 @@ div.review .headline {
   font-weight: bold;
 }
 div.review .title { padding: 0 0 3px 0; }
+div.lesson-row .timestamp {
+  color: #8f8f8f;
+  font-style: italic;
+}
 div.review .timestamp {
   color: #8f8f8f;
   font-style: italic;
