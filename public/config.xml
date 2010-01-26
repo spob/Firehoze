@@ -2,7 +2,7 @@
 <cu3er>
   <settings>
     <auto_play>
-      <defaults symbol="circular" time="4"/>
+      <defaults symbol="circular" time="6"/>
       <tweenIn x="890" y="30" width="35" height="35" tint="0xFFFFFF"/>
     </auto_play>
 
