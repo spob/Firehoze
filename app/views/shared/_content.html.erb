@@ -103,6 +103,9 @@
 <%= javascript_include_tag'v2/uniform' unless @no_uniform_js %>
 <%= javascript_include_tag 'v2/tooltip' unless Rails.env.test? or g_browser_name == 'ie' %>
 
+  <%= yield :footer -%>
+
+
 <% # External Service Javascripts %>
 <%= render "shared/google_analytics"  unless admin -%>
 <%= render "shared/get_satifisfaction" unless (admin or (controller.controller_name == "pages" and params[:id] == 'help_center')) -%>

@@ -1,4 +1,6 @@
-<%= javascript 'v2/validation/discounts.validate.js' %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'v2/validation/discounts.validate.js' -%>
+<% end -%>
 
 <div class="fh-form">
   <% form_for(:discount, :url => (@discount.new_record? ? sku_discounts_url(@sku) : discount_path(@discount)), :html => { :method => (@discount.new_record? ? :post : :put), :id => "discount" }) do |f| %>

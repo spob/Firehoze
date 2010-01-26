@@ -1,7 +1,9 @@
 <% title "editing #{@user.name_or_username}'s account" %>
 <% @current = 'my_firehoze' %>
 
-<%= javascript 'v2/validation/accounts.validate.js' %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'v2/validation/accounts.validate.js' -%>
+<% end -%>
 
 <h3><%= h(t('user.account_settings')) %></h3>
 
@@ -21,5 +23,3 @@
     </div>
   </div>
 </div>
-
-

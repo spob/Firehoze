@@ -1,5 +1,8 @@
 <% title "Sign Up" -%>
-<%= javascript 'v2/validation/registration.validate.js' %>
+
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'v2/validation/registration.validate.js' -%>
+<% end -%>
 
 <% restricted = APP_CONFIG[CONFIG_RESTRICT_REGISTRATION] %>
 <% if restricted == true %>
@@ -28,7 +31,7 @@
           <span></span>
 
           <h3>
-            <%= restricted == true ? "Step 2. Sign Up" : "Firehoze Account Sign Up" %>
+            <%= restricted == true ? "Step 2. Register" : "Firehoze Account Sign Up" %>
           </h3>
           <h4>
             Membership has its privileges. By joining the Firehoze community, you can watch full lessons,

@@ -1,6 +1,8 @@
 <% title "Instructor Agreement, Step 1" -%>
 
-<%= javascript 'v2/validation/accounts.validate.js' %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'v2/validation/accounts.validate.js' -%>
+<% end -%>
 
 <%= render :partial => 'breadcrumbs', :locals => { :step => 1 } %>
 

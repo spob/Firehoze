@@ -1,5 +1,8 @@
 <% title "Contact #{h @to_user.name_or_username}" -%>
-<%= javascript 'v2/validation/contact_users.validate.js' %>
+
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'v2/validation/contact_users.validate.js' -%>
+<% end -%>
 
 <div class="fh-form">
   <% form_tag contact_users_path, :class => "contact_user", :id => "contact_user" do -%>
