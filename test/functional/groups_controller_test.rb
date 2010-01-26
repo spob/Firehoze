@@ -80,7 +80,7 @@ class GroupsControllerTest < ActionController::TestCase
         should_set_the_flash_to /Successfully updated group/
         should_assign_to :group
         should_respond_with :redirect
-        should_redirect_to("Group show page") { group_url(@group.id) }
+        should_redirect_to("Group show page") { group_url(@group) }
       end
 
       fast_context "with tags defined" do
