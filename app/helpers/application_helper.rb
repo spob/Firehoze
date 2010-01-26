@@ -111,7 +111,7 @@ module ApplicationHelper
         end
       end
     end
-    msg = msg.nil? ? "" : "<div class='flagging'> #{image_tag('icons/flag_16.png', :alt => :flag)} #{msg}</div>"
+    msg = "<div class='flagging'> #{image_tag('icons/flag_16.png', :alt => :flag)} #{msg}</div>" unless msg.nil?
   end
 
   def per_page_select refresh_url
