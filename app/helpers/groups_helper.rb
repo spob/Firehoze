@@ -42,15 +42,15 @@ module GroupsHelper
 
   def show_membership_text(group, user)
     if group.owned_by?(user)
-      "You are the owner of this group"
+      "#{image_tag 'icons/key_16.png'} You are the owner of this group"
     elsif group.moderated_by?(user)
-      "You are the moderator of this group"
+      "#{image_tag 'icons/shield_16.png'} You are the moderator of this group"
     elsif group.includes_member?(user)
-      "You are a member of this group"
+      "#{image_tag 'icons/16-check.png'} You are a member of this group"
     elsif user.nil?
       "You are not logged in"
     else
-      "You are not a member of this group"
+      "#{image_tag 'icons/block_16.png'} You are not a member of this group"
     end
   end
 

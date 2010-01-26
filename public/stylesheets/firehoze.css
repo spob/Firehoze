@@ -346,7 +346,7 @@ div.corner-box {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
-  padding: 4px 8px 2px 8px;
+  padding: 4px 8px;
   margin: 0;
   position: absolute;
   top: 5px;
@@ -357,6 +357,7 @@ div.corner-box {
   color: #17587f;
   font-weight: bold;
 }
+div.corner-box ul li * { vertical-align: middle; }
 h4.banner {
   font-size: 18px;
   color: #4a4a4a;

@@ -35,8 +35,7 @@
                 <li><%= image_tag 'icons/16-check.png' %> This group is open to the public</li>
             <% end %>
             <% content_tag :li  do -%>
-                <%= image_tag 'icons/16-check.png' %>
-                <%= show_membership_text @group, current_user %>
+              <%= show_membership_text @group, current_user %>
             <% end if current_user -%>
           </ul>
         </div>
