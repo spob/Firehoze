@@ -1,8 +1,9 @@
-<% title "Groups tagged with &quot;#{@tag}&quot;" -%>
+<% title "#{t('group.tagged_with')} &quot;#{@tag}&quot;" -%>
 
 <% @current = 'groups' %>
 
 <div class="span-8 prepend-top">
+    <h3><%= "#{t('group.tagged_with')} &quot;#{@tag}&quot;" %></h3>
   <% if @groups.present? %>
   <%= will_paginate @groups %>
   <table>
