@@ -22,4 +22,9 @@ $(function(){
         $(this).find("span").removeClass("subhover"); //On hover out, remove class "subhover"
     });
 
+
+    // clear the seach input field on focus
+    $("form #search_criteria").focus(function () {
+        $(this).val("");
+    });
 });

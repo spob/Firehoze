@@ -42,9 +42,4 @@ $(document).ready(function(){
     // Have all remote-classed forms submit AJAX
     $('form.remote').submitWithAjax();
 
-    // clear the seach input field on focus
-    $("form #search_criteria").focus(function () {
-        $(this).val("");
-    });
-
 });
