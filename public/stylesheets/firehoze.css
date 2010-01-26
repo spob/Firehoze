@@ -870,11 +870,10 @@ div.comment-container div.actions {
   background: #f1f7fe;
 }
 div.comment-container div.count {
-  position: absolute;
-  top: 7px;
-  right: 7px;
-  font-size: 28px;
+  font-size: 26px;
   font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+  text-align: right;
+  margin: -26px 4px 0 0;
 }
 .info {
   -moz-border-radius: 3px;
@@ -2557,7 +2556,7 @@ a.printer-friendly:hover {
 .fh-form ul#request-registration-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
 .fh-form ul#registation-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
 .fh-form ul#review-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#topic-comments-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#topic-comment-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
 .fh-form ul#edit-topic-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
 .fh-form ul#group-topics-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
 .fh-form ul.section li.heading {
