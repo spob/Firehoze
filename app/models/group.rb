@@ -117,7 +117,7 @@ class Group < ActiveRecord::Base
   end
 
   def self.fetch_user_groups(user, page, per_page)
-    user.groups.ascend_by_category_name_and_name(:include => [:category]).paginate(:per_page => per_page, :page => page) if user
+    user.member_groups.ascend_by_category_name_and_name(:include => [:category]).paginate(:per_page => per_page, :page => page) if user
   end
 
   def can_see?(user)
