@@ -29,22 +29,22 @@ module LessonsHelper
   def lessons_header(collection, *args)
     if controller.action_name == 'list'
       header =
-        case collection
-      when :most_popular
-        t('lesson.most_popular')
-      when :highest_rated
-        t('lesson.highest_rated')
-      when :newest
-        t('lesson.newest')
-      when :recently_browsed
-        t('lesson.recently_browsed')
-      when :owned_lessons
-        t('lesson.lessons_you_own')
-      when :instructed_lessons
-        t('lesson.lessons_you_instructed')
-      when :tagged_with
-        "#{t('lesson.tagged_with')} &quot;#{args.first}&quot;"
-      end
+              case collection
+                when :most_popular
+                  t('lesson.most_popular')
+                when :highest_rated
+                  t('lesson.highest_rated')
+                when :newest
+                  t('lesson.newest')
+                when :recently_browsed
+                  t('lesson.recently_browsed')
+                when :owned_lessons
+                  t('lesson.lessons_you_own')
+                when :instructed_lessons
+                  t('lesson.lessons_you_instructed')
+                when :tagged_with
+                  "#{t('lesson.tagged_with')} &quot;#{args.first}&quot;"
+              end
       "<h3>#{header}</h3>"
     end
   end
@@ -81,7 +81,7 @@ module LessonsHelper
         else
           action_text = t('lesson.buy')
         end
-        link_to content_tag(:span, action_text), watch_lesson_path(lesson), :class => :minibutton 
+        link_to content_tag(:span, action_text), watch_lesson_path(lesson), :class => :minibutton
       end
     end
   end
@@ -137,6 +137,14 @@ module LessonsHelper
       link_to("Remove", group_lesson_path(group.id, :lesson_id => lesson.id), :method => :delete) + " from &quot;#{group.name.titleize}&quot; Group"
     else
       link_to("Add", group_lessons_path(:id => group.id, :lesson_id => lesson.id), :method => :post) + " to &quot;#{group.name.titleize}&quot; Group"
+    end
+  end
+
+  def play_button_text(lesson, user)
+    if (lesson.owned_by?(user) or lesson.can_edit?(user))
+      "Play"
+    else
+      "Preview"
     end
   end
 
