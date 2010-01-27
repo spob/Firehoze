@@ -153,7 +153,7 @@ class Notifier < ActionMailer::Base
   def lesson_processing_failed(video)
     subject    "The video for your lesson failed to process"
     recipients video.lesson.instructor.email
-    bcc         Role.admins.collect(&:email)
+    bcc         Role.admins.active.collect(&:email)
     from         APP_CONFIG[CONFIG_ADMIN_EMAIL]
 
     body       :video => video,
@@ -163,7 +163,7 @@ class Notifier < ActionMailer::Base
   # Notify the admin that a video never completed their transcoding
   def lesson_processing_hung(lesson)
     subject    "The video for lesson #{lesson.id} never completed processing"
-    recipients Role.admins.collect(&:email)
+    recipients   Role.admins.active.collect(&:email)
     from         APP_CONFIG[CONFIG_ADMIN_EMAIL]
 
     body       :lesson => lesson,
