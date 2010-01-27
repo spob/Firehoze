@@ -5,15 +5,17 @@
 
 <% if lesson.ready? %>
     <div style="width:<%= PLAYER_WIDTH %>px;height:<%= PLAYER_HEIGHT %>px;" id="playerbox"></div>
-
+   <%
+      image = (lesson.thumbnail_url ? h(lesson.sized_thumbnail_url(:large)) : "url(/videos/video_placeholder.jpg)")
+      %>
     <script language='javascript'>
         //$f("playerbox", "http://<%= APP_CONFIG[CONFIG_HOST] %>:<%= APP_CONFIG[CONFIG_PORT] %>/swf/flowplayer-3.1.5.swf", {
         $f("playerbox", "http://releases.flowplayer.org/swf/flowplayer.commercial-3.1.5.swf", {
 
             key: '#$2530218aaff22a9be9e',
             canvas: {
-
                 background: 'url(/images/videos/watermark-v2.png)  no-repeat 420 10'
+//                backgroundImage: '<%= image %> no-repeat 10 10'
             },
             play: {
                 label: '<%= play_button_text(lesson, current_user) %>',
@@ -21,6 +23,7 @@
             },
             clip: {
                 autoPlay:false,
+                autoBuffering:false,
                 <% if lesson.owned_by?(current_user) or lesson.can_edit?(current_user) %>
                 url: 'flv:<%= lesson.full_processed_video.try("output_rtmp_path") %>',
                 <% else %>
