@@ -9,16 +9,13 @@ if lesson.ready?
 else
   play_label = "not-ready"
 end
-%>
 
-
-<% 
-  play_label = "not-ready"
-
-
-if play_label == "not-ready" %>
-  <%= image_tag('videos/splash-not-ready.png') %>
+if play_label == "not-ready" 
+  %>
+  <%= image_tag('videos/splash-not-ready.png', :alt => 'Video Not Ready') %>
   <% else %>
+
+
   <div style="width:<%= PLAYER_WIDTH %>px;height:<%= PLAYER_HEIGHT %>px;" id="playerbox"></div>
 
   <script language='javascript'>
@@ -31,7 +28,7 @@ if play_label == "not-ready" %>
         background: 'url(/images/videos/watermark-v2.png)  no-repeat 420 10'
       },
       play: {
-        //    label: '<%= play_label %>',
+        label: '<%= play_label %>',
         replay: 'Play again'
       },
       clip: {
