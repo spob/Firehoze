@@ -1,8 +1,55 @@
 <% 
 lesson = object
+if lesson.ready? 
+  if (lesson.owned_by?(current_user) or lesson.can_edit?(current_user))
+    play_label = "Play"
+  else
+    play_label = "Preview"
+  end
+else
+  play_label = "not-ready"
+end
 %>
-<% if lesson.owned_by?(current_user) or lesson.can_edit?(current_user) %>
-  <%= player({:image => lesson.thumbnail_url ? h(lesson.sized_thumbnail_url(:large)) : "videos/video_placeholder.jpg", :streamer => "rtmp://e1f1.simplecdn.net/play", :file => h(lesson.full_processed_video.try("output_rtmp_path")), :skin => 'dangdang', :autostart => false}, {:width => PLAYER_WIDTH, :height => PLAYER_HEIGHT }) %>
-<% else %>
-  <%= player({:image => lesson.thumbnail_url ? h(lesson.sized_thumbnail_url(:large)) : "videos/video_placeholder.jpg", :streamer => "rtmp://e1f1.simplecdn.net/play", :file => h(lesson.preview_processed_video.try("output_rtmp_path")), :skin => 'dangdang', :logo => 'http://amazonassets.simplecdn.net/images/videos/preview-v2.png'}, {:width => PLAYER_WIDTH, :height => PLAYER_HEIGHT}) %>
-<% end %>
+
+
+<% 
+  play_label = "not-ready"
+
+
+if play_label == "not-ready" %>
+  <%= image_tag('videos/splash-not-ready.png') %>
+  <% else %>
+  <div style="width:<%= PLAYER_WIDTH %>px;height:<%= PLAYER_HEIGHT %>px;" id="playerbox"></div>
+
+  <script language='javascript'>
+  //$f("playerbox", "http://<%= APP_CONFIG[CONFIG_HOST] %>:<%= APP_CONFIG[CONFIG_PORT] %>/swf/flowplayer-3.1.5.swf", {
+    $f("playerbox", "http://releases.flowplayer.org/swf/flowplayer.commercial-3.1.5.swf", {
+
+      key: '#$2530218aaff22a9be9e',
+      canvas: {
+
+        background: 'url(/images/videos/watermark-v2.png)  no-repeat 420 10'
+      },
+      play: {
+        //    label: '<%= play_label %>',
+        replay: 'Play again'
+      },
+      clip: {
+        autoPlay:false,
+        <% if lesson.owned_by?(current_user) or lesson.can_edit?(current_user) %>
+        url: 'flv:<%= lesson.full_processed_video.try("output_rtmp_path") %>',
+        <% else %>
+        url: 'flv:<%= lesson.preview_processed_video.try("output_rtmp_path") %>',
+        <% end %>
+        provider: 'simplecdn',
+        accelerated: true
+      },
+      plugins: {
+        simplecdn: {
+          url: 'flowplayer.rtmp-3.1.3.swf',
+          netConnectionUrl: 'rtmp://e1f1.simplecdn.net/play'
+        }
+      }
+    });
+    </script>
+    <% end %>
