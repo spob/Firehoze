@@ -17,6 +17,9 @@ class PasswordResetsController < ApplicationController
     render
   end
 
+  def show
+  end
+
   # Allow the user to request a new password based upon an email address they enter
   def create
     @user = User.find_by_email(params[:email])
@@ -26,7 +29,7 @@ class PasswordResetsController < ApplicationController
       # by requesting a new password.
       @user.deliver_password_reset_instructions!
       flash[:notice] = t 'password_reset.reset_email_msg'
-      redirect_to root_url
+      redirect_to password_reset_path(@user)
     else
       flash[:error] = t 'password_reset.no_user_found_with_email_addr'
       render :action => :new

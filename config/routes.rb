@@ -97,7 +97,7 @@ ActionController::Routing::Routes.draw do |map|
   map.login 'login', :controller => 'user_sessions', :action => 'new'
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
   map.resources :passwords, :only => [ :edit, :update ]
-  map.resources :password_resets, :only => [ :create, :new, :edit, :update ]
+  map.resources :password_resets, :only => [ :create, :new, :edit, :update, :show ]
   map.resources :payment_levels
   map.resources :payments, :member => { :show_unpaid => :get,
                                         :list => :get },
