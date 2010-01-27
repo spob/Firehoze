@@ -352,8 +352,8 @@ END
 
   # Can the user parameter contact this user via email?
   def can_contact?(user)
-    allow_contact == USER_ALLOW_CONTACT_ANYONE or
-            (allow_contact == USER_ALLOW_CONTACT_STUDENTS_ONLY and student_of?(user))
+    active and (allow_contact == USER_ALLOW_CONTACT_ANYONE or
+            (allow_contact == USER_ALLOW_CONTACT_STUDENTS_ONLY and student_of?(user)))
   end
 
   def unpaid_credits
