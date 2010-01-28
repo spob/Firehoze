@@ -33,7 +33,7 @@
       <div><%= render :partial => "lessons/actions", :object => @lesson -%></div>
     </div>
 
-    <% # lesson detail -%>
+    <% # lesson detail  -%>
     <div id="lesson-detail" class="span-6">
       <div id="lesson-details-tabs" class="tab-container lesson-details">
         <ul class="tabs">
@@ -50,7 +50,7 @@
           </div>
 
           <div id="tab-lesson-detail">
-            <%= render :partial => "lessons/detail", :object => @lesson  %>
+            <%= render :partial => "lessons/detail", :object => @lesson %>
           </div>
 
           <div id="tab-lesson-instructor">
@@ -58,33 +58,45 @@
 
             <div id="bio">
               <span class="h4"><%= link_to_profile(@instructor) %></span>
+
               <div id="lesson-instructor-bio"><%= @instructor.bio %></div>
             </div>
+            <div id="contact-and-follow">
+              <% if @instructor.can_contact? current_user %>
+                  <%= link_to content_tag(:span, 'Contact This User'), new_contact_user_path(:id => @instructor.id), :class => :minibutton %>
+              <% end %>
+              <%= follow_link @instructor, current_user %>
+            </div>
 
-            <% # Lesson by This Instructor -%>
+            <% # Lesson by This Instructor  -%>
             <% if @instructor.instructed_lessons.ready.size > 1 %>
-              <div id="lessons-by-instructor">
-                <h4>More lessons by <%= privacy_sensitive_username(@instructor) %></h4>
-                <div class="widget-box-content lessons">
-                  <ul class="lesson_brief">
-                    <%= render :partial => "lessons/lesson_brief", :collection => (@instructor.instructed_lessons.ready.reject{ |lesson| lesson == @lesson }), :locals => {:title_length => 50, :synopsis_length => 160 } %>
-                  </ul>
+                <div id="lessons-by-instructor">
+                  <h4>More lessons by <%= privacy_sensitive_username(@instructor) %></h4>
+
+                  <div class="widget-box-content lessons">
+                    <ul class="lesson_brief">
+                      <%= render :partial => "lessons/lesson_brief", :collection => (@instructor.instructed_lessons.ready.reject{ |lesson| lesson == @lesson }), :locals => {:title_length => 50, :synopsis_length => 160 } %>
+                    </ul>
+                  </div>
                 </div>
-              </div>
             <% end %>
-          </div><!-- tab-lesson-instructor -->
+          </div>
+          <!-- tab-lesson-instructor -->
 
-        </div><!-- end panes -->
-      </div><!-- end lesson-details-tabs -->
-    </div><!-- end lesson-detail -->
+        </div>
+        <!-- end panes -->
+      </div>
+      <!-- end lesson-details-tabs -->
+    </div>
+    <!-- end lesson-detail -->
 
-    <% # lesson player -%>
+    <% # lesson player  -%>
     <div id="lesson-player" class="span-6 last">
       <div><%= render :partial => 'lessons/player', :object => @lesson -%></div>
     </div>
   </div>
 
-  <% # LESSON TABS -%>
+  <% # LESSON TABS  -%>
   <div class="span-12">
     <div id="lesson-content-tabs" class="tab-container with-blue-panes">
       <ul class="tabs">
@@ -104,12 +116,12 @@
     </div>
   </div>
 
-  <% # STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT...  -%>
+  <% # STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT...   -%>
   <div class="span-12">
     <%= render :partial => 'lessons/lesson_buy_pairs', :object => @lesson -%>
   </div>
 
-  <% # WHAT DO STUDENTS ULTIMATELY BUY AFTER BROWSING THIS ITEM?  -%>
+  <% # WHAT DO STUDENTS ULTIMATELY BUY AFTER BROWSING THIS ITEM?   -%>
   <div class="span-12">
     <%= render :partial => 'lessons/lesson_buy_patterns', :object => @lesson -%>
   </div>
