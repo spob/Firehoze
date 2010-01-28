@@ -2711,7 +2711,7 @@ div.selector select {
 }
 span.required-field {
   z-index: 1;
-  background: transparent url("../../images/forms/asterisk.png") no-repeat top right;
+  background: transparent url('../../images/forms/asterisk.png') no-repeat top right;
   width: 16px;
   height: 16px;
   position: absolute;
@@ -2729,7 +2729,7 @@ span.error {
   text-align: left;
   position: absolute;
   padding: 5px 5px 5px 26px;
-  background: #ffffe0 url("../../images/forms/error-circle.png") no-repeat 3px 3px;
+  background: #ffffe0 url('../../images/forms/error-circle.png') no-repeat 3px 3px;
   border: solid 2px #e3e9f2;
 }
 div.with-blue-panes span.error {
@@ -2743,7 +2743,7 @@ span.error.valid {
   left: 600px;
   height: 16px;
   width: 16px;
-  background: url("../../images/forms/ok-circle.png") no-repeat 0px 0px;
+  background: url('../../images/forms/ok-circle.png') no-repeat 0px 0px;
 }
 .fieldWithErrors {
   padding: 2px;
