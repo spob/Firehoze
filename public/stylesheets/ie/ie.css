@@ -3,11 +3,4 @@ dl.third-level-nav dd.last {
   border: 0 none;
 }
 
-div#user-actions {
-}
-
-div#user-actions {
-  top:15px;
-  padding: 2px 0;
-}
-
+div#user-actions { padding: 2px 0; }

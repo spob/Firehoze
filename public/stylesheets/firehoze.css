@@ -2848,14 +2848,23 @@ div#user_show div#name-plate {
 }
 div#user-actions {
   position: absolute;
-  top: 17px;
+  top: 15px;
   right: 8px;
 }
 div#user-actions div.flagging { display: inline; }
+div.comment-container div.flagging {
+  float: right;
+  display: inline;
+}
+div#group-container div.flagging {
+  float: right;
+  display: inline;
+}
 div.review_actions div.flagging {
   float: right;
   display: inline;
 }
+div.comment-container div.flagging { margin: 0 0 8px 0; }
 #user-public-container > #user-stats-container {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
