@@ -1,4 +1,6 @@
 ul.third-level-nav li.last, 
 dl.third-level-nav dd.last {
-    border: 0 none;
+  border: 0 none;
 }
+
+div#user-actions { padding: 2px 0; }

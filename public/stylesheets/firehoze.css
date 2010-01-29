@@ -6,7 +6,7 @@
   font-size: 11px;
   font-weight: bold;
   color: #2b2b2b;
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background: transparent url('../../images/general/button-sprite.png') 0 0 no-repeat;
   white-space: nowrap;
   border: none;
   overflow: visible;
@@ -21,16 +21,16 @@ button.minibutton::-moz-focus-inner { margin: -1px -3px; }
   height: 23px;
   padding: 0 10px 0 8px;
   line-height: 23px;
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background: transparent url('../../images/general/button-sprite.png') 100% 0 no-repeat;
 }
 .call-to-action.minibutton {
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background: transparent url('../../images/general/button-sprite.png') 0 0 no-repeat;
   background-position: 0 -335px;
 }
 .call-to-action.minibutton > span {
   color: #ffffff;
   text-shadow: #2b2b2b 0 1px 1px;
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background: transparent url('../../images/general/button-sprite.png') 100% 0 no-repeat;
   background-position: 100% -335px;
 }
 .minibutton:hover {
@@ -55,41 +55,41 @@ button.minibutton::-moz-focus-inner { margin: -1px -3px; }
 .minibutton.current > span { background-position: 100% -30px; }
 .tag { margin: 0 0 4px 0; }
 .css1.tagbutton {
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background: transparent url('../../images/general/button-sprite.png') 0 0 no-repeat;
   background-position: 0 -272px;
 }
 .css1.tagbutton > span {
   color: #8f8f8f;
   text-shadow: #f2f2f2 0 1px 1px;
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background: transparent url('../../images/general/button-sprite.png') 100% 0 no-repeat;
   background-position: 100% -272px;
 }
 .css2.tagbutton {
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background: transparent url('../../images/general/button-sprite.png') 0 0 no-repeat;
   background-position: 0 -210px;
 }
 .css2.tagbutton > span {
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background: transparent url('../../images/general/button-sprite.png') 100% 0 no-repeat;
   background-position: 100% -210px;
 }
 .css3.tagbutton {
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background: transparent url('../../images/general/button-sprite.png') 0 0 no-repeat;
   background-position: 0 -150px;
 }
 .css3.tagbutton > span {
   color: #ffffff;
   text-shadow: #2b2b2b 0 1px 1px;
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background: transparent url('../../images/general/button-sprite.png') 100% 0 no-repeat;
   background-position: 100% -150px;
 }
 .css4.tagbutton {
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 0 0 no-repeat;
+  background: transparent url('../../images/general/button-sprite.png') 0 0 no-repeat;
   background-position: 0 -90px;
 }
 .css4.tagbutton > span {
   color: #ffffff;
   text-shadow: #2b2b2b 0 1px 1px;
-  background: transparent url('/stylesheets/images/general/button-sprite.png') 100% 0 no-repeat;
+  background: transparent url('../../images/general/button-sprite.png') 100% 0 no-repeat;
   background-position: 100% -90px;
 }
 .tagbutton {
@@ -114,25 +114,25 @@ button.minibutton::-moz-focus-inner { margin: -1px -3px; }
   line-height: 23px;
 }
 .tagbutton.current {
-  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 0 0 no-repeat;
+  background: transparent url('../../images/general/minibutton_matrix.png') 0 0 no-repeat;
   color: #ffffff;
   text-decoration: none;
   text-shadow: none;
   background-position: 0 -30px;
 }
 .tagbutton:hover {
-  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 0 0 no-repeat;
+  background: transparent url('../../images/general/minibutton_matrix.png') 0 0 no-repeat;
   color: #ffffff;
   text-decoration: none;
   text-shadow: none;
   background-position: 0 -30px;
 }
 .tagbutton.current > span {
-  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 100% 0 no-repeat;
+  background: transparent url('../../images/general/minibutton_matrix.png') 100% 0 no-repeat;
   background-position: 100% -30px;
 }
 .tagbutton:hover > span {
-  background: transparent url('/stylesheets/images/general/minibutton_matrix.png') 100% 0 no-repeat;
+  background: transparent url('../../images/general/minibutton_matrix.png') 100% 0 no-repeat;
   background-position: 100% -30px;
 }
 .tagbutton.mousedown { background-position: 0 -60px; }
@@ -150,7 +150,7 @@ button.large-button, a.large-button {
   white-space: nowrap;
   border: none;
   overflow: visible;
-  background: url('/stylesheets/images/general/bigbutton_matrix.gif') 100% 0 no-repeat #dddddd;
+  background: url('../../images/general/bigbutton_matrix.gif') 100% 0 no-repeat #dddddd;
   cursor: pointer;
   text-decoration: none;
 }
@@ -179,14 +179,14 @@ button.large-button span {
   height: 36px;
   padding: 0 10px 0 15px;
   line-height: 36px;
-  background: url('/stylesheets/images/general/bigbutton_matrix.gif') 0 0 no-repeat #dddddd;
+  background: url('../../images/general/bigbutton_matrix.gif') 0 0 no-repeat #dddddd;
 }
 a.large-button span {
   display: block;
   height: 36px;
   padding: 0 10px 0 15px;
   line-height: 36px;
-  background: url('/stylesheets/images/general/bigbutton_matrix.gif') 0 0 no-repeat #dddddd;
+  background: url('../../images/general/bigbutton_matrix.gif') 0 0 no-repeat #dddddd;
 }
 button.large-button.glowing, a.large-button.glowing { background-position: 100% -40px; }
 button.large-button.glowing span { background-position: 0 -40px; }
@@ -364,18 +364,18 @@ h4.banner {
   padding: 5px 0 5px 16px;
   margin: 16px -15px 24px -15px;
   border-bottom: solid 1px #cccccc;
-  background: url(images/top_navigation/nav-a.png) repeat-x 0 0;
+  background: url('../../images/top_navigation/nav-a.png') repeat-x 0 0;
 }
 #header {
   height: 145px;
-  background-image: url('/stylesheets/images/header/header-bg-tile-tall.png');
+  background-image: url('../../images/header/header-bg-tile-tall.png');
   background-repeat: repeat-x;
 }
 #header .content {
   position: relative;
   background-repeat: no-repeat;
   height: 77px;
-  background: url('/stylesheets/images/header/header-shine.png') no-repeat 50% 0;
+  background: url('../../images/header/header-shine.png') no-repeat 50% 0;
 }
 #header #logo {
   position: absolute;
@@ -389,7 +389,7 @@ h4.banner {
   display: block;
   width: 224px;
   height: 67px;
-  background-image: url('/stylesheets/images/header/sprite-logo.png');
+  background-image: url('../../images/header/sprite-logo.png');
   background-position: top;
   text-indent: -9999px;
   border: 0 none;
@@ -398,7 +398,7 @@ h4.banner {
   display: block;
   width: 224px;
   height: 67px;
-  background-image: url('/stylesheets/images/header/sprite-logo.png');
+  background-image: url('../../images/header/sprite-logo.png');
   background-position: top;
   text-indent: -9999px;
   border: 0 none;
@@ -414,7 +414,7 @@ h4.banner {
 }
 #shadowbox-top {
   z-index: 10;
-  background: transparent url('/stylesheets/images/main_navigation/main-navigation-bg.png') no-repeat;
+  background: transparent url('../../images/main_navigation/main-navigation-bg.png') no-repeat;
   margin: -50px 0 0 0;
   padding: 0;
   width: 1000px;
@@ -423,13 +423,13 @@ h4.banner {
   margin-right: auto;
 }
 #shadowbox-middle {
-  background: transparent url('/stylesheets/images/shadow_box/shadow-box-middle.png') repeat-y;
+  background: transparent url('../../images/shadow_box/shadow-box-middle.png') repeat-y;
   width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
 #shadowbox-bottom {
-  background-image: url('/stylesheets/images/shadow_box/shadow-box-bottom.png');
+  background-image: url('../../images/shadow_box/shadow-box-bottom.png');
   background-repeat: no-repeat;
   margin: 0;
   width: 1000px;
@@ -454,10 +454,10 @@ ul#main-navigation {
 #main-navigation li {
   padding-right: 2px;
   float: left;
-  background: url('/stylesheets/images/main_navigation/main-navigation-li.png') no-repeat right;
+  background: url('../../images/main_navigation/main-navigation-li.png') no-repeat right;
 }
 #main-navigation li#first {
-  background: url('/stylesheets/images/main_navigation/main-navigation-li-first.png') no-repeat left;
+  background: url('../../images/main_navigation/main-navigation-li-first.png') no-repeat left;
   width: 19px;
   height: 40px;
 }
@@ -507,13 +507,13 @@ ul.admin li.selected.first a { padding-left: 0px; }
 #main-navigation li.selected a:focus { color: #c1cad5; }
 #footer {
   height: 320px;
-  background-image: url('/stylesheets/images/footer/footer-bg-tile-tall.png');
+  background-image: url('../../images/footer/footer-bg-tile-tall.png');
 }
 #footer { color: #a9a9a9; }
 #footer a { color: #a9a9a9; }
 #footer .content {
   height: 320px;
-  background-image: url('/stylesheets/images/footer/footer-watermark.png');
+  background-image: url('../../images/footer/footer-watermark.png');
   background-repeat: no-repeat;
   background-position: right bottom;
 }
@@ -622,14 +622,14 @@ div#footer div.in-touch > div { margin: 0 0 3em 0; }
 }
 #notice a { color: #58941c; }
 #notice .h4 { color: #58941c; }
-#notice #centered { background: transparent url(images/icons/32_success.png) 0px 10px no-repeat; }
+#notice #centered { background: transparent url('../../images/icons/32_success.png') 0px 10px no-repeat; }
 #error {
   border-bottom: solid 8px #efe468;
   background-color: #ffffe0;
 }
 #error a { color: #6f2234; }
 #error .h4 { color: #6f2234; }
-#error #centered { background: transparent url(images/icons/32_warning.png) 0px 10px no-repeat; }
+#error #centered { background: transparent url('../../images/icons/32_warning.png') 0px 10px no-repeat; }
 div.lesson-row, div.review {
   padding-bottom: 17px;
   margin-bottom: 17px;
@@ -666,13 +666,13 @@ div.review #stars { margin: 5px 0 0 0; }
   overflow: hidden;
   margin: 0 0 17px 0;
   padding: 0px;
-  background: transparent url('images/breadcrumbs/bc_bg.png') repeat-x scroll 0 0;
+  background: transparent url('../../images/breadcrumbs/bc_bg.png') repeat-x scroll 0 0;
 }
 #breadcrumb li {
   list-style-type: none;
   float: left;
   padding-left: 10px;
-  background-image: url('images/breadcrumbs/bc_separator.png');
+  background-image: url('../../images/breadcrumbs/bc_separator.png');
   background-repeat: no-repeat;
   background-position: right;
   padding-right: 15px;
@@ -768,7 +768,7 @@ div#group-container div.actions { margin: 17px 0 0 0; }
 div#group-container div.notice {
   margin: 17px 0 0 0;
   padding: 8px 8px 17px 47px;
-  background: #ffffe0 url(images/icons/32_warning.png) 8px 10px no-repeat;
+  background: #ffffe0 url('../../images/icons/32_warning.png') 8px 10px no-repeat;
 }
 div#group-container hr {
   margin: 17px 0 0 0;
@@ -884,7 +884,7 @@ div.comment-container div.count {
   position: relative;
   text-align: left;
   margin-bottom: 1em;
-  background: #f1f7fe url('images/icons/info_32.png') 1em 1em no-repeat;
+  background: #f1f7fe url('../../images/icons/info_32.png') 1em 1em no-repeat;
   padding: 1em 1em 1em 5em;
   min-height: 3em;
 }
@@ -968,7 +968,7 @@ div.comment-container div.count {
   position: relative;
   text-align: left;
   margin-bottom: 1em;
-  background: #ffffe0 url(images/icons/32_warning.png) 8px 10px no-repeat;
+  background: #ffffe0 url('../../images/icons/32_warning.png') 8px 10px no-repeat;
   padding: 1em 1em 1em 5em;
   border: solid 2px #efe468;
   min-height: 3em;
@@ -1029,14 +1029,14 @@ div.rounded-bluebox {
 #top-navigation li {
   float: left;
   padding-right: 2px;
-  background: url(images/top_navigation/nav-li-dark.png) no-repeat right;
+  background: url('../../images/top_navigation/nav-li-dark.png') no-repeat right;
   list-style-type: none;
   position: relative;
 }
 #top-navigation li a {
   float: left;
   padding: 1px 20px 5px;
-  background: url(images/top_navigation/nav-a.png) repeat-x 0 0;
+  background: url('../../images/top_navigation/nav-a.png') repeat-x 0 0;
   color: #616161;
   border: 0 none;
   text-decoration: none;
@@ -1076,7 +1076,7 @@ li#advanced-search-icon img {
   padding-bottom: 4px;
 }
 #top-navigation li.first a {
-  background: url(images/top_navigation/nav-a-first.png) no-repeat 0 0;
+  background: url('../../images/top_navigation/nav-a-first.png') no-repeat 0 0;
   padding-left: 22px;
 }
 #top-navigation li.with-avatar a { padding-left: 12px; }
@@ -1093,13 +1093,13 @@ li#advanced-search-icon img {
   padding: 0;
 }
 #top-navigation li.last a {
-  background: url(images/top_navigation/nav-a-last.png) no-repeat right;
+  background: url('../../images/top_navigation/nav-a-last.png') no-repeat right;
   padding-right: 22px;
 }
 #searchwrapper {
   width: 187px;
   height: 36px;
-  background: url(images/top_navigation/search_box.png) no-repeat;
+  background: url('../../images/top_navigation/search_box.png') no-repeat;
   padding: 0px;
   margin: 0px;
   position: relative;
@@ -1133,7 +1133,7 @@ ul#top-navigation li span {
   width: 17px;
   height: 34px;
   float: left;
-  background: #ffffff url(images/top_navigation/arrow_buttons.png) no-repeat left top;
+  background: #ffffff url('../../images/top_navigation/arrow_buttons.png') no-repeat left top;
   padding: 0 14px 0 0;
   margin: 0;
 }
@@ -1176,10 +1176,10 @@ html ul#top-navigation li ul.subnav li a {
   color: #cccccc;
   float: left;
   width: 145px;
-  background: #4a4a4a url(images/top_navigation/dropdown_link_bg.gif) no-repeat 8px center;
+  background: #4a4a4a url('../../images/top_navigation/dropdown_link_bg.gif') no-repeat 8px center;
   padding-left: 20px;
 }
-html ul#top-navigation li ul.subnav li a:hover { background: #212121 url(images/top_navigation/dropdown_link_bg.gif) no-repeat 8px center; }
+html ul#top-navigation li ul.subnav li a:hover { background: #212121 url('../../images/top_navigation/dropdown_link_bg.gif') no-repeat 8px center; }
 table, td {
   font: 100% Arial, Helvetica, sans-serif;
   background: #ffffff;
@@ -1506,7 +1506,7 @@ div.widget-box-header {
   padding: 12px;
   border-bottom: solid 1px #cccccc;
   z-index: 1;
-  background: url(images/backgrounds/widget-box-header-tile.png) repeat-x bottom center;
+  background: url('../../images/backgrounds/widget-box-header-tile.png') repeat-x bottom center;
 }
 .widget-box-header img.loader {
   display: none;
@@ -1603,7 +1603,7 @@ div#category-show div.lessons-container { padding-top: 17px; }
   float: left;
   margin: 0 6px 22px 0;
   padding: 12px 5px 10px 11px;
-  background: transparent url('/stylesheets/images/backgrounds/image_holder.png') no-repeat scroll 0 0;
+  background: transparent url('../../images/backgrounds/image_holder.png') no-repeat scroll 0 0;
   width: 168px;
   height: 168px;
   font: 11px Arial, Helvetica, sans-serif;
@@ -1739,7 +1739,7 @@ div.duration {
   min-height: 5px;
   background-color: transparent;
 }
-.blue-box ul#categories-header.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.blue-box ul#categories-header.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
 .blue-box ul li#categories-roundup { padding: 17px 0 17px 17px; }
 .category-container {
   position: relative;
@@ -1792,7 +1792,7 @@ div.duration {
   margin: 0;
   padding: 0;
   height: 22px;
-  background: url(images/backgrounds/widget-box-header-tile.png) repeat-x bottom center;
+  background: url('../../images/backgrounds/widget-box-header-tile.png') repeat-x bottom center;
   border-top: none;
 }
 .tree-view ul {
@@ -1986,6 +1986,7 @@ div#tab-lesson-instructor div#bio {
   margin: 0 17px 17px 0;
   min-height: 6em;
 }
+div#tab-lesson-instructor div#contact-and-follow { margin: 0 0 1em 0; }
 div#lessons-by-instructor {
   margin: 0 17px 0 0;
   padding: 17px 0;
@@ -2021,12 +2022,12 @@ div.widget-box-content h3 {
   line-height: 2em;
 }
 div#bought-this-video-also-bought h3 {
-  background: transparent url(images/icons/buy-also_32.png) no-repeat;
+  background: transparent url('../../images/icons/buy-also_32.png') no-repeat;
   padding-left: 1.8em;
   margin-left: 0.4em;
 }
 div#what-do-students-ultimately-buy-container div.widget-box-content h3 {
-  background: transparent url(images/icons/buy_32.png) no-repeat;
+  background: transparent url('../../images/icons/buy_32.png') no-repeat;
   padding-left: 2.4em;
 }
 #bought-this-video-also-bought {
@@ -2271,7 +2272,7 @@ div.lesson-tooltip {
   position: relative;
   z-index: 9000;
   display: none;
-  background: url('/stylesheets/images/tooltip/black-arrow-big.png') no-repeat scroll 0 0;
+  background: url('../../images/tooltip/black-arrow-big.png') no-repeat scroll 0 0;
   height: 163px;
   padding: 40px 30px 10px 30px;
   width: 310px;
@@ -2286,7 +2287,7 @@ div.lesson-tooltip {
   background: none;
 }
 .lesson-tooltip.bottom {
-  background: url('/stylesheets/images/tooltip/black-arrow-big-bottom.png') no-repeat scroll 0 0;
+  background: url('../../images/tooltip/black-arrow-big-bottom.png') no-repeat scroll 0 0;
   height: 163px;
   padding: 70px 30px 10px 30px;
   width: 310px;
@@ -2362,7 +2363,7 @@ div.fh-form div#recaptcha_area {
   width: 400px;
   height: 20px;
   border: 1px solid #8f8f8f;
-  background: #ffffff url(images/backgrounds/background-signup-inputs.png) repeat-x top left;
+  background: #ffffff url('../../images/backgrounds/background-signup-inputs.png') repeat-x top left;
   font-size: 13px;
   color: #29384c;
   padding: 5px;
@@ -2375,7 +2376,7 @@ div.fh-form div#recaptcha_area {
   width: 400px;
   height: 20px;
   border: 1px solid #8f8f8f;
-  background: #ffffff url(images/backgrounds/background-signup-inputs.png) repeat-x top left;
+  background: #ffffff url('../../images/backgrounds/background-signup-inputs.png') repeat-x top left;
   font-size: 13px;
   color: #29384c;
   padding: 5px;
@@ -2388,7 +2389,7 @@ div.fh-form div#recaptcha_area {
   width: 400px;
   height: 20px;
   border: 1px solid #8f8f8f;
-  background: #ffffff url(images/backgrounds/background-signup-inputs.png) repeat-x top left;
+  background: #ffffff url('../../images/backgrounds/background-signup-inputs.png') repeat-x top left;
   font-size: 13px;
   color: #29384c;
   padding: 5px;
@@ -2411,7 +2412,7 @@ div.fh-form div#recaptcha_area {
   width: 420px;
   height: 20px;
   border: 1px solid #8f8f8f;
-  background: #ffffff url(images/backgrounds/background-signup-inputs.png) repeat-x top left;
+  background: #ffffff url('../../images/backgrounds/background-signup-inputs.png') repeat-x top left;
   font-size: 13px;
   color: #29384c;
   padding: 5px;
@@ -2532,34 +2533,34 @@ a.printer-friendly:hover {
   text-align: center;
   display: block;
 }
-.fh-form ul#signin-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#lesson-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#avatar-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#privacy-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#profile-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#instructor-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#send-a-message-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#flag-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#give-gift-certificate-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#gift-certificate-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#confirm-give-gift-certificate-path-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#group-invitation-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#invitation-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#group-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#attachment-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#attachment-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#lesson-comment-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#lesson-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#advanced-search-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#order-info.section li.header span { background: url(images/forms/signup-icon-company.png) no-repeat top left; }
-.fh-form ul#password-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#password-reset-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#request-registration-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#registation-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#review-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#topic-comment-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#edit-topic-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
-.fh-form ul#group-topics-info.section li.header span { background: url(images/forms/fh-icon.png) no-repeat top left; }
+.fh-form ul#signin-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#lesson-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#avatar-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#privacy-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#profile-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#instructor-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#send-a-message-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#flag-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#give-gift-certificate-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#gift-certificate-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#confirm-give-gift-certificate-path-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#group-invitation-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#invitation-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#group-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#attachment-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#attachment-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#lesson-comment-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#lesson-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#advanced-search-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#order-info.section li.header span { background: url('../../images/forms/signup-icon-company.png') no-repeat top left; }
+.fh-form ul#password-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#password-reset-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#request-registration-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#registation-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#review-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#topic-comment-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#edit-topic-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
+.fh-form ul#group-topics-info.section li.header span { background: url('../../images/forms/fh-icon.png') no-repeat top left; }
 .fh-form ul.section li.heading {
   font-weight: bold;
   background-color: transparent;
@@ -2603,7 +2604,7 @@ div.checker {
   width: 18px;
   overflow: hidden;
   border: solid 1px #d6d6d6;
-  background: #ffffff url(images/forms/bg.png) repeat-x left 10px;
+  background: #ffffff url('../../images/forms/bg.png') repeat-x left 10px;
   float: left;
   display: inline;
   margin-right: 10px;
@@ -2626,7 +2627,7 @@ div.checker span {
   bottom: 0;
   overflow: hidden;
 }
-div.checker span.checked { background: url(images/forms/check.gif) no-repeat center center; }
+div.checker span.checked { background: url('../../images/forms/check.gif') no-repeat center center; }
 div.checker span input {
   position: absolute;
   opacity: 0;
@@ -2638,7 +2639,7 @@ div.radio {
   height: 19px;
   width: 19px;
   overflow: hidden;
-  background: #ffffff url(images/forms/bg.png) repeat-x left 10px;
+  background: #ffffff url('../../images/forms/bg.png') repeat-x left 10px;
   float: left;
   display: inline;
   margin-right: 10px;
@@ -2662,7 +2663,7 @@ div.radio span {
   bottom: 0;
   overflow: hidden;
 }
-div.radio span.checked { background: url(images/forms/radio.gif) no-repeat center center; }
+div.radio span.checked { background: url('../../images/forms/radio.gif') no-repeat center center; }
 div.radio span input {
   position: absolute;
   opacity: 0;
@@ -2676,7 +2677,7 @@ div.selector {
   width: 340px;
   border: solid 1px #d6d6d6;
   position: relative;
-  background: #d6d6d6 url(images/forms/bg.png) repeat-x left 12px;
+  background: #d6d6d6 url('../../images/forms/bg.png') repeat-x left 12px;
   line-height: 22px;
   margin-top: 3px;
   height: 22px;
@@ -2696,7 +2697,7 @@ div.selector span {
   padding: 0;
   display: block;
   padding-right: 20px;
-  background: url(images/forms/select.gif) no-repeat right 60%;
+  background: url('../../images/forms/select.gif') no-repeat right 60%;
   right: 0;
 }
 div.selector.focus span { left: 5px; }
@@ -2711,7 +2712,7 @@ div.selector select {
 }
 span.required-field {
   z-index: 1;
-  background: transparent url("images/forms/asterisk.png") no-repeat top right;
+  background: transparent url('../../images/forms/asterisk.png') no-repeat top right;
   width: 16px;
   height: 16px;
   position: absolute;
@@ -2729,7 +2730,7 @@ span.error {
   text-align: left;
   position: absolute;
   padding: 5px 5px 5px 26px;
-  background: #ffffe0 url("images/forms/error-circle.png") no-repeat 3px 3px;
+  background: #ffffe0 url('../../images/forms/error-circle.png') no-repeat 3px 3px;
   border: solid 2px #e3e9f2;
 }
 div.with-blue-panes span.error {
@@ -2743,7 +2744,7 @@ span.error.valid {
   left: 600px;
   height: 16px;
   width: 16px;
-  background: url("images/forms/ok-circle.png") no-repeat 0px 0px;
+  background: url('../../images/forms/ok-circle.png') no-repeat 0px 0px;
 }
 .fieldWithErrors {
   padding: 2px;
@@ -2848,9 +2849,23 @@ div#user_show div#name-plate {
 }
 div#user-actions {
   position: absolute;
-  top: 17px;
+  top: 15px;
   right: 8px;
 }
+div#user-actions div.flagging { display: inline; }
+div.comment-container div.flagging {
+  float: right;
+  display: inline;
+}
+div#group-container div.flagging {
+  float: right;
+  display: inline;
+}
+div.review_actions div.flagging {
+  float: right;
+  display: inline;
+}
+div.comment-container div.flagging { margin: 0 0 8px 0; }
 #user-public-container > #user-stats-container {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -2895,7 +2910,7 @@ div#user-stats-container ul {
 }
 .upload_warning {
   display: none;
-  background: #ffffe0 url(images/icons/48_warning.png) 10px 20px no-repeat;
+  background: #ffffe0 url('../../images/icons/48_warning.png') 10px 20px no-repeat;
   margin: 20px 0;
   padding: 10px 0 10px 70px;
 }

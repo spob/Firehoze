@@ -108,6 +108,7 @@ en:
     rejected: Flagging was rejected
     user_flagging_reject: Your flag on this item was rejected
     user_flagging_pending: You flagged this item.
+    user_flagged_item: You flagged this {{item}}
     must_logon: Please log on or request an account in order to flag this {{item}}
 
   gift_certificate:

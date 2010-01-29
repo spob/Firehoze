@@ -5,7 +5,33 @@
 <div class="span-12 last">
   <%= render :partial => "categories/breadcrumbs", :object => @category, :locals => { :mode => "lessons" } %>
 
-  <div class="span-4">
+  <div id="category-show" class="span-8">
+    <div class="tab-container">
+      <ul class="tabs">
+        <% Category.sort_by_filters.each do |filter| %>
+            <li><%= link_to filter.humanize, category_path(@category, :sort_by => filter).downcase, :class => "#{'current' if cookies[:browse_sort].to_s == filter.to_s}" %></li>
+        <% end %>
+      </ul>
+      <!-- tab "panes" -->
+      <div class="panes">
+        <div class="clearfix">
+          <% if @lessons.present? %>
+              <%= render :partial => "lessons/lesson_tns", :object => @lessons, :locals => { :per_row => 3 } %>
+          <% else %>
+              <div class="info">
+                Looks like no one has created a lesson for this category yet. Why not be the first to
+                <%= link_to "create a lesson", new_lesson_path %>?
+              </div>
+          <% end %>
+        </div>
+      </div>
+      <!-- end panes -->
+    </div>
+    <!-- end tab-container -->
+  </div>
+
+
+  <div class="span-4 last">
     <div class="widget-box">
       <div class="widget-box-header">
         <span class="h4">Explore Firehoze Categories</span>
@@ -43,28 +69,4 @@
     </div>
   </div>
 
-  <div id="category-show" class="span-8 last">
-    <div class="tab-container">
-      <ul class="tabs">
-        <% Category.sort_by_filters.each do |filter| %>
-            <li><%= link_to filter.humanize, category_path(@category, :sort_by => filter).downcase, :class => "#{'current' if cookies[:browse_sort].to_s == filter.to_s}" %></li>
-        <% end %>
-      </ul>
-      <!-- tab "panes" -->
-      <div class="panes">
-        <div class="clearfix">
-          <% if @lessons.present? %>
-              <%= render :partial => "lessons/lesson_tns", :object => @lessons, :locals => { :per_row => 3 } %>
-          <% else %>
-              <div class="info">
-                Looks like no one has created a lesson for this category yet. Why not be the first to
-                <%= link_to "create a lesson", new_lesson_path %>?
-              </div>
-          <% end %>
-        </div>
-      </div>
-      <!-- end panes -->
-    </div>
-    <!-- end tab-container -->
-  </div>
 </div>
