@@ -108,8 +108,6 @@ module ApplicationHelper
           msg = t 'flag.user_flagging_reject'
         elsif flags.collect(&:status).include? FLAG_STATUS_PENDING
           msg = t('flag.user_flagged_item', :item => t("flag.#{flaggable.class.to_s.downcase}"))
-
-
         end
       end
     end

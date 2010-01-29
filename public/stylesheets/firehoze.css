@@ -2851,6 +2851,7 @@ div#user-actions {
   top: 17px;
   right: 8px;
 }
+div#user-actions div.flagging { display: inline; }
 #user-public-container > #user-stats-container {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
