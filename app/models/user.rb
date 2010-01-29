@@ -346,7 +346,7 @@ END
 
   # Has this user specified by the parameter bought of this this user's lessons'
   def student_of?(user)
-    user.lessons.collect(&:instructor).include?(self)
+    user.lessons.collect(&:instructor).include?(self) if user
   end
 
 
