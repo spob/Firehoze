@@ -1,6 +1,5 @@
 <% title "Reviews for &quot;#{h(@lesson.title)}&quot;" -%>
 <% @current = 'lessons' %>
-
 <div id="lesson-comments-container">
   <div class="clearfix">
     <% if @style == 'tab' %>
@@ -18,7 +17,7 @@
     <% end %>
   </div>
 
-  <%= render :partial => "reviews/review", :collection => @reviews %>
+  <%= render :partial => "lessons/review", :collection => @reviews %>
 
   <div>
     <% if @style == 'tab'%>
