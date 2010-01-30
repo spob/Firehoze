@@ -1,7 +1,5 @@
 <% title "Frequently Asked Questions" -%>
 
-<% account_settings_link = current_user ? (link_to "Account Settings", edit_account_path(current_user)) : "'Account Settings'" %>
-<% my_firehoze_link = current_user ? (link_to "My Firehoze", my_firehoze_index_path) : "'My Firehoze'" %>
 <% content_for :head do -%>
     <a name="top" id="top" class="anchor"></a>
 <% end -%>
@@ -113,7 +111,7 @@
   <h5>Can people contact me directly?</h5>
 
   <div>
-    <p>Only if you want them to. The default is 'no' but to change this setting go to <%= account_settings_link %> at
+    <p>Only if you want them to. The default is 'no' but to change this setting go to <%= link_to_if current_user, "Account Settings", edit_privacy_account_path(current_user ? current_user : "1") %> at
       the top of the page and click on the 'Privacy' tab to make your selection.</p>
   </div>
 
@@ -135,34 +133,34 @@
   <h5>Where can I find a record of lessons I've purchased?</h5>
 
   <div>
-    <p>Navigate to "<%= my_firehoze_link %>" and click on the "My Stuff" button.</p>
+    <p>Navigate to <%= link_to_if current_user, "My Firehoze", my_stuff_my_firehoze_path(:anchor => 'owned') %> and click on the "My Stuff" button.</p>
   </div>
 
   <h5>Where can I see how many credits I have left?</h5>
 
   <div>
-    <p>Navigate to "<%= my_firehoze_link %>". You'll see your credits remaining in the top right corner of the page.</p>
+    <p>Navigate to <%= link_to_if current_user, "My Firehoze", account_history_my_firehoze_path(:anchor => "available_credits") %>. You'll see your credits remaining in the top right corner of the page.</p>
   </div>
 
   <h5>How do I change my user name?</h5>
 
   <div>
-    <p>To change your username, click on the '<%= account_settings_link %>' link at the top of the site.
+    <p>To change your username, click on the <%= link_to_if current_user, "Account Settings", edit_account_path(current_user ? current_user : "1") %> link at the top of the site.
     </p>
   </div>
 
   <h5>How can I change my password?</h5>
 
   <div>
-    <p>To change your password, click on the '<%= account_settings_link %>' link at the top of the site. Then go to the
+    <p>To change your password, click on the <%= link_to_if current_user, "Account Settings", edit_password_path(current_user ? current_user : "1") %> link at the top of the site. Then go to the
       'Password' tab.</p>
   </div>
 
   <h5>How do I edit my email information?</h5>
 
   <div>
-    <p>To change your address or contact information, click on the '<%= account_settings_link %>' link at the top of the
-      site, then click on the 'Profile' tab.</p>
+    <p>To change your address or contact information, click on the <%= link_to_if current_user, "Account Settings", edit_account_path(current_user ? current_user : "1") %> link at the top of the site.
+    link at the top of the site, then click on the 'Profile' tab.</p>
   </div>
 
   <h5>How can I retrieve my password and/or member name?</h5>
@@ -198,10 +196,10 @@
       fees and we'd have to charge more for the lessons.</p>
   </div>
 
-  <h5>Where are my receipts/download history?</h5>
+  <h5>Where are my receipts?</h5>
 
   <div>
-    <p>Navigate to "<%= my_firehoze_link %>" and click on the "Account History" button.</p>
+    <p>Navigate to <%= link_to_if current_user, "My Firehoze", account_history_my_firehoze_path(:anchor => "orders") %>, click on the "Account History" button and then click the "Orders" tab.</p>
   </div>
 
   <h5>How can I give credits to someone else?</h5>
@@ -214,7 +212,7 @@
   <h5>Where are my receipts/download history?</h5>
 
   <div>
-    <p>Navigate to "<%= my_firehoze_link %>" and click on the "Account History" button.</p>
+    <p>Navigate to <%= link_to_if current_user, "My Firehoze", account_history_my_firehoze_path(:anchor => "used_credits") %> and click on the "Account History" button.</p>
   </div>
 
   <h5>Do credits expire?</h5>
@@ -271,7 +269,7 @@
   <h5>How can I see how much money I've made?</h5>
 
   <div>
-    <p>Navigate to "<%= my_firehoze_link %>" and click on the "Instructor Dashboard" button. Note the Instructor Dashboard
+    <p>Navigate to <%= link_to_if current_user.try("verified_instructor?"), "My Firehoze", instructor_my_firehoze_path %> and click on the "Instructor Dashboard" button. Note the Instructor Dashboard
       button will only appear if you have signed up to be an instructor.</p>
   </div>
 
@@ -288,7 +286,7 @@
   <div>
     <p>Easily...</p>
     <ol>
-      <li>Navigate to <%= my_firehoze_link %>.</li>
+      <li>Navigate to <%= link_to_if current_user, "My Firehoze", my_firehoze_index_path(:anchor => "credits") %>.</li>
       <li>Click the "Become an Instructor" button to walk through the Instructor Signup Wizard.</li>
       <li>Complete all steps in the wizard.</li>
       <li>Start teaching!</li>
