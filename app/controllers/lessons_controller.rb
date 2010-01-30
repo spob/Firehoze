@@ -16,7 +16,7 @@ class LessonsController < ApplicationController
 
   verify :method => :post, :only => [ :create, :convert, :unreject ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update, :conversion_notify ], :redirect_to => :home_path
-  before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :recommend, :stats, :show_lesson_status, :show_groups, :update, :watch, :unreject ]
+  before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :stats, :show_lesson_status, :show_groups, :update, :watch, :unreject ]
   before_filter :set_per_page, :only => [ :ajaxed, :index, :list, :tabbed, :tagged_with ]
   before_filter :set_collection, :only => [ :ajaxed, :list, :tabbed ]
   before_filter :set_no_uniform_js
@@ -170,8 +170,8 @@ class LessonsController < ApplicationController
     end
   end
 
-  def recommend
-  end
+#  def recommend
+#  end
 
   def show_groups
     @groups = @lesson.lesson_groups(current_user)

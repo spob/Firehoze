@@ -63,7 +63,7 @@ ActionController::Routing::Routes.draw do |map|
                         :convert => :post,
                         :lesson_notes => :get,
                         :rate => :post,
-                        :recommend => :get,
+#                        :recommend => :get,
                         :stats => :get,
                         :show_groups => :get,
                         :watch => :get,
