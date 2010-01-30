@@ -79,3 +79,6 @@ restrict_registration: false
 
 # Can users browse the site without logging in
 allow_unrecognized_access: true
+
+# allow crawlers. Valid values are "ALL" and "noindex"
+crawler_access: ALL
