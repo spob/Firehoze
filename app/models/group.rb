@@ -35,7 +35,7 @@ class Group < ActiveRecord::Base
               }
   named_scope :not_a_member,
               lambda{ |user| return {} if user.nil?;
-              { :conditions => ["groups.id not in (?)", user.groups.collect(&:id) + [-1]] }
+              { :conditions => ["groups.id not in (?)", user.member_groups.collect(&:id) + [-1]] }
               }
   named_scope :by_category,
               lambda{ |category_id| return {} if category_id.nil?;
@@ -43,7 +43,7 @@ class Group < ActiveRecord::Base
                :conditions => { :exploded_categories => {:base_category_id => category_id}}}}
   named_scope :a_member,
               lambda{ |user| return {} if user.nil?;
-              { :conditions => ["groups.id in (?)", user.groups.collect(&:id) + [-1]] }
+              { :conditions => ["groups.id in (?)", user.member_groups.collect(&:id) + [-1]] }
               }
 
   # From the thinking sphinx doc: Don’t forget to place this block below your associations,
