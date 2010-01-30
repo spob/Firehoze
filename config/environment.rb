@@ -183,7 +183,7 @@ Rails::Initializer.run do |config|
   # Activate observers that should always be running
   config.active_record.observers = :payment_observer, :lesson_observer, :review_observer, :comment_observer,
           :group_observer, :group_lesson_observer, :group_member_observer, :user_observer, :credit_observer,
-          :flag_observer
+          :flag_observer, :topic_comment_observer
   #:cacher, :garbage_collector
   config.action_controller.page_cache_directory = "#{RAILS_ROOT}/tmp/cache/"
   config.cache_store = :file_store, "#{RAILS_ROOT}/tmp/cache/"
