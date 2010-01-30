@@ -1,6 +1,13 @@
 #require 'markaby'
 
 module LessonsHelper
+  def meta_description(description)
+    content_for(:description) { description }
+  end
+
+  def meta_keywords(keywords)
+    content_for(:keywords) { keywords }
+  end
 
   # Not sure how to handle this with i18n???
   def free_remaining_text lesson

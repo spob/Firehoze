@@ -1,4 +1,6 @@
 <% title "#{h @lesson.title}" -%>
+<% meta_description "#{h(@lesson.title)} #{h(@lesson.synopsis)}" -%>
+<% meta_keywords @lesson.tags.collect(&:name).join(', ') -%>
 <% @current = 'lessons' %>
 
 
