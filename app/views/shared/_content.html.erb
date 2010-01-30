@@ -21,6 +21,7 @@
   <%= stylesheet_link_tag 'blueprint/print', :media => "print" %>
   <%= stylesheet_link_tag 'firehoze', :media => "screen, projection" %>
   <%= stylesheet_link_tag 'splash', :media => "screen, projection" %>
+  <%= stylesheet_link_tag 'indexer', :media => "screen, projection" %>
 
   <!--[if IE]>
   <%= stylesheet_link_tag 'blueprint/ie', :media => "screen, projection" %>
@@ -40,7 +41,7 @@
   <%= ajaxful_rating_style %>
 
   <!--[if IE 6]><%= javascript_include_tag 'ie/ie6/DD_belatedPNG_0.0.8a-min' %><![endif]-->
-  <!--[if IE ]><%= javascript_include_tag 'ie/ie7/z-index-workaround' %><![endif]-->
+  <!--[if IE ]><%#= javascript_include_tag 'ie/ie7/z-index-workaround' %><![endif]-->
 
   <%= yield :head -%>
 </head>
@@ -103,7 +104,7 @@
 <% # Firehoze Specific Javascript Code %>
 <%= javascript_include_tag 'v2/application','v2/faqs','v2/flash','v2/footer','v2/pagination','v2/rounders','v2/tabs','v2/tipTip','v2/top_navigation','v2/truncator', :cache => 'firehoze' %>
 <%= javascript_include_tag'v2/uniform' unless @no_uniform_js %>
-<%= javascript_include_tag 'v2/tooltip' unless Rails.env.test? or g_browser_name == 'ie' %>
+<%= javascript_include_tag 'v2/tooltip' unless Rails.env.test?  %>
 
 <%= yield :footer -%>
 
