@@ -12,6 +12,7 @@ module UsersHelper
     end
   end
 
+  # todo: I don't think this is used in v2 and can probably be removed
   def signin_or_signout_link
     if current_user
       "Greetings, #{h(current_user.login)} (not #{signout_link(h(current_user.login))}?) #{signout_link("Sign Out")}"
