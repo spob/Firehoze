@@ -34,7 +34,7 @@
       <th>Instructor?</th>
       <th>Success/Failure<br/>Login Count</th>
       <th>Last Login At</th>
-      <th>Last Login IP</th>
+      <th><%= current_user.is_an_admin? ? "Last Login IP" : "Created At" %></th>
       <th>Current Login At</th>
       <th>Current Login IP</th>
       <th>Action</th>
@@ -55,7 +55,7 @@
           <td><%= user.verified_instructor? ? "Yes" : "No" %></td>
           <td align="center"><%= user.login_count %>/<%= user.failed_login_count %></td>
           <td><%= l user.last_login_at if user.last_login_at %></td>
-          <td><%= h user.last_login_ip %></td>
+          <td><%= ((current_user.is_an_admin?) ? h(user.last_login_ip) : l(user.created_at)) %></td>
           <td><%= l user.current_login_at if user.current_login_at %></td>
           <td><%= h user.current_login_ip %></td>
           <td>
