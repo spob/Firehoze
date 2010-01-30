@@ -118,14 +118,13 @@
     </div>
   </div>
 
-  <% # STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT...   -%>
-  <div class="span-12">
-    <%= render :partial => 'lessons/lesson_buy_pairs', :object => @lesson -%>
-  </div>
-
   <% # WHAT DO STUDENTS ULTIMATELY BUY AFTER BROWSING THIS ITEM?   -%>
   <div class="span-12">
     <%= render :partial => 'lessons/lesson_buy_patterns', :object => @lesson -%>
   </div>
 
+  <% # STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT...   -%>
+  <div class="span-12">
+    <%= render :partial => 'lessons/lesson_buy_pairs', :object => @lesson -%>
+  </div>
 </div>
