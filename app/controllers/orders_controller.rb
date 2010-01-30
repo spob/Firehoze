@@ -91,7 +91,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    unless @order.user == current_user or current_user.is_admin?
+    unless @order.user == current_user or current_user.is_an_admin?
       flash[:error] = t("order.no_access")
       redirect_to home_path
     end
@@ -107,7 +107,7 @@ class OrdersController < ApplicationController
   end
 
   def layout_for_action
-    if %w(index).include?(params[:action]) || (params[:action] == 'show' and current_user.is_admin?)
+    if %w(index).include?(params[:action]) || (params[:action] == 'show' and current_user.is_an_admin?)
       'admin_v2'
     elsif %w(create new show update).include?(params[:action])
       'application_v2'

@@ -24,14 +24,14 @@
   </div>
 <% end %>
 
-<% if current_user.try("is_admin?") or @lesson.instructor == current_user -%>
+<% if current_user.try("is_an_admin?") or @lesson.instructor == current_user -%>
   <div class="prepend-top">
     <h3>Video Stats</h3>
     <table>
       <tr>
         <th>Video</th>
         <th>Status</th>
-        <% if current_user.try("is_admin?") -%>
+        <% if current_user.try("is_an_admin?") -%>
           <th>Size</th>
           <th>Dimensions</th>
           <th>Filename</th>
@@ -41,7 +41,7 @@
           <th>Action</th>
         <% end -%>
       </tr>
-      <%= render :partial => "video", :collection => @lesson.videos.all(:include => (current_user.try("is_admin?") ? [:video_status_changes, :lesson] : [])) -%>
+      <%= render :partial => "video", :collection => @lesson.videos.all(:include => (current_user.try("is_an_admin?") ? [:video_status_changes, :lesson] : [])) -%>
     </table>
   </div>
 <% end %>

@@ -32,7 +32,7 @@ groups = lesson.groups
   </tr>
 
   <% # status %>
-  <% if current_user.try("is_admin?") or instructor == current_user -%>
+  <% if current_user.try("is_an_admin?") or instructor == current_user -%>
     <tr>
       <td class="header">Status:</td>
       <td>

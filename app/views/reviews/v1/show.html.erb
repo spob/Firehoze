@@ -11,4 +11,4 @@
   <%= rbs_formatter @review.body %>
 </p>
 
-<p><%= link_to "Edit", edit_review_path(@review) if (current_user and current_user.is_moderator?) %> <%= link_to "Return to lesson", lesson_path(@review.lesson) %></p>
+<p><%= link_to "Edit", edit_review_path(@review) if (current_user and current_user.is_a_moderator?) %> <%= link_to "Return to lesson", lesson_path(@review.lesson) %></p>

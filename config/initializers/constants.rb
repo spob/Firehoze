@@ -15,6 +15,7 @@ ACTIVITES_PER_PAGE = 5
 # Roles
 ROLE_ADMIN = 'admin'
 ROLE_MODERATOR = 'moderator'
+ROLE_COMMUNITY_MGR = 'communitymgr'
 ROLE_PAYMENT_MGR = 'paymentmgr'
 
 # Skus

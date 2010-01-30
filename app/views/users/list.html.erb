@@ -5,19 +5,22 @@
 
 <div class="span-12 search-box-container">
   <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
-  <div class="span-5 right">
-    <%= f.label :login_like, "Username" %>
-    <%= f.text_field :login_like, :style => "width:290px;" %>
-  </div>
-  <div class="span-7 last left">
-    <%= f.label :email_like, "Email" %>
-    <%= f.text_field :email_like, :style => "width:245px;" %>
+      <div class="span-5 right">
+        <%= f.label :login_like, "Username" %>
+        <%= f.text_field :login_like, :style => "width:290px;" %>
+      </div>
+      <div class="span-7 last left">
+        <%= f.label :email_like, "Email" %>
+        <%= f.text_field :email_like, :style => "width:245px;" %>
+      </div>
 
-    <b>Order by:</b>
-    <%= order @search, :by => :login, :as => "Username" %>&nbsp;
-    <%= order @search, :by => :email %>
-    <%= f.submit "Search" %>
-  </div>
+  <div class="span-12 center" style="padding-top:8px">
+        <b>Order by:</b>
+        <%= order @search, :by => :login, :as => "Username" %>&nbsp;
+        <%= order @search, :by => :email %>&nbsp;
+        <%= order @search, :by => :created_at %>
+        <%= f.submit "Search" %>
+      </div>
   <% end %>
 </div>
 
@@ -29,7 +32,7 @@
       <th>Name</th>
       <th>Active</th>
       <th>Instructor?</th>
-      <th>Success/Failure<br />Login Count</th>
+      <th>Success/Failure<br/>Login Count</th>
       <th>Last Login At</th>
       <th>Last Login IP</th>
       <th>Current Login At</th>
@@ -38,19 +41,30 @@
     </tr>
 
     <% @users.each do |user| %>
-    <tr class="<%= cycle("even", "odd") -%>">
-      <td><%= link_to "#{h(user.login)}", show_admin_user_path(user) %></td>
-      <td><%= mail_to h(user.email) %></td>
-      <td><%= "#{h(user.first_name)} " unless user.first_name.nil? %><%= h(user.last_name) %></td>
-      <td><%= user.active ? "Yes" : "No" %></td>
-      <td><%= user.verified_instructor? ? "Yes" : "No" %></td>
-      <td align="center"><%= user.login_count %>/<%= user.failed_login_count %></td>
-      <td><%= l user.last_login_at if user.last_login_at %></td>
-      <td><%= h user.last_login_ip %></td>
-      <td><%= l user.current_login_at if user.current_login_at %></td>
-      <td><%= h user.current_login_ip %></td>
-      <td><%= link_to "Edit", edit_user_path(user) %>&nbsp;<%= link_to "Public", user_path(user) %></td>
-    </tr>
+        <tr class="<%= cycle("even", "odd") -%>">
+          <td>
+            <% if current_user.is_an_admin? %>
+                <%= link_to "#{h(user.login)}", show_admin_user_path(user) %>
+            <% else %>
+                <%= h(user.login) %>
+            <% end %>
+          </td>
+          <td><%= mail_to h(user.email) %></td>
+          <td><%= "#{h(user.first_name)} " unless user.first_name.nil? %><%= h(user.last_name) %></td>
+          <td><%= user.active ? "Yes" : "No" %></td>
+          <td><%= user.verified_instructor? ? "Yes" : "No" %></td>
+          <td align="center"><%= user.login_count %>/<%= user.failed_login_count %></td>
+          <td><%= l user.last_login_at if user.last_login_at %></td>
+          <td><%= h user.last_login_ip %></td>
+          <td><%= l user.current_login_at if user.current_login_at %></td>
+          <td><%= h user.current_login_ip %></td>
+          <td>
+            <% if current_user.is_an_admin? %>
+                <%= link_to "Edit", edit_user_path(user) %>&nbsp;
+            <% end %>
+            <%= link_to "Public", user_path(user) %>
+          </td>
+        </tr>
     <% end %>
 
   </table>

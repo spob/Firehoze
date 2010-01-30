@@ -38,6 +38,7 @@ namespace :db do
   task :seed_roles => :environment do
     create_role(ROLE_PAYMENT_MGR)
     create_role(ROLE_MODERATOR)
+    create_role(ROLE_COMMUNITY_MGR)
   end
 
   desc "Seed the database with periodic jobs"

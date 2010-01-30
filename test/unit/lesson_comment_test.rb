@@ -52,7 +52,7 @@ class LessonCommentTest < ActiveSupport::TestCase
       fast_context "and one more comment which is public" do
         setup do
           @nobody_user = Factory.create(:user)
-          assert !@nobody_user.is_moderator?
+          assert !@nobody_user.is_a_moderator?
           @public_comment = Factory.create(:lesson_comment, :lesson => @lesson_comment.lesson)
         end
 

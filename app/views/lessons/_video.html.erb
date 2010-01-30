@@ -6,7 +6,7 @@
   <td>
     <%=h t("lesson.#{video.status}") %>
   </td>
-  <% if current_user.try("is_admin?") %>
+  <% if current_user.try("is_an_admin?") %>
     <td>
       <%=h(number_to_human_size(video.video_file_size)) %>
     </td>

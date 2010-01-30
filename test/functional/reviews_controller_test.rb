@@ -121,7 +121,7 @@ class ReviewsControllerTest < ActionController::TestCase
         fast_context "with moderator access" do
           setup do
             @user.has_role 'moderator'
-            assert @user.is_moderator?
+            assert @user.is_a_moderator?
           end
 
           fast_context "on GET to :edit" do
@@ -168,7 +168,7 @@ class ReviewsControllerTest < ActionController::TestCase
 
           fast_context "on GET to :edit" do
             setup do
-              assert !@user.is_moderator?
+              assert !@user.is_a_moderator?
               @review = Factory.create(:review, :user => @user, :lesson => @lesson)
               get :edit, :id => @review
             end

@@ -81,7 +81,7 @@ class LessonsController < ApplicationController
 
   def new
     @lesson = Lesson.new
-    unless current_user.verified_instructor? or current_user.try("is_admin?")
+    unless current_user.verified_instructor? or current_user.try("is_an_admin?")
       flash[:error] = t 'lesson.must_be_instructor'
       redirect_to instructor_signup_wizard_account_path(current_user)
     end
@@ -162,7 +162,7 @@ class LessonsController < ApplicationController
 
     @instructor = @lesson.instructor
 
-    if @lesson.ready? or @lesson.instructed_by?(current_user) or (current_user and current_user.is_moderator?)
+    if @lesson.ready? or @lesson.instructed_by?(current_user) or (current_user and current_user.is_a_moderator?)
       LessonVisit.touch(@lesson, current_user, request.session.session_id)
     else
       flash[:error] = t 'lesson.not_ready'

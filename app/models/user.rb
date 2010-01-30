@@ -207,6 +207,13 @@ class User < ActiveRecord::Base
 
   memoize :is_an_admin?
 
+  # This method is a decorator and it's sole purpose is to enable memoization
+  def is_a_communitymgr?
+    self.is_communitymgr?
+  end
+
+  memoize :is_a_communitymgr?
+
   def self.supported_languages
     LANGUAGES
   end
@@ -309,7 +316,7 @@ END
   end
 
   def can_edit? current_user
-    (current_user and (current_user.is_admin? or current_user.is_moderator?))
+    (current_user and (current_user.is_an_admin? or current_user.is_a_moderator?))
   end
 
   def on_wish_list? lesson

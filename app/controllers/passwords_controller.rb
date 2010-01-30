@@ -33,7 +33,7 @@ class PasswordsController < ApplicationController
   private
 
   def find_user
-    if @current_user.is_admin?
+    if @current_user.is_an_admin?
       @user = User.find params[:id]
     else
       @user = @current_user

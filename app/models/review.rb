@@ -45,7 +45,7 @@ class Review < ActiveRecord::Base
 
   # The review can be edited by a moderator
   def can_edit? user
-    user and user.is_moderator?
+    user and user.is_a_moderator?
   end
 
   # Was this review marked as helpful by this user. Will return true if it was helpful, false if it wasn't,
@@ -95,7 +95,7 @@ class Review < ActiveRecord::Base
 
   def self.list_conditions(lesson, current_user)
     conditions = (lesson ? { :lesson_id => lesson } : {} )
-    conditions.merge!({ :status => REVIEW_STATUS_ACTIVE}) unless (current_user and current_user.is_moderator?)
+    conditions.merge!({ :status => REVIEW_STATUS_ACTIVE}) unless (current_user and current_user.is_a_moderator?)
     conditions
   end
 end

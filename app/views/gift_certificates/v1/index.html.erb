@@ -5,7 +5,7 @@
 <table>
   <tr>
     <th>Code</th>
-    <% if current_user.try('is_admin?') %>
+    <% if current_user.try('is_an_admin?') %>
       <th>Belongs To</th>
     <% end %>
     <th>Credits</th>

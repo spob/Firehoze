@@ -41,7 +41,7 @@ class TopicCommentsControllerTest < ActionController::TestCase
       fast_context "with moderator access" do
         setup do
           @user.has_role 'moderator'
-          assert @user.is_moderator?
+          assert @user.is_a_moderator?
         end
 
         fast_context "on GET to :edit" do
@@ -94,7 +94,7 @@ class TopicCommentsControllerTest < ActionController::TestCase
 
         fast_context "on GET to :edit" do
           setup do
-            assert !@user.is_moderator?
+            assert !@user.is_a_moderator?
             assert !@topic_comment.can_edit?(@user)
             get :edit, :id => @topic_comment
           end

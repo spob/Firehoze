@@ -39,7 +39,7 @@ class GroupsController < ApplicationController
   def index
     if params[:category]
       @category = Category.find(params[:category])
-      @ids = Group.public.active_or_owner_access_all(current_user.try(:is_moderator?), current_user ? current_user.id : -1).by_category(@category.id) + [-1]
+      @ids = Group.public.active_or_owner_access_all(current_user.try(:is_a_moderator?), current_user ? current_user.id : -1).by_category(@category.id) + [-1]
       @groups = Group.ascend_by_name.find(:all, :conditions => { :id => @ids}).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
       @tags = Group.public.active.tag_counts(:conditions => ["groups.id IN (?)", @ids], :limit => 40, :order => "count DESC").sort{|x, y| x.name <=> y.name}
     else
@@ -153,8 +153,8 @@ class GroupsController < ApplicationController
   end
 
   def can_view?(group)
-    if !group.private or group.includes_member?(current_user) or current_user.try(:is_moderator?)
-      if (group.active or group.owned_by?(current_user) or current_user.try(:is_moderator?))
+    if !group.private or group.includes_member?(current_user) or current_user.try(:is_a_moderator?)
+      if (group.active or group.owned_by?(current_user) or current_user.try(:is_a_moderator?))
         true
       else
         flash[:error] = t('group.inactive', :group => group.name)

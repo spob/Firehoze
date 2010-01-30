@@ -287,7 +287,7 @@ END
 
   # The lesson can be edited by an admin or the instructor who created it
   def can_edit? user
-    user.try("is_admin?") or user.try("is_moderator?") or instructed_by?(user)
+    user.try("is_admin?") or user.try("is_a_moderator?") or instructed_by?(user)
   end
 
   def can_view_purchases? user

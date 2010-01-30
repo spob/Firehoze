@@ -8,8 +8,9 @@ class UsersController < ApplicationController
                                        :update_instructor, :update_privacy, :update_avatar, :update_roles ]
 
   permit ROLE_ADMIN, :only => [ :clear_avatar, :show_admin, :private, :reset_password, :update_avatar,
-                                :update_privacy, :update_roles, :update_instructor, :index, :list ]
-  permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [ :edit, :update]
+                                :update_privacy, :update_roles, :update_instructor, :index ]
+  permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [ :edit, :update ]
+  permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR} or #{ROLE_COMMUNITY_MGR}", :only => [ :list ]
 
   verify :method => :post, :only => [:create, :clear_avatar, :reset_password ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update, :update_privacy, :update_avatar, :update_roles, :update_instructor ], :redirect_to => :home_path
@@ -56,11 +57,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find params[:id]
     @groups = @user.member_groups.ascend_by_name.public
-    unless @user.active or (current_user and (current_user.is_moderator? or !current_user.is_admin?))
+    unless @user.active or (current_user and (current_user.is_a_moderator? or !current_user.is_an_admin?))
       flash[:error] = t 'user.inactive_cannot_show'
       redirect_to lessons_path
     end
-    if current_user.try("is_moderator?") or current_user.try("is_admin?")
+    if current_user.try("is_a_moderator?") or current_user.try("is_an_admin?")
       @lessons = @user.instructed_lessons.all(:include => [:instructor, :tags])
       @reviews = @user.reviews.all(:include => [:user, :lesson])
     else
