@@ -1,6 +1,6 @@
 Hi <%= h @to_user.full_name %>,
 
-A new comment was just added to the topic "<%= h @comment.topic.title %>" in the group "<%= h @comment.topic.group.name %>".
+<%= h(@comment.user.login.capitalize) %> added a new comment to the topic "<%= h @comment.topic.title %>" in the group "<%= h @comment.topic.group.name %>":
 
 <%= @comment.body %>
 

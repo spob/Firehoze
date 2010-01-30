@@ -1,6 +1,7 @@
 # Email notifications
 class Notifier < ActionMailer::Base
-
+  include ActiveSupport::CoreExtensions::String::Inflections
+  
   #default_url_options.update :protocol => APP_CONFIG[CONFIG_PROTOCOL]
   #default_url_options.update :host => APP_CONFIG[CONFIG_HOST]
   #default_url_options.update :port => APP_CONFIG[CONFIG_PORT]
