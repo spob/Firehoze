@@ -50,7 +50,7 @@ class LessonsHelperTest < ActionView::TestCase
         should "test link_to_add_attachment" do
           assert_nil link_to_add_attachment(@lesson, Factory.create(:user))
           assert_nil link_to_add_attachment(@lesson, nil)
-          assert_match /Add Attachment/, link_to_add_attachment(@lesson, @user)          
+          assert_match /Add Attachment/, link_to_add_attachment(@lesson, @user)
         end
       end
 
@@ -70,9 +70,9 @@ class LessonsHelperTest < ActionView::TestCase
             @lesson.update_attribute(:status, LESSON_STATUS_REJECTED)
           end
 
-        should "test link_to_add_attachment" do
-          assert_match /unreject/, link_to_unreject(@lesson, @user)
-        end
+          should "test link_to_add_attachment" do
+            assert_match /unreject/, link_to_unreject(@lesson, @user)
+          end
         end
       end
 
@@ -91,5 +91,10 @@ class LessonsHelperTest < ActionView::TestCase
         should "test "
       end
     end
+  end
+
+  # Kludge fix to avoid error that this is not found
+  def protect_against_forgery?
+
   end
 end
