@@ -48,7 +48,8 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @members = @group.group_members.reject{ |m| m.member_type == OWNER }.collect(&:user)
+    @members = @group.member_users.active.reject{ |u| u == @group.owner }
+    @members = @group.group_members.reject{ |m| m.member_type == OWNER or m.member_type == PENDING }.collect(&:user)
     @lessons = @group.active_lessons.paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
     if can_view?(@group)
       @topics = @group.topics.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]

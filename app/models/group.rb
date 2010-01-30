@@ -11,6 +11,8 @@ class Group < ActiveRecord::Base
   has_many :active_lessons, :source => :lesson, :through => :group_lessons,
            :conditions => { :group_lessons => { :active => true }}
   has_many :users, :through => :group_members
+  has_many :member_users, :through => :group_members, :source => :user,
+           :conditions => { :group_members => { :member_type => [ OWNER, MODERATOR, MEMBER ] } }
   has_many :activities, :as => :trackable, :dependent => :destroy
   has_many :all_activities, :class_name => 'Activity', :foreign_key => "group_id"
   has_many :flags, :as => :flaggable, :dependent => :destroy
