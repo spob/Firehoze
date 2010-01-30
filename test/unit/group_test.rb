@@ -14,6 +14,7 @@ class GroupTest < ActiveSupport::TestCase
     should_ensure_length_in_range :name, (0..50)
     should_belong_to :owner, :category
     should_have_many :group_members
+    should_have_many :member_users
     should_have_many :group_lessons
     should_have_many :lessons
     should_have_many :topics
