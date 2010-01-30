@@ -249,11 +249,14 @@ body { background-color: #ffffff; }
   border-bottom: solid 10px #0d5c74;
   background: transparent url('../../images/shadow_box/gallery_bg.gif') repeat-x;
   height: 300px;
+  position: relative;
+  z-index: 1 !important;
 }
 #cu3er .content {
+  position: relative;
+  z-index: 2 !important;
   margin: 17px 0 0 0;
   padding: 0;
-  position: relative;
   background-color: transparent;
 }
 #header { height: 100px; }
