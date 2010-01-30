@@ -42,6 +42,13 @@ class TopicComment < Comment
             ((self.topic.group.moderated_by?(user) or self.topic.group.owned_by?(user)) and (self.public or Comment.show_public_private_option?(user)))
   end
 
+  def self.notify_members comment__id
+    comment = TopicComment.find(comment__id)
+    comment.topic.group.member_users.each do |u|
+      Notifier.deliver_new_topic_comment(comment, u)
+    end
+  end
+
   private
 
   def update_topic

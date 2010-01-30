@@ -1,5 +1,6 @@
 # Email notifications
 class Notifier < ActionMailer::Base
+
   #default_url_options.update :protocol => APP_CONFIG[CONFIG_PROTOCOL]
   #default_url_options.update :host => APP_CONFIG[CONFIG_HOST]
   #default_url_options.update :port => APP_CONFIG[CONFIG_PORT]
@@ -30,9 +31,18 @@ class Notifier < ActionMailer::Base
                :url => new_registration_user_url(registration, url_options)
   end
 
+  def new_topic_comment(comment, user)
+    subject    "A new comment has been added to #{comment.topic.group.name}"
+    recipients user.email
+    from       APP_CONFIG[CONFIG_ADMIN_EMAIL]
+
+    body       :comment => comment,
+               :to_user => user,
+               :url => topic_url(comment.topic, url_options)
+  end
+
   # An invitation to join a private user group
   def group_invitation(invitation)
-    #asf
     subject    "You are invited to join a user group"
     recipients invitation.user.email
     from       APP_CONFIG[CONFIG_ADMIN_EMAIL]
