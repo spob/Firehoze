@@ -1,0 +1,29 @@
+<% reviewer = review.user %>
+<div class="review clearfix">
+  <div style="width:90px; float:left">
+    <div id="avatar-container">
+      <%= avatar_link_to reviewer, :size => :smaller %>
+    </div>
+  </div>
+
+  <div style="margin-left:90px;">
+    <% unless review.helpfuls.empty? %>
+    <span class="helpful_phrase"><%= review.helpfuls.helpful_yes.size %> of <%= review.helpfuls.size %> people found this review helpful:</span>
+    <% end %>
+
+    <%= ratings_for(review.lesson, reviewer, { :static => true } ) %>
+
+    <% if controller.action_name == 'show' and controller.controller_name == "users"  %>
+    <span class="headline h5"><%= review.lesson.title %></span><br />
+    <span class="headline h5">&quot;<%= h review.headline %>&quot;</span><br />
+    <span class="timestamp">&mdash;written on <%= l review.created_at %></span>
+    <% else %>
+    <span class="headline h5">&quot;<%= h review.headline %>&quot;</span><br />
+    By <%= link_to_profile(reviewer) %><span class="timestamp">&mdash;written on <%= l review.created_at %></span>
+    <% end %>
+
+    <div class="review-body"><%= rbs_formatter review.body %></div>
+
+    <div class="actions"><%= render :partial => 'reviews/actions', :object => review %></div>
+  </div>
+</div>

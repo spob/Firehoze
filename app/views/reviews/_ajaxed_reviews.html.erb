@@ -6,6 +6,6 @@
     <div class="info">You haven't reviewed any lessons yet.</div>
   <% else %>
     <%= will_paginate reviews, :params => { :pane => pane } %>
-    <%= render :partial => "reviews/ajaxed_review", :collection => reviews %>
+    <%= render :partial => "reviews/review", :collection => reviews %>
   <% end %>
 </div>
