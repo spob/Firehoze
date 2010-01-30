@@ -217,15 +217,15 @@ class LessonsControllerTest < ActionController::TestCase
         should_render_template "groups"
       end
 
-      fast_context "on GET to :recommend" do
-        setup do
-          get :recommend, :id => @lesson.id, :style => 'tab'
-        end
-        should_assign_to :lesson
-        should_respond_with :success
-        should_not_set_the_flash
-        should_render_template "recommend"
-      end
+#      fast_context "on GET to :recommend" do
+#        setup do
+#          get :recommend, :id => @lesson.id, :style => 'tab'
+#        end
+#        should_assign_to :lesson
+#        should_respond_with :success
+#        should_not_set_the_flash
+#        should_render_template "recommend"
+#      end
 
       fast_context "on GET to :stats when not the instructor" do
         setup do
