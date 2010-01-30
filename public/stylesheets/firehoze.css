@@ -413,7 +413,6 @@ h4.banner {
   font-size: 11px;
 }
 #shadowbox-top {
-  z-index: 10;
   background: transparent url('../../images/main_navigation/main-navigation-bg.png') no-repeat;
   margin: -50px 0 0 0;
   padding: 0;
@@ -438,7 +437,6 @@ h4.banner {
   margin-right: auto;
 }
 #main-navigation {
-  z-index: 20;
   position: relative;
   height: 40px;
   font: bold 13px/36px "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
@@ -975,12 +973,10 @@ div.comment-container div.count {
 }
 .with-button { padding-right: 16em; }
 .with-button a.rounded {
-  z-index: 100;
   position: absolute;
   margin: 0;
 }
 .with-button a.minibutton {
-  z-index: 100;
   position: absolute;
   margin: 0;
 }
@@ -1154,7 +1150,6 @@ ul#top-navigation li ul.subnav {
   text-shadow: none;
   list-style: none;
   position: absolute;
-  z-index: 50000;
   left: 0;
   top: 34px;
   margin: 0;
@@ -1348,7 +1343,6 @@ div#user-show-tabs > ul li a {
   padding-right: 23px;
 }
 #profile-box {
-  z-index: 1;
   position: relative;
   margin: 0;
   padding: 20px;
@@ -1363,13 +1357,11 @@ div#user-show-tabs > ul li a {
   margin: 0 0 0 80px;
 }
 #profile-box #content #balance {
-  z-index: 1;
   position: absolute;
   top: 17px;
   right: 17px;
 }
 #profile-box #content #action {
-  z-index: 1;
   padding: 0;
   position: absolute;
   bottom: 17px;
@@ -1467,7 +1459,6 @@ ul.top-level-navigation li.current a {
   color: #ffffff;
 }
 .panes {
-  z-index: 100;
   position: relative;
   margin: 0;
   padding: 0;
@@ -1505,12 +1496,10 @@ div.widget-box-header {
   margin: 0;
   padding: 12px;
   border-bottom: solid 1px #cccccc;
-  z-index: 1;
   background: url('../../images/backgrounds/widget-box-header-tile.png') repeat-x bottom center;
 }
 .widget-box-header img.loader {
   display: none;
-  z-index: 10;
   position: absolute;
   top: 6px;
   right: 8px;
@@ -1835,16 +1824,12 @@ div.duration {
   color: #212121;
   text-decoration: none;
 }
-#search-results {
-  position: relative;
-  z-index: 1;
-}
+#search-results { position: relative; }
 #advanced-search-link {
   position: absolute;
   top: -7px;
   right: 0px;
   margin: 0;
-  z-index: 100;
 }
 ul.lessons-row-format {
   list-style: none;
@@ -2097,10 +2082,7 @@ ul.group-lists li {
   padding: 0;
   display: block;
 }
-div.nested-navigation {
-  position: relative;
-  z-index: 1;
-}
+div.nested-navigation { position: relative; }
 .nested-navigation ul.links {
   padding: 0;
   margin: 0 0 23px 0;
@@ -2184,6 +2166,7 @@ div#group-container a.rounded:visited {
 }
 div#group-container a.rounded:hover { background: #2b2b2b; }
 div#group-container a.rounded.current { background: #212121; }
+.pagination { padding: 1px 0; }
 .pagination a {
   padding: 0.2em 0.5em;
   display: inline;
@@ -2270,7 +2253,6 @@ div#group-container a.rounded.current { background: #212121; }
 *:first-child + html .ajax-pagination { overflow: hidden; }
 div.lesson-tooltip {
   position: relative;
-  z-index: 9000;
   display: none;
   background: url('../../images/tooltip/black-arrow-big.png') no-repeat scroll 0 0;
   height: 163px;
@@ -2711,7 +2693,6 @@ div.selector select {
   padding-right: 40px;
 }
 span.required-field {
-  z-index: 1;
   background: transparent url('../../images/forms/asterisk.png') no-repeat top right;
   width: 16px;
   height: 16px;
@@ -2920,7 +2901,6 @@ div#user-stats-container ul {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 99999;
 }
 #tiptip_holder.tip_top { padding-bottom: 5px; }
 #tiptip_holder.tip_bottom { padding-top: 5px; }

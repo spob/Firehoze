@@ -1,53 +1,62 @@
-#header {
-  position: relative;
-  z-index: 200 !important;
-}
-#header .content {
-  position: relative;
-  z-index: 200 !important;
-}
+#header { z-index: 200 !important; }
+#header .content { z-index: 200 !important; }
+#top-navigation { z-index:99 !important; }
+#top-navigation-container { z-index: 200 !important; }
+#shadowbox-top { z-index: 1 !important; }
+#shadowbox-middle { z-index: 1 !important; }
+#main-navigation {z-index: 20; }
+#top-navigation { z-index:99 !important; }
 
-#top-navigation {
-  position:relative !important;
-  z-index:99 !important;
-}
-
-#top-navigation-container {
-
-  position:relative !important;
-  z-index: 200 !important;
-
-}
-#shadowbox-top {
-  position:relative;
-  z-index: 1 !important;
-
-}
-#shadowbox-middle {
-  position:relative;
-  z-index: 1 !important;
-}
-
-#main-navigation {
-  z-index: 20;
-  position: relative;
-}
-
-#top-navigation {
-  position:relative !important;
-  z-index:99 !important;
-}
+ul#top-navigation li ul.subnav { z-index: 500 !important; }
+ul#top-navigation li ul.subnav li { z-index:1000 !important;}
+html ul#top-navigation li ul.subnav li a { z-index:2000 !important; }
 
 
-ul#top-navigation li ul.subnav {
-  position: absolute;
-  z-index: 500 !important;
+#profile-box { z-index:1; }
+#profile-box #content #balance { z-index:1; }
+#profile-box #content #action { z-index:1; }
+
+/* PANES */
+.panes { z-index:100; }
+
+div.widget-box-header { z-index: 1; }
+.widget-box-header img.loader { z-index: 10; }
+#search-results { z-index:1; }
+
+#advanced-search-link { z-index:100; }
+
+div.nested-navigation {
+  z-index: 1;
 }
-ul#top-navigation li ul.subnav li {
-  position:relative !important;
-  z-index:1000 !important;
+
+div.lesson-tooltip {
+  z-index:9000;
 }
-html ul#top-navigation li ul.subnav li a {
-  z-index:2000 !important;
+
+span.required-field {
+  z-index: 1;
 }
+
+#tiptip_holder {
+  z-index: 99999;
+}
+
+.with-button a.rounded, 
+.with-button a.minibutton {
+  z-index:100;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

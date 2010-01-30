@@ -212,7 +212,6 @@ h4.banner  {
 
 /* SHADOWBOX */
 #shadowbox-top {
-  z-index:10;
   background: transparent url('../../images/main_navigation/main-navigation-bg.png') no-repeat;
   margin:-50px 0 0 0;
   padding:0;
@@ -252,7 +251,6 @@ h4.banner  {
 
 /* MAIN-NAVIGATION */
 #main-navigation {
-  z-index:20;
   position:relative;
   height: 40px;
   font: bold 13px/36px @helvetica;
@@ -864,7 +862,6 @@ div.comment-container div.count {
 
 .with-button a.rounded, 
 .with-button a.minibutton {
-  z-index:100;
   position:absolute;
   margin:0;
 }
@@ -1070,7 +1067,6 @@ ul#top-navigation li ul.subnav {
   text-shadow: none;
   list-style: none;
   position: absolute; /*--Important - Keeps subnav from affecting main navigation flow--*/
-  z-index:50000;
   left: 0; top: 34px;
   margin: 0;
   padding: 0;
@@ -1299,7 +1295,6 @@ div#user-show-tabs > ul li a {
 /* some nav elements 
 ------------------------------------------------------------------------------------------------ */
 #profile-box {
-  z-index:1;
   position:relative;
   margin:0;
   padding:20px;
@@ -1317,14 +1312,12 @@ div#user-show-tabs > ul li a {
 }
 
 #profile-box #content #balance {
-  z-index:1;
   position: absolute;
   top:17px;
   right:17px;
 }
 
 #profile-box #content #action {
-  z-index:1;
   padding:0;
   position: absolute;
   bottom:17px;
@@ -1469,7 +1462,6 @@ ul.top-level-navigation li.current a {
 
 /* PANES */
 .panes {
-  z-index:100;
   position:relative;
   margin:0;
   padding:0;
@@ -1520,12 +1512,10 @@ div.widget-box-header {
   margin:0;
   padding:12px;
   border-bottom: solid 1px @gray-40;
-  z-index: 1;
   background: url('../../images/backgrounds/widget-box-header-tile.png') repeat-x bottom center;
 }
 .widget-box-header img.loader {
   display:none;
-  z-index: 10;
   position: absolute;
   top:6px;
   right:8px;
@@ -1740,15 +1730,6 @@ div.duration {
   font-size:11px;
 }
 
-/* active item */
-/*
-.scrollable .active {
-border:1px solid @gray-40;
-z-index:9999;
-position:relative;
-}
-*/
-
 /*  SIMPLE BLUE THEMED BOX */
 .blue-box  {
   margin:0;
@@ -1954,7 +1935,6 @@ position:relative;
 
 #search-results {
   position:relative;
-  z-index:1;
 }
 
 #advanced-search-link {
@@ -1962,7 +1942,6 @@ position:relative;
   top:-7px;
   right:0px;
   margin:0;
-  z-index:100;
 }
 
 ul.lessons-row-format {
@@ -2270,7 +2249,6 @@ ul.group-lists li {
 
 div.nested-navigation {
   position: relative;
-  z-index: 1;
 }
 
 .nested-navigation ul.links {
@@ -2363,6 +2341,9 @@ div#group-container a.rounded.current {
 ------------------------------------------------------------------------------------------------ */
 
 /* Site-wide Pagination Styling */
+.pagination {
+  padding: 1px 0;
+}
 .pagination a, .pagination span, 
 .ajax-pagination a, .ajax-pagination span {
   padding: .2em .5em;
@@ -2419,7 +2400,6 @@ div#group-container a.rounded.current {
 /* TOP CENTER */
 div.lesson-tooltip {
   position:relative;
-  z-index:9000;
   display:none;
   background: url('../../images/tooltip/black-arrow-big.png') no-repeat scroll 0 0;
   height:163px;
@@ -2939,7 +2919,6 @@ div.selector select {
 /*  FORM ERRORS */
 
 span.required-field {
-  z-index: 1;
   background:transparent url('../../images/forms/asterisk.png') no-repeat top right;
   width:16px;
   height:16px;
@@ -3194,7 +3173,6 @@ div#user-stats-container ul {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 99999;
 }
 #tiptip_holder.tip_top { padding-bottom: 5px; }
 #tiptip_holder.tip_bottom { padding-top: 5px; }
