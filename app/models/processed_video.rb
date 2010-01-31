@@ -138,7 +138,7 @@ class ProcessedVideo < Video
   private
 
   def zero_nvl(value)
-    if value.nil?
+    if value.nil? or value.blank?
       0.0
     else
       value
