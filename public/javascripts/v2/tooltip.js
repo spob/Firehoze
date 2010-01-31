@@ -3,5 +3,6 @@ $(function() {
         relative:true,
         delay:0,
         predelay:1000
-    }).dynamic();
+    });
+    // }).dynamic();
 });
