@@ -67,7 +67,7 @@
               <% if @instructor.can_contact? current_user %>
                   <%= link_to content_tag(:span, 'Contact This User'), new_contact_user_path(:id => @instructor.id), :class => :minibutton %>
               <% end %>
-              <%= follow_link @instructor, current_user %>
+              <%= follow_link @instructor, current_user, @lesson.id %>
             </div>
 
             <% # Lesson by This Instructor  -%>
