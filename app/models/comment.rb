@@ -31,12 +31,7 @@ class Comment < ActiveRecord::Base
   end
 
   def self.numerate(comments)
-    i = 1
-    comments.each do |comment|
-      comment.row_num = i
-      i += 1
-    end
-    comments
+    comments.each_with_index { |comment, i| comment.row_num = i + 1 }
   end
 
   private
