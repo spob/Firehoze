@@ -125,11 +125,11 @@ class UsersController < ApplicationController
           lesson.reject
           lesson.save!
         end
-        @user.reviews.each do |review|
+        @user.reviews.ready.each do |review|
           review.reject
           review.save!
         end
-        @user.lesson_comments.each do |comment|
+        @user.lesson_comments.ready.each do |comment|
           comment.reject
           comment.save!
         end

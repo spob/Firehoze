@@ -5,6 +5,7 @@ class Comment < ActiveRecord::Base
   validates_inclusion_of :status, :in => %w{ active rejected }
 
   named_scope :public, :conditions => { :public => true }
+  named_scope :ready, :conditions => { :status => COMMENT_STATUS_ACTIVE }
 
   attr_accessor :row_num
 
