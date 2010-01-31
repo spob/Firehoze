@@ -21,7 +21,7 @@ class LessonComment < Comment
   end
 
   def last_public_comment?
-    self == self.lesson.comments(:select => [:id]).last
+    self == self.lesson.comments.public(:select => [:id]).last
 #    self == self.lesson.vlast_public_comment
   end
 
