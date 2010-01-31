@@ -2,6 +2,8 @@ class Group < ActiveRecord::Base
   acts_as_taggable
   has_friendly_id :name, :use_slug => true
 
+  after_update :reprocess_logo, :if => :cropping?
+
   belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"
   belongs_to :category
   has_many :group_members
@@ -64,13 +66,18 @@ class Group < ActiveRecord::Base
                             :tiny => ["35x35#", :png],
                             :small => ["75x75#", :png],
                             :medium => ["110x110#", :png],
-                            :large => ["220x220#", :png]
+                            :large => ["220x220#", :png],
+                            :vlarge => ["400x400>", :png]
                     },
+                    :processors => [:cropper],
                     :storage => :s3,
                     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                     :s3_permissions => 'public-read',
                     :path => "#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/groups/:attachment/:id/:style/:basename.:extension",
                     :bucket => APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]
+
+  # Used for cropping
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   validates_attachment_size :logo, :less_than => 1.megabytes, :message => "All uploaded images must be less then 1 megabyte"
   validates_attachment_content_type :logo, :content_type => [ 'image/gif', 'image/png', 'image/x-png', 'image/jpeg', 'image/pjpeg', 'image/jpg' ]
@@ -93,10 +100,14 @@ class Group < ActiveRecord::Base
   end
 
   # convert an amazon url for a logo to a cdn url
-  def self.convert_logo_url_to_cdn(url)
-    regex = Regexp.new("//.*#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}")
-    regex2 = Regexp.new("https")
-    url.gsub(regex, "//" + APP_CONFIG[CONFIG_CDN_OUTPUT_SERVER]).gsub(regex2, "http")
+  def self.convert_logo_url_to_cdn(url, url_type=:cdn)
+    if url_type == :cdn
+      regex = Regexp.new("//.*#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}")
+      regex2 = Regexp.new("https")
+      url.gsub(regex, "//" + APP_CONFIG[CONFIG_CDN_OUTPUT_SERVER]).gsub(regex2, "http")
+    else
+      url
+    end
   end
 
   def self.fetch_tagged_with category_id, tag, per_page, page
@@ -116,6 +127,10 @@ class Group < ActiveRecord::Base
     if user
       self.group_members.find(:first, :conditions => {:user_id => user.id, :member_type => [OWNER, MODERATOR, MEMBER]})
     end
+  end
+
+  def cropping?
+    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
   end
 
   def self.fetch_user_groups(user, page, per_page)
@@ -150,5 +165,16 @@ class Group < ActiveRecord::Base
       group_member = self.group_members.create!(:user => user, :member_type => PENDING)
     end
     group_member
+  end
+
+  def logo_geometry(style = :original)
+    @geometry ||= {}
+    @geometry[style] ||= Paperclip::Geometry.from_file(logo.url(style))
+  end
+
+  private
+
+  def reprocess_logo
+    logo.reprocess!
   end
 end

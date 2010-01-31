@@ -90,7 +90,11 @@ class GroupsController < ApplicationController
         @group_member = GroupMember.create!(:user => current_user, :group => @group, :member_type => OWNER,
                                             :activity_compiled_at => Time.now)
         flash[:notice] = t('group.create_success')
-        redirect_to group_path(@group)
+        if params[:group][:logo].blank?
+          redirect_to group_path(@group)
+        else
+          render :action => 'crop'
+        end
       else
         render :action => 'new'
       end
@@ -107,7 +111,11 @@ class GroupsController < ApplicationController
     if can_view?(@group) and can_edit?(@group)
       if @group.update_attributes(params[:group])
         flash[:notice] = t('group.update_success')
-        redirect_to group_path(@group)
+        if params[:group][:logo].blank?
+          redirect_to group_path(@group)
+        else
+          render :action => 'crop'
+        end
       else
         render :action => 'edit'
       end

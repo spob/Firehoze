@@ -54,11 +54,15 @@ module GroupsHelper
     end
   end
 
+    # pass a value
+    #for :url other than :cdn in order to force the avatar to be rendered from S3 (as opposed to
+    # the cdn)
   def logo_tag(group, options = {})
     return unless group
     size = options[:size] || :medium
+    url_type = options[:url] || :cdn
     logo_url = group.logo.file? ? group.logo.url(size) : Group.default_logo_url(size)
-    cdn_logo_url = Group.convert_logo_url_to_cdn(logo_url)
+    cdn_logo_url = Group.convert_logo_url_to_cdn(logo_url, url_type)
     image_tag cdn_logo_url, options.merge({ :alt => h(group.name), :class => 'logo' })
   end
 
