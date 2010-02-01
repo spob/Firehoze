@@ -2449,7 +2449,7 @@ div.tab-container div.panes div.fh-form ul.section li { background-color: #f1f7f
   font-size: 12px;
   color: #29384c;
   margin-left: 82px;
-  line-height: 2em;
+  line-height: 1.5em;
 }
 .key * { vertical-align: middle; }
 div.key {
