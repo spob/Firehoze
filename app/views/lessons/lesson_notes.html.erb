@@ -4,40 +4,42 @@
 <div class="lesson-notes clearfix">
   <div>
     <% if @lesson.notes.blank? and @lesson.can_edit?(current_user) %>
-      <div class="info with-button">
-        <em>You might consider adding notes and attachments to this lesson.</em><br />
-        Notes and attachments are a great way to provide additional information for your students, such as supplemental materials, times within the video when specific topics are addressed, clarifications, or links to other lessons or sits that users might consider visiting for additional information.
-        <%= link_to content_tag(:span, 'Edit Lesson'), edit_lesson_path(@lesson), :class => :minibutton %>
-      </div>
+        <div class="info with-button">
+          <em>You might consider adding notes and attachments to this lesson.</em><br/>
+          Notes and attachments are a great way to provide additional information for your students, such as
+          supplemental materials, times within the video when specific topics are addressed, clarifications, or links to
+          other lessons or sits that users might consider visiting for additional information.
+          <%= link_to content_tag(:span, 'Edit Lesson'), edit_lesson_path(@lesson), :class => :minibutton %>
+        </div>
+        </div>
+    <% else
+        @lesson.notes.present? %>
+        <%= rbs_formatter(@lesson.notes) %>
+    <% end %>
     </div>
-  <% else @lesson.notes.present? %>
-    <%= rbs_formatter(@lesson.notes) %>
-  <% end %>
-</div>
 <div>
-  <% if @lesson.attachments.present? or @lesson.can_edit?(current_user)  %>
-    <div class="box-header">Lesson Attachments</div>
-    <div class="box-content">
-      <% if @lesson.attachments.empty? %>
-        No attachments
-      <% else %>
-        <ul id="attachments">
-          <% @lesson.attachments.each do |attachment| %>
-            <li>
-              <%= link_to attachment.title, attachment.attachment.url, :popup => true %>
-              (<%= number_to_human_size(attachment.attachment.size) %>)
-              <% if @lesson.can_edit?(current_user) %>
-                <%= link_to 'edit', edit_lesson_attachment_path(attachment) %> |
-                <%= link_to 'delete', lesson_attachment_path(attachment), :confirm => 'Are you sure?', :method => :delete %>
+  <% if @lesson.attachments.present? or @lesson.can_edit?(current_user) %>
+      <div class="box-header">Lesson Attachments</div>
+      <div class="box-content">
+        <% if @lesson.attachments.empty? %>
+            No attachments
+        <% else %>
+            <ul id="attachments">
+              <% @lesson.attachments.each do |attachment| %>
+                  <li>
+                    <%= link_to attachment.title, attachment.attachment.url, :popup => true %>
+                    (<%= number_to_human_size(attachment.attachment.size) %>)
+                    <% if @lesson.can_edit?(current_user) %>
+                        <%= link_to 'edit', edit_lesson_attachment_path(attachment) %> |
+                        <%= link_to 'delete', lesson_attachment_path(attachment), :confirm => 'Are you sure?', :method => :delete %>
+                    <% end %>
+                  </li>
               <% end %>
-            </li>
-          <% end %>
-        </ul>
+            </ul>
 
-      <% end %>
+        <% end %>
 
-    </div>
-    <%= link_to_add_attachment(@lesson, current_user) %>
+      </div>
+      <%= link_to_add_attachment(@lesson, current_user) %>
   <% end %>
-</div>
 </div>
