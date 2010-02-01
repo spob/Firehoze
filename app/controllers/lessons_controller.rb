@@ -227,7 +227,7 @@ class LessonsController < ApplicationController
 
 # update lesson status via ajax
   def show_lesson_status
-    render :inline => "<%= translate('lesson.#{@lesson.status}') %> <%= image_tag('general/spinners/ajax-loader_small_arrows.gif') if @lesson.status == LESSON_STATUS_CONVERTING %>"
+    render :inline => "<%= translate('lesson.#{@lesson.status}') %> <%= image_tag('spinners/ajax_arrows_16.gif') if @lesson.status == LESSON_STATUS_CONVERTING %>"
   end
 
 # SUPPORTING AJAX TABS

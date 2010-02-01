@@ -38,7 +38,7 @@ groups = lesson.groups
       <td>
         <div id='show_lesson_status'>
           <%= h translate("lesson.#{lesson.status}") -%>
-          <%= image_tag("general/spinners/ajax-loader_small_arrows.gif") if lesson.status == LESSON_STATUS_CONVERTING %>
+          <%= image_tag("spinners/ajax_arrows_16.gif") if lesson.status == LESSON_STATUS_CONVERTING %>
           <% if lesson.status == LESSON_STATUS_PENDING or lesson.status == LESSON_STATUS_CONVERTING %>
             <%= periodically_call_remote(:update => 'show_lesson_status', :url => { :action => :show_lesson_status, :id => lesson }, :frequency => 5 ) %>
           <% end %>
