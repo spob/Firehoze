@@ -9,9 +9,10 @@
       <%= render :partial => 'profile_and_nav', :locals => { :user => current_user } %>
     </div>
 
-    <% # INSTRUCTOR STUFF -%>
-    <div id="instructor_dashboard" class="span-12 last">
+    <% # INSTRUCTOR DASHBOARD -%>
+    <h3><%= h(t('user.instructor_dashboard')) %></h3>
 
+    <div id="instructor_dashboard" class="span-12 last">
       <!-- the tabs -->
       <div class="tab-container">
         <ul class="tabs">

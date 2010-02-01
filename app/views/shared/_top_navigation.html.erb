@@ -5,7 +5,7 @@
         <a href="#"><%= avatar_tag(current_user, :size => :tiny) %> <%= current_user.login %></a>
         <ul class="subnav">
           <li><a href="<%= user_path(current_user) %>">My Public Page</a></li>
-          <li><a href="<%= edit_account_path(current_user) %>">Settings</a></li>
+          <li><a href="<%= edit_account_path(current_user) %>">Account Settings</a></li>
           <% if current_user.is_an_admin? or current_user.is_a_paymentmgr? or current_user.is_a_moderator?  or current_user.is_a_communitymgr? %>
               <li><a href="<%= admin_consoles_path %>">Admin Console</a></li>
           <% end %>
