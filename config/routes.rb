@@ -41,6 +41,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :groups,
                 :collection => { :list_admin => :get,
                                  :ajaxed => :get,
+                                 :all_tags => :get,
                                  :tagged_with => :get },
                 :member => { :clear_logo => :post, :activate => :post },
                 :has_many => :topics, :shallow => true
@@ -76,6 +77,7 @@ ActionController::Routing::Routes.draw do |map|
                         :ajaxed => :get,
                         :list_admin => :get,
                         :tagged_with => :get,
+                        :all_tags => :get,
                         :advanced_search => :get,
                         :perform_advanced_search => :get
                 }

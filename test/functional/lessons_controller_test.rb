@@ -314,6 +314,17 @@ class LessonsControllerTest < ActionController::TestCase
             should_not_set_the_flash
           end
 
+          fast_context "on GET to :all_tags with a tag" do
+            setup { get :all_tags }
+
+            should_assign_to :tags
+            should "have a tag returned" do
+              assert 1, assigns(:tags).size
+            end
+            should_render_template 'all_tags'
+            should_not_set_the_flash
+          end
+
           fast_context "on GET to :tagged_with and a bad tag" do
             setup { get :tagged_with, :tag => 'blah' }
 
