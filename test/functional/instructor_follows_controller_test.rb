@@ -15,7 +15,7 @@ class InstructorFollowsControllerTest < ActionController::TestCase
       setup do
         assert @instructor.followers.empty?
         post :create, :id => @instructor
-        @instructor = User.find(@instructor.id)
+        @instructor.reload
       end
 
       should_assign_to :instructor
@@ -53,6 +53,24 @@ class InstructorFollowsControllerTest < ActionController::TestCase
         should "create a follower" do
           assert_equal 1, @instructor.followers.size
         end
+        should_redirect_to("show public profile") { user_path(@instructor) }
+      end
+
+      fast_context "on POST to :create with lesson_id"  do
+        setup do
+          assert @instructor.followers.empty?
+          @lesson = Factory.create(:lesson)
+          post :create, :id => @instructor, :lesson_id => @lesson.id
+          @instructor = User.find(@instructor.id)
+        end
+
+        should_assign_to :instructor
+        should_respond_with :redirect
+        should_set_the_flash_to /being followed/
+        should "create a follower" do
+          assert_equal 1, @instructor.followers.size
+        end
+        should_redirect_to("show lesson") { lesson_path(@lesson.id, :anchor => 'instructor') }
       end
     end
 
@@ -74,6 +92,24 @@ class InstructorFollowsControllerTest < ActionController::TestCase
         should "delete the follower" do
           assert @instructor.followers.empty?
         end
+        should_redirect_to("show public profile") { user_path(@instructor) }
+      end
+
+      fast_context "on DELETE to :destroy with lesson_id" do
+        setup do
+          assert @instructor.followers.include?(@user)
+          @lesson = Factory.create(:lesson)
+          delete :destroy, :id => @instructor, :lesson_id => @lesson.id
+          @instructor = User.find(@instructor.id)
+        end
+
+        should_assign_to :instructor
+        should_respond_with :redirect
+        should_set_the_flash_to /no longer being followed/
+        should "delete the follower" do
+          assert @instructor.followers.empty?
+        end
+        should_redirect_to("show lesson") { lesson_path(@lesson.id, :anchor => 'instructor') }
       end
     end
   end

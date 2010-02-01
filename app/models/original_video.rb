@@ -46,6 +46,8 @@ class OriginalVideo < Video
       processed_video = clazz.create!(:lesson_id => self.lesson.id,
                                       :video_file_name => self.video_file_name,
                                       :s3_key => self.s3_key,
+                                      :processed_video_cost => 0,
+                                      :input_video_cost => 0,
                                       :converted_from_video => self,
                                       :s3_root_dir => self.s3_root_dir)
     end

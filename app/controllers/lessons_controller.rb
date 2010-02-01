@@ -66,6 +66,10 @@ class LessonsController < ApplicationController
     @lessons = Lesson.fetch_tagged_with nil, nil, @tag, @per_page, params[:page]
   end
 
+  def all_tags
+    @tags = Lesson.ready.tag_counts(:order => "name")
+  end
+
   def list_admin
     @search = Lesson.searchlogic(params[:search])
     @lessons = @search.paginate :include => [:instructor, :category], :page => params[:page], :per_page => cookies[:per_page] || ROWS_PER_PAGE

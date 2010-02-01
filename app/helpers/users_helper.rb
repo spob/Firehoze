@@ -2,12 +2,12 @@ require 'uri'
 require 'net/http'
 
 module UsersHelper
-  def follow_link user, current_user
+  def follow_link user, current_user, lesson_id=nil
     if current_user
       if user.followed_by?(current_user)
-        link_to(content_tag(:span, "Stop Following"), instructor_follow_path(user), :method => :delete, :class => :minibutton)
+        link_to(content_tag(:span, "Stop Following"), instructor_follow_path(user, :lesson_id => lesson_id), :method => :delete, :class => :minibutton)
       elsif user.verified_instructor? and user != current_user
-        link_to(content_tag(:span, "Follow this instructor"), instructor_follows_path(:id => user), :method => :post, :class => :minibutton)
+        link_to(content_tag(:span, "Follow this instructor"), instructor_follows_path(:id => user, :lesson_id => lesson_id), :method => :post, :class => :minibutton)
       end
     end
   end

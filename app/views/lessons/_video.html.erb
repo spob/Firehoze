@@ -31,7 +31,7 @@
     <!--<%= video.flixcloud_job_id %>-->
     <!--</td>-->
     <td>
-      <% if video.class == ProcessedVideo then %>
+      <% if video.is_a? ProcessedVideo then %>
         <%= number_to_currency(video.input_video_cost/100000.0,
           :precision => 3) unless video.input_video_cost.blank? %> /
         <%= number_to_currency(video.processed_video_cost/100000.0,

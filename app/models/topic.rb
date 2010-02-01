@@ -15,4 +15,22 @@ class Topic < ActiveRecord::Base
 
   # Temporary field used to store initial comments when creating a topic
   attr_accessor :comments
+
+  def comments_user_sensitive(current_user)
+    show_private = (current_user.try('is_an_admin?') or current_user.try('is_a_moderator?'))
+    show_rejected = (group.moderated_by? current_user or group.owned_by? current_user or show_private)   
+    if show_private
+      if show_rejected
+        self.topic_comments
+      else
+        self.topic_comments.ready
+      end
+    else
+      if show_rejected
+        self.topic_comments.public
+      else
+        self.topic_comments.public.ready
+      end
+    end
+  end
 end

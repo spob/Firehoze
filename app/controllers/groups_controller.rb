@@ -4,7 +4,8 @@ class GroupsController < ApplicationController
   else
     before_filter :require_user
   end
-  before_filter :find_group, :except => [:list_admin, :create, :new, :ajaxed, :index, :check_group_by_name, :tagged_with]
+  before_filter :find_group, :except => [:list_admin, :create, :new, :ajaxed, :index, :check_group_by_name, :tagged_with,
+                                         :all_tags]
   before_filter :set_per_page, :only => [ :ajaxed, :list_admin ]
 
   # Admins only
@@ -140,6 +141,10 @@ class GroupsController < ApplicationController
     redirect_to group_path(@group)
   end
 
+  def all_tags
+    @tags = Group.public.active.tag_counts(:order => "tags.name")
+  end
+
   # SUPPORTING AJAX PAGINATION
   def ajaxed
     @collection = params[:collection]
@@ -189,10 +194,8 @@ class GroupsController < ApplicationController
   def layout_for_action
     if %w(list_admin).include?(params[:action])
       'admin_v2'
-    elsif %w(create edit index new show tagged_with update).include?(params[:action])
-      'application_v2'
     else
-      'application'
+      'application_v2'
     end
   end
 

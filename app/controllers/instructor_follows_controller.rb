@@ -13,13 +13,21 @@ class InstructorFollowsController < ApplicationController
     else
       flash[:error] = t('instructor_follows.not_an_instructor', :user => @instructor.login)
     end
-    redirect_to user_path(@instructor)
+    if params[:lesson_id]
+      redirect_to lesson_path(params[:lesson_id], :anchor => 'instructor')
+    else
+      redirect_to user_path(@instructor)
+    end
   end
 
   def destroy
     current_user.stop_following(@instructor)
     flash[:notice] = t('instructor_follows.delete_success', :instructor => @instructor.login)
-    redirect_to user_path(@instructor)
+    if params[:lesson_id]
+      redirect_to lesson_path(params[:lesson_id], :anchor => 'instructor')
+    else
+      redirect_to user_path(@instructor)
+    end
   end
 
   # SUPPORTING AJAX PAGINATION

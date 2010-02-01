@@ -13,7 +13,7 @@
 
   <h3 class="header"><span class="group-name">The <%= link_to h(@topic.group_name.titleize), group_path(@topic.group, :anchor => :discussion) %> Group</span> &raquo; <%= h @topic.title %></h3>
   <div id="comments-container">
-    <%= render :partial => 'comments/comment', :collection => Comment.numerate(@topic.topic_comments) %>
+    <%= render :partial => 'comments/comment', :collection => Comment.numerate(@topic.comments_user_sensitive(current_user)) %>
   </div>
   <div>&laquo; <%= link_to "Back to Group", group_path(@topic.group, :anchor => :discussion) %></div>
 </div>

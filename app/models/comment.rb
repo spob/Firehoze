@@ -5,6 +5,7 @@ class Comment < ActiveRecord::Base
   validates_inclusion_of :status, :in => %w{ active rejected }
 
   named_scope :public, :conditions => { :public => true }
+  named_scope :ready, :conditions => { :status => COMMENT_STATUS_ACTIVE }
 
   attr_accessor :row_num
 
@@ -31,12 +32,7 @@ class Comment < ActiveRecord::Base
   end
 
   def self.numerate(comments)
-    i = 1
-    comments.each do |comment|
-      comment.row_num = i
-      i += 1
-    end
-    comments
+    comments.each_with_index { |comment, i| comment.row_num = i + 1 }
   end
 
   private
