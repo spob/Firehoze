@@ -33,5 +33,46 @@ class TopicCommentTest < ActiveSupport::TestCase
         assert_equal @topic_comment2, @topic.last_public_topic_comment
       end
     end
+
+    fast_context "and a bunch other comments of various statuses" do
+      setup do
+        @topic_comment2 = Factory.create(:topic_comment, :topic => @topic, :public => false)
+        @topic_comment3 = Factory.create(:topic_comment, :topic => @topic)
+        @topic_comment4 = Factory.create(:topic_comment, :topic => @topic)
+        @topic_comment3.update_attribute(:status, COMMENT_STATUS_REJECTED)
+        assert COMMENT_STATUS_REJECTED, @topic_comment3.status
+      end
+
+      should "not see private or rejected by anonymous" do
+        @comments = @topic.comments_user_sensitive(nil)
+        assert @comments.include?(@topic_comment)
+        assert !@comments.include?(@topic_comment2)
+        assert !@comments.include?(@topic_comment3)
+        assert @comments.include?(@topic_comment4)
+      end
+
+      should "see private or rejected by anonymous" do
+        @comments = @topic.comments_user_sensitive(@topic.group.owner)
+        assert @comments.include?(@topic_comment)
+        assert !@comments.include?(@topic_comment2)
+        assert @comments.include?(@topic_comment3)
+        assert @comments.include?(@topic_comment4)
+      end
+
+      fast_context "as an admin" do
+        setup do
+          @admin = Factory.create(:user)
+          @admin.has_role('admin')
+        end
+
+        should "see private or rejected by anonymous" do
+          @comments = @topic.comments_user_sensitive(@admin)
+          assert @comments.include?(@topic_comment)
+          assert @comments.include?(@topic_comment2)
+          assert @comments.include?(@topic_comment3)
+          assert @comments.include?(@topic_comment4)
+        end
+      end
+    end
   end
 end
