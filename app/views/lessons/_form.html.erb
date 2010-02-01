@@ -1,94 +1,92 @@
 <%= javascript 'v2/validation/lesson.validate' %>
 
-<div class="fh-form">
-  <%= render :partial => 'upload_warning' %>
+<div class="fh-form" >
+  <div style="width:628px"><%= render :partial => 'upload_warning' %></div>
   <% form_for(@lesson, :html => { :multipart => true, :id => "lesson" }) do |f| %>
-      <%= f.error_messages %>
-      <ul id="lesson-info" class="section">
-        <li class="header">
-          <span></span>
-          <h3><%= heading %></h3>
-          <h4><%= subtext %></h4>
-          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
-        </li>
-        <li>
-        <span>
-          <%= f.label :title %>
-          <%= f.text_field :title, :maxlength => "50" %>
-          <span class="required-field"></span>
-        </span>
-
-          <div class="counter"><span id="lesson_title_counter"></span> characters left</div>
-        </li>
-        <li>
-        <span>
-          <%= f.label :synopsis %>
-          <%= f.text_area :synopsis, :maxlength => "500", :title => "Please enter a valid value for synopsis", :class => "required" %>
-          <span class="required-field"></span>
-        </span>
-
-          <div class="counter"><span id="lesson_synopsis_counter"></span> characters left</div>
-        </li>
-        <li>
-        <span>
-          <%= f.label :notes %>
-          <%= f.text_area :notes %>
-        </span>
-          <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
-        </li>
-        <li>
-        <span>
-          <%= f.label :tag_list, :Tags %>
-          <%= f.text_field :tag_list %>
-        </span>
-          <span class="help">(use commas to separate multiple tags)</span>
-        </li>
-        <% if new_lesson %>
-            <li>
-        <span>
-          <%= f.label :video %>
-          <%= f.file_field :video, :title => "You must provide a video for your lesson", :class => "required" %>
-          <span class="required-field"></span>
-        </span>
-            </li>
-            <li>
-        <span>
-          <%= f.label :initial_free_download_count, 'Free Downloads' %>
-          <%= select_tag :initial_free_download_count, options_for_select(LessonsController.free_download_counts), :class => 'required' %>
-          <span class="required-field"></span>
-        </span>
-            </li>
-        <% end %>
-        <li>
-        <span>
-          <%= f.label :category %>
-          <%= f.collection_select(:category_id, Category.ascend_by_compiled_sort, :id,
-                                  :formatted_name,  {:include_blank => 'Select...'}, :class => 'required') %>
-          <span class="required-field"></span>
-        </span>
-        </li>
-        <li>
-        <span>
-          <%= f.label :language %>
-          <%= f.select :language, User.supported_languages, {}, :class => 'required' %>
-          <span class="required-field"></span>
-        </span>
-        </li>
-        <li>
-        <span>
-          <%= f.label :audience %>
-          <%= f.select :audience,  Lesson.audience_levels,  {:include_blank => 'Select...'}, :class => 'required' %>
-          <span class="required-field"></span>
-        </span>
-        </li>
-        <li class="bottom">
-        <span class="unlabelled">
+  <%= f.error_messages %>
+  <ul id="lesson-info" class="section">
+    <li class="header">
+      <span></span>
+      <h3><%= heading %></h3>
+      <h4><%= subtext %></h4>
+      <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
+    </li>
+    <li>
+      <span>
+        <%= f.label :title %>
+        <%= f.text_field :title, :maxlength => "50" %>
+        <span class="required-field"></span>
+      </span>
+      <div class="counter"><span id="lesson_title_counter"></span> characters left</div>
+    </li>
+    <li>
+      <span>
+        <%= f.label :synopsis %>
+        <%= f.text_area :synopsis, :maxlength => "500", :title => "Please enter a valid value for synopsis", :class => "required" %>
+        <span class="required-field"></span>
+      </span>
+      <div class="counter"><span id="lesson_synopsis_counter"></span> characters left</div>
+    </li>
+    <li>
+      <span>
+        <%= f.label :notes %>
+        <%= f.text_area :notes %>
+      </span>
+      <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
+    </li>
+    <li>
+      <span>
+        <%= f.label :tag_list, :Tags %>
+        <%= f.text_field :tag_list %>
+      </span>
+      <span class="help">(use commas to separate multiple tags)</span>
+    </li>
+    <% if new_lesson %>
+    <li>
+      <span>
+        <%= f.label :video %>
+        <%= f.file_field :video, :title => "You must provide a video for your lesson", :class => "required" %>
+        <span class="required-field"></span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <%= f.label :initial_free_download_count, 'Free Downloads' %>
+        <%= select_tag :initial_free_download_count, options_for_select(LessonsController.free_download_counts), :class => 'required' %>
+        <span class="required-field"></span>
+      </span>
+    </li>
+    <% end %>
+    <li>
+      <span>
+        <%= f.label :category %>
+        <%= f.collection_select(:category_id, Category.ascend_by_compiled_sort, :id,
+        :formatted_name,  {:include_blank => 'Select...'}, :class => 'required') %>
+        <span class="required-field"></span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <%= f.label :language %>
+        <%= f.select :language, User.supported_languages, {}, :class => 'required' %>
+        <span class="required-field"></span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <%= f.label :audience %>
+        <%= f.select :audience,  Lesson.audience_levels,  {:include_blank => 'Select...'}, :class => 'required' %>
+        <span class="required-field"></span>
+      </span>
+    </li>
+    <li class="bottom">
+      <span class="unlabelled">
         <%= f.submit "#{new_lesson ? "Create" : "Update"} Lesson" %>
-          <%= link_to "Cancel", lessons_path %>
-        </span>
-
-          <div class="clear" />
-        </li>
-      </ul>
+        <%= link_to "Cancel", lessons_path %>
+      </span>
+      <%= render :partial => 'upload_warning' %>
+      <div class="clear" />
+    </li>
+  </ul>
   <% end %>
 </div>

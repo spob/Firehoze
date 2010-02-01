@@ -2916,6 +2916,7 @@ div#user-stats-container ul {
   padding: 10px 0 10px 70px;
 }
 .upload_warning h4 { margin: 10px 0; }
+.upload_warning .help { margin-left: 0px; }
 #tiptip_holder {
   display: none;
   position: absolute;
