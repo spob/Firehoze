@@ -1,4 +1,7 @@
 $(document).ready(function() {
+
+    $('.upload_warning').hide();
+
     $(".new_lesson").validate({
         rules: {
             "lesson[title]": { required: true, remote:"/lessons/check_lesson_by_title" }},

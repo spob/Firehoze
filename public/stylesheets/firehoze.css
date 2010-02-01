@@ -2410,14 +2410,10 @@ div.fh-form div#recaptcha_area {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
-  width: 420px;
-  height: 20px;
   border: 1px solid #8f8f8f;
   background: #ffffff url('../../images/backgrounds/background-signup-inputs.png') repeat-x top left;
   font-size: 13px;
   color: #29384c;
-  padding: 5px;
-  padding-top: 7px;
 }
 .fh-form textarea { height: 100px; }
 .fh-form select {
