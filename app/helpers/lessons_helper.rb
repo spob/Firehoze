@@ -6,7 +6,7 @@ module LessonsHelper
   end
 
   def meta_keywords(keywords)
-    content_for(:keywords) { keywords }
+    content_for(:keywords) { keywords } if keywords.present?
   end
 
   # Not sure how to handle this with i18n???
