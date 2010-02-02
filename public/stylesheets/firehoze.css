@@ -243,7 +243,7 @@ body {
 }
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
-  font-weight: normal;
+  font-weight: bold;
 }
 .h1 {
   font-size: 3em;
@@ -265,9 +265,11 @@ body {
   line-height: 1.25;
   margin-bottom: 1.25em;
 }
-h3 {
-  font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+h1, h2, h3, h4 {
   font-weight: bold;
+  color: #212121;
+}
+h3 {
   font-size: 1.5em;
   color: #17587f;
 }
@@ -347,6 +349,7 @@ ul.inline li { display: inline; }
   border-radius: 5px;
   padding: 1em;
   background: #f2f2f2;
+  border: solid 2px #cccccc;
 }
 .inner_box {
   background: #ffffff;
