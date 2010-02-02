@@ -62,7 +62,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    cookies[:browse_sort] = params[:sort_by] ? params[:sort_by] : "most_popular"
+    set_browse_sort_cookie(params[:sort_by], "most_popular") if params[:sort_by]
     id = params[:id]
     if id == "all"
       redirect_to categories_path
@@ -74,7 +74,7 @@ class CategoriesController < ApplicationController
       if fragment_exist?(Category.tag_cloud_cache_id("lesson", @category.id))
         @tags = ["dummy"]
       else
-        @tags = Lesson.ready.tag_counts(:conditions => ["lessons.id IN (?)", @ids], :limit => 40, :order => "count DESC").sort{|x,y| x.name <=> y.name}
+        @tags = Lesson.ready.tag_counts(:conditions => ["lessons.id IN (?)", @ids], :limit => 40, :order => "count DESC").sort{|x, y| x.name <=> y.name}
       end
       @lessons = case cookies[:browse_sort]
         when 'most_popular'
@@ -106,6 +106,11 @@ class CategoriesController < ApplicationController
   end
 
   private
+
+  def set_browse_sort_cookie value, default_value
+    value ||= default_value
+    cookies[:browse_sort] = { :value => value, :expires => 1.day.from_now }
+  end
 
   def layout_for_action
     if %w(list_admin edit).include?(params[:action])
