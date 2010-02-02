@@ -82,7 +82,7 @@ class CategoriesController < ApplicationController
         when 'highest_rated'
           Lesson.highest_rated.find(:all, :conditions => { :id => @ids}).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
         else
-          cookies[:browse_sort] = 'newest'
+          set_browse_sort_cookie('newest')
           Lesson.newest.find(:all, :conditions => { :id => @ids}).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
       end
     end
@@ -107,8 +107,8 @@ class CategoriesController < ApplicationController
 
   private
 
-  def set_browse_sort_cookie value, default_value
-    value ||= default_value
+  def set_browse_sort_cookie value, default_value=nil
+    value ||= default_value if default_value
     cookies[:browse_sort] = { :value => value, :expires => 1.day.from_now }
   end
 

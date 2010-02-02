@@ -17,6 +17,7 @@
         <div class="clearfix">
           <% if @lessons.present? %>
               <%= render :partial => "lessons/lesson_tns", :object => @lessons, :locals => { :per_row => 3 } %>
+              <%= will_paginate @lessons %>
           <% else %>
               <div class="info">
                 Looks like no one has created a lesson for this category yet. Why not be the first to
