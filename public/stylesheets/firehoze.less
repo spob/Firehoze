@@ -94,6 +94,42 @@ ul.bulletless  {
   padding:0;
 }
 
+.valign-all * {
+  vertical-align:middle;
+}
+
+.sad { background: transparent url(../../images/icons/sad.png) top right no-repeat; }
+.happy { background: transparent url(../images/icons/happy.png) top right no-repeat; }
+
+
+ul.browser-list {
+  font-weight: bold;
+}
+
+ul.browser-list li {
+  width: 200px;
+  background: @light-blue-30;
+  border: solid 1px @steel-blue;
+  padding:0.5em;
+  margin: 0 0 1em 0;
+}
+
+ul.browser-list li:hover {
+  background: @light-blue-20;  
+}
+
+
+ul.browser-list li a {
+  text-decoration: none;
+}
+ul.browser-list li a:hover {
+  text-decoration: underline;
+}
+
+ul.browser-list li img {
+  margin-right: 1em;
+}
+
 ul.inline li  {
   display: inline;
 }
@@ -231,13 +267,13 @@ h4.banner  {
 }
 
 /*#shadowbox-middle-blue {
-  position:absolute;
-  background: url(images/backgrounds/profile_bg_tile.gif) repeat-x top center;
-  height: 220px;
-  top:-15px;
-  left:10px;
-  width:980px;
-  border-bottom:solid 4px @charcoal-20;
+position:absolute;
+background: url(images/backgrounds/profile_bg_tile.gif) repeat-x top center;
+height: 220px;
+top:-15px;
+left:10px;
+width:980px;
+border-bottom:solid 4px @charcoal-20;
 }
 */
 #shadowbox-bottom {
@@ -857,6 +893,8 @@ div.comment-container div.count {
   border: solid 2px @mustard;
   min-height:3em;
 }
+
+
 
 .with-button {
   padding-right:16em;

@@ -299,6 +299,21 @@ ul.bulletless {
   margin: 0;
   padding: 0;
 }
+.valign-all * { vertical-align: middle; }
+.sad { background: transparent url(../../images/icons/sad.png) top right no-repeat; }
+.happy { background: transparent url(../images/icons/happy.png) top right no-repeat; }
+ul.browser-list { font-weight: bold; }
+ul.browser-list li {
+  width: 200px;
+  background: #e3e9f2;
+  border: solid 1px #c1cad5;
+  padding: 0.5em;
+  margin: 0 0 1em 0;
+}
+ul.browser-list li:hover { background: #ecf3ff; }
+ul.browser-list li a { text-decoration: none; }
+ul.browser-list li a:hover { text-decoration: underline; }
+ul.browser-list li img { margin-right: 1em; }
 ul.inline li { display: inline; }
 .box-header {
   -moz-border-radius-topleft: 5px;
