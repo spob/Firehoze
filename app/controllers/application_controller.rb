@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation, :current_password, :card_number, :card_verification
   before_filter :set_timezone
   before_filter :set_user_language
+  before_filter :check_browser
 
   protect_from_forgery :only => [:update, :delete, :create]
 
@@ -69,6 +70,18 @@ class ApplicationController < ActionController::Base
 
 
   private
+
+  def check_browser
+    @detector = BrowserDetector::Detector.new( request.env['HTTP_USER_AGENT'] )
+    by_pass = (Rails.env.test? or !@detector.browser_is?(:name => 'ie', :major_version => '6') or (params[:controller] == 'pages' or (params[:controller] == 'lessons' and params[:action] == 'index')))
+    if (cookies[:browser_ok] == "ok" or by_pass)
+      true
+    else
+      cookies[:browser_ok] = { :value => "ok", :expires => 1.day.from_now }
+      redirect_to page_path("browser_check")
+      false
+    end
+  end
 
   # Set the timezone for a given user based upon their preference...if not logged on, use the system
   # default time time...this is called by the before_filter

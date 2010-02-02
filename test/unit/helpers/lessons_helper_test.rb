@@ -87,8 +87,6 @@ class LessonsHelperTest < ActionView::TestCase
           assert_nil owned_it_phrase(@lesson, nil)
           assert_match /own/, owned_it_phrase(@lesson, @user)
         end
-
-        should "test "
       end
     end
   end
