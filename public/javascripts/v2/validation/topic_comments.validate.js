@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("#topic").validate({
+    $("#topic_comment").validate({
         errorElement: "span",
         success: "valid",
         submitHandler: function(form) {
