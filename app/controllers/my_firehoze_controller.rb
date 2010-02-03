@@ -38,7 +38,7 @@ class MyFirehozeController < ApplicationController
     fetch_followed_instructors
     respond_to do |format|
       format.html do
-          cookies[:my_firehoze_tab] = { :value => params[:action], :expires => 1.hour.from_now }
+        cookies[:my_firehoze_tab] = { :value => params[:action], :expires => 1.hour.from_now }
       end
       format.js do
         case params[:pane]
@@ -58,7 +58,7 @@ class MyFirehozeController < ApplicationController
 
     respond_to do |format|
       format.html do
-          cookies[:my_firehoze_tab] = { :value => params[:action], :expires => 1.hour.from_now }
+        cookies[:my_firehoze_tab] = { :value => params[:action], :expires => 1.hour.from_now }
       end
       format.js do
         case params[:pane]
@@ -80,7 +80,7 @@ class MyFirehozeController < ApplicationController
 
     respond_to do |format|
       format.html do
-          cookies[:my_firehoze_tab] = { :value => params[:action], :expires => 1.hour.from_now }
+        cookies[:my_firehoze_tab] = { :value => params[:action], :expires => 1.hour.from_now }
       end
       format.js
     end
@@ -96,7 +96,7 @@ class MyFirehozeController < ApplicationController
 
   def fetch_activities
     activites_per_page = 8
-    @activities = case set_session_param(:browse_activities_by, "ALL")
+    @activities = case set_cookie_param(:browse_activities_by, "ALL")
       when 'BY_ME'
         Activity.visible_to_user(current_user).actor_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
       when 'ON_ME'
@@ -181,8 +181,16 @@ class MyFirehozeController < ApplicationController
             end
   end
 
-  def set_session_param(parameter, default_value)
-    session[parameter] = (params[parameter].nil? ? default_value : params[parameter])
+  def set_cookie_param(parameter, default_value)
+    if params[parameter].present?
+      set_cookie(parameter, params[parameter])
+    elsif cookies[parameter].nil?
+      set_cookie(parameter, default_value)
+    end
+  end
+
+  def set_cookie param, value
+    cookies[param] = { :value => value, :expires => 1.hour.from_now }
   end
 
   def retrieve_by_pane(pane)
