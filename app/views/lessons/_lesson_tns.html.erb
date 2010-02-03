@@ -8,7 +8,7 @@
       <%= img_tag_lesson_tn(lesson, :small ) %>
       <%= render :partial => 'lessons/tooltip', :locals => { :lesson => lesson } unless g_browser_is?( :name => 'ie') %>
       <div class="duration transparent"><%= ChronicDuration.output(lesson.finished_video_duration/1000, :format => :chrono) unless lesson.finished_video_duration.nil?-%></div>
-      <div class="audience"><%= h audience_value(lesson.audience) -%></div>
+      <div class="audience"><%= h audience_value(lesson.audience) -%> Level</div>
       <div class="title"><%= link_to truncate(h(lesson.title), :length => 40), lesson_path(lesson), :title => lesson.synopsis %></div>
     </div>
     <% counter += 1 %>
