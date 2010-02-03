@@ -103,7 +103,7 @@ module AjaxfulRating # :nodoc:
     #     <%= ajaxful_rating_style %>
     #   </head>
     def ajaxful_rating_style
-      stylesheet_link_tag('ajaxful_rating') + content_tag(:style, ajaxful_styles, :type => 'text/css') unless ajaxful_styles.blank?
+      stylesheet_link_tag('ajaxful-rating-min') + content_tag(:style, ajaxful_styles, :type => 'text/css') unless ajaxful_styles.blank?
     end
   
     private
