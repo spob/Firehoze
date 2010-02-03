@@ -55,16 +55,15 @@ class GroupsController < ApplicationController
     if can_view?(@group)
       @topics = @group.topics.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
 
-      if params[:browse_activities_by] == 'BY_ME' and current_user
-        session[:browse_activities_by] = 'BY_ME'
-      elsif params[:browse_activities_by] == 'ON_ME' and current_user
-        session[:browse_activities_by] = 'ON_ME'
+      if current_user
+        set_cookie params[:browse_activities_by] if params[:browse_activities_by].present?
+        set_cookie 'ALL' if cookies[:browse_activities_by].nil?
       else
-        session[:browse_activities_by] = 'ALL'
+        set_cookie 'ALL'
       end
-      if session[:browse_activities_by] == 'BY_ME'
+      if cookies[:browse_activities_by] == 'BY_ME'
         @activities = Activity.group_id_equals(@group.id).visible_to_user(current_user).actor_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
-      elsif session[:browse_activities_by] == 'ON_ME'
+      elsif cookies[:browse_activities_by] == 'ON_ME'
         @activities = Activity.group_id_equals(@group.id).visible_to_user(current_user).actor_user_id_not_equal_to(current_user).actee_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
       else
         @activities = Activity.group_id_equals(@group.id).descend_by_acted_upon_at.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
@@ -208,5 +207,9 @@ class GroupsController < ApplicationController
             else
               5
             end
+  end
+
+  def set_cookie value
+    cookies[:browse_activities_by] = { :value => value, :expires => 1.hour.from_now }
   end
 end
