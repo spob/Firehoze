@@ -191,6 +191,7 @@ class MyFirehozeController < ApplicationController
 
   def set_cookie param, value
     cookies[param] = { :value => value, :expires => 1.hour.from_now }
+    cookies[param]
   end
 
   def retrieve_by_pane(pane)

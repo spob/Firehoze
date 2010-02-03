@@ -56,11 +56,12 @@ class GroupsController < ApplicationController
       @topics = @group.topics.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
 
       if current_user
-        set_cookie params[:browse_activities_by] if params[:browse_activities_by].present?
-        set_cookie 'ALL' if cookies[:browse_activities_by].nil?
+        set_cookie(params[:browse_activities_by]) if params[:browse_activities_by].present?
+        set_cookie('ALL') if cookies[:browse_activities_by].nil?
       else
         set_cookie 'ALL'
       end
+      puts "=======================================================#{cookies[:browse_activities_by]}"
       if cookies[:browse_activities_by] == 'BY_ME'
         @activities = Activity.group_id_equals(@group.id).visible_to_user(current_user).actor_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
       elsif cookies[:browse_activities_by] == 'ON_ME'
