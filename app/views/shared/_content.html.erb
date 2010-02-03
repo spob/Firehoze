@@ -101,9 +101,9 @@
 <%= javascript_include_tag 'plugins/jquery.always_at_bottom','plugins/jquery.anchor','plugins/jquery.cornerz','plugins/jquery.simplyCountable','plugins/jquery.truncator','plugins/jquery.validate.min','plugins/jquery.tipTip','plugins/jquery.uniform', :cache => 'firehoze-plugins' %>
 
 <% # Firehoze Specific Javascript Code %>
-<%= javascript_include_tag 'plugins/application','plugins/faqs','plugins/flash','plugins/footer','plugins/pagination','plugins/rounders','plugins/tabs','plugins/tipTip','plugins/top_navigation','plugins/truncator', :cache => 'firehoze' %>
-<%= javascript_include_tag'plugins/uniform' unless @no_uniform_js %>
-<%= javascript_include_tag 'plugins/tooltip' unless Rails.env.test? or g_browser_name == 'ie' %>
+<%= javascript_include_tag 'application','faqs','flash','footer','pagination','rounders','tabs','tipTip','top_navigation','truncator', :cache => 'firehoze' %>
+<%= javascript_include_tag'uniform' unless @no_uniform_js %>
+<%= javascript_include_tag 'tooltip' unless Rails.env.test? or g_browser_name == 'ie' %>
 
 <%= yield :footer -%>
 
