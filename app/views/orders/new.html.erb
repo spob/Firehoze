@@ -1,6 +1,6 @@
 <% title "Checkout" -%>
 
-<%= javascript 'v2/validation/order.validate' %>
+<%= javascript 'validation/order.validate' %>
 
 <div class="fh-form">
   <% form_for(@order, :protocol => SECURE_PROTOCOL, :html => { :id => "order" }) do |f| %>

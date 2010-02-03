@@ -1,6 +1,6 @@
 <% title "Write a review for &quot;#{h(@lesson.title)}&quot;" -%>
 
-<%= javascript 'v2/validation/review.validate' %>
+<%= javascript 'validation/review.validate' %>
 
 <div class="fh-form">
   <% form_for(:review, :url => lesson_reviews_url(@lesson), :html => { :class => "review", :id => "review" }) do |f| %>

@@ -1,7 +1,7 @@
 <% lesson = object %>
 
 <% unless lesson.lesson_buy_pairs.ready.all(:select => ["lesson_buy_pairs.id"]).empty? %>
-  <%= javascript 'v2/jquerytools/scrollable.navigator' %>
+  <%= javascript 'plugins/jquerytools/scrollable.navigator' %>
   <%= stylesheet 'jquerytools/scrollable-small', 'jquerytools/scrollable-buttons-small', 'jquerytools/scrollable-navigator-small' %>
   <div class="prepend-top">
     <div id="bought-this-video-also-bought" class="widget-box-content clearfix">
