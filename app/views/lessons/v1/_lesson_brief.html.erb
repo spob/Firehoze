@@ -1,5 +1,0 @@
-<% lesson = object %>
-<div class="lesson_brief">
-  <div class="title"><%= link_to h(lesson.title), lesson_path(lesson), :class => :lesson_title_link %></div>
-  <div class="synopsis"><%= truncate(h(lesson.synopsis), :length => 80) %></div>
-</div>

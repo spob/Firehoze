@@ -1,9 +1,0 @@
-<% lesson = object %>
-<div>
-  <%= img_tag_lesson_tn(lesson, :small) %>
-  <h4><%= truncate(h(lesson.title), :length => 32) %></h4>
-  <p>
-    <%= truncate(h(lesson.synopsis), :length => 120) %>
-  </p>
-  <span class="blue"><%= ChronicDuration.output(lesson.finished_video_duration/1000, :format => :long) %></span>
-</div>
