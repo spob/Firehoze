@@ -1,7 +1,5 @@
 class SearchesController < ApplicationController
 
-  layout 'application_v2'
-
   def index
     @search_criteria = params[:search_criteria]
 

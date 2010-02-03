@@ -8,8 +8,6 @@ class TopicsController < ApplicationController
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
 
-  layout :layout_for_action
-
   def new
     @topic = @group.topics.build
     can_create?(@group)
@@ -90,14 +88,6 @@ class TopicsController < ApplicationController
       flash[:error] = t('topic.must_be_member', :group => group.name)
       redirect_to group_path(group)
       false
-    end
-  end
-
-  def layout_for_action
-    if %w(create edit new show update).include?(params[:action])
-      'application_v2'
-    else
-      'application'
     end
   end
 

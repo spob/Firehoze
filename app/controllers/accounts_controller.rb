@@ -11,10 +11,6 @@ class AccountsController < ApplicationController
   verify :method => :put, :only => [ :update, :update_privacy, :update_instructor, :update_avatar, :update_instructor_wizard ], :redirect_to => :home_path
   verify :method => :post, :only => [ :clear_avatar ], :redirect_to => :home_path
 
-  layout 'application_v2'
-
-#  def show
-#  end
 
   def instructor_signup_wizard
     redirect_path = "redirect_to instructor_wizard_step#{calc_next_wizard_step(@user)}_account_path"

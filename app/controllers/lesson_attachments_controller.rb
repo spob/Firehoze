@@ -9,8 +9,6 @@ class LessonAttachmentsController < ApplicationController
   verify :method => :put, :only => [ :update ], :redirect_to => :home_path
   verify :method => :delete, :only => [:destroy ], :redirect_to => :home_path
 
-  layout 'application_v2'
-
   def create
     @lesson = Lesson.find(params[:lesson_id])
     if has_access? @lesson
@@ -75,11 +73,4 @@ class LessonAttachmentsController < ApplicationController
     @attachment = LessonAttachment.find(params[:id])
   end
 
-  def layout_for_action
-    if %w(edit update new create).include?(params[:action])
-      'application_v2'
-    else
-      'application'
-    end
-  end
 end

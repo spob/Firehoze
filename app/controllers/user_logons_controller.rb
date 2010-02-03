@@ -7,7 +7,7 @@ class UserLogonsController < ApplicationController
   # admins only
   permit ROLE_ADMIN
 
-  layout 'admin_v2'
+  layout 'admin'
 
   def index
     @search = UserLogon.last_90_days.descend_by_created_at.search(params[:search])

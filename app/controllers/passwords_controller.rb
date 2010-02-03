@@ -5,9 +5,6 @@ class PasswordsController < ApplicationController
   before_filter :require_user
   before_filter :find_user
   ssl_required :update if Rails.env.production?
-  # ssl_allowed :edit if Rails.env.production?
-
-  layout 'application_v2'
 
   verify :method => :put, :only => [ :update ], :redirect_to => :home_path
 

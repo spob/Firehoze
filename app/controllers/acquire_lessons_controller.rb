@@ -8,8 +8,6 @@ class AcquireLessonsController < ApplicationController
   ssl_required :create if Rails.env.production?
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
-  layout 'application_v2'
-
 
   # Show the user a confirmation screen asking them if they'd like to apply a credit to watch this video
   def new

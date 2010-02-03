@@ -2,8 +2,6 @@ class GroupInvitationsController < ApplicationController
   before_filter :require_user
   before_filter :find_group, :except => [ :check_user_by_login, :check_user]
 
-  layout 'application_v2'
-
   verify :method => :post, :only => [:create], :redirect_to => :home_path
 
   def new

@@ -15,7 +15,7 @@ class DiscountsController < ApplicationController
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
   verify :method => :delete, :only => [:destroy ], :redirect_to => :home_path
 
-  layout 'admin_v2'
+  layout 'admin'
   
   def index
     @discounts = Discount.list @sku, params[:page]

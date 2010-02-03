@@ -7,8 +7,6 @@ class MyFirehozeController < ApplicationController
   before_filter :set_collection, :only => [ :show ]
   before_filter :setup
 
-  layout :layout_for_action
-
   def goto_remembered_tab
     if cookies[:my_firehoze_tab] and params[:clear].nil? and cookies[:my_firehoze_tab] != params[:action]
       redirect_to :controller => 'my_firehoze', :action => cookies[:my_firehoze_tab]
@@ -157,10 +155,6 @@ class MyFirehozeController < ApplicationController
 
   def fetch_gift_certificates
     @gift_certificates = current_user.gift_certificates.ascend_by_id.active
-  end
-
-  def layout_for_action
-    'application_v2'
   end
 
   def set_collection

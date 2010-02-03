@@ -14,9 +14,6 @@ class LessonCommentsController < ApplicationController
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
-#  verify :method => :destroy, :only => [:delete ], :redirect_to => :home_path
-
-  layout :layout_for_action
 
   def index
     @lesson_comments = LessonComment.list @lesson, params[:page], current_user, params[:per_page] || 9999
@@ -78,14 +75,6 @@ class LessonCommentsController < ApplicationController
 
   def find_lesson_comment
     @lesson_comment = LessonComment.find(params[:id])
-  end
-
-  def layout_for_action
-    if %w(create edit index new update).include?(params[:action])
-      'application_v2'
-    else
-      'application'
-    end
   end
 
   def can_comment? user, lesson

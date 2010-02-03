@@ -9,8 +9,6 @@ class UserSessionsController < ApplicationController
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :delete, :only => [ :destroy ], :redirect_to => :home_path
 
-  layout 'application_v2'
-  
   def new
     @user_session = UserSession.new
   end

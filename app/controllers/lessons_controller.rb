@@ -360,11 +360,11 @@ class LessonsController < ApplicationController
     elsif %w(tabbed).include?(params[:action])
       'content_in_tab'
     elsif %w(list_admin).include?(params[:action])
-      'admin_v2'
+      'admin'
     elsif %w(index).include?(params[:action])
       'unrecognized'
     else
-      'application_v2'
+      'application'
     end
   end
 

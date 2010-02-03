@@ -4,8 +4,6 @@ class ContactUsersController < ApplicationController
   before_filter :require_user
   before_filter :find_to_user
 
-  layout 'application_v2'
-
   verify :method => :post, :only => [ :create ], :redirect_to => :home_path
 
   def new

@@ -118,9 +118,9 @@ class FlagsController < ApplicationController
 
   def layout_for_action
     if %w(index show edit).include?(params[:action])
-      'admin_v2'
+      'admin'
     else
-      'application_v2'
+      'application'
     end
   end
 

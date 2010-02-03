@@ -6,8 +6,6 @@ class GroupMembersController < ApplicationController
   verify :method => :post, :only => [:create, :promote, :demote, :create_private ], :redirect_to => :home_path
   verify :method => :delete, :only => [:destroy, :remove ], :redirect_to => :home_path
 
-  layout :layout_for_action
-
   def create
     @group_member = @group.group_members.create!(:user => current_user, :member_type => MEMBER)
     flash[:notice] = t('group.join', :group => @group.name)
@@ -132,14 +130,6 @@ class GroupMembersController < ApplicationController
     invitation.user = @invitation.user
     invitation.group = @invitation.group
     invitation
-  end
-
-  def layout_for_action
-    if %w(new_private create_private).include?(params[:action])
-      'application_v2'
-    else
-      'application'
-    end
   end
 
   def require_logged_in

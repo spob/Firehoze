@@ -1,7 +1,6 @@
 class HighVoltage::PagesController < ApplicationController
   unloadable
   before_filter :ensure_valid
-  layout :layout_for_action
 
   def show
     render :template => current_page
@@ -25,9 +24,4 @@ class HighVoltage::PagesController < ApplicationController
     false
   end
 
-  private
-
-  def layout_for_action
-    %w(concept).include?(params[:id]) ? 'application_v2' : 'application'
-  end
 end

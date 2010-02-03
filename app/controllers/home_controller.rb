@@ -3,18 +3,10 @@ class HomeController < ApplicationController
 
   before_filter :require_user
 
-#  verify :method => :put, :only => [ :update ], :redirect_to => :home_path
-
   before_filter :set_per_page, :only => [ :show ]
 
   def show
     redirect_to my_firehoze_index_path
-#    render :layout => 'application_v2'
-#    @user = @current_user
-#    if params[:reset] == "y"
-#      # clear category browsing
-#      session[:browse_category_id] = nil
-#    end
   end
 
   private

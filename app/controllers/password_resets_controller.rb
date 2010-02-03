@@ -10,8 +10,6 @@ class PasswordResetsController < ApplicationController
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update ], :redirect_to => :home_path
 
-  layout 'application_v2'
-
   # This action will render the page allowing the user to enter an email address to request a new password
   def new
     render

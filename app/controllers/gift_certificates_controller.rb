@@ -95,9 +95,7 @@ class GiftCertificatesController < ApplicationController
 
   def layout_for_action
     if %w(list_admin).include?(params[:action])
-      'admin_v2'
-    elsif %w(new create pregive give confirm_give).include?(params[:action])
-      'application_v2'
+      'admin'
     else
       'application'
     end
