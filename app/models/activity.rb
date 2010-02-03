@@ -8,9 +8,9 @@ class Activity < ActiveRecord::Base
               lambda { |user|
                 {
                         :include => [:group],
-                        :joins => {:actor_user => :followed_instructors},
+                        :joins => 'INNER JOIN instructor_follows ON instructor_follows.instructor_id = activities.actor_user_id ',
 #                        :conditions => {:actor_user => { :followed_instructors_users => {:id => user.id }}},
-                        :conditions => ['followed_instructors_users.id = ? AND (activities.group_id IS NULL OR groups.private = ? OR activities.group_id in (?))',
+                        :conditions => ['instructor_follows.user_id = ? AND (activities.group_id IS NULL OR groups.private = ? OR activities.group_id in (?))',
                                   user.id, false, (user ? user.group_ids.collect(&:group_id) : [] ) + [-1]]
                 }
               }
