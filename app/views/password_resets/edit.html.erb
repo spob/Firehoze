@@ -1,7 +1,7 @@
 <% title "Change My Password" -%>
 
 <%= stylesheet 'validation' %>
-<%= javascript 'validate/jquery.validate', 'v2/validation/reset_password.validate' %>
+<%= javascript 'v2/jquery.validate.min', 'v2/validation/reset_password.validate' %>
 
 <div class="fh-form">
   <% form_for @user, :url => password_reset_url(:protocol => SECURE_PROTOCOL), :method => :put do |f| %>

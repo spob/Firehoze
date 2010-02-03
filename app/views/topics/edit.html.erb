@@ -1,7 +1,7 @@
 <% title "Edit Topic &quot;#{h @topic.title}&quot;" -%>
 
 <%= stylesheet 'validation' %>
-<%= javascript 'jquery.simplyCountable', 'validate/jquery.validate', 'v2/validation/topics.validate' %>
+<%= javascript 'jquery.simplyCountable', 'v2/jquery.validate.min', 'v2/validation/topics.validate' %>
 
 <div class="fh-form">
   <% form_for :topic, :url => topic_path(@topic), :html => { :method => :put, :id => "edit_topic" } do |f| %>
