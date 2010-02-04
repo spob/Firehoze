@@ -38,6 +38,11 @@
             Us</a></li>
     </ul>
   </li>
+  <% if show_cart? %>
+  <li class="valign-all">
+    <%= link_to "#{image_tag('icons/cart_16.png', :alt => '', :class => 'icon')} Cart", cart_path(@current_cart), :title => 'You have items in your cart' %>
+  </li>
+  <% end %>
   <li id="advanced-search-icon">
     <%= link_to image_tag('icons/advanced-search-22.png', :alt => ''), advanced_search_lessons_path, :title => 'Advanced Search', :class => 'mini-tip advanced-search' %>
   </li>
