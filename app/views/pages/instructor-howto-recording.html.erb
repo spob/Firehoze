@@ -1,14 +1,67 @@
-<h3>Recording How To's</h3>
-<p>Lesson done and ready to record? Here are some recommendations and tips to get you on your way.</p>
-<ul>
-  <li>Recording method and Firehoze recommendations</li>
-  <li>Optimize your video lesson for the Firehoze site</li>
-  <li>CamStudio/PPT video</li>
-  <li>How to download & configure CamStudio</li>
-  <li>How to set-up CamStudio for slides</li>
-  <li>Audio/mic set-up</li>
-  <li>Troubleshooting</li>
-  <li>Recording FAQs (link to recording FAQ section)</li>
-</ul>
+<% title "Recording How To's" -%>
+<% content_for :head do -%>
+    <a name="top" id="top" class="anchor"></a>
+<% end -%>
 
+<div id="howtos_section">
+  <div class="answers">
+    <h3>Recording How To's</h3>
+
+    <p>Lesson done and ready to record? Here are some recommendations and tips to get you on your way.</p>
+    <h5>Recording method and Firehoze recommendations</h5>
+    <h5>Optimize your video lesson for the Firehoze site</h5>
+    <h5>CamStudio/PPT video</h5>
+    <h5>How to download & configure CamStudio</h5>
+    <h5>How to configure CamStudio to capture PowerPoint slides</h5>
+
+    <div>
+        <p>For best results, use a “Fixed Region” when creating lessons using CamStudio and PowerPoint.</p>
+        <p>Follow these steps:</p>
+      <ol>
+        <li>Start CamStudio</li>
+        <li>Start PowerPoint in Slide Show mode as in the figure below (use CamStudio “Fixed Region” option to avoid
+          capturing the black vertical bars)
+        </li>
+        <%= image_tag("howto/cam-studo-for-slides/01-slide-mode.png", :alt => 'Start cam studio in slide mode') %>
+
+        <li>Windows users: Use ALT-TAB to bring CamStudio to the forground while PowerPoint is in Slide Show mode –
+          “Select Fixed Region”
+        </li>
+        <%= image_tag("howto/cam-studo-for-slides/02-alt-tab.png", :alt => 'Use ALT-TAB  to bring CamStudio to the forground') %>
+
+        <li>Click on the “Select” button in the “Fixed Region” dialog box</li>
+        <li>Click and drag do define the capture region</li>
+
+        <%= image_tag("howto/cam-studo-for-slides/03-fixed-region.png", :alt => 'Use ALT-TAB  to bring CamStudio to the forground') %>
+
+        <li>Launch CamStudio and select “Record audio from microphone”</li>
+
+        <%= image_tag("howto/cam-studo-for-slides/04-record-from-microphone.png", :alt => 'Record from microphone') %>
+
+        <li>Verify that Keyboard Shortcuts are setup: Select Options->Keyboard Shortcuts</li>
+
+        <%= image_tag("howto/cam-studo-for-slides/05-keyboard-shortcuts.png", :alt => 'Keyboard short cuts') %>
+
+        <p>Note: Record/Pause Key set to F8</p>
+        <p>Note: Stop Key set to F9</p>
+
+        <%= image_tag("howto/cam-studo-for-slides/06-keyboard-shortcuts-dialog.png", :alt => 'Keyboard short cuts dialog') %>
+
+        <li>Now you are ready to record using CamStudio and powerpoint slides</li>
+        <li>Launch CamStudio</li>
+        <li>Launch Powerpoint in slide show mode</li>
+        <li>Use the keyboard shortcut F8 to start recording and again F8 to pause recording while gathering your
+          thoughts and preparing for the next slide
+        </li>
+        <li>Using F8 to Record/Pause will enable you to pause and if needed, switch to another application and continue
+          recording from another application
+        </li>
+      </ol>
+
+    </div>
+    <h5>Audio/mic set-up</h5>
+    <h5>Troubleshooting</h5>
+    <h5>Recording FAQs (link to recording FAQ section)</h5>
+  </div>
+</div>
 <p><%= link_to "Back to Instructor How To's", page_path("instructor-howto-main") %></p>
