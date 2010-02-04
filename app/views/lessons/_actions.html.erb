@@ -1,23 +1,25 @@
 <% lesson = object %>
 
-  <%= link_to_buy(lesson) if link_to_buy(lesson).present? %>
-  <%= link_to_wish(lesson) if link_to_wish(lesson).present? %>
+<%= link_to_buy(lesson) if link_to_buy(lesson).present? %>
+<%= link_to_wish(lesson) if link_to_wish(lesson).present? %>
 
-<% unless Rails.env.test? or g_browser_is?( :name => 'ie') %>
-    <script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#publisher=4c9f1a35-27ec-477c-b9a2-c495092a2fc8&amp;type=website&amp;button=false"></script>
-    <script language="javascript" type="text/javascript">
-        var object = SHARETHIS.addEntry({
-            title:'Firehoze lesson: <%= h(lesson.title) %>',
-            summary:'I thought you might be interested in this Firehoze lesson' },
-        {button:false, embeds:false, buttonText:'Share Lesson'});
-        //Output your customized button
-        document.write('<span id="share"><a href="javascript:void(0);" class="minibutton"><span>Share</span></a></span>');
-        //Tie customized button to ShareThis button functionality.
-        var element = document.getElementById("share");
-        object.attachButton(element);
-    </script>
+<% if false %>
+    <% unless Rails.env.test? or g_browser_is?( :name => 'ie') %>
+        <script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#publisher=4c9f1a35-27ec-477c-b9a2-c495092a2fc8&amp;type=website&amp;button=false"></script>
+        <script language="javascript" type="text/javascript">
+            var object = SHARETHIS.addEntry({
+                title:'Firehoze lesson: <%= h(lesson.title) %>',
+                summary:'I thought you might be interested in this Firehoze lesson' },
+            {button:false, embeds:false, buttonText:'Share Lesson'});
+            //Output your customized button
+            document.write('<span id="share"><a href="javascript:void(0);" class="minibutton"><span>Share</span></a></span>');
+            //Tie customized button to ShareThis button functionality.
+            var element = document.getElementById("share");
+            object.attachButton(element);
+        </script>
+    <% end %>
 <% end %>
 
-  <%= link_to_edit(lesson) if link_to_edit(lesson).present? %>
-  <%= link_to_unreject(lesson, current_user) if link_to_unreject(lesson, current_user).present? %>
-  <%= flag_link(lesson, false) if flag_link(lesson).present? %>
+<%= link_to_edit(lesson) if link_to_edit(lesson).present? %>
+<%= link_to_unreject(lesson, current_user) if link_to_unreject(lesson, current_user).present? %>
+<%= flag_link(lesson, false) if flag_link(lesson).present? %>
