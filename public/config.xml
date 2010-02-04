@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <cu3er>
   <settings>
+    <general ui_visibility_time="6" />
     <auto_play>
       <defaults symbol="circular" time="6"/>
       <tweenIn x="890" y="30" width="35" height="35" tint="0xFFFFFF"/>
