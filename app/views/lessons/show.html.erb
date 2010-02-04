@@ -61,7 +61,7 @@
             <div id="bio">
               <span class="h4"><%= link_to_profile(@instructor) %></span>
 
-              <div id="lesson-instructor-bio"><%= @instructor.bio %></div>
+              <div id="lesson-instructor-bio"><%= rbs_formatter(@instructor.bio) %></div>
             </div>
             <div id="contact-and-follow">
               <% if @instructor.can_contact? current_user %>
