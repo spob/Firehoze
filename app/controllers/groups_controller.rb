@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   if APP_CONFIG[CONFIG_ALLOW_UNRECOGNIZED_ACCESS]
-    before_filter :require_user, :except => [ :index, :show, :list_admin, :tagged_with ]
+    before_filter :require_user, :except => [ :all_tags, :index, :show, :list_admin, :tagged_with ]
   else
     before_filter :require_user
   end

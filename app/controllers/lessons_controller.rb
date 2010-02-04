@@ -2,7 +2,7 @@ class LessonsController < ApplicationController
   include SslRequirement
 
   if APP_CONFIG[CONFIG_ALLOW_UNRECOGNIZED_ACCESS]
-    before_filter :require_user, :only => [:new, :create, :edit, :update, :unreject]
+    before_filter :require_user, :only => [:all_tags, :new, :create, :edit, :update, :unreject]
   else
     before_filter :require_user, :except => [:conversion_notify, :index]
   end
