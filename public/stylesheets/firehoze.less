@@ -9,9 +9,7 @@
 /* custom.css
 ------------------------------------------------------------------------------------------------ */
 
-* {
-  outline: none;
-}
+* { outline: none; }
 
 * a:active, a:focus {outline: none}
 
@@ -99,7 +97,6 @@ ul.bulletless  {
 
 .sad { background: transparent url(../../images/icons/sad.png) top right no-repeat; }
 .happy { background: transparent url(../images/icons/happy.png) top right no-repeat; }
-
 
 ul.browser-list {
   font-weight: bold;
@@ -199,7 +196,10 @@ h4.banner  {
   background: url('../../images/top_navigation/nav-a.png') repeat-x 0 0;
 }
 
-/* HEADER */
+
+/* =========== */
+/* = HEADER  = */
+/* =========== */
 #header {
   height:145px;
   background-image:url('../../images/header/header-bg-tile-tall.png');
@@ -238,7 +238,9 @@ h4.banner  {
   background-position: bottom; /* Set the position to the bottom */
 }
 
-/* TOPNAV */
+/* ========== */
+/* = TOPNAV = */
+/* ========== */
 #top-navigation-container {
   position:absolute;
   top:0;
@@ -246,7 +248,9 @@ h4.banner  {
   font-size:11px;
 }
 
-/* SHADOWBOX */
+/* ============= */
+/* = SHADOWBOX = */
+/* ============= */
 #shadowbox-top {
   z-index:10;
   background: transparent url('../../images/main_navigation/main-navigation-bg.png') no-repeat;
@@ -286,7 +290,9 @@ border-bottom:solid 4px @charcoal-20;
   margin-right: auto;
 }
 
-/* MAIN-NAVIGATION */
+/* =================== */
+/* = MAIN-NAVIGATION = */
+/* =================== */
 #main-navigation {
   z-index:20;
   position:relative;
@@ -360,7 +366,9 @@ ul.admin li.selected.first a,
   color: @steel-blue;
 }
 
-/* FOOTER */
+/* ========== */
+/* = FOOTER = */
+/* ========== */
 #footer {
   height:320px;
   background-image:url('../../images/footer/footer-bg-tile-tall.png');
@@ -468,7 +476,9 @@ div#footer div.in-touch > div {
 }
 
 
-/* FLASH */
+/* ========= */
+/* = FLASH = */
+/* ========= */
 .flash {
   text-align:left;
   display: none;
@@ -518,9 +528,13 @@ div#footer div.in-touch > div {
 }
 
 
-/* REVIEWS */
-
+/* =========== */
+/* = REVIEWS = */
+/* =========== */
 div.reviews-container { }
+
+/* protect any ratings for be influence from any inherited classes */
+ul.ajaxful-rating li { padding:0 !important; }
 
 div.lesson-row,
 div.review {
@@ -565,7 +579,9 @@ div.review #stars {
 }
 
 
-/* BREADCRUMB */
+/* ============== */
+/* = BREADCRUMB = */
+/* ============== */
 #breadcrumb {
   font: 12px @arial;
   height:30px;
@@ -605,7 +621,9 @@ div.review #stars {
 }
 
 
-/* FAQ SECTION */
+/* =============== */
+/* = FAQ SECTION = */
+/* =============== */
 #faqs_section #questions {
   padding: 20px;
   border: solid 2px @gray-80;
@@ -654,7 +672,9 @@ div.review #stars {
 #faqs_section .anchor { }
 
 
-/* GROUPS */
+/* ========== */
+/* = GROUPS = */
+/* ========== */
 #group-container {
   position:relative;
   padding: 20px;
@@ -743,7 +763,6 @@ div#topic-comments-container {
 }
 
 /* header */
-
 div.lesson-comment-header {
   min-height: 2.8em;
 }
@@ -758,7 +777,6 @@ div#topic-comments-container h3.header .group-name {
 }
 
 /* actions */
-
 div#topic-comments-container div#actions {
   position:absolute;
   top:0;
@@ -894,8 +912,6 @@ div.comment-container div.count {
   min-height:3em;
 }
 
-
-
 .with-button {
   padding-right:16em;
 }
@@ -910,7 +926,9 @@ div.comment-container div.count {
 .with-button a.rounded { top:1.5em; right:1em; }
 .with-button a.minibutton { top:1em; right:1em; }
 
-/* ADMIN */
+/* ========= */
+/* = ADMIN = */
+/* ========= */
 .search-box-container {
   border: solid 1px @gray-40;
   margin-bottom:1em;
@@ -920,8 +938,9 @@ div.comment-container div.count {
   padding: 1em 0;
 }
 
-/* STORE */
-
+/* ========= */
+/* = STORE = */
+/* ========= */
 ul.bulletless.buy-credits {
   margin-bottom:4em;
 }
@@ -929,7 +948,6 @@ ul.bulletless.buy-credits {
 ul.bulletless.buy-credits li {
   margin: 2em 0;
 }
-
 
 div.rounded-shadowbox {
   .rounded_corners(5px);
@@ -1043,7 +1061,9 @@ li#advanced-search-icon img {
   padding-right: 22px;
 }
 
-/* SEARCH BOX */
+/* ============== */
+/* = SEARCH BOX = */
+/* ============== */
 #searchwrapper {
   width:187px; /* image's actual height */
   height:36px; /* image's actual width size*/
@@ -1084,8 +1104,12 @@ input.searchbox:focus {
   height:17px;
 }
 
-/* SUBNAV */
+/* ========== */
+/* = SUBNAV = */
+/* ========== */
+
 /*--Drop down trigger styles--*/
+
 ul#top-navigation li span {
   width: 17px;
   height: 34px;
@@ -1102,6 +1126,7 @@ ul#top-navigation li span.subhover {
 }
 
 /*--Hover effect for trigger--*/
+
 ul#top-navigation li ul.subnav {
   .rounded_bottom_corners(6px);
   font: normal 13px/30px @helvetica;
@@ -1144,8 +1169,8 @@ html ul#top-navigation li ul.subnav li a:hover {
 /*---------------------------------------------------------------------------------------------- */
 /* tables.css
 ------------------------------------------------------------------------------------------------ */
-/* Site-wide Table styles */
 
+/* Site-wide Table styles */
 
 table, td { font:100% @arial; background:@white;}
 table { 
@@ -1182,7 +1207,9 @@ td.empty, tr.odd td.empty, tr.even td.empty { background: @white; }
 .left { text-align:left;}
 .center { text-align:center;}
 
-/* TOPICS */
+/* ========== */
+/* = TOPICS = */
+/* ========== */
 table.topic {
   border: solid 1px @medium-gray;
   border-collapse:collapse;
@@ -1208,7 +1235,9 @@ table.topic tr td.icon a:active {
   text-decoration: none !important;
 }
 
-/* LESSON DETAILS*/
+/* ================== */
+/* = LESSON DETAILS = */
+/* ================== */
 table.lesson-details {
   width:100%;
   border-collapse:collapse;	
@@ -1241,7 +1270,9 @@ table.order-summary th {
 /*---------------------------------------------------------------------------------------------- */
 /* tabs.css
 ------------------------------------------------------------------------------------------------ */
+
 /* root element for tabs  */
+
 .tab-container {
   position:relative;
 }
@@ -1505,7 +1536,9 @@ ul.top-level-navigation li.current a {
 /* my_firehoze.css 
 ------------------------------------------------------------------------------------------------ */
 
-/* PANES */
+/* ========= */
+/* = PANES = */
+/* ========= */
 .panes {
   z-index:100;
   position:relative;
@@ -1522,7 +1555,9 @@ ul.top-level-navigation li.current a {
   /*border: solid 1px orange;*/
 }
 
-/* PAGINATION */
+/* ============== */
+/* = PAGINATION = */
+/* ============== */
 div.ajax-pagination {
   top:0;
   right:0;
@@ -1545,7 +1580,9 @@ div#activities_pagination  {
   padding: 1px 0;
 }
 
-/* WIDGET-BOX */
+/* ============== */
+/* = WIDGET-BOX = */
+/* ============== */
 div.widget-box {
   margin:0 0 34px 0;
   padding: 0px;
@@ -1571,6 +1608,7 @@ div.widget-box-header {
 .widget-box-content {
   margin:0;
 }
+
 .widget-box-content ul {
   margin:0;
 }
@@ -1589,6 +1627,7 @@ div.widget-box-header {
   border-top:0 none;
   margin-top:0;
 }
+
 .widget-box-footer {
   margin:0;
   padding:12px;
@@ -1630,7 +1669,9 @@ div.no-nested-nav-potentially-paginated {
   padding-top:34px;
 }
 
-/* FOLLOWERS MOSAIC */
+/* ==================== */
+/* = FOLLOWERS MOSAIC = */
+/* ==================== */
 
 ul.users-mosaic {
   margin:0;
@@ -1667,7 +1708,10 @@ ul.users-mosaic a:hover .avatar {
 /*---------------------------------------------------------------------------------------------- */
 /* lessons.css
 ------------------------------------------------------------------------------------------------ */
-/* LESSONS (PLURAL) */
+
+/* ==================== */
+/* = LESSONS (PLURAL) = */
+/* ==================== */
 
 .lessons-container {
   margin:0;
@@ -1797,7 +1841,9 @@ position:relative;
 }
 */
 
-/*  SIMPLE BLUE THEMED BOX */
+/* ========================== */
+/* = SIMPLE BLUE THEMED BOX = */
+/* ========================== */
 .blue-box  {
   margin:0;
   padding:0;
@@ -1871,7 +1917,9 @@ position:relative;
   background-color:transparent;
 }
 
-/* CATEGORY ROUND UP */
+/* ===================== */
+/* = CATEGORY ROUND UP = */
+/* ===================== */
 .blue-box ul#categories-header.section li.header span {
   background: url('../../images/forms/fh-icon.png') no-repeat top left;
 }
@@ -2250,14 +2298,18 @@ div#what-do-students-ultimately-buy-container div.widget-box-content h3 {
   padding-left:2.4em;
 }
 
-/* STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT... */
+/* ================================================= */
+/* = STUDENTS WHO BOUGHT THIS VIDEO ALSO BOUGHT... = */
+/* ================================================= */
 #bought-this-video-also-bought {
   .rounded_corners(8px);
   padding:10px 17px 24px 17px;
   background-color: @light-blue-30;
 }
 
-/* WHAT DO STUDENTS ULTIMATELY BUY AFTER BROWSING THIS ITEM? */
+/* ============================================================= */
+/* = WHAT DO STUDENTS ULTIMATELY BUY AFTER BROWSING THIS ITEM? = */
+/* ============================================================= */
 div#what-do-students-ultimately-buy-container {
   .rounded_corners(8px);
   padding:24px;
@@ -2360,7 +2412,9 @@ div.nested-navigation {
 
 .nested-navigation-panes { }
 
-/* Rounded links */
+/* ================= */
+/* = ROUNDED LINKS = */
+/* ================= */
 
 a.rounded  {
   .rounded_corners(12px);
@@ -2455,9 +2509,6 @@ div#group-container a.rounded.current {
 *:first-child+html .ajax-pagination {
   overflow: hidden;
 }
-
-
-
 
 
 /*---------------------------------------------------------------------------------------------- */
@@ -2729,7 +2780,9 @@ div.selector select#user_time_zone  {
   width: 300px !important;
 }
 
-/* USER AGREEMENT */
+/* ================== */
+/* = USER AGREEMENT = */
+/* ================== */
 div#user-agreement h4 {
   color:@dark-blue-10;
   margin-left:0;
@@ -2837,7 +2890,9 @@ a.printer-friendly:hover {
 }
 
 
-/* UNIFORM JQUERY PLUGIN CSS */
+/* ============================= */
+/* = UNIFORM JQUERY PLUGIN CSS = */
+/* ============================= */
 div.checker {
   .rounded_corners;
   height: 18px;
@@ -2980,7 +3035,9 @@ div.selector select {
   padding-right: 40px;
 }
 
-/*  FORM ERRORS */
+/* =============== */
+/* = FORM ERRORS = */
+/* =============== */
 
 span.required-field {
   z-index: 1;
@@ -3063,7 +3120,9 @@ span.error.valid {
   margin: 5px 5px 5px 10px;
 }
 
-/* CHARACTER COUNTER */
+/* ===================== */
+/* = CHARACTER COUNTER = */
+/* ===================== */
 div.counter {
   margin:3px 0 0 175px;
 }
@@ -3098,7 +3157,9 @@ div.counter .over { color:red }
 /* users.css
 ------------------------------------------------------------------------------------------------ */
 
-/* User stuff */
+/* ============== */
+/* = USER STUFF = */
+/* ============== */
 ul.users {
   list-style:none;
   margin:0;
@@ -3116,7 +3177,9 @@ ul.users li .details {
 }
 
 
-/* Group stuff */
+/* =============== */
+/* = GROUP STUFF = */
+/* =============== */
 ul.groups {
   list-style:none;
   margin:0;
@@ -3332,7 +3395,6 @@ div#user-stats-container ul {
   font-size:16px;
 }
 
-
 #marketing_fpo_left {
   padding: 30px 30px 10px 30px;
   border-right: solid 2px @gray-40;
@@ -3343,9 +3405,9 @@ div#user-stats-container ul {
   border: 0;
 }
 
-
-
-/* Instructor Signup Wizard */
+/* ============================ */
+/* = INSTRUCTOR SIGNUP WIZARD = */
+/* ============================ */
 #instructor_agreement {
   font-size:0.83em;  /* 0.83em == 10px */
   background-color: @white;
