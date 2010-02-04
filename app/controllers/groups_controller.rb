@@ -61,7 +61,6 @@ class GroupsController < ApplicationController
       else
         set_cookie 'ALL'
       end
-      puts "=======================================================#{cookies[:browse_activities_by]}"
       if cookies[:browse_activities_by] == 'BY_ME'
         @activities = Activity.group_id_equals(@group.id).visible_to_user(current_user).actor_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
       elsif cookies[:browse_activities_by] == 'ON_ME'
