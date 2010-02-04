@@ -101,7 +101,7 @@ class MyFirehozeController < ApplicationController
         Activity.visible_to_user(current_user).actor_user_id_not_equal_to(current_user).actee_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
       when 'BY_FOLLOWED'
         Activity.by_followed_instructors(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
-      else
+      else  # All
         Activity.visible_to_user(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
     end
   end
@@ -181,11 +181,11 @@ class MyFirehozeController < ApplicationController
     elsif cookies[parameter].nil?
       set_cookie(parameter, default_value)
     end
+    cookies[parameter]
   end
 
   def set_cookie param, value
     cookies[param] = { :value => value, :expires => 1.hour.from_now }
-    cookies[param]
   end
 
   def retrieve_by_pane(pane)
