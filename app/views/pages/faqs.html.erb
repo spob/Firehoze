@@ -124,7 +124,9 @@
   <h5>Can people contact me directly?</h5>
 
   <div>
-    <p>Only if you want them to. The default is 'no' but to change this setting go to <%= link_to_if current_user, "Account Settings", edit_privacy_account_path(current_user ? current_user : "1") %> at
+    <p>Only if you want them to. The default is 'no' but to change this setting go
+      to <%= link_to_if current_user, "Account Settings", edit_privacy_account_path(current_user ? current_user : "1") %>
+      at
       the top of the page and click on the 'Privacy' tab to make your selection.</p>
   </div>
 
@@ -146,34 +148,43 @@
   <h5>Where can I find a record of lessons I've purchased?</h5>
 
   <div>
-    <p>Navigate to <%= link_to_if current_user, "My Firehoze", my_stuff_my_firehoze_path(:anchor => 'owned') %> and click on the "My Stuff" button.</p>
+    <p>Navigate to <%= link_to_if current_user, "My Firehoze", my_stuff_my_firehoze_path(:anchor => 'owned') %> and
+      click on the "My Stuff" button.</p>
   </div>
 
   <h5>Where can I see how many credits I have left?</h5>
 
   <div>
-    <p>Navigate to <%= link_to_if current_user, "My Firehoze", account_history_my_firehoze_path(:anchor => "available_credits") %>. You'll see your credits remaining in the top right corner of the page.</p>
+    <p>Navigate
+      to <%= link_to_if current_user, "My Firehoze", account_history_my_firehoze_path(:anchor => "available_credits") %>
+      . You'll see your credits remaining in the top right corner of the page.</p>
   </div>
 
   <h5>How do I change my user name?</h5>
 
   <div>
-    <p>To change your username, click on the <%= link_to_if current_user, "Account Settings", edit_account_path(current_user ? current_user : "1") %> link at the top of the site.
+    <p>To change your username, click on
+      the <%= link_to_if current_user, "Account Settings", edit_account_path(current_user ? current_user : "1") %> link
+      at the top of the site.
     </p>
   </div>
 
   <h5>How can I change my password?</h5>
 
   <div>
-    <p>To change your password, click on the <%= link_to_if current_user, "Account Settings", edit_password_path(current_user ? current_user : "1") %> link at the top of the site. Then go to the
+    <p>To change your password, click on
+      the <%= link_to_if current_user, "Account Settings", edit_password_path(current_user ? current_user : "1") %> link
+      at the top of the site. Then go to the
       'Password' tab.</p>
   </div>
 
   <h5>How do I edit my email information?</h5>
 
   <div>
-    <p>To change your address or contact information, click on the <%= link_to_if current_user, "Account Settings", edit_account_path(current_user ? current_user : "1") %> link at the top of the site.
-    link at the top of the site, then click on the 'Profile' tab.</p>
+    <p>To change your address or contact information, click on
+      the <%= link_to_if current_user, "Account Settings", edit_account_path(current_user ? current_user : "1") %> link
+      at the top of the site.
+      link at the top of the site, then click on the 'Profile' tab.</p>
   </div>
 
   <h5>How can I retrieve my password and/or member name?</h5>
@@ -212,7 +223,8 @@
   <h5>Where are my receipts?</h5>
 
   <div>
-    <p>Navigate to <%= link_to_if current_user, "My Firehoze", account_history_my_firehoze_path(:anchor => "orders") %>, click on the "Account History" button and then click the "Orders" tab.</p>
+    <p>Navigate to <%= link_to_if current_user, "My Firehoze", account_history_my_firehoze_path(:anchor => "orders") %>,
+      click on the "Account History" button and then click the "Orders" tab.</p>
   </div>
 
   <h5>How can I give credits to someone else?</h5>
@@ -225,7 +237,9 @@
   <h5>Where are my receipts/download history?</h5>
 
   <div>
-    <p>Navigate to <%= link_to_if current_user, "My Firehoze", account_history_my_firehoze_path(:anchor => "used_credits") %> and click on the "Account History" button.</p>
+    <p>Navigate
+      to <%= link_to_if current_user, "My Firehoze", account_history_my_firehoze_path(:anchor => "used_credits") %> and
+      click on the "Account History" button.</p>
   </div>
 
   <h5>Do credits expire?</h5>
@@ -282,7 +296,9 @@
   <h5>How can I see how much money I've made?</h5>
 
   <div>
-    <p>Navigate to <%= link_to_if current_user.try("verified_instructor?"), "My Firehoze", instructor_my_firehoze_path %> and click on the "Instructor Dashboard" button. Note the Instructor Dashboard
+    <p>Navigate
+      to <%= link_to_if current_user.try("verified_instructor?"), "My Firehoze", instructor_my_firehoze_path %> and
+      click on the "Instructor Dashboard" button. Note the Instructor Dashboard
       button will only appear if you have signed up to be an instructor.</p>
   </div>
 
@@ -371,7 +387,8 @@
 
     <p>To eliminate this you may want to either download the appropriate video player, or save your video in a format
       that you are able to play locally. If you are an IE user and receiving this error when trying to upload an MP4,
-      downloading 3ivx should help eliminate the issue. Click <a href="http://www.3ivx.com/download/windows.html">here</a> to download.</p>
+      downloading 3ivx should help eliminate the issue. Click
+      <a href="http://www.3ivx.com/download/windows.html">here</a> to download.</p>
   </div>
 
   <h5>I keep getting kicked off before my lesson has finished uploading. What should I do?</h5>
@@ -531,34 +548,34 @@
 <h5>Can I use a tool such as PowerPoint to create my lessons?</h5>
 
 <div>
-    <div style="width:<%= PLAYER_WIDTH %>px;height:<%= PLAYER_HEIGHT %>px;" id="playerbox"></div>
-    <script language='javascript'>
-        //$f("playerbox", "http://<%= APP_CONFIG[CONFIG_HOST] %>:<%= APP_CONFIG[CONFIG_PORT] %>/swf/flowplayer-3.1.5.swf", {
-        $f("playerbox", "http://releases.flowplayer.org/swf/flowplayer.commercial-3.1.5.swf", {
+  <div style="width:<%= PLAYER_WIDTH %>px;height:<%= PLAYER_HEIGHT %>px;" id="playerbox"></div>
+  <script language='javascript'>
+      //$f("playerbox", "http://<%= APP_CONFIG[CONFIG_HOST] %>:<%= APP_CONFIG[CONFIG_PORT] %>/swf/flowplayer-3.1.5.swf", {
+      $f("playerbox", "http://releases.flowplayer.org/swf/flowplayer.commercial-3.1.5.swf", {
 
-            key: '#$2530218aaff22a9be9e',
-            canvas: {
-                background: 'url(/images/videos/watermark-v2.png)  no-repeat 420 10'
-            },
-            play: {
-                label: 'Play',
-                replayLabel: 'Play again'
-            },
-            clip: {
-                autoPlay:false,
-                autoBuffering:false,
-                url: 'flv:output/mkt/HowTo1.flv',
-                provider: 'simplecdn',
-                accelerated: true
-            },
-            plugins: {
-                simplecdn: {
-                    url: 'flowplayer.rtmp-3.1.3.swf',
-                    netConnectionUrl: 'rtmp://e1f1.simplecdn.net/play'
-                }
-            }
-        });
-    </script>
+          key: '#$2530218aaff22a9be9e',
+          canvas: {
+              background: 'url(/images/videos/watermark-v2.png)  no-repeat 420 10'
+          },
+          play: {
+              label: 'Play',
+              replayLabel: 'Play again'
+          },
+          clip: {
+              autoPlay:false,
+              autoBuffering:false,
+              url: 'flv:output/mkt/HowTo1.flv',
+              provider: 'simplecdn',
+              accelerated: true
+          },
+          plugins: {
+              simplecdn: {
+                  url: 'flowplayer.rtmp-3.1.3.swf',
+                  netConnectionUrl: 'rtmp://e1f1.simplecdn.net/play'
+              }
+          }
+      });
+  </script>
   <br/>
 </div>
 
@@ -567,7 +584,7 @@
 <div>
   <p>Yes. The following video walks you through the process.</p>
 
-<div>
+  <div>
     <div style="width:<%= PLAYER_WIDTH %>px;height:<%= PLAYER_HEIGHT %>px;" id="playerbox2"></div>
     <script language='javascript'>
         //$f("playerbox", "http://<%= APP_CONFIG[CONFIG_HOST] %>:<%= APP_CONFIG[CONFIG_PORT] %>/swf/flowplayer-3.1.5.swf", {
@@ -596,60 +613,61 @@
             }
         });
     </script>
-  <br/>
+    <br/>
+  </div>
+
+  <h5>How do I save my videos as an mp4 with Camtasia?</h5>
+
+  <div>
+    <p>Click on 'Share', 'Export' and save the video with your desired title.</p>
+  </div>
+
+  <h5>How do I adjust my Microphone settings when using Windows XP?</h5>
+
+  <div>
+    <p>Follow the following steps:</p>
+    <ol>
+      <li>
+        Double click left mouse button on “speaker” icon to open the Volume Control
+        <br/>
+        <%= image_tag("FAQs/xp_microphone/microphone1.png", :alt => 'Double click left mouse button on “speaker” icon to open the Volume Control') %>
+        <br/>
+      </li>
+      <li>
+        Select Options-> Properties from the Volume Control dialog
+        <br/>
+        <%= image_tag("FAQs/xp_microphone/microphone2.png", :alt => 'Select Options-> Properties from the Volume Control dialog') %>
+        <br/>
+      </li>
+      <li>
+        Select “Recording” on the Properties: check Line In, External Mic and Internal Mic then select “OK”
+        <br/>
+        <%= image_tag("FAQs/xp_microphone/microphone3.png", :alt => 'Select “Recording” on the Properties: check Line In, External Mic and Internal Mic then select “OK”') %>
+        <br/>
+      </li>
+      <li>
+        If you choose to use your built-in microphone then select “Internal Mic” and increase the volume as necessary.
+        Select “External Mic” if you have an external microphone.
+        <br/>
+        <%= image_tag("FAQs/xp_microphone/microphone4.png", :alt => 'select “Internal Mic” and increase the volume as necessary') %>
+        <br/>
+      </li>
+      <li>
+        Select Options->Advanced Controls from the Recording Control menu then select “Advanced” on the Internal Mic
+        or External Mic based on your setup.
+        <br/>
+        <%= image_tag("FAQs/xp_microphone/microphone5.png", :alt => 'Select “Advanced” on the Internal Mic or External Mic') %>
+        <br/>
+      </li>
+      <li>
+        Select “Microphone Boost” on the Advanced Controls for Internal Mic
+        <br/>
+        <%= image_tag("FAQs/xp_microphone/microphone6.png", :alt => 'Select “Microphone Boost” on the Advanced Controls for Internal Mic') %>
+        <br/>
+      </li>
+    </ol>
+  </div>
+  <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
 </div>
-
-<h5>How do I save my videos as an mp4 with Camtasia?</h5>
-
-<div>
-  <p>Click on 'Share', 'Export' and save the video with your desired title.</p>
-</div>
-
-<h5>How do I adjust my Microphone settings when using Windows XP?</h5>
-
-<div>
-  <p>Follow the following steps:</p>
-  <ol>
-    <li>
-      Double click left mouse button on “speaker” icon to open the Volume Control
-      <br/>
-      <%= image_tag("FAQs/xp_microphone/microphone1.png", :alt => 'Double click left mouse button on “speaker” icon to open the Volume Control') %>
-      <br/>
-    </li>
-    <li>
-      Select Options-> Properties from the Volume Control dialog
-      <br/>
-      <%= image_tag("FAQs/xp_microphone/microphone2.png", :alt => 'Select Options-> Properties from the Volume Control dialog') %>
-      <br/>
-    </li>
-    <li>
-      Select “Recording” on the Properties: check Line In, External Mic and Internal Mic then select “OK”
-      <br/>
-      <%= image_tag("FAQs/xp_microphone/microphone3.png", :alt => 'Select “Recording” on the Properties: check Line In, External Mic and Internal Mic then select “OK”') %>
-      <br/>
-    </li>
-    <li>
-      If you choose to use your built-in microphone then select “Internal Mic” and increase the volume as necessary.
-      Select “External Mic” if you have an external microphone.
-      <br/>
-      <%= image_tag("FAQs/xp_microphone/microphone4.png", :alt => 'select “Internal Mic” and increase the volume as necessary') %>
-      <br/>
-    </li>
-    <li>
-      Select Options->Advanced Controls from the Recording Control menu then select “Advanced” on the Internal Mic
-      or External Mic based on your setup.
-      <br/>
-      <%= image_tag("FAQs/xp_microphone/microphone5.png", :alt => 'Select “Advanced” on the Internal Mic or External Mic') %>
-      <br/>
-    </li>
-    <li>
-      Select “Microphone Boost” on the Advanced Controls for Internal Mic
-      <br/>
-      <%= image_tag("FAQs/xp_microphone/microphone6.png", :alt => 'Select “Microphone Boost” on the Advanced Controls for Internal Mic') %>
-      <br/>
-    </li>
-  </ol>
-</div>
-<p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
 </div>
 </div>
