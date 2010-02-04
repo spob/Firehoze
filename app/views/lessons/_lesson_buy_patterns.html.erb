@@ -20,7 +20,7 @@
               <% end -%>
               <%= lesson_rating_for(buy_pattern.purchased_lesson, current_user, :static, :small_stars => true) -%>
               <% unless buy_pattern.purchased_lesson.reviews.empty? -%>
-                <%= link_to pluralize(Review.list_count(buy_pattern.purchased_lesson.reviews, current_user), 'Review'), lesson_reviews_path(buy_pattern.purchased_lesson) -%>
+                <%= link_to pluralize(Review.list_count(buy_pattern.purchased_lesson, current_user), 'Review'), lesson_reviews_path(buy_pattern.purchased_lesson) -%>
               <% end -%>
             </div>
           </li>
