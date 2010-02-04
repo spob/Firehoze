@@ -73,7 +73,7 @@ class ApplicationController < ActionController::Base
 
   def check_browser
     return true if Rails.env.test?
-    @detector = BrowserDetector::Detector.new( request.env['HTTP_USER_AGENT'] )
+    @detector = SpobBrowserDetector::Detector.new( request.env['HTTP_USER_AGENT'] )
     by_pass = (!@detector.browser_is?(:name => 'ie', :major_version => '6') or (params[:controller] == 'pages' or (params[:controller] == 'lessons' and params[:action] == 'index')))
     if (cookies[:browser_ok] == "ok" or by_pass)
       true
