@@ -1,15 +1,55 @@
 <% title "Uploading How To's" -%>
-<h3>Uploading How To's</h3>
+<% content_for :head do -%>
+    <a name="top" id="top" class="anchor"></a>
+<% end -%>
 
-<p>Ready to share your lesson with the community. Here are some tips and advice to get your lesson online and seen.</p>
-<ul>
-<li>Best video formats for uploading</li>
-<li>How to upload</li>
-<li>Tagging tips</li>
-<li>Why add Synopsis and Notes</li>
-<li>How to add attachments/why</li>
-<li>Tools for video conversion</li>
-<li>Troubleshooting</li>
-<li><%= link_to "More Uploading FAQs", page_path("faqs", :anchor => "contributing-uploading-lessons") %></li>
-</ul>
+<div id="howtos_section">
+  <div class="answers">
+    <h3>Uploading How To's</h3>
+
+    <p>Ready to share your lesson with the community? Here are some tips and advice to get your lesson online and
+      seen.</p>
+    <h5>Best video formats for uploading</h5>
+    <h5>How to upload a lesson</h5>
+
+    <div>
+      <ol>
+        <li>Log in to firehoze and select “create lesson”</li>
+        <li>Fill out the required fields including “Title” use a descriptive title</li>
+        <li>Provide a brief synopsis of your lesson in the “Synopsis” field</li>
+        <li>Enter notes that will help your students in the “Notes” field</li>
+        <%= image_tag("howto/howto-upload/image001-enter-fields.png", :alt => 'Enter lesson fields') %>
+        <li>Provide tags that will help students find your lessons</li>
+        <li>Chose at least 5 free downloads so that your lesson will get rated</li>
+        <li>Chose a category that is appropriate to you lesson, select “Everything Else” if you cannot find a good match
+          and use the GetSatisfaction feedback option or send email to info@firehoze.com to request additional
+          categories
+        </li>
+        <li>Select the “Video” to be uploaded.</li>
+        <li>Finally select “Create Lesson”. Ensure you have a high speed connection and your laptop is plugged into a
+          power outlet (not running on batteries)
+        </li>
+        <p>Note: The file size of typical lessons are very large and take time to upload. While an email is typically
+          less than 1Mb, a lesson can easily be larger than 100Mb. It is best to upload when having a reliable high
+          speed internet connection.
+          “Uploading, pleasing standby ... Don't leave the page...the upload will take a while — but it's still working
+          (leaving this page before the upload has completed will result in making your lesson unavailable to
+          others)”</p>
+        <li>“Success!</li>
+      </ol>
+      <p>Your lesson created and your video has been submitted for processing. You should receive notification when your
+        lesson video is ready for viewing.”</p>
+
+      <p>Note: Once uploaded, processing time ranges from 15 minutes to 2 hours depending on the number lessons that
+        need to be processed. Please allow up to 24 hours before reporting an issue.</p>
+    </div>
+    <h5>Tagging tips</h5>
+    <h5>Why add Synopsis and Notes</h5>
+    <h5>How to add attachments and why</h5>
+    <h5>Tools for video conversion</h5>
+    <h5>Troubleshooting</h5>
+    <h5><%= link_to "More Uploading FAQs", page_path("faqs", :anchor => "contributing-uploading-lessons") %></h5>
+  </div>
+  <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
+</div>
 <p><%= link_to "Back to Instructor How To's", page_path("instructor-howto-main") %></p>
