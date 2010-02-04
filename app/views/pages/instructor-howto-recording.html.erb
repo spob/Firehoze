@@ -12,11 +12,33 @@
     <h5>Optimize your video lesson for the Firehoze site</h5>
     <h5>CamStudio/PPT video</h5>
     <h5>How to download & configure CamStudio</h5>
+
+    <div>
+      <p>Download CamStudio</p>
+      <ul>
+        <li>Navigate to <%= link_to "http://camstudio.org", "http://camstudio.org" %> and scroll down to “So where can I
+          get it and how much does it cost?”
+        </li>
+        <li>Click on the link CamStudio: CamStudio20.exe and install the application</li>
+        <li>Click on the link Lossless Codec: CamStudioCodec14.exe and install the lossless codec</li>
+        <%= image_tag("howto/download-camstudio/image_001_download_camstudio.png", :alt => 'Download Camstudio') %>
+      </ul>
+      <p>Configure CamStudio</p>
+      <ul>
+        <li>Launch CamStudio and select “Record audio from microphone”</li>
+        <%= image_tag("howto/download-camstudio/image_002_record_audio.png", :alt => 'Launch Camstudio') %>
+        <li>Setup the region of screen to be captured Launch CamStudio and select “Region” or “Fixed Region” (Note: Full
+          Screen is not recommended)
+        </li>
+        <%= image_tag("howto/download-camstudio/image_003_region.png", :alt => 'Download Camstudio') %>
+      </ul>
+    </div>
     <h5>How to configure CamStudio to capture PowerPoint slides</h5>
 
     <div>
-        <p>For best results, use a “Fixed Region” when creating lessons using CamStudio and PowerPoint.</p>
-        <p>Follow these steps:</p>
+      <p>For best results, use a “Fixed Region” when creating lessons using CamStudio and PowerPoint.</p>
+
+      <p>Follow these steps:</p>
       <ol>
         <li>Start CamStudio</li>
         <li>Start PowerPoint in Slide Show mode as in the figure below (use CamStudio “Fixed Region” option to avoid
@@ -43,6 +65,7 @@
         <%= image_tag("howto/cam-studo-for-slides/05-keyboard-shortcuts.png", :alt => 'Keyboard short cuts') %>
 
         <p>Note: Record/Pause Key set to F8</p>
+
         <p>Note: Stop Key set to F9</p>
 
         <%= image_tag("howto/cam-studo-for-slides/06-keyboard-shortcuts-dialog.png", :alt => 'Keyboard short cuts dialog') %>
@@ -63,5 +86,6 @@
     <h5>Troubleshooting</h5>
     <h5>Recording FAQs (link to recording FAQ section)</h5>
   </div>
+  <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
 </div>
 <p><%= link_to "Back to Instructor How To's", page_path("instructor-howto-main") %></p>
