@@ -567,19 +567,35 @@
 <div>
   <p>Yes. The following video walks you through the process.</p>
 
-  <div id="flashbanner">this will be replaced by the SWF.</div>
-  <script type="text/javascript">
-      var so1 = new SWFObject('/swf/player.swf', 'jw_player', '480', '396', '9');
-      so1.addParam('allowfullscreen', 'true');
-      so1.addParam('width', '480');
-      so1.addParam('play', 'true');
-      so1.addParam('flashvars', 'streamer=rtmp://e1f1.simplecdn.net/play&file=output/mkt/HowTo2.flv');
-      so1.addParam('quality', 'autohigh');
-      so1.addParam('menu', 'false');
-      so1.addParam('scale', 'default');
-      so1.addParam('height', '396');
-      so1.write('flashbanner');
-  </script>
+<div>
+    <div style="width:<%= PLAYER_WIDTH %>px;height:<%= PLAYER_HEIGHT %>px;" id="playerbox2"></div>
+    <script language='javascript'>
+        //$f("playerbox", "http://<%= APP_CONFIG[CONFIG_HOST] %>:<%= APP_CONFIG[CONFIG_PORT] %>/swf/flowplayer-3.1.5.swf", {
+        $f("playerbox2", "http://releases.flowplayer.org/swf/flowplayer.commercial-3.1.5.swf", {
+
+            key: '#$2530218aaff22a9be9e',
+            canvas: {
+                background: 'url(/images/videos/watermark-v2.png)  no-repeat 420 10'
+            },
+            play: {
+                label: 'Play',
+                replayLabel: 'Play again'
+            },
+            clip: {
+                autoPlay:false,
+                autoBuffering:false,
+                url: 'flv:output/mkt/HowTo2.flv',
+                provider: 'simplecdn',
+                accelerated: true
+            },
+            plugins: {
+                simplecdn: {
+                    url: 'flowplayer.rtmp-3.1.3.swf',
+                    netConnectionUrl: 'rtmp://e1f1.simplecdn.net/play'
+                }
+            }
+        });
+    </script>
   <br/>
 </div>
 
