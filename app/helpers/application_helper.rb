@@ -170,7 +170,7 @@ module ApplicationHelper
 
   def random_quote 
     [
-      "In the competitive world of college admissions, grades and test scores make a difference. A cutting-edge tutoring method will help students of all learning abilities and skill levels. This is exciting and innovative. I am excited to see where Firehoze is going to take our future leaders. &mdash; Cheri Barad, Education Consultant",
+      "In the competitive world of college admissions, grades and test scores make a difference. A cutting-edge tutoring method will help students of all learning abilities and skill levels. This is exciting and innovative. I am excited to see where Firehoze is going to take our future leaders.&nbsp;&nbsp;&nbsp;<br />&mdash; Cheri Barad, Education Consultant",
       "This is going to make tutoring more fun and personal.<br /> &mdash; Sam P, Chestnut Hill",
       "Being able to take the tutoring classes at my own pace will be better suited for my learning style.<br /> &mdash; Sarah C, Medfield",
       "I'll be able to choose the tutor I want that appeals to my learning methods.<br /> &mdash; Joe W, Westwood"
