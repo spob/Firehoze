@@ -56,15 +56,16 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
-    @groups = @user.member_groups.ascend_by_name.public
     unless @user.active or (current_user and (current_user.is_a_moderator? or !current_user.is_an_admin?))
       flash[:error] = t 'user.inactive_cannot_show'
       redirect_to lessons_path
     end
     if current_user.try("is_a_moderator?") or current_user.try("is_an_admin?")
+      @groups = @user.member_groups.ascend_by_name.public
       @lessons = @user.instructed_lessons.all(:include => [:instructor, :tags])
       @reviews = @user.reviews.all(:include => [:user, :lesson])
     else
+      @groups = @user.member_groups.active.ascend_by_name.public
       @lessons = @user.instructed_lessons.ready.all(:include => [:instructor, :tags])
       @reviews = @user.reviews.ready.ready_lesson(:include => [:user, :lesson])
     end
