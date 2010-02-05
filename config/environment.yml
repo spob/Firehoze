@@ -82,3 +82,6 @@ allow_unrecognized_access: true
 
 # allow crawlers. Valid values are "ALL" and "noindex"
 crawler_access: ALL
+
+# The id of the main firehoze instructor's group
+firehoze_instructors_group_id: -1

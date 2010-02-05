@@ -53,6 +53,7 @@ CONFIG_CDN_VIDEO_BUCKET = 'cdn_video_bucket'
 CONFIG_RESTRICT_REGISTRATION = 'restrict_registration'
 CONFIG_ALLOW_UNRECOGNIZED_ACCESS  = 'allow_unrecognized_access'
 CONFIG_CRAWLER_ACCESS  = 'crawler_access'
+CONFIG_FIREHOZE_INSTRUCTOR_GROUP_ID = 'firehoze_instructors_group_id'
 
 # Configuration properties in the s3.yml file
 CONFIG_AWS_ACCESS_KEY_ID = 'access_key_id'
@@ -140,3 +141,4 @@ PENDING = 'PENDING'
 FIREHOZE_TWEETS = 'FIREHOZE'
 
 RESTRICT_INSTRUCTOR_SIGNUP = false
+
