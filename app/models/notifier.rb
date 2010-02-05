@@ -171,6 +171,17 @@ class Notifier < ActionMailer::Base
                :url => lesson_url(video.lesson, url_options)
   end
 
+  # Notify a user and admins that a video failed to transcode
+  def instructor_sign_up(user)
+    user = User.find(user)
+    subject    "#{user.login} became an instructor"
+    recipients  User.communitymgrs.collect(&:email)
+    from         APP_CONFIG[CONFIG_ADMIN_EMAIL]
+
+    body       :user => user,
+               :url => user_url(user, url_options)
+  end
+
   # Notify the admin that a video never completed their transcoding
   def lesson_processing_hung(lesson)
     subject    "The video for lesson #{lesson.id} never completed processing"

@@ -74,6 +74,10 @@ class User < ActiveRecord::Base
               :joins => [:roles],
               :conditions => { :roles => {:name => 'moderator'}},
               :order => :email
+  named_scope :communitymgrs,
+              :joins => [:roles],
+              :conditions => { :roles => {:name => 'communitymgr'}},
+              :order => :email
 
   sql = %Q{
     address1 is not null and
@@ -313,6 +317,14 @@ END
 
   def username
     login
+  end
+
+  def self.notify_instructor_signup user_id
+    user = User.find(user_id)
+    unless user.instructor_signup_notified_at.present?
+      Notifier.deliver_instructor_sign_up(user)
+      user.update_attribute(:instructor_signup_notified_at, Time.now)
+    end
   end
 
   def can_edit? current_user

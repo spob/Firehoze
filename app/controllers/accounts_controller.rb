@@ -34,6 +34,11 @@ class AccountsController < ApplicationController
 
   def instructor_wizard_step5
     enforce_order @user, 5
+    unless @user.instructor_signup_notified_at.present?
+      RunOncePeriodicJob.create!(
+              :name => 'Notify New Instructor',
+              :job => "User.notify_instructor_signup(#{@user.id})")
+    end
   end
 
   def update_address
@@ -189,11 +194,11 @@ class AccountsController < ApplicationController
 
     if @user.save
       flash[:notice] = t 'account_settings.update_success'
-    # specify the id specifically because if the user updates the login, the user won't be
-    # found because of the slugging
-    redirect_to edit_account_path(@user.id)
+      # specify the id specifically because if the user updates the login, the user won't be
+      # found because of the slugging
+      redirect_to edit_account_path(@user.id)
     else
-        render :action => 'edit'
+      render :action => 'edit'
     end
   end
 
