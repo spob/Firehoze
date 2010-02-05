@@ -1,7 +1,9 @@
 <% title "Add a Comment to &quot;#{h(@topic_comment.topic.title)}&quot;" -%>
 
 <%= stylesheet 'validation' %>
-<%= javascript 'plugins/jquery.validate.min', 'validation/topic_comments.validate' %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'validation/topic_comments.validate' %>
+<% end -%>
 
 <div class="fh-form">
   <% form_for(:topic_comment, :url => topic_topic_comments_url(@topic), :html => { :id => "topic_comment" }) do |f| %>

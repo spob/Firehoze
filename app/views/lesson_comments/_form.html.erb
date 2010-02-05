@@ -1,4 +1,6 @@
-<%= javascript 'validation/lesson_comment.validate' %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'validation/lesson_comment.validate' -%>
+<% end -%>
 
 <div class="fh-form">
   <% form_for(:lesson_comment, :url => (@lesson_comment.new_record? ? lesson_lesson_comments_url(@lesson) : lesson_comment_path(@lesson_comment)), :html => { :method => (@lesson_comment.new_record? ? :post : :put), :class => "lesson_comment", :id => "lesson_comment" }) do |f| %>

@@ -1,4 +1,6 @@
-<%= javascript 'validation/lesson.validate' %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'validation/lesson.validate' %>
+<% end -%>
 
 <div class="fh-form" >
   <div style="width:628px"><%= render :partial => 'upload_warning' %></div>

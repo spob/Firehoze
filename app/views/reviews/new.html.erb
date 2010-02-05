@@ -1,6 +1,8 @@
 <% title "Write a review for &quot;#{h(@lesson.title)}&quot;" -%>
 
-<%= javascript 'validation/review.validate' %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'validation/review.validate' %>
+<% end -%>
 
 <div class="fh-form">
   <% form_for(:review, :url => lesson_reviews_url(@lesson), :html => { :class => "review", :id => "review" }) do |f| %>

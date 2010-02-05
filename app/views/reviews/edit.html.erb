@@ -1,6 +1,8 @@
 <% title "Edit review of &quot;#{h(@review.lesson.title)}&quot;" -%>
 
-<%= javascript 'validation/review.validate' %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'validation/review.validate' %>
+<% end -%>
 
 <div class="fh-form">
   <% form_for :review, :url => review_path(@review), :html => { :method => :put, :id => "review" } do |f| %>

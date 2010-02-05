@@ -1,6 +1,8 @@
 <% title "Checkout" -%>
 
-<%= javascript 'validation/order.validate' %>
+<% content_for :footer do -%>
+    <%= javascript_include_tag 'validation/order.validate' %>
+<% end -%>
 
 <div class="fh-form">
   <% form_for(@order, :protocol => SECURE_PROTOCOL, :html => { :id => "order" }) do |f| %>
@@ -11,6 +13,7 @@
 
           <h3>Order Checkout</h3>
           <h4>Enter the information below to complete the order process.</h4>
+
           <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
         </li>
         <li>
