@@ -2,7 +2,7 @@
     <td>
         <%= h line_item.sku.description %>
         <% if line_item.sku.class == GiftCertificateSku and !line_item.gift_certificates.empty? %>
-        <br/>
+        <br />
         <%= h line_item.gift_certificates.first.formatted_code %>
         <% end %>
     </td>
