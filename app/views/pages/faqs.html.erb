@@ -1,639 +1,259 @@
 <% title "Frequently Asked Questions" -%>
 
 <% content_for :head do -%>
-  <a name="top" id="top" class="anchor"></a>
+    <a name="top" id="top" class="anchor"></a>
 <% end -%>
 
 <div id="faqs_section">
 
-  <div id="questions">
-    <h3>Frequently Asked Questions</h3>
-    <h4>For Everyone</h4>
-    <ul>
-      <li><a href="#preview" class="anchorLink">Preview Week</a></li>
-      <li><a href="#general" class="anchorLink">General</a></li>
-      <li><a href="#privacy" class="anchorLink">Privacy</a></li>
-      <li><a href="#managing-my-account" class="anchorLink">Managing My Account</a></li>
-      <li><a href="#buying-lessons" class="anchorLink">Buying Lessons/Credits</a></li>
-    </ul>
+<div id="questions">
+  <h3>Frequently Asked Questions</h3>
+  <h4>For Everyone</h4>
+  <ul>
+    <li><a href="#general" class="anchorLink">General</a></li>
+    <li><a href="#privacy" class="anchorLink">Privacy</a></li>
+    <li><a href="#managing-my-account" class="anchorLink">Managing My Account</a></li>
+    <li><a href="#buying-lessons" class="anchorLink">Buying Lessons/Credits</a></li>
+  </ul>
 
-    <h4>For Instructors</h4>
-    <ul>
-      <li><a href="#payment-exclusivity" class="anchorLink">Payment/Exclusivity</a></li>
-      <li><a href="#contributing-uploading-lessons" class="anchorLink">Contributing/Uploading Lessons</a></li>
-      <li><a href="#recording" class="anchorLink">Recording</a></li>
-    </ul>
+  <h4>For Instructors</h4>
+  <ul>
+    <li><a href="#payment-exclusivity" class="anchorLink">Payment/Exclusivity</a></li>
+  </ul>
+</div>
+
+<a name="general" id="general" class="anchor"></a>
+
+<div class="answers">
+  <h4>General</h4>
+
+  <h5>Why is English my only choice in the language drop-down?</h5>
+
+  <div>
+    <p>English is just the beginning...but we're still in 'beginning' stage. Want to influence what the next languages
+      should be? Go to our 'Feedback' button on the right of the page and vote on what you'd like to see next. And if
+      you'd be interested in helping us translate the site into another language, we'd love to know that as well.</p>
   </div>
 
-  <!--This whole preview section is temporary and will be removed after preview week-->
-  <a name="preview" id="preview" class="anchor"></a>
+  <h5>What browsers are supported?</h5>
 
-  <div class="answers">
-    <h4>Preview Week</h4>
-    <h5>Welcome to Preview Week!</h5>
-
-    <p>As you go through the site, here are some things to keep in mind...</p>
-    <ul>
-      <li>The preview is using a test environment. You will not see any lessons that you may have created in the production site. And, you will likely need to sign up for a new account using the register link.</li>
-      <li>Don't worry about entering junk or dummy data...any changes you make will not affect the "real" production site. In fact, we encourage you guys to try as many different things on the site as possible.</li>
-      <li>Tell us what you think – provide feedback and report problems by going to Help/GetSatisfaction (this is live so
-        please
-        don't enter dummy data in here)
-      </li>
-      <li>Try out the Firehoze store. It's in test mode, so no actual charges will go through, but if you're not
-        comfortable
-        using your real credit card, you can our test card: 4024-0071-4867-3576.
-      </li>
-      <li>When you login to the site, your browser may warn you that the security certificate is invalid. This is not a
-        bug,
-        and you can safely ignore this error and continue using the site.
-      </li>
-      <li>We plan to react quickly to any issues or bugs you find...which means the site may be down for brief periods
-        of time as we push out fixes to those issues. Stay up-to-date to new deployments and other updates by following
-        our preview week at <%= link_to "firehoze_test", "http://www.twitter.com/firehoze_test" %> on Twitter.
-      </li>
-    </ul>
-    <p>Have fun!</p>
+  <div>
+    <p>The big ones at the moment but more to come. Firefox 3.0 and higher, InternetExplorer 7.x and higher, Safari,
+      Chrome. Other browsers and versions may work just fine, but we don't guarantee it. If there's a browser you think
+      we should support but don't, we'd love to hear from you.</p>
   </div>
+
+  <h5>I've made changes to my user's avatar or my group's logo but they are not reflected on the site.</h5>
+
+  <div>
+    <p>
+      Firehoze uses a Content Delivery Network or CDN to deliver videos and images to you as efficiently as possible.
+      The CDN stores the images on computers around the world to ensure that when you browse, that content can be
+      delivered to you quickly. If you've made a change but dont' see it reflected, it's probably because you're still
+      seeing the old version of the image stored on the CDN. The CDN does refresh itself periodically. Your updated
+      image will likely appear within a day or two. Or, if you'd like to speed things along, try uploading your image
+      again but using a different filename.
+    </p>
+  </div>
+
   <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
-  <!--End preview section-->
+</div>
 
-  <a name="general" id="general" class="anchor"></a>
 
-  <div class="answers">
-    <h4>General</h4>
+<a name="privacy" id="privacy" class="anchor"></a>
 
-    <h5>Why is English my only choice in the language drop-down?</h5>
+<div class="answers">
+  <h4>Privacy</h4>
+  <h5>Do you share emails addresses?</h5>
 
-    <div>
-      <p>English is just the beginning...but we're still in 'beginning' stage. Want to influence what the next languages
-        should be? Go to our 'Feedback' button on the right of the page and vote on what you'd like to see next. And if
-        you'd be interested in helping us translate the site into another language, we'd love to know that as well.</p>
-    </div>
-
-    <h5>What browsers are supported?</h5>
-
-    <div>
-      <p>The big ones at the moment but more to come. Firefox 3.0 and higher, InternetExplorer 7.x and higher, Safari,
-	Chrome. Other browsers and versions may work just fine, but we don't guarantee it. If there's a browser you think
-	we should support but don't, we'd love to hear from you.</p>
-    </div>
-
-    <h5>I've made changes to my user's avatar or my group's logo but they are not reflected on the site.</h5>
-
-    <div>
-      <p>
-	Firehoze uses a Content Delivery Network or CDN to deliver videos and images to you as efficiently as possible.
-	The CDN stores the images on computers around the world to ensure that when you browse, that content can be
-	delivered to you quickly. If you've made a change but dont' see it reflected, it's probably because you're still
-	seeing the old version of the image stored on the CDN. The CDN does refresh itself periodically. Your updated
-	image will likely appear within a day or two. Or, if you'd like to speed things along, try uploading your image
-	again but using a different filename.
-      </p>
-    </div>
-
-    <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
+  <div>
+    <p>Nope, never. Even if you choose to allow other Firehoze users to contact you via email, those users will never
+      see your actual email address.</p>
   </div>
 
+  <h5>Do you sell information?</h5>
 
-  <a name="privacy" id="privacy" class="anchor"></a>
-
-  <div class="answers">
-    <h4>Privacy</h4>
-    <h5>Do you share emails addresses?</h5>
-
-    <div>
-      <p>Nope, never. Even if you choose to allow other Firehoze users to contact you via email, those users will never
-	see your actual email address.</p>
-    </div>
-
-    <h5>Do you sell information?</h5>
-
-    <div>
-      <p>Only if they offer us a lot of money. Okay, kidding, we don't...we hate having our information sold too.</p>
-    </div>
-
-    <h5>Can people contact me directly?</h5>
-
-    <div>
-      <p>Only if you want them to. The default is 'no' but to change this setting go
-	to <%= link_to_if current_user, "Account Settings", edit_privacy_account_path(current_user ? current_user : "1") %>
-	at
-	the top of the page and click on the 'Privacy' tab to make your selection.</p>
-    </div>
-
-    <h5>How can I see what my public profile is?</h5>
-
-    <div>
-      <p>You can look at this by select "My Public Page" from the main navigation menu at the top of the page.</p>
-    </div>
-
-    <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
+  <div>
+    <p>Only if they offer us a lot of money. Okay, kidding, we don't...we hate having our information sold too.</p>
   </div>
 
+  <h5>Can people contact me directly?</h5>
 
-  <a name="managing-my-account" id="managing-my-account" class="anchor"></a>
-
-  <div class="answers">
-    <h4>Managing My Account</h4>
-
-    <h5>Where can I find a record of lessons I've purchased?</h5>
-
-    <div>
-      <p>Navigate to <%= link_to_if current_user, "My Firehoze", my_stuff_my_firehoze_path(:anchor => 'owned') %> and
-	click on the "My Stuff" button.</p>
-    </div>
-
-    <h5>Where can I see how many credits I have left?</h5>
-
-    <div>
-      <p>Navigate
-	to <%= link_to_if current_user, "My Firehoze", account_history_my_firehoze_path(:anchor => "available_credits") %>
-	. You'll see your credits remaining in the top right corner of the page.</p>
-    </div>
-
-    <h5>How do I change my user name?</h5>
-
-    <div>
-      <p>To change your username, click on
-	the <%= link_to_if current_user, "Account Settings", edit_account_path(current_user ? current_user : "1") %> link
-	at the top of the site.
-      </p>
-    </div>
-
-    <h5>How can I change my password?</h5>
-
-    <div>
-      <p>To change your password, click on
-	the <%= link_to_if current_user, "Account Settings", edit_password_path(current_user ? current_user : "1") %> link
-	at the top of the site. Then go to the
-	'Password' tab.</p>
-    </div>
-
-    <h5>How do I edit my email information?</h5>
-
-    <div>
-      <p>To change your address or contact information, click on
-	the <%= link_to_if current_user, "Account Settings", edit_account_path(current_user ? current_user : "1") %> link
-	at the top of the site.
-	link at the top of the site, then click on the 'Profile' tab.</p>
-    </div>
-
-    <h5>How can I retrieve my password and/or member name?</h5>
-
-    <div>
-      <p>Just click on the 'Forgot password 'link on the login page.</p>
-    </div>
-
-    <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
+  <div>
+    <p>Only if you want them to. The default is 'no' but to change this setting go
+      to <%= link_to_if current_user, "Account Settings", edit_privacy_account_path(current_user ? current_user : "1") %>
+      at
+      the top of the page and click on the 'Privacy' tab to make your selection.</p>
   </div>
 
-  <a name="buying-lessons" id="buying-lessons" class="anchor"></a>
+  <h5>How can I see what my public profile is?</h5>
 
-  <div class="answers">
-    <h4>Buying Lessons/Credits</h4>
-
-    <h5>How do I purchase lessons from your site?</h5>
-
-    <div>
-      <p>All you need to do is buy one or more credit(s) to purchase tutorials. You can easily purchase credits by selecting on the 'Buy Credits' link under the Credits menu.</p>
-    </div>
-
-    <h5>Why do you use credits?</h5>
-
-    <div>
-      <p>To make your browsing and buying experience easier. It would be a pain to have to do a full shopping cart checkout and specify your credit card each time you want to watch a lesson. Buying a bunch of credits makes it easier to quickly view lessons when you find one you want.</p>
-
-      <p>Oh yeah, also, if all credit card transactions were 99 cents each, the credit card companies would kill us on
-	fees and we'd have to charge more for the lessons.</p>
-    </div>
-
-    <h5>Where are my receipts?</h5>
-
-    <div>
-      <p>Navigate to <%= link_to_if current_user, "My Firehoze", account_history_my_firehoze_path(:anchor => "orders") %>,
-	click on the "Account History" button and then click the "Orders" tab.</p>
-    </div>
-
-    <h5>How can I give credits to someone else?</h5>
-
-    <div>
-      <p>A gift certificate is the best and easiest way to do this. You can purchase a gift certificate from the online
-	store. 'Buy Credits' link under the Credits menu to navigate to the online store.</p>
-    </div>
-
-    <h5>Where are my receipts/download history?</h5>
-
-    <div>
-      <p>Navigate
-	to <%= link_to_if current_user, "My Firehoze", account_history_my_firehoze_path(:anchor => "used_credits") %> and
-	click on the "Account History" button.</p>
-    </div>
-
-    <h5>Do credits expire?</h5>
-
-    <div>
-      <p>Credits will expire within a year if you don't log into Firehoze. All you have to do to keep your credits from
-	expiring is log on at least once a year. Pretty simple, right?</p>
-
-      <p>If you have credits that are about to expire, we'll warn you via email 30 days before they expire, just to remind
-	you to log on to keep them alive.</p>
-    </div>
-
-    <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
-
+  <div>
+    <p>You can look at this by select "My Public Page" from the main navigation menu at the top of the page.</p>
   </div>
 
+  <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
+</div>
 
-  <a name="payment-exclusivity" id="payment-exclusivity" class="anchor"></a>
 
-  <div class="answers">
-    <h4>Payment/Exclusivity</h4>
+<a name="managing-my-account" id="managing-my-account" class="anchor"></a>
 
-    <h5>How much does a instructor make?</h5>
+<div class="answers">
+  <h4>Managing My Account</h4>
 
-    <div>
-      <p>Firehoze pays a base royalty rate of 50% from the revenue of each lesson purchased for Exclusive instructors and
-	25% for Non-exclusive instructors.</p>
-    </div>
+  <h5>Where can I find a record of lessons I've purchased?</h5>
 
-    <h5>How do I get paid and how often?</h5>
-
-    <div>
-      <p>Firehoze mails checks monthly on balances over $50. You may request a payment even if your balance is less than
-	$50, but a $2 handling fee will be assessed. Please allow 1-2 weeks for processing.</p>
-    </div>
-
-    <h5>How long am I committed?</h5>
-
-    <div>
-      <p>Don't worry, if you change your mind, just let us know anytime before you've received 30 days in advance by email
-	(<a href="javascript:location='mailto:\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d';void 0">
-	  <script type="text/javascript">document.write('\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d')</script>
-	</a>) and we'll change your commission structure.
-      </p>
-    </div>
-
-    <h5>What does it mean to be an Exclusive instructor?</h5>
-
-    <div>
-      <p>Exclusivity means your lessons and the associated content may not be sold or given away for free to other sites
-	or businesses including on the instructor's site.</p>
-    </div>
-
-    <h5>How can I see how much money I've made?</h5>
-
-    <div>
-      <p>Navigate
-	to <%= link_to_if current_user.try("verified_instructor?"), "My Firehoze", instructor_my_firehoze_path %> and
-	click on the "Instructor Dashboard" button. Note the Instructor Dashboard
-	button will only appear if you have signed up to be an instructor.</p>
-    </div>
-
-    <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
+  <div>
+    <p>Navigate to <%= link_to_if current_user, "My Firehoze", my_stuff_my_firehoze_path(:anchor => 'owned') %> and
+      click on the "My Stuff" button.</p>
   </div>
 
-  <a name="contributing-uploading-lessons" id="contributing-uploading-lessons" class="anchor"></a>
+  <h5>Where can I see how many credits I have left?</h5>
 
-  <div class="answers">
-    <h4>Contributing/Uploading Lessons</h4>
-
-    <h5>How do I become an instructor?</h5>
-
-    <div>
-      <p>Easily...</p>
-      <ol>
-	<li>Navigate to <%= link_to_if current_user, "My Firehoze", my_firehoze_index_path(:anchor => "credits") %>.</li>
-	<li>Click the "Become an Instructor" button to walk through the Instructor Signup Wizard.</li>
-	<li>Complete all steps in the wizard.</li>
-	<li>Start teaching!</li>
-      </ol>
-    </div>
-
-    <h5>How do I create my first lesson?</h5>
-
-    <div>
-      <p>Download the following document for a step-by-step walkthrough of the
-	process: <%= link_to "How to Upload a Lesson to Firehoze", "http://amazonassets.simplecdn.net/mkt_assets/HowToUploadAVideo_screenshots.pdf" %></p>
-    </div>
-
-    <h5>Why give me the option to provide free downloads when I post a lesson?</h5>
-
-    <div>
-      <p>Free downloads give you the chance to build up some ratings and reviews before users have to purchase your lesson. It can be a good way to build your reputation, activity and traction on the site.</p>
-    </div>
-
-    <h5>How do I pull or delete a lesson?</h5>
-
-    <div>
-      <p>Shoot us an email
-	(<a href="javascript:location='mailto:\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d';void 0">
-	  <script type="text/javascript">document.write('\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d')</script>
-	</a>) providing your user name and the title of the tutorial you'd like pulled. When we delete you're lesson, we will also delete all of the associated content including the lesson video, synopsis, notes, tags, reviews and ratings.</p>
-    </div>
-
-    <h5>What happens when I request a lesson to be pulled? What happens to my ratings and reviews when I pull a lesson?</h5>
-
-    <div>
-      <p>We will mark the lesson as rejected. As the author, you will still be able to see the lesson. To other Firehoze users, the lesson and all associated notes, comments and reviews will be invisible.</p>
-    </div>
-
-    <h5>What are the specs required for lesson videos to be uploaded?</h5>
-
-    <div>
-      <p>Files must be less than 500 MB. We support the following file formats:</p>
-      <ul>
-	<li>MPEG-1, MPEG-2, H.263, H.264</li>
-	<li>All MPEG-4 implementations (Xvid, 3vix, etc.)</li>
-	<li>AVI</li>
-	<li>.MOV</li>
-	<li>MP4</li>
-	<li>.MPG, .VOB (unencrypted VOBs only)</li>
-	<li>Windows Media/VC-1</li>
-	<li>3GP/3G2</li>
-	<li>Ogg Theora</li>
-	<li>MJPEG</li>
-      </ul>
-    </div>
-
-    <h5>Why am I receiving an error message when I upload my video, even though it's one of the supported file types?</h5>
-
-    <div>
-      <p>You might see an error such as:</p>
-
-      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>Validation failed: Video is not one of the allowed file types. (content
-	  type:application/octet-stream)</i></p>
-
-
-      <p>if you try to upload a MOV file and Quicktime is not installed on your computer.</p>
-
-      <p>To eliminate this you may want to either download the appropriate video player, or save your video in a format
-	that you are able to play locally. If you are an IE user and receiving this error when trying to upload an MP4,
-	downloading 3ivx should help eliminate the issue. Click
-	<a href="http://www.3ivx.com/download/windows.html">here</a> to download.</p>
-    </div>
-
-    <h5>I keep getting kicked off before my lesson has finished uploading. What should I do?</h5>
-
-    <div>
-      <p>Depending on the size of your lesson and connection speed, you may find that the site timeouts before your file
-	has been able to complete the upload process. The site will currently timeout after 60 minutes. To calculate how
-	long it may take for you to upload your lesson, per your file size and connection speed, go to
-	<a href="http://www.t1shopper.com/tools/calculate/downloadcalculator.php">http://www.t1shopper.com/tools/calculate/downloadcalculator.php</a>.
-      </p>
-
-      <p>For example, a 62 meg file on dial-up may take almost 2.5 hours to upload but only 6 minutes on a DSL
-	connection.</p>
-
-      <p>If your download is going to take a long time, you can open a separate tab in the same browser and periodically
-	navigate to other pages while your video is uploading. Doing so will ensure that your session remains alive.</p>
-
-      <p>For additional help with this or to request more time, contact us at
-	<a href="http://getsatisfaction.com/firehoze/topics">Support</a>.</p>
-    </div>
-    <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
-
+  <div>
+    <p>Navigate
+      to <%= link_to_if current_user, "My Firehoze", account_history_my_firehoze_path(:anchor => "available_credits") %>
+      . You'll see your credits remaining in the top right corner of the page.</p>
   </div>
 
-  <a name="recording" id="recording" class="anchor"></a>
+  <h5>How do I change my user name?</h5>
 
-  <div class="answers">
-    <h4>Recording</h4>
-
-    <h5>What are some options for recording lessons?</h5>
-
-    <div>
-      <ol>
-        <li>Use a webcam + screen capture software</li>
-        <ol>
-          <li type=a>If you are recording yourself writing on paper, we recommend a dark color of marker, like a medium
-            Sharpie, so it's readable.
-          </li>
-          <li type=a>If using Jing Pro or ScreenToaster for screen capture, they can record right from the webcam (whatever
-            it sees will be recorded)
-          </li>
-        </ol>
-        <li>Use a slide presentation + screen capture software</li>
-        <li>Use a graphic tablet + screen capture software</li>
-        <p>Program options when using a tablet</p>
-        <ol>
-          <li type=a><strong>For PCs</strong>, use Windows Journal</li>
-          <ol>
-            <li type=i>If you MS Vista, you should already have this program.</li>
-            <li type=i>If you have XP, you may have it or be able to download it. It may also come with your tablet.</li>
-          </ol>
-          <li type=a><strong>For Macs</strong>, use inkBook
-            (<a href="http://mac.rbytes.net/cat/mac/utilities/inkbook/">http://mac.rbytes.net/cat/mac/utilities/inkbook</a>)
-            or TabletDraw
-            (<a href="http://www.apple.com/downloads/macosx/imaging_3d/tabletdraw.html">http://www.apple.com/downloads/macosx/imaging_3d/tabletdraw.html</a>)
-          </li>
-          <li type=a><strong>For both PCs and Macs</strong>, Corel Paint is an option.</li>
-        </ol>
-        <li>Use a video camera</li>
-        <ol>
-          <li type=a>Record your writing on a whiteboard</li>
-          <ol>
-            <li type=i>Keep in mind, it's the lesson that is of interest so try to focus on the whiteboard and not the
-              surrounding area.
-            </li>
-            <li type=i>Light marker colors can be hard to see so we suggest you test any colors you plan on using to make
-              sure your viewers will be able to see them clearly.
-            </li>
-          </ol>
-          <li type=a>Record your writing on chalkboard (hey, there have to be a few of these left in the world!)</li>
-        </ol>
-      </ol>
-    </div>
-
-    <h5>What tools are available for capturing videos?</h5>
-
-    <div>
-      <p>
-        <strong><i>Jing Pro (<a href="http://www.jingproject.com/pro/">http://www.jingproject.com/pro/</a>)</i></strong>
-      </p>
-
-      <p>Best for:</p>
-      <ul>
-        <li>Those looking for something easy to use and intuitive</li>
-        <li>Further editing will not be performed as it allows for live swapping of a web cam view of the speaker with a capture frame.</li>
-      </ul>
-
-      <p>Pros:</p>
-      <ul>
-        <li>Easy to use</li>
-        <li>Clean, user-friendly interface</li>
-        <li>Well-supported with video tutorials since made by prominent software provider</li>
-        <li>Live swapping of a web cam view of the speaker with a capture frame</li>
-        <li>Native MP4 encoding</li>
-      </ul>
-
-      <p>Cons:</p>
-      <ul>
-        <li>Can only capture up to 5 min video</li>
-        <li>Costs $15 per year</li>
-        <li>Limited output options -- it only allows for SWF and MP4, no compression codec option</li>
-        <li>Audio can sound soft or garbled so a quiet space is needed</li>
-      </ul>
-
-
-      <strong><i>CamStudio (<a href="http://camstudio.org/">http://camstudio.org/</a>)</i></strong>
-
-      <p>Best for:</p>
-      <ul>
-        <li>Those looking for features to support a higher level of video production</li>
-        <li>Desire to do further editing of captured video</li>
-      </ul>
-
-      <p>Pros:</p>
-      <ul>
-        <li>Free and open source</li>
-        <li>More expansive feature set – codec choice, intelligent capture moving the frame to follow the cursor during
-          capture
-        </li>
-      </ul>
-
-      <p>Cons:</p>
-      <ul>
-        <li>User interface isn't terribly pretty</li>
-        <li>Additional features can make for a slower learning curve</li>
-      </ul>
-
-      <strong><i>ScreenToaster (<a href="http://www.screentoaster.com">http://www.screentoaster.com/)</a></i></strong>
-
-      <p>Best for:</p>
-      <ul>
-        <li>Those looking for something easy to use and intuitive</li>
-        <li>Option to redub your video after capture</li>
-      </ul>
-
-      <p>Pros:</p>
-      <ul>
-        <li>Free</li>
-        <li>No software to download</li>
-        <li>More intelligent audio than Jing – allows the user to select a target playback rate and redub the audio post
-          capture
-        </li>
-        <li>Captures live from a webcam and show the video as a picture in picture in the corner of the screen capture.</li>
-        <li>Output to .mov (QuickTime)</li>
-      </ul>
-
-      <p>Cons</p>
-      <ul>
-        <li>User interface isn't as elegant as Jing</li>
-        <li>Limited post-editing options</li>
-        <li>No compression options</li>
-      </ul>
-    </div>
-
-    <h5>Can I use a tool such as PowerPoint to create my lessons?</h5>
-
-    <div>
-      <div style="width:<%= PLAYER_WIDTH %>px;height:<%= PLAYER_HEIGHT %>px;" id="playerbox"></div>
-      <script language='javascript'>
-	//$f("playerbox", "http://<%= APP_CONFIG[CONFIG_HOST] %>:<%= APP_CONFIG[CONFIG_PORT] %>/swf/flowplayer-3.1.5.swf", {
-	$f("playerbox", "http://releases.flowplayer.org/swf/flowplayer.commercial-3.1.5.swf", {
-
-	  key: '#$2530218aaff22a9be9e',
-	  canvas: {
-	    background: 'url(/images/videos/watermark-v2.png)  no-repeat 420 10'
-	  },
-	  play: {
-	    label: 'Play',
-	    replayLabel: 'Play again'
-	  },
-	  clip: {
-	    autoPlay:false,
-	    autoBuffering:false,
-	    url: 'flv:output/mkt/HowTo1.flv',
-	    provider: 'simplecdn',
-	    accelerated: true
-	  },
-	  plugins: {
-	    simplecdn: {
-	      url: 'flowplayer.rtmp-3.1.3.swf',
-	      netConnectionUrl: 'rtmp://e1f1.simplecdn.net/play'
-	    }
-	  }
-	});
-      </script>
-      <br />
-    </div>
-
-    <h5>Can I use a tool such as Jing or a tablet device to create my lessons?</h5>
-
-    <div>
-      <p>Yes. The following video walks you through the process.</p>
-
-      <div>
-	<div style="width:<%= PLAYER_WIDTH %>px;height:<%= PLAYER_HEIGHT %>px;" id="playerbox2"></div>
-	<script language='javascript'>
-	  //$f("playerbox", "http://<%= APP_CONFIG[CONFIG_HOST] %>:<%= APP_CONFIG[CONFIG_PORT] %>/swf/flowplayer-3.1.5.swf", {
-	  $f("playerbox2", "http://releases.flowplayer.org/swf/flowplayer.commercial-3.1.5.swf", {
-
-	    key: '#$2530218aaff22a9be9e',
-	    canvas: {
-	      background: 'url(/images/videos/watermark-v2.png)  no-repeat 420 10'
-	    },
-	    play: {
-	      label: 'Play',
-	      replayLabel: 'Play again'
-	    },
-	    clip: {
-	      autoPlay:false,
-	      autoBuffering:false,
-	      url: 'flv:output/mkt/HowTo2.flv',
-	      provider: 'simplecdn',
-	      accelerated: true
-	    },
-	    plugins: {
-	      simplecdn: {
-		url: 'flowplayer.rtmp-3.1.3.swf',
-		netConnectionUrl: 'rtmp://e1f1.simplecdn.net/play'
-	      }
-	    }
-	  });
-	</script>
-	<br />
-      </div>
-    </div>
-    <h5>How do I save my videos as an mp4 with Camtasia?</h5>
-
-    <div>
-      <p>Click on 'Share', 'Export' and save the video with your desired title.</p>
-    </div>
-
-    <h5>How do I adjust my Microphone settings when using Windows XP?</h5>
-
-    <div>
-      <p>Follow the following steps:</p>
-      <ol>
-        <li>
-          <p>Double click left mouse button on “speaker” icon to open the Volume Control</p>
-          <p><%= image_tag("FAQs/xp_microphone/microphone1.png", :alt => 'Double click left mouse button on “speaker” icon to open the Volume Control') %></p>
-        </li>
-        <li>
-          <p>Select Options-> Properties from the Volume Control dialog</p>
-          <p><%= image_tag("FAQs/xp_microphone/microphone2.png", :alt => 'Select Options-> Properties from the Volume Control dialog') %></p>
-        </li>
-        <li>
-          <p>Select “Recording” on the Properties: check Line In, External Mic and Internal Mic then select “OK”</p>
-          <p><%= image_tag("FAQs/xp_microphone/microphone3.png", :alt => 'Select “Recording” on the Properties: check Line In, External Mic and Internal Mic then select “OK”') %></p>
-        </li>
-        <li>
-          <p>If you choose to use your built-in microphone then select “Internal Mic” and increase the volume as necessary.</p>
-          <p>Select “External Mic” if you have an external microphone.</p>
-          <p><%= image_tag("FAQs/xp_microphone/microphone4.png", :alt => 'select “Internal Mic” and increase the volume as necessary') %></p>
-        </li>
-        <li>
-          <p>Select Options->Advanced Controls from the Recording Control menu then select “Advanced” on the Internal Mic or External Mic based on your setup.</p>
-          <p><%= image_tag("FAQs/xp_microphone/microphone5.png", :alt => 'Select “Advanced” on the Internal Mic or External Mic') %></p>
-        </li>
-        <li>
-          <p>Select “Microphone Boost” on the Advanced Controls for Internal Mic</p>
-          <p><%= image_tag("FAQs/xp_microphone/microphone6.png", :alt => 'Select “Microphone Boost” on the Advanced Controls for Internal Mic') %></p>
-        </li>
-      </ol>
-    </div>
-    <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
+  <div>
+    <p>To change your username, click on
+      the <%= link_to_if current_user, "Account Settings", edit_account_path(current_user ? current_user : "1") %> link
+      at the top of the site.
+    </p>
   </div>
+
+  <h5>How can I change my password?</h5>
+
+  <div>
+    <p>To change your password, click on
+      the <%= link_to_if current_user, "Account Settings", edit_password_path(current_user ? current_user : "1") %> link
+      at the top of the site. Then go to the
+      'Password' tab.</p>
+  </div>
+
+  <h5>How do I edit my email information?</h5>
+
+  <div>
+    <p>To change your address or contact information, click on
+      the <%= link_to_if current_user, "Account Settings", edit_account_path(current_user ? current_user : "1") %> link
+      at the top of the site.
+      link at the top of the site, then click on the 'Profile' tab.</p>
+  </div>
+
+  <h5>How can I retrieve my password and/or member name?</h5>
+
+  <div>
+    <p>Just click on the 'Forgot password 'link on the login page.</p>
+  </div>
+
+  <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
+</div>
+
+<a name="buying-lessons" id="buying-lessons" class="anchor"></a>
+
+<div class="answers">
+  <h4>Buying Lessons/Credits</h4>
+
+  <h5>How do I purchase lessons from your site?</h5>
+
+  <div>
+    <p>All you need to do is buy one or more credit(s) to purchase tutorials. You can easily purchase credits by selecting on the 'Buy Credits' link under the Credits menu.</p>
+  </div>
+
+  <h5>Why do you use credits?</h5>
+
+  <div>
+    <p>To make your browsing and buying experience easier. It would be a pain to have to do a full shopping cart checkout and specify your credit card each time you want to watch a lesson. Buying a bunch of credits makes it easier to quickly view lessons when you find one you want.</p>
+
+    <p>Oh yeah, also, if all credit card transactions were 99 cents each, the credit card companies would kill us on
+      fees and we'd have to charge more for the lessons.</p>
+  </div>
+
+  <h5>Where are my receipts?</h5>
+
+  <div>
+    <p>Navigate to <%= link_to_if current_user, "My Firehoze", account_history_my_firehoze_path(:anchor => "orders") %>,
+      click on the "Account History" button and then click the "Orders" tab.</p>
+  </div>
+
+  <h5>How can I give credits to someone else?</h5>
+
+  <div>
+    <p>A gift certificate is the best and easiest way to do this. You can purchase a gift certificate from the online
+      store. 'Buy Credits' link under the Credits menu to navigate to the online store.</p>
+  </div>
+
+  <h5>Where are my receipts/download history?</h5>
+
+  <div>
+    <p>Navigate
+      to <%= link_to_if current_user, "My Firehoze", account_history_my_firehoze_path(:anchor => "used_credits") %> and
+      click on the "Account History" button.</p>
+  </div>
+
+  <h5>Do credits expire?</h5>
+
+  <div>
+    <p>Credits will expire within a year if you don't log into Firehoze. All you have to do to keep your credits from
+      expiring is log on at least once a year. Pretty simple, right?</p>
+
+    <p>If you have credits that are about to expire, we'll warn you via email 30 days before they expire, just to remind
+      you to log on to keep them alive.</p>
+  </div>
+
+  <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
+
+</div>
+
+
+<a name="payment-exclusivity" id="payment-exclusivity" class="anchor"></a>
+
+<div class="answers">
+  <h4>Payment/Exclusivity</h4>
+
+  <h5>How much does a instructor make?</h5>
+
+  <div>
+    <p>Firehoze pays a base royalty rate of 50% from the revenue of each lesson purchased for Exclusive instructors and
+      25% for Non-exclusive instructors.</p>
+  </div>
+
+  <h5>How do I get paid and how often?</h5>
+
+  <div>
+    <p>Firehoze mails checks monthly on balances over $50. You may request a payment even if your balance is less than
+      $50, but a $2 handling fee will be assessed. Please allow 1-2 weeks for processing.</p>
+  </div>
+
+  <h5>How long am I committed?</h5>
+
+  <div>
+    <p>Don't worry, if you change your mind, just let us know anytime before you've received 30 days in advance by email
+      (<a href="javascript:location='mailto:\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d';void 0">
+      <script type="text/javascript">document.write('\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d')</script>
+    </a>) and we'll change your commission structure.
+    </p>
+  </div>
+
+  <h5>What does it mean to be an Exclusive instructor?</h5>
+
+  <div>
+    <p>Exclusivity means your lessons and the associated content may not be sold or given away for free to other sites
+      or businesses including on the instructor's site.</p>
+  </div>
+
+  <h5>How can I see how much money I've made?</h5>
+
+  <div>
+    <p>Navigate
+      to <%= link_to_if current_user.try("verified_instructor?"), "My Firehoze", instructor_my_firehoze_path %> and
+      click on the "Instructor Dashboard" button. Note the Instructor Dashboard
+      button will only appear if you have signed up to be an instructor.</p>
+  </div>
+
+  <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
+</div>
 </div>
