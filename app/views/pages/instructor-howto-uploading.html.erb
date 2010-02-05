@@ -11,23 +11,23 @@
     <p>Ready to share your lesson with the community? Here are some tips and advice to get your lesson online and
       seen.</p>
 
-  <h5>What video files can I use to create my lesson?</h5>
+    <h5>What file formats can I upload?</h5>
 
-  <div>
-    <p>Files must be less than 500 MB. We support the following file formats:</p>
-    <ul>
-      <li>MPEG-1, MPEG-2, H.263, H.264</li>
-      <li>All MPEG-4 implementations (Xvid, 3vix, etc.)</li>
-      <li>AVI</li>
-      <li>.MOV</li>
-      <li>MP4</li>
-      <li>.MPG, .VOB (unencrypted VOBs only)</li>
-      <li>Windows Media/VC-1</li>
-      <li>3GP/3G2</li>
-      <li>Ogg Theora</li>
-      <li>MJPEG</li>
-    </ul>
-  </div>
+    <div>
+      <p>Files must be less than 500 MB. We support the following file formats:</p>
+      <ul>
+        <li>MPEG-1, MPEG-2, H.263, H.264</li>
+        <li>All MPEG-4 implementations (Xvid, 3vix, etc.)</li>
+        <li>AVI</li>
+        <li>.MOV</li>
+        <li>MP4</li>
+        <li>.MPG, .VOB (unencrypted VOBs only)</li>
+        <li>Windows Media/VC-1</li>
+        <li>3GP/3G2</li>
+        <li>Ogg Theora</li>
+        <li>MJPEG</li>
+      </ul>
+    </div>
     <h5>How do I upload a lesson?</h5>
 
     <div>
@@ -61,75 +61,30 @@
       <p>Note: Once uploaded, processing time ranges from 15 minutes to 2 hours depending on the number lessons that
         need to be processed. Please allow up to 24 hours before reporting an issue.</p>
     </div>
-    <h5>How do I become an instructor?</h5>
 
-  <div>
-    <p>Easily...</p>
-    <ol>
-      <li>Navigate to <%= link_to_if current_user, "My Firehoze", my_firehoze_index_path(:anchor => "credits") %>.</li>
-      <li>Click the "Become an Instructor" button to walk through the Instructor Signup Wizard.</li>
-      <li>Complete all steps in the wizard.</li>
-      <li>Start teaching!</li>
-    </ol>
+    <h5>Why should I offer free downloads?</h5>
+
+    <div>
+      <p>Free downloads give you the chance to build up some ratings and reviews before users have to purchase your lesson. It can be a good way to build your reputation, activity and traction on the site.</p>
+    </div>
+
+    <h5>How do I pull or delete a lesson?</h5>
+
+    <div>
+      <p>Shoot us an email
+        (<a href="javascript:location='mailto:\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d';void 0">
+        <script type="text/javascript">document.write('\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d')</script>
+      </a>) providing your user name and the title of the tutorial you'd like pulled.
+      </p>
+    </div>
+
+    <h5>What happens when I request a lesson to be pulled?</h5>
+
+    <div>
+      <p>We will mark the lesson as rejected. As the author, you will still be able to see the lesson. To other Firehoze users, the lesson and all associated notes, comments and reviews will be invisible.</p>
+    </div>
+    <h5><%= link_to "Visit our FAQs Area &raquo;", page_path("faqs") %></h5>
   </div>
-
-  <h5>How do I create my first lesson?</h5>
-
-  <div>
-    <p>Download the following document for a step-by-step walkthrough of the
-      process: <%= link_to "How to Upload a Lesson to Firehoze", "http://amazonassets.simplecdn.net/mkt_assets/HowToUploadAVideo_screenshots.pdf" %></p>
-  </div>
-
-  <h5>Why give me the option to provide free downloads when I post a lesson?</h5>
-
-  <div>
-    <p>Free downloads give you the chance to build up some ratings and reviews before users have to purchase your lesson. It can be a good way to build your reputation, activity and traction on the site.</p>
-  </div>
-
-  <h5>How do I pull or delete a lesson?</h5>
-
-  <div>
-    <p>Shoot us an email
-      (<a href="javascript:location='mailto:\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d';void 0">
-      <script type="text/javascript">document.write('\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d')</script>
-    </a>) providing your user name and the title of the tutorial you'd like pulled. 
-    </p>
-  </div>
-
-  <h5>What happens when I request a lesson to be pulled? What happens to my ratings and reviews when I pull a lesson?</h5>
-
-  <div>
-    <p>We will mark the lesson as rejected. As the author, you will still be able to see the lesson. To other Firehoze users, the lesson and all associated notes, comments and reviews will be invisible.</p>
-  </div>
-
-  <h5>Why am I receiving an error message when I upload my video, even though it's one of the supported file types?</h5>
-
-  <div>
-    <p>You might see an error such as:</p>
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>Validation failed: Video is not one of the allowed file types. (content type:application/octet-stream)</em></p>
-    <p>if you try to upload a MOV file and Quicktime is not installed on your computer.</p>
-    <p>To eliminate this you may want to either download the appropriate video player, or save your video in a format that you are able to play locally. If you are an IE user and receiving this error when trying to upload an MP4, downloading 3ivx should help eliminate the issue. Click <a href="http://www.3ivx.com/download/windows.html">here</a> to download.</p>
-  </div>
-
-      <h5>I keep getting kicked off before my lesson has finished uploading. What should I do?</h5>
-
-      <div>
-        <p>Depending on the size of your lesson and connection speed, you may find that the site timeouts before your file
-          has been able to complete the upload process. The site will currently timeout after 60 minutes. To calculate how
-          long it may take for you to upload your lesson, per your file size and connection speed, go to
-          <a href="http://www.t1shopper.com/tools/calculate/downloadcalculator.php">http://www.t1shopper.com/tools/calculate/downloadcalculator.php</a>.
-        </p>
-
-        <p>For example, a 62 meg file on dial-up may take almost 2.5 hours to upload but only 6 minutes on a DSL
-          connection.</p>
-
-          <p>If your download is going to take a long time, you can open a separate tab in the same browser and periodically
-            navigate to other pages while your video is uploading. Doing so will ensure that your session remains alive.</p>
-
-            <p>For additional help with this or to request more time, contact us at
-              <a href="http://getsatisfaction.com/firehoze/topics">Support</a>.</p>
-            </div>
-            <h5><%= link_to "Visit our FAQs Area &raquo;", page_path("faqs") %></h5>
-          </div>
-          <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a> | <%= link_to "Return to Instructor How To's", page_path("instructor-howto-main") %></p>
-        </div>
+  <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a> | <%= link_to "Return to Instructor How To's", page_path("instructor-howto-main") %>
+  </p>
+</div>
