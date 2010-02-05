@@ -25,5 +25,16 @@
       <%= render :partial => "lessons/tag_cloud", :object => Lesson.ready.tag_counts(:limit => 40, :order => "count DESC").sort{|x,y| x.name <=> y.name} %>
     </div>
   </div>
+
+
+    <div class="widget-box">
+      <div class="widget-box-header">
+        <span class="h4">Suggest a Lesson</span>
+      </div>
+      <div class="widget-box-content tags">
+        <p>Can't find a lesson that meets your needs?</p>
+        <%= link_to content_tag(:span, "Suggest a Lesson Topic"), page_path("help_center", :anchor => "share-an-idea"), :class => :minibutton %>
+      </div>
+    </div>
 </div>
 <% end %>
