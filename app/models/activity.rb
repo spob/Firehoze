@@ -72,5 +72,11 @@ class Activity < ActiveRecord::Base
         user.compile_activity
       end
     end
+
+    User.active.instructors.instructor_signup_notified_at_not_null.instructor_activity_compiled_at_null.each do |user|
+      User.transaction do
+        user.compile_instructor_activity
+      end
+    end
   end
 end

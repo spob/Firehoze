@@ -407,6 +407,20 @@ END
     self.update_attribute(:activity_compiled_at, Time.now)
   end
 
+  def compile_instructor_activity
+    unless self.instructor_signup_notified_at.nil?
+      self.activities.create!(:actor_user => self,
+                              :actee_user => nil,
+                              :acted_upon_at => self.instructor_signup_notified_at,
+                              :group => nil,
+                              :activity_string => "user.instructor_activity",
+                              :activity_object_id => self.id,
+                              :activity_object_human_identifier => self.login,
+                              :activity_object_class => self.class.to_s)
+      self.update_attribute(:instructor_activity_compiled_at, Time.now)
+    end
+  end
+
   # Are we currently cropping the graphic (see Railcasts episode #182)
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
