@@ -31,11 +31,11 @@ $(function() {
         radius: 5
     });
 
-    $('div#faqs_section div#questions, div#faqs_section div.answers').cornerz({
+    $('div#faqs_section div#questions, div#faqs_section div.answers, div#howtos_section div.answers').cornerz({
         radius: 5
     });
 
-    $('#faqs_section .answers h4').cornerz({
+    $('#faqs_section .answers h4, div#howtos_section .answers h4').cornerz({
         radius: 5,
         background: "#FFF"
     });

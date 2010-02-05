@@ -169,7 +169,12 @@ module ApplicationHelper
   end
 
   def random_quote 
-    ["The only thing that interferes with my learning is my education &mdash; Albert Einstein","Education is what remains after one has forgotten everything he learned in school &mdash; Albert Einstein"].rand
+    [
+      "In the competitive world of college admissions, grades and test scores are making a difference between being accepted and being denied. Offering a cutting-edge tutoring method will include students of all learning abilities and skill levels. This is exciting, innovative and will be inclusive of all students. I am excited to see where Firehoze is going to take our future leaders. &mdash; Cheri Barad, Education Consultant",
+      "This is going to make tutoring more fun and personal.<br /> &mdash; Sam P, Chestnut Hill",
+      "Being able to take the tutoring classes at my own pace will be better suited for my learning style.<br /> &mdash; Sarah C, Medfield",
+      "I'll be able to choose the tutor I want that appeals to my learning methods.<br /> &mdash; Joe W, Westwood"
+    ].rand
   end
 
   private
