@@ -40,9 +40,7 @@ set :deploy_to, "/var/#{base_dir}/#{application}"
 after 'deploy:update', 'deploy:finishing_touches', 'deploy:migrate', 'task_server:restart'
 
 task :after_cold, :roles => [:app, :web, :db] do
-  if ENV['DEPLOY'] == 'PRODUCTION'
-    run "chown -R www-data:www-data /var/#{base_dir}/#{application}"
-  end
+  run "chown -R www-data:www-data /var/#{base_dir}/#{application}"
 end
 
 task :before_update, :roles => [:app] do
@@ -63,9 +61,7 @@ task :symlink_sphinx_indexes, :roles => [:app] do
 end
 
 task :after_deploy, :roles => [:app, :web, :db] do
-  if ENV['DEPLOY'] == 'PRODUCTION'
-    run "chown -R www-data:www-data /var/#{base_dir}/#{application}"
-  end
+  run "chown -R www-data:www-data /var/#{base_dir}/#{application}"
 #  run "chmod -R 777 #{current_path}/public/stylesheets/v2"
 # run "cd #{current_path}; rake more:parse RAILS_ENV=#{rails_env}"
 end
