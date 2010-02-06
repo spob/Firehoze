@@ -93,7 +93,7 @@ class Credit < ActiveRecord::Base
   def compile_activity
     self.activities.create!(:actor_user => self.user,
                             :actee_user => nil,
-                            :acted_upon_at => Time.now,
+                            :acted_upon_at => self.redeemed_at,
                             :group => nil,
                             :activity_string => "credit.activity",
                             :activity_object_id => self.lesson.id,
