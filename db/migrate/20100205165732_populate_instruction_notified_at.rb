@@ -1,7 +1,7 @@
 class PopulateInstructionNotifiedAt < ActiveRecord::Migration
   def self.up
     User.active.instructors.each do |u|
-      if u.instructor_signup_notified_at.nil
+      if u.instructor_signup_notified_at.nil?
         execute("update users set instructor_signup_notified_at = '#{u.author_agreement_accepted_on.to_s(:db)}' where id = #{u.id}")
       end
     end
