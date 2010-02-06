@@ -1,0 +1,13 @@
+<p>
+  Hi <%= h @to_user.full_name %>,
+</p>
+<p>
+  We thought you'd like to know that an instructor you are following, <%= @lesson.instructor.login %>,
+  just released a new lesson.
+</p>
+<p>
+  You might want to check out "<%= link_to(h(@lesson.title), @url) %>": <%= h @lesson.synopsis %>
+</p>
+<p>
+  Happy Viewing!
+</p>

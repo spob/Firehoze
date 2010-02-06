@@ -29,6 +29,9 @@ periodic_job_timeout: 30
 # The maximum video file upload size (in MB)
 max_video_size: 500
 
+# The maximum attachment file upload size (in MB)
+max_attachment_size: 1
+
 # Minimum credit purchase represents the fewest number of video credits that a user
 # can purchase in one transaction
 min_credit_purchase: 5
@@ -51,7 +54,7 @@ gift_certificate_expires_days: 365
 
 # The nubmer of buy patterns to display (e.g., how many other lessons to show when telling the
 # user "Users who viewed this lesson ultimately bought that lesson
-number_of_buy_patterns_to_show: 5
+number_of_buy_patterns_to_show: 30
 
 # s3 directory name provides the name of the top level directory within Amazon buckets for storing videos
 s3_directory: default
@@ -76,3 +79,9 @@ restrict_registration: false
 
 # Can users browse the site without logging in
 allow_unrecognized_access: true
+
+# allow crawlers. Valid values are "ALL" and "noindex"
+crawler_access: ALL
+
+# The id of the main firehoze instructor's group
+firehoze_instructors_group_id: -1

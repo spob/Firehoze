@@ -1,17 +1,47 @@
 <% title "Give Gift Certificate" -%>
 
-<h3>Give Gift Certificate '<%= h @gift_certificate.formatted_code %>' to Another User</h3>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'validation/gift_certificates.validate.js' -%>
+<% end -%>
 
-<% form_for(:gift_certificate, :url => confirm_give_gift_certificate_path) do |f| %>
-    <%= f.error_messages %>
+<div class="fh-form">
 
-    Recipient Username:
-    <%= text_field_tag :to_user %> or
-    Recipient Email Address:
-    <%= text_field_tag :to_user_email %>
-    <br/>
-    Comments:
-    <%= text_field_tag :comments %>
-    <br/>
-    <%= f.submit "Give It", :disable_with => translate('general.disable_with') %>
-<% end %>
+  <% form_for(:gift_certificate, :url => confirm_give_gift_certificate_path, :html => {:id => "gift_certificate" }) do |f| %>
+      <%= f.error_messages %>
+      <ul id="confirm-give-gift-certificate-path-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3>Give Gift Certificate '<%= h @gift_certificate.formatted_code %>' to Another User</h3>
+          <h4>
+            It's better to give than to receive. You can use this screen to give one of your gift certificates to
+            someone else. You can identify the user to whom you want to give the gift certificate by either their login
+            name or their email address.
+          </h4>
+        </li>
+        <li>
+        <span>
+          <%= f.label :to_user, "Recipient Username" %>
+          <%= f.text_field :to_user %>
+          <span class="field-separator">&mdash;or&mdash;</span>
+          <%= f.label :to_user_email, "Recipient Email Address" %>
+          <%= f.text_field :to_user_email, :class => "email" %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :give_comments, "Comments" %>
+          <%= f.text_field :give_comments %>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+        <%= f.submit "Give It", :disable_with => translate('general.disable_with') %>
+        </span>
+
+          <div class="clear" />
+
+        </li>
+      </ul>
+  <% end %>
+</div>

@@ -28,9 +28,8 @@ class LessonVisit < ActiveRecord::Base
 
 
   def self.touch(lesson, user, session_id, purchased = false)
-    if ENV['RAILS_ENV'] == 'test'
-      session_id = 'dummy'
-    end
+    session_id = 'dummy' if ENV['RAILS_ENV'] == 'test'
+
     lesson_visit = LessonVisit.by_lesson(lesson.id).by_session(session_id).first
     if lesson_visit
       lesson_visit.visited_at = Time.now

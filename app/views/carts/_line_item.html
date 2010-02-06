@@ -1,8 +1,8 @@
-<tr class="<%= cycle :odd, :even %>">
+<tr class="<%= cycle :even, :odd %>">
     <td>
         <%= h line_item.sku.description %>
         <% if line_item.sku.class == GiftCertificateSku and !line_item.gift_certificates.empty? %>
-        <br/>
+        <br />
         <%= h line_item.gift_certificates.first.formatted_code %>
         <% end %>
     </td>
@@ -15,12 +15,9 @@
     <td class="price"><%= h(number_to_currency(line_item.total_discounted_price)) %></td>
     <% if line_item.cart.purchased_at.nil? %>
     <td>
-        <%= link_to "Increment Qty", line_item_path(line_item, :qty_change => 1), :method => :put %>
-        <%= link_to "Decrement Qty",
-        line_item_path(line_item, :qty_change => -1),
-        :method => :put if line_item.quantity > APP_CONFIG['min_credit_purchase'].to_i %>
-        <%= link_to "Remove from Cart", line_item_path(line_item),
-        html_options = {:confirm => 'Are you sure?', :method => :delete} %>
+        <%= link_to content_tag(:span, '&uarr; Increment Qty'), line_item_path(line_item, :qty_change => 1), :method => :put, :class => :minibutton %>
+        <%= link_to content_tag(:span, '&darr; Decrement Qty'), line_item_path(line_item, :qty_change => -1), :method => :put, :class => :minibutton if line_item.quantity > APP_CONFIG['min_credit_purchase'].to_i %>
+        <%= link_to content_tag(:span, 'Remove from Cart'), line_item_path(line_item), html_options = { :confirm => 'Are you sure?', :method => :delete, :class => :minibutton } %>
     </td>
     <% end %>
 </tr>

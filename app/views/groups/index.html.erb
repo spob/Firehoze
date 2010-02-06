@@ -1,0 +1,10 @@
+<% title "Browse Groups by #{@category ? @category.name : 'Categories' }" -%>
+<% @current = 'groups' %>
+
+<div class="span-12 last">
+  <% if @category %>
+      <%= render :partial => "browse_category" %>
+  <% else %>
+      <%= render :partial => "category_roundup" %>
+  <% end %>
+</div>

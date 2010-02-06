@@ -11,7 +11,6 @@ class RegistrationTest < ActiveSupport::TestCase
 
     should "equate hashes" do
       assert Registration.match?("test@example.com", @hash1)
-      assert Registration.match?("  test@example.com   ", @hash1)
       assert !Registration.match?("test@example.com", @hash2)
       assert Registration.match?("test@example.com", @hash2, "xxx", "yyy")
       assert !Registration.match?("test@example.com", @hash1, "xxx", "yyy")

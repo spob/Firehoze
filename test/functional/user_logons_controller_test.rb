@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'fast_context'
 
 class UserLogonsControllerTest < ActionController::TestCase
-  
+
   fast_context "when logged on" do
     setup do
       activate_authlogic

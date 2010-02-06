@@ -21,7 +21,11 @@ class RegistrationsController < ApplicationController
     if verify_recaptcha()
       if @registration.save
         flash[:notice] = t 'registration.check_email_for_registration'
-        render 'show'
+        if APP_CONFIG[CONFIG_ALLOW_UNRECOGNIZED_ACCESS]
+          redirect_to registration_path(@registration)
+        else
+          redirect_to login_path
+        end
       else
         #@registration.errors.each { |attr,msg| puts "#{attr} - #{msg}" }
         render :action => "new"
@@ -29,6 +33,17 @@ class RegistrationsController < ApplicationController
     else
       @registration.errors.add_to_base(I18n.t('registration.human_test_failed'))
       render :action => "new"
+    end
+  end
+
+  def show
+  end
+
+  def check_user
+    @user = User.find_by_login(params[:registration][:username].try(:strip))
+
+    respond_to do |format|
+      format.js
     end
   end
 end

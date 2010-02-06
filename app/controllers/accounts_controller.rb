@@ -6,12 +6,11 @@ class AccountsController < ApplicationController
                :update_instructor_wizard, :update_privacy if Rails.env.production?
   before_filter :require_user, :except => [:instructor_agreement]
   before_filter :find_user
+  before_filter :set_no_uniform_js
 
   verify :method => :put, :only => [ :update, :update_privacy, :update_instructor, :update_avatar, :update_instructor_wizard ], :redirect_to => :home_path
   verify :method => :post, :only => [ :clear_avatar ], :redirect_to => :home_path
 
-  def show
-  end
 
   def instructor_signup_wizard
     redirect_path = "redirect_to instructor_wizard_step#{calc_next_wizard_step(@user)}_account_path"
@@ -35,6 +34,11 @@ class AccountsController < ApplicationController
 
   def instructor_wizard_step5
     enforce_order @user, 5
+    unless @user.instructor_signup_notified_at.present?
+      RunOncePeriodicJob.create!(
+              :name => 'Notify New Instructor',
+              :job => "User.notify_instructor_signup(#{@user.id})")
+    end
   end
 
   def update_address
@@ -48,6 +52,7 @@ class AccountsController < ApplicationController
     if @user.address1_changed? or @user.address2_changed? or @user.city_changed? or
             @user.state_changed? or @user.postal_code_changed? or @user.country_changed?
       @user.verified_address_on = nil
+      @user.instructor_status = AUTHOR_STATUS_INPROGRESS
     end
   end
 
@@ -56,17 +61,22 @@ class AccountsController < ApplicationController
       # Accepting the agreement
       if @user.author_agreement_accepted_on.nil?
         if params[:accept_agreement]
-          @user.author_agreement_accepted_on = Time.now
-          if @user.instructor_status == AUTHOR_STATUS_NO
-            @user.instructor_status = AUTHOR_STATUS_INPROGRESS
-          end
-          if @user.save
-            instructor_signup_wizard
-          else
+          if RESTRICT_INSTRUCTOR_SIGNUP and !Registration.match?(@user.email, params[:registration_code], HASH_PREFIX, HASH_SUFFIX)
+            flash[:error] = t('account_settings.must_provide_regcode')
             render :action => "instructor_wizard_step1"
+          else
+            @user.author_agreement_accepted_on = Time.now
+            if @user.instructor_status == AUTHOR_STATUS_NO
+              @user.instructor_status = AUTHOR_STATUS_INPROGRESS
+            end
+            if @user.save
+              instructor_signup_wizard
+            else
+              render :action => "instructor_wizard_step1"
+            end
           end
         else
-          flash[:error] = t 'account_settings.must_accept_agreement'
+          flash[:error] = t('account_settings.must_accept_agreement')
           render :action => "instructor_wizard_step1"
         end
       end
@@ -107,15 +117,40 @@ class AccountsController < ApplicationController
   end
 
   def edit
+    session[:lesson_to_buy] = nil
+  end
+
+  def edit_instructor
+  end
+
+  def edit_avatar
+  end
+
+  def edit_privacy
   end
 
   def update_avatar
+    redirect_set = false
+    params[:user] = "" if params[:user].nil?
     if params[:user][:avatar]
-      if @user.update_attribute(:avatar, params[:user][:avatar])
-        flash[:notice] = t 'account_settings.avatar_success'
-        redirect_to edit_account_path(@user)
+      redirect_set = true
+      if @user.update_attributes(:avatar => params[:user][:avatar])
+        render :action => 'crop'
+        flash[:notice] = t "account_settings.avatar_success"
+      else
+        render :action => "edit_avatar"
       end
+    elsif !params[:user][:crop_x].blank? and !params[:user][:crop_y].blank? and !params[:user][:crop_w].blank? and !params[:user][:crop_h].blank?
+      @user.crop_x = params[:user][:crop_x]
+      @user.crop_y = params[:user][:crop_y]
+      @user.crop_w = params[:user][:crop_w]
+      @user.crop_h = params[:user][:crop_h]
+      @user.touch
+      flash[:notice] = t "account_settings.avatar_cropped"
+    else
+      flash[:error] = t "account_settings.avatar_not_specified"
     end
+    redirect_to edit_account_path(@user, :anchor => :avatar) unless redirect_set
   end
 
   def instructor_agreement
@@ -124,10 +159,10 @@ class AccountsController < ApplicationController
 
   def update_instructor
     update_address
-    if @user.save!
+    if @user.save
       flash[:notice] = t 'account_settings.update_success'
     else
-      flash[:error] = t 'account_settings.update_error'
+      render :action => "edit_instructor"
     end
     if @user.verified_address_on
       redirect_to edit_account_path
@@ -159,18 +194,12 @@ class AccountsController < ApplicationController
 
     if @user.save
       flash[:notice] = t 'account_settings.update_success'
+      # specify the id specifically because if the user updates the login, the user won't be
+      # found because of the slugging
+      redirect_to edit_account_path(@user.id)
     else
-      # getting here because not all (required) fields are getting passed in ...
-      flash[:error] = t 'account_settings.update_error'
+      render :action => 'edit'
     end
-
-    # specify the id specifically because if the user updates the login, the user won't be
-    # found because of the slugging
-    redirect_to edit_account_path(@user.id)
-
-  rescue Exception => e
-    flash[:error] = e.message
-    redirect_to edit_account_path
   end
 
   def update_privacy
@@ -179,19 +208,17 @@ class AccountsController < ApplicationController
 
     if @user.save
       flash[:notice] = t 'account_settings.update_success'
+      redirect_to edit_account_path(:anchor => :privacy)
     else
-      # getting here because not all (required) fields are getting passed in ...
-      flash[:error] = t 'account_settings.update_error'
+      render :action => "edit_privacy"
     end
-
-    redirect_to edit_account_path
-
-  rescue Exception => e
-    flash[:error] = e.message
-    redirect_to edit_account_path
   end
 
   private
+
+  def set_no_uniform_js
+    @no_uniform_js = true
+  end
 
   def enforce_order user, step_num
     if calc_next_wizard_step(user) < step_num
@@ -215,7 +242,7 @@ class AccountsController < ApplicationController
   end
 
   def find_user
-    if @current_user.is_admin?
+    if @current_user.is_an_admin?
       @user = User.find params[:id]
     else
       @user = @current_user

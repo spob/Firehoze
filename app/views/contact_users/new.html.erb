@@ -1,24 +1,44 @@
-<% title "Contact #{@to_user.name_or_username}" -%>
+<% title "Contact #{h @to_user.name_or_username}" -%>
 
-<%= render :partial => "shared/infield_head_content" %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'validation/contact_users.validate.js' -%>
+<% end -%>
 
-<% form_tag contact_users_path, :class => "contact_user", :id => "contact_user"  do -%>
-  <%= hidden_field_tag 'id', @to_user.id %>
-  <fieldset>
-    <legend>Contact <%= link_to_profile(@to_user) %></legend>
-    <p>
-      Subject:
-      <br/>
-      <%= text_field_tag 'subject' %>
-    </p>
-    <p>
-      Message:
-      <br/>
-      <%= text_area_tag 'msg' %>
-    </p>
-  </fieldset>
-  <p>
-    <%= submit_tag 'Send Email' %>
-  </p>
-<% end %>
+<div class="fh-form">
+  <% form_tag contact_users_path, :class => "contact_user", :id => "contact_user" do -%>
+      <%= hidden_field_tag 'id', @to_user.id %>
+      <ul id="send-a-message-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3>Contact <%= h @to_user.name_or_username %></h3>
+          <h4>Send a private message to <%= link_to_profile(@to_user) %></h4>
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
+        </li>
+        <li>
+        <span>
+          <%= label_tag :subject %>
+          <%= text_field_tag :subject, nil, :title => "You must enter a subject", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= label_tag :msg, "Message" %>
+          <%= text_area_tag :msg, nil, :title => "You must enter a message", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= submit_tag "Send Message" %>
+          <%= link_to 'Cancel', user_path(@to_user) %>
+        </span>
+
+          <div class="clear" />
+
+        </li>
+      </ul>
+  <% end %>
+</div>
   

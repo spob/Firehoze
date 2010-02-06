@@ -1,0 +1,34 @@
+<% title "#{t('group.tagged_with')} &quot;#{@tag}&quot;" -%>
+
+<% @current = 'groups' %>
+
+<div class="span-8 prepend-top">
+    <h3><%= "#{t('group.tagged_with')} &quot;#{@tag}&quot;" %></h3>
+  <% if @groups.present? %>
+  <%= will_paginate @groups %>
+  <table>
+    <tr>
+      <th colspan="2">Group</th>
+      <th>Category</th>
+    </tr>
+    <%= render :partial => 'categories/group', :collection => @groups, :locals => { :show_member => true } %>
+  </table>
+  <% else %>
+  <div class="info">
+    Looks like no one has created a group for this category yet. Why not be the first to
+    <%= link_to "create a group", new_group_path %>?
+  </div>
+  <% end %>
+  <!-- end tab-container -->
+</div>
+
+<div class="span-4 last tag_cloud prepend-top">
+  <div class="widget-box">
+    <div class="widget-box-header">
+      <span class="h4">Tags</span>
+    </div>
+    <div class="widget-box-content tags">
+      <%= render :partial => "groups/tag_cloud", :object => Group.public.active.tag_counts(:limit => 40, :order => "count DESC").sort{|x,y| x.name <=> y.name} %>
+    </div>
+  </div>
+</div>

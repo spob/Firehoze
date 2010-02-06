@@ -1,17 +1,22 @@
-Current Earnings Owed To You:
-<%= link_to_if current_user.unpaid_credits_amount > 0, number_to_currency(current_user.unpaid_credits_amount), show_unpaid_payment_path(current_user) %>
+<% pane = params[:pane] if params[:pane] %>
+<% payments = @payments if pane == "payments" %>
 
-<table>
-  <tr>
-    <th>Payment #</th>
-    <th>Paid On</th>
-    <th>Amount</th>
-  </tr>
-  <% if current_user.payments.empty? %>
-      <td colspan="3">
-        You haven't received any payments yet
-      </td>
+<p>
+  <strong>Current Earnings Owed To You: <%= link_to_if current_user.unpaid_credits_amount > 0, number_to_currency(current_user.unpaid_credits_amount), show_unpaid_payment_path(current_user) %></strong>
+  </p>
+
+<div id="<%= pane %>">
+  <% if payments.present? %>
+    <%= will_paginate payments, :params => { :pane => pane } %>
+    <table>
+      <tr>
+        <th>Payment #</th>
+        <th>Paid On</th>
+        <th>Amount</th>
+      </tr>
+      <%= render :partial => 'accounts/forms/payment', :collection => payments %>
+    </table>
   <% else %>
-      <%= render :partial => 'accounts/forms/payment', :collection => current_user.payments %>
+    <div class="info">You haven't received any payments yet</div>
   <% end %>
-</table>
+</div>

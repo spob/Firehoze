@@ -3,14 +3,24 @@
 
 class ApplicationController < ActionController::Base
   include SslRequirement
+  rescue_from ActionController::InvalidAuthenticityToken do |exception|
+    flash[:error] = t('security.invalid_token')
+    redirect_to login_path
+  end
+
+  rescue_from ActiveRecord::StaleObjectError do |exception|
+    flash[:error] = t('general.optimistic_lock_error')
+    redirect_to my_firehoze_index_path
+  end
 
   helper :all
   helper_method :current_user_session, :current_user
   filter_parameter_logging :password, :password_confirmation, :current_password, :card_number, :card_verification
   before_filter :set_timezone
   before_filter :set_user_language
+  before_filter :check_browser
 
-  protect_from_forgery #:only => [:update, :delete, :create]
+  protect_from_forgery :only => [:update, :delete, :create]
 
   def available_locales;
     AVAILABLE_LOCALES;
@@ -61,6 +71,19 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def check_browser
+    return true if Rails.env.test?
+    @detector = SpobBrowserDetector::Detector.new( request.env['HTTP_USER_AGENT'] )
+    by_pass = (!@detector.browser_is?(:name => 'ie', :major_version => '6') or (params[:controller] == 'pages' or (params[:controller] == 'lessons' and params[:action] == 'index')))
+    if (cookies[:browser_ok] == "ok" or by_pass)
+      true
+    else
+      cookies[:browser_ok] = { :value => "ok", :expires => 1.day.from_now }
+      redirect_to page_path("browser_check")
+      false
+    end
+  end
+
   # Set the timezone for a given user based upon their preference...if not logged on, use the system
   # default time time...this is called by the before_filter
   def set_timezone
@@ -74,13 +97,18 @@ class ApplicationController < ActionController::Base
   end
 
   # helper method to require that a user is logged on...used within controllers
-  def require_user
+  def require_user url=nil
     unless current_user
-      store_location
+      if (url)
+        store_location url
+      else
+        store_location
+      end
       flash[:error] = t 'security.you_must_be_logged_in'
       redirect_to new_user_session_url
       return false
     end
+    true
   end
 
   # helper method to require that a user is NOT logged on...used within controllers
@@ -88,7 +116,7 @@ class ApplicationController < ActionController::Base
     if current_user
       store_location
       flash[:error] = t 'security.you_must_be_logged_out'
-      redirect_to account_url(current_user)
+      redirect_to my_firehoze_index_path
       return false
     end
   end

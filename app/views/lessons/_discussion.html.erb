@@ -1,8 +1,0 @@
-<% lesson = object %>
-
-<% if lesson.comments.empty?  %>
-  <h4>Confused?  Need help with something?</h4>
-  <p>This is the place to reach out for help.</p>
-<% else %>
-  <%= render :partial => "lesson_comments/lesson_comment", :collection => lesson.comments %>
-<% end %>

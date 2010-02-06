@@ -23,4 +23,5 @@ class HighVoltage::PagesController < ApplicationController
   rescue ActionView::MissingTemplate
     false
   end
+
 end

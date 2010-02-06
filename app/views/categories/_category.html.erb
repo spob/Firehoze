@@ -1,9 +1,12 @@
-<tr>
-  <td><%= h category.formatted_name %></td>
-  <td><%= h category.parent_category.try(:name) %></td>
-  <td><%= category.sort_value %></td>             
-  <td>
-    <%= link_to 'edit', edit_category_path(category) %>
-    <%= link_to 'delete', category_path(category), :confirm => 'Are you sure?', :method => :delete if category.can_delete? %>
-  </td>
-</tr>
+<div class="category-container">
+  <h3>
+    <% if mode == "groups" %>
+        <%= link_to h(category.name), groups_path(:category => category).downcase, :id => category.name %>
+        <%= link_to image_tag("general/blue-arrow.png", :alt => h(category.name)), groups_path(:category => category).downcase, :class => 'arrow-link' %>
+    <% else %>
+        <%= link_to h(category.name), category_path(category).downcase %>
+        <%= link_to image_tag("general/blue-arrow.png", :alt => h(category.name)), category_path(category).downcase, :class => 'arrow-link' %>
+    <% end %>
+  </h3>
+  <%= content_tag(:p, truncate(child_categories_names(category), :length => 85)) if category.has_children? %>
+</div>

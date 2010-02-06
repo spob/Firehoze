@@ -1,0 +1,10 @@
+Hi <%= h @invitation.user.full_name %>,
+
+You have been invited to join the Firehoze Group <%= h @invitation.group.name %>: <%= h @invitation.group.description %>
+
+Message: <%= @invitation.message %>
+
+Firehoze Groups are mini communities of users who share a common interest. Group members can share information, engage
+in online discussion, and suggestion lessons to their peers which would be of interest.
+
+Navigate to the following URL to join this group: <%= @url %>

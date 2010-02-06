@@ -1,5 +1,10 @@
-<% lesson = object %>
-<div class="lesson_brief">
-  <div class="title"><%= link_to h(lesson.title), lesson_path(lesson), :class => :lesson_title_link %></div>
-  <div class="synopsis"><%= truncate(h(lesson.synopsis), :length => 80) %></div>
-</div>
+<% 
+lesson = object 
+title_length ||= 32
+synopsis_length ||= 32
+%>
+<li class="<%= cycle :odd, :even %>">
+  <%= img_tag_lesson_tn(lesson, :small, :size => "66x44") %>
+  <div class="title"><%= link_to h(truncate(lesson.title, :length => title_length)), lesson_path(lesson), :class => :lesson_title_link %></div>
+  <div class="synopsis"><%= truncate(h(lesson.synopsis), :length => synopsis_length) %></div>
+</li>

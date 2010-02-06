@@ -19,7 +19,7 @@ class AccountsHelperTest < ActionView::TestCase
     end
 
     should "calculate the text" do
-      assert "<li>Instructor Agreement</li>\n<li>Exclusivity</li>\n<li>Postal Address</li>\n<li>Confirm Contact Information</li>\n<li>Tax Witholding</li>",
+      assert "<li>Instructor Agreement</li>\n<li>Exclusivity</li>\n<li>Postal Address</li>\n<li>Confirm Contact Information</li>\n<li>Tax Withholding</li>",
              instructor_wizard_breadcrumbs(1)
     end
   end

@@ -1,4 +1,0 @@
-<div class="lesson_container">
-  <%= lessons_header(:recently_browsed) %>
-  <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => current_user.latest_visited_lessons.all(:limit => 10) %>
-</div>

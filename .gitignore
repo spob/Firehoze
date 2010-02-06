@@ -1,7 +1,7 @@
 *.sqlite3
 config/initializers/action_mailer_settings.rb
-config/development.sphinx.conf
 db/schema.rb
+db/sphinx
 config/locomotive.yml
 config/environments/development.yml
 config/environments/development.db
@@ -11,6 +11,7 @@ config/thin.yml
 private/images/*
 public/cache/*
 .DS_Store
+Thumbs.db
 .idea
 .idea/*
 .idea/dictionaries/*
@@ -18,10 +19,18 @@ public/cache/*
 .project
 public/assets
 nbproject
-tmp
+tmp/pids
+tmp/sessions
+tmp/sockets
+tmp/tmp
+tmp/cache/*.html
 script/s3.rb
 coverage
 coverage.data
 vendor/plugins/safe_erb
+config/development.sphinx.conf
 log/searchd.development.pid
-db/sphinx/
+webrat*
+public/stylesheets/v2/*.css
+public/stylesheets/v2/*/*.css
+*.cache

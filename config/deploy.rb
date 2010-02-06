@@ -1,9 +1,11 @@
 if ENV['DEPLOY'] == 'PRODUCTION'
   puts "*** Deploying to the \033[1;41m  PRODUCTION  \033[0m servers!"
   set :domain, '208.88.124.16'
+  set :branch, "master"
 else
   puts "*** Deploying to the \033[1;42m  STAGING  \033[0m server!"
   set :domain, '208.88.125.156'
+  set :branch, "phase2"
 end
 set :user, 'root'
 set :base_dir, 'rails'
@@ -17,19 +19,18 @@ after "deploy:update", "deploy:cleanup"
 set :runner, user
 
 set :git_account, 'spob'
-set :scm_passphrase,  Proc.new { Capistrano::CLI.password_prompt('F1reh0ze') }
+set :scm_passphrase, Proc.new { Capistrano::CLI.password_prompt('F1reh0ze') }
 
 role :web, server_hostname
 role :app, server_hostname
 role :db, server_hostname, :primary => true
 
 default_run_options[:pty] = true
-set :repository,  "git@github.com:spob/Firehoze.git"
+set :repository, "git@github.com:spob/Firehoze.git"
 set :scm, :git
 #set :user, user
 
 ssh_options[:forward_agent] = true
-set :branch, "master"
 set :deploy_via, :remote_cache
 set :git_shallow_clone, 1
 set :git_enable_submodules, 1
@@ -44,9 +45,57 @@ task :after_cold, :roles => [:app, :web, :db] do
   end
 end
 
+task :before_update, :roles => [:app] do
+  # Stop Thinking Sphinx before the update so it finds its configuration file.
+  thinking_sphinx.stop
+end
+
+task :after_update, :roles => [:app] do
+  files.cleanup
+  symlink_sphinx_indexes
+  thinking_sphinx.configure
+  thinking_sphinx.rebuild
+end
+
+desc "Link up Sphinx's indexes."
+task :symlink_sphinx_indexes, :roles => [:app] do
+  run "ln -nfs #{shared_path}/sphinx #{current_path}/db/sphinx"
+end
+
 task :after_deploy, :roles => [:app, :web, :db] do
   if ENV['DEPLOY'] == 'PRODUCTION'
     run "chown -R www-data:www-data /var/#{base_dir}/#{application}"
+  end
+#  run "chmod -R 777 #{current_path}/public/stylesheets/v2"
+# run "cd #{current_path}; rake more:parse RAILS_ENV=#{rails_env}"
+end
+
+# Thinking Sphinx
+namespace :thinking_sphinx do
+  task :configure, :roles => [:app] do
+    run "cd #{current_path}; rake thinking_sphinx:configure RAILS_ENV=#{rails_env}"
+  end
+  task :index, :roles => [:app] do
+    run "cd #{current_path}; rake thinking_sphinx:index RAILS_ENV=#{rails_env}"
+  end
+  task :start, :roles => [:app] do
+    run "cd #{current_path}; rake thinking_sphinx:start RAILS_ENV=#{rails_env}"
+  end
+  task :stop, :roles => [:app] do
+    run "cd #{current_path}; rake thinking_sphinx:stop RAILS_ENV=#{rails_env}"
+  end
+  task :restart, :roles => [:app] do
+    run "cd #{current_path}; rake thinking_sphinx:restart RAILS_ENV=#{rails_env}"
+  end
+  task :rebuild, :roles => [:app] do
+    run "cd #{current_path}; rake thinking_sphinx:rebuild RAILS_ENV=#{rails_env}"
+  end
+end
+
+namespace :files do
+  task :cleanup, :roles => [:app] do
+    run "rake log:clear RAILS_ENV=production -f #{current_path}/Rakefile"
+    run "chmod -R 777 #{current_path}/tmp/cache"
   end
 end
 
@@ -54,6 +103,7 @@ namespace :deploy do
   task :finishing_touches, :roles => :app do
     run "cp -pf #{deploy_to}/to_copy/production.rb #{current_path}/config/environments/production.rb"
     run "cp -pf #{deploy_to}/to_copy/database.yml #{current_path}/config/database.yml"
+    run "cp -pf #{deploy_to}/to_copy/sphinx.yml #{current_path}/config/sphinx.yml"
     run "cp -pf #{deploy_to}/to_copy/production.yml #{current_path}/config/environments/production.yml"
     # run "rm #{current_path}/lib/tasks/populate_fake_data.rake"
     # preserve the assets directory which resides under shared
@@ -134,3 +184,10 @@ namespace :gems do
     run "rake gems:install"
   end
 end
+
+
+Dir[File.join(File.dirname(__FILE__), '..', 'vendor', 'gems', 'hoptoad_notifier-*')].each do |vendored_notifier|
+  $: << File.join(vendored_notifier, 'lib')
+end
+
+require 'hoptoad_notifier/capistrano'

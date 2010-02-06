@@ -44,7 +44,7 @@ module ApplicationHelper
     text = text.gsub(/^\*\s(.*)$/, '<ul><li>\1</li></ul>').gsub(/<\/ul>\s*<ul>/, "\n")
     # and ordered lists
     text = text.gsub(/^#\s(.*)$/, '<ol><li>\1</li></ol>').gsub(/<\/ol>\s*<ol>/, "\n")
-    text = auto_link(simple_format(text))
+    text = auto_link(simple_format(text), :all, :target => "_blank")
     text = text.gsub(/^<br\s*\/><ul>/, "<ul>").gsub(/^<br\s*\/><ol>/, "<ol>").gsub(/^<br\s*\/><li>/, "<li>")
     text = text.gsub(/<\/ul>\s*<br\s*\/>/, "</ul>").gsub(/<\/ol>\s*<br\s*\/>/, "</ol>").gsub(/^<br\s*\/><\/li>/, "</li>")
     text
@@ -60,11 +60,19 @@ module ApplicationHelper
     LANGUAGES.rassoc(key).first
   end
 
-  def link_to_profile(user)
-    if current_user.try("is_moderator?") or current_user.try("is_admin?") or user.try("show_real_name")
-      link_to_unless_current "#{h user.full_name} (#{h user.login})", user_path(user)
-    else
-      link_to_unless_current h(user.name_or_username), user_path(user)
+  def link_to_profile(user, options = {})
+    length = options[:length]
+    name = length ? (truncate(privacy_sensitive_username(user), :length => length)) : privacy_sensitive_username(user)
+    link_to_unless_current name.strip.titleize(), user_path(user)
+  end
+
+  def privacy_sensitive_username(user)
+    if user
+      if current_user.try("is_a_moderator?") or current_user.try("is_an_admin?") or user.try("show_real_name")
+        "#{h user.full_name} (#{h user.login})"
+      else
+        h(user.name_or_username)
+      end
     end
   end
 
@@ -82,7 +90,16 @@ module ApplicationHelper
     "#{h(address1)}#{newline_character}#{h(address2) + newline_character unless (address2.nil? or address2.empty?)}#{h(city)}, #{h(state)} #{h(postal_code)}#{newline_character}#{I18n.t(country, :scope => 'countries')}"
   end
 
-  def flag_link flaggable
+  def flag_link flaggable, show_msg=true
+    msg = flag_msg flaggable
+    if msg.nil?
+      link_to content_tag(:span, "Flag"), new_flag_path(:flagger_type => flaggable.class.to_s, :flagger_id => flaggable), :class => :minibutton
+    elsif show_msg
+      msg
+    end
+  end
+
+  def flag_msg flaggable
     msg = nil
     if current_user
       flags = current_user.get_flags(flaggable)
@@ -90,15 +107,11 @@ module ApplicationHelper
         if flags.collect(&:status).include? FLAG_STATUS_REJECTED
           msg = t 'flag.user_flagging_reject'
         elsif flags.collect(&:status).include? FLAG_STATUS_PENDING
-          msg = t 'flag.user_flagging_pending'
+          msg = t('flag.user_flagged_item', :item => t("flag.#{flaggable.class.to_s.downcase}"))
         end
       end
     end
-    if msg.nil?
-      link_to "Flag", new_flag_path(:flagger_type => flaggable.class.to_s, :flagger_id => flaggable)
-    else
-      msg
-    end
+    msg = "<div class='flagging'> #{image_tag('icons/flag_16.png', :alt => :flag)} #{msg}</div>" unless msg.nil?
   end
 
   def per_page_select refresh_url
@@ -110,14 +123,64 @@ module ApplicationHelper
 
   def about_link
     unless params[:controller] == 'high_voltage/pages' and params[:action] == 'show' and params[:id] == 'about'
-        link_to "About Firehoze", page_path("about") 
+      link_to "About Firehoze", page_path("about")
     end
+  end
+
+  def browse_category_navigation
+    buf = link_to "All", categories_path
+    if @category
+      AncestorCategory.category_id_equals(@category.id).descend_by_generation(:select => [:ancestor_name]).each do |cat|
+        buf = buf + " > " + link_to(cat.ancestor_name, category_path(cat.ancestor_category))
+      end
+      buf = buf + " > " + @category.name
+    end
+    buf
+  end
+
+  def browser_name
+    @browser_name ||= begin
+
+      ua = request.env['HTTP_USER_AGENT']
+      return nil if ua.nil?
+      ua.downcase!
+
+      if ua.index('msie') && !ua.index('opera') && !ua.index('webtv')
+        'ie'+ua[ua.index('msie')+5].chr
+      elsif ua.index('gecko/')
+        'gecko'
+      elsif ua.index('opera')
+        'opera'
+      elsif ua.index('konqueror')
+        'konqueror'
+      elsif ua.index('applewebkit/')
+        'safari'
+      elsif ua.index('mozilla/')
+        'gecko'
+      end
+
+    end
+  end
+
+  def page_selected(current_page, tab_name)
+    if current_page == tab_name
+      return 'selected'
+    end
+  end
+
+  def random_quote 
+    [
+      "In the competitive world of college admissions, grades and test scores make a difference. A cutting-edge tutoring method will help students of all learning abilities and skill levels. This is exciting and innovative. I am excited to see where Firehoze is going to take our future leaders.&nbsp;&nbsp;&nbsp;<br />&mdash; Cheri Barad, Education Consultant",
+      "This is going to make tutoring more fun and personal.<br /> &mdash; Sam P, Chestnut Hill",
+      "Being able to take the tutoring classes at my own pace will be better suited for my learning style.<br /> &mdash; Sarah C, Medfield",
+      "I'll be able to choose the tutor I want that appeals to my learning methods.<br /> &mdash; Joe W, Westwood"
+    ].rand
   end
 
   private
 
   def link_to_command per_page, refresh_url, append_space=true
-    if session[:per_page] == per_page.to_s
+    if cookies[:per_page] == per_page.to_s
       "#{per_page}#{append_space ? "&nbsp;" : ""}"
     else
       link_to(per_page, set_per_pages_path(:per_page => per_page, :refresh_url => refresh_url), :method => :post) +

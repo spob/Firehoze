@@ -20,6 +20,118 @@ class LessonTest < ActiveSupport::TestCase
 
   subject { @lesson }
 
+  fast_context "given an existing lesson" do
+    setup do
+      @user = Factory.create(:user)
+      @lesson = Factory.create(:lesson)
+    end
+
+    should "not acquire lesson" do
+      assert_nil @lesson.acquire(@user, "session")
+    end
+
+    fast_context "with available credits" do
+      setup do
+        @sku = Factory.create(:credit_sku)
+        @user.credits.create(:sku => @sku, :price => 0.99)
+        assert @user.available_credits.present?
+        @credit = @lesson.acquire(@user, "session")
+        @user = User.find(@user.id)
+      end
+
+      should "acquire lesson" do
+        assert @credit
+        assert @user.available_credits.empty?
+        assert @lesson.owned_by?(@user)
+      end
+    end
+
+    fast_context "given a user" do
+      setup { @user = Factory.create(:user) }
+
+      fast_context "who is a plan old user" do
+        should "not allow any operations" do
+          assert !@lesson.can_edit?(@user)
+          assert !@lesson.can_view_purchases?(@user)
+          assert !@lesson.can_view_lesson_stats?(@user)
+          assert !@lesson.can_comment?(@user)
+        end
+      end
+
+      fast_context "who has purchased the lesson" do
+        setup do
+          @user.credits.create!(:price => 0.99, :lesson => @lesson)
+          assert @user.owns_lesson?(@lesson)
+        end
+
+        should "allow user to add a comment" do
+          assert @lesson.can_comment?(@user)
+        end
+
+        should "not allow other operations" do
+          assert !@lesson.can_edit?(@user)
+          assert !@lesson.can_view_purchases?(@user)
+          assert !@lesson.can_view_lesson_stats?(@user)
+        end
+      end
+
+      fast_context "who is the instructor" do
+        setup do
+          @lesson.update_attribute :instructor, @user
+          assert @lesson.instructed_by?(@user)
+        end
+
+        should "allow user to do pretty much anything" do
+          assert @lesson.can_comment?(@user)
+          assert @lesson.can_edit?(@user)
+          assert @lesson.can_view_purchases?(@user)
+          assert @lesson.can_view_lesson_stats?(@user)
+        end
+      end
+
+      fast_context "who is an admin" do
+        setup { @user.has_role 'admin' }
+
+        should "allow user to do pretty much anything" do
+          assert @lesson.can_comment?(@user)
+          assert @lesson.can_edit?(@user)
+          assert @lesson.can_view_purchases?(@user)
+          assert @lesson.can_view_lesson_stats?(@user)
+        end
+      end
+
+      fast_context "who is a moderator" do
+        setup { @user.has_role 'moderator' }
+
+        should "allow user to moderator the lesson and comments" do
+          assert @lesson.can_edit?(@user)
+          assert @lesson.can_comment?(@user)
+        end
+
+        should "not allow other operations" do
+          assert !@lesson.can_view_purchases?(@user)
+          assert !@lesson.can_view_lesson_stats?(@user)
+        end
+      end
+
+      fast_context "who is a payment mgr" do
+        setup { @user.has_role 'paymentmgr' }
+                                            
+        should "allow user to see information having to do with purchases" do
+          assert @lesson.can_view_purchases?(@user)
+        end
+
+        should "not allow other operations" do
+          assert !@lesson.can_comment?(@user)
+          assert !@lesson.can_edit?(@user)
+          assert !@lesson.can_view_lesson_stats?(@user)
+        end
+      end
+    end
+  end
+
+  subject { @lesson }
+
   context "given an existing lesson" do
     setup do
       @sku = Factory.create(:credit_sku, :sku => FREE_CREDIT_SKU)
@@ -36,10 +148,12 @@ class LessonTest < ActiveSupport::TestCase
         @lesson.save!
         assert @lesson.ready?
         @lessons = Lesson.lesson_recommendations(Factory.create(:user), 5)
+        @lessons2 = Lesson.lesson_recommendations(nil, 5)
       end
 
       should "retrieve lessons" do
         assert !@lessons.empty?
+        assert !@lessons2.empty?
       end
     end
 
@@ -168,6 +282,29 @@ class LessonTest < ActiveSupport::TestCase
           assert_equal 1, Lesson.by_category(@lesson.category.parent_category).size
           assert_equal @lesson2, Lesson.by_category(@lesson2.category.parent_category).first
         end
+
+        fast_context "and lessons in the ready state" do
+          setup do
+            @lesson.update_attribute(:status, LESSON_STATUS_READY)
+            @lesson2.reload
+            @lesson2.update_attribute(:status, LESSON_STATUS_READY)
+            @lesson3.reload
+            @lesson3.update_attribute(:status, LESSON_STATUS_READY)
+            @user.wishes << @lesson3
+            assert_equal 1, @user.wishes.size
+          end
+
+          should "return collections" do
+            assert_equal 1, Lesson.fetch_most_popular(@user, @lesson.category.id, 10, 1).size
+            assert_equal 1, Lesson.fetch_newest(@user, @lesson.category.id, 10, 1).size
+            assert_equal 1, Lesson.fetch_highest_rated(@user, @lesson.category.id, 10, 1).size
+            assert_equal 0, Lesson.fetch_tagged_with(@user, @lesson.category.id, 'tag', 10, 1).size
+            assert_equal 2, Lesson.fetch_owned(@user, 10, 1).size
+            assert_equal 1, Lesson.fetch_wishlist(@user, nil, 10, 1).size
+            assert_equal 0, Lesson.fetch_latest_browsed(@user, nil, 10, 1).size
+            assert_equal 1, Lesson.fetch_instructed_lessons(@lesson.instructor, nil, 10, 1).size
+          end
+        end
       end
 
       fast_context "and instructor is allow_contact NONE" do
@@ -213,24 +350,107 @@ class LessonTest < ActiveSupport::TestCase
       end
     end
 
-    should_validate_presence_of      :title, :instructor, :synopsis, :category
-    should_allow_values_for          :title, "blah blah blah"
-    should_ensure_length_in_range    :title, (0..50)
-    should_ensure_length_in_range    :synopsis, (0..500)
-    should_have_many                 :reviews, :video_status_changes, :credits, :free_credits, :taggings, :flags,
-                                     :videos, :processed_videos, :lesson_buy_patterns, :lesson_buy_pairs, :comments,
-                                     :rates
-    should_have_and_belong_to_many   :lesson_wishers
+    fast_context "and several groups" do
+      setup do
+        @user = Factory.create(:user)
+        @group1 = Factory.create(:group)
+        @group2 = Factory.create(:group)
+        @group3 = Factory.create(:group)
+        @group4 = Factory.create(:group)
+        @group5 = Factory.create(:group, :private => true)
+        @group6 = Factory.create(:group, :private => true)
+        @group7 = Factory.create(:group, :private => true)
+        @group8 = Factory.create(:group, :private => true)
+        @group_lesson1 = GroupLesson.create!(:user => Factory.create(:user), :lesson => @lesson, :group => @group1)
+        @group_lesson2 = GroupLesson.create!(:user => Factory.create(:user), :lesson => @lesson, :group => @group3,
+                                             :active => false)
+        @group_lesson4 = GroupLesson.create!(:user => Factory.create(:user), :lesson => @lesson, :group => @group4)
+        @group_lesson5 = GroupLesson.create!(:user => Factory.create(:user), :lesson => @lesson, :group => @group5)
+        @group_lesson6 = GroupLesson.create!(:user => Factory.create(:user), :lesson => @lesson, :group => @group6,
+                                             :active => false)
+        @group_lesson8 = GroupLesson.create!(:user => Factory.create(:user), :lesson => @lesson, :group => @group8)
+
+        @group_member1 = GroupMember.create!(:user => @user, :group => @group1, :member_type => MEMBER)
+        @group_member2 = GroupMember.create!(:user => @user, :group => @group2, :member_type => MEMBER)
+        @group_member5 = GroupMember.create!(:user => @user, :group => @group5, :member_type => MEMBER)
+        @group_member6 = GroupMember.create!(:user => @user, :group => @group6, :member_type => MEMBER)
+
+        assert @group1.includes_member?(@user)
+        assert @group2.includes_member?(@user)
+        assert !@group3.includes_member?(@user)
+        assert !@group4.includes_member?(@user)
+        assert @group5.includes_member?(@user)
+        assert @group6.includes_member?(@user)
+        assert !@group7.includes_member?(@user)
+        assert !@group8.includes_member?(@user)
+      end
+
+#        group  private   lesson group    user a member    user show  no user show
+#          1       N            Y              Y             Y             Y
+#          2       N            N              Y             N             N
+#          3       N            N              N             N             N
+#          4       N            Y              N             Y             Y
+#          5       Y            Y              Y             Y             N
+#          6       Y            N              Y             N             N
+#          7       Y            N              N             N             N
+#          8       Y            Y              N             N             N
+      should "retrieve lesson groups with user specified" do
+        @groups = @lesson.lesson_groups(@user)
+        assert_equal 3, @groups.size
+        assert @groups.include?(@group1)
+        assert !@groups.include?(@group2)
+        assert !@groups.include?(@group3)
+        assert @groups.include?(@group4)
+        assert @groups.include?(@group5)
+        assert !@groups.include?(@group6)
+        assert !@groups.include?(@group7)
+        assert !@groups.include?(@group8)
+      end
+      should "retrieve lesson groups with no user specified" do
+        @groups = @lesson.lesson_groups(nil)
+        assert_equal 2, @groups.size
+        assert @groups.include?(@group1)
+        assert !@groups.include?(@group2)
+        assert !@groups.include?(@group3)
+        assert @groups.include?(@group4)
+        assert !@groups.include?(@group5)
+        assert !@groups.include?(@group6)
+        assert !@groups.include?(@group7)
+        assert !@groups.include?(@group8)
+      end
+
+      should "determine when group belongs to a lesson" do
+        assert @lesson.belongs_to_group?(@group1)
+        assert !@lesson.belongs_to_group?(@group2)
+        assert !@lesson.belongs_to_group?(@group3)
+        assert @lesson.belongs_to_group?(@group4)
+        assert @lesson.belongs_to_group?(@group5)
+        assert !@lesson.belongs_to_group?(@group6)
+        assert !@lesson.belongs_to_group?(@group7)
+        assert @lesson.belongs_to_group?(@group8)
+      end
+    end
+
+    should_validate_presence_of :title, :instructor, :synopsis, :category, :audience
+    should_allow_values_for :title, "blah blah blah"
+    should_ensure_length_in_range :title, (0..50)
+    should_ensure_length_in_range :synopsis, (0..500)
+    should_have_many :reviews, :video_status_changes, :credits, :free_credits, :taggings, :flags,
+                     :videos, :processed_videos, :lesson_buy_patterns, :lesson_buy_pairs, :comments,
+                     :rates, :activities, :attachments, :group_lessons, :groups, :active_groups,
+                     :students
+    should_have_and_belong_to_many :lesson_wishers
     # See associated comments on the model as to why this are commented out RBS
     #should_have_one                  :last_comment
     #should_have_one                  :last_public_comment
-    should_belong_to                 :category
-    should_have_one                  :original_video
-    should_have_one                  :full_processed_video
-    should_have_one                  :preview_processed_video
-    should_have_class_methods        :list, :ready
-    should_have_instance_methods     :tag_list
+    should_belong_to :category
+    should_have_one :original_video
+    should_have_one :full_processed_video
+    should_have_one :preview_processed_video
+    should_have_class_methods :list, :ready
+    should_have_instance_methods :tag_list
     should_not_allow_mass_assignment_of :status
+    should_validate_uniqueness_of :title
 
     should "not be ready" do
       assert !@lesson.ready?
@@ -345,8 +565,8 @@ class LessonTest < ActiveSupport::TestCase
           @user2 = Factory.create(:user)
           @user3 = Factory.create(:user)
           @user3.is_admin
-          @lesson1 =  Factory.create(:lesson, :instructor => @user1)
-          @lesson2 =  Factory.create(:lesson, :instructor => @user2)
+          @lesson1 = Factory.create(:lesson, :instructor => @user1)
+          @lesson2 = Factory.create(:lesson, :instructor => @user2)
         end
 
         should "allow author to edit" do

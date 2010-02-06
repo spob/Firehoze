@@ -1,8 +1,0 @@
-<%= lessons_header(:owned_lessons) %>
-
-<% if current_user.lessons.empty? %>
-  <div class="content">You have not purchased any lessons.</div>
-<% else %>
-  <%= render :partial => "lessons/lesson_#{lesson_format}", :collection => current_user.lessons %>
-<% end %>
-  

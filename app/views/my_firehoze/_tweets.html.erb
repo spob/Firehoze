@@ -1,0 +1,13 @@
+<div class="widget-box">
+  <div class="widget-box-header">
+    <span class="h4">Latest Tweets from Firehoze</span>
+  </div>
+  <div class="widget-box-content" id="latest_firehoze_tweets">
+    <ul>
+      <%= render :partial => 'tweet', :collection => @tweets %>
+    </ul>
+  </div>
+  <div class="widget-box-footer">
+    <%= link_to "See all", "http://twitter.com/firehoze", :popup => true %>
+  </div>
+</div>

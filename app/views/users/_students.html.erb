@@ -1,0 +1,19 @@
+<% pane = params[:pane] if params[:pane] %>
+<% students = @students if pane == "students" %>
+
+<div id="<%= pane %>">
+  <%= will_paginate students, :params => { :pane => pane }, :class => "ajax-pagination" %>
+  <table>
+    <tr>
+      <th>Student</th>
+      <th>Purchased Lessons</th>
+    </tr>
+    <% if students.empty? %>
+      <tr>
+        <td colspan="2">You currently have no students</td>
+      </tr>
+    <% else %>
+      <%= render :partial => 'users/student', :collection => students %>
+    <% end %>
+  </table>
+</div>

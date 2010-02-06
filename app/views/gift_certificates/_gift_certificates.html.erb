@@ -1,0 +1,19 @@
+<% pane = params[:pane] if params[:pane] %>
+<% gift_certificates = @gift_certificates if pane == "gift_certificates" %>
+
+<% if gift_certificates.present? %>
+<div id="<%= pane %>">
+  <table>
+    <tr>
+      <th>Code</th>
+      <th>Credits</th>
+      <th>Expires At</th>
+      <th>Comments</th>
+      <th>Action</th>
+    </tr>
+    <%= render :partial => 'gift_certificates/gift_certificate', :collection => gift_certificates %>
+  </table>
+</div>
+<% else %>
+<div class="info">You have no gift certificates.</div>
+<% end %>

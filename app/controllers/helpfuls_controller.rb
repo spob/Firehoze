@@ -12,6 +12,6 @@ class HelpfulsController < ApplicationController
     elsif @review.helpfuls.create(:user => current_user, :helpful => (params[:helpful] == 'yes'))
       flash[:notice] = t 'helpful.create_success'
     end
-    redirect_to lesson_reviews_path(@review.lesson)
+    redirect_to lesson_path(@review.lesson, :anchor => "reviews")
   end
 end

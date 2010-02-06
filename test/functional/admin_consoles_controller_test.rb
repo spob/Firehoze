@@ -7,6 +7,7 @@ class AdminConsolesControllerTest < ActionController::TestCase
       activate_authlogic
       @user = Factory(:user)
       @other_user = Factory(:user)
+      @user.reload
       UserSession.create @user
     end
 
@@ -15,7 +16,7 @@ class AdminConsolesControllerTest < ActionController::TestCase
 
       should_respond_with :redirect
       should_not_set_the_flash
-      should_redirect_to("home page")  { list_users_path }
+      should_redirect_to("home page") { list_users_path }
     end
 
     fast_context "as an admin" do
@@ -26,7 +27,7 @@ class AdminConsolesControllerTest < ActionController::TestCase
 
         should_respond_with :redirect
         should_not_set_the_flash
-        should_redirect_to("home page")  { list_users_path('search[order]' => 'ascend_by_login') }
+        should_redirect_to("home page") { list_users_path('search[order]' => 'ascend_by_login') }
       end
     end
 
@@ -38,7 +39,7 @@ class AdminConsolesControllerTest < ActionController::TestCase
 
         should_respond_with :redirect
         should_not_set_the_flash
-        should_redirect_to("flags page")  { flags_path }
+        should_redirect_to("flags page") { flags_path }
       end
     end
 
@@ -50,7 +51,7 @@ class AdminConsolesControllerTest < ActionController::TestCase
 
         should_respond_with :redirect
         should_not_set_the_flash
-        should_redirect_to("payments page")  { payments_path }
+        should_redirect_to("payments page") { payments_path }
       end
     end
   end

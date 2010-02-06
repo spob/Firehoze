@@ -22,6 +22,9 @@ config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.gith
 config.gem 'flyerhzm-bullet', :lib => 'bullet', :source => 'http://gems.github.com'
 config.gem 'ruby-growl'
 
+# Mail safe protects us from sending email to real people outside the development team
+config.gem 'mail_safe', :source => 'http://gemcutter.org'
+
 # Safe ERB lets you make sure that the string written by "<%= %>" in your rhtml template is escaped correctly
 # config.gem "emk-safe_erb", :version => '0.1.2', :lib => 'safe_erb', :source => 'http://gems.github.com'
 
@@ -37,6 +40,8 @@ config.action_mailer.smtp_settings = {
         :user_name      => "mailer@firehoze.com",
         :password       => "F1reh0ze"
 }
+
+#config.log_level = :info
 
 # ActiveMerchant configuration
 config.after_initialize do
@@ -55,6 +60,4 @@ config.after_initialize do
   Bullet.growl = true
   Bullet.rails_logger = true
   Bullet.disable_browser_cache = true
-
-
 end

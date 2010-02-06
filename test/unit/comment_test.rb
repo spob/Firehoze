@@ -3,7 +3,7 @@ require 'fast_context'
 
 class CommentTest < ActiveSupport::TestCase
   fast_context "given an existing record for a comment" do
-    setup { @comment = Factory.create(:comment) }
+    setup { @comment = Factory.create(:lesson_comment) }
     subject { @comment }
 
     should_belong_to :user
@@ -37,6 +37,26 @@ class CommentTest < ActiveSupport::TestCase
         should "allow editing" do
           assert @comment.can_edit?(@user)
         end
+      end
+    end
+  end
+
+  fast_context "having a bunch of comments" do
+    setup do
+      @comment1 = Factory.create(:lesson_comment)
+      @lesson = @comment1.lesson
+      @comment2 = Factory.create(:lesson_comment, :lesson => @lesson)
+      @comment3 = Factory.create(:lesson_comment, :lesson => @lesson)
+      @comment4 = Factory.create(:lesson_comment, :lesson => @lesson)
+      assert_equal 4, @lesson.comments.size
+
+    end
+
+    should "add counter to comments" do
+      num = 1
+      Comment.numerate(@lesson.comments).each do |c|
+        assert_equal num, c.row_num
+        num = num + 1
       end
     end
   end

@@ -1,0 +1,67 @@
+<% title "my firehoze" -%>
+<% @current = 'my_firehoze' %>
+<% @secondary_nav_current = params[:action] %>
+
+<div id="my_firehoze" class="span-12 last">
+  <% # TOP LEVEL NAVIGATION -%>
+  <div class="span-12 append-bottom">
+    <%= render :partial => 'profile_and_nav', :locals => { :user => current_user } %>
+  </div>
+
+  <% # MY STUFF -%>
+  <h3><%= h(t('user.my_stuff')) %></h3>
+
+  <div id="my_stuff" class="span-12">
+    <!-- the tabs -->
+    <div class="tab-container">
+      <ul class="tabs">
+        <li><a href="#">Lessons</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#groups" id="group_tab">Groups</a></li>
+        <li><a href="#followed_instructors">Followed Instructors</a></li>
+      </ul>
+      <%= image_tag("spinners/ajax_spinner_32.gif", :class => "loader") %>
+    </div>
+    <!-- tab "panes" -->
+
+    <div class="panes">
+      <% # LESSONS -%>
+      <div><!-- start lessons pane -->
+        <div class="nested-navigation">
+          <ul class="links">
+            <li><a href="#">Recently Browsed</a></li>
+            <li><a href="#owned">Owned</a></li>
+            <li><a href="#"><%= h(t('lesson.wishlist')) %></a></li>
+          </ul>
+
+          <div class="nested-navigation-panes">
+            <div class="clearfix">
+              <%= render :partial => "lessons/ajaxed_lessons", :locals => { :lessons => @latest_browsed, :pane => :latest_browsed } %>
+            </div>
+            <div class="clearfix">
+              <%= render :partial => "lessons/ajaxed_lessons", :locals => { :lessons => @owned, :pane => :owned } %>
+            </div>
+            <div class="clearfix">
+              <%= render :partial => "lessons/ajaxed_lessons", :locals => { :lessons => @wishlist, :pane => :wishlist } %>
+            </div>
+          </div><!-- end (interior) panes -->
+        </div><!-- end lessons_nested -->
+      </div><!-- end lessons pane -->
+
+      <% # REVIEWS -%>
+      <div class="no-nested-nav-potentially-paginated"><!-- start reviews -->
+        <%= render :partial => 'reviews/ajaxed_reviews', :locals => { :reviews => @reviews, :pane => :reviews } %>
+      </div><!-- end reviews pane -->
+
+      <% # GROUPS -%>
+      <div class="no-nested-nav-potentially-paginated"><!-- start groups -->
+        <%= render :partial => 'groups/ajaxed_groups', :locals => { :groups => @groups, :pane => :groups } %>
+      </div><!-- end groups pane -->
+
+      <% # FOLLOWED INSTRUCTORS -%>
+      <div class="clearfix">
+        <%= render :partial => 'users/users_mosaic', :object => @followed_instructors %>
+      </div><!-- end followed instructor mosaic pane -->
+    </div><!-- end panes -->
+  </div><!-- end my-stuff -->
+</div>

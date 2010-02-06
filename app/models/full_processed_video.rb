@@ -12,6 +12,7 @@ class FullProcessedVideo < ProcessedVideo
   end
 
   def update_lesson_attributes(job)
+    self.lesson.reload
     self.lesson.update_attributes(:finished_video_duration => job.output_media_file.duration,
                                   :thumbnail_url => thumbnail_path("<size>"))
   end

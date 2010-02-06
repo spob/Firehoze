@@ -1,15 +1,16 @@
 class UsersController < ApplicationController
   include SslRequirement
 
-  ssl_required  :new, :create, :update if Rails.env.production?
+  ssl_required :new, :create, :update if Rails.env.production?
   before_filter :require_no_user, :only => [ :new, :create ]
   before_filter :require_user, :except => [ :new, :create, :show, :user_agreement ]
   before_filter :find_user, :only => [ :clear_avatar, :edit, :show_admin, :private, :reset_password, :update,
                                        :update_instructor, :update_privacy, :update_avatar, :update_roles ]
 
   permit ROLE_ADMIN, :only => [ :clear_avatar, :show_admin, :private, :reset_password, :update_avatar,
-                                :update_privacy, :update_roles, :update_instructor, :index, :list ]
-  permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [ :edit, :update]
+                                :update_privacy, :update_roles, :update_instructor, :index ]
+  permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [ :edit, :update ]
+  permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR} or #{ROLE_COMMUNITY_MGR}", :only => [ :list ]
 
   verify :method => :post, :only => [:create, :clear_avatar, :reset_password ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update, :update_privacy, :update_avatar, :update_roles, :update_instructor ], :redirect_to => :home_path
@@ -17,11 +18,15 @@ class UsersController < ApplicationController
   layout :layout_for_action
 
   def list
-    @search = User.search(params[:search])
-    @users = @search.paginate(:page => params[:page], :per_page => (session[:per_page] || ROWS_PER_PAGE))
+    @search = User.searchlogic(params[:search])
+    @users = @search.paginate(:page => params[:page], :per_page => (cookies[:per_page] || ROWS_PER_PAGE))
   end
 
   def new
+    # disable the uniform plugin, otherwise the advanced search form is all @$@!# up
+    @no_uniform_js = true
+
+
     # The registration record is unmarshalled based upon the URL that was created by ActiveURL
     # when the user requested the account in the first placed. If we get here, it means the user
     # clicked on the link in their registration email, in which case we can be sure that the email
@@ -31,7 +36,7 @@ class UsersController < ApplicationController
     @user = populate_user_from_registration_and_params
     @user.time_zone = APP_CONFIG[CONFIG_DEFAULT_USER_TIMEZONE]
   rescue ActiveUrl::RecordNotFound
-    flash[:notice] = t 'user.registration_no_longer_valid'
+    flash[:error] = t 'user.registration_no_longer_valid'
     redirect_back_or_default home_path
   end
 
@@ -43,7 +48,7 @@ class UsersController < ApplicationController
     @user.user_agreement_accepted_on = Time.now if params[:accept_agreement]
     if @user.save
       flash[:notice] = t 'user.account_reg_success'
-      redirect_back_or_default home_path
+      redirect_back_or_default my_firehoze_index_path
     else
       render :action => :new
     end
@@ -51,21 +56,25 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
-    unless @user.active or (current_user and (current_user.is_moderator? or !current_user.is_admin?))
+    unless @user.active or (current_user and (current_user.is_a_moderator? or !current_user.is_an_admin?))
       flash[:error] = t 'user.inactive_cannot_show'
       redirect_to lessons_path
     end
-    if current_user.try("is_moderator?") or current_user.try("is_admin?")
+    if current_user.try("is_a_moderator?") or current_user.try("is_an_admin?")
+      @groups = @user.member_groups.ascend_by_name.public
       @lessons = @user.instructed_lessons.all(:include => [:instructor, :tags])
       @reviews = @user.reviews.all(:include => [:user, :lesson])
     else
+      @groups = @user.member_groups.active.ascend_by_name.public
       @lessons = @user.instructed_lessons.ready.all(:include => [:instructor, :tags])
-      @reviews = @user.reviews.ready.all(:include => [:user, :lesson])
+      @reviews = @user.reviews.ready.ready_lesson(:include => [:user, :lesson])
     end
+    @activities = Activity.visible_to_user(current_user).actor_user_id_equals(@user).descend_by_acted_upon_at.paginate :per_page => 25, :page => 1
   end
 
   def show_admin
   end
+
 
   def private
     unless @user == @current_user
@@ -75,6 +84,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @no_uniform_js = true
   end
 
   def update_instructor
@@ -93,11 +103,11 @@ class UsersController < ApplicationController
       flash[:error] = t 'account_settings.update_error'
     end
 
-    redirect_to edit_user_path(@user)
+    redirect_to edit_user_path(@user, :anchor => 'author_info')
 
   rescue Exception => e
     flash[:error] = e.message
-    redirect_to edit_user_path(@user)
+    redirect_to edit_user_path(@user, :anchor => 'author_info')
   end
 
   def update
@@ -116,11 +126,11 @@ class UsersController < ApplicationController
           lesson.reject
           lesson.save!
         end
-        @user.reviews.each do |review|
+        @user.reviews.ready.each do |review|
           review.reject
           review.save!
         end
-        @user.lesson_comments.each do |comment|
+        @user.lesson_comments.ready.each do |comment|
           comment.reject
           comment.save!
         end
@@ -151,11 +161,11 @@ class UsersController < ApplicationController
       flash[:error] = t 'account_settings.update_error'
     end
 
-    redirect_to edit_user_path(@user)
+    redirect_to edit_user_path(@user, :anchor => 'privacy')
 
   rescue Exception => e
     flash[:error] = e.message
-    redirect_to edit_user_path(@user)
+    redirect_to edit_user_path(@user, :anchor => 'privacy')
   end
 
   #  temp: saving for "roles code"
@@ -171,7 +181,7 @@ class UsersController < ApplicationController
 
     if @user.update_attributes(params[:user])
       flash[:notice] = t 'user.account_update_success'
-      redirect_to edit_user_path(@user)
+      redirect_to edit_user_path(@user, :anchor => 'roles')
     else
       render :action => :edit
     end
@@ -179,9 +189,11 @@ class UsersController < ApplicationController
 
   def update_avatar
     if params[:user][:avatar]
-      if  @user.update_attribute(:avatar, params[:user][:avatar])
+      if @user.update_attributes(:avatar => params[:user][:avatar])
         flash[:notice] = t 'account_settings.avatar_success'
-        redirect_to edit_user_path(@user)
+        redirect_to edit_user_path(@user, :anchor => 'avatar')
+      else
+        render :action => :edit
       end
     end
   end
@@ -189,12 +201,12 @@ class UsersController < ApplicationController
   def clear_avatar
     @user.avatar.clear
     if @user.save
-      flash[:notice] = t 'account_settings.avatar_cleared'
+      flash[:notice] = t 'user.avatar_cleared'
     else
       # getting here because not all (required) fields are getting passed in ...
       flash[:error] = t 'account_settings.update_error'
     end
-    redirect_to edit_user_path(@user)
+    redirect_to edit_user_path(@user, :anchor => 'avatar')
   end
 
   def reset_password
@@ -203,7 +215,7 @@ class UsersController < ApplicationController
     else
       flash[:error] = t 'account_settings.update_error'
     end
-    redirect_to edit_user_path(@user)
+    redirect_to edit_user_path(@user, :anchor => 'password')
   end
 
   def user_agreement
@@ -213,7 +225,11 @@ class UsersController < ApplicationController
   private
 
   def layout_for_action
-    %w(show_admin edit list).include?(params[:action]) ? 'admin' : 'application'
+    if %w(show_admin edit list).include?(params[:action])
+      'admin'
+    else
+      'application'
+    end
   end
 
   def find_user

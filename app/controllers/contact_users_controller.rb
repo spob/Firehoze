@@ -1,26 +1,30 @@
 class ContactUsersController < ApplicationController
   include SslRequirement
-  
+
   before_filter :require_user
+  before_filter :find_to_user
 
   verify :method => :post, :only => [ :create ], :redirect_to => :home_path
 
   def new
-    @to_user = User.find(params[:id])
     check_permissions
   end
 
   def create
-    @to_user = User.find(params[:id])
     @subject = params[:subject]
     @msg = params[:msg]
     if check_permissions
-      RunOncePeriodicJob.create!(
-              :name => 'Contact User',
-              :job => "ContactUsersController.contact_user(#{@to_user.id}, #{current_user.id}, '#{@subject.gsub(/'/, "")}', #JOBID#)",
-              :data => @msg)
-      flash[:notice] = t 'contact_user.msg_sent'
-      redirect_to user_path(@to_user)
+      if @subject.blank? or @msg.blank?
+        flash[:error] = t('contact_user.required')
+        render :action => 'new'
+      else
+        RunOncePeriodicJob.create!(
+                :name => 'Contact User',
+                :job => "ContactUsersController.contact_user(#{@to_user.id}, #{current_user.id}, '#{@subject.gsub(/'/, "")}', #JOBID#)",
+                :data => @msg)
+        flash[:notice] = t 'contact_user.msg_sent'
+        redirect_to user_path(@to_user)
+      end
     end
   end
 
@@ -33,13 +37,17 @@ class ContactUsersController < ApplicationController
 
   private
 
+  def find_to_user
+    @to_user = User.find(params[:id])
+  end
+
   def check_permissions
     if @to_user.can_contact?(current_user)
-      return true
+      true
     else
       flash[:error] = t 'contact_user.cannot_contact'
       redirect_to user_path(@to_user)
-      return false
+      false
     end
   end
 end

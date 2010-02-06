@@ -1,36 +1,91 @@
-<% title "Edit Flag" -%>
+<% title "Flag Inappropriate #{t("flag.#{@flag.flaggable.class.to_s.downcase}").capitalize}" -%>
 
-<% form_for :flag, :url => flag_path(@flag), :html => { :method => :put } do |f| %>
-    <%= f.error_messages %>
-    
-    <p>
-      Item Type: <%= h @flag.flaggable.class.to_s %>
-    </p>
-    <p>
-      Flagged Item: <%= link_to h(@flag.friendly_flagger_name), flaggable_show_path(@flag) %>
-    </p>
-    <p>
-      Flag Status: <%= h @flag.status.capitalize %>
-    </p>
-    <p>
-      Reported By: <%= link_to_profile(@flag.user) %>
-    </p>
-    <p>
-      Reason: <%= h @flag.reason_type.capitalize %>
-    </p>
-    <p>
-      Comments: <%= rbs_formatter(@flag.comments) %>
-    </p>
-    <p>
-      Moderator Response: <%= f.text_area :response %>
-      <br/>
-      (Format using *<b>bold</b>* and _<i>italics</i>_ text)
-    </p>
-    <p>
-      Action: <%= f.select(:status, Flag.flag_statuses_select_list) %>
-    </p>
-    <p>
-      <%= f.submit "Submit", :disable_with => translate('general.disable_with') %>
-      <%= link_to "Cancel", flags_path %>
-    </p>
-<% end %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'validation/flags.validate.js' -%>
+<% end -%>
+
+<div class="fh-form">
+  <% form_for :flag, :url => flag_path(@flag), :html => { :method => :put } do |f| %>
+      <%= f.error_messages %>
+      <ul id="flag-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3>
+            <%= t("flag.#{@flag.flaggable.class.to_s.downcase}").capitalize %>:
+            </h3>
+          <h3>
+            <%= link_to h(@flag.friendly_flagger_name), flaggable_show_path(@flag) %>
+            <% unless @flag.flaggable.class == User %>
+                by <%= link_to_profile(offending_user) %>
+            <% end %>
+          </h3>
+          <h4>
+            This item has been flagged as being inappropriate. If the flagging is accurate, you can
+            either manually take the appropriate action and mark the flagging has having been dealt
+            with, or you can take the action directly within this screen. If the flagging is
+            not accurate, you can invalidate it below.
+          </h4>
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :item_type %>
+          <%= h @flag.flaggable.class.to_s %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :flagged_item %>
+          <%= link_to h(@flag.friendly_flagger_name), flaggable_show_path(@flag) %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :flag_status %>
+          <%= h @flag.status.capitalize %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :reported_by %>
+          <%= link_to_profile(@flag.user) %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :reason_type %>
+          <%= h @flag.reason_type.capitalize %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :comments %>
+          <%= rbs_formatter(@flag.comments) %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :response, "Moderator Response" %>
+          <%= f.text_area :response %>
+        </span>
+          <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :status, "Action" %>
+          <%= f.select(:status, Flag.flag_statuses_select_list) %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= submit_tag "Flag Content" %>
+          <%= link_to 'Cancel', flags_path %>
+        </span>
+
+          <div class="clear"/>
+        </li>
+      </ul>
+  <% end %>
+</div>

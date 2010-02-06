@@ -1,11 +1,42 @@
 <% title "Redeem a Gift Certificate" -%>
 
-<h3>Redeem a Gift Certificate</h3>
-<% form_for(:gift_certificate, :url => gift_certificates_path) do |f| %>
-    <%= f.error_messages %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'validation/gift_certificates.validate.js' -%>
+<% end -%>
 
-    Gift Certificate Code:
-    <%= f.text_field :code %>
+<div class="fh-form">
+  <% form_for(:gift_certificate, :url => gift_certificates_path, :html => { :id => "gift_certificate" }) do |f| %>
+      <%= f.error_messages %>
+      <ul id="gift-certificate-info" class="section">
+        <li class="header">
+          <span></span>
 
-    <%= f.submit "Redeem", :disable_with => translate('general.disable_with') %>
-<% end %>
+          <h3>Redeem a Gift Certificate</h3>
+          <h4>
+            You can redeem gift certificates for download creates. If someone sent you a gift certificate
+            code, you can enter it below.
+            <% if current_user.gift_certificates.active.present? %>
+                Alternatively, you may find it easier to
+                redeem them from your <%= link_to "My Firehoze", account_history_my_firehoze_path(:anchor => "giftcerts") %> page.
+            <% end %>
+          </h4>
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :code, "Gift Certificate Code" %>
+          <%= f.text_field :code %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= submit_tag "Redeem" %>
+        </span>
+
+          <div class="clear" />
+
+        </li>
+      </ul>
+  <% end %>
+</div>

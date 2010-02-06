@@ -1,0 +1,54 @@
+<% title "Search results for: &quot;#{@search_criteria}&quot;" -%>
+
+<h3><%= "Search Results for: &quot;#{@search_criteria}&quot;" %></h3>
+
+<% if @lessons.empty? and @groups.empty? and @users.empty? %>
+    sorry, no results
+<% end %>
+
+<div id="search-results">
+  <%= link_to content_tag(:span, "Advanced Lesson Search&nbsp;&raquo;"), advanced_search_lessons_path, :id => 'advanced-search-link', :class => :minibutton %>
+  <!-- the tabs -->
+  <div class="tab-container">
+    <ul class="tabs">
+      <% if @lessons.present? %>
+          <li id="lessons-tab"><a href="#lessons">Lessons (<%= @lessons.total_entries %>)</a></li>
+      <% end %>
+
+      <% if @groups.present? %>
+          <li id="groups-tab"><a href="#groups">Groups (<%= @groups.total_entries %>)</a></li>
+      <% end %>
+
+      <% if @users.present? %>
+          <li id="users-tab"><a href="#users">User (<%= @users.total_entries %>)</a></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <!-- tab "panes" -->
+  <div class="panes">
+    <% # LESSONS  -%>
+    <% if @lessons.present? %>
+        <div>
+          <%= render :partial => "lessons/lessons_row_format", :object => @lessons %>
+          <%= will_paginate @lessons, :param_name => :lesson_page, :params => {:group_page => @groups.current_page, :user_page => @users.current_page, :anchor => :lessons} %>
+        </div>
+    <% end %>
+
+    <% # GROUPS  -%>
+    <% if @groups.present? %>
+        <div>
+          <%= render :partial => 'groups/groups', :object => @groups %>
+          <%= will_paginate @groups, :param_name => :group_page, :params => {:lesson_page => @lessons.current_page, :user_page => @users.current_page, :anchor => :groups} %>
+        </div>
+    <% end %>
+
+    <% # USERS  -%>
+    <% if @users.present? %>
+        <div>
+          <%= render :partial => "users/users", :collection => @users %>
+          <%= will_paginate @users, :param_name => :user_page, :params => {:lesson_page => @lessons.current_page, :group_page => @groups.current_page, :anchor => :users} %>
+        </div>
+    <% end %>
+  </div>
+</div>

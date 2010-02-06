@@ -38,27 +38,32 @@ namespace :db do
   task :seed_roles => :environment do
     create_role(ROLE_PAYMENT_MGR)
     create_role(ROLE_MODERATOR)
+    create_role(ROLE_COMMUNITY_MGR)
   end
 
   desc "Seed the database with periodic jobs"
   task :seed_jobs => :environment do
     create_job RunIntervalPeriodicJob, 'SessionCleaner', 'SessionCleaner.clean', 3600 * 24  #once a day
     create_job RunIntervalPeriodicJob, 'SessionExpiry', 'SessionCleaner.sweep', 1800  #once every 30 minutes
+    create_job RunIntervalPeriodicJob, 'ActivityFeed', 'Activity.compile', 1800  #once every 30 minutes
+    create_job RunIntervalPeriodicJob, 'TwitterFeed', 'Tweet.fetch_firehoze_tweets("FIREHOZE", "firehoze")', 600  #once every 10 minutes
     create_job RunIntervalPeriodicJob, 'PeriodicJobCleanup', 'PeriodicJob.cleanup', 3600  #once an hour
     create_job RunIntervalPeriodicJob, 'CreditExpiration', 'Credit.expire_unused_credits', 3600 * 24  #once a day
     create_job RunIntervalPeriodicJob, 'LessonBuyPattern', 'LessonBuyPattern.rollup_buy_patterns', 3600  #once an hour
     create_job RunIntervalPeriodicJob, 'LessonBuyPair', 'LessonBuyPair.rollup_buy_patterns', 3600  #once an hour
+    create_job RunAtPeriodicJob, 'RebuildIndex', 'system("cd #RAILS_ROOT# && rake thinking_sphinx:index")', nil, 180  # 3AM
   end
 end
 
-def create_job(job_class, name, job_command, interval)
+def create_job(job_class, name, job_command, interval=nil, run_at=nil)
   job = PeriodicJob.find_by_name(name)
   if job
     puts "Periodic job #{job.name} already exists"
   else
     job_class.create!(:name => name,
                       :job => job_command,
-                      :interval => interval)
+                      :interval => interval,
+                      :run_at_minutes => run_at)
     puts "Created job #{name}"
   end
 end

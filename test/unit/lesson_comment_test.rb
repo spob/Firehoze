@@ -8,7 +8,7 @@ class LessonCommentTest < ActiveSupport::TestCase
 
     should_belong_to :lesson
     should_validate_presence_of      :lesson
-    should_have_many :flags
+    should_have_many :flags, :activities
 
     fast_context "and another private record" do
       setup do
@@ -52,7 +52,7 @@ class LessonCommentTest < ActiveSupport::TestCase
       fast_context "and one more comment which is public" do
         setup do
           @nobody_user = Factory.create(:user)
-          assert !@nobody_user.is_moderator?
+          assert !@nobody_user.is_a_moderator?
           @public_comment = Factory.create(:lesson_comment, :lesson => @lesson_comment.lesson)
         end
 
@@ -65,18 +65,19 @@ class LessonCommentTest < ActiveSupport::TestCase
   end
 
   fast_context "testing whether to show or hide public/private comments" do
+    setup { @lesson_comment = Factory.create(:lesson_comment) }
     fast_context "with a user" do
       setup { @user = Factory.create(:user) }
 
       should "not see the option" do
-        assert !LessonComment.show_public_private_option?(@user)
+        assert !Comment.show_public_private_option?(@user)
       end
 
       fast_context "who is an admin" do
         setup { @user.is_admin }
 
         should "see the option" do
-          assert LessonComment.show_public_private_option?(@user)
+          assert Comment.show_public_private_option?(@user)
         end
       end
 
@@ -84,7 +85,7 @@ class LessonCommentTest < ActiveSupport::TestCase
         setup { @user.is_moderator }
 
         should "see the option" do
-          assert LessonComment.show_public_private_option?(@user)
+          assert Comment.show_public_private_option?(@user)
         end
       end
     end

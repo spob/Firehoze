@@ -2,6 +2,7 @@ class SkusController < ApplicationController
   include SslRequirement
   
   before_filter :require_user
+  before_filter :find_sku, :only => [:destroy, :update, :edit]
 
   # Admins only
   permit ROLE_ADMIN
@@ -21,7 +22,7 @@ class SkusController < ApplicationController
   end
 
   def index
-    @skus = Sku.list params[:page], session[:per_page] || ROWS_PER_PAGE
+    @skus = Sku.list params[:page], cookies[:per_page] || ROWS_PER_PAGE
   end
 
   def new
@@ -45,11 +46,9 @@ class SkusController < ApplicationController
   end
 
   def edit
-    @sku = Sku.find params[:id]
   end
 
   def update
-    @sku = Sku.find params[:id]
     @sku.attributes = params[:sku]
     if @sku.save
       flash[:notice] = t 'sku.update_success'
@@ -60,10 +59,15 @@ class SkusController < ApplicationController
   end
 
   def destroy
-    sku = Sku.find params[:id]
-    name = sku.sku
-    sku.destroy
+    name = @sku.sku
+    @sku.destroy
     flash[:notice] = t 'sku.delete_success', :name => name
     redirect_to skus_url
+  end
+
+  private
+
+  def find_sku
+    @sku = Sku.find params[:id]
   end
 end

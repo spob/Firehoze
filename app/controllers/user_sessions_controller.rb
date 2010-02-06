@@ -1,4 +1,4 @@
-# This class interactions with the authlogic gem to acutally control logging in and logging out
+# This class interacts with the authlogic gem to actually control logging in and logging out
 class UserSessionsController < ApplicationController
   include SslRequirement
 
@@ -16,8 +16,7 @@ class UserSessionsController < ApplicationController
   def create
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
-      flash[:notice] = t 'login.login_success'
-      redirect_back_or_default home_path
+      redirect_back_or_default my_firehoze_index_path
     else
       render :action => :new
     end

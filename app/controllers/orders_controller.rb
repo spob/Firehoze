@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   include SslRequirement
 
   before_filter :require_user
+  before_filter :set_no_uniform_js
   layout :layout_for_action
 
   permit "#{ROLE_ADMIN} or #{ROLE_PAYMENT_MGR}", :only => [ :index ]
@@ -30,8 +31,9 @@ class OrdersController < ApplicationController
   end
 
   def index
+    session[:lesson_to_buy] = nil
     @search = Order.cart_purchased_at_not_null.descend_by_id.search(params[:search])
-    @orders = @search.paginate(:page => params[:page], :per_page => (session[:per_page] || ROWS_PER_PAGE)) 
+    @orders = @search.paginate(:page => params[:page], :per_page => (cookies[:per_page] || ROWS_PER_PAGE))
   end
 
   def create
@@ -55,6 +57,15 @@ class OrdersController < ApplicationController
         user.state = @order.state
         user.country = @order.country
         user.postal_code = @order.zip
+
+        # Note this isn't really required for now because form doesn't allow you to select
+        # default address option is already verified...but added logic just in case we
+        # loosen this in the future
+        if user.address1_changed? or user.address2_changed? or user.city_changed? or
+                user.state_changed? or user.postal_code_changed? or user.country_changed?
+          user.verified_address_on = nil
+          user.instructor_status = AUTHOR_STATUS_INPROGRESS
+        end
         user.save!
       end
       # Saving the order will charge the credit card itself using the ActiveMerchant plugin. If this succeeds,
@@ -80,15 +91,26 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    unless @order.user == current_user or current_user.is_admin?
+    unless @order.user == current_user or current_user.is_an_admin?
       flash[:error] = t("order.no_access")
       redirect_to home_path
     end
   end
 
   private
-  
+
+# disable the uniform plugin, otherwise the advanced search form is all @$@!# up
+  def set_no_uniform_js
+    if %w(new create).include?(params[:action])
+      @no_uniform_js = true
+    end
+  end
+
   def layout_for_action
-    %w(index).include?(params[:action]) || (params[:action] == 'show' and current_user.is_admin?) ? 'admin' : 'application'
+    if %w(index).include?(params[:action]) || (params[:action] == 'show' and current_user.is_an_admin?)
+      'admin'
+    else
+      'application'
+    end
   end
 end

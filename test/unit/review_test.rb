@@ -38,7 +38,7 @@ class ReviewTest < ActiveSupport::TestCase
 
       should_belong_to :user
       should_belong_to :lesson
-      should_have_many :helpfuls, :flags
+      should_have_many :helpfuls, :flags, :activities
       should_validate_presence_of :user, :headline, :body, :lesson
       should_allow_values_for    :status, "active", "rejected"
       should_validate_uniqueness_of :user_id, :scoped_to => :lesson_id
@@ -47,6 +47,7 @@ class ReviewTest < ActiveSupport::TestCase
 
       should "return records" do
         assert_equal 1, Review.list(@review.lesson, 1, @user, REVIEWS_ON_LESSON_SHOW_PER_PAGE).size
+        assert_equal 1, Review.list(nil, 1, @user, REVIEWS_ON_LESSON_SHOW_PER_PAGE).size
         assert_equal 1, Review.list_count(@review.lesson, @user)
         assert_equal 1, Review.ready.size
       end

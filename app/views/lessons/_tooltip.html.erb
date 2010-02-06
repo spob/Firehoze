@@ -1,0 +1,9 @@
+<div class="lesson-tooltip">
+  <%= ratings_for(lesson, :static) -%>
+  <div class="duration">Length: <%= ChronicDuration.output(lesson.finished_video_duration/1000, :format => :chrono) unless lesson.finished_video_duration.nil?-%></div>
+  <div class="content"> 
+    <span class="title"><%= lesson.title %> (<%= h audience_value(lesson.audience) -%> Level)</span><br />
+    Instructor: <%= link_to_profile(lesson.instructor) %><br />
+    <%= truncate(h(lesson.synopsis), :length => 370) %><br />
+  </div>
+</div>

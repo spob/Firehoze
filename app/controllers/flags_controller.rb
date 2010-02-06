@@ -1,9 +1,10 @@
 class FlagsController < ApplicationController
   include SslRequirement
-  
+
   before_filter :require_user
   before_filter :find_flaggable, :only => [ :new, :create ]
   before_filter :find_flag, :only => [ :show, :update, :edit ]
+  before_filter :set_no_uniform_js
   helper_method :flaggable_show_path
   layout :layout_for_action
 
@@ -11,17 +12,21 @@ class FlagsController < ApplicationController
 
   verify :method => :post, :only => [:create ], :redirect_to => :home_path
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
+  
+  cache_sweeper :tag_cloud_sweeper, :only => [:update]
 
   def create
     if reflag_ok(@flaggable)
       @flag = @flaggable.flags.new(params[:flag])
       @flag.status = FLAG_STATUS_PENDING
       @flag.user = current_user
-      if @flag.save
-        flash[:notice] = t('flag.create_success')
-        redirect_to flaggable_show_path(@flag)
-      else
-        render :action => "new"
+      Flag.transaction do
+        if @flag.save
+          flash[:notice] = t('flag.create_success')
+          redirect_to flaggable_show_path(@flag)
+        else
+          render :action => "new"
+        end
       end
     end
   end
@@ -75,12 +80,16 @@ class FlagsController < ApplicationController
 
   def index
     @flags = Flag.pending(:order_by => object_id).all(:include => [:flaggable, :user]).paginate :page => params[:page],
-                                                           :per_page => session[:per_page] || ROWS_PER_PAGE
+                                                                                                :per_page => cookies[:per_page] || ROWS_PER_PAGE
   end
 
   def flaggable_show_path(flag)
     if flag.flaggable.class == LessonComment
       lesson_lesson_comments_path(flag.flaggable(:include => [:lesson]).lesson, :anchor => "LessonComment#{flag.flaggable.id}")
+    elsif flag.flaggable.class == Review
+      lesson_path(flag.flaggable(:include => [:lesson]).lesson, :anchor => "reviews")
+    elsif flag.flaggable.class == TopicComment
+      topic_path(flag.flaggable(:include => [:topic]).topic, :anchor => "TopicComment#{flag.flaggable.id}")
     else
       show_url flag.flaggable.class, flag.flaggable.id
     end
@@ -101,14 +110,18 @@ class FlagsController < ApplicationController
     if msg
       flash[:error] = msg
       redirect_to flaggable_show_path(flags.first)
-      return false
+      false
     else
-      return true
+      true
     end
   end
 
   def layout_for_action
-    %w(index show edit).include?(params[:action]) ? 'admin' : 'application'
+    if %w(index show edit).include?(params[:action])
+      'admin'
+    else
+      'application'
+    end
   end
 
   def show_url klass, id, anchor=nil
@@ -128,5 +141,12 @@ class FlagsController < ApplicationController
     params[:flagger_type] = @flag.flaggable.class.to_s
     params[:flagger_id] = @flag.flaggable.id
     find_flaggable
+  end
+
+# disable the uniform plugin, otherwise the advanced search form is all @$@!# up
+  def set_no_uniform_js
+    if %w(new create).include?(params[:action])
+      @no_uniform_js = true
+    end
   end
 end

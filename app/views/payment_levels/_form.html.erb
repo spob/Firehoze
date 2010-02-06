@@ -1,0 +1,62 @@
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'validation/payment_levels.validate.js' -%>
+<% end -%>
+
+<div class="fh-form">
+  <% form_for(@payment_level, :html => {:id => 'payment_level'}) do |f| %>
+      <%= f.error_messages %>
+      <ul id="payment-level-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3><%= heading %></h3>
+          <h4><%= subtext %></h4>
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :name %>
+          <%= f.text_field :name, :maxlength => "30", :title => "You must enter a payment level name", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
+
+          <div class="counter"><span id="payment_level_name_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :code %>
+          <%= f.text_field :code, :maxlength => "5", :title => "You must enter a payment level code", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
+
+          <div class="counter"><span id="payment_level_code_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :rate %>
+          <%= f.text_field :rate, :class => "required" %>
+          <span class="required-field"></span>
+        </span>
+          <span class="help">(enter 0.05 for 5%)</span>
+        </li>
+        <li>
+        <span>
+          <%= f.check_box :default_payment_level %> Default
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.check_box :admin_only %> This group can be assigned by admins only
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= f.submit @payment_level.new_record? ? 'Create' : 'Update' %>
+          <%= link_to 'Cancel', payment_levels_path %>
+        </span>
+
+          <div class="clear"/>
+        </li>
+      </ul>
+  <% end %>
+</div>

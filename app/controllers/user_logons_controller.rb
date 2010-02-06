@@ -13,6 +13,6 @@ class UserLogonsController < ApplicationController
     @search = UserLogon.last_90_days.descend_by_created_at.search(params[:search])
     @user_logons = @search.paginate(:include => [:user],
                                     :page => params[:page],
-                                    :per_page => (session[:per_page] || ROWS_PER_PAGE))
+                                    :per_page => (cookies[:per_page] || ROWS_PER_PAGE))
   end
 end

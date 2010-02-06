@@ -1,0 +1,47 @@
+<% title "Add Attachment to the Lesson '#{h @lesson.title}'" -%>
+
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'validation/lesson_attachments.validate.js' -%>
+<% end -%>
+
+<div class="fh-form">
+  <% form_for :attachment, :url => lesson_lesson_attachments_url(@lesson), :html => { :multipart => true, :id => "new_attachment" } do |form| %>
+      <%= form.error_messages %>
+      <ul id="attachment-info" class="section">
+        <li class="header">
+          <span></span>
+          <h3>Add Attachment to the Lesson:</h3><h3>"<%= h @lesson.title %>"</h3>
+          <h4>You can associate lesson notes, presentation files, code samples or other files to your lesson.
+            </h4>
+          <h4>
+          Files that you attach to your lesson must be less than <%= number_to_human_size(APP_CONFIG[CONFIG_MAX_ATTACHMENT_SIZE].megabytes) %>.
+          Allowed file types include text files, Microsoft Office files, OpenOffice files, images and PDFs.</h4>
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
+        </li>
+        <li>
+        <span>
+          <%= form.label :title %>
+          <%= form.text_field :title, :maxlength => "50", :title => "You must enter a title", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
+          <div class="counter"><span id="attachment_title_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= form.label :attachment %>
+          <%= form.file_field :attachment, :title => "You must specify the file to attach", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= form.submit "Create Attachment" %>
+          <%= link_to 'Cancel', lesson_path(@lesson) %>
+        </span>
+
+          <div class="clear" />
+
+        </li>
+      </ul>
+  <% end %>
+</div>

@@ -1,32 +1,32 @@
 <% title "User Logons" -%>
+<% @current = 'logons' %>
 
 <h3>User Logons</h3>
-<div>
-  <% form_for(@search, :html => { :class => "search_box" }) do |f| %>
-    <div class="span-18">
+<div class="span-12 search-box-container">
+  <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
+    <div class="span-6 right">
       <%= f.label :user_login_like, "Username" %>
-      <%= f.text_field :user_login_like, :style => "width:360px;" %>
+      <%= f.text_field :user_login_like, :style => "width:370px;" %>
     </div>
-    <div class="span-18">
+    <div class="span-6 center last">
       <%= f.label :user_email_like, "Email" %>
-      <%= f.text_field :user_email_like, :style => "width:390px;" %>
-    </div>
-    <div class="last" style="padding-top:5px;text-align:left">
+      <%= f.text_field :user_email_like, :style => "width:330px;" %>
       <%= f.submit "Search" %>
     </div>
   <% end %>
 </div>
 
-<table>
-  <tr>
-    <th>User</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Login IP</th>
-    <th>Logged In At</th>
-  </tr>
-  <%= render @user_logons %>
-</table>
-<%= will_paginate @user_logons %>
-<br/>
-Rows to Display Per Page: <%= per_page_select(user_logons_path) %>
+<div class="span-12">
+  <table>
+    <tr>
+      <th>User</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Login IP</th>
+      <th>Logged In At</th>
+    </tr>
+    <%= render @user_logons %>
+  </table>
+</div>
+<p><%= will_paginate @user_logons %></p>
+<p class="mt-1em">Rows to Display Per Page: <%= per_page_select(user_logons_path) %></p>

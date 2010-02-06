@@ -11,7 +11,7 @@ namespace :db do
   namespace :populate do
 
     desc "Bootstraps the application"
-    task :all => [ :truncate, :admins, :users, :seed_skus, :categories, :lessons, :tags, :credits, :acquire_lessons, :reviews, :reset_passwords] do
+    task :all => [ :truncate, :admins, :users, :seed_skus, :categories, :lessons, :tags, :credits, :acquire_lessons, :reviews, :reset_passwords, :groups, :followers, :tweets ] do
       puts "***** ALL COMPLETE *****"
     end
 
@@ -22,7 +22,7 @@ namespace :db do
       require 'faker'
 
       [RolesUser, UserLogon].each(&:delete_all)
-      params =  { :active => true, :language => 'en', :password => "pa$$word", :password_confirmation => "pa$$word", :password_salt => 'as;fdaslkjasdfn', :time_zone =>Time.zone.name }
+      params = { :active => true, :language => 'en', :password => "pa$$word", :password_confirmation => "pa$$word", :password_salt => 'as;fdaslkjasdfn', :time_zone =>Time.zone.name }
       developers_personal_info.each do |dev|
         admin = User.new params
         admin.email = dev[0]
@@ -53,8 +53,9 @@ namespace :db do
         end
       end
 
+      i = 1
       User.populate count.to_i do |user|
-        user.login = Faker::Name.first_name + Faker::Name.last_name
+        user.login = "#{Faker::Name.first_name}i"
         user.first_name = Faker::Name.first_name
         user.last_name = Faker::Name.last_name
         user.email = Faker::Internet.email
@@ -68,7 +69,8 @@ namespace :db do
         user.failed_login_count = 0
         user.active = true
         user.user_agreement_accepted_on = Date.today
-        
+        i = i + 1
+
         # insane why I need to specify these for my PC dev instance -- oh well
         user.rejected_bio = false
         user.show_real_name = true
@@ -88,7 +90,7 @@ namespace :db do
       require 'faker'
       puts "S3 root directory: #{APP_CONFIG[CONFIG_S3_DIRECTORY]}"
       blow_away_lessons
-      count = ENV['count'] ? ENV['count'] : 11
+      count = ENV['count'] ? ENV['count'] : 21
 
       (1..count.to_i).each do |i|
         lesson = Lesson.new
@@ -97,15 +99,16 @@ namespace :db do
         lesson.synopsis = Populator.sentences(2..4)
         lesson.notes = Populator.paragraphs(2..6)
         lesson.status = VIDEO_STATUS_PENDING
+        lesson.category = Category.first(:order => "RAND()")
         dummy_video_path = "/test/videos/#{rand(5)+1}.avi" #pick a random vid,
         if !File.exist?(RAILS_ROOT + dummy_video_path)
           puts "can not find file"
         else
           lesson.save!
-          OriginalVideo.create!(:lesson => lesson,
-            :video => File.open(RAILS_ROOT + dummy_video_path))
+          video = OriginalVideo.create!(:lesson => lesson,
+                                :video => File.open(RAILS_ROOT + dummy_video_path))
           lesson.trigger_conversion("http://some/url")
-          puts "#{i}: #{lesson.original_video.video_file_name} uploaded [instructor: #{lesson.instructor.full_name} | file size:#{lesson.original_video.video_file_size}]"
+          puts "#{i}: #{lesson.original_video.video_file_name} uploaded [instructor: #{lesson.instructor.full_name} | file size:#{lesson.original_video.video_file_size}] to #{video.video.path}"
         end
       end
       puts "- done -"
@@ -138,6 +141,76 @@ namespace :db do
       create_sku GiftCertificateSku, GIFT_CERTIFICATE_SKU, 'Gift Certificate', 1, 0.99
     end
 
+    desc "Create some followers"
+    task :followers => :environment do
+      require 'populator'
+      require 'faker'
+      count = (ENV['count'] ? ENV['count'].to_i : 25)/3
+      while User.instructors.count < count
+        puts "=============#{User.instructors.count} < #{count}"
+        puts "=== Turning some users into instructors ==="
+        user = User.first(:order => 'RAND()')
+        unless user.verified_instructor? or !user.valid?
+          puts "Converting #{user.login} to an instructor"
+          user.address1 = Faker::Address.street_address
+          user.address2 = Faker::Address.secondary_address
+          user.city = Faker::Address.city
+          user.state = Faker::Address.us_state
+          user.postal_code = Faker::Address.zip_code
+          user.country = 'US'
+          user.verified_address_on = Time.now
+          user.author_agreement_accepted_on = Time.now
+          user.payment_level = PaymentLevel.first(:order => 'RAND()')
+          user.save!
+        end
+      end
+      puts "=== Generating Followers ==="
+      count = (ENV['count'] ? ENV['count'].to_i : 25)
+      count.times do |n|
+        instructor = User.instructors.first(:order => 'RAND()')
+        user = User.first(:order => 'RAND()')
+        if instructor.verified_instructor?
+          instructor.followers << user unless instructor == user or instructor.followed_by?(user)
+        end
+      end
+    end
+
+    desc "Generate some public groups"
+    task :groups => :environment do
+      puts "=== Generating Public Groups ==="
+      require 'faker'
+      require 'populator'
+
+      (1..15).each do |i|
+        group = Group.new
+        group.owner = User.first(:order => 'RAND()')
+        group.category = Category.first(:order => 'RAND()')
+        group.private = false
+        group.name = Populator.words(1..2)
+        group.description = Populator.sentences(2..4)
+        unless Group.find_by_name(group.name)
+          group.save!
+        end
+      end
+    end
+
+    desc "Generate some tweets"
+    task :tweets => :environment do
+      puts "=== Generating Tweets ==="
+      require 'populator'
+      require 'faker'
+
+      (1..20).each do |i|
+        tweet = Tweet.new(:search_code => FIREHOZE_TWEETS, :twitter_post_id => Time.now.to_i + i,
+                          :iso_language_code => "en")
+        tweet.posted_at = (rand() * 10000).to_i.minutes.ago
+        tweet.from_user = Faker::Name.name
+        tweet.tweet_text = Populator.sentences(1..2)[0..139]
+        tweet.profile_image_url = "http://assets.firehoze.com.s3.amazonaws.com/images/users/avatars/tiny/missing.png"
+        tweet.save!
+      end
+    end
+
     #Not sure I need this any more
     desc "Generate some line_items and carts"
     task :carts => :environment do
@@ -154,14 +227,14 @@ namespace :db do
     #Not sure I neeed this any more
     desc "Generate some categories"
     task :categories => :environment do
-      math = Category.create!(:name => "Math", :parent_category => nil, :sort_value => 10)
-      Category.create!(:name => "Trigonometry", :parent_category => math, :sort_value => 10)
-      Category.create!(:name => "Calculus", :parent_category => math, :sort_value => 20)
-      Category.create!(:name => "Geometry", :parent_category => math, :sort_value => 30)
-      science = Category.create!(:name => "Science", :parent_category => nil, :sort_value => 30)
-      Category.create!(:name => "Chemistry", :parent_category => science, :sort_value => 10)
-      Category.create!(:name => "Physics", :parent_category => science, :sort_value => 20)
-      Category.create!(:name => "Biology", :parent_category => science, :sort_value => 30)
+      math = create_category "Math", nil, 10
+      create_category "Trigonometry", math, 10
+      create_category "Calculus", math, 20
+      create_category "Geometry", math, 30
+      science = create_category "Science", nil, 20
+      create_category "Chemistry", science, 10
+      create_category "Physics", science, 20
+      create_category "Biology", science, 30
     end
 
     desc "Generate some credits"
@@ -222,11 +295,15 @@ namespace :db do
 
     desc "truncates tables"
     task :truncate => :environment do
-      
-      
-      
+
+
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE periodic_jobs;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_attachments;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE activities;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE free_credits;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE group_lessons;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE group_members;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE instructor_follows;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE gift_certificates;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE payments;")
@@ -252,6 +329,10 @@ namespace :db do
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE tags;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE roles_users;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE user_logons;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE user_logons;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE activities;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE groups;")
+      ActiveRecord::Base.connection.execute("TRUNCATE TABLE instructor_follows;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE users;")
     end
 
@@ -283,6 +364,8 @@ namespace :db do
 
   def blow_away_lessons
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE group_lessons;")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_attachments;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE skus;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE helpfuls;")
@@ -290,8 +373,19 @@ namespace :db do
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE video_status_changes;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE free_credits;")
     ActiveRecord::Base.connection.execute("DELETE FROM videos WHERE TYPE = 'ProcessedVideo';")
+    ActiveRecord::Base.connection.execute("DELETE FROM videos WHERE converted_from_video_id IS NOT NULL;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE videos;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_visits;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE lessons;")
+  end
+
+  def create_category name, parent, sort
+    category = Category.find_by_name(name)
+    if category
+      puts "Category #{category.name} already exists...skipping"
+    else
+      category = Category.create!(:name => name, :parent_category => parent, :sort_value => sort)
+    end
+    return category
   end
 end

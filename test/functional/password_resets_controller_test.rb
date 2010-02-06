@@ -30,7 +30,7 @@ class PasswordResetsControllerTest < ActionController::TestCase
       should_assign_to :user
       should_respond_with :redirect
       should_set_the_flash_to /Instructions to reset your password/
-      should_redirect_to("login page") { root_url }
+      should_redirect_to("show page") { password_reset_path(assigns(:user)) }
     end
 
     fast_context "and needing to reset the password" do
@@ -48,7 +48,7 @@ class PasswordResetsControllerTest < ActionController::TestCase
 
         should_assign_to :user
         should_set_the_flash_to "Password successfully updated"
-        should_redirect_to("my account page") { account_url assigns(:user) }
+        should_redirect_to("my firehoze page") { my_firehoze_index_path }
       end
 
       fast_context "on PUT to :update with bad password confirmation" do

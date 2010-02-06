@@ -4,30 +4,37 @@
 <h3>Instructor Enrollment Wizard</h3>
 <%= render :partial => 'breadcrumbs', :locals => { :step => 1 } %>
 <% form_for(:user, :url => update_instructor_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
-  <%= f.error_messages %>
-  <fieldset>
-    <legend>Instructor Agreement</legend>
-    <div id="instructor_agreement">
-      <%= render :partial => 'pages/policies/instructor_agreement' %>
-    </div>
-
-    <p><%= link_to "Printer Friendly Version", page_path('instructor_agreement'), :popup => true %></p>
-
-    <% if @user.author_agreement_accepted_on.nil? %>
-      <div>
-        <%= check_box_tag :accept_agreement %> <label>By checking this box I hereby agreement to be bound by the terms of this agreement.</label>
+    <%= f.error_messages %>
+    <fieldset>
+      <legend>Instructor Agreement</legend>
+      <div id="instructor_agreement">
+        <%= render :partial => 'pages/policies/instructor_agreement' %>
       </div>
-    <% else %>
-      Accepted on: <%= l @user.author_agreement_accepted_on %>
-    <% end %>
-  </fieldset>
-  <p class="actions">
-    <% if @user.author_agreement_accepted_on %>
-      <%= link_to "Next", instructor_wizard_step2_account_path(current_user) %>
-    <% else %>
-      <%= f.submit "Next", :disable_with => translate('general.disable_with') %>
-    <% end %>
-    <%= link_to 'Cancel', edit_account_path(current_user) %>
-  </p>
-  <%= hidden_field_tag :step, "1" %>
+
+      <p><%= link_to "Printer Friendly Version", page_path('instructor_agreement'), :popup => true %></p>
+
+      <% if @user.author_agreement_accepted_on.nil? %>
+          <div>
+            <%= check_box_tag :accept_agreement %>
+            <label>By checking this box I hereby agree to be bound by the terms of this agreement.</label>
+          </div>
+          <% if RESTRICT_INSTRUCTOR_SIGNUP %>
+              <div>
+                <%= label_tag :registration_code %>
+                <%= text_field_tag :registration_code %>
+              </div>
+          <% end %>
+      <% else %>
+          Accepted on: <%= l @user.author_agreement_accepted_on %>
+      <% end %>
+    </fieldset>
+    <p class="actions">
+      <% if @user.author_agreement_accepted_on %>
+          <%= link_to content_tag(:span, 'Next &raquo;'), instructor_wizard_step2_account_path(current_user), :class => 'minibutton' %>
+      <% else %>
+          <%= f.submit "Next", :disable_with => translate('general.disable_with') %>
+      <% end %>
+      <%= link_to 'Cancel', edit_account_path(current_user), :class => "ml-10" %>
+    </p>
+    <%= hidden_field_tag :step, "1" %>
 <% end %>

@@ -1,45 +1,59 @@
 <% title "Lessons" -%>
+<% @current = 'lessons' %>
 
 <h3>Lessons</h3>
-<div>
-  <% form_for(@search, :html => { :class => "search_box" }) do |f| %>
-      <div class="span-10">
-        <%= f.label :title_like, "Title" %>
-        <%= f.text_field :title_like, :style => "width:200px;" %>
-      </div>
-      <div class="span-10">
-        <%= f.label :instructor_login_like, "Instructor" %>
-        <%= f.text_field :instructor_login_like, :style => "width:170px;" %>
-      </div>
-      <div class="span-6">
-        <%= f.label :status_like, "Status" %>
-       <%= f.select(:status_like, Lesson.lesson_statuses, :include_blank => true) %>
-      </div>
-      <div class="last" style="padding-top:5px;text-align:right">
-        <b>Order by:</b>
-        <%= order @search, :by => :created_at %>&nbsp;
-        <%= order @search, :by => :instructor_login %>
-        <%= order @search, :by => :title %>&nbsp;
-        <%= f.submit "Search" %>
-      </div>
+<div class="span-12 search-box-container">
+  <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
+  <div class="span-4 right">
+    <%= f.label :title_like, "Title" %>
+    <%= f.text_field :title_like, :style => "width:240px;" %>
+  </div>
+  <div class="span-4 center">
+    <%= f.label :instructor_login_like, "Instructor" %>:
+    <%= f.text_field :instructor_login_like, :style => "width:210px;" %>
+  </div>
+  <div class="last span-4 center">
+    <%= f.label :status_like, "Status" %>
+    <%= f.select(:status_like, Lesson.lesson_statuses, :include_blank => true) %>
+    <%= f.submit "Search" %>
+  </div>
+  <div class="span-12 center" style="padding-top:8px">
+    <b>Order by:</b>
+    <%= order @search, :by => :created_at %>&nbsp;
+    <%= order @search, :by => :instructor_login %>
+    <%= order @search, :by => :title %>&nbsp;
+  </div>
   <% end %>
 </div>
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Instructor</th>
-    <th>Created At</th>
-    <% if current_user.try("is_admin?") %>
-        <th>State</th>
-    <% end %>
-    <th>Category</th>
-    <th>Average Rating</th>
-    <th>Owned?</th>
-    <th>Action</th>
-  </tr>
-  <%= render @lessons %>
-</table>
+<div class="span-12 last">
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Instructor</th>
+      <th>Created At</th>
+      <% if current_user.try("is_an_admin?") %>
+      <th>State</th>
+      <% end %>
+      <th>Category</th>
+      <th>Average Rating</th>
+      <th>Owned?</th>
+    </tr>
 
-<%= will_paginate @lessons %>
-<br/>
-Rows to Display Per Page: <%= per_page_select(list_admin_lessons_path) %>
+    <% @lessons.each do |lesson| %>
+    <tr class="<%= cycle("even", "odd") -%>">
+      <td><%= link_to lesson.title, lesson_path(lesson) %></td>
+      <td><%= link_to_profile(lesson.instructor) %></td>
+      <td><%= l lesson.created_at %></td>
+      <% if current_user.try("is_an_admin?") %>
+      <td><%= h lesson.status %></td>
+      <% end %>
+      <td><%= h lesson.category.name %></td>
+      <td><%= lesson.rating_average %></td>
+      <td><%= (current_user ? current_user.owns_lesson?(lesson) : false) %></td>
+      </tr>
+      <% end %>
+
+    </table>
+  </div>
+  <p><%= will_paginate @lessons %></p>
+  <p class="mt-1em">Rows to Display Per Page: <%= per_page_select(list_admin_lessons_path) %></p>

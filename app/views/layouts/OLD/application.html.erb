@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="en" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <meta name="ROBOTS" content="<%= APP_CONFIG[CONFIG_CRAWLER_ACCESS] %>" />
+    <meta name="Copyright" content="(c) <%= Time.now.year %> Firehoze, Inc. All rights reserved." />
+    <meta http-equiv="imagetoolbar" content="no" />
+    <meta name="Rating" content="General" />
+    <meta name="description" content="<%= yield(:description) || "Firehoze offers a community-generated catalog of video tutorials designed to allow students find the classroom help they need." %>" />
+  <meta name="keywords" content="<%= yield(:keywords) || "firehoze, education, tutorials, instruction" %>" />
+    <link rel="home" href="/" />
+    <link rel="copyright" href="#copyright" />
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
+    <title>Firehoze - <%= truncate(yield(:title), :length => 75) || "Learning help when you need it" %></title>
+    <%= stylesheet_link_tag 'v1/blueprint/screen', :media => "screen, projection" -%>
+    <%= stylesheet_link_tag 'v1/blueprint/print', :media => "print" -%>
+    <%= stylesheet_link_tag 'v1/print', :media => "print" -%>
+    <%= stylesheet_link_tag 'v1/custom', :media => "screen, projection" -%>
+    <%= stylesheet_link_tag 'v1/errors', :media => "screen, projection" -%>
+    <%= stylesheet_link_tag 'v1/jquery-ui/smoothness/jquery-ui-1.7.2.custom', :media => "screen, projection" -%>
+    <%= stylesheet_link_tag 'v1/tables', :media => "screen, projection" -%>
+    <!--[if lt IE 8]>
+    <%= stylesheet_link_tag 'v1/blueprint/ie', :media => "screen, projection" -%>
+    <![endif]-->
+
+    <% # The order of these is very important. Keep them in this order %>
+    <%= google_jquery(:version => '1.3.2', :local => Rails.env.development?) %><%# JQuery -%>
+    <%= google_jqueryui(:version => '1.7.2', :local => Rails.env.development?) %><%# JQueryUI -%>
+    <%= javascript_include_tag 'v1/jrails', 'v1/application' %>
+    <%= javascript_include_tag 'v1/flash' %>
+    <%= javascript_include_tag 'v1/accordian', 'v1/tabs', 'v1/jquery.cookie' %><%# JQueryUI libraries -%>
+    <%= javascript_include_tag 'v1/cornerz', 'v1/rounders' %><%# Cornerz for rounding -%>
+    <%= javascript_include_tag 'v1/jquerytools/jquery.tools.min' %><%# JQuery Tools libraries -%>
+    <%= ajaxful_rating_style %>
+    <%= yield :head -%>
+  </head>
+  <body>
+    <%= render "shared/flash_msg" -%>
+
+    <!-- start container -->
+    <div id="container" class="container">
+
+      <!-- start header -->
+      <div id="header">
+        <div class="span-40 last" id="top_nav"> 
+          <%= render "shared/v1/top_nav" -%>
+        </div>
+
+        <div class="clear span-40 last" id="branding">
+          <%= link_to image_tag("general/firehoze_logo_small_beta.png", :alt => 'Firehoze'), root_path(:reset => "y") -%>
+        </div>
+
+        <div class="clear span-40 last" id="main_nav">
+          <%= render "shared/main_nav" -%>
+        </div>
+      </div>
+      <!-- end header -->
+
+      <!-- start main -->
+      <div id="main">
+        <div class="clear span-40 last" id="main_content">
+          <%= yield -%>
+        </div>
+      </div>
+      <!-- end main -->
+
+      <!-- start footer -->
+      <div class="span-40 last" id="footer"> 
+        <%= render "shared/v1/footer" -%>
+      </div>
+      <!-- end footer -->
+
+    </div>
+    <!-- end container -->
+
+    <%= render "shared/google_analytics" -%>
+
+    <%= render "shared/get_satifisfaction" -%>
+  </body>
+</html>

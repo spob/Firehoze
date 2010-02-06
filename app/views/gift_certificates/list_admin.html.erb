@@ -1,0 +1,46 @@
+<% title "Gift Certificates" -%>
+<% @current = 'giftcerts' %>
+
+<h3>Gift Certificates</h3>
+<p><%= link_to content_tag(:span, 'Grant'), new_grant_gift_certificate_path, :class => :minibutton %></p>
+<div class="span-12 search-box-container">
+  <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
+  <div class="span-7 right">
+    <%= f.label :user_login_like, "Username" %>
+    <%= f.text_field :user_login_like, :style => "width:400px;" %>
+  </div>
+  <div class="span-5 last left" style="padding:5px 0 0 0;">
+    <b>Order by:</b>
+    <%= order @search, :by => :user_login, :as => "Username" %>&nbsp;
+    <%= order @search, :by => :id, :as => "Created At" %>
+    <%= f.submit "Search" %>
+  </div>
+  <% end %>
+</div>
+
+<div class="span-12">
+  <table>
+    <tr>
+      <th>Code</th>
+      <th>Belongs To</th>
+      <th>Credits</th>
+      <th>Price Paid</th>
+      <th>Redeemed At</th>
+      <th>Expires At</th>
+      <th>Comments</th>
+    </tr>
+    <% @gift_certificates.each do |gift_certificate| %>
+    <tr>
+      <td><%= h gift_certificate.formatted_code %></td>
+      <td><%= link_to_profile(gift_certificate.user) %></td>
+      <td><%= gift_certificate.credit_quantity %></td>
+      <td><%= number_to_currency(gift_certificate.line_item ? gift_certificate.line_item.total_discounted_price : 0) %></td>
+      <td><%= l(gift_certificate.redeemed_at) if gift_certificate.redeemed_at %></td>
+      <td><%= l(gift_certificate.expires_at) if gift_certificate.expires_at %></td>
+      <td><%= h gift_certificate.comments %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+<p><%= will_paginate @gift_certificates %></p>
+<p class="mt-1em">Rows to Display Per Page: <%= per_page_select(list_admin_gift_certificates_path) %></p>

@@ -1,3 +1,4 @@
 HoptoadNotifier.configure do |config|
-  config.api_key = 'ae91e0e9ac58b25d688b99db76b28937'
+  config.api_key = '15f02ae2ba6b938be4b3ac47d407d73e'
+  config.ignore_user_agent  << /crawler/
 end

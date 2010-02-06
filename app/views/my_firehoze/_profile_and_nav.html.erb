@@ -1,0 +1,19 @@
+<div id="profile-box" class="white-box-medium">
+  <%= avatar_link_to user, :size => :smaller %>
+  <div id="content">
+    <h3><%= user.full_name %>'s Firehoze <%= link_to image_tag("icons/profile-16.png", :alt => "your public profile", :class => "profile"), user_path(user),  :title => "your public profile", :class => "no-border" %></h3>
+    <%= render :partial => 'my_firehoze/nav' %>
+
+    <div class="corner-box">
+      <%= render :partial => 'my_firehoze/balance', :locals => { :user => user} %>
+    </div>
+
+    <div id="action">
+      <% if user.verified_instructor? %>
+        <%= link_to content_tag(:span, 'Create Lesson  &raquo;'), new_lesson_path, :class => "large-button call-to-action" %>
+      <% else %>
+        <%= link_to content_tag(:span, 'Become an Instructor  &raquo;'), instructor_signup_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :class => "large-button call-to-action" %>
+      <% end %>
+    </div>
+  </div>
+</div>

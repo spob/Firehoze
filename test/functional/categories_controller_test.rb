@@ -10,8 +10,8 @@ class CategoriesControllerTest < ActionController::TestCase
     end
 
     fast_context "without moderator access" do
-      context "on GET to :index" do
-        setup { get :index }
+      context "on GET to :list_admin" do
+        setup { get :list_admin }
 
         should_respond_with :redirect
         should_set_the_flash_to /Permission denied/
@@ -26,14 +26,29 @@ class CategoriesControllerTest < ActionController::TestCase
         setup { @category = Factory.create(:category) }
         subject { @category }
 
+        fast_context "on GET to :show" do
+          setup { get :show, :id => @category }
+
+          should_respond_with :success
+          should_not_set_the_flash
+          should_render_template 'show'
+        end
+
         fast_context "on GET to :index" do
           setup { get :index }
+          should_respond_with :success
+          should_not_set_the_flash
+          should_render_template 'index'
+        end
+
+        fast_context "on GET to :list_admin" do
+          setup { get :list_admin }
 
           should_assign_to :categories
           should_assign_to :category
           should_respond_with :success
           should_not_set_the_flash
-          should_render_template "index"
+          should_render_template "list_admin"
         end
 
         fast_context "on DELETE to :destroy" do
@@ -41,7 +56,7 @@ class CategoriesControllerTest < ActionController::TestCase
 
           should_set_the_flash_to /Successfully deleted/
           should_respond_with :redirect
-          should_redirect_to("Categories index page") { categories_url }
+          should_redirect_to("Categories list admin page") { list_admin_categories_url }
         end
 
         fast_context "on GET to :edit" do
@@ -59,7 +74,7 @@ class CategoriesControllerTest < ActionController::TestCase
           should_set_the_flash_to /Successfully updated category/
           should_assign_to :category
           should_respond_with :redirect
-          should_redirect_to("Category index page") { categories_url }
+          should_redirect_to("Category list_admin page") { list_admin_categories_url }
         end
 
         fast_context "on PUT to :update with bad value" do
@@ -82,7 +97,7 @@ class CategoriesControllerTest < ActionController::TestCase
         should_assign_to :category
         should_respond_with :redirect
         should_set_the_flash_to /Successfully created category/
-        should_redirect_to("Categories index page") { categories_url }
+        should_redirect_to("Categories list_admin page") { list_admin_categories_url }
       end
 
       fast_context "on POST to :create with bad value" do
@@ -91,7 +106,7 @@ class CategoriesControllerTest < ActionController::TestCase
         end
 
         should_assign_to :category
-        should_redirect_to("Categories index page") { categories_url }
+        should_redirect_to("Categories list_admin page") { list_admin_categories_url }
         should_set_the_flash_to /failed/
       end
 
@@ -103,7 +118,7 @@ class CategoriesControllerTest < ActionController::TestCase
 
         should_respond_with :redirect
         should_set_the_flash_to /Started exploding categories/
-        should_redirect_to("Categories index page") { categories_url }
+        should_redirect_to("Categories list admin page") { list_admin_categories_url }
         should "create job" do
           assert_equal @count + 1, PeriodicJob.count
         end

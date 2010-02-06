@@ -1,0 +1,22 @@
+<% pane = params[:pane] if params[:pane] %>
+<% lessons = @owned if pane == "owned" %>
+<% lessons = @latest_browsed if pane == "latest_browsed" %>
+<% lessons = @wishlist if pane == "wishlist" %>
+<% lessons = @instructed_lessons if pane == "lessons_instructed_tn_view" %>
+
+<div id="<%= pane %>" class="lessons-container">
+  <% if lessons.empty? %>
+    <% if pane.to_s == "owned" %>
+      You have not purchased any lessons yet
+    <% elsif pane.to_s == "wishlist" %>
+      You haven't added any lessons to your wish list yet
+    <% elsif pane.to_s == "latest_browsed" %>
+      You haven't browsed any lessons yet. Why not take this opportunity to do some <%= link_to "window shopping", categories_path %>...
+    <% else %>
+      No lessons
+    <% end %>
+  <% else %>
+    <%= will_paginate lessons, :id => true, :params => { :pane => pane }, :class => "ajax-pagination" %>
+    <%= render :partial => "lessons/lesson_tns", :object => lessons, :locals => {:per_row => 5 } %>
+  <% end %>
+</div>

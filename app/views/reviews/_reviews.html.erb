@@ -1,0 +1,9 @@
+<% reviews = @reviews %>
+
+<div>
+  <% if reviews.empty? %>
+    <div class="info">You haven't reviewed any lessons yet.</div>
+  <% else %>
+    <%= render :partial => "reviews/review", :collection => reviews %>
+  <% end %>
+</div>

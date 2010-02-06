@@ -22,49 +22,49 @@ class PasswordsControllerTest < ActionController::TestCase
 
     fast_context "on PUT to :update" do
       setup { put :update, :id => Factory(:user).id,
-              :user => {:current_password => "xxxxx",
-                      :password => "xxxxx2",
-                      :password_confirmation => "xxxxx2" } }
+                  :user => {:current_password => "xxxxx",
+                            :password => "xxxxx2",
+                            :password_confirmation => "xxxxx2" } }
 
       should_assign_to :user
       should_respond_with :redirect
       should_set_the_flash_to :pwd_update_success
-      should_redirect_to("profile page") { edit_account_url(assigns(:user)) }
+      should_redirect_to("edit password page") { edit_password_url(assigns(:user)) }
     end
 
     fast_context "on PUT to :update with bad current password" do
       setup { put :update, :id => Factory(:user).id,
-              :user => {:current_password => "xyyy",
-                      :password => "xxxxx2",
-                      :password_confirmation => "xxxxx2" } }
+                  :user => {:current_password => "xyyy",
+                            :password => "xxxxx2",
+                            :password_confirmation => "xxxxx2" } }
 
       should_assign_to :user
-      should_respond_with :success
       should_not_set_the_flash
-      should_render_template "edit"
+      should_respond_with :success
+      should_render_template 'edit'
     end
 
     fast_context "on PUT to :update with blank current password" do
       setup { put :update, :id => Factory(:user).id,
-              :user => {:password => "xxxxx2",
-                      :password_confirmation => "xxxxx2" } }
+                  :user => {:password => "xxxxx2",
+                            :password_confirmation => "xxxxx2" } }
 
       should_assign_to :user
-      should_respond_with :success
       should_not_set_the_flash
-      should_render_template "edit"
+      should_respond_with :success
+      should_render_template 'edit'
     end
 
     fast_context "on PUT to :update with unmatching new passwords" do
       setup { put :update, :id => Factory(:user).id,
-              :user => {:current_password => "xxxxx",
-                      :password => "xxxxx2",
-                      :password_confirmation => "xxxxx3" } }
+                  :user => {:current_password => "xxxxx",
+                            :password => "xxxxx2",
+                            :password_confirmation => "xxxxx3" } }
 
       should_assign_to :user
-      should_respond_with :success
       should_not_set_the_flash
-      should_render_template "edit"
+      should_respond_with :success
+      should_render_template 'edit'
     end
   end
 end

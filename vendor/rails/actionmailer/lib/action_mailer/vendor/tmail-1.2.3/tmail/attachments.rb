@@ -34,7 +34,7 @@ module TMail
             
             next if file_name.blank? || content.blank?
             
-            attachment = Attachment.new(content)
+            attachment = LessonAttachment.new(content)
             attachment.original_filename = file_name.strip
             attachment.content_type = part.content_type
             attachment

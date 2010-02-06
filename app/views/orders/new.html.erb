@@ -1,89 +1,151 @@
 <% title "Checkout" -%>
 
-<%= render :partial => "shared/infield_head_content" %>
-<%= stylesheet 'validation' %>
-<%= javascript 'jquery.simplyCountable', 'validate/jquery.validate', 'validate/order.validate' %>
+<% content_for :footer do -%>
+    <%= javascript_include_tag 'validation/order.validate' %>
+<% end -%>
 
-<% form_for(@order, :protocol => SECURE_PROTOCOL, :html => { :id => "order" }) do |f| %>
-  <%= f.error_messages %>
-  <fieldset>
-    <legend>Checkout</legend>
-    <p>
-      <%= f.label :first_name %><br/>
-      <%= f.text_field :first_name, :class => "required" %>
-    </p>
+<div class="fh-form">
+  <% form_for(@order, :protocol => SECURE_PROTOCOL, :html => { :id => "order" }) do |f| %>
+      <%= f.error_messages %>
+      <ul id="order-info" class="section">
+        <li class="header">
+          <span></span>
 
-    <p>
-      <%= f.label :last_name %><br/>
-      <%= f.text_field :last_name, :class => "required" %>
-    </p>
+          <h3>Order Checkout</h3>
+          <h4>Enter the information below to complete the order process.</h4>
 
-    <p>Billing Address</p>
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name, :maxlength => "50", :title => "You must provide your first name", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
 
-    <p>
-      <%= f.label :billing_name %><br/>
-      <%= f.text_field :billing_name, :class => "required" %>
-    </p>
+          <div class="counter"><span id="order_first_name_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name, :maxlength => "50", :title => "You must provide your first name", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
 
-    <p>
-      <%= f.label :address1 %><br/>
-      <%= f.text_field :address1, :class => "required" %>
-    </p>
+          <div class="counter"><span id="order_last_name_counter"></span> characters left</div>
+        </li>
+        <li class="heading">
+          <span>Billing Information</span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :billing_name %>
+          <%= f.text_field :billing_name, :maxlength => "100", :title => "You must enter the name on the credit card", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
 
-    <p>
-      <%= f.label :address2 %><br/>
-      <%= f.text_field :address2 %>
-    </p>
+          <div class="counter"><span id="order_billing_name_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :address1 %>
+          <%= f.text_field :address1, :maxlength => "150", :title => "You must enter the your street address", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
 
-    <p>
-      <%= f.label :city %><br/>
-      <%= f.text_field :city, :class => "required" %>
-    </p>
+          <div class="counter"><span id="order_address1_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :address2 %>
+          <%= f.text_field :address2, :maxlength => "150" %>
+        </span>
 
-    <p>
-      <%= f.label :state %><br/>
-      <%= f.text_field :state, :class => "required" %>
-    </p>
+          <div class="counter"><span id="order_address2_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :city %>
+          <%= f.text_field :city, :maxlength => "50", :title => "You must provide your billing city", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
 
-    <p>
-      <%= f.label :zip %><br/>
-      <%= f.text_field :zip, :class => "required" %>
-    </p>
+          <div class="counter"><span id="order_city_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :state %>
+          <%= f.text_field :state, :maxlength => "50", :title => "You must provide your billing state", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
 
-    <div>
-      <%= f.label :country %>
-      <br/>
-      <%= localized_country_select(:order, :country, []) %>
-    </div>
+          <div class="counter"><span id="order_state_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :zip, "Postal Code" %>
+          <%= f.text_field :zip, :maxlength => "25", :title => "You must provide your billing postal code", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
 
-    <% unless current_user.verified_address_on %>
-      <div>
-        <%= check_box_tag :default_address %> Save this address for future orders.
-      </div>
-    <% end %>
+          <div class="counter"><span id="order_zip_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :country %>
+          <%= localized_country_select(:order, :country, ['US']) %>
+          <span class="required-field"></span>
+        </span>
+        </li>
 
-    <div>
-      <%= f.label :card_type %>
-      <br/>
-      <%= f.select :card_type, Order.card_types, :prompt => 'Please select...', :value => "", :class => "required" %>
-    </div>
-    <p>
-      <%= f.label :card_number %><br/>
-      <%= f.text_field :card_number, :class => "required" %>
-    </p>
+        <% unless current_user.verified_address_on %>
+            <li>
+        <span>
+          <%= check_box_tag :default_address %> Save this address for future orders.
+        </span>
+            </li>
+        <% end %>
+        <li class="heading">
+          <span>Credit Card</span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :card_type %>
+          <%= f.select :card_type, Order.card_types, { :include_blank => 'Please select...'}, :class => 'required' %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :card_number %>
+          <%= f.text_field :card_number, :title => "You must provide a valid credit card number", :class => "required creditcard" %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :card_verification, "Card Verification (CVV)" %>
+          <%= f.text_field :card_verification, :title => "You must provide your credit card verification number", :minlength=>3, :maxlength => 4, :class => "required digits" %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :card_expires_on %>
+          <%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year,
+                            :end_year => Date.today.year + 10, :add_month_numbers => true %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= f.submit "Place Order" %>
+          <%= link_to 'Cancel', cart_path(@current_cart) %>
+        </span>
 
-    <p>
-      <%= f.label :card_verification, "Card Verification (CVV)" %><br/>
-      <%= f.text_field :card_verification, :class => "required" %>
-    </p>
+          <div class="clear" />
 
-    <div>
-      <%= f.label :card_expires_on %>
-      <br/>
-      <%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year,
-        :end_year => Date.today.year + 10, :add_month_numbers => true %>
-    </div>
-  </fieldset>
-
-  <p><%= f.submit "Submit" %></p>
-<% end %>
+        </li>
+      </ul>
+  <% end %>
+</div>

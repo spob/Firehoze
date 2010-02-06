@@ -1,7 +1,13 @@
+<% # used in the "stats" pane of the lesson show page %>
+
 <tr class="<%= cycle("even", "odd") -%>">
   <td><%= l credit.redeemed_at if credit.redeemed_at %></td>
   <td><%= link_to_profile credit.user %></td>
-  <td><%=h number_to_currency(credit.price) %></td>
+  <td><%= h number_to_currency(credit.price) %></td>
+  <td>
+    <% @balance = @balance + (credit.price * credit.lesson.instructor.try(:payment_level).try(:rate)) %>
+    <%= number_to_currency(round_to_penny(credit.price * credit.lesson.instructor.try(:payment_level).try(:rate))) %>
+  </td>
   <td><%= number_to_currency(credit.commission_paid) if credit.commission_paid %></td>
   <td><%= h(credit.sku.description) unless credit.sku.nil? %></td>
 </tr>

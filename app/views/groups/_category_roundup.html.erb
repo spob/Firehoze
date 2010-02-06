@@ -1,0 +1,33 @@
+<div class="span-8">
+  <div class="blue-box">
+    <ul id="categories-header" class="section">
+      <li class="header">
+        <span></span>
+
+        <h3>Browse Groups by Categories</h3>
+        <h4>
+          Groups are virtual communities within Firehoze that make it easy to communicate and
+          collaborate with other users who share your interests. Explore categories to find groups
+          that are right for you.
+        </h4>
+        <h4>
+          <%= link_to "Create a New Group", new_group_path, :class => :rounded %>
+        </h4>
+      </li>
+      <li id="categories-roundup" class="clearfix">
+        <%= render :partial => 'categories/category', :collection => @categories, :locals => { :mode => "groups" } %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="span-4 last">
+  <div class="widget-box">
+    <div class="widget-box-header">
+      <span class="h4">Tags</span>
+    </div>
+    <div class="widget-box-content tags">
+      <%= render :partial => "groups/tag_cloud", :object => Group.public.active.tag_counts(:limit => 40, :order => "count DESC").sort{|x,y| x.name <=> y.name} %>
+    </div>
+  </div>
+</div>

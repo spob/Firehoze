@@ -47,8 +47,8 @@ class ProcessedVideo < Video
                 :video_file_size => job.output_media_file.size,
                 :video_duration => job.output_media_file.duration,
                 :video_content_type => 'application/x-flv',
-                :processed_video_cost => job.output_media_file.cost,
-                :input_video_cost => job.input_media_file.cost,
+                :processed_video_cost => zero_nvl(self.processed_video_cost) + job.output_media_file.cost.to_f,
+                :input_video_cost => zero_nvl(self.input_video_cost) + job.input_media_file.cost.to_f,
                 :video_transcoding_error => nil,
                 :thumbnail_url => (thumbnail_path),
                 :s3_path => job.output_media_file.url,
@@ -74,6 +74,7 @@ class ProcessedVideo < Video
                                       :to_status => new_status,
                                       :lesson => self.lesson,
                                       :message => msg)
+    self.reload
     self.update_attributes!(:status => new_status,
                             :video_transcoding_error => (status == VIDEO_STATUS_FAILED ? msg : nil))
     self.lesson.update_status
@@ -135,6 +136,14 @@ class ProcessedVideo < Video
   end
 
   private
+
+  def zero_nvl(value)
+    if value.nil? or value.blank?
+      0.0
+    else
+      value
+    end
+  end
 
   def thumbnail_s3_path
     "s3://#{APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET]}/#{self.s3_root_dir}/thumbs/#{lesson.id.to_s}/#{thumbnail_size}"

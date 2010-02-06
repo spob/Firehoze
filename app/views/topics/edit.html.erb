@@ -1,0 +1,48 @@
+<% title "Edit Topic &quot;#{h @topic.title}&quot;" -%>
+
+<%= stylesheet 'validation' %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'validation/topics.validate' %>
+<% end -%>
+
+<div class="fh-form">
+  <% form_for :topic, :url => topic_path(@topic), :html => { :method => :put, :id => "edit_topic" } do |f| %>
+      <%= f.error_messages %>
+      <ul id="edit-topic-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3>Edit Discussion Topic:</h3><h3>"<%= h @topic.title %>"</h3>
+          <h4>Discussion topics allow you to communicate with other users in the group
+            <%= link_to h(@topic.group.name), group_path(@topic.group) %>.
+            Ask a question for other group members, suggest a lesson topic for instructors or
+            talk about the weather.</h4>
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :title %>
+          <%= f.text_field :title, :maxlength => "200", :title => "You must provide a topic title", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
+
+          <div class="counter"><span id="topic_title_counter"></span> characters left</div>
+        </li>
+        <% if @topic.group.owned_by?(current_user) or @topic.group.moderated_by?(current_user) %>
+            <li>
+        <span>
+        <%= f.check_box :pinned %>Pin this topic to the top
+        </span>
+            </li>
+        <% end %>
+        <li class="bottom">
+        <span class="unlabelled">
+         <%= f.submit "Update Topic" %>
+          <%= link_to "Cancel", group_path(@topic.group) %>
+        </span>
+
+          <div class="clear"/>
+        </li>
+      </ul>
+  <% end %>
+</div>

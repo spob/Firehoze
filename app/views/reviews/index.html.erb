@@ -1,19 +1,29 @@
-<% title "Review for &quot;#{h(@lesson.title)}&quot;" -%>
+<% title "Reviews for &quot;#{h(@lesson.title)}&quot;" -%>
+<% @current = 'lessons' %>
+<div id="lesson-comments-container">
+  <div class="clearfix">
+    <% if @style == 'tab' %>
+      <% content_tag :div, :class => "action right" do %>
+        <%= show_review_text(@lesson, current_user) %>
+      <% end if show_review_text(@lesson, current_user).present? -%>
+    <% else %>
+      <div class="span-8">
+        <h3>Reviews for Lesson: <%= link_to h(@lesson.title.titleize), lesson_path(@lesson, :anchor => :reviews) %></h3>
+      </div>
 
-<%= content_tag(:h3, "Reviews for Lesson: #{ link_to h(@lesson.title), lesson_path(@lesson) }")  unless @style == 'tab' %>
+      <div class="span-4 last right">
+        <%= content_tag(:div, show_review_text(@lesson, current_user)) %>
+      </div>
+    <% end %>
+  </div>
 
-<% if @lesson.reviews.empty? and !@lesson.reviewed_by?(current_user) and @lesson.owned_by?(current_user) %>
-  <%= content_tag(:div, button_to_review(@lesson)) %>
-  <p>Be the first to leave a review for this lesson</p>
-<% elsif @lesson.reviews.empty? %>
-  <p>Sometimes it's hard to share ones thoughts</p>
-<% else %>
-  <%= content_tag(:div, button_to_review(@lesson), :class => "action_box") %>
-  <%= render @reviews %>
-<% end %>
+  <%= render :partial => "lessons/review", :collection => @reviews %>
 
-<% if @style == 'tab'%>
-  <%= show_all_reviews_link(@lesson, current_user) %>
-<% else %>
-  <%= link_to "Back to Lesson", lesson_path(@lesson) %> | <%= link_to "Write a Review", new_lesson_review_path(@lesson)  unless @lesson.reviewed_by? current_user %>
-<% end %>
+  <div>
+    <% if @style == 'tab'%>
+      <%= show_all_reviews_link(@lesson, current_user) %>
+    <% else %>
+      <%= link_to "&laquo; Back to Lesson", lesson_path(@lesson, :anchor => :reviews) %>
+    <% end %>
+  </div>
+</div>

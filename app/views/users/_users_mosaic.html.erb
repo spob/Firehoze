@@ -1,0 +1,10 @@
+<% users = object %>
+<% if (users.present?) %>
+  <ul class="users-mosaic  clearfix">
+    <% users.each do |member| %>
+      <li><%= avatar_link_to(member, :size => :tiny) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <div class="info">No members found</div>
+<% end %>

@@ -1,17 +1,15 @@
 <% title "SKUs" -%>
+<% @current = 'skus' %>
 
 <h3>SKUs</h3>
-<%= link_to "New SKU", new_sku_path if current_user.is_admin? %>
+<p><%= link_to(content_tag(:span, 'New SKU'), new_sku_path, :class => :minibutton) if current_user.is_an_admin? %></p>
 <table>
-    <tr>
-      <th>SKU</th>
-      <th>Description</th>
-      <th>Action</th>
-    </tr>
-    
-    <%= render :partial => 'sku', :collection => @skus %>
-    
-  </table>
+  <tr>
+    <th>SKU</th>
+    <th>Description</th>
+    <th>Action</th>
+  </tr>
+  <%= render :partial => 'sku', :collection => @skus %>
+</table>
 <%= will_paginate @skus %>
-<br/>
-Rows to Display Per Page: <%= per_page_select(skus_path) %>
+<p class="mt-1em">Rows to Display Per Page: <%= per_page_select(skus_path) %></p>

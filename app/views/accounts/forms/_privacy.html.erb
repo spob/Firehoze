@@ -1,21 +1,31 @@
-<% form_for(:user, :url => update_privacy_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "privacy" }) do |f| %>
-  <%= f.error_messages %>
-  <fieldset>
-    <legend>Update Privacy Settings</legend>
-    <ul>
-      <li><%= f.check_box :show_real_name %><label for="show_real_name"> Show Real First and Last Name</label></li>
-      <li class="help" style="margin-left:28px;">(if you leave this unchecked, other users will only see your username)</li>
+<div class="fh-form">
+  <% form_for(:user, :url => update_privacy_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "privacy" }) do |f| %>
+    <%= f.error_messages %>
+    <ul id="privacy-info" class="section">
+      <li class="header">
+        <span></span>
+
+        <h3>Update Privacy Settings</h3>
+        <h4>Control how much information you share with other users, and whether other users can contact you.</h4>
+      </li>
+      <li>
+        <span class="heading">Show Real First and Last Name?</span>
+        <span class="unlabelled">
+          <%= f.check_box :show_real_name %>(if you leave this unchecked, other users will only see your username)
+        </span>
+      </li>
+      <li>
+        <span class="heading">Who can contact you via email?</span>
+        <span class="unlabelled"><%= f.radio_button :allow_contact, USER_ALLOW_CONTACT_NONE %> No one</span>
+        <span class="unlabelled"><%= f.radio_button :allow_contact, USER_ALLOW_CONTACT_ANYONE %> Anyone</span>
+        <span class="unlabelled"><%= f.radio_button :allow_contact, USER_ALLOW_CONTACT_STUDENTS_ONLY %> Only students who have purchased at least one of your lessons</span>
+      </li>
+      <li class="bottom">
+        <span class="unlabelled">
+          <%= f.submit "Update Privacy", :id => "update_privacy" %>
+          <%= link_to 'Cancel', home_path %>
+        </span>
+      </li>
     </ul>
-    <p>Who can contact you via email?</p>
-    <ul>
-      <li><%= f.radio_button :allow_contact, USER_ALLOW_CONTACT_NONE %><label for="<%= USER_ALLOW_CONTACT_NONE %>">No one</label></li>
-      <li><%= f.radio_button :allow_contact, USER_ALLOW_CONTACT_ANYONE %><label for="<%= USER_ALLOW_CONTACT_ANYONE %>">Anyone</label></li>
-      <li><%= f.radio_button :allow_contact, USER_ALLOW_CONTACT_STUDENTS_ONLY %><label for="<%= USER_ALLOW_CONTACT_STUDENTS_ONLY %>">Only students who have purchased at least one of your lessons</label></li>
-    </ul>
-    <p>Don't worry...even if you choose to allow other users to contact you via email, those users will not see your email address.</p>
-  </fieldset>
-  <p>
-    <%= f.submit "Update", :disable_with => translate('general.disable_with') %>
-    <%= link_to 'Cancel', home_path %>
-  </p>
-<% end %>
+  <% end %>
+</div>

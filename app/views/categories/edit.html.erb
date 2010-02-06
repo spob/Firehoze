@@ -1,24 +1,56 @@
-<% title "Edit Category" -%>
+<% title "Edit Category &quot;#{h(@category.name)}&quot;" -%>
 
-<h3>Edit Category</h3>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'validation/categories.validate.js' -%>
+<% end -%>
 
-<% form_for :category, :url => category_path(@category), :html => { :method => :put } do |f| %>
-    <%= f.error_messages %>
-    <p>
-      <%= f.label :name %><br/>
-      <%= f.text_field :name %>
-    </p>
-    <p>
-      <%= f.label :parent_category %><br/>
-      <%= f.collection_select(:parent_category_id, Category.by_parent_sort_value, :id,
-                              :name, { :include_blank => true }) %>
-    </p>
-    <p>
-      <%= f.label :sort_value %> <br/>
-      <%= f.text_field :sort_value %>
-    </p>
-    <p><%= f.submit "Submit", :disable_with => translate('general.disable_with') %></p>
-<% end %>
+<div class="fh-form">
+  <% form_for :category, :url => category_path(@category), :html => { :method => :put, :id => 'edit_category' } do |f| %>
+      <%= f.error_messages %>
+      <ul id="flag-info" class="section">
+        <li class="header">
+          <span></span>
 
+          <h3>
+            Edit Category "<%= h(@category.name) %>"
+          </h3>
+          <h4>
+            Categories allow you to group lessons and groups by subject area.
+          </h4>
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :name %>
+          <%= f.text_field :name, :maxlength => "50", :title => "You must enter a category name", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
 
-<p><%= link_to "Cancel", categories_path %></p>
+          <div class="counter"><span id="category_name_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :parent_category %>
+          <%= f.collection_select(:parent_category_id, Category.by_parent_sort_value, :id,
+                                  :name, {:include_blank => 'Select...'}) %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :sort_value, "Sort Order" %>
+          <%= f.text_field :sort_value, :class => "required digits" %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= f.submit 'Update' %>
+          <%= link_to 'Cancel', list_admin_categories_path %>
+        </span>
+
+          <div class="clear" />
+        </li>
+      </ul>
+  <% end %>
+</div>

@@ -1,0 +1,19 @@
+<%
+comment = object
+
+if comment.class == LessonComment
+  path = edit_lesson_comment_path(comment)
+else
+  path = edit_topic_comment_path(comment)
+end
+%>
+
+<% if current_user and comment.can_edit? current_user %>
+  <%= link_to content_tag(:span, "Edit"), path, :class => :minibutton %>
+<% end %>
+
+<%= flag_link comment %>
+
+<% unless comment.status == COMMENT_STATUS_ACTIVE %>
+  <div>Status: <%= comment.status %></div>
+<% end %>

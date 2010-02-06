@@ -1,0 +1,26 @@
+<% title "Invitation to Join Group #{ h @invitation.group.name}" -%>
+
+<div class="fh-form">
+  <ul id="invitation-info" class="section">
+    <li class="header">
+      <span></span>
+
+      <h3>Invitation to Join Group <%= h @invitation.group.name %></h3>
+      <h4>You have been invited to join the Firehoze Group "<%= h @invitation.group.name %>".</h4>
+      <h4><%= h @invitation.group.description %></h4>
+      <% if @invitation.message and !@invitation.message.blank? %>
+          <h4>
+            <%= @invitation.message %>
+          </h4>
+      <% end %>
+    </li>
+    <li class="bottom">
+        <span class="unlabelled">
+  <%= link_to "Join the Group!", create_private_group_member_path(@group_member, :join => 'yes'), :method => :post %> |
+          <%= link_to "No Thanks", create_private_group_member_path(@group_member, :join => 'no'), :method => :post %>
+        </span>
+
+      <div class="clear" />
+    </li>
+  </ul>
+</div>

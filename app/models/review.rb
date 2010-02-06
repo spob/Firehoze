@@ -5,6 +5,7 @@ class Review < ActiveRecord::Base
   belongs_to :lesson, :counter_cache => true
   has_many :helpfuls, :dependent => :destroy
   has_many :flags, :as => :flaggable, :dependent => :destroy
+  has_many :activities, :as => :trackable, :dependent => :destroy
   validates_presence_of :user, :headline, :body, :lesson, :status
   validates_inclusion_of :status, :in => %w{ active rejected }
   validates_uniqueness_of :user_id, :scope => :lesson_id
@@ -14,6 +15,7 @@ class Review < ActiveRecord::Base
   attr_protected :status, :helpfuls, :flags
 
   named_scope :helpful, :conditions => "score > 0"
+  named_scope :ready_lesson, :joins => [ :lesson ], :conditions => { :lessons => { :status => LESSON_STATUS_READY }}
   named_scope   :ready, :conditions => {:status => REVIEW_STATUS_ACTIVE }
 
   @@flag_reasons = [
@@ -43,7 +45,7 @@ class Review < ActiveRecord::Base
 
   # The review can be edited by a moderator
   def can_edit? user
-    user and user.is_moderator?
+    user and user.is_a_moderator?
   end
 
   # Was this review marked as helpful by this user. Will return true if it was helpful, false if it wasn't,
@@ -54,6 +56,20 @@ class Review < ActiveRecord::Base
 
   def reject
     self.status = REVIEW_STATUS_REJECTED
+  end
+
+  def compile_activity
+    self.activities.create!(:actor_user => self.user,
+                            :actee_user => self.lesson.instructor,
+                            :acted_upon_at => self.created_at,
+                            :activity_string => 'review.activity',
+                            :activity_object_id => self.lesson.id,
+                            :activity_object_human_identifier => self.lesson.title,
+                            :activity_object_class => self.lesson.class.to_s,
+                            :secondary_activity_object_id => nil,
+                            :secondary_activity_object_human_identifier => nil,
+                            :secondary_activity_object_class => nil)
+    self.update_attribute(:activity_compiled_at, Time.now)
   end
 
   private
@@ -78,8 +94,8 @@ class Review < ActiveRecord::Base
   end
 
   def self.list_conditions(lesson, current_user)
-    conditions = { :lesson_id => lesson }
-    conditions.merge!({ :status => REVIEW_STATUS_ACTIVE}) unless (current_user and current_user.is_moderator?)
+    conditions = (lesson ? { :lesson_id => lesson } : {} )
+    conditions.merge!({ :status => REVIEW_STATUS_ACTIVE}) unless (current_user and current_user.is_a_moderator?)
     conditions
   end
 end

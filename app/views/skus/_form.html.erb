@@ -1,0 +1,67 @@
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'validation/skus.validate.js' -%>
+<% end -%>
+
+<div class="fh-form">
+  <% form_for(:sku, :url => (@sku.new_record? ? skus_path : sku_path(@sku)), :html => { :method => (@sku.new_record? ? :post : :put), :id => "sku" }) do |f| %>
+      <%= f.error_messages %>
+      <ul id="sku-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3><%= heading %></h3>
+          <h4><%= subtext %></h4>
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :sku %>
+          <%= f.text_field :sku, :maxlength => "30", :title => "You must enter a name for the SKU", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
+
+          <div class="counter"><span id="sku_counter"></span> characters left</div>
+        </li>
+        <% if @sku.new_record? %>
+            <li>
+        <span>
+          <%= f.label :type %>
+          <%= f.select :type, SkusController.types, { :prompt => "Please select..." } %>
+          <span class="required-field"></span>
+        </span>
+            </li>
+        <% end %>
+        <li>
+        <span>
+          <%= f.label :num_credits %>
+          <%= f.text_field :num_credits, :class => "required" %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :price %>
+          <%= f.text_field :price, :class => "required" %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :description %>
+          <%= f.text_field :description, :maxlength => "150", :title => "You must enter a description for the SKU", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
+
+          <div class="counter"><span id="sku_description_counter"></span> characters left</div>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= f.submit @sku.new_record? ? 'Create' : 'Update' %>
+          <%= link_to 'Cancel', skus_path %>
+        </span>
+
+          <div class="clear"/>
+        </li>
+      </ul>
+  <% end %>
+</div>

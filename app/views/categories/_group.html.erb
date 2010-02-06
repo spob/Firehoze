@@ -1,0 +1,17 @@
+<% show_member ||= false %>
+<% user ||= current_user %>
+<tr>
+  <td>
+    <%= logo_tag group, :size => :small %>
+  </td>
+  <td>
+    <b><%= link_to h(group.name), group_path(group) %></b>
+    <% member = group.includes_member?(user) %>
+    <%= "<i>(" + t("group_member.#{member.member_type.downcase}") + ")</i>" if member and (show_member  or member.member_type == OWNER or member.member_type == MODERATOR) %>
+    <br />
+    <%= h group.description %>
+  </td>
+  <td>
+    <%= h group.category.name %>
+  </td>
+</tr>

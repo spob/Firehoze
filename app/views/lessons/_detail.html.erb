@@ -1,0 +1,86 @@
+<% # user in the 'details pane of the lessons#show page %>
+
+<% 
+lesson = object 
+instructor = lesson.instructor
+groups = lesson.groups
+%>
+
+<table class="lesson-details">
+  <% # language -%>
+  <tr>
+    <td class="header">Language:</td>
+    <td><%= h language_value(lesson.language) -%></td>
+  </tr>
+  <tr>
+    <td class="header">Audience:</td>
+    <td><%= h audience_value(lesson.audience) -%></td>
+  </tr>
+
+  <% # duration -%>
+  <% if lesson.finished_video_duration -%>
+    <tr>
+      <td class="header">Duration:</td>
+      <td><%= ChronicDuration.output(lesson.finished_video_duration/1000, :format => :long) -%></td>
+    </tr>
+  <% end -%>
+
+  <% # released on -%>
+  <tr>
+    <td class="header">Released on:</td>
+    <td><%= l lesson.created_at -%></td>
+  </tr>
+
+  <% # status %>
+  <% if current_user.try("is_an_admin?") or instructor == current_user -%>
+    <tr>
+      <td class="header">Status:</td>
+      <td>
+        <div id='show_lesson_status'>
+          <%= h translate("lesson.#{lesson.status}") -%>
+          <%= image_tag("spinners/ajax_arrows_16.gif") if lesson.status == LESSON_STATUS_CONVERTING %>
+          <% if lesson.status == LESSON_STATUS_PENDING or lesson.status == LESSON_STATUS_CONVERTING %>
+            <%= periodically_call_remote(:update => 'show_lesson_status', :url => { :action => :show_lesson_status, :id => lesson }, :frequency => 5 ) %>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+  <% end -%>
+
+  <% # groups %>
+  <% groups = lesson.active_groups.public(:select => [:id, :name]) + lesson.active_groups.private(:select => [:id, :name]) %>
+  <% unless groups.empty? %>
+    <tr>
+      <td class="header">Groups:</td>
+      <td>
+        <% groups.each do |group| %>
+          <%= link_to h(group.name), group_path(group) %>&nbsp;
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+
+  <% # students %>
+  <tr>
+    <td class="header">Students:</td>
+    <td><%= number_of_students_phrase(lesson) -%></td>
+  </tr>
+
+  <% # free credits %>
+  <% if lesson.has_free_credits?  %>
+    <tr>
+      <td class="header">Free lessons</td>
+      <td><%= free_remaining_text(lesson) %></td>
+    </tr>
+  <% end %>
+
+  <% # tags %>
+  <tr>
+    <td class="header">Tags:</td>
+    <td>
+      <% lesson.tag_counts.each do |tag| %>
+        <%= link_to h(tag.name), tagged_with_lessons_path(:collection => :tagged_with, :tag => tag.name) %>
+      <% end %>
+    </td>
+  </tr>
+</table>

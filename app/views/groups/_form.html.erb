@@ -1,0 +1,81 @@
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'validation/groups.validate.js' -%>
+<% end -%>
+
+<div class="fh-form">
+  <% form_for(@group, :html => { :multipart => true }) do |f| %>
+      <%= f.error_messages %>
+      <ul id="group-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3><%= heading %></h3>
+          <h4><%= subtext %></h4>
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :name %>
+          <%= f.text_field :name, :maxlength => "50" %>
+          <span class="required-field"></span>
+        </span>
+          <div class="counter"><span id="group_name_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :private, "&nbsp;" %>
+          <%= f.check_box :private %> This group is by invitation only
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :description %>
+          <%= f.text_area :description, :title => "You must enter a description", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label(:category_id, "Category") %>
+          <%= f.collection_select(:category_id, Category.ascend_by_compiled_sort, :id, :formatted_name,  {:include_blank => 'Select...'}, :class => "required") %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :tag_list, :Tags %>
+          <%= f.text_field :tag_list %>
+        </span>
+          <span class="help">(use commas to separate multiple tags)</span>
+        </li>
+        <% if !@group.new_record? %>
+            <li>
+        <span>
+          <label>
+            <% if @group.logo? %>
+                <%= link_to('Delete current?', clear_logo_group_path(@group.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) %>
+            <% else %>
+                Current logo
+            <% end %>
+          </label>
+          <%= logo_tag @group, :size => :medium, :url => 's3' -%>
+        </span>
+            </li>
+        <% end %>
+        <li>
+        <span>
+          <%= f.label(:logo, @group.new_record? ? "Logo" : "Update Logo?") %>
+          <%= f.file_field :logo %>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= f.submit @group.new_record? ? 'Create' : 'Update' %>
+          <%= link_to 'Cancel', @group.new_record? ? home_path : group_path(@group) %>
+        </span>
+
+          <div class="clear" />
+        </li>
+      </ul>
+  <% end %>
+</div>

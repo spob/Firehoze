@@ -1,35 +1,56 @@
-<% title "Categories" -%>
+<% title "Browse Lesson by Category" -%>
+<% @current = 'lessons' %>
 
-<h3>Categories</h3>
-<%= link_to "Explode", explode_categories_path, :method => :post %>
-<%= error_messages_for 'category' %>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Parent Category</th>
-    <th>Sort Order</th>
-    <th>Action</th>
-  </tr>
-  <tr>
-    <% form_for :category, :url => categories_url(@category) do |f| %>
-        <td>
-          <%= f.text_field :name %>
-        </td>
 
-        <td>
-          <%= f.collection_select(:parent_category_id, Category.ascend_by_compiled_sort, :id,
-                                  :formatted_name, {:include_blank => true, :selected => nil}) %>
-        </td>
+<div class="span-12 last">
+  <div class="span-8">
+    <div class="blue-box">
+      <ul id="categories-header" class="section">
+        <li class="header">
+          <span></span>
 
-        <td>
-          <%= f.text_field :sort_value %>
-        </td>
+          <h3>Browse Lessons by Categories</h3>
+          <h4>Explore categories to find videos that match your interests.</h4>
+        </li>
+        <li id="categories-roundup" class="clearfix">
+          <%= render :partial => 'categories/category', :collection => @categories, :locals => { :mode => "lessons" } %>
+        </li>
+      </ul>
+    </div>
+  </div>
 
-        <td><%= f.submit "Create", :disable_with => translate('general.disable_with') %></td>
+  <div class="span-4 last">
+    <div class="widget-box">
+      <div class="widget-box-header">
+        <span class="h4">Lessons You May Like</span>
+      </div>
+      <div class="widget-box-content lessons-you-may-like">
+        <ul class="lesson_brief">
+          <%= render :partial => "lessons/lesson_brief", :collection => @suggested_lessons %>
+        </ul>
+      </div>
+    </div>
+
+    <% cache(Category.tag_cloud_cache_id("lesson", -1)) do %>
+        <div class="widget-box">
+          <div class="widget-box-header">
+            <span class="h4">Tags</span>
+          </div>
+          <div class="widget-box-content tags">
+            <%= render :partial => "lessons/tag_cloud", :object => Lesson.ready.tag_counts(:limit => 40, :order => "count DESC").sort{|x,y| x.name <=> y.name} %>
+          </div>
+        </div>
     <% end %>
-  </tr>
-  <%= render @categories %>
-</table>
-<%= will_paginate @categories %>
-<br/>
-Rows to Display Per Page: <%= per_page_select(categories_path) %>
+
+
+    <div class="widget-box">
+      <div class="widget-box-header">
+        <span class="h4">Suggest a Lesson</span>
+      </div>
+      <div class="widget-box-content tags">
+        <p>Can't find a lesson that meets your needs?</p>
+        <%= link_to content_tag(:span, "Suggest a Lesson Topic"), page_path("help_center", :anchor => "share-an-idea"), :class => :minibutton %>
+      </div>
+    </div>
+  </div>
+</div>

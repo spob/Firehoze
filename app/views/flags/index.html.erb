@@ -1,4 +1,5 @@
 <% title "Flags" -%>
+<% @current = 'flags' %>
 
 <h3>Flags</h3>
 <table>
@@ -13,6 +14,7 @@
   </tr>
   <%= render :partial => 'flag', :collection => @flags %>
 </table>
+
 <%= will_paginate @flags %>
-<br/>
-Rows to Display Per Page: <%= per_page_select(flags_path) %>
+
+<p class="mt-1em">Rows to Display Per Page: <%= per_page_select(flags_path) %></p>

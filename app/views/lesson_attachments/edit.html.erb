@@ -1,0 +1,36 @@
+<% title "Edit Attachment" -%>
+
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'validation/lesson_attachments.validate.js' -%>
+<% end -%>
+
+<div class="fh-form">
+  <% form_for :attachment, :url => lesson_attachment_path(@attachment), :html => { :method => :put, :id => "edit_attachment" } do |form| %>
+      <%= form.error_messages %>
+      <ul id="attachment-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3>Edit Attachment:</h3><h3><%= h @attachment.attachment_file_name.upcase %></h3>
+          <h4>You can associate lesson notes, presentation files, code samples or other files with your lesson.</h4>
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
+        </li>
+        <li>
+        <span>
+          <%= form.text_field :title, :maxlength => "50", :title => "You must enter a title", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
+          <div class="counter"><span id="attachment_title_counter"></span> characters left</div>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= form.submit "Save" %>
+          <%= link_to 'Cancel', lesson_path(@attachment.lesson) %>
+        </span>
+
+          <div class="clear" />
+
+        </li>
+      </ul>
+  <% end %>
+</div>

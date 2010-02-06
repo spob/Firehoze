@@ -37,8 +37,23 @@ $(document).ready(function(){
     jQuery.ajaxSetup({
         'beforeSend': function (xhr) {
             xhr.setRequestHeader("Accept", "text/javascript")
-            }
+        }
     });
     // Have all remote-classed forms submit AJAX
     $('form.remote').submitWithAjax();
+
 });
+
+
+$(function() {
+    // make the cursor over <li> element to be a pointer instead of default
+    $('ul.clickable li').css('cursor', 'pointer')
+    // iterate through all <li> elements with CSS class = "clickable"
+    // and bind onclick event to each of them
+    .click(function() {
+        // when user clicks this <li> element, redirect it to the page
+        // to where the fist child <a> element points
+        window.location = $('a', this).attr('href');
+    });
+});
+

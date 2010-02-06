@@ -1,0 +1,19 @@
+<% title "The #{h(@topic.group_name.titleize)} Group &raquo; #{@topic.title}" -%>
+<% @current = 'groups' %>
+
+<div id="topic-comments-container">
+  <div id="actions">
+    <% if current_user %>
+      <%= link_to content_tag(:span, "Add a Comment"), new_topic_topic_comment_path(@topic), :class => :minibutton %>
+      <%= link_to content_tag(:span, "Edit"), edit_topic_path(@topic), :class => :minibutton %>
+    <% else %>
+      You must <%= link_to "login", login_path %> or <%= link_to "register", new_registration_path %> to post a reply
+    <% end %>
+  </div>
+
+  <h3 class="header"><span class="group-name">The <%= link_to h(@topic.group_name.titleize), group_path(@topic.group, :anchor => :discussion) %> Group</span> &raquo; <%= h @topic.title %></h3>
+  <div id="comments-container">
+    <%= render :partial => 'comments/comment', :collection => Comment.numerate(@topic.comments_user_sensitive(current_user)) %>
+  </div>
+  <div>&laquo; <%= link_to "Back to Group", group_path(@topic.group, :anchor => :discussion) %></div>
+</div>

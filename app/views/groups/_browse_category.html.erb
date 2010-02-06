@@ -1,0 +1,45 @@
+<%= render :partial => "categories/breadcrumbs", :object => @category, :locals => { :mode => "groups" } %>
+
+<div id="category-show" class="span-8">
+  <% if @groups.present? %>
+      <%= will_paginate @groups %>
+      <table>
+        <tr>
+          <th colspan="2">Group</th>
+          <th>Category</th>
+        </tr>
+        <%= render :partial => 'categories/group', :collection => @groups, :locals => { :show_member => true } %>
+      </table>
+  <% else %>
+      <div class="info">
+        Looks like no one has created a group for this category yet. Why not be the first to
+        <%= link_to "create a group", new_group_path %>?
+      </div>
+  <% end %>
+  <!-- end tab-container -->
+</div>
+
+<div class="span-4 last">
+  <div class="widget-box">
+    <div class="widget-box-header">
+      <span class="h4">Firehoze Groups</span>
+    </div>
+    <div class="tree-view">
+      <%= render :partial => "categories/tree_view", :locals => { :category => @category, :mode => "groups" } %>
+    </div>
+    <div class="widget-box-footer treeview"></div>
+  </div>
+
+  <% if @tags.present? %>
+      <div class="widget-box">
+        <div class="widget-box-header">
+          <span class="h4">Tags</span>
+        </div>
+        <div class="widget-box-content tags">
+          <%= render :partial => "groups/tag_cloud", :object => @tags %>
+        </div>
+      </div>
+  <% end %>
+
+  <%= link_to content_tag(:span, "Create a New Group"), new_group_path, :class => :minibutton %>
+</div>

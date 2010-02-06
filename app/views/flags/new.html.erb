@@ -1,34 +1,56 @@
-<% title "Flag Inappropriate Content" -%>
+<% title "Flag Inappropriate #{t("flag.#{@flag.flaggable.class.to_s.downcase}").capitalize}" -%>
 
-<%= render :partial => "shared/infield_head_content" %>
-<%= stylesheet 'validation' %>
-<%= javascript 'validate/jquery.validate', 'validate/flag.validate' %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'validation/flags.validate.js' -%>
+<% end -%>
 
-<% form_for :flag, :url => flags_url(@flag, :flagger_type => @flag.flaggable.class.to_s, :flagger_id =>@flag.flaggable.id),  :html => { :class => "flag", :id => "flag" } do |f| %>
-  <%= f.error_messages %>
-  <fieldset>
-    <legend>Flag Inappropriate Content:</legend>
-    <p class="sublegend"><%= @flag.flaggable.class.to_s %>:
-      <%= link_to h(@flag.friendly_flagger_name), flaggable_show_path(@flag) %>
-      <% unless @flag.flaggable.class == User %>
-        by <%= link_to_profile(offending_user) %>
-      <% end %>
-    </p>
+<div class="fh-form">
+  <% form_for :flag, :url => flags_url(@flag, :flagger_type => @flag.flaggable.class.to_s, :flagger_id =>@flag.flaggable.id),  :html => { :class => "flag", :id => "flag" } do |f| %>
+      <%= f.error_messages %>
+      <ul id="flag-info" class="section">
+        <li class="header">
+          <span></span>
 
-    <p>
-      <%= f.label :reason_type, "Reason", :style => "display:none" %>
-      <%= f.select(:reason_type, reason_select_list, :prompt => "Select Reason...") %>
-    </p>
+          <h3>
+            Flag Inappropriate <%= t("flag.#{@flag.flaggable.class.to_s.downcase}").capitalize %>:
+            </h3>
+          <h3>
+            <%= link_to h(@flag.friendly_flagger_name), flaggable_show_path(@flag) %>
+            <% unless @flag.flaggable.class == User %>
+                by <%= link_to_profile(offending_user) %>
+            <% end %>
+          </h3>
+          <h4>
+            Firehoze allows any user to flag content as inappropriate. Firehoze reviews all reports of
+            inappropriate content and will take the appropriate action. Please be as descriptive as possible
+            as to why you believe Firehoze should remove this content.
+          </h4>
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :reason_type, "Reason" %>
+          <%= f.select(:reason_type, reason_select_list, { :prompt => "Select Reason..." }, { :class => "required"}) %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :comments %>
+          <%= f.text_area :comments, :title => "You must enter a title", :class => "required"  %>
+          <span class="required-field"></span>
+        </span>
+          <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= submit_tag "Flag Content" %>
+          <%= link_to 'Cancel', flaggable_show_path(@flag) %>
+        </span>
 
-    <p>
-      <%= f.label :comments %><br />
-      <%= f.text_area :comments, :class => "required" %>
-      <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
-    </p>
-  </fieldset>
+          <div class="clear" />
 
-  <p>
-    <%= f.submit "Submit" %>
-    <%= link_to "Cancel", flaggable_show_path(@flag) %>
-  </p>
-<% end %>
+        </li>
+      </ul>
+  <% end %>
+</div>

@@ -1,0 +1,16 @@
+<% if @topics.present? %>
+<table class="topic">
+  <tr>
+    <th colspan="2">Topics</th>
+    <th class="center">Comments</th>
+    <th>Last Post</th>
+  </tr>
+  <%= render topics %>
+  <%= will_paginate topics, :params => { :anchor => "discussion"} %>
+</table>
+<% else %>
+<div class="info">
+  <p>Got a question or want to share your thoughts? </p>
+  <p>Post a topic and get a conversation started ...</p>
+  </div>
+<% end %>

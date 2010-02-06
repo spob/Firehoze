@@ -3,13 +3,19 @@ SECURE_PROTOCOL = (ENV["RAILS_ENV"] =~ /production/ ? "https" : "http")
 LANGUAGES = [['English', 'en']]
 
 ROWS_PER_PAGE = 10
-LESSONS_PER_PAGE = 10
+LESSONS_PER_PAGE = 15
+SEARCH_RESULTS_PER_PAGE = 20
+ADVANCED_SEARCH_RESULTS_TO_DISPLAY = 25
 REVIEWS_ON_LESSON_SHOW_PER_PAGE = 5
-COMMENTS_ON_LESSON_SHOW_PER_PAGE = 5
+COMMENTS_ON_LESSON_SHOW_PER_PAGE = 10
+ACTIVITES_PER_PAGE = 5
+
+
 
 # Roles
 ROLE_ADMIN = 'admin'
 ROLE_MODERATOR = 'moderator'
+ROLE_COMMUNITY_MGR = 'communitymgr'
 ROLE_PAYMENT_MGR = 'paymentmgr'
 
 # Skus
@@ -25,6 +31,7 @@ CONFIG_ADMIN_EMAIL = 'admin_email'
 CONFIG_DEFAULT_USER_TIMEZONE = 'default_user_timezone'
 CONFIG_PERIODIC_JOB_TIMEOUT = 'periodic_job_timeout'
 CONFIG_MAX_VIDEO_SIZE = 'max_video_size'
+CONFIG_MAX_ATTACHMENT_SIZE = 'max_attachment_size'
 CONFIG_S3_DIRECTORY = 's3_directory'
 CONFIG_MIN_CREDIT_PURCHASE = 'min_credit_purchase'
 CONFIG_KEEP_PERIODIC_JOB_DAYS = 'keep_periodic_job_days'
@@ -45,6 +52,8 @@ CONFIG_FTP_CDN_PASSWORD = 'ftp_cdn_password'
 CONFIG_CDN_VIDEO_BUCKET = 'cdn_video_bucket'
 CONFIG_RESTRICT_REGISTRATION = 'restrict_registration'
 CONFIG_ALLOW_UNRECOGNIZED_ACCESS  = 'allow_unrecognized_access'
+CONFIG_CRAWLER_ACCESS  = 'crawler_access'
+CONFIG_FIREHOZE_INSTRUCTOR_GROUP_ID = 'firehoze_instructors_group_id'
 
 # Configuration properties in the s3.yml file
 CONFIG_AWS_ACCESS_KEY_ID = 'access_key_id'
@@ -54,7 +63,7 @@ FLIX_CLOUD_AWS_ID = '99293b905e1e3610f938fccb8405c4d56e913c2f0acf7bf1b74af1fdc10
 FLIX_API_KEY = 'b997:klpibn:0:8x72:gsvz'
 FLIX_FULL_RECIPE_ID = 582
 FLIX_PREVIEW_RECIPE_ID = 581
-WATERMARK_URL = 'http://assets.firehoze.com/images/videos/watermark.png'
+WATERMARK_URL = 'http://assets.firehoze.com/images/videos/watermark-video-embed-24.png'
 
 # Video statuses
 VIDEO_STATUS_PENDING = "Pending"
@@ -69,11 +78,19 @@ LESSON_STATUS_FAILED = VIDEO_STATUS_FAILED
 LESSON_STATUS_READY = VIDEO_STATUS_READY
 LESSON_STATUS_REJECTED = 'Rejected'
 
+# Lesson levels
+LESSON_LEVEL_HIGH_SCHOOL = "high_school"
+LESSON_LEVEL_COLLEGE = "college"
+LESSON_LEVEL_GRADUATE = "graduate"
+LESSON_LEVEL_OTHER = "other"
+
+LESSON_LEVELS = [LESSON_LEVEL_HIGH_SCHOOL, LESSON_LEVEL_COLLEGE, LESSON_LEVEL_GRADUATE, LESSON_LEVEL_OTHER]
+
 # Lesson video player
 # Actual video size should be 4:3 480 X 360 (standard definition)
 PLAYER_MENU_BAR = 36
-PLAYER_WIDTH = 480
-PLAYER_HEIGHT = 360 + PLAYER_MENU_BAR # Play size is taller due to player controls 480 X 396  ==> 480 X 360 + 36px  
+PLAYER_WIDTH = 458
+PLAYER_HEIGHT = 305 + PLAYER_MENU_BAR # Play size is taller due to player controls 480 X 396  ==> 480 X 360 + 36px  
 
 # Hash codes
 HASH_PREFIX = "asdfas"
@@ -84,6 +101,7 @@ FLAG_LEWD = 'lewd'
 FLAG_SPAM = 'spam'
 FLAG_OFFENSIVE = 'offensive'
 FLAG_DANGEROUS = 'dangerous'
+FLAG_OTHER = 'other'
 FLAG_IP = 'ip'
 
 # flag status
@@ -112,3 +130,15 @@ AUTHOR_STATUS_OK = "OK"
 
 # Firehoze Policies
 POLICIES = %w(membership_agreement instructor_agreement content_license_agreement terms_of_use privacy copyright)
+
+# Group member types
+OWNER = 'OWNER'
+MODERATOR = 'MODERATOR'
+MEMBER = 'MEMBER'
+PENDING = 'PENDING'
+
+# Twitter search types
+FIREHOZE_TWEETS = 'FIREHOZE'
+
+RESTRICT_INSTRUCTOR_SIGNUP = false
+

@@ -1,0 +1,33 @@
+<%
+top_level_navigation = [
+  [:latest_news, {
+      :name => 'Latest News',
+      :location =>  my_firehoze_index_path(:clear => 'y')
+    }],
+  [:my_stuff, {
+      :name => 'My Stuff',
+      :location =>  my_stuff_my_firehoze_path
+    }],
+  [:account_settings, {
+      :name => 'Account Settings',
+      :location =>  edit_account_path(current_user)
+    }],
+  [:account_history, {
+      :name => 'Account History',
+      :location => account_history_my_firehoze_path
+    }]
+]
+
+instructor_link = [:instructor, {
+    :name => 'Instructor Dashboard',
+    :location =>  instructor_my_firehoze_path
+  }]
+
+top_level_navigation << instructor_link if current_user.verified_instructor?
+%>
+
+<div class="third-level-nav">
+  <% top_level_navigation.each do |key, item| %>
+    <%= link_to content_tag(:span, item[:name]), item[:location], :class => "minibutton #{'current' if @secondary_nav_current.to_s == key.to_s}" %>
+  <% end %>
+</div>

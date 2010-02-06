@@ -1,0 +1,22 @@
+<% pane = params[:pane] if params[:pane] %>
+<% groups = @groups if pane == "groups" %>
+
+<div id="<%= pane %>">
+  <% if groups.present? %>
+  <%= will_paginate groups, :params => { :pane => pane }, :class => "ajax-pagination" %>
+  <table>
+    <tr>
+      <th colspan="2">Group</th>
+      <th>Category</th>
+    </tr>
+    <%= render :partial => 'categories/group', :collection => groups, :locals => { :show_member => false } %>
+  </table>
+    <%= link_to content_tag(:span, "Create a New Group"), new_group_path, :class => :minibutton %>
+  <% else %>
+  <div class="info">
+    <p>You do not belong to any groups...yet</p>
+    <p>Groups are virtual communities within the Firehoze community made up of users with similar interests or backgrounds. Share lessons in other users, engage in online discussions, or suggest new lesson topics within a group discussion.</p>
+    <p>You can <%= link_to "browse", categories_path %> for groups to join or create your own. Or <%= link_to "create", new_group_path %> your own.</p>
+  </div>
+  <% end %>
+</div>

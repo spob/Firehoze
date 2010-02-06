@@ -30,23 +30,47 @@ class LessonsControllerTest < ActionController::TestCase
       end
     end
 
-    fast_context "on GET to :show with a lesson in the ready state" do
+    fast_context "with a lesson in the ready state" do
       setup do
-        assert LessonVisit.all.empty?
         @lesson = Factory.create(:lesson)
         @lesson. update_attribute(:status, LESSON_STATUS_READY)
         assert @lesson.ready?
-        get :show, :id => @lesson.id
       end
 
-      should_assign_to :lesson
-      should_respond_with :success
-      should_not_set_the_flash
-      should_render_template "show"
-      should "populate lesson visit" do
-        assert_equal 1, LessonVisit.all.size
+      fast_context "on GET to :show with a lesson in the ready state" do
+        setup do
+          assert LessonVisit.all.empty?
+          get :show, :id => @lesson.id
+        end
+
+        should_assign_to :lesson
+        should_respond_with :success
+        should_not_set_the_flash
+        should_render_template "show"
+        should "populate lesson visit" do
+          assert_equal 1, LessonVisit.all.size
+        end
       end
     end
+
+#    context "with a lesson defined" do
+#      setup do
+#        @lesson = Factory.create(:lesson)
+#        assert !@lesson.nil?
+#      end
+#
+#      context "on GET to :search" do
+#        setup { get :search, :search_lesson_criteria => "test" }
+#
+#        should_assign_to :lessons
+#        should_respond_with :success
+#        should "retrieve a lesson" do
+#          assert_equal 1, assigns(:lessons).size
+#        end
+#        should_not_set_the_flash
+#        should_render_template "search"
+#      end
+#    end
 
     fast_context "on GET to :new when not an instructor" do
       setup { get :new }
@@ -66,7 +90,7 @@ class LessonsControllerTest < ActionController::TestCase
     end
 
     fast_context "on GET to :index" do
-      setup { get :index }
+      setup { get :index, :reset => "y" }
       should_respond_with :redirect
       should_redirect_to("home page") { home_path }
     end
@@ -74,7 +98,7 @@ class LessonsControllerTest < ActionController::TestCase
     fast_context "on GET to :new when not an instructor" do
       setup { get :new }
 
-      should_not_assign_to :lesson
+      should_assign_to :lesson
       should_respond_with :redirect
       should_set_the_flash_to :must_be_instructor
       should_redirect_to("first wizard step") {instructor_signup_wizard_account_path(@user) }
@@ -118,6 +142,16 @@ class LessonsControllerTest < ActionController::TestCase
       should_assign_to :lesson
       should_render_template :new
       should_not_set_the_flash
+    end
+
+    fast_context "on POST to :create when not an instructor" do
+      setup do
+        assert !@user.verified_instructor?
+        post :create, :lesson => Factory.attributes_for(:lesson, :title => "")
+      end
+
+      should_not_assign_to :lesson
+      should_redirect_to("instructor signup") { instructor_signup_wizard_account_path(@user) }
     end
 
     fast_context "with at least one existing lesson" do
@@ -172,6 +206,63 @@ class LessonsControllerTest < ActionController::TestCase
         end
       end
 
+      fast_context "on GET to :show_groups" do
+        setup do
+          get :show_groups, :id => @lesson.id, :style => 'tab'
+        end
+        should_assign_to :lesson
+        should_assign_to :groups
+        should_respond_with :success
+        should_not_set_the_flash
+        should_render_template "groups"
+      end
+
+#      fast_context "on GET to :recommend" do
+#        setup do
+#          get :recommend, :id => @lesson.id, :style => 'tab'
+#        end
+#        should_assign_to :lesson
+#        should_respond_with :success
+#        should_not_set_the_flash
+#        should_render_template "recommend"
+#      end
+
+      fast_context "on GET to :stats when not the instructor" do
+        setup do
+          @lesson.instructor = Factory.create(:user)
+          @lesson.save!
+          assert !@lesson.instructed_by?(@user)
+          get :stats, :id => @lesson.id
+        end
+        should_assign_to :lesson
+        should_assign_to :show_purchases
+        should_assign_to :show_video_stats
+        should "set values" do
+          assert_equal false, assigns(:show_purchases)
+          assert_equal false, assigns(:show_video_stats)
+        end
+        should_respond_with :success
+        should_not_set_the_flash
+        should_render_template "stats"
+      end
+
+      fast_context "on GET to :stats when the instructor" do
+        setup do
+          assert @lesson.instructed_by?(@user)
+          get :stats, :id => @lesson.id
+        end
+        should_assign_to :lesson
+        should_assign_to :show_purchases
+        should_assign_to :show_video_stats
+        should "set values" do
+          assert_equal true, assigns(:show_purchases)
+          assert_equal true, assigns(:show_video_stats)
+        end
+        should_respond_with :success
+        should_not_set_the_flash
+        should_render_template "stats"
+      end
+
       fast_context "and not an admin" do
         fast_context "on POST to :convert" do
           setup { post :convert, :id => @lesson }
@@ -179,6 +270,71 @@ class LessonsControllerTest < ActionController::TestCase
           should_not_assign_to :lesson
           should_redirect_to("lessons index") { lessons_path }
           should_set_the_flash_to /Permission denied/
+        end
+
+        fast_context "on GET to :list" do
+          setup { post :list }
+
+          should_assign_to :lessons
+          should_render_template 'list'
+          should_not_set_the_flash
+        end
+
+        fast_context "on GET to :list, with newest" do
+          setup { post :list, :collection => 'newest' }
+
+          should_assign_to :lessons
+          should_render_template 'list'
+          should_not_set_the_flash
+        end
+
+        fast_context "on GET to :list, with highest_rated" do
+          setup { post :list, :collection => 'highest_rated' }
+
+          should_assign_to :lessons
+          should_render_template 'list'
+          should_not_set_the_flash
+        end
+
+        fast_context "with tags defined" do
+          setup do
+            assert !@lesson.nil?
+            @lesson.tag_list = 'taggy'
+            @lesson.save!
+          end
+
+          fast_context "on GET to :tagged_with and a good tag" do
+            setup { get :tagged_with, :tag => 'taggy' }
+
+            should_assign_to :lessons
+            should "have a lesson returned" do
+              assert 1, assigns(:lessons).size
+            end
+            should_render_template 'tagged_with'
+            should_not_set_the_flash
+          end
+
+          fast_context "on GET to :all_tags with a tag" do
+            setup { get :all_tags }
+
+            should_assign_to :tags
+            should "have a tag returned" do
+              assert 1, assigns(:tags).size
+            end
+            should_render_template 'all_tags'
+            should_not_set_the_flash
+          end
+
+          fast_context "on GET to :tagged_with and a bad tag" do
+            setup { get :tagged_with, :tag => 'blah' }
+
+            should_assign_to :lessons
+            should "not have a lesson returned" do
+              assert assigns(:lessons).empty?
+            end
+            should_render_template 'tagged_with'
+            should_not_set_the_flash
+          end
         end
       end
 
@@ -255,6 +411,7 @@ class LessonsControllerTest < ActionController::TestCase
       setup do
         @sku = Factory.create(:credit_sku, :sku => FREE_CREDIT_SKU)
         @lesson = Factory.create(:lesson, :initial_free_download_count => 5)
+        @lesson.reload
         @lesson.update_attribute(:status, LESSON_STATUS_READY)
         @user.wishes << @lesson
         assert @user.on_wish_list?(@lesson)
@@ -318,7 +475,7 @@ class LessonsControllerTest < ActionController::TestCase
         end
 
         should_set_the_flash_to I18n.t('lesson.need_credits')
-        should_redirect_to("online store") { store_path(1) }
+        should_redirect_to("online store") { store_path(@lesson) }
       end
 
       fast_context "with available credits" do

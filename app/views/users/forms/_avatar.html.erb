@@ -1,20 +1,36 @@
-<% form_for(@user, :url => update_avatar_user_url(@user), :html => { :method => :put, :multipart => true, :id => "avatar_form", :class => "edit_user" }) do |f| %>
-  <%= f.error_messages %>
-  <fieldset>
-    <legend>Upload an Avatar</legend>
-    <p>
-      <%= avatar_tag @user, :size => :medium %>
-    </p>
-    <div>
-      <%= f.label :avatar %>
-      <%= f.file_field :avatar, :class => "required" %>
-    </div>
-  </fieldset>
-  <p>
-    <%# Submit now disabled using jquery %>
-    <%= f.submit "Update", :class => "submit" %>
-  </p>
-  <% if @user.avatar? %>
-    <%= link_to('Delete current', clear_avatar_user_path(@user.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) %>
+<div class="fh-form">
+  <% form_for(@user, :url => update_avatar_user_url(@user), :html => { :method => :put, :multipart => true, :id => "avatar_form", :class => "edit_user" }) do |f| %>
+      <%= f.error_messages %>
+      <ul id="avatar-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3>Upload an Avatar</h3>
+          <h4>An avatar is a great way to tailor how a user appears to other Firehoze users.</h4>
+        </li>
+        <li>
+        <span>
+          <label>Current Avatar</label>
+          <%= avatar_tag @user, :size => :medium %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :avatar %>
+          <%= f.file_field :avatar,  :title => "Please select an image to upload", :class => "required" %>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= f.submit "Update", :id => "update-avatar" %>
+          <%= link_to 'Cancel', home_path %>
+      <% if @user.avatar? %>
+          | <%= link_to('Delete current', clear_avatar_user_path(@user.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) %>
+      <% end %>
+        </span>
+
+          <div class="clear" />
+        </li>
+      </ul>
   <% end %>
-<% end %>
+</div>

@@ -1,0 +1,90 @@
+<% title "Uploading How To's" -%>
+<% content_for :head do -%>
+    <a name="top" id="top" class="anchor"></a>
+<% end -%>
+
+<div id="howtos_section">
+  <div class="answers">
+
+    <h4><%= link_to "Instructor How To's", page_path("instructor-howto-main") %> > Upload your lesson</h4>
+
+    <p>Ready to share your lesson with the community? Here are some tips and advice to get your lesson online and
+      seen.</p>
+
+    <h5>What file formats can I upload?</h5>
+
+    <div>
+      <p>Files must be less than 500 MB. We support the following file formats:</p>
+      <ul>
+        <li>MPEG-1, MPEG-2, H.263, H.264</li>
+        <li>All MPEG-4 implementations (Xvid, 3vix, etc.)</li>
+        <li>AVI</li>
+        <li>.MOV</li>
+        <li>MP4</li>
+        <li>.MPG, .VOB (unencrypted VOBs only)</li>
+        <li>Windows Media/VC-1</li>
+        <li>3GP/3G2</li>
+        <li>Ogg Theora</li>
+        <li>MJPEG</li>
+      </ul>
+    </div>
+    <h5>How do I upload a lesson?</h5>
+
+    <div>
+      <ol>
+        <li>Log in to firehoze and select “create lesson”</li>
+        <li>Fill out the required fields including “Title” use a descriptive title</li>
+        <li>Provide a brief synopsis of your lesson in the “Synopsis” field</li>
+        <li>Enter notes that will help your students in the “Notes” field</li>
+        <%= image_tag("howto/howto-upload/image001-enter-fields.png", :alt => 'Enter lesson fields') %>
+        <li>Provide tags that will help students find your lessons</li>
+        <li>Chose at least 5 free downloads so that your lesson will get rated</li>
+        <li>Chose a category that is appropriate to you lesson, select “Everything Else” if you cannot find a good match
+          and use the GetSatisfaction feedback option or send email to info@firehoze.com to request additional
+          categories
+        </li>
+        <li>Select the “Video” to be uploaded.</li>
+        <li>Finally select “Create Lesson”. Ensure you have a high speed connection and your laptop is plugged into a
+          power outlet (not running on batteries)
+        </li>
+        <p>Note: The file size of typical lessons are very large and take time to upload. While an email is typically
+          less than 1Mb, a lesson can easily be larger than 100Mb. It is best to upload when having a reliable high
+          speed internet connection.
+          “Uploading, pleasing standby ... Don't leave the page...the upload will take a while — but it's still working
+          (leaving this page before the upload has completed will result in making your lesson unavailable to
+          others)”</p>
+        <li>“Success!</li>
+      </ol>
+      <p>Your lesson created and your video has been submitted for processing. You should receive notification when your
+        lesson video is ready for viewing.”</p>
+
+      <p>Note: Once uploaded, processing time ranges from 15 minutes to 2 hours depending on the number lessons that
+        need to be processed. Please allow up to 24 hours before reporting an issue.</p>
+    </div>
+
+    <h5>Why should I offer free downloads?</h5>
+
+    <div>
+      <p>Free downloads give you the chance to build up some ratings and reviews before users have to purchase your lesson. It can be a good way to build your reputation, activity and traction on the site.</p>
+    </div>
+
+    <h5>How do I pull or delete a lesson?</h5>
+
+    <div>
+      <p>Shoot us an email
+        (<a href="javascript:location='mailto:\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d';void 0">
+        <script type="text/javascript">document.write('\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d')</script>
+      </a>) providing your user name and the title of the tutorial you'd like pulled.
+      </p>
+    </div>
+
+    <h5>What happens when I request a lesson to be pulled?</h5>
+
+    <div>
+      <p>We will mark the lesson as rejected. As the author, you will still be able to see the lesson. To other Firehoze users, the lesson and all associated notes, comments and reviews will be invisible.</p>
+    </div>
+    <h5><%= link_to "Visit our FAQs Area &raquo;", page_path("faqs") %></h5>
+  </div>
+  <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a> | <%= link_to "Return to Instructor How To's", page_path("instructor-howto-main") %>
+  </p>
+</div>

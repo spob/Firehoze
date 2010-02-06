@@ -32,15 +32,17 @@ class Flag < ActiveRecord::Base
 
   def friendly_flagger_name
     if self.flaggable.class == Lesson
-      return flaggable.title
+      flaggable.title
     elsif self.flaggable.class == Review
-      return flaggable.headline
+      flaggable.headline
+    elsif self.flaggable.class == Group
+      flaggable.name
     elsif self.flaggable.class == User
-      return flaggable.login
-    elsif self.flaggable.class == LessonComment
-      return abbreviate(flaggable.body, 45)
+      flaggable.login
+    elsif self.flaggable.class == LessonComment or self.flaggable.class == TopicComment
+      abbreviate(flaggable.body, 45)
     else
-      return "ERROR: Unknown"
+      "ERROR: Unknown"
     end
   end
 
@@ -51,6 +53,17 @@ class Flag < ActiveRecord::Base
                                           :status => FLAG_STATUS_REJECTED })
       errors.add_to_base I18n.t('flag.already_flagged')
     end
+  end
+
+  def notify_moderators
+    RunOncePeriodicJob.create!(
+            :name => 'Notify Flagging',
+            :job => "Flag.deliver_notifications #{self.id}")
+  end
+
+  def self.deliver_notifications flag_id
+    flag = Flag.find(flag_id)
+    Notifier.deliver_flag_created(flag)
   end
 
   private

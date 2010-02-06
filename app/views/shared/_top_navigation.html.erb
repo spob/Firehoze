@@ -1,0 +1,57 @@
+<ul id="top-navigation">
+  <% # RECOGNIZED USER  %>
+  <% if current_user %>
+      <li class="first with-subnav with-avatar">
+        <a href="#"><%= avatar_tag(current_user, :size => :tiny) %> <%= current_user.login %></a>
+        <ul class="subnav">
+          <li><a href="<%= user_path(current_user) %>">My Public Page</a></li>
+          <li><a href="<%= edit_account_path(current_user) %>">Account Settings</a></li>
+          <% if current_user.is_an_admin? or current_user.is_a_paymentmgr? or current_user.is_a_moderator?  or current_user.is_a_communitymgr? %>
+              <li><a href="<%= admin_consoles_path %>">Admin Console</a></li>
+          <% end %>
+          <li><%= signout_link("Sign Out") %></li>
+        </ul>
+      </li>
+      <li><%= link_to h(t('lesson.create_lesson')), new_lesson_path %></li>
+      <li class="with-subnav">
+        <%= link_to "Credits", store_path(0) %>
+        <ul class="subnav">
+          <li><%= link_to "Buy Credits", store_path(0) %></li>
+          <li><%= link_to "Redeem Gift Certificate", new_gift_certificate_path %></li>
+          <%= content_tag(:li, link_to('Shopping Cart', cart_path(@current_cart))) if show_cart? %>
+        </ul>
+      </li>
+      <% # UN-RECOGNIZED USER  %>
+  <% else %>
+      <li class="first "><%= link_to "Register", new_registration_path %></li>
+      <li><%= link_to "Sign In", login_path %></li>
+  <% end %>
+  <% # VISIBLE TO ALL  %>
+  <li class="with-subnav">
+    <a href="#">Help</a>
+    <ul class="subnav">
+      <li><a href="javascript:location='mailto:\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d';void 0">Contact Us</a></li>
+      <li><%= link_to "FAQs", page_path('faqs') %></li>
+      <li><%= link_to 'Help Center', page_path("help_center") %></li>
+      <li><%= link_to "Instructor How To's", page_path('instructor-howto-main') %></li>
+    </ul>
+  </li>
+  <% if show_cart? %>
+  <li class="valign-all">
+    <%= link_to "#{image_tag('icons/cart_16.png', :alt => '', :class => 'icon')} Cart", cart_path(@current_cart), :title => 'You have items in your cart' %>
+  </li>
+  <% end %>
+  <li id="advanced-search-icon">
+    <%= link_to image_tag('icons/advanced-search-22.png', :alt => ''), advanced_search_lessons_path, :title => 'Advanced Search', :class => 'mini-tip advanced-search' %>
+  </li>
+  <li class="last">
+    <div id="searchwrapper">
+      <% form_tag searches_path, :method => :get, :id => 'search' do %>
+          <%= text_field_tag :search_criteria, (params[:search_criteria].present? ? params[:search_criteria] : "Search"), :class => 'searchbox' %>
+          <%= image_submit_tag('top_navigation/searchbox_button.png', :class => 'searchbox_submit', :id => 'searchbox_submit') %>
+      <% end %>
+    </div>
+  </li>
+</ul><!-- end top-navigation -->
+<div style="display:none"><%= link_to "Advanced Search", advanced_search_lessons_path %></div>
+<!-- holding off exposing this here for now -->

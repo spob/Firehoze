@@ -48,7 +48,7 @@ class SkusControllerTest < ActionController::TestCase
       fast_context "on POST to :create" do
         setup do
           sku_attrs = Factory.attributes_for(:credit_sku).merge!({:type => 'CreditSku'})
-            post :create, :sku => sku_attrs
+          post :create, :sku => sku_attrs
         end
 
         should_assign_to :sku
@@ -76,6 +76,15 @@ class SkusControllerTest < ActionController::TestCase
           should_set_the_flash_to :sku_update_success
           should_assign_to :sku
           should_respond_with :redirect
+          should_redirect_to("sku page") { skus_path }
+        end
+
+        fast_context "on DELETE to :destroy" do
+          setup { delete :destroy, :id => @sku.id }
+
+          should_assign_to :sku
+          should_respond_with :redirect
+          should_set_the_flash_to /successfully deleted/
           should_redirect_to("sku page") { skus_path }
         end
       end

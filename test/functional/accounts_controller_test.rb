@@ -46,7 +46,7 @@ class AccountsControllerTest < ActionController::TestCase
       should_assign_to :user
       should_respond_with :redirect
       should_set_the_flash_to :profile_update_success
-      should_redirect_to("edit account page") { edit_account_path(assigns(:user)) }
+      should_redirect_to("edit account page") { edit_account_path(assigns(:user).id) }
     end
 
     fast_context "on PUT to :update_privacy" do
@@ -59,7 +59,7 @@ class AccountsControllerTest < ActionController::TestCase
       should_assign_to :user
       should_respond_with :redirect
       should_set_the_flash_to :profile_update_success
-      should_redirect_to("edit account page") { edit_account_path(assigns(:user)) }
+      should_redirect_to("edit account page") { edit_account_path(assigns(:user), :anchor => 'privacy') }
       should "set show real name" do
         assert @user.show_real_name
       end
@@ -69,9 +69,9 @@ class AccountsControllerTest < ActionController::TestCase
       setup { put :update, :id => @user, :user => Factory.attributes_for(:user, :last_name => "") }
 
       should_assign_to :user
-      should_respond_with :redirect
-      should_set_the_flash_to I18n.t('account_settings.update_error')
-      should_redirect_to("edit account screen") { edit_account_path(assigns(:user)) }
+      should_not_set_the_flash
+      should_respond_with :success
+      should_render_template 'edit'
     end
 
     fast_context "on GET to :instructor_signup_wizard" do
@@ -84,7 +84,7 @@ class AccountsControllerTest < ActionController::TestCase
     end
 
     fast_context "on PUT to :update_instructor_wizard" do
-      setup { put :update_instructor_wizard, :id => @user, :step => 1, :accept_agreement => 1  }
+      setup { put :update_instructor_wizard, :id => @user, :step => 1, :accept_agreement => 1 }
 
       should_assign_to :user
       should_respond_with :redirect
@@ -125,7 +125,7 @@ class AccountsControllerTest < ActionController::TestCase
       end
 
       fast_context "on PUT to :update_instructor_wizard" do
-        setup { put :update_instructor_wizard, :id => @user, :step => 2, :user => { :payment_level => PaymentLevel.first }  }
+        setup { put :update_instructor_wizard, :id => @user, :step => 2, :user => { :payment_level => PaymentLevel.first } }
 
         should_assign_to :user
         should_respond_with :redirect
@@ -159,7 +159,7 @@ class AccountsControllerTest < ActionController::TestCase
         fast_context "on PUT to :update_instructor_wizard" do
           setup { put :update_instructor_wizard, :id => @user, :step => 3,
                       :user => { :address1 => "aaa", :city => "yyy", :state => "XX", :postal_code => "99999",
-                                 :country => "US" }  }
+                                 :country => "US" } }
 
           should_assign_to :user
           should_respond_with :redirect

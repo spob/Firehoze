@@ -1,14 +1,13 @@
 <% lesson = object %>
 
 <% unless lesson.lesson_buy_pairs.ready.all(:select => ["lesson_buy_pairs.id"]).empty? %>
-  <%= javascript 'jquerytools/scrollable.navigator' %>
+  <%= javascript 'plugins/jquerytools/scrollable.navigator' %>
   <%= stylesheet 'jquerytools/scrollable-small', 'jquerytools/scrollable-buttons-small', 'jquerytools/scrollable-navigator-small' %>
   <div class="prepend-top">
-    <div id="bought_this_video_also_bought">
-      <h3>Students who bought this video also bought...</h3>
-
+    <div id="bought-this-video-also-bought" class="widget-box-content clearfix">
+      <h3>Students Who Bought This Lesson Also Bought...</h3>
       <!-- wrapper for navigator elements -->
-      <div class="navi"></div>
+      <!-- <div class="navi"></div> -->
 
       <!-- "previous page" action -->
       <a class="prevPage browse left"></a>
@@ -19,13 +18,8 @@
         <div class="items">
           <% for buy_pair in lesson.lesson_buy_pairs.ready.all(:include => [:other_lesson])[0..APP_CONFIG[CONFIG_NUMBER_OF_BUY_PATTERNS_TO_SHOW]] %>
             <div class="item_container">
-              <div class="tn">
-                <%= img_tag_lesson_tn(buy_pair.other_lesson, :small) %>
-                <%#FIXME %>
-                <div class="duration transparent">(<%= ChronicDuration.output(lesson.finished_video_duration/1000, :format => :chrono) -%>)</div>
-              </div>
-              <div class="title"><%= link_to truncate(h(buy_pair.other_lesson.title), :length => 40), lesson_path(buy_pair.other_lesson) %></div>
-              <div class="created_at"><%= h time_ago_in_words(lesson.created_at) %> ago</div>
+              <div class="tn"><%= img_tag_lesson_tn(buy_pair.other_lesson, :small) %></div>
+              <div class="title"><%= link_to truncate(h(buy_pair.other_lesson.title), :length => 38), lesson_path(buy_pair.other_lesson) %></div>
               <div class="instructor"><%= link_to(truncate(h(lesson.instructor.login)), lesson.instructor) %></div>
             </div>
           <% end %>
@@ -34,7 +28,6 @@
 
       <!-- "next page" action -->
       <a class="nextPage browse right"></a>
-      <br clear="all" />
     </div>
   </div>
 <% end %>

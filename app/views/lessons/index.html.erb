@@ -1,33 +1,39 @@
-<div class="clear span-40 append-bottom last" id="marketing_banner">
-  <h2>Short video tutorials by those who know ... and want to help</h2>
+<% # UNRECOGNIZED USER    %>
+
+<div class="span-12 prepend-top" id="intro">
+  <div class="box">
+    <h3>This is Firehoze</h3>
+    <h4>Community-generated, focused video tutorials&mdash;designed for students to find the classroom help they need FAST.<br />We empower tutors to earn the commissions they deserve.</h4>
+      <div id="actions" style="text-align:right"><%= link_to(content_tag(:span, "Browse Our Lessons"), categories_path, :class => 'large-button call-to-action') %><%= link_to(content_tag(:span, "Register for Free"), new_registration_path, :class => 'large-button call-to-action') %></div>
+  </div>
 </div>
 
-<div class="clear span-40 append-bottom last" id="marketing_fpo">
-  <div class="span-20">
-    <div id="marketing_fpo_left">
-      <h2>Get started learning</h2>
-      <p>Learn at your own pace. Invest in your learning where it makes sense and focus on what you want to learn.</p>
-      <p style="text-align:right"><%= link_to 'Take a Tour', "#" %> | <%= link_to 'Sign Up for Free', new_registration_path %></p>
+<div class="span-12 unrecognized-content">
+  <div class="span-4">
+    <div class="box">
+      <h3>It's for Students</h3>
+      <%= image_tag("icons/checklist_64.png", :class => 'box-image') %>
+      <p>Firehoze delivers video lessons focused on specific topics in an easy, searchable format. Get additional affordable help that augments classroom learning regardless of where you are or when you need it.</p>
+      <p><%= link_to "Learn More", page_path('under_construction') %> | <%= link_to "Register", new_registration_path %></p>
     </div>
   </div>
-  <div class="span-19 last">
-    <div id="marketing_fpo_right">
-      <h2>Get started teaching</h2>
-      <p>Reach beyond your institution and the classroom ... and get paid for what you do best.</p>
+  <div class="span-4 middle">
+    <div class="box">
+      <h3>... and Instructors</h3>
+      <%= image_tag("icons/grader-64.png", :class => 'box-image') %>
+      <p>Firehoze gives instructors the opportunity to reach a wide audience, augment and complement traditional tutoring services, help their peers around the clock &mdash; and earn additional income.</p>
+      <p><%= link_to "Take a Tour", page_path('under_construction') %> | <%= link_to "Instructor Toolkit", page_path('under_construction') %></p>
+    </div>
+  </div>
+
+  <div class="span-4 last">
+    <div class="box">
+      <h3>... and Schools</h3>
+      <%= image_tag("icons/university_56.png", :class => 'box-image') %>
+      <p>Firehoze engages directly with tutors; at no cost or impact to the institution, you are able to promote available tutoring resources and help those unable to take advantage of traditional tutoring due to schedule, illness, or other challenges.</p>
+      <p><%= link_to "Firehoze for Schools", page_path('under_construction') %></p>
     </div>
   </div>
 </div>
 
-<div class="clear span-40 last" id="lesson_tabs">
-  <div id="lessons_tabs" >
-    <ul>
-      <li><%= link_to h(t('lesson.most_popular')), tabbed_lessons_path(:collection => 'most_popular') %></li>
-      <li><%= link_to h(t('lesson.highest_rated')), tabbed_lessons_path(:collection => 'highest_rated') %></li>
-      <li><%= link_to h(t('lesson.newest')), tabbed_lessons_path(:collection => 'newest') %></li>
-    </ul>
-    <div style="display:block"></div>
-  </div>
 
-</div>
-
-<%= render :partial => "tag_cloud", :object => Lesson.tag_counts if current_user %>

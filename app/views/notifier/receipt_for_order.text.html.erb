@@ -2,7 +2,7 @@
   Order #: <%= @order.id %>
 </p>
 <p>
-  Order Date: <%= l @order.cart.purchased_at %>
+  Order Date: <%= @order_date %>
 </p>
 <p>
   Ordered By: <%= h(@order.user.full_name) %>
@@ -12,12 +12,12 @@
   Name: <%= h @order.first_name %> <%= h @order.last_name %>
 </p>
 <p>
-  Address:<br/>
-  <%= @order.address1 %><br/>
+  Address:<br />
+  <%= @order.address1 %><br />
   <% if @order.address2 %>
-      <%= @order.address1 %><br/>
+      <%= @order.address2 %><br />
   <% end %>
-  <%= @order.city %>, <%= @order.state %> <%= @order.zip %><br/>
+  <%= @order.city %>, <%= @order.state %> <%= @order.zip %><br />
   <%= I18n.t(@order.country, :scope => 'countries') %>
 </p>
 <p>
@@ -36,10 +36,10 @@ Items
 
   <%= render :partial => 'carts/line_item', :collection => @order.cart.line_items %>
 
-  <tr>
+  <tr class="sum">
     <td align="right"><strong>Total</strong></td>
-    <td/>
-    <td/>
+    <td />
+    <td />
     <td class="total price">
       <%= number_to_currency @order.cart.total_full_price %>
     </td>

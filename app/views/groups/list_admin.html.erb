@@ -1,0 +1,50 @@
+<% title "Browse by Groups" -%>
+<% @current = 'groups' %>
+
+<h3>Groups</h3>
+<p><%= link_to(content_tag(:span, 'New Group'), new_group_path, :class => :minibutton) %></p>
+<div class="span-12 search-box-container">
+  <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
+  <div class="span-4 right">
+    <%= f.label :name_like, "Name" %>:
+    <%= f.text_field :name_like, :style => "width:220px;" %>
+  </div>
+  <div class="span-8 left last">
+    <%= f.label :owner_login_like, "Owner" %>:
+    <%= f.text_field :owner_login_like, :style => "width:210px;" %>
+    <b>Order by:</b>
+    <%= order @search, :by => :name %>&nbsp;
+    <%= order @search, :by => :owner_login %>&nbsp;
+    <%= order @search, :by => :category_name %>&nbsp;
+    <%= f.submit "Search" %>
+  </div>
+  <% end %>
+</div>
+
+<div class="span-12">
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Owner</th>
+      <th>Category</th>
+      <th>Members</th>
+      <th>Private</th>
+      <th>Active</th>
+    </tr>
+
+    <% @groups.each do |group| %>
+    <tr>
+      <td><%= link_to(h(group.name), group_path(group)) %></td>
+      <td><%= link_to_profile(group.owner) %></td>
+      <td><%= h group.category.try(:name) %></td>
+      <td><%= h group.group_members.size %></td>
+      <td><%= h group.private %></td>
+      <td><%= h group.active %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+
+<p><%= will_paginate @groups %></p>
+<p class="mt-1em">Rows to Display Per Page: <%= per_page_select(list_admin_groups_path) %></p>

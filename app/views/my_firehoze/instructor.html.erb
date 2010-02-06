@@ -1,0 +1,79 @@
+<% title "My Firehoze" -%>
+<% @current = 'my_firehoze' %>
+<% @secondary_nav_current = params[:action] %>
+
+<div id="my_firehoze" class="span-12 last">
+  <% if current_user.verified_instructor? %>
+    <% # TOP LEVEL NAVIGATION -%>
+    <div class="span-12 append-bottom">
+      <%= render :partial => 'profile_and_nav', :locals => { :user => current_user } %>
+    </div>
+
+    <% # INSTRUCTOR DASHBOARD -%>
+    <h3><%= h(t('user.instructor_dashboard')) %></h3>
+
+    <div id="instructor_dashboard" class="span-12 last">
+      <!-- the tabs -->
+      <div class="tab-container">
+        <ul class="tabs">
+          <li><a href="#">Lessons I Taught</a></li>
+          <li><a href="#students">Students</a></li>
+          <li><a href="#payments">Payments</a></li>
+        </ul>
+        <%= image_tag("spinners/ajax_spinner_16.gif", :class => "loader") %>
+      </div>
+
+      <!-- tab "panes" -->
+      <% # LESSONS -%>
+      <div class="panes">
+        <div>
+          <div class="nested-navigation">
+            <ul class="links">
+              <li><a href="#">Thumbnail View</a></li>
+              <li><a href="#">Table View</a></li>
+            </ul>
+            <div class="loader"></div>
+
+            <div class="nested-navigation-panes">
+              <div>
+                <%= render :partial => "lessons/ajaxed_lessons", :locals => { :lessons => @instructed_lessons, :pane => :lessons_instructed_tn_view } %>
+                <div class="clear"></div>
+              </div>
+              <div>
+                <%= render :partial => "lessons/ajaxed_instructed_lessons", :locals => { :lessons => @instructed_lessons, :pane => :lessons_instructed_table_view } %>
+                <div class="clear"></div>
+              </div>
+            </div><!-- end (interior) panes -->
+          </div><!-- end nested-navigation -->
+        </div><!-- end lessons I taught pane -->
+
+        <% # STUDENTS -%>
+        <div>
+          <div class="nested-navigation">
+            <ul class="links">
+              <li><a href="#">My Students <%= "(#{@students.size})" if @students.size > 0 %></a></li>
+              <li><a href="#">My Followers <%= "(#{@followers.size})" if @followers.size > 0 %></a></li>
+            </ul>
+            <div class="loader"></div>
+
+            <div class="nested-navigation-panes">
+              <div>
+                <%= render :partial => "users/students", :locals => { :students => @students, :pane => :students } %>
+                <div class="clear"></div>
+              </div>
+              <div>
+                <%= render :partial => 'users/followers', :locals => { :followers => @followers, :pane => :followers } %>
+                <div class="clear"></div>
+              </div>
+            </div><!-- end (interior) panes -->
+          </div><!-- end nested-navigation -->
+        </div><!-- end students pane -->
+
+        <% # PAYMENT HISTORY -%>
+        <div>
+          <%= render :partial => "accounts/forms/payment_history", :locals => { :lessons => @payments, :pane => :payments } %>
+        </div><!-- end payments pane -->
+      </div><!-- end panes -->
+    </div>
+  <% end %>
+</div>

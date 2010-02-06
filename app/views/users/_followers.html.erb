@@ -1,0 +1,9 @@
+<% if (followers.present?) %>
+  <ul class="users-mosaic">
+    <% followers.each do |follower| %>
+      <li><%= avatar_link_to(follower, :size => :tiny) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No followers at this time.</p>
+<% end %>

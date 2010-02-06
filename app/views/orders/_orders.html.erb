@@ -1,0 +1,23 @@
+<% pane = params[:pane] if params[:pane] %>
+<% orders = @orders if pane == "orders" %>
+
+<div id="<%= pane %>">
+  <% if orders.present? %>
+  <table>
+    <tr>
+      <th>Order Number</th>
+      <th>Order Date</th>
+      <th>Amount</th>
+    </tr>
+    <% orders.each do |order| %>
+    <tr class="<%= cycle("even", "odd") -%>">
+      <td><%= link_to order.id, order_path(order) %></td>
+      <td><%= l(order.cart.purchased_at) %></td>
+      <td><%= number_to_currency(order.cart.total_discounted_price) %></td>
+    </tr>
+    <% end %>
+  </table>
+  <% else %>
+  You have not placed any orders. Why not buy some credits now in the <%= link_to "online store", store_path(0) %>?
+  <% end %>
+</div>

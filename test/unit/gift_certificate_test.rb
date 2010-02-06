@@ -10,7 +10,7 @@ class GiftCertificateTest < ActiveSupport::TestCase
     should_belong_to                 :gift_certificate_sku
     should_belong_to                 :line_item
     should_belong_to                 :redeemed_by_user
-    should_validate_presence_of      :user, :code, :credit_quantity, :line_item, :gift_certificate_sku
+    should_validate_presence_of      :user, :code, :credit_quantity, :gift_certificate_sku
     should_ensure_length_is          :code, 16
 
     # can't do should_validate_presence_of for discounted_unit_price because it's set implicitly'

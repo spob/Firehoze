@@ -1,3 +1,4 @@
+<% # used in the lesson#show stats tab %>
 <tr class="<%= cycle("even", "odd") -%>">
   <td>
     <%= video.class.to_s %>
@@ -5,7 +6,7 @@
   <td>
     <%=h t("lesson.#{video.status}") %>
   </td>
-  <% if current_user.try("is_admin?") %>
+  <% if current_user.try("is_an_admin?") %>
     <td>
       <%=h(number_to_human_size(video.video_file_size)) %>
     </td>
@@ -30,7 +31,7 @@
     <!--<%= video.flixcloud_job_id %>-->
     <!--</td>-->
     <td>
-      <% if video.class == ProcessedVideo then %>
+      <% if video.is_a? ProcessedVideo then %>
         <%= number_to_currency(video.input_video_cost/100000.0,
           :precision => 3) unless video.input_video_cost.blank? %> /
         <%= number_to_currency(video.processed_video_cost/100000.0,

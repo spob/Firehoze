@@ -49,7 +49,7 @@ class Lesson < ActiveRecord::Base
   @@per_page = LESSONS_PER_PAGE
 
   belongs_to :instructor, :class_name => "User", :foreign_key => "instructor_id"
-  belongs_to :category
+  belongs_to :category, :counter_cache => true
   has_many :reviews, :dependent => :destroy
   has_many :video_status_changes, :order => "id", :dependent => :destroy
   has_many :credits, :dependent => :destroy
@@ -62,17 +62,25 @@ class Lesson < ActiveRecord::Base
   has_many :free_credits, :order => "id", :dependent => :destroy
   has_many :videos, :dependent => :destroy
   has_many :processed_videos, :order => "id"
+  has_many :attachments, :class_name => "LessonAttachment"
   has_many :lesson_buy_patterns, :order => "counter DESC", :dependent => :destroy
   has_many :lesson_buy_pairs, :order => "counter DESC", :dependent => :destroy
   has_many :flags, :as => :flaggable, :dependent => :destroy
+  has_many :activities, :as => :trackable, :dependent => :destroy
   has_many :rates, :as => :rateable, :dependent => :destroy
+  has_many :group_lessons
+  has_many :groups, :through => :group_lessons
+  has_many :active_groups, :source => :group, :through => :group_lessons,
+           :conditions => { :group_lessons => { :active => true }}
+  has_many :students, :through => :credits, :source => 'user'
   has_one :original_video
   has_one :full_processed_video
   has_one :preview_processed_video
   has_and_belongs_to_many :lesson_wishers, :join_table => 'wishes', :class_name => 'User'
-  validates_presence_of :instructor, :title, :status, :synopsis, :category
+  validates_presence_of :instructor, :title, :status, :synopsis, :category, :audience
   validates_length_of :title, :maximum => 50, :allow_nil => true
   validates_length_of :synopsis, :maximum => 500, :allow_nil => true
+  validates_uniqueness_of :title
 
   # Used to seed the number of free downloads available
   attr_accessor :initial_free_download_count
@@ -81,8 +89,26 @@ class Lesson < ActiveRecord::Base
   before_validation_on_create :set_status_on_create
   after_create :create_free_credits
 
+  # From the thinking sphinx doc: Don’t forget to place this block below your associations,
+  # otherwise any references to them for fields and attributes will not work.
+  define_index do
+    indexes title
+    indexes synopsis
+    indexes notes
+    indexes status
+    indexes language
+    indexes audience
+    indexes instructor.login, :as => :instructor
+    indexes tags.name, :as => :tag
+    has rating_average
+    has category(:id), :as => :category_ids
+    has created_at, :sortable => true
+    set_property :delta => true
+    group_by "instructor_id"
+  end
+
   # I added the id to the sort criteria so that the videos would be sorted in the same order every time, even in the
-  # event of a tie in the primary sort criteria RBS
+  # event of a tie in the primary sort criterby_cia RBS
   named_scope :most_popular, :order => "credits_count DESC, id DESC"
   named_scope :highest_rated, :order => "rating_average DESC, id DESC"
   named_scope :newest, :order => "id DESC"
@@ -90,15 +116,16 @@ class Lesson < ActiveRecord::Base
   named_scope :pending, :conditions => {:status => LESSON_STATUS_PENDING }
   named_scope :failed, :conditions => {:status => LESSON_STATUS_FAILED }
   named_scope :rejected, :conditions => {:status => LESSON_STATUS_REJECTED }
+  named_scope :ids, :select => ["lessons.id"]
   named_scope :by_category,
               lambda{ |category_id| return {} if category_id.nil?;
-                {:joins => {:category => :exploded_categories},
-                 :conditions => { :exploded_categories => {:base_category_id => category_id}}}}
+              {:joins => {:category => :exploded_categories},
+               :conditions => { :exploded_categories => {:base_category_id => category_id}}}}
   # Credits which have been warned to be about to expire
   # Note...add -1 to lesson collection to ensure that never that case where it will return NULL 
   named_scope :not_owned_by,
               lambda{ |user| return {} if user.nil?;
-                { :conditions => ["lessons.id not in (?)", user.lesson_ids.collect(&:id) + [-1]] }
+              { :conditions => ["lessons.id not in (?)", user.lesson_ids.collect(&:id) + [-1]] }
               }
 
   @@lesson_statuses = [
@@ -113,7 +140,8 @@ class Lesson < ActiveRecord::Base
           FLAG_SPAM,
           FLAG_OFFENSIVE,
           FLAG_DANGEROUS,
-          FLAG_IP ]
+          FLAG_IP,
+          FLAG_OTHER ]
 
   def self.flag_reasons
     @@flag_reasons
@@ -121,6 +149,18 @@ class Lesson < ActiveRecord::Base
 
   def self.lesson_statuses
     @@lesson_statuses
+  end
+
+  def lesson_groups(user)
+    active_groups.public + (user ? active_groups.private.a_member(user) : [])
+  end
+
+  def self.audience_levels
+    levels = []
+    LESSON_LEVELS.each do |l|
+      levels << [I18n.translate("lesson.#{l}_level"), l]
+    end
+    levels
   end
 
   def self.lesson_recommendations(user, limit=5)
@@ -140,13 +180,14 @@ class Lesson < ActiveRecord::Base
             ORDER BY l.rating_average DESC
       LIMIT ?
 END
-    lessons1 = Lesson.ready.find_by_sql([sql, VIDEO_STATUS_READY, user.id, user.id, limit])
+    lessons1 = []
     lessons2 = []
+    lessons1 = Lesson.ready.find_by_sql([sql, VIDEO_STATUS_READY, user.id, user.id, limit]) if user
     tmp_limit = limit * 2 - lessons1.size
     lessons2 = Lesson.ready.find(:all, :conditions => ["instructor_id <> ? and id not in (?) and id not in (?)",
-                                                       user.id,
+                                                       (user ? user.id : -1),
                                                        lessons1.collect(&:id) + [-1],
-                                                       user.lesson_ids + [-1]],
+                                                       (user ? user.lesson_ids : []) + [-1]],
                                  :limit => tmp_limit,
                                  :order => "rating_average DESC")
     all = lessons1 + lessons2
@@ -165,6 +206,18 @@ END
   # Call it vlast (as in very last) as opposed to last to differentiate it from the dynamic finder
   def vlast_public_comment
     kludge_workaround_for_f__cking_db_bug(comments.public)
+  end
+
+  def acquire(user, session_id)
+    credit = user.available_credits.first
+    if credit
+      Lesson.transaction do
+        credit.update_attributes(:lesson => self, :acquired_at => Time.now)
+        user.wishes.delete(self) if user.on_wish_list?(self)
+        LessonVisit.touch(self, user, session_id, true)
+      end
+    end
+    credit
   end
 
   # Basic paginated listing finder
@@ -188,13 +241,69 @@ END
     !self.credits.scoped_by_user_id(user).first(:select => [:id]).nil?
   end
 
+  def belongs_to_group?(group)
+    !self.group_lessons.scoped_by_group_id(group).scoped_by_active(true).first(:select => [:id]).nil?
+  end
+
+  def show_review_button?(user)
+    (!reviewed_by?(user) and !instructed_by?(user))
+  end
+
   def instructed_by?(user)
     instructor == user
   end
 
+  def self.fetch_most_popular user, category_id, per_page, page
+    Lesson.ready.most_popular.not_owned_by(user).by_category(category_id).all(:include => [:instructor, :tags]).paginate(:per_page => per_page, :page => page)
+  end
+
+  def self.fetch_newest user, category_id, per_page, page
+    Lesson.ready.newest.not_owned_by(user).by_category(category_id).all(:include => [:instructor, :tags]).paginate(:per_page => per_page, :page => page)
+  end
+
+  def self.fetch_highest_rated user, category_id, per_page, page
+    Lesson.ready.highest_rated.not_owned_by(user).by_category(category_id).all(:include => [:instructor, :tags]).paginate(:per_page => per_page, :page => page)
+  end
+
+  def self.fetch_tagged_with user, category_id, tag, per_page, page
+    Lesson.ready.not_owned_by(user).by_category(category_id).find_tagged_with(tag).paginate(:per_page => per_page, :page => page)
+  end
+
+  def self.fetch_owned(user, per_page, page)
+    user.lessons.paginate(:per_page => per_page, :page => page)
+  end
+
+  def self.fetch_wishlist(user, category_id, per_page, page)
+    user.wishes.ready.by_category(category_id).paginate(:per_page => per_page, :page => page)
+  end
+
+  def self.fetch_latest_browsed(user, category_id, per_page, page)
+    user.latest_visited_lessons.ready.by_category(category_id).paginate(:per_page => per_page, :page => page)
+  end
+
+  def self.fetch_instructed_lessons(user, category_id, per_page, page)
+    user.instructed_lessons.by_category(category_id).paginate(:per_page => per_page, :page => page)
+  end
+
   # The lesson can be edited by an admin or the instructor who created it
   def can_edit? user
-    user and (user.is_admin? or user.is_moderator? or instructor == user)
+    user.try("is_admin?") or user.try("is_a_moderator?") or instructed_by?(user)
+  end
+
+  def can_view_purchases? user
+    user.try("is_admin?") or user.try("is_paymentmgr?") or instructed_by?(user)
+  end
+
+  def can_view_lesson_stats? user
+    user.try("is_admin?") or instructed_by?(user)
+  end
+
+  def can_comment? user
+    owned_by?(user) or can_edit?(user)
+  end
+
+  def can_review? user
+    (owned_by?(user) and !reviewed_by?(user) and !instructed_by?(user))
   end
 
   # Has this user reviewed this lesson already?
@@ -243,7 +352,12 @@ END
       update_status_attribute(LESSON_STATUS_CONVERTING)
     elsif all_videos_match_by_status(LESSON_STATUS_READY)
       update_status_attribute(LESSON_STATUS_READY)
-      Notifier.deliver_lesson_ready(self)
+      unless self.ready_notified_at
+        Notifier.deliver_lesson_ready(self)
+        self.notify_followers
+        self.reload
+        self.update_attribute(:ready_notified_at, Time.now)
+      end
     else
       update_status_attribute("Unknown status")
     end
@@ -261,11 +375,40 @@ END
     self.thumbnail_url.gsub(/<size>/, size.to_s)
   end
 
+  def compile_activity
+    self.activities.create!(:actor_user => self.instructor,
+                            :actee_user => nil,
+                            :acted_upon_at => self.created_at,
+                            :activity_string => 'lesson.activity',
+                            :activity_object_id => self.id,
+                            :activity_object_human_identifier => self.title,
+                            :activity_object_class => self.class.to_s,
+                            :secondary_activity_object_id => nil,
+                            :secondary_activity_object_human_identifier => nil,
+                            :secondary_activity_object_class => nil)
+    self.update_attribute(:activity_compiled_at, Time.now)
+  end
+
+  def notify_followers
+    self.instructor.followers.each do |user|
+      RunOncePeriodicJob.create!(
+              :name => 'Notify Follower',
+              :job => "Lesson.notify_follower(#{user.id}, #{self.id})")
+    end
+  end
+
+  def self.notify_follower to_user_id, lesson_id
+    to_user = User.find(to_user_id)
+    lesson = Lesson.find(lesson_id)
+    Notifier.deliver_new_followed_lesson(to_user, lesson)
+  end
+
   private
 
   Tag.destroy_unused = true
 
   def update_status_attribute(status)
+    self.reload
     self.update_attribute(:status, status)
   end
 
@@ -273,14 +416,14 @@ END
     videos.find_all{|video| video.class == FullProcessedVideo or video.class == PreviewProcessedVideo }.each do |video|
       return true if video.status == status
     end
-    return false
+    false
   end
 
   def all_videos_match_by_status(status)
     videos.find_all{|video| video.class == FullProcessedVideo or video.class == PreviewProcessedVideo }.each do |video|
       return false if video.status != status
     end
-    return true
+    true
   end
 
   def input_path

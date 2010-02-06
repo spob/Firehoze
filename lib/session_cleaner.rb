@@ -10,7 +10,7 @@ module SessionCleaner
 
   # Session expiration as described in http://guides.rubyonrails.org/security.html section 2.9
   def self.sweep
-    SessionCleaner.execute_sql "DELETE FROM sessions WHERE updated_at < '#{90.minute.ago.to_s(:db)}'"
+    SessionCleaner.execute_sql "DELETE FROM sessions WHERE updated_at < '#{30.minute.ago.to_s(:db)}'"
   end
 
   private

@@ -1,20 +1,41 @@
-<% form_for(@user, :url => update_avatar_account_url(@user), :html => { :method => :put, :multipart => true, :id => "avatar_form", :class => "edit_user" }) do |f| %>
+<div class="fh-form">
+  <% form_for(@user, :url => update_avatar_account_url(@user), :html => { :method => :put, :multipart => true, :id => "avatar_form", :class => "edit_user" }) do |f| %>
   <%= f.error_messages %>
-  <fieldset>                                      
-    <legend>Upload an Avatar</legend>
-    <p>
-      <%= avatar_tag @user, :size => :medium %>
-    </p>
-    <div>
-      <%= f.label :avatar %>
-      <%= f.file_field :avatar, :class => "required" %>
-    </div>
-  </fieldset>
-  <p>
-    <%# Submit now disabled using jquery %>
-    <%= f.submit "Update", :class => "submit" %>
-  </p>
-  <% if @user.avatar? %>
-    <%= link_to('Delete current', clear_avatar_account_path(@user.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) %>
-  <% end %>
-<% end %>
+  <ul id="avatar-info" class="section">
+    <li class="header">
+      <span></span>
+      <h3>Upload an Avatar</h3>
+      <h4>An avatar is a great way to tailor how you appear to other Firehoze users.</h4>
+      <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
+    </li>
+    <li>
+      <% gravatar = gravatar_as_source(current_user) %>
+      <span>
+        <label><%= gravatar ? "Gravatar" : "Current Avatar" %></label>
+        <%= avatar_tag @user, :size => :medium, :url => :s3 %>
+      </span>
+      <% if gravatar %>
+      <span class="help">Your avatar is being provided by <%= link_to "Gravatar", "http://gravatar.com" %>. You can override your avatar by
+        selecting an image below</span>
+        <% end %>
+      </li>
+      <li>
+        <span>
+          <%= f.label :avatar %>
+          <%= f.file_field :avatar,  :title => "Please select an image to upload", :class => "required" %>
+        </span>
+      </li>
+      <li class="bottom">
+        <span class="unlabelled">
+          <%= f.submit "Update", :id => "update-avatar" %>
+          <%= link_to 'Cancel', home_path %>
+          <% if @user.avatar? %>
+          | <%= link_to('Delete current', clear_avatar_account_path(@user.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) %>
+          <% end %>
+        </span>
+
+        <div class="clear"/>
+      </li>
+    </ul>
+    <% end %>
+  </div>

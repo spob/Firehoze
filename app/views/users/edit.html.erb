@@ -1,32 +1,30 @@
-<% title "Edit #{@user.name_or_username}" -%>
+<% title "editing #{@user.name_or_username}'s account" %>
 
-<% content_for :head do -%>
-  <%= javascript_include_tag 'validate/jquery.validate.js', 'validate/account.setting.validate.js' %>
-<% end %>
-
-<%= render :partial => "shared/infield_head_content" %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'validation/user.validate.js' -%>
+<% end -%>
 
 <h3><%= t 'user.account_settings' %> for <%= link_to_profile(@user) %></h3>
 
-<div id="admin_user_tabs">
-  <ul>
-    <li><a href="#tabs-1"><%= t 'user.profile' %></a></li>
-    <li><a href="#tabs-2"><%= t 'user.roles' %></a></li>
-    <li><a href="#tabs-3"><%= t 'user.password' %></a></li>
-    <li><a href="#tabs-4"><%= t 'user.author_info' %></a></li>
-    <li><a href="#tabs-5"><%= t 'user.avatar' %></a></li>
-    <li><a href="#tabs-6"><%= t 'user.privacy' %></a></li>
-    <li><a href="#tabs-7"><%= t 'user.credit_history' %></a></li>
-    <li><a href="#tabs-8"><%= t 'user.order_history' %></a></li>
-    <li><a href="#tabs-9"><%= t 'user.notices' %></a></li>
+<div id="admin-user-tabs" class="tab-container">
+  <ul class="tabs">
+    <li><a href="#profile"><%= t 'user.profile' %></a></li>
+    <li><a href="#roles"><%= t 'user.roles' %></a></li>
+    <li><a href="#password"><%= t 'user.password' %></a></li>
+    <li><a href="#author_info"><%= t 'user.author_info' %></a></li>
+    <li><a href="#avatar"><%= t 'user.avatar' %></a></li>
+    <li><a href="#privacy"><%= t 'user.privacy' %></a></li>
+    <li><a href="#credit_history"><%= t 'user.credit_history' %></a></li>
+    <li><a href="#order_history"><%= t 'user.order_history' %></a></li>
   </ul>
-  <div id="tabs-1"><%= render :partial => "users/forms/profile" %></div>
-  <div id="tabs-2"><%= render :partial => "users/forms/roles" %></div>
-  <div id="tabs-3"><%= render :partial => "users/forms/password" %></div>
-  <div id="tabs-4"><%= render :partial => "users/forms/instructor" %></div>
-  <div id="tabs-5"><%= render :partial => "users/forms/avatar" %></div>
-  <div id="tabs-6"><%= render :partial => "users/forms/privacy" %></div>
-  <div id="tabs-7"><%= render :partial => "users/forms/credit_history" %></div>
-  <div id="tabs-8"><%= render :partial => "users/forms/order_history" %></div>
-  <div id="tabs-9"><%= render :partial => "users/forms/notices" %></div>
+  <div class="panes clearfix">
+    <div id="pane-profile"><%= render :partial => "users/forms/profile" %></div>
+    <div id="pane-roles"><%= render :partial => "users/forms/roles" %></div>
+    <div id="pane-password"><%= render :partial => "users/forms/password" %></div>
+    <div id="pane-instructor"><%= render :partial => "users/forms/instructor" %></div>
+    <div id="pane-avatar"><%= render :partial => "users/forms/avatar" %></div>
+    <div id="pane-privacy"><%= render :partial => "users/forms/privacy" %></div>
+    <div id="pane-credit_history"><%= render :partial => "users/forms/credit_history" %></div>
+    <div id="pane-order_history"><%= render :partial => "users/forms/order_history" %></div>
+  </div>
 </div>

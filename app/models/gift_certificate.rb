@@ -1,5 +1,5 @@
 class GiftCertificate < ActiveRecord::Base
-  validates_presence_of :code, :credit_quantity, :user, :gift_certificate_sku, :line_item
+  validates_presence_of :code, :credit_quantity, :user, :gift_certificate_sku
   validates_length_of :code, :is=> 16, :allow_nil => true
   belongs_to :user
   belongs_to :gift_certificate_sku
@@ -9,6 +9,9 @@ class GiftCertificate < ActiveRecord::Base
 
   before_validation_on_create :populate_code
   before_create :populate_expires_at
+
+  # Used when gifting a gift certificate
+  attr_accessor :to_user, :to_user_email, :give_comments
 
   named_scope :active, :conditions => [ "redeemed_at is null and expires_at > ?", Time.now ]
 
@@ -30,7 +33,7 @@ class GiftCertificate < ActiveRecord::Base
 
   def redeem the_user
     self.credit_quantity.times do
-      Credit.create!(:sku => self.line_item.sku,
+      Credit.create!(:sku => self.line_item.try(:sku),
                      :price => self.price,
                      :user => the_user,
                      :acquired_at => Time.zone.now,

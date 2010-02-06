@@ -32,22 +32,22 @@
 
     <p>
       <% if @user.payment_level and !@user.instructed_lessons.empty? %>
-        <%= h(@user.payment_level.name) %>
+        <b>You have chosen "<%= h(@user.payment_level.name) %>"</b>
         (pays at <%= number_to_percentage(100 * @user.payment_level.rate, :precision => 1) %>)
       <% else %>
-        <%= f.select :payment_level, options_from_collection_for_select(PaymentLevel.all, 'id', 'name',
+        <%= f.select :payment_level, options_from_collection_for_select(PaymentLevel.admin_only_is(false).ascend_by_name, 'id', 'name',
           (@user.payment_level ? @user.payment_level.id : PaymentLevel.find_by_default_payment_level(true).id)) %>
       <% end %>
     </p>
 
   </fieldset>
-  <% if !@user.payment_level or @user.instructed_lessons.empty? %>
+  <%# if !@user.payment_level or @user.instructed_lessons.empty? %>
     <p>
       <%= f.submit "Next", :disable_with => translate('general.disable_with') %>
       <span  class="actions">
-        <%= link_to "Back", instructor_wizard_step1_account_path(current_user) %>
+        <%= link_to "&laquo; Back", instructor_wizard_step1_account_path(current_user), :class => "ml-10" %> |
         <%= link_to 'Cancel', edit_account_path(current_user) %>
       </span>
     </p>
-  <% end %>
+  <%# end %>
 <% end %>

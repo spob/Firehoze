@@ -1,0 +1,235 @@
+<% title "Recording How To's" -%>
+<% content_for :head do -%>
+    <a name="top" id="top" class="anchor"></a>
+<% end -%>
+
+<div id="howtos_section">
+<div class="answers">
+
+<h4><%= link_to "Instructor How To's", page_path("instructor-howto-main") %> > Get set-up to record</h4>
+
+<p>Lesson done and ready to record? Here are some recommendations and tips to get you on your way.</p>
+
+<h5>What tools are available for capturing videos?</h5>
+
+<div>
+
+  <p>While there are several screen capture options available, CamStudio’s capabilities and cost (Free, yes Free!) make it one of our favorites.</p>
+
+  <strong><i>CamStudio (<a href="http://camstudio.org/">http://camstudio.org/</a>)</i></strong>
+
+  <p>Best for:</p>
+  <ul>
+    <li>Those looking for features to support a higher level of video production</li>
+    <li>Desire to do further editing of captured video</li>
+  </ul>
+
+  <p>Pros:</p>
+  <ul>
+    <li>Free and open source</li>
+    <li>More expansive feature set – codec choice, intelligent capture moving the frame to follow the cursor during
+      capture
+    </li>
+  </ul>
+
+  <p>Cons:</p>
+  <ul>
+    <li>User interface isn't terribly pretty</li>
+    <li>Additional features can make for a slower learning curve</li>
+  </ul>
+</div>
+
+<h5>How do I download &amp; configure CamStudio?</h5>
+
+<div>
+  <p>Download CamStudio</p>
+  <ul>
+    <li>Navigate to <%= link_to "http://camstudio.org", "http://camstudio.org" %> and scroll down to “So where can I get it and how much does it cost?”</li>
+    <li>Click on the link CamStudio: CamStudio20.exe and install the application</li>
+    <li>Click on the link Lossless Codec: CamStudioCodec14.exe and install the lossless codec</li>
+    <%= image_tag("howto/download-camstudio/image_001_download_camstudio.png", :alt => 'Download Camstudio') %>
+  </ul>
+  <p>Configure CamStudio</p>
+  <ul>
+    <li>Launch CamStudio and select “Record audio from microphone”</li>
+    <%= image_tag("howto/download-camstudio/image_002_record_audio.png", :alt => 'Launch Camstudio') %>
+    <li>Setup the region of screen to be captured Launch CamStudio and select “Region” or “Fixed Region” (Note: Full Screen is not recommended)</li>
+    <%= image_tag("howto/download-camstudio/image_003_region.png", :alt => 'Download Camstudio') %>
+    <li>Select Options-> “Video Options”</li>
+    <%= image_tag("howto/download-camstudio/CamStudio_Video_Options.png", :alt => 'Download Camstudio') %>
+    <li>Set Compressor to “CamStudio Lossless Codec v1.4”</li>
+    <%= image_tag("howto/download-camstudio/CamStudio_Lossless_Codec.png", :alt => 'Download Camstudio') %>
+  </ul>
+</div>
+
+<h5>How do I use CamStudio and PowerPoint to create my lessons?</h5>
+
+<div>
+  <div style="width:<%= PLAYER_WIDTH %>px;height:<%= PLAYER_HEIGHT %>px;" id="playerbox"></div>
+  <script language='javascript'>
+      //$f("playerbox", "http://<%= APP_CONFIG[CONFIG_HOST] %>:<%= APP_CONFIG[CONFIG_PORT] %>/swf/flowplayer-3.1.5.swf", {
+      $f("playerbox", "http://releases.flowplayer.org/swf/flowplayer.commercial-3.1.5.swf", {
+
+          key: '#$2530218aaff22a9be9e',
+          canvas: {
+              background: 'url(/images/videos/watermark-v2.png)  no-repeat 420 10'
+          },
+          play: {
+              label: 'Play',
+              replayLabel: 'Play again'
+          },
+          clip: {
+              autoPlay:false,
+              autoBuffering:false,
+              url: 'flv:output/mkt/HowTo1.flv',
+              provider: 'simplecdn',
+              accelerated: true
+          },
+          plugins: {
+              simplecdn: {
+                  url: 'flowplayer.rtmp-3.1.3.swf',
+                  netConnectionUrl: 'rtmp://e1f1.simplecdn.net/play'
+              }
+          }
+      });
+  </script>
+  <br />
+</div>
+
+<h5>How do I configure CamStudio settings to capture PowerPoint slides?</h5>
+
+<div>
+  <p>For best results, use a “Fixed Region” when creating lessons using CamStudio and PowerPoint.</p>
+
+  <p>Follow these steps:</p>
+  <ol>
+    <li>Start CamStudio</li>
+    <li>Start PowerPoint in Slide Show mode as in the figure below (use CamStudio “Fixed Region” option to avoid
+      capturing the black vertical bars)
+    </li>
+    <%= image_tag("howto/cam-studo-for-slides/01-slide-mode.png", :alt => 'Start cam studio in slide mode') %>
+
+    <li>Windows users: Use ALT-TAB to bring CamStudio to the forground while PowerPoint is in Slide Show mode –
+      “Select Fixed Region”
+    </li>
+    <%= image_tag("howto/cam-studo-for-slides/02-alt-tab.png", :alt => 'Use ALT-TAB  to bring CamStudio to the forground') %>
+
+    <li>Click on the “Select” button in the “Fixed Region” dialog box</li>
+    <li>Click and drag do define the capture region</li>
+
+    <%= image_tag("howto/cam-studo-for-slides/03-fixed-region.png", :alt => 'Use ALT-TAB  to bring CamStudio to the forground') %>
+
+    <li>Launch CamStudio and select “Record audio from microphone”</li>
+
+    <%= image_tag("howto/cam-studo-for-slides/04-record-from-microphone.png", :alt => 'Record from microphone') %>
+
+    <li>Verify that Keyboard Shortcuts are setup: Select Options->Keyboard Shortcuts</li>
+
+    <%= image_tag("howto/cam-studo-for-slides/05-keyboard-shortcuts.png", :alt => 'Keyboard short cuts') %>
+
+    <p>Note: Record/Pause Key set to F8</p>
+
+    <p>Note: Stop Key set to F9</p>
+
+    <%= image_tag("howto/cam-studo-for-slides/06-keyboard-shortcuts-dialog.png", :alt => 'Keyboard short cuts dialog') %>
+
+    <li>Now you are ready to record using CamStudio and powerpoint slides</li>
+    <li>Launch CamStudio</li>
+    <li>Launch Powerpoint in slide show mode</li>
+    <li>Use the keyboard shortcut F8 to start recording and again F8 to pause recording while gathering your
+      thoughts and preparing for the next slide
+    </li>
+    <li>Using F8 to Record/Pause will enable you to pause and if needed, switch to another application and continue
+      recording from another application
+    </li>
+  </ol>
+
+</div>
+<h5>How do I use a tool such as Jing or a tablet device to create my lessons?</h5>
+
+<div>
+  <p>Yes. The following video walks you through the process.</p>
+
+  <div>
+    <div style="width:<%= PLAYER_WIDTH %>px;height:<%= PLAYER_HEIGHT %>px;" id="playerbox2"></div>
+    <script language='javascript'>
+        //$f("playerbox", "http://<%= APP_CONFIG[CONFIG_HOST] %>:<%= APP_CONFIG[CONFIG_PORT] %>/swf/flowplayer-3.1.5.swf", {
+        $f("playerbox2", "http://releases.flowplayer.org/swf/flowplayer.commercial-3.1.5.swf", {
+
+            key: '#$2530218aaff22a9be9e',
+            canvas: {
+                background: 'url(/images/videos/watermark-v2.png)  no-repeat 420 10'
+            },
+            play: {
+                label: 'Play',
+                replayLabel: 'Play again'
+            },
+            clip: {
+                autoPlay:false,
+                autoBuffering:false,
+                url: 'flv:output/mkt/HowTo2.flv',
+                provider: 'simplecdn',
+                accelerated: true
+            },
+            plugins: {
+                simplecdn: {
+                    url: 'flowplayer.rtmp-3.1.3.swf',
+                    netConnectionUrl: 'rtmp://e1f1.simplecdn.net/play'
+                }
+            }
+        });
+    </script>
+    <br />
+  </div>
+</div>
+<h5>How do I save my videos as an mp4 with Camtasia?</h5>
+
+<div>
+  <p>Click on 'Share', 'Export' and save the video with your desired title.</p>
+</div>
+
+<h5>How do I adjust my microphone settings when using Windows XP?</h5>
+
+<div>
+  <p>Follow the following steps:</p>
+  <ol>
+    <li>
+      <p>Double click left mouse button on “speaker” icon to open the Volume Control</p>
+
+      <p><%= image_tag("FAQs/xp_microphone/microphone1.png", :alt => 'Double click left mouse button on “speaker” icon to open the Volume Control') %></p>
+    </li>
+    <li>
+      <p>Select Options-> Properties from the Volume Control dialog</p>
+
+      <p><%= image_tag("FAQs/xp_microphone/microphone2.png", :alt => 'Select Options-> Properties from the Volume Control dialog') %></p>
+    </li>
+    <li>
+      <p>Select “Recording” on the Properties: check Line In, External Mic and Internal Mic then select “OK”</p>
+
+      <p><%= image_tag("FAQs/xp_microphone/microphone3.png", :alt => 'Select “Recording” on the Properties: check Line In, External Mic and Internal Mic then select “OK”') %></p>
+    </li>
+    <li>
+      <p>If you choose to use your built-in microphone then select “Internal Mic” and increase the volume as necessary.</p>
+
+      <p>Select “External Mic” if you have an external microphone.</p>
+
+      <p><%= image_tag("FAQs/xp_microphone/microphone4.png", :alt => 'select “Internal Mic” and increase the volume as necessary') %></p>
+    </li>
+    <li>
+      <p>Select Options->Advanced Controls from the Recording Control menu then select “Advanced” on the Internal Mic or External Mic based on your setup.</p>
+
+      <p><%= image_tag("FAQs/xp_microphone/microphone5.png", :alt => 'Select “Advanced” on the Internal Mic or External Mic') %></p>
+    </li>
+    <li>
+      <p>Select “Microphone Boost” on the Advanced Controls for Internal Mic</p>
+
+      <p><%= image_tag("FAQs/xp_microphone/microphone6.png", :alt => 'Select “Microphone Boost” on the Advanced Controls for Internal Mic') %></p>
+    </li>
+  </ol>
+</div>
+<h5><%= link_to "Visit our FAQs Area &raquo; ", page_path("faqs") %></h5>
+</div>
+<p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a> | <%= link_to "Return to Instructor How To's", page_path("instructor-howto-main") %>
+</p>
+</div>
+    

@@ -3,6 +3,7 @@ class PaymentsController < ApplicationController
   
   before_filter :require_user
   before_filter :layout_for_action
+  before_filter :set_per_page, :only => [ :ajaxed, :index ]
   layout :layout_for_action
 
   # Admins only
@@ -13,14 +14,14 @@ class PaymentsController < ApplicationController
 
   def index
     @users = User.instructors.all(:include => [:payment_level]).sort_by{|user| user.unpaid_credits_amount * -1}.paginate :page => params[:page],
-      :per_page => (session[:per_page] || ROWS_PER_PAGE)
+      :per_page => @per_page
   end
 
   def list
     @user = User.find(params[:id])
     if current_user.is_paymentmgr? or current_user == @user
       @payments = @user.payments.paginate :page => params[:page],
-        :per_page => (session[:per_page] || ROWS_PER_PAGE)
+        :per_page => (cookies[:per_page] || ROWS_PER_PAGE)
     else
       flash[:error] = t 'payment.cannot_view'
       redirect_to home_path
@@ -56,8 +57,30 @@ class PaymentsController < ApplicationController
     end
   end
 
+  # SUPPORTING AJAX PAGINATION
+  def ajaxed
+    @collection = params[:collection]
+    @payments =
+            case @collection
+              when 'by_instructor'
+                current_user.payments.paginate(:per_page => @per_page, :page => params[:page])
+            end
+  end
+
   private
+  
   def layout_for_action
     current_user.is_paymentmgr? ? 'admin' : 'application'
+  end
+
+  def set_per_page
+    @per_page =
+    if params[:per_page]
+      params[:per_page]
+    elsif %w(index).include?(params[:action])
+      (cookies[:per_page] || ROWS_PER_PAGE)
+    else
+      5
+    end
   end
 end

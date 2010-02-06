@@ -51,11 +51,14 @@ Rails::Initializer.run do |config|
   # active merchant used for credit card processing
   config.gem "activemerchant", :lib => "active_merchant", :version => "1.4.2"
 
+  # browser detection
+  config.gem "spob_browser_detector", :version => '1.0.1', :source => 'http://gemcutter.org'
+
   # tagging
   config.gem 'jviney-acts_as_taggable_on_steroids', :lib => 'acts_as_taggable', :source => 'http://gems.github.com', :version => '~>1.1'
 
-  # authologic provides authenticaiton
-  config.gem "authlogic"
+  # authologic provides authentication
+  config.gem "authlogic", :version => '~>2.1.3'
 
   # For generating XML
   config.gem 'builder', :version => '~>2.1.2'
@@ -66,17 +69,29 @@ Rails::Initializer.run do |config|
   # For periodic job processing
   config.gem 'daemons'
 
+  # Notifier for application errors
+  config.gem 'hoptoad_notifier'
+
   # Not sure why this is required...but rake is failing without it. Some gems must require it -- RBS
   config.gem "hpricot", :source => "http://code.whytheluckystiff.net"
 
+  # Using jRails, you can get all of the same default Rails helpers for javascript functionality using the lighter jQuery library.
+  config.gem 'jrails', :version => '0.6', :source => 'http://gemcutter.org'
+
+  # The LESS Ruby gem compiles LESS code to CSS -- learn more at http://lesscss.org/
+  config.gem 'less', :source => 'http://gemcutter.org'
+
   # Gem for secret url (for user signup requests)
   config.gem "mholling-active_url", :lib => "active_url", :source => "http://gems.github.com"
+
+  # DSL for html
+  # config.gem "markaby"
 
   # Gem for pagination functionality
   config.gem 'mislav-will_paginate', :version => '~> 2.3.8', :lib => 'will_paginate', :source => 'http://gems.github.com'
 
   # Gem performance monitoring
-  config.gem 'newrelic_rpm'
+  config.gem 'newrelic_rpm', :version => '~>2.9.5'
 
   # For attaching files
   config.gem 'thoughtbot-paperclip', :lib => 'paperclip', :source => 'http://gems.github.com', :version => '2.3.1'
@@ -85,11 +100,20 @@ Rails::Initializer.run do |config|
   # For interacting with AWS
   config.gem 'right_aws'
 
+  # For retrieving tweets
+  config.gem 'twitter', :version => '0.7.0'
+
+  # Gravitar integration
+  config.gem 'gravtastic', :version => '>= 2.1.0'
+
   # Search Logic
   config.gem "searchlogic", :version => '~> 2.3.5'
 
   # Query optimization
   #config.gem 'methodmissing-scrooge', :source => "http://gems.github.com"
+
+  config.gem 'thinking-sphinx', :lib => 'thinking_sphinx', :version => '1.3.14', :source => "http://gemcutter.org"
+
 
   # Shoulda
   config.gem "thoughtbot-shoulda", :lib => "shoulda", :source => "http://gems.github.com"
@@ -111,7 +135,7 @@ Rails::Initializer.run do |config|
   #config.plugins = [:authlogic]
 
   # Add additional load paths for your own custom dirs
-  config.load_paths += %W( #{RAILS_ROOT}/lib )
+  config.load_paths += %W( #{RAILS_ROOT}/lib #{RAILS_ROOT}/app/sweepers)
 
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)
@@ -129,7 +153,8 @@ Rails::Initializer.run do |config|
   #  no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
           :session_key => '_firehoze_session',
-          :secret      => 'j23jh4lkjhl536h3l45jhfdgh34563h6345h6l345jh63l45jhljkhlgdsfglwjrhl'
+          :secret => 'j23jh4lkjhl536h3l45jhfdgh34563h6345h6l345jh63l45jhljkhlgdsfglwjrhl'
+
   }
 
   path = "#{RAILS_ROOT}/config/environment.yml"
@@ -142,7 +167,7 @@ Rails::Initializer.run do |config|
     APP_CONFIG.merge!(env_config)
   end
   # parse in the Amazon s3 parameters
-  s3_path =  "#{RAILS_ROOT}/config/s3.yml"
+  s3_path = "#{RAILS_ROOT}/config/s3.yml"
   APP_CONFIG.merge!(YAML.load_file(s3_path)[RAILS_ENV])
 
   # Use the database for sessions instead of the cookie-based default,
@@ -156,6 +181,10 @@ Rails::Initializer.run do |config|
   # config.active_record.schema_format = :sql                       
 
   # Activate observers that should always be running
-   config.active_record.observers = :payment_observer
-           #:cacher, :garbage_collector
+  config.active_record.observers = :payment_observer, :lesson_observer, :review_observer, :comment_observer,
+          :group_observer, :group_lesson_observer, :group_member_observer, :user_observer, :credit_observer,
+          :flag_observer, :topic_comment_observer
+  #:cacher, :garbage_collector
+  config.action_controller.page_cache_directory = "#{RAILS_ROOT}/tmp/cache/"
+  config.cache_store = :file_store, "#{RAILS_ROOT}/tmp/cache/"
 end

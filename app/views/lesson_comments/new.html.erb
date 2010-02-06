@@ -1,27 +1,3 @@
 <% title "Add a comment" -%>
 
-<%= render :partial => "shared/infield_head_content" %>
-
-<%= stylesheet 'validation' %>
-<%= javascript 'validate/jquery.validate', 'validate/lesson_comment.validate' %>
-
-<% form_for(:lesson_comment, :url => lesson_lesson_comments_url(@lesson), :html => { :class => "lesson_comment", :id => "lesson_comment" }) do |f| %>
-    <%= f.error_messages %>
-    <fieldset>
-      <legend>Join the discussion for: <%= link_to h(@lesson.title), lesson_path(@lesson) %></legend>
-      <p>
-        <%= f.label :body, "Your comment" %><br/>
-        <%= f.text_area :body, :style => "width:530px;", :class => "required" %>
-        <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
-      </p>
-      <% if LessonComment.show_public_private_option?(current_user) %>
-          <p>
-            <%= f.label :public %> <%= f.check_box :public %>
-          </p>
-      <% end %>
-    </fieldset>
-    <p>
-      <%= f.submit "Submit", :class => "submit" %>
-      <%= link_to "Cancel", lesson_path(@lesson) %>
-    </p>
-<% end %>
+<%= render :partial => 'form', :locals => { :heading => "<h3>Join the discussion for:</h3><h3>#{link_to h(@lesson.title), lesson_path(@lesson, :anchor => :lesson_comment)}</h3>", :subtext => "Converse with the instructor or other students of this lesson."} %>

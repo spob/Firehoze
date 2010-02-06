@@ -1,0 +1,2 @@
+module GrantGiftCertificatesHelper
+end

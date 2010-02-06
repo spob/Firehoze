@@ -1,0 +1,24 @@
+<% pane = params[:pane] if params[:pane] %>
+<% lessons = @instructed_lessons if pane == "lessons_instructed_table_view" %>
+
+<div id="<%= pane %>">
+  <%= will_paginate lessons, :params => { :pane => pane }, :class => "ajax-pagination" %>
+  <table>
+    <tr>
+      <th>Lesson</th>
+      <th>Category</th>
+      <th>Rating</th>
+      <th>Created At</th>
+      <th>Status</th>
+      <th>Students</th>
+      <th>Revenue</th>
+    </tr>
+    <% if lessons.empty? %>
+      <tr>
+        <td colspan="5">You have not instructed any lessons</td>
+      </tr>
+    <% else %>
+      <%= render :partial => 'lessons/ajaxed_instructed_lesson', :collection => lessons %>
+    <% end %>
+  </table>
+</div>

@@ -1,67 +1,105 @@
-<% title "Update your account" -%>
+<% title "Complete the Account Registration Process" -%>
 
-<%= render :partial => "shared/infield_head_content" %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'validation/user.validate.js' -%>
+<% end -%>
 
-<%= stylesheet 'validation' %>
-<%= javascript 'validate/jquery.validate', 'validate/user.validate' %>
+<div class="fh-form">
+  <% form_for([ @registration, @user ], :protocol => SECURE_PROTOCOL, :html => { :class => "new_user", :id => "new_user" }) do |f| %>
+    <%= f.error_messages %>
+    <ul id="registation-info" class="section">
+      <li class="header">
+        <span></span>
+        <h3>Complete the Account Registration Process</h3>
+        <h4>Your email address has been confirmed.</h4>
+        <h4>Please provide the following information to create your account</h4>
+      </li>
+      <li>
+        <span>
+          <%= f.label :login, "Username" %>
+          <%= f.text_field :login, :disabled => true %>
+        </span>
+      </li>
+      <li>
+        <span>
+          <%= f.label :email %>
+          <%= f.text_field :email, :disabled => true %>
+        </span>
+      </li>
+      <li>
+        <span>
+          <%= f.label :password %>
+          <%= f.password_field :password, :title => "You must provide a password", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
+      </li>
+      <li>
+        <span>
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, :title => "Password confirmation must match password", :equalTo => '#user_password', :class => "required" %>
+          <span class="required-field"></span>
+        </span>
+      </li>
+      <li>
+        <span>
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name, :maxlength => "40" %>
+        </span>
 
-<% form_for([ @registration, @user ], :protocol => SECURE_PROTOCOL, :html => { :class => "new_user", :id => "new_user" }) do |f| %>
-  <%= f.error_messages %>
-  <fieldset>
-    <legend>Your email address has been confirmed.</legend>
+        <div class="counter"><span id="user_first_name_counter"></span> characters left</div>
+      </li>
+      <li>
+        <span>
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name, :maxlength => "40", :title => "You must enter a last name", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
 
-    <span class="help">
-      <p>Please provide the following information to create your account:</p>
-      <p>Username: <%= h @user.login %></p>
-      <p>Email: <%= h @user.email %></p>
-    </span>
-    <p>
-      <%= f.label :password %>
-      <%= f.password_field :password, :class => "required" %>
-    </p>
+        <div class="counter"><span id="user_last_name_counter"></span> characters left</div>
+      </li>
+      <li>
+        <span>
+          <%= f.label :bio %>
+          <%= f.text_area :bio %>
+          <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
+        </span>
+      </li>
+      <li>
+        <span>
+          <%= f.label :time_zone %>
+          <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
+          <span class="required-field"></span>
+        </span>
+      </li>
+      <li>
+        <span>
+          <%= f.label :language %>
+          <%= f.select :language, User.supported_languages %>
+          <span class="required-field"></span>
+        </span>
+      </li>
+      <li>
+        <span>
+          <span class="heading">Firehoze Terms of Use</span>
+          <div id="user-agreement">
+            <%= render :partial => 'pages/policies/terms_of_use' %>
+          </div>
+          <%= link_to "Printer Friendly Version", page_path('terms_of_use'), :popup => true, :class => "printer-friendly" %>
+        </span>
+      </li>
+      <li>
+        <span class="accept-agreement"><%= check_box_tag :accept_agreement %> By checking this box I hereby agree to be bound by the terms of
+          this agreement
+        </span>
+      </li>
 
-    <p>
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, :class => "required" %>
-    </p>
-
-    <p>
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name, :class => "required" %>
-    </p>
-
-    <p>
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name, :class => "required" %>
-    </p>
-
-    <p>
-      <%= f.label :bio %><br />
-      <%= f.text_area :bio %>
-      <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
-    </p>
-
-    <div>
-      <%= f.label :time_zone %>
-      <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones %>
-    </div>
-
-    <div>
-      <%= f.label :language %>
-      <%= f.select :language, User.supported_languages %>
-    </div>
-
-    <b>Firehoze Terms of Use</b>
-
-    <div id="user_agreement">
-      <%= render :partial => 'pages/policies/terms_of_use' %>
-    </div>
-    <p><%= link_to "Printer Friendly Version", page_path('terms_of_use'), :popup => true %></p>
-
-    <div>
-      <%= check_box_tag :accept_agreement %> By checking this box I hereby agreement to be bound by the terms of this agreement
-    </div>
-
-  </fieldset>
-  <p><%= f.submit "Register" %></p>
-<% end %>
+      <li class="bottom">
+        <span class="unlabelled">
+          <%= submit_tag "Create Account" %>
+          <%= link_to "Already have an account?", login_path %>
+        </span>
+        <div class="clear"/>
+      </li>
+    </ul>
+  <% end %>
+</div>

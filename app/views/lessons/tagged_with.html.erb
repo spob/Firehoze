@@ -1,17 +1,40 @@
 <% title "Lessons tagged with &quot;#{@tag}&quot;" -%>
 
-<div class="clear append-0 span-29" id="tagged_with_tabs">
-  <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
-    <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-      <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#tabs-1"><%= "#{t('lesson.tagged_with')} &quot;#{@tag}&quot;" %></a></li>
-    </ul>
-    <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="tabs-1">
-      <%= render :partial => "lessons", :object => @lessons, :locals => { :lesson_format => @lesson_format, :collection => @collection } %>
+<% @current = 'lessons' %>
+
+<div class="span-8">
+  <div>
+    <h3><%= "#{t('lesson.tagged_with')} &quot;#{@tag}&quot;" %></h3>
+
+    <div>
+      <%= render :partial => "lessons/lessons_row_format", :object => @lessons, :locals => { :lesson_format => @lesson_format, :collection => @collection } %>
     </div>
-    <%= render :partial => "lessons/pagination", :object => @lessons, :locals => { :collection => :tagged_with  } %>
+    <div>
+      <%= render :partial => "lessons/pagination", :object => @lessons, :locals => { :collection => :tagged_with  } %>
+    </div>
   </div>
 </div>
 
-<div class="span-9 last tag_cloud">
-  <%= render :partial => "lessons/tag_cloud", :object => Lesson.tag_counts %>
+<% cache(Category.tag_cloud_cache_id("lesson_wide", -1)) do %>
+<div class="span-4 last tag_cloud prepend-top">
+  <div class="widget-box">
+    <div class="widget-box-header">
+      <span class="h4">Tags</span>
+    </div>
+    <div class="widget-box-content tags">
+      <%= render :partial => "lessons/tag_cloud", :object => Lesson.ready.tag_counts(:limit => 40, :order => "count DESC").sort{|x,y| x.name <=> y.name} %>
+    </div>
+  </div>
+
+
+    <div class="widget-box">
+      <div class="widget-box-header">
+        <span class="h4">Suggest a Lesson</span>
+      </div>
+      <div class="widget-box-content tags">
+        <p>Can't find a lesson that meets your needs?</p>
+        <%= link_to content_tag(:span, "Suggest a Lesson Topic"), page_path("help_center", :anchor => "share-an-idea"), :class => :minibutton %>
+      </div>
+    </div>
 </div>
+<% end %>

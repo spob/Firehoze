@@ -1,0 +1,93 @@
+<% title "My Firehoze" -%>
+<% @current = 'my_firehoze' %>
+<% @secondary_nav_current = params[:action] %>
+
+<div id="my_firehoze" class="span-12 last">
+  <% # TOP LEVEL NAVIGATION    -%>
+  <div class="span-12 append-bottom">
+    <%= render :partial => 'profile_and_nav', :locals => { :user => current_user } %>
+  </div>
+
+  <% # ACCOUNT HISTORY    -%>
+  <h3><%= h(t('user.account_history')) %></h3>
+
+  <div id="account_history" class="span-12 last">
+    <!-- the tabs -->
+
+    <div class="tab-container">
+      <ul class="tabs">
+        <li><a href="#">Orders</a></li>
+        <li><a href="#credits">Credits</a></li>
+        <li><a href="#giftcerts">Gift Certificates</a></li>
+      </ul>
+      <%= image_tag("spinners/ajax_spinner_32.gif", :class => "loader") %>
+    </div>
+
+    <!-- tab "panes" -->
+    <div class="panes">
+
+      <% # ORDER HISTORY    -%>
+      <div>
+        <%= render :partial => "orders/orders", :locals => { :orders => @orders, :pane => :orders } %>
+      </div>
+      <!-- end order history -->
+
+      <% # CREDIT HISTORY    -%>
+      <div><!-- start credit history -->
+        <div class="nested-navigation">
+          <ul class="links">
+            <li><a href="#">Available</a></li>
+            <li><a href="#">Used</a></li>
+            <li><a href="#">Expired</a></li>
+          </ul>
+          <div class="clear"></div>
+
+          <div class="nested-navigation-panes">
+            <div>
+              <p>
+                <div class="info">Available credits are available to use to purchase lessons.</div>
+                <% if @available_credits.empty? %>
+                    You have no available credits...but you can easily purchase credits in
+                    the <%= link_to "online store", store_path(0) %>.
+                <% end %>
+              </p>
+              <%= render :partial => "credits/credits", :locals => { :user => current_user, :credits => @available_credits, :show_redeemed => false, :show_expired => false, :pane => :available } if @available_credits.present? %>
+              <div class="clear"></div>
+            </div>
+            <div>
+              <p>
+                <div class="info">Used credits are credits that you have redeemed to purchase lessons.</div>
+                <% if @used_credits.empty? %>
+                    You have not yet redeemed any credits.
+                <% end %>
+              </p>
+              <%= render :partial => "credits/credits", :locals => { :user => current_user, :credits => @used_credits, :show_redeemed => true, :show_expired => false, :pane => :used } if @used_credits.present? %>
+              <div class="clear"></div>
+            </div>
+            <div>
+              <p>
+                <div class="info">Credits expire if they are unused and you have not logged in for one year.
+                <% if @expired_credits.empty? %>
+                    Phew...you don't have any credits that have expired.
+                <% end %>
+                </div>
+              </p>
+              <%= render :partial => "credits/credits", :locals => { :user => current_user, :credits => @expired_credits, :show_redeemed => false, :show_expired => true, :pane => :expired } if @expired_credits.present? %>
+              <div class="clear"></div>
+            </div>
+          </div>
+          <!-- end secondary panes -->
+        </div>
+      </div>
+      <!-- end credit history -->
+
+      <% # GIFT CERTIFICATES   -%>
+      <div class="no-nested-nav-potentially-paginated"><!-- start gift_certificates -->
+        <%= render :partial => 'gift_certificates/gift_certificates', :locals => { :gift_certificates => @gift_certificates, :pane => :gift_certificates } %>
+      </div>
+      <!-- end gift certificates pane -->
+    </div>
+    <!-- end panes -->
+  </div>
+  <!-- end my-account -->
+</div>

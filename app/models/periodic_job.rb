@@ -107,12 +107,12 @@ class PeriodicJob < ActiveRecord::Base
 
   # Runs a job and updates the +last_run_at+ field.
   def run!
-    TaskServerLogger.instance.info "Executing job id #{self.id}, #{self.to_s}..."
+    TaskServerLogger.instance.error "Executing job id #{self.id}, #{self.to_s}..."
     begin
       self.last_run_at = Time.zone.now
       self.next_run_at = nil
       self.save
-      eval(self.job.gsub(/#JOBID#/, self.id.to_s))
+      eval(self.job.gsub(/#JOBID#/, self.id.to_s).gsub(/#RAILS_ROOT#/, RAILS_ROOT))
       self.last_run_result = "OK"
       TaskServerLogger.instance.info "Job completed successfully"
     rescue Exception

@@ -1,0 +1,31 @@
+<% title "My Firehoze" -%>
+<% @current = 'my_firehoze' %>
+<% @secondary_nav_current = 'latest_news' %>
+
+<div class="span-12 last">
+  <% # PROFILE BOX & TOP LEVEL NAVIGATION -%>
+  <div class="span-12 append-bottom">
+    <%= render :partial => 'profile_and_nav', :locals => { :user => current_user } %>
+  </div>
+
+  
+  <% # LATEST NEWS -%>
+  <h3><%= h(t('user.latest_news')) %></h3>
+
+  <div class="span-12">
+    <div class="span-8">
+
+      <div class="widget-box">
+        <div class="widget-box-header banner">
+          <span class="h4">Recent Activity</span>
+          <%= image_tag("spinners/ajax_spinner_32.gif", :class => "loader") %>
+        </div>
+        <%= render :partial => 'activities/activities', :object => @activities %>
+      </div>
+
+    </div>
+    <div class="span-4 last">
+      <%= render :partial => 'tweets' %>
+    </div>
+  </div>
+</div>

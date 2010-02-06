@@ -25,10 +25,9 @@ class LineItemsController < ApplicationController
 
         # This should never fail. If it does, something is seriously wrong so go ahead
         # and throw an exception
-        @line_item = LineItem.new(:cart => current_cart, :sku => @sku, :quantity => quantity,
+        @line_item = current_cart.line_items.build(:cart => current_cart, :quantity => quantity,
                                   :unit_price => @sku.price)
         @line_item.sku = @sku
-        @line_item.cart = current_cart
         @line_item.unit_price = @sku.price
         @line_item.save!
       end
