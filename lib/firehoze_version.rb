@@ -1,3 +1,3 @@
 class FirehozeVersion
-  VERSION = "B1.1.9"
+  VERSION = "1.0"
 end                                           
