@@ -5,7 +5,7 @@ if ENV['DEPLOY'] == 'PRODUCTION'
 else
   puts "*** Deploying to the \033[1;42m  STAGING  \033[0m server!"
   set :domain, '208.88.125.156'
-  set :branch, "phase2"
+  set :branch, "staging"
 end
 set :user, 'root'
 set :base_dir, 'rails'
