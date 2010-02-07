@@ -19,6 +19,7 @@
 
     <h4>Other topics</h4>
     <ul>
+      <li><a href="#payment-exclusivity" class="anchorLink">Payment/Exclusivity</a></li>
       <li><a href="#troubleshooting" class="troubleshooting">Troubleshooting</a>
       <li><%= link_to "Visit our FAQs Area &raquo; ", page_path("faqs") %></li>
     </ul>
@@ -47,6 +48,56 @@
   <a name="uploading" id="uploading" class="anchor"></a>
 
   <%= render :partial => 'pages/instructor_how_tos/uploading' %>
+
+
+
+  <a name="payment-exclusivity" id="payment-exclusivity" class="anchor"></a>
+
+  <div class="answers">
+    <h4>Payment/Exclusivity</h4>
+
+    <h5>How much does a instructor make?</h5>
+
+    <div>
+      <p>Firehoze pays a base royalty rate of 50% from the revenue of each lesson purchased for Exclusive instructors and
+        25% for Non-exclusive instructors.</p>
+    </div>
+
+    <h5>How do I get paid and how often?</h5>
+
+    <div>
+      <p>Firehoze mails checks monthly on balances over $50. You may request a payment even if your balance is less than
+        $50, but a $2 handling fee will be assessed. Please allow 1-2 weeks for processing.</p>
+    </div>
+
+    <h5>How long am I committed?</h5>
+
+    <div>
+      <p>Don't worry, if you change your mind, just let us know anytime before you've received 30 days in advance by email
+        (<a href="javascript:location='mailto:\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d';void 0">
+        <script type="text/javascript">document.write('\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d')</script>
+      </a>) and we'll change your commission structure.
+      </p>
+    </div>
+
+    <h5>What does it mean to be an Exclusive instructor?</h5>
+
+    <div>
+      <p>Exclusivity means your lessons and the associated content may not be sold or given away for free to other sites
+        or businesses including on the instructor's site.</p>
+    </div>
+
+    <h5>How can I see how much money I've made?</h5>
+
+    <div>
+      <p>Navigate
+        to <%= link_to_if current_user.try("verified_instructor?"), "My Firehoze", instructor_my_firehoze_path %> and
+        click on the "Instructor Dashboard" button. Note the Instructor Dashboard
+        button will only appear if you have signed up to be an instructor.</p>
+    </div>
+
+    <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
+  </div>
 
   <a name="troubleshooting" id="troubleshooting" class="anchor"></a>
 
