@@ -1,0 +1,21 @@
+A user requested a registration code to become an instructor:
+
+<table>
+  <tr>
+    <td>Login:</td>
+    <td><%= @login %></td>
+  </tr>
+  <tr>
+    <td>Name:</td>
+    <td><%= @first_name %> <%= @last_name %></td>
+  </tr>
+  <tr>
+    <td>Email:</td>
+    <td><%= @email %></td>
+  </tr>
+  <tr>
+    <td>Bio:</td>
+    <td><%= @bio %></td>
+  </tr>
+</table>
+<p>Registration code for email=<%= @email %>: <%= @hash %></p>

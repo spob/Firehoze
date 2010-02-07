@@ -1,5 +1,6 @@
 # Email notifications
 class Notifier < ActionMailer::Base
+  extend HashHelper
   include ActiveSupport::CoreExtensions::String::Inflections
   
   #default_url_options.update :protocol => APP_CONFIG[CONFIG_PROTOCOL]
@@ -190,6 +191,15 @@ class Notifier < ActionMailer::Base
 
     body       :lesson => lesson,
                :url => lesson_url(lesson, url_options)
+  end
+
+  def instructor_reg_code user
+    recipients "bob@firehoze.com"
+    from        APP_CONFIG[CONFIG_ADMIN_EMAIL]
+    subject "A user has requested a reg code to become an instructor (#{user.email})"
+    sent_on Time.now
+    body :login => user.login, :first_name => user.first_name, :last_name => user.last_name, :email => user.email,
+         :bio => user.bio, :hash => Notifier.formatted_hash(user.email, HASH_PREFIX, HASH_SUFFIX)
   end
 
   private

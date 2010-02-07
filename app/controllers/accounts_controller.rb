@@ -9,7 +9,7 @@ class AccountsController < ApplicationController
   before_filter :set_no_uniform_js
 
   verify :method => :put, :only => [ :update, :update_privacy, :update_instructor, :update_avatar, :update_instructor_wizard ], :redirect_to => :home_path
-  verify :method => :post, :only => [ :clear_avatar ], :redirect_to => :home_path
+  verify :method => :post, :only => [ :clear_avatar, :request_instructor_reg_code ], :redirect_to => :home_path
 
 
   def instructor_signup_wizard
@@ -39,6 +39,12 @@ class AccountsController < ApplicationController
               :name => 'Notify New Instructor',
               :job => "User.notify_instructor_signup(#{@user.id})")
     end
+  end
+
+  def request_instructor_reg_code
+    Notifier.deliver_instructor_reg_code @user
+    flash[:notice] = 'A representative from Firehoze will contact you about becoming a Firehoze instructor. Thank you.'
+    redirect_to page_path('reg_code_request_received')
   end
 
   def update_address

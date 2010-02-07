@@ -3,6 +3,15 @@
 
 <h3>Instructor Enrollment Wizard</h3>
 <%= render :partial => 'breadcrumbs', :locals => { :step => 1 } %>
+
+<% if RESTRICT_INSTRUCTOR_SIGNUP and @user.author_agreement_accepted_on.nil? %>
+    <fieldset>
+      <legend>Instructor Agreement</legend>
+      <p>To become a Firehoze instructor, you will need a Registration Code. If you do not already have one, click "Request Registration Code".</p>
+      <p><%= link_to content_tag(:span, "Request Registration Code"), request_instructor_reg_code_account_path(current_user), :method => :post, :class => :minibutton %></p>
+    </fieldset>
+<% end %>
+
 <% form_for(:user, :url => update_instructor_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
     <%= f.error_messages %>
     <fieldset>
@@ -19,10 +28,11 @@
             <label>By checking this box I hereby agree to be bound by the terms of this agreement.</label>
           </div>
           <% if RESTRICT_INSTRUCTOR_SIGNUP %>
-              <div>
+              <br />
+              <p>
                 <%= label_tag :registration_code %>
                 <%= text_field_tag :registration_code %>
-              </div>
+              </p>
           <% end %>
       <% else %>
           Accepted on: <%= l @user.author_agreement_accepted_on %>
