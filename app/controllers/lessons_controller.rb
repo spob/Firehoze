@@ -134,7 +134,7 @@ class LessonsController < ApplicationController
   def perform_advanced_search
     # Dynamically setup the advanced search object so the search criteria will show properly in the screen
     @advanced_search = AdvancedSearch.new
-    params[:advanced_search].delete_if {|key, value| value.nil? }
+    params[:advanced_search].delete_if {|key, value| value.blank? }
     if params[:advanced_search]
       AdvancedSearch.public_instance_methods(false).find_all{|item| item.ends_with? "="}.each do |a|
         @advanced_search.send(a, params[:advanced_search][a.gsub(/=/, "")])
@@ -152,6 +152,7 @@ class LessonsController < ApplicationController
     params[:advanced_search].delete(:category_ids)
     params[:advanced_search].delete(:created_in)
     params[:advanced_search].delete(:rating_average)
+
     @lessons = Lesson.search :conditions => conditions,
                              :with => with,
                              :include => :instructor,
