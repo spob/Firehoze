@@ -32,6 +32,14 @@ class PeriodicJobsControllerTest < ActionController::TestCase
         should_set_the_flash_to /Job has been scheduled/
         should_redirect_to("jobs page") { periodic_jobs_path }
       end
+
+      fast_context "on POST to :run_now" do
+        setup { post :run_now, :id => @job }
+
+        should_respond_with :redirect
+        should_set_the_flash_to /Job scheduled to run now/
+        should_redirect_to("jobs page") { periodic_jobs_path }
+      end
     end
 
     fast_context "without admin access" do

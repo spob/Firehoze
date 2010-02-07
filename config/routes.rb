@@ -106,7 +106,7 @@ ActionController::Routing::Routes.draw do |map|
                 :collection => { :ajaxed => :get },
                 :only => [:index, :show, :show_unpaid, :create]
   map.resources :per_pages, :collection => { :set => :post }, :only => [ :set ]
-  map.resources :periodic_jobs, :member => { :rerun => :post }
+  map.resources :periodic_jobs, :member => { :rerun => :post, :run_now => :post }
   map.resources :searches, :only => [ :index ]
   map.resources :store, :only => :show
   map.resources :skus, :has_many => :discounts, :shallow => true

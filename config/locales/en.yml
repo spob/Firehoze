@@ -261,6 +261,7 @@ en:
   
   periodic_jobs:
     one_time_job_scheduled: Job has been scheduled to run one time
+    run_now: Job scheduled to run now
   
   account_settings:
     avatar_success: Hey, that's a nice picture!
