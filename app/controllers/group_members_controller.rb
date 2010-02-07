@@ -133,6 +133,6 @@ class GroupMembersController < ApplicationController
   end
 
   def require_logged_in
-    require_user(group_path(@group || @group_member.group))
+    require_user(group_path(@group || @group_member.try(:group)))
   end
 end
