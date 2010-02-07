@@ -4,29 +4,62 @@
     <a name="top" id="top" class="anchor"></a>
 <% end -%>
 
-<p>We have a variety of how-to's to help get you started creating and recording lessons.</p>
-
-<p>Looking for more? Recommend additional how to topics you would find helpful via the Feedback button, and check out what
-  others in the community are doing in the <%= instructors_group_link %>.</p>
-
-<h3>Get started creating your first lesson</h3>
-
 <div id="faqs_section">
-  <h4>1. <%= link_to "Getting Started", page_path("instructor-howto-getting-started") %></h4>
-  <h4>2. <%= link_to "I have a topic, now what?", page_path("instructor-howto-what-next") %></h4>
-  <h4>3. <%= link_to "Get set-up to record", page_path("instructor-howto-recording") %></h4>
-  <h4>4. <%= link_to "Upload your lesson", page_path("instructor-howto-uploading") %></h4>
-  <h4>5. <%= link_to "Troubleshooting", page_path("instructor-howto-troubleshooting") %></h4>
 
+  <div id="questions">
+    <h3>Instructor How To's</h3>
+    <p>We have a variety of how-to's to help get you started creating and recording lessons.</p>
+    <h4>Get started creating your first lesson</h4>
+    <ol>
+      <li><a href="#getstarted" class="anchorLink">Getting started</a>
+      <li><a href="#nowwhat" class="anchorLink">I have a topic, now what?</a>
+      <li><a href="#recording" class="recording">Start recording</a>
+      <li><a href="#uploading" class="uploading">Upload your lesson</a>
+    </ol>
+
+    <h4>Other topics</h4>
+    <ul>
+      <li><a href="#troubleshooting" class="troubleshooting">Troubleshooting</a>
+      <li><%= link_to "Visit our FAQs Area &raquo; ", page_path("faqs") %></li>
+    </ul>
+    <!--<li><a href="#general" class="anchorLink">General</a></li>-->
+    <!--<li><a href="#privacy" class="anchorLink">Privacy</a></li>-->
+    <!--<li><a href="#managing-my-account" class="anchorLink">Managing My Account</a></li>-->
+    <!--<li><a href="#buying-lessons" class="anchorLink">Buying Lessons/Credits</a></li>-->
+
+
+    <p>Looking for more? Recommend additional how to topics you would find helpful via the Feedback button, and check out what
+      others in the community are doing in the <%= instructors_group_link %>.</p>
+  </div>
+
+  <a name="getting-started" id="getstarted" class="anchor"></a>
+
+  <%= render :partial => 'pages/instructor_how_tos/getting_started' %>
+
+  <a name="now-what" id="nowwhat" class="anchor"></a>
+
+  <%= render :partial => 'pages/instructor_how_tos/what_next' %>
+
+  <a name="recording" id="recording" class="anchor"></a>
+
+  <%= render :partial => 'pages/instructor_how_tos/recording' %>
+
+  <a name="uploading" id="uploading" class="anchor"></a>
+
+  <%= render :partial => 'pages/instructor_how_tos/uploading' %>
+
+  <a name="troubleshooting" id="troubleshooting" class="anchor"></a>
+
+  <%= render :partial => 'pages/instructor_how_tos/troubleshooting' %>
 
   <!--<h3>Build your audience and earn more cash</h3>-->
   <!--<ul>-->
-    <!--<li>Get more viewers, make more cash <i>(missing)</i></li>-->
-    <!--<li>How to get better reviews <i>(missing)</i></li>-->
-    <!--<li>Create/engage in a group <i>(missing)</i></li>-->
-    <!--<li>Make sure your lesson can easily be found <i>(missing)</i></li>-->
-    <!--<li>Promote your live-tutoring business <i>(missing)</i></li>-->
-    <!--<li>Use it in the classroom <i>(missing)</i></li>-->
+  <!--<li>Get more viewers, make more cash <i>(missing)</i></li>-->
+  <!--<li>How to get better reviews <i>(missing)</i></li>-->
+  <!--<li>Create/engage in a group <i>(missing)</i></li>-->
+  <!--<li>Make sure your lesson can easily be found <i>(missing)</i></li>-->
+  <!--<li>Promote your live-tutoring business <i>(missing)</i></li>-->
+  <!--<li>Use it in the classroom <i>(missing)</i></li>-->
   <!--</ul>-->
 
   <h3>Check out the <%= instructors_group_link %> to learn how others in the Firehoze community are doing it and share your tips.</h3>
