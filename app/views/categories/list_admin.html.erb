@@ -9,6 +9,7 @@
     <th>Name</th>
     <th>Parent Category</th>
     <th>Sort Order</th>
+    <th>Visible To Lessons</th>
     <th>Action</th>
   </tr>
   <tr>
@@ -16,6 +17,7 @@
     <td><%= f.text_field :name %></td>
     <td><%= f.collection_select(:parent_category_id, Category.ascend_by_compiled_sort, :id, :formatted_name, {:include_blank => true, :selected => nil}) %></td>
     <td><%= f.text_field :sort_value %></td>
+    <td><%= f.check_box :visible_to_lessons %></td>
     <td><%= f.submit "Create", :disable_with => translate('general.disable_with') %></td>
     <% end %>
   </tr>
@@ -24,7 +26,8 @@
   <tr>
     <td><%= h category.formatted_name %></td>
     <td><%= h category.parent_category.try(:name) %></td>
-    <td><%= category.sort_value %></td>             
+    <td><%= category.sort_value %></td>
+    <td><%= category.visible_to_lessons %></td>
     <td>
       <%= link_to 'edit', edit_category_path(category) %>
       <%= link_to 'delete', category_path(category), :confirm => 'Are you sure?', :method => :delete if category.can_delete? %>

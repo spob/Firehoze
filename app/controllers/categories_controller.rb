@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
     before_filter :require_user
   end
   before_filter :find_category, :except => [:index, :list_admin, :create, :explode, :show]
+  before_filter :set_no_uniform_js, :only => [ :edit, :update ]
 
   # Admins only
   permit ROLE_ADMIN, :except => [ :show, :index ]
@@ -57,7 +58,7 @@ class CategoriesController < ApplicationController
   end
 
   def index
-    @categories = Category.root.ascend_by_sort_value
+    @categories = Category.root.visible_to_lessons_equals(true).ascend_by_sort_value
     @suggested_lessons = Lesson.lesson_recommendations(current_user, 5)
   end
 
@@ -106,6 +107,10 @@ class CategoriesController < ApplicationController
   end
 
   private
+
+  def set_no_uniform_js
+    @no_uniform_js = true
+  end
 
   def set_browse_sort_cookie value, default_value=nil
     value ||= default_value if default_value
