@@ -4,7 +4,7 @@
 navigation = []
 navigation << [:categories, {:name => 'Categories',:location =>  list_admin_categories_path }] if current_user.is_an_admin?
 navigation << [:lessons, { :name => 'Lessons', :location =>  list_admin_lessons_path('search[order]' => 'descend_by_created_at') }] if current_user.is_an_admin? or current_user.is_a_moderator?
-navigation << [:logons, { :name => 'Logons', :location =>  user_logons_path }] if current_user.is_an_admin?
+navigation << [:logons, { :name => 'Logons', :location =>  user_logons_path }] if current_user.is_an_admin? or current_user.is_a_communitymgr?
 navigation << [:flags, {:name => 'Flags', :location =>  flags_path }] if current_user.is_a_moderator?
 navigation << [:giftcerts, { :name => 'Gift Certs', :location =>  list_admin_gift_certificates_path('search[order]' => 'ascend_by_id') }] if current_user.is_a_paymentmgr?  
 navigation << [:groups, { :name => 'Groups', :location =>  list_admin_groups_path('search[order]' => 'ascend_by_name') }] if current_user.is_an_admin? or current_user.is_a_moderator?

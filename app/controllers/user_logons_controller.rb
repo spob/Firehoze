@@ -5,7 +5,7 @@ class UserLogonsController < ApplicationController
   before_filter :require_user
 
   # admins only
-  permit ROLE_ADMIN
+  permit "#{ROLE_ADMIN} or #{ROLE_COMMUNITY_MGR}"
 
   layout 'admin'
 
