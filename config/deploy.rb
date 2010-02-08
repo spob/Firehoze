@@ -37,7 +37,8 @@ set :git_enable_submodules, 1
 set :use_sudo, false
 set :deploy_to, "/var/#{base_dir}/#{application}"
 
-after 'deploy:update', 'deploy:finishing_touches', 'deploy:migrate', 'task_server:restart'
+before 'deploy:update', 'deploy:web:disable'
+after 'deploy:update', 'deploy:finishing_touches', 'deploy:migrate', 'task_server:restart', 'deploy:web:enable'
 
 task :after_cold, :roles => [:app, :web, :db] do
   run "chown -R www-data:www-data /var/#{base_dir}/#{application}"
@@ -96,7 +97,6 @@ namespace :files do
 end
 
 namespace :deploy do
-
   task :finishing_touches, :roles => :app do
     run "cp -pf #{deploy_to}/to_copy/production.rb #{current_path}/config/environments/production.rb"
     run "cp -pf #{deploy_to}/to_copy/database.yml #{current_path}/config/database.yml"
@@ -163,13 +163,6 @@ namespace :database do
 #    run "rake db:migrate RAILS_ENV=production VERSION=20081103171327 -f #{current_path}/Rakefile"
 #    run "rm -rf  #{shared_path}/assets/videos"
 #  end
-end
-
-namespace :log do
-  desc "Tail the log"
-  task :tail do
-    stream "tail -500 #{current_path}/log/production.log"
-  end
 end
 
 namespace :gems do
