@@ -96,6 +96,7 @@ namespace :files do
 end
 
 namespace :deploy do
+
   task :finishing_touches, :roles => :app do
     run "cp -pf #{deploy_to}/to_copy/production.rb #{current_path}/config/environments/production.rb"
     run "cp -pf #{deploy_to}/to_copy/database.yml #{current_path}/config/database.yml"
@@ -181,6 +182,20 @@ namespace :gems do
   end
 end
 
+task :uptime, :roles => [ :app, :web, :db ] do
+  run 'uptime'
+end
+
+task :tail_log, :roles => [ :app ] do
+  log_file = "#{shared_path}/log/production.log"
+  run "tail -f #{log_file}" do |channel, stream, data|
+    puts data if stream == :out
+    if stream == :err
+      puts "[Error: #{channel[:host]}] #{data}"
+      break
+    end
+  end
+end
 
 Dir[File.join(File.dirname(__FILE__), '..', 'vendor', 'gems', 'hoptoad_notifier-*')].each do |vendored_notifier|
   $: << File.join(vendored_notifier, 'lib')

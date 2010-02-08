@@ -1,0 +1,9 @@
+<h1>
+  We're currently down for <%= reason ? reason : "maintenance" %>
+  as of <%= Time.now.strftime("%H:%M %Z") %>.
+</h1>
+<p>
+  Sorry for the inconvenience. We'll be back
+  <%= deadline ? "by #{deadline}" : "shortly" %>.
+  Please email us if you need to get in touch.
+</p>
