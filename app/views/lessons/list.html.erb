@@ -14,7 +14,7 @@
       <% end %>
     </ul>
     <div class="panes clearfix">
-      <div id="tab-<%= h(t("lesson.#{@collection.humanize}")) %>">
+      <div id="tab-<%= h(t("lesson.#{@collection.to_s}")) %>">
 
         <%= will_paginate @lessons %>
 
