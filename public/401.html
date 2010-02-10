@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-  <title>422 Unprocessable Entity</title>
+  <title>404 Unauthorized</title>
   <meta http-equiv="content-type" content="text/html;charset=utf-8">
   <meta http-equiv="Content-Style-Type" content="text/css">
 
@@ -54,40 +54,38 @@ $(document).ready(function(){
             </div><!-- end div #nav -->
 
             <!-- ERROR CODE HERE -->
-            <h1>422<span>Unprocessable Entity</span></h1>
-
-
+            <h1>401<span>Unauthorized</span></h1>
           </div><!-- end div #leftColumn -->
           <!-- END LEFT COLUMN -->
 
           <!-- BEGIN RIGHT COLUMN -->
           <div id="rightColumn">
-            <h2>Ouch&#8230;<br />We got some bad data &#8230;</h2>
+            <h2>Yikes! Access denied&#8230;</h2>
             <p>Sorry, it appears the page you were looking requires authentication or you have failed authentication. The site administrator has been notified.</p>
             <div id="details">
               <h4 class="regular"><strong>Lost? We suggest...</strong></h4>
               <ol>
                 <li><span>checking the web address for typos.</span></li>
                 <li><span>try returning to the <a href="/">home</a> page</li>
-                <!-- <li><span>visiting our full website <a href="#">sitemap here</a>.</span></li> -->
-                <li><span>using our site search below.</span></li>
-              </ol>
+                  <!-- <li><span>visiting our full website <a href="#">sitemap here</a>.</span></li> -->
+                  <li><span>using our site search below.</span></li>
+                </ol>
 
-              <form action="/searches" id="search" method="get">
-                <div>
-                  <input class="searchbox" id="search_criteria" name="search_criteria" type="text" value="Search" />
-                  <input class="searchbox_submit" id="searchbox_submit" src="/images/top_navigation/searchbox_button.png?1265564290" type="image" />
-                </div>
-              </form>
+                <form action="/searches" id="search" method="get">
+                  <div>
+                    <input class="searchbox" id="search_criteria" name="search_criteria" type="text" value="Search" />
+                    <input class="searchbox_submit" id="searchbox_submit" src="/images/top_navigation/searchbox_button.png?1265564290" type="image" />
+                  </div>
+                </form>
 
-            </div>
-          </div><!-- end div #rightColumn -->
-          <!-- END RIGHT COLUMN -->
+              </div>
+            </div><!-- end div #rightColumn -->
+            <!-- END RIGHT COLUMN -->
 
-          <div class="clear"></div>
-        </div><!-- end div #content -->
-      </div><!-- end div #contentWrap -->
-      <div id="bg-bottom"></div>
-    </div><!-- end div #wrapper -->
-  </body>
-  </html>
+            <div class="clear"></div>
+          </div><!-- end div #content -->
+        </div><!-- end div #contentWrap -->
+        <div id="bg-bottom"></div>
+      </div><!-- end div #wrapper -->
+    </body>
+    </html>

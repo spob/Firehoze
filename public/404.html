@@ -1,30 +1,93 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <title>The page you were looking for doesn't exist (404)</title>
-	<style type="text/css">
-		body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-		div.dialog {
-			width: 25em;
-			padding: 0 4em;
-			margin: 4em auto 0 auto;
-			border: 1px solid #ccc;
-			border-right-color: #999;
-			border-bottom-color: #999;
-		}
-		h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-	</style>
+  <title>404 Not Found</title>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+
+  <link rel="stylesheet" href="stylesheets/error_pages/reset.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="stylesheets/error_pages/errors.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+
+  <!--[if LTE IE 8]>
+  <link rel="stylesheet" href="stylesheets/error_pages/ie.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+<![endif]-->
+<!--[if IE 6]>
+<script src="javascripts/ie/ie6/DD_belatedPNG_0.0.8a-min.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+DD_belatedPNG.fix('#bg-top, #bg-bottom, #logo, #nav ul, #contentWrap, #content, #leftColumn');
+</script>
+<![endif]-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("form #search_criteria").focus(function () {
+    $(this).val("");
+  });
+});
+</script>
 </head>
 
 <body>
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
-  </div>
-</body>
-</html>
+  <div id="wrapper">
+    <div id="bg-top"></div>
+    <div id="contentWrap">
+      <div id="content">
+
+        <!-- BEGIN LEFT COLUMN -->
+        <div id="leftColumn">
+
+          <!-- YOUR LOGO GOES HERE -->
+          <a href="/">
+            <img src="images/logos/firehoze-200w.png" width="200" height="79" alt="Firehoze 200w" id="logo"></a>
+
+            <!-- BEGIN MENU -->
+            <div id="nav">
+              <span>menu</span>
+              <ul>
+                <li class="home"><a href="/">Home</a></li>
+                <li class="about"><a href="/pages/about">About Us</a></li>
+                <li class="contact"><a href="javascript:location='mailto:\u0073\u0075\u0070\u0070\u006f\u0072\u0074\u0040\u0066\u0069\u0072\u0065\u0068\u006f\u007a\u0065\u002e\u0063\u006f\u006d';void 0">Contact</a></li>
+              </ul>
+            </div><!-- end div #nav -->
+
+            <!-- ERROR CODE HERE -->
+            <h1>404<span>Not Found</span></h1>
+
+
+          </div><!-- end div #leftColumn -->
+          <!-- END LEFT COLUMN -->
+
+          <!-- BEGIN RIGHT COLUMN -->
+          <div id="rightColumn">
+            <h2>Well this is embarrassing&#8230; Page not found</h2>
+            <p>Sorry, it appears the page you were looking for doesn't exist anymore or might have been moved. The site administrator has been notified.</p>
+            <div id="details">
+              <h4 class="regular"><strong>Lost? We suggest...</strong></h4>
+              <ol>
+                <li><span>checking the web address for typos.</span></li>
+                <li><span>try returning to the <a href="/">home</a> page</li>
+                <!-- <li><span>visiting our full website <a href="#">sitemap here</a>.</span></li> -->
+                <li><span>using our site search below.</span></li>
+              </ol>
+
+              <form action="/searches" id="search" method="get">
+                <div>
+                  <input class="searchbox" id="search_criteria" name="search_criteria" type="text" value="Search" />
+                  <input class="searchbox_submit" id="searchbox_submit" src="/images/top_navigation/searchbox_button.png?1265564290" type="image" />
+                </div>
+              </form>
+
+            </div>
+          </div><!-- end div #rightColumn -->
+          <!-- END RIGHT COLUMN -->
+
+          <div class="clear"></div>
+        </div><!-- end div #content -->
+      </div><!-- end div #contentWrap -->
+      <div id="bg-bottom"></div>
+    </div><!-- end div #wrapper -->
+  </body>
+  </html>
