@@ -7,6 +7,10 @@
     Quantity:
     <%= f.text_field :credit_quantity %>
     <br />
+
+    Price:
+    <%= f.text_field :price %>
+    <br />
     User:
     <%= f.select :user_id, options_from_collection_for_select(User.ascend_by_login, :id, :login) %>
     <br />

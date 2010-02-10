@@ -1,7 +1,7 @@
 <% title "Purchase #{@lesson.title}" -%>
 
 <div class="info">
-  <p>Great!<br />Are you ready to purchase the &quot;<%= h @lesson.title %>&quot; lesson?</p>
+  <p>Great! You have <%= pluralize(current_user.available_credits.count, 'credit') %> available.<br />Are you ready to purchase the &quot;<%= h @lesson.title %>&quot; lesson?</p>
   <%= link_to content_tag(:span, "Yes, Apply Credit Now"), acquire_lessons_url(:id => @lesson, :protocol => SECURE_PROTOCOL),:method => :post, :disable_with => translate('general.disable_with'), :class => :minibutton %>&nbsp;
   <%= link_to "No, I changed my mind", lesson_path(@lesson) %>
 </div>

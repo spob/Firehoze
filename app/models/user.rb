@@ -218,6 +218,13 @@ class User < ActiveRecord::Base
 
   memoize :is_a_communitymgr?
 
+  # This method is a decorator and it's sole purpose is to enable memoization
+  def is_a_paymentmgr?
+    self.is_paymentmgr?
+  end
+
+  memoize :is_a_paymentmgr?
+
   def self.supported_languages
     LANGUAGES
   end
