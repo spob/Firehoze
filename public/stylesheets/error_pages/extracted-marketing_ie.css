@@ -1,0 +1,48 @@
+/* @override http://www.getballpark.com/stylesheets/marketing_ie.css */
+
+/* IE 6 Fixes
+ * --------------------------------------------------------- */
+* html #video-bar ul {
+	width:610px;
+	border:1px solid #f00;
+	padding:0;
+	margin:0;
+}
+* html #video-bar li {
+	height:auto;
+	width:380px;	
+	background-color:#00f
+
+}
+* html #video-bar li .blurb{
+	fwidth:190px;
+	float:left;
+	background-color:#f00;
+}
+
+
+* html #video-bar .wrap, * html #sign-up-bar .wrap {
+ 	padding-bottom:0px;
+}
+
+* html #screenshots a, 
+* html #sign-up-bar a.button-sign-up,
+* html #header h1 a,
+* html ul#navigation li a  {
+	cursor:pointer;
+ }
+
+/* IE 7 Fixes
+ * --------------------------------------------------------- */	
+ 
+ *:first-child+html #screenshots a{
+	cursor:pointer;
+ }
+ 
+ *:first-child+html  #video-bar .wrap,  *:first-child+html  #sign-up-bar .wrap  {
+ 	padding-bottom:0px;
+}
+
+ *:first-child+html #screenshots li a img {
+	margin-bottom:3px;
+}

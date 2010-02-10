@@ -1,0 +1,16 @@
+/* Fix IE7 height issue */
+#contentWrap { *height: 394px; }
+
+/* Fix IE input spacing */
+input[type='text'] { padding-top: 6px; }
+
+/* Fix IE opacity and h1 positioning */
+h1 { filter:alpha(opacity=04); top: 245px; }
+h1:hover { filter:alpha(opacity=10); }
+
+/* Reduce IE 6 menu list letter spacing */
+#nav li a { _letter-spacing: -1px; }
+
+/* IE Font Embedding */
+@font-face { font-family: "Droid Custom"; src: url(../fonts/DroidSerif-Regular.eot); }  
+@font-face { font-family: "Droid Custom"; src: url(../fonts/DroidSerif-Bold.eot); font-weight: bold; }
