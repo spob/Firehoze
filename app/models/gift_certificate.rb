@@ -6,6 +6,7 @@ class GiftCertificate < ActiveRecord::Base
   belongs_to :line_item
   belongs_to :redeemed_by_user, :class_name => 'User', :foreign_key => "redeemed_by_user_id"
   validates_numericality_of :credit_quantity, :greater_than => 0, :only_integer => true, :allow_nil => true
+  validates_numericality_of :price, :greater_than_or_equal_to => 0, :allow_nil => true
 
   before_validation_on_create :populate_code
   before_create :populate_expires_at

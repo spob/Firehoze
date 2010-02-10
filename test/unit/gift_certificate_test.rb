@@ -22,6 +22,14 @@ class GiftCertificateTest < ActiveSupport::TestCase
     should_not_allow_values_for      :credit_quantity,  2.12, "a",
                                      :message => I18n.translate('activerecord.errors.messages.not_a_number')
 
+    should_allow_values_for          :price, 1.12, 5, 0
+
+    should_not_allow_values_for      :price, -1,
+                                     :message => I18n.translate('activerecord.errors.messages.greater_than_or_equal_to',
+                                                                :count => 0)
+    should_not_allow_values_for      :price,  "a",
+                                     :message => I18n.translate('activerecord.errors.messages.not_a_number')
+
     fast_context ", testing the formatted code" do
       setup do
         @gift_certificate.code = "aaaabbbbccccdddd"
