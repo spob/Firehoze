@@ -194,7 +194,7 @@ class Notifier < ActionMailer::Base
   end
 
   def instructor_reg_code user
-    recipients "bob@firehoze.com"
+    recipients "all@firehoze.com"
     from        APP_CONFIG[CONFIG_ADMIN_EMAIL]
     subject "A user has requested a reg code to become an instructor (#{user.email})"
     sent_on Time.now
