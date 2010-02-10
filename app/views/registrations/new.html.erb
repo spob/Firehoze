@@ -34,24 +34,22 @@
             <%= restricted == true ? "Step 2. Register" : "Firehoze Account Sign Up" %>
           </h3>
           <h4>
-            Membership has its privileges. By joining the Firehoze community, you can watch full lessons,
-            rate and review lessons, follow instructors, create and join groups and engage in online
-            discussion with other Firehoze users.
+            Membership has its privileges.<br /> Join Firehoze to watch full lessons, rate and review lessons, follow instructors, create and join groups and participate in online discussions.
           </h4>
           <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
         </li>
         <li>
-        <span>
-        <%= f.label :username %>
-          <%= f.text_field :username, :minlength => "3", :maxlength => "25" %>
-          <span class="required-field"></span>
-        </span>
+          <span>
+            <%= f.label :username, "#{ restricted == true ? "Choose Your Username" : "Username" }" %>
+            <%= f.text_field :username, :minlength => "3", :maxlength => "25" %>
+            <span class="required-field"></span>
+          </span>
 
           <div class="counter"><span id="registration_username_counter"></span> characters left</div>
         </li>
         <li>
         <span>
-        <%= f.label :email %>
+        <%= f.label :email, "#{ restricted == true ? "Your Email <br /><span class='small'>(that you signed up with)</span>" : "Email" }" %>
           <%= f.text_field :email, :maxlength => "100",  :title => "You must enter a valid email address", :class => "required email" %>
           <span class="required-field"></span>
         </span>
@@ -70,7 +68,7 @@
         <% end %>
         <li>
         <span>
-          <%= f.label :captcha, "Verify that you are human" %>
+          <%= f.label :captcha, "Verify you are a person<br /><span class='small'>(by completing this simple test)</span>" %>
           <%= recaptcha_tags :display => {:theme => 'white', :tabindex => 3 } %>
           <span class="required-field"></span>
         </span>
