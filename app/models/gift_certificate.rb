@@ -12,7 +12,7 @@ class GiftCertificate < ActiveRecord::Base
   before_create :populate_expires_at
 
   # Used when gifting a gift certificate
-  attr_accessor :to_user, :to_user_email, :give_comments
+  attr_accessor :to_user, :to_user_email, :give_comments, :quantity_to_grant
 
   named_scope :active, :conditions => [ "redeemed_at is null and expires_at > ?", Time.now ]
 

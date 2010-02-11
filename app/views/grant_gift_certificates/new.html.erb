@@ -1,19 +1,52 @@
 <% title "Grant a Gift Certificate" -%>
 
-<h3>Grant a Gift Certificate</h3>
-<% form_for(:gift_certificate, :url => grant_gift_certificates_url) do |f| %>
-    <%= f.error_messages %>
+<% content_for :footer do -%>
+    <%= javascript_include_tag 'validation/grant_gift_certificates.validate.js' -%>
+<% end -%>
 
-    Quantity:
-    <%= f.text_field :credit_quantity %>
-    <br />
+<div class="fh-form">
+  <% form_for(:gift_certificate, :url => grant_gift_certificates_url, :html => {:id => "gift_certificate" }) do |f| %>
+      <%= f.error_messages %>
+      <ul id="confirm-give-gift-certificate-path-info" class="section">
+        <li class="header">
+          <span></span>
 
-    Price:
-    <%= f.text_field :price %>
-    <br />
-    User:
-    <%= f.select :user_id, options_from_collection_for_select(User.ascend_by_login, :id, :login) %>
-    <br />
+          <h3>Grant Gift Certificates to a User</h3>
+          <h4>You can grant many gift certificates at once by specify a value for "Number of Gift Certificates". Each gift certificate will be created for the number of credits based upon "Credits per Gift Certificate".</h4>
+          <h4>This page allows Firehoze payment managers to grant one or more gift certificates to a particular user.</h4><h4>The cost basis will be used to determine what amount an instructor will earn when these credits created by these gift certificates are redeemed to purchase a lesson.</h4>
+        </li>
+        <li>
+        <span>
+          <%= f.label :quantity_to_grant, "Number of Gift Certificates" %>
+          <%= f.text_field :quantity_to_grant %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :credit_quantity, "Credits per Gift Certificate" %>
+          <%= f.text_field :credit_quantity %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :price, "Cost Basis" %>
+          <%= f.text_field :price %>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :user %>
+          <%= f.select :user_id, options_from_collection_for_select(User.ascend_by_login, :id, :login) %>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+        <%= f.submit "Create", :disable_with => translate('general.disable_with') %>
+        </span>
 
-    <%= f.submit "Create", :disable_with => translate('general.disable_with') %>
-<% end %>
+          <div class="clear" />
+
+        </li>
+      </ul>
+  <% end %>
+</div>
