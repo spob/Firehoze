@@ -5,7 +5,7 @@
 <% end -%>
 
 <div class="fh-form">
-  <% form_for(:gift_certificate, :url => grant_gift_certificates_url, :html => { :class => "contact_user", :id => "contact_user" }) do |f| %>
+  <% form_for(:gift_certificate, :url => grant_gift_certificates_url, :html => { :class => "gift_certificate", :id => "gift_certificate" }) do |f| %>
       <%= f.error_messages %>
       <ul id="confirm-give-gift-certificate-path-info" class="section">
         <li class="header">
@@ -21,21 +21,21 @@
         <li>
         <span>
           <%= f.label :quantity_to_grant, "Number of Gift Certificates" %>
-          <%= f.text_field :quantity_to_grant, :title => "You must enter a quantity", :class => "required" %>
+          <%= f.text_field :quantity_to_grant, :min => 1, :class => "required number" %>
           <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
           <%= f.label :credit_quantity, "Credits per Gift Certificate" %>
-          <%= f.text_field :credit_quantity, :class => "required" %>
+          <%= f.text_field :credit_quantity, :min => 1, :class => "required number" %>
           <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
           <%= f.label :price, "Cost Basis" %>
-          <%= f.text_field :price, :class => "required" %>
+          <%= f.text_field :price, :min => 0, :class => "required number" %>
           <span class="required-field"></span>
         </span>
         </li>
@@ -51,7 +51,8 @@
         </li>
         <li class="bottom">
         <span class="unlabelled">
-        <%= f.submit "Create", :disable_with => translate('general.disable_with') %>
+          <%= f.submit "Create" %>
+          <%= link_to 'Cancel', list_admin_gift_certificates_path %>
         </span>
 
           <div class="clear" />
