@@ -44,7 +44,7 @@ class GrantGiftCertificatesControllerTest < ActionController::TestCase
         context "on POST to :create" do
           setup do
             @recipient = Factory(:user)
-            post :create, :gift_certificate => { :credit_quantity => 6, :user_id => @recipient.id }
+            post :create, :gift_certificate => { :quantity_to_grant => "2", :price => "0.45", :credit_quantity => 6, :to_user => @recipient.login }
           end
 
           should_assign_to :gift_certificate
@@ -54,7 +54,7 @@ class GrantGiftCertificatesControllerTest < ActionController::TestCase
             @gift = GiftCertificate.find(assigns(:gift_certificate))
             assert_equal 6, @gift.credit_quantity
             assert_equal @recipient, @gift.user
-            assert_equal 0, @gift.price
+            assert_equal 0.45, @gift.price
             assert_nil @gift.line_item
           end
           should_redirect_to("Gift Certificates list_admin") { list_admin_gift_certificates_url }

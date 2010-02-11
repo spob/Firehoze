@@ -14,11 +14,28 @@ class GrantGiftCertificatesController < ApplicationController
   end
 
   def create
-    if params[:gift_certificate][:quantity_to_grant] and (params[:gift_certificate][:quantity_to_grant].match(/\A[+]?\d+?(\d+)?\Z/) == nil ? false : true) and params[:gift_certificate][:quantity_to_grant].to_i > 0 
+    @gift_certificate = GiftCertificate.new(params[:gift_certificate])
+    @gift_certificate.to_user = params[:gift_certificate][:to_user]
+    @gift_certificate.to_user_email = params[:gift_certificate][:to_user_email]
+    @to_user = User.find_by_login_or_email(@gift_certificate.to_user, @gift_certificate.to_user_email)
+    user_str = (@gift_certificate.to_user.blank? ? @gift_certificate.to_user_email : @gift_certificate.to_user)
+    if @to_user.nil?
+      flash.now[:error] = t('gift_certificate.no_such_user', :user => user_str)
+      render 'new'
+    elsif params[:gift_certificate][:quantity_to_grant] and (params[:gift_certificate][:quantity_to_grant].match(/\A[+]?\d+?(\d+)?\Z/) == nil ? false : true) and params[:gift_certificate][:quantity_to_grant].to_i > 0
+      @gift_certificate.user = @to_user
       qty = params[:gift_certificate][:quantity_to_grant].to_i
-      @gift_certificate = GiftCertificate.new(params[:gift_certificate])
-      @gift_certificate.gift_certificate_sku = GiftCertificateSku.find_by_sku(GIFT_CERTIFICATE_SKU)
-      if @gift_certificate.save
+      success = true
+      GiftCertificate.transaction do
+        qty.times do
+          @gift_certificate.gift_certificate_sku = GiftCertificateSku.find_by_sku(GIFT_CERTIFICATE_SKU)
+          if !@gift_certificate.save
+            success = false
+            break
+          end
+        end
+      end
+      if success
         flash[:notice] = t('gift_certificate.create_success')
         redirect_to list_admin_gift_certificates_path
       else
@@ -26,7 +43,7 @@ class GrantGiftCertificatesController < ApplicationController
       end
     else
       flash[:error] = "Quantity to grant must be a positive integer"
-      redirect_to new_grant_gift_certificate_path
+      render 'new'
     end
   end
 end

@@ -5,7 +5,7 @@
 <% end -%>
 
 <div class="fh-form">
-  <% form_for(:gift_certificate, :url => grant_gift_certificates_url, :html => {:id => "gift_certificate" }) do |f| %>
+  <% form_for(:gift_certificate, :url => grant_gift_certificates_url, :html => { :class => "contact_user", :id => "contact_user" }) do |f| %>
       <%= f.error_messages %>
       <ul id="confirm-give-gift-certificate-path-info" class="section">
         <li class="header">
@@ -13,30 +13,40 @@
 
           <h3>Grant Gift Certificates to a User</h3>
           <h4>You can grant many gift certificates at once by specify a value for "Number of Gift Certificates". Each gift certificate will be created for the number of credits based upon "Credits per Gift Certificate".</h4>
-          <h4>This page allows Firehoze payment managers to grant one or more gift certificates to a particular user.</h4><h4>The cost basis will be used to determine what amount an instructor will earn when these credits created by these gift certificates are redeemed to purchase a lesson.</h4>
+          <h4>This page allows Firehoze payment managers to grant one or more gift certificates to a particular user.</h4>
+          <h4>The cost basis will be used to determine what amount an instructor will earn when these credits created by these gift certificates are redeemed to purchase a lesson.</h4>
+
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
         </li>
         <li>
         <span>
           <%= f.label :quantity_to_grant, "Number of Gift Certificates" %>
-          <%= f.text_field :quantity_to_grant %>
+          <%= f.text_field :quantity_to_grant, :title => "You must enter a quantity", :class => "required" %>
+          <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
           <%= f.label :credit_quantity, "Credits per Gift Certificate" %>
-          <%= f.text_field :credit_quantity %>
+          <%= f.text_field :credit_quantity, :class => "required" %>
+          <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
           <%= f.label :price, "Cost Basis" %>
-          <%= f.text_field :price %>
+          <%= f.text_field :price, :class => "required" %>
+          <span class="required-field"></span>
         </span>
         </li>
         <li>
         <span>
-          <%= f.label :user %>
-          <%= f.select :user_id, options_from_collection_for_select(User.ascend_by_login, :id, :login) %>
+          <%= f.label :to_user, "Recipient Username" %>
+          <%= f.text_field :to_user %>
+          <span class="field-separator">&mdash;or&mdash;</span>
+          <%= f.label :to_user_email, "Recipient Email Address" %>
+          <%= f.text_field :to_user_email, :class => "email" %>
+          <span class="required-field"></span>
         </span>
         </li>
         <li class="bottom">
