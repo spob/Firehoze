@@ -32,7 +32,7 @@
           <span class="required-field"></span>
         </span>
       </li>
-      <% if RESTRICT_INSTRUCTOR_SIGNUP %>
+      <% if APP_CONFIG[CONFIG_RESTRICT_INSTRUCTOR_SIGNUP] %>
       <li>
         <span>
           <%= label_tag :registration_code %>

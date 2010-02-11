@@ -4,7 +4,7 @@
 <h3>Instructor Enrollment Wizard</h3>
 <%= render :partial => 'breadcrumbs', :locals => { :step => 1 } %>
 
-<% if RESTRICT_INSTRUCTOR_SIGNUP and @user.author_agreement_accepted_on.nil? %>
+<% if APP_CONFIG[CONFIG_RESTRICT_INSTRUCTOR_SIGNUP] and @user.author_agreement_accepted_on.nil? %>
     <fieldset>
       <legend>Instructor Agreement</legend>
       <p>To become a Firehoze instructor, you will need a Registration Code. If you do not already have one, click "Request Registration Code".</p>
@@ -27,7 +27,7 @@
             <%= check_box_tag :accept_agreement %>
             <label>By checking this box I hereby agree to be bound by the terms of this agreement.</label>
           </div>
-          <% if RESTRICT_INSTRUCTOR_SIGNUP %>
+          <% if APP_CONFIG[CONFIG_RESTRICT_INSTRUCTOR_SIGNUP] %>
               <br />
               <p>
                 <%= label_tag :registration_code %>

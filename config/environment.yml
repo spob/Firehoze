@@ -85,3 +85,6 @@ crawler_access: ALL
 
 # The id of the main firehoze instructor's group
 firehoze_instructors_group_id: -1
+
+# Require a registration code to become an instructor
+restrict_instructor_signup: false

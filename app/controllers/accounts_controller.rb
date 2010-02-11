@@ -67,7 +67,7 @@ class AccountsController < ApplicationController
       # Accepting the agreement
       if @user.author_agreement_accepted_on.nil?
         if params[:accept_agreement]
-          if RESTRICT_INSTRUCTOR_SIGNUP and !Registration.match?(@user.email, params[:registration_code], HASH_PREFIX, HASH_SUFFIX)
+          if APP_CONFIG[CONFIG_RESTRICT_INSTRUCTOR_SIGNUP] and !Registration.match?(@user.email, params[:registration_code], HASH_PREFIX, HASH_SUFFIX)
             flash[:error] = t('account_settings.must_provide_regcode')
             render :action => "instructor_wizard_step1"
           else
