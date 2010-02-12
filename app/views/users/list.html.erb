@@ -18,7 +18,8 @@
         <b>Order by:</b>
         <%= order @search, :by => :login, :as => "Username" %>&nbsp;
         <%= order @search, :by => :email %>&nbsp;
-        <%= order @search, :by => :created_at %>
+        <%= order @search, :by => :created_at %>&nbsp;
+        <%= order @search, :by => :current_login_at %>&nbsp;
         <%= f.submit "Search" %>
       </div>
   <% end %>
