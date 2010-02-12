@@ -1,16 +1,8 @@
 <% title "editing #{@user.name_or_username}'s account" %>
-<% @current = 'my_firehoze' %>
-
-
-<% @secondary_nav_current = 'account_settings' %>
 
 <% content_for :footer do -%>
   <%= javascript_include_tag 'validation/accounts.validate.js' -%>
 <% end -%>
-
-<div class="span-12 append-bottom">
-  <%= render :partial => 'my_firehoze/profile_and_nav', :locals => { :user => current_user } %>
-</div>
 
 <% # ACCOUNT SETTINGS -%>
 <h3><%= h(t('user.account_settings')) %></h3>
