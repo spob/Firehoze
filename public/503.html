@@ -75,7 +75,8 @@ $(document).ready(function(){
               <form action="/searches" id="search" method="get">
                 <div>
                   <input class="searchbox" id="search_criteria" name="search_criteria" type="text" value="Search" />
-                  <input class="searchbox_submit" id="searchbox_submit" src="/images/top_navigation/searchbox_button.png?1265564290" type="image" />
+                  <!--[if IE 6]><input type="submit" value="Go"><![endif]-->
+                  <!--[if !IE 6]><!--><input type="submit" value=""><!--<![endif]-->
                 </div>
               </form>
 
