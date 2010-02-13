@@ -33,6 +33,7 @@
 
 
   <div class="span-4 last">
+    
     <div class="widget-box">
       <div class="widget-box-header">
         <span class="h4">Explore Firehoze Categories</span>
@@ -42,6 +43,18 @@
       </div>
 
       <div class="widget-box-footer treeview"></div>
+    </div>
+
+    <div class="widget-box">
+      <div class="widget-box-header">
+        <span class="h4">Suggest a Lesson</span>
+      </div>
+      <div class="widget-box-content tags">
+        Can't find a lesson that meets your needs?
+      </div>
+      <div class="widget-box-content tags">
+        <%= link_to content_tag(:span, "Suggest a Lesson Topic"), page_path("help_center", :anchor => "share-an-idea"), :class => 'large-button call-to-action' %>
+      </div>
     </div>
 
     <% cache(Category.tag_cloud_cache_id("lesson", @category.id)) do %>
@@ -56,18 +69,6 @@
             </div>
         <% end %>
     <% end %>
-
-    <div class="widget-box">
-      <div class="widget-box-header">
-        <span class="h4">Suggest a Lesson</span>
-      </div>
-      <div class="widget-box-content tags">
-        Can't find a lesson that meets your needs?
-      </div>
-      <div class="widget-box-content tags">
-        <%= link_to content_tag(:span, "Suggest a Lesson Topic"), page_path("help_center", :anchor => "share-an-idea"), :class => :minibutton %>
-      </div>
-    </div>
   </div>
 
 </div>
