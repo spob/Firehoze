@@ -5,7 +5,7 @@
   <% if reviews.empty? %>
     <div class="info">You haven't reviewed any lessons yet.</div>
   <% else %>
-    <%= will_paginate reviews, :params => { :pane => pane } %>
+    <%= will_paginate reviews, :params => { :pane => pane }, :class => "ajax-pagination" %>
     <%= render :partial => "reviews/review", :collection => reviews %>
   <% end %>
 </div>
