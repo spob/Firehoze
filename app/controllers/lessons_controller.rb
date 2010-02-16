@@ -319,10 +319,10 @@ class LessonsController < ApplicationController
 # This method is the callback that flixcloud will invoke when the video has completed
 # processing
   def conversion_notify
-    render :text => "OK"
     job = FlixCloud::Notification.new(params)
     logger.info "Received conversion completion notification for job #{job.id}: #{job.state}"
     video = ProcessedVideo.find_by_flixcloud_job_id!(job.id)
+    render :text => "OK"
 
     unless video.finish_conversion job
       logger.error "Job #{id} for lesson #{video.lesson.id} failed: #{job.error_message}"
