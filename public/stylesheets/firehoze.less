@@ -113,7 +113,6 @@ ul.browser-list li:hover {
   background: @light-blue-20;  
 }
 
-
 ul.browser-list li a {
   text-decoration: none;
 }
@@ -530,6 +529,11 @@ div#footer div.in-touch > div {
 /* =========== */
 /* = REVIEWS = */
 /* =========== */
+
+img.avatar {
+  background:@white url('../../images/spinners/ajax_spinner_16.gif') center center no-repeat;
+}
+
 div.reviews-container { }
 
 /* protect any ratings for be influence from any inherited classes */
@@ -694,12 +698,17 @@ div.review #stars {
 
 #group-container div#group-logo img {
   border: solid 1px @gray-80;
+  background:@white url('../../images/spinners/ajax_spinner_16.gif') center center no-repeat;
+  height:110px;
+  width:110px;
 }
+
 #group-container div#group-logo {
   float:left;
   padding: 3px;
   border: solid 1px @gray-80;
   background:@gray-40;
+  .box-shadow;
 }
 
 #group-container div#description {
@@ -799,15 +808,14 @@ div.commenter-container {
   padding:17px;
   width:105px;
 }
-div.commenter-avatar {
-  width:77px;
+
+div.commenter-container img.avatar {
   padding: 3px;
   border: solid 1px @gray-80;
-  background:@gray-40;
+  background:@white url('../../images/spinners/ajax_spinner_16.gif') center center no-repeat;
+  height:75px;
+  width:75px;
   .box-shadow;
-}
-div.commenter-container div.commenter-avatar img.avatar {
-  border: solid 1px @gray-80;
 }
 
 div.commenter-avatar a:link,
@@ -1383,10 +1391,14 @@ div#user-show-tabs > ul li a {
   padding:20px;
   height:62px;
 }
-
+/*foobar*/
 #profile-box .avatar {
   float:left;
   border: solid 1px @gray-40;
+  padding:2px;
+  background:@white url('../../images/spinners/ajax_spinner_16.gif') center center no-repeat;
+  height:60px;
+  width:60px;
 }
 
 #profile-box #content {
@@ -1662,6 +1674,8 @@ div.widget-box-header {
   position:absolute;
   left:8px;
   top:8px;
+  height:35px;
+  width:35px;
 }
 
 .filter-activity-by  {
@@ -3283,7 +3297,10 @@ div.comment-container div.flagging { margin:0 0 8px 0; }
 #user-avatar-container img.avatar {
   display: block;
   margin-left: auto;
-  margin-right: auto
+  margin-right: auto;
+  background:@white url('../../images/spinners/ajax_spinner_16.gif') center center no-repeat;
+  height:75px;
+  width:75px;
 }
 
 #user-public-container > .details {
