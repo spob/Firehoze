@@ -4,7 +4,7 @@ class UserSession < Authlogic::Session::Base
   logout_on_timeout true
 
   # How long to wait before logging out an inactive user
-  logged_in_timeout = 15.minutes
+  logged_in_timeout = 60.minutes
 
   # disable the account after 10 failed login attempts to protect against brute force attacks
   consecutive_failed_logins_limit 10

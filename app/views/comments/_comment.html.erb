@@ -2,7 +2,7 @@
 
 <div class="comment clearfix">
   <div class="commenter-container">
-    <div class="commenter-avatar"><%= link_to avatar_tag(commenter, :size => :small), user_path(commenter) %></div>
+    <%= link_to avatar_tag(commenter, :size => :small), user_path(commenter) %>
     <div><%= link_to_profile(commenter, :length => 15) %></div>
     <div>Member Since:<br /><%= l(commenter.created_at.to_date) %></div>
   </div>
