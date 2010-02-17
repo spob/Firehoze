@@ -94,10 +94,10 @@ class ApplicationController < ActionController::Base
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
     @current_user_session = UserSession.find
-    if @current_user_session.try('stale?')
-      redirect_to new_user_session_url(:stale => true)
-      return false
-    end
+#    if @current_user_session.try('stale?')
+#      redirect_to new_user_session_url(:stale => true)
+#      return false
+#    end
     @current_user_session
   end
 
