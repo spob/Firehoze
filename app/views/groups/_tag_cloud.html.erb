@@ -3,7 +3,7 @@ tags = object
 current_tag = params[:tag].present? ? params[:tag] : ""
 %>
 <% tag_cloud tags[0..100], %w(css1 css2 css3 css4) do |tag, css_class| %>
-  <%= link_to content_tag(:span, "#{h(tag.name)} (#{Group.public.active.find_tagged_with(tag).size})"), tagged_with_groups_path(:collection => :tagged_with, :tag => tag.name), :class => "#{css_class} tag tagbutton #{tag.name == current_tag ? 'current' : nil}" %></span>
+  <%= link_to content_tag(:span, "#{h(truncate(tag.name, 30))} (#{Group.public.active.find_tagged_with(tag).size})"), tagged_with_groups_path(:collection => :tagged_with, :tag => tag.name), :class => "#{css_class} tag tagbutton #{tag.name == current_tag ? 'current' : nil}" %></span>
 <% end %>
 <br />
 <%= link_to "View All Tags", all_tags_groups_path unless params[:action] == 'all_tags' %>
