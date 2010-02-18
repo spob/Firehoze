@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   # The currently logged on user, or nil if no user is logged on
   def current_user
     return @current_user if defined?(@current_user)
-    @current_user = current_user_session && current_user_session.record
+    @current_user = current_user_session && current_user_session.attempted_record
   end
 
   # Retrieve the current shopping cart, instantiating a new one if one does not already exist
@@ -87,13 +87,13 @@ class ApplicationController < ActionController::Base
   # Set the timezone for a given user based upon their preference...if not logged on, use the system
   # default time time...this is called by the before_filter
   def set_timezone
-    # current_user.time_zone #=> 'London'
-    Time.zone = current_user ? current_user.time_zone : APP_CONFIG[CONFIG_DEFAULT_USER_TIMEZONE]
+    Time.zone = current_user.try(:time_zone) || APP_CONFIG[CONFIG_DEFAULT_USER_TIMEZONE]
   end
 
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
     @current_user_session = UserSession.find
+
 #    if @current_user_session.try('stale?')
 #      redirect_to new_user_session_url(:stale => true)
 #      return false
@@ -129,7 +129,12 @@ class ApplicationController < ActionController::Base
   # store the location that the user navigated to...used so that, if we need to redirect to
   # the login page, we can continue on to this location after the user authenticates
   def store_location uri=request.request_uri
-    session[:return_to] = uri
+    session[:return_to] =
+            if request.get?
+              uri
+            else
+              request.referer
+            end
   end
 
   # redirect back to where the user was trying to get to if, for example, we needed to first redirect

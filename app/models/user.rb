@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   after_update :reprocess_avatar, :if => :cropping?
 
   acts_as_authentic do |c|
-    c.logged_in_timeout = 30.minutes # log out after 30 minutes of inactivity
+    c.logged_in_timeout = 1.hour # log out after specified time
   end
 
   has_many :user_logons, :order => "created_at DESC", :dependent => :destroy
