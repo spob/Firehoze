@@ -176,7 +176,7 @@ module ApplicationHelper
       "Being able to take the tutoring classes at my own pace will be better suited for my learning style.<br /> &mdash; Sarah C, Medfield",
       "I'll be able to choose the tutor I want that appeals to my learning methods.<br /> &mdash; Joe W, Westwood"
     ].rand
-  end                                  cal
+  end                                  
 
   private
 
