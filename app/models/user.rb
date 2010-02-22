@@ -453,8 +453,7 @@ END
     if login_count > login_count_was
       # Surprisingly AuthLogic doesn't provide a clean callback for detecting when a login occurs...so instead,
       # watch for when the login count is incremented (which is done by AuthLogic).
-      UserLogon.create(:user => self,
-                       :login_ip => self.current_login_ip)
+      UserLogon.create(:user => self, :login_ip => self.current_login_ip)
 
       # Also touch the available credit records for this user...used for calculating which credits should
       # expire due to lack of activity on the account
