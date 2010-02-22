@@ -13,7 +13,6 @@ class User < ActiveRecord::Base
   # Authorization plugin
   acts_as_authorized_user
 
-  before_save :persist_user_logon
   before_validation :strip_fields
   after_update :reprocess_avatar, :if => :cropping?
 
@@ -447,19 +446,6 @@ END
   def round_to_penny amount
     amount = (amount * 100.0).floor
     amount/100.0
-  end
-
-  def persist_user_logon
-    if login_count > login_count_was
-      # Surprisingly AuthLogic doesn't provide a clean callback for detecting when a login occurs...so instead,
-      # watch for when the login count is incremented (which is done by AuthLogic).
-      UserLogon.create(:user => self, :login_ip => self.current_login_ip)
-
-      # Also touch the available credit records for this user...used for calculating which credits should
-      # expire due to lack of activity on the account
-      self.credits.available.update_all(:will_expire_at => APP_CONFIG[CONFIG_EXPIRE_CREDITS_AFTER_DAYS].days.since,
-                                        :expiration_warning_issued_at => nil )
-    end
   end
 
   def not_blank_or_nil field
