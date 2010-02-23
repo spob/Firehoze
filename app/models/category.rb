@@ -32,7 +32,7 @@ class Category < ActiveRecord::Base
   end
 
   def can_delete?
-    self.child_categories.empty? and self.lessons.empty?
+    self.child_categories.empty? and self.lessons.empty? and self.groups.empty?
   end
 
   def has_children?
