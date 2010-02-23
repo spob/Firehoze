@@ -31,9 +31,9 @@ class UserSessionsControllerTest < ActionController::TestCase
       end
       should_redirect_to("my firehoze") { my_firehoze_index_path }
       should_respond_with :redirect
-      should "persist a new user logon audit trail record" do
-        assert_equal @logon_count + 1, UserLogon.count
-      end
+#      should "persist a new user logon audit trail record" do
+#        assert_equal @logon_count + 1, UserLogon.count
+#      end
     end
 
     fast_context "on POST to :create with invalid credentials" do
