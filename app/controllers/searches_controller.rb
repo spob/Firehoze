@@ -6,7 +6,7 @@ class SearchesController < ApplicationController
     # using paginate to set a maximum # of rows returned
     @lessons = Lesson.search @search_criteria,
       :conditions => { :status => 'Ready'},
-      :include => :instructor,
+      :include => [:instructor, :category],
       :page => params[:lesson_page],
       :per_page => SEARCH_RESULTS_PER_PAGE,
       :retry_stale => true
@@ -14,7 +14,7 @@ class SearchesController < ApplicationController
     # member_groups = [-1] + (current_user ? current_user.member_groups : [])
     @groups = Group.search @search_criteria,
       :conditions => { :private => 0},
-      :include => [:owner ],
+      :include => [:category],
       :page => params[:group_page],
       :per_page => SEARCH_RESULTS_PER_PAGE,
       :retry_stale => true

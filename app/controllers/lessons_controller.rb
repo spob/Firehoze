@@ -164,7 +164,7 @@ class LessonsController < ApplicationController
 
   def show
     session[:lesson_to_buy] = nil
-    @lesson = Lesson.find(params[:id], :include => [:instructor, :reviews])
+    @lesson = Lesson.find(params[:id], :include => [:instructor])
     @show_purchases = @lesson.can_view_purchases?(current_user)
     @show_video_stats = @lesson.can_view_lesson_stats?(current_user)
 

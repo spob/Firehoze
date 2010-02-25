@@ -21,15 +21,15 @@ class Topic < ActiveRecord::Base
     show_rejected = (group.moderated_by? current_user or group.owned_by? current_user or show_private)   
     if show_private
       if show_rejected
-        self.topic_comments
+        self.topic_comments.include_user
       else
-        self.topic_comments.ready
+        self.topic_comments.ready.include_user
       end
     else
       if show_rejected
-        self.topic_comments.public
+        self.topic_comments.public.include_user
       else
-        self.topic_comments.public.ready
+        self.topic_comments.public.ready.include_user
       end
     end
   end

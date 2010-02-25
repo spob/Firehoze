@@ -96,13 +96,13 @@ class MyFirehozeController < ApplicationController
     activites_per_page = 8
     @activities = case set_cookie_param(:browse_activities_by, "ALL")
       when 'BY_ME'
-        Activity.visible_to_user(current_user).actor_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
+        Activity.visible_to_user(current_user).include_user.actor_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
       when 'ON_ME'
-        Activity.visible_to_user(current_user).actor_user_id_not_equal_to(current_user).actee_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
+        Activity.visible_to_user(current_user).include_user.actor_user_id_not_equal_to(current_user).actee_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
       when 'BY_FOLLOWED'
-        Activity.by_followed_instructors(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
+        Activity.by_followed_instructors(current_user).include_user.descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
       else  # All
-        Activity.visible_to_user(current_user).descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
+        Activity.visible_to_user(current_user).include_user.descend_by_acted_upon_at.paginate :per_page => activites_per_page, :page => params[:page]
     end
   end
 
@@ -117,7 +117,7 @@ class MyFirehozeController < ApplicationController
   end
 
   def fetch_reviews
-    @reviews = current_user.reviews.ready(:include => [:user, :lesson]).paginate(:page => params[:page], :per_page => @per_page) if retrieve_by_pane("reviews")
+    @reviews = current_user.reviews.ready.paginate(:include => [:user, :lesson], :page => params[:page], :per_page => @per_page) if retrieve_by_pane("reviews")
   end
 
   def fetch_groups
@@ -144,13 +144,13 @@ class MyFirehozeController < ApplicationController
   end
 
   def fetch_credits
-    @used_credits = current_user.credits.redeemed_at_not_null.expired_at_null(:include => [:sku, :line_item, :lesson], :order => "created_at ASC")
-    @expired_credits = current_user.credits.expired_at_not_null(:include => [:sku, :line_item, :lesson], :order => "created_at ASC")
-    @available_credits = current_user.available_credits(:include => [:sku, :line_item, :lesson], :order => "created_at ASC")
+    @used_credits = current_user.credits.redeemed_at_not_null.expired_at_null.all(:include => [:sku, :line_item, :lesson], :order => "created_at ASC")
+    @expired_credits = current_user.credits.expired_at_not_null.all(:include => [:sku, :line_item], :order => "created_at ASC")
+    @available_credits = current_user.available_credits.all(:include => [:sku, :line_item], :order => "created_at ASC")
   end
 
   def fetch_orders
-    @orders = current_user.orders.cart_purchased_at_not_null.descend_by_id(:include => [:cart])
+    @orders = current_user.orders.cart_purchased_at_not_null.descend_by_id.all(:include => [:cart])
   end
 
   def fetch_gift_certificates

@@ -16,7 +16,7 @@ class Category < ActiveRecord::Base
 
   named_scope :by_parent_sort_value, :include => [:parent_category],
               :order => 'parent_categories_categories.sort_value ASC, categories.sort_value ASC'
-  named_scope :root, :conditions => { :parent_category_id => nil }
+  named_scope :root, :conditions => { :parent_category_id => nil }, :include => [:child_categories]
 
   after_save :set_lesson_delta_flag
 

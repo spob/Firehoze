@@ -111,7 +111,7 @@ class Group < ActiveRecord::Base
   end
 
   def self.fetch_tagged_with category_id, tag, per_page, page
-    Group.public.active.by_category(category_id).find_tagged_with(tag).paginate(:per_page => per_page, :page => page)
+    Group.public.active.by_category(category_id).find_tagged_with(tag, :include => [:category]).paginate(:per_page => per_page, :page => page)
   end
 
   def owned_by?(user)
@@ -134,7 +134,7 @@ class Group < ActiveRecord::Base
   end
 
   def self.fetch_user_groups(user, page, per_page)
-    user.member_groups.ascend_by_category_name_and_name(:include => [:category]).paginate(:per_page => per_page, :page => page) if user
+    user.member_groups.ascend_by_category_name_and_name.paginate(:include => [:category], :per_page => per_page, :page => page) if user
   end
 
   def can_see?(user)

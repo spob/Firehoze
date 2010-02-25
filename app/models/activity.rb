@@ -4,6 +4,8 @@ class Activity < ActiveRecord::Base
   belongs_to :actor_user, :class_name => "User", :foreign_key => "actor_user_id"
   belongs_to :actee_user, :class_name => "User", :foreign_key => "actee_user_id"
   validates_presence_of :actor_user, :acted_upon_at
+
+  named_scope :include_user, :include => [:actor_user]
   named_scope :by_followed_instructors,
               lambda { |user|
                 {

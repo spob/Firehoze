@@ -7,6 +7,6 @@
   <td class="center comment-count"><%= topic.comments_user_sensitive(current_user).size %></td>
   <td>
     <%= h time_ago_in_words(topic.last_commented_at) %><br />
-    <b><%= h topic.last_topic_comment.try(:user).try(:login) %></b>
+    <b><%= h topic.last_topic_comment(:include => [:user]).try(:user).try(:login) %></b>
   </td>
 </tr>

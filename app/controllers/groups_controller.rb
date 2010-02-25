@@ -41,7 +41,7 @@ class GroupsController < ApplicationController
     if params[:category]
       @category = Category.find(params[:category])
       @ids = Group.public.active_or_owner_access_all(current_user.try(:is_a_moderator?), current_user ? current_user.id : -1).by_category(@category.id) + [-1]
-      @groups = Group.ascend_by_name.find(:all, :conditions => { :id => @ids}).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+      @groups = Group.ascend_by_name.find(:all, :include => [:category], :conditions => { :id => @ids}).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
       @tags = Group.public.active.tag_counts(:conditions => ["groups.id IN (?)", @ids], :limit => 40, :order => "count DESC").sort{|x, y| x.name <=> y.name}
     else
       @categories = Category.root.ascend_by_sort_value
@@ -51,9 +51,9 @@ class GroupsController < ApplicationController
   def show
     @members = @group.member_users.active.reject{ |u| u == @group.owner }
     @members = @group.group_members.reject{ |m| m.member_type == OWNER or m.member_type == PENDING }.collect(&:user)
-    @lessons = @group.active_lessons.ready.paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+    @lessons = @group.active_lessons.ready.paginate(:include => [:instructor], :per_page => LESSONS_PER_PAGE, :page => params[:page])
     if can_view?(@group)
-      @topics = @group.topics.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
+      @topics = @group.topics.paginate :include => [:user, :group, :last_topic_comment], :per_page => ROWS_PER_PAGE, :page => params[:page]
 
       if current_user
         set_cookie(params[:browse_activities_by]) if params[:browse_activities_by].present?
@@ -62,11 +62,11 @@ class GroupsController < ApplicationController
         set_cookie 'ALL'
       end
       if cookies[:browse_activities_by] == 'BY_ME'
-        @activities = Activity.group_id_equals(@group.id).visible_to_user(current_user).actor_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
+        @activities = Activity.group_id_equals(@group.id).include_user.visible_to_user(current_user).actor_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
       elsif cookies[:browse_activities_by] == 'ON_ME'
-        @activities = Activity.group_id_equals(@group.id).visible_to_user(current_user).actor_user_id_not_equal_to(current_user).actee_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
+        @activities = Activity.group_id_equals(@group.id).include_user.visible_to_user(current_user).actor_user_id_not_equal_to(current_user).actee_user_id_equals(current_user).descend_by_acted_upon_at.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
       else
-        @activities = Activity.group_id_equals(@group.id).descend_by_acted_upon_at.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
+        @activities = Activity.group_id_equals(@group.id).include_user.descend_by_acted_upon_at.paginate :per_page => ROWS_PER_PAGE, :page => params[:page]
       end
 
       respond_to do |format|
@@ -157,7 +157,7 @@ class GroupsController < ApplicationController
   private
 
   def find_group
-    @group = Group.find params[:id]
+    @group = Group.find params[:id], :include => [:owner]
   end
 
   def set_no_uniform_js

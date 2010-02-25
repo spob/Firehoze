@@ -266,11 +266,11 @@ END
   end
 
   def self.fetch_tagged_with user, category_id, tag, per_page, page
-    Lesson.ready.not_owned_by(user).by_category(category_id).find_tagged_with(tag).paginate(:per_page => per_page, :page => page)
+    Lesson.ready.not_owned_by(user).by_category(category_id).find_tagged_with(tag, :include => [:instructor, :category]).paginate(:per_page => per_page, :page => page)
   end
 
   def self.fetch_owned(user, per_page, page)
-    user.lessons.paginate(:per_page => per_page, :page => page)
+    user.lessons.paginate(:include => [:instructor], :per_page => per_page, :page => page)
   end
 
   def self.fetch_wishlist(user, category_id, per_page, page)
@@ -278,7 +278,7 @@ END
   end
 
   def self.fetch_latest_browsed(user, category_id, per_page, page)
-    user.latest_visited_lessons.ready.by_category(category_id).paginate(:per_page => per_page, :page => page)
+    user.latest_visited_lessons.ready.by_category(category_id).paginate(:include => [:instructor], :per_page => per_page, :page => page)
   end
 
   def self.fetch_instructed_lessons(user, category_id, per_page, page)
