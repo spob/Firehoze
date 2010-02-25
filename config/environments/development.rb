@@ -53,7 +53,7 @@ config.after_initialize do
   )
 
   # Configure the bullet memory checking gem http://github.com/flyerhzm/bullet
-  Bullet.enable = true
+  Bullet.enable = false
   Bullet.alert = true
   Bullet.bullet_logger = true
   Bullet.console = true
