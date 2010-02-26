@@ -14,7 +14,7 @@
         <%= f.text_field :email_like, :style => "width:245px;" %>
       </div>
 
-  <div class="span-12 center" style="padding-top:8px">
+      <div class="span-12 center" style="padding-top:8px">
         <b>Order by:</b>
         <%= order @search, :by => :login, :as => "Username" %>&nbsp;
         <%= order @search, :by => :email %>&nbsp;
@@ -44,11 +44,7 @@
     <% @users.each do |user| %>
         <tr class="<%= cycle("even", "odd") -%>">
           <td>
-            <% if current_user.is_an_admin? %>
-                <%= link_to "#{h(user.login)}", show_admin_user_path(user) %>
-            <% else %>
-                <%= h(user.login) %>
-            <% end %>
+            <%= link_to "#{h(user.login)}", show_admin_user_path(user) %>
           </td>
           <td><%= mail_to h(user.email) %></td>
           <td><%= "#{h(user.first_name)} " unless user.first_name.nil? %><%= h(user.last_name) %></td>

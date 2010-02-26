@@ -24,6 +24,16 @@
 </p>
 
 <p>
+  <b>Instructor:</b>
+  <%= @user.verified_instructor? ? "Yes" : "No" %>
+</p>
+
+<p>
+  <b>Address:</b><br />
+      <%= user_formatted_address(@user, "<br />") %>
+</p>
+
+<p>
     <b>Bio:</b>
     <%= rbs_formatter(@user.bio) unless @user.bio.blank? %>
 </p>
