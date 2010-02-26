@@ -1,4 +1,4 @@
-<% title "Forgot Password" -%>
+<% title "Forgot Username or Password" -%>
 
 <%= stylesheet 'validation' %>
 <% content_for :footer do -%>
@@ -11,8 +11,8 @@
         <li class="header">
           <span></span>
 
-          <h3>Forgot Password</h3>
-          <h4>Fill out the form below and instructions to reset your password will be emailed to you.</h4>
+          <h3>Forgot Username or Password</h3>
+          <h4>Enter your email address below. Your username and instructions to reset your password will be emailed to you.</h4>
           <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
         </li>
         <li>
@@ -24,7 +24,7 @@
         </li>
         <li class="bottom">
         <span class="unlabelled">
-        <%= submit_tag "Reset my password" %>
+        <%= submit_tag "Send" %>
           <%= link_to "Cancel", login_path %>
         </span>
 

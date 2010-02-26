@@ -61,7 +61,7 @@ class OrdersControllerTest < ActionController::TestCase
 
     fast_context "on POST to :create" do
       setup do
-        assert PeriodicJob.all.empty?
+        @jobcount = PeriodicJob.count
         post :create, :order => Factory.attributes_for(:order, :card_number => "1")
       end
 
@@ -73,7 +73,7 @@ class OrdersControllerTest < ActionController::TestCase
         assert_equal "Bogus Gateway: Forced success", assigns(:order).last_transaction.first.message
       end
       should "have a periodic job" do
-        assert 1, PeriodicJob.all.size
+        assert @jobcount + 1, PeriodicJob.all.size
       end
     end
 

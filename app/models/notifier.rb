@@ -17,7 +17,8 @@ class Notifier < ActionMailer::Base
     from         APP_CONFIG[CONFIG_ADMIN_EMAIL]
     recipients  user.email
     sent_on     Time.zone.now
-    body        :edit_password_reset_url => edit_password_reset_url(user.perishable_token, url_options)
+    body        :edit_password_reset_url => edit_password_reset_url(user.perishable_token, url_options),
+                :user => user
   end
 
   # Sent when a user has requested an account. This email allows the user to confirm their email address.
