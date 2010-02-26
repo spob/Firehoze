@@ -136,7 +136,7 @@ class UserTest < ActiveSupport::TestCase
         response = @user.deliver_password_reset_instructions!
 
         assert_equal 'Your password has been reset', response.subject
-        assert_match /A request to reset your password has been made/, response.body
+        assert_match /A request to remind you of your Firehoze username and to reset your password/, response.body
 #        assert_match /Dear #{user.full_name},/, response.body
         assert_equal @user.email, response.to[0]
       end
