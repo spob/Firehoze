@@ -29,7 +29,7 @@ class PasswordResetsControllerTest < ActionController::TestCase
 
       should_assign_to :user
       should_respond_with :redirect
-      should_set_the_flash_to /Instructions to reset your password/
+      should_set_the_flash_to /Your username and instructions/
       should_redirect_to("show page") { password_reset_path(assigns(:user)) }
     end
 
