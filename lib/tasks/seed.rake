@@ -56,7 +56,7 @@ namespace :db do
 end
 
 def create_job(job_class, name, job_command, interval=nil, run_at=nil)
-  job = PeriodicJob.find_by_name(name)
+  job = PeriodicJob.find(:first, :conditions => ["name = ? and next_run_at is null", name])
   if job
     puts "Periodic job #{job.name} already exists"
   else
