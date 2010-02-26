@@ -1,6 +1,6 @@
 class UserObserver < ActiveRecord::Observer
   def before_save(user)
-    if user.email_changed?
+    if user.email_changed? and !user.new_record?
       RunOncePeriodicJob.create!(
               :name => 'Notify Email Changed',
               :job => "User.notify_email_changed(#{user.id})")
