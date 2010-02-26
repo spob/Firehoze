@@ -7,10 +7,10 @@ class UsersController < ApplicationController
   before_filter :find_user, :only => [ :clear_avatar, :edit, :show_admin, :private, :reset_password, :update,
                                        :update_instructor, :update_privacy, :update_avatar, :update_roles ]
 
-  permit ROLE_ADMIN, :only => [ :clear_avatar, :show_admin, :private, :reset_password, :update_avatar,
+  permit ROLE_ADMIN, :only => [ :clear_avatar, :private, :reset_password, :update_avatar,
                                 :update_privacy, :update_roles, :update_instructor, :index ]
   permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [ :edit, :update ]
-  permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR} or #{ROLE_COMMUNITY_MGR}", :only => [ :list ]
+  permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR} or #{ROLE_COMMUNITY_MGR}", :only => [ :list, :show_admin ]
 
   verify :method => :post, :only => [:create, :clear_avatar, :reset_password ], :redirect_to => :home_path
   verify :method => :put, :only => [ :update, :update_privacy, :update_avatar, :update_roles, :update_instructor ], :redirect_to => :home_path
