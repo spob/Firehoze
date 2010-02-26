@@ -183,6 +183,16 @@ class Notifier < ActionMailer::Base
                :url => user_url(user, url_options)
   end
 
+  def email_changed(user)
+    user = User.find(user)
+    subject    "#{user.login} updated their email"
+    recipients  User.communitymgrs.collect(&:email)
+    from         APP_CONFIG[CONFIG_ADMIN_EMAIL]
+
+    body       :user => user,
+               :url => user_url(user, url_options)
+  end
+
   # Notify the admin that a video never completed their transcoding
   def lesson_processing_hung(lesson)
     subject    "The video for lesson #{lesson.id} never completed processing"

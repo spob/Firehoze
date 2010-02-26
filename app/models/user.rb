@@ -333,6 +333,11 @@ END
     end
   end
 
+  def self.notify_email_changed user_id
+    user = User.find(user_id)
+    Notifier.deliver_email_changed(user)
+  end
+
   def can_edit? current_user
     (current_user and (current_user.is_an_admin? or current_user.is_a_moderator?))
   end
