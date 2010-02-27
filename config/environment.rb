@@ -82,7 +82,7 @@ Rails::Initializer.run do |config|
   config.gem 'less', :source => 'http://gemcutter.org'
 
   # Gem for secret url (for user signup requests)
-  config.gem "mholling-active_url", :lib => "active_url", :source => "http://gems.github.com"
+  config.gem "active_url", :source => "http://gemcutter.org"
 
   # DSL for html
   # config.gem "markaby"
