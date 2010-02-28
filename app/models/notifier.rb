@@ -26,7 +26,7 @@ class Notifier < ActionMailer::Base
   # See http://github.com/mholling/active_url/tree/master for more information
   def registration(registration)
     #asf
-    subject    "Registration successful"
+    subject    "Registration successful...you're almost done"
     recipients registration.email
     from       APP_CONFIG[CONFIG_ADMIN_EMAIL]
 
