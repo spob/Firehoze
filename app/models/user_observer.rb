@@ -1,6 +1,7 @@
 class UserObserver < ActiveRecord::Observer
   def before_save(user)
-    if user.email_changed? and !user.new_record?
+    if user.email_changed? and !user.new_record? and !user.email_was.blank?
+      Rails.logger.debug "User updated their email address from '#{user.email_was}' to '#{user.email}'"
       RunOncePeriodicJob.create!(
               :name => 'Notify Email Changed',
               :job => "User.notify_email_changed(#{user.id})")
