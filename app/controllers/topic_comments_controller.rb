@@ -32,7 +32,7 @@ class TopicCommentsController < ApplicationController
 
   def update
     if can_edit? @topic_comment, current_user
-      params[:topic_comment][:public] ||= false
+      params[:topic_comment][:public] ||= false if Comment.show_public_private_option?(current_user)
       if @topic_comment.update_attributes(params[:topic_comment])
         flash[:notice] = t 'topic_comment.update_success'
         redirect_to topic_path(@topic_comment.topic)
