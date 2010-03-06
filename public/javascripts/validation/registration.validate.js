@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $(".register").validate({
         rules: {
-            "registration[username]": {required: true, minlength: 3, maxlength: 25, regex : /^\w*$/, remote:"/registrations/check_user" }
+            "registration[username]": {required: true, minlength: 3, maxlength: 25, regex: /^\w*$/, remote:"/registrations/check_user" }
         },
         messages: {
             "registration[username]": {

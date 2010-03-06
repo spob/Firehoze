@@ -108,6 +108,7 @@ class User < ActiveRecord::Base
   validates_length_of :last_name, :maximum => 40, :allow_nil => true
   validates_length_of :first_name, :maximum => 40, :allow_nil => true
   validates_length_of :login, :maximum => 25, :allow_nil => true
+  validates_format_of :login, :with => /\A\S*\z/, :message => "can only consist of letters, numbers and underscores", :allow_nil => true
 
   DEFAULT_AVATAR_URL = "http://#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}/users/avatars/missing/%s/missing.png"
 

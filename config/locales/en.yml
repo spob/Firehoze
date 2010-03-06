@@ -337,6 +337,7 @@ en:
     instructor_dashboard: Instructor Dashboard
     instructor_of: Lessons by {{user}}
     login_required: Username can't be empty
+    login_invalid: Username can only contain numbers, letters and underscores
     not_done: Not Completed
     password: Password
     profile: Profile
