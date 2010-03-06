@@ -79,11 +79,11 @@ class User < ActiveRecord::Base
               :order => :email
 
   sql = %Q{
-    address1 is not null and
-    city is not null and
-    state is not null and
-    postal_code is not null and
-    country is not null and
+    length(address1) > 0 and
+    length(city) > 0 and
+    length(state) > 0 and
+    length(postal_code) > 0 and
+    length(country) > 0 and
     verified_address_on is not null and
     author_agreement_accepted_on is not null and
     payment_level_id is not null

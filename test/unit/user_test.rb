@@ -174,6 +174,7 @@ class UserTest < ActiveSupport::TestCase
 
         should "be an instructor" do
           assert @user.verified_instructor?
+          assert User.instructors.include?(@user)
         end
 
         fast_context "and a second non-instructor" do
@@ -189,6 +190,10 @@ class UserTest < ActiveSupport::TestCase
             assert @follower.followed_instructors.empty?
           end
 
+          should "return not return non instructors" do
+            assert !User.instructors.include?(@follower)
+          end
+
           should "start and stop following" do
             @follower.follow(@user)
             @follower = User.find(@follower.id)
@@ -200,7 +205,7 @@ class UserTest < ActiveSupport::TestCase
             assert_equal 1, @user.followers.size
             assert @follower.followers.empty?
             assert_equal 1, @follower.followed_instructors.size
-            
+
             @follower.stop_following(@user)
             @follower = User.find(@follower.id)
             assert !@user.followed_by?(@follower)

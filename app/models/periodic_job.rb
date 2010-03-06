@@ -87,7 +87,7 @@ class PeriodicJob < ActiveRecord::Base
     !jobs.empty?
   end
 
-  # Default dehavior for calculating the next_run date, which will be generally overriden by the
+  # Default behavior for calculating the next_run date, which will be generally overriden by the
   # subclass (except for the case of a run once job).
   # When a job completes, the task scheduler will invoke this method to persist a new instance of
   # the job to run based on the value returned by this method. A return value of nil indicates
