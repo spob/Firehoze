@@ -40,6 +40,7 @@ END
                                   user.id, false, (user ? user.group_ids.collect(&:group_id) : [] ) + [-1]]
                 }
               }
+  named_scope :not_rejected, :conditions => { :rejected_at => nil }
   named_scope :visible_to_user,
               lambda{ |user|
                 { :include => [:actor_user, :group],
@@ -102,6 +103,12 @@ END
     User.active.instructors.instructor_signup_notified_at_not_null.instructor_activity_compiled_at_null.each do |user|
       User.transaction do
         user.compile_instructor_activity
+      end
+    end
+
+    Activity.not_rejected.to_be_disabled.each do |activity|
+      Activity.transaction do
+        activity.update_attribute(:rejected_at, Time.now)
       end
     end
   end

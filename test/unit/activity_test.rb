@@ -79,32 +79,27 @@ class ActivityTest < ActiveSupport::TestCase
           @group = Factory.create(:group)
           @groupr = Factory.create(:group)
           
-          Activity.compile
           @groupr.reject
           @groupr.save!
         end
 
         should "find activities ready to be rejected" do
-#        @lessonr.reload
-#        puts "============#{@lessonr.status}"
-#        puts "============#{Activity.to_be_disabled.size}"
-#        activity = Activity.find(:first, :conditions => {:trackable_type => 'Lesson', :trackable_id => @lessonr.id})
-#        puts "============#{activity.try(:id)}"
-#        Activity.all.each do |a|
-#          puts "Activity: #{a.trackable_type} #{a.trackable_id}"
-#        end
-#        Activity.to_be_disabled.collect(&:trackable).each do |a|
-#          puts "Activity type: #{a.class.to_s} #{a.id}"
-#        end
-          assert !Activity.to_be_disabled.collect(&:trackable).include?(@lesson)
-          assert Activity.to_be_disabled.collect(&:trackable).include?(@lessonr)
-          assert !Activity.to_be_disabled.collect(&:trackable).include?(@review)
-          assert Activity.to_be_disabled.collect(&:trackable).include?(@reviewr)
-          assert !Activity.to_be_disabled.collect(&:trackable).include?(@comment)
-          assert Activity.to_be_disabled.collect(&:trackable).include?(@commentp)
-          assert Activity.to_be_disabled.collect(&:trackable).include?(@commentr)
-          assert !Activity.to_be_disabled.collect(&:trackable).include?(@group)
-          assert Activity.to_be_disabled.collect(&:trackable).include?(@groupr)
+          assert !Activity.not_rejected.to_be_disabled.collect(&:trackable).include?(@lesson)
+          assert Activity.not_rejected.to_be_disabled.collect(&:trackable).include?(@lessonr)
+          assert !Activity.not_rejected.to_be_disabled.collect(&:trackable).include?(@review)
+          assert Activity.not_rejected.to_be_disabled.collect(&:trackable).include?(@reviewr)
+          assert !Activity.not_rejected.to_be_disabled.collect(&:trackable).include?(@comment)
+          assert Activity.not_rejected.to_be_disabled.collect(&:trackable).include?(@commentp)
+          assert Activity.not_rejected.to_be_disabled.collect(&:trackable).include?(@commentr)
+          assert !Activity.not_rejected.to_be_disabled.collect(&:trackable).include?(@group)
+          assert Activity.not_rejected.to_be_disabled.collect(&:trackable).include?(@groupr)
+          not_rejected = Activity.not_rejected.size
+          to_be_rejected = Activity.not_rejected.to_be_disabled.size
+          
+          Activity.compile
+          
+          assert Activity.not_rejected.to_be_disabled.empty?
+          assert_equal not_rejected - to_be_rejected, Activity.not_rejected.size 
         end
       end
     end
