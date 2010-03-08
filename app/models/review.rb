@@ -16,7 +16,7 @@ class Review < ActiveRecord::Base
 
   named_scope :helpful, :conditions => "score > 0"
   named_scope :ready_lesson, :joins => [ :lesson ], :conditions => { :lessons => { :status => LESSON_STATUS_READY }}
-  named_scope   :ready, :conditions => {:status => REVIEW_STATUS_ACTIVE }
+  named_scope :ready, :conditions => {:status => REVIEW_STATUS_ACTIVE }
 
   @@flag_reasons = [
           FLAG_LEWD,

@@ -28,6 +28,11 @@ class ActivityTest < ActiveSupport::TestCase
       @lesson.save!
       assert @lesson.ready?
 
+      @lessonr = Factory.create(:lesson)
+      @lessonr.status = LESSON_STATUS_REJECTED
+      @lessonr.save!
+      assert !@lessonr.ready?
+
       @user.credits.create!(:price => 0.99, :lesson => @lesson, :acquired_at => Time.now,
                             :line_item => Factory.create(:line_item))
 
@@ -47,7 +52,60 @@ class ActivityTest < ActiveSupport::TestCase
 
       should "populate activities" do
         assert !Activity.all.empty?
-        assert_equal 9, Activity.all.size
+        assert_equal 10, Activity.all.size
+      end
+
+      context "and more records" do
+        setup do
+          @lessonr.compile_activity
+
+          @lesson2 = Factory.create(:lesson)
+          @user.credits.create!(:price => 0.99, :lesson => @lesson2, :acquired_at => Time.now,
+                                :line_item => Factory.create(:line_item))
+          @rater = @lesson2.rates.create!
+          # user id isn't set above because of protection from mass assignment
+          @rater.update_attribute(:user_id, @user.id)
+          @reviewr = Factory.create(:review, :user => @user, :lesson => @lesson2)
+          @reviewr.reject
+          @reviewr.save!
+
+          @comment = Factory.create(:lesson_comment)
+          @commentp = Factory.create(:lesson_comment, :public => false)
+          @commentr = Factory.create(:lesson_comment)
+          @commentp.compile_activity
+          @commentr.compile_activity
+          @commentr.update_attribute(:status, COMMENT_STATUS_REJECTED)
+
+          @group = Factory.create(:group)
+          @groupr = Factory.create(:group)
+          
+          Activity.compile
+          @groupr.reject
+          @groupr.save!
+        end
+
+        should "find activities ready to be rejected" do
+#        @lessonr.reload
+#        puts "============#{@lessonr.status}"
+#        puts "============#{Activity.to_be_disabled.size}"
+#        activity = Activity.find(:first, :conditions => {:trackable_type => 'Lesson', :trackable_id => @lessonr.id})
+#        puts "============#{activity.try(:id)}"
+#        Activity.all.each do |a|
+#          puts "Activity: #{a.trackable_type} #{a.trackable_id}"
+#        end
+#        Activity.to_be_disabled.collect(&:trackable).each do |a|
+#          puts "Activity type: #{a.class.to_s} #{a.id}"
+#        end
+          assert !Activity.to_be_disabled.collect(&:trackable).include?(@lesson)
+          assert Activity.to_be_disabled.collect(&:trackable).include?(@lessonr)
+          assert !Activity.to_be_disabled.collect(&:trackable).include?(@review)
+          assert Activity.to_be_disabled.collect(&:trackable).include?(@reviewr)
+          assert !Activity.to_be_disabled.collect(&:trackable).include?(@comment)
+          assert Activity.to_be_disabled.collect(&:trackable).include?(@commentp)
+          assert Activity.to_be_disabled.collect(&:trackable).include?(@commentr)
+          assert !Activity.to_be_disabled.collect(&:trackable).include?(@group)
+          assert Activity.to_be_disabled.collect(&:trackable).include?(@groupr)
+        end
       end
     end
 

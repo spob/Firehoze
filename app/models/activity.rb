@@ -5,6 +5,30 @@ class Activity < ActiveRecord::Base
   belongs_to :actee_user, :class_name => "User", :foreign_key => "actee_user_id"
   validates_presence_of :actor_user, :acted_upon_at
 
+  rejected_sql = <<END
+      (trackable_type, trackable_id) IN
+      (
+        SELECT 'Lesson', id
+        FROM lessons AS l
+        WHERE l.status = ?
+        UNION ALL
+        SELECT 'Review', id
+        FROM reviews AS r
+        WHERE r.status = ?
+        UNION ALL
+        SELECT 'Comment', id
+        FROM comments AS c
+        WHERE c.status = ?
+           OR c.public = ?
+        UNION ALL
+        SELECT 'Group', id
+        FROM groups AS g
+        WHERE g.active = ?
+      )
+END
+
+  named_scope :to_be_disabled, :conditions => [ rejected_sql, LESSON_STATUS_REJECTED, REVIEW_STATUS_REJECTED,
+                                               COMMENT_STATUS_REJECTED, false, false ]
   named_scope :include_user, :include => [:actor_user]
   named_scope :by_followed_instructors,
               lambda { |user|
