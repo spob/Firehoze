@@ -45,7 +45,7 @@ END
               lambda{ |user|
                 { :include => [:actor_user, :group],
                   #   :joins => 'LEFT OUTER JOIN groups ON groups.id = activities.group_id',
-                  :conditions => ['(activities.group_id IS NULL OR groups.private = ? OR activities.group_id in (?))',
+                  :conditions => ['rejected_at IS NULL AND (activities.group_id IS NULL OR groups.private = ? OR activities.group_id in (?))',
                                   false, (user ? user.group_ids.collect(&:group_id) : [] ) + [-1]]
                 } }
 
