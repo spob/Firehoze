@@ -77,8 +77,17 @@ class User < ActiveRecord::Base
               :joins => [:roles],
               :conditions => { :roles => {:name => 'communitymgr'}},
               :order => :email
+    logons_sql = <<END
+            id IN
+            (SELECT user_id
+            FROM user_logons
+            WHERE DATE(created_at) = date_sub(curdate(), INTERVAL ? DAY))
+END
+  named_scope :unique_logons_by_date,
+              lambda{ |days_ago| 
+              { :conditions => [logons_sql, days_ago] }}
 
-  sql = %Q{
+  instructors_sql = %Q{
     length(address1) > 0 and
     length(city) > 0 and
     length(state) > 0 and
@@ -90,7 +99,7 @@ class User < ActiveRecord::Base
   }
 
   named_scope :instructors,
-              :conditions => sql
+              :conditions => instructors_sql
 
   # Used to verify current password during password changes
   attr_accessor :current_password

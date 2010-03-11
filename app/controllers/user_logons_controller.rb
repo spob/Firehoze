@@ -23,18 +23,15 @@ class UserLogonsController < ApplicationController
   @@num_days = 90
 
   def graph_code
-    sql = <<END
-            id IN
-            (SELECT user_id
-            FROM user_logons
-            WHERE DATE(created_at) = CURDATE() - ?) 
-END
     data1 = []
     year = Time.now.year
 
+    max_users = 0
     @@num_days.times do |i|
       x = i.days.ago.to_i
-      y = User.count(:conditions => [sql, i])
+      y = User.unique_logons_by_date(i).count
+      puts "==============#{i.days.ago} #{i}, #{y}"
+      max_users = y if y > max_users
 
       data1 << ScatterValue.new(x,y)
     end
@@ -61,7 +58,7 @@ END
     x.labels = labels
 
     y = YAxis.new
-    y.set_range(0,15,5)
+    y.set_range(0,max_users,5)
 
     chart = OpenFlashChart.new
     title = Title.new("Unique Logons")
