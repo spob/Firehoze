@@ -103,6 +103,11 @@ namespace :deploy do
     run "cp -pf #{deploy_to}/to_copy/sphinx.yml #{current_path}/config/sphinx.yml"
     run "cp -pf #{deploy_to}/to_copy/newrelic.yml #{current_path}/config/newrelic.yml"
     run "cp -pf #{deploy_to}/to_copy/production.yml #{current_path}/config/environments/production.yml"
+    if ENV['DEPLOY'] == 'PRODUCTION'
+      run "cp -pf #{deploy_to}/to_copy/sitemap.xml #{current_path}/public/sitemap.xml"
+      run "cp -pf #{deploy_to}/to_copy/robots.txt #{current_path}/public/robots.txt"
+      run "cp -pf #{deploy_to}/to_copy/LiveSearchSiteAuth.xml #{current_path}/public/LiveSearchSiteAuth.xml"      
+    end
     # run "rm #{current_path}/lib/tasks/populate_fake_data.rake"
     # preserve the assets directory which resides under shared
     # run "ln -s #{shared_path}/assets #{release_path}/public/assets" 
