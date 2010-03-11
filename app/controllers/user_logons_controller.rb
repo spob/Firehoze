@@ -42,7 +42,7 @@ END
     dot = HollowDot.new
     dot.size = 3
     dot.halo_size = 2
-    dot.tooltip = "#date:d M y#<br>Value: #val#"
+    dot.tooltip = "#date:d M y#<br>Users: #val#"
 
     line = ScatterLine.new("#DB1750", 3)
     line.values = data1
