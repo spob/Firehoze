@@ -124,7 +124,8 @@ ActionController::Routing::Routes.draw do |map|
                              :update_roles => :put },
                 :collection => { :list => :get,
                                  :user_agreement => :get }
-  map.resources :user_logons
+  map.resources :user_logons, :collection => { :graph => :get, :graph_code => :get },
+                :only => [ :index, :graph, :graph_code ]
   map.resources :wish_lists, :only => [ :create, :destroy ]
   map.resources :registrations, :only => [ :new, :create, :show ] do |registration|
     registration.resources :users, :only => [ :new, :create ]

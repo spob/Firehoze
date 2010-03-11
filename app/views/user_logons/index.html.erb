@@ -2,7 +2,7 @@
 <% @current = 'logons' %>
 
 <h3>User Logons</h3>
-<p><%= pluralize(User.logged_in.size, "user") %> currently logged on</p>
+<p><%= pluralize(User.logged_in.size, "user") %> currently logged on | <%= link_to "View As Graph", graph_user_logons_path %>              </p>
 <div class="span-12 search-box-container">
   <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
     <div class="span-6 right">
