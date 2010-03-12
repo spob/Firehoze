@@ -348,12 +348,48 @@ class LessonsController < ApplicationController
   end
 
   def graph
-    @graph = open_flash_chart_object(900,500,"/lessons/graph_code")
+    @graph = open_flash_chart_object(900,500,"/lessons/graph_code?type=lessons_by_time")
+    @graph2 = open_flash_chart_object(900,500,"/lessons/graph_code?type=lessons_by_category")
   end
 
   @@num_weeks = 25
 
   def graph_code
+    if params[:type] == "lessons_by_time"
+      lessons_by_time
+    else
+      lessons_by_category
+    end
+  end
+
+  private
+
+  def lessons_by_category
+    title = Title.new("Lessons By Category")
+
+    values = []
+    pie = Pie.new
+    pie.start_angle = 35
+    pie.animate = true
+    pie.tooltip = '#val# of #total#<br>#percent# of 100%'
+    pie.colours = ["#6D98AB", "#00275E", "#FEB729", "#A8B1B8", "#00FF99", "#006699", "#999999", "#FFFF33", "#3366FF", "#36CC00", "#6D98AB", "#CC9999", "#d01f3c", "#356aa0", "#C79810"]
+
+    Category.root.each do |c|
+      values << PieValue.new(Lesson.ready.by_category(c.id).count, c.name)
+    end
+
+    pie.values  = values
+
+    chart = OpenFlashChart.new
+    chart.title = title
+    chart.add_element(pie)
+
+    chart.x_axis = nil
+
+    render :text => chart.to_s
+  end
+
+  def lessons_by_time
     data1 = []
     x_values = []
 
@@ -380,8 +416,6 @@ class LessonsController < ApplicationController
     chart.x_axis = x
     render :text => chart.to_s
   end
-
-  private
 
 # disable the uniform plugin, otherwise the advanced search form is all @$@!# up
   def set_no_uniform_js
