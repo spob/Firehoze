@@ -24,7 +24,6 @@ class UserLogonsController < ApplicationController
 
   def graph_code
     data1 = []
-    year = Time.now.year
 
     max_users = 0
     @@num_days.times do |i|
@@ -61,7 +60,7 @@ class UserLogonsController < ApplicationController
     y.set_range(0,max_users,5)
 
     chart = OpenFlashChart.new
-    title = Title.new("Unique Logons")
+    title = Title.new("Unique User Logons")
 
     chart.title = title
     chart.add_element(line)

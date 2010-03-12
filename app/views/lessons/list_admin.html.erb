@@ -2,6 +2,7 @@
 <% @current = 'lessons' %>
 
 <h3>Lessons</h3>
+<p><%= link_to "View As Graph", graph_lessons_path %></p>
 <div class="span-12 search-box-container">
   <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
   <div class="span-4 right">

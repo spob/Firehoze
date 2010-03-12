@@ -7,7 +7,7 @@ class LessonsController < ApplicationController
     before_filter :require_user, :except => [:conversion_notify, :index]
   end
   permit ROLE_ADMIN, :only => [:convert]
-  permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [:list_admin]
+  permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [:list_admin, :graph, :graph_data]
   permit ROLE_MODERATOR, :only => [:unreject]
 
   caches_page :index
@@ -347,6 +347,40 @@ class LessonsController < ApplicationController
     @@free_download_counts
   end
 
+  def graph
+    @graph = open_flash_chart_object(900,500,"/lessons/graph_code")
+  end
+
+  @@num_weeks = 25
+
+  def graph_code
+    data1 = []
+    x_values = []
+
+    max_count = 0
+    @@num_weeks.times do |i|
+      x = Time.now.to_date - Time.now.wday - ((@@num_weeks - i - 1) * 7)
+      y = Lesson.ready.count(:conditions => "created_at < '#{x.to_s(:db)}'")
+      max_count = y if y > max_count
+      data1[i] = y
+      x_values[i] = x.strftime("%m-%d")
+    end
+
+    title = Title.new("Lessons")
+    bar = BarGlass.new
+    bar.set_values(data1)
+    y = YAxis.new
+    y.set_range(0, 5 * (max_count/5 + 1), 5)
+    x = XAxis.new
+    x.set_labels x_values
+    chart = OpenFlashChart.new
+    chart.set_title(title)
+    chart.add_element(bar)
+    chart.y_axis = y
+    chart.x_axis = x
+    render :text => chart.to_s
+  end
+
   private
 
 # disable the uniform plugin, otherwise the advanced search form is all @$@!# up
@@ -361,7 +395,7 @@ class LessonsController < ApplicationController
       'content_in_tab'
     elsif %w(tabbed).include?(params[:action])
       'content_in_tab'
-    elsif %w(list_admin).include?(params[:action])
+    elsif %w(list_admin graph).include?(params[:action])
       'admin'
     elsif %w(index).include?(params[:action])
       'unrecognized'

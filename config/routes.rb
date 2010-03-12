@@ -80,7 +80,9 @@ ActionController::Routing::Routes.draw do |map|
                         :tagged_with => :get,
                         :all_tags => :get,
                         :advanced_search => :get,
-                        :perform_advanced_search => :get
+                        :perform_advanced_search => :get,
+                        :graph => :get,
+                        :graph_code => :get
                 }
   map.resources :lessons, :has_many => :lesson_comments, :shallow => true,
                 :member => {
