@@ -807,3 +807,10 @@ var swfobject = function() {
 		}
 	};
 }();
+
+
+$(function(){
+    if ($(".flash").is(":hidden")) {
+        $(".flash").slideDown(500);
+    }
+});
