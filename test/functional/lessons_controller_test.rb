@@ -360,7 +360,7 @@ class LessonsControllerTest < ActionController::TestCase
         end
 
         fast_context "on GET to :graph" do
-          setup { post :graph }
+          setup { post :graph }           
 
           should_assign_to :graph
           should_assign_to :graph2
