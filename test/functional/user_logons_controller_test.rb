@@ -23,6 +23,14 @@ class UserLogonsControllerTest < ActionController::TestCase
         should_not_set_the_flash
         should_render_template "index"
       end
+
+      fast_context "on GET to :graph" do
+        setup { post :graph }
+
+        should_assign_to :graph
+        should_render_template 'graph'
+        should_not_set_the_flash
+      end
     end
 
     fast_context "without admin access" do
@@ -30,6 +38,15 @@ class UserLogonsControllerTest < ActionController::TestCase
         setup { get :index }
 
         should_not_assign_to :user_logons
+        should_respond_with :redirect
+        should_set_the_flash_to /denied/
+        should_redirect_to("lessons index") { lessons_url }
+      end
+
+      fast_context "on GET to :graph" do
+        setup { get :graph }
+
+        should_not_assign_to :graph
         should_respond_with :redirect
         should_set_the_flash_to /denied/
         should_redirect_to("lessons index") { lessons_url }

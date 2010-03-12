@@ -358,6 +358,15 @@ class LessonsControllerTest < ActionController::TestCase
           should_render_template 'list'
           should_not_set_the_flash
         end
+
+        fast_context "on GET to :graph" do
+          setup { post :graph }
+
+          should_assign_to :graph
+          should_assign_to :graph2
+          should_render_template 'graph'
+          should_not_set_the_flash
+        end
       end
 
       fast_context "on GET to :edit" do
