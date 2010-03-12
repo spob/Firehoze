@@ -31,7 +31,7 @@
 
   <% # Javascript Libraries %>
   <%= google_jquery(:version => '1.3.2', :local => Rails.env.development?) %>
-  <%= javascript_include_tag  'topNavigation','plugins/cuber.swfobject', :cache => 'unrecognized' %>
+  <%= javascript_include_tag  'topNavigation','plugins/cuber.swfobject', 'flash', :cache => 'unrecognized' %>
 
   <%= ajaxful_rating_style %>
 
@@ -53,50 +53,51 @@
 </head>
 <body>
 
-  <!-- start header -->
-  <div id="header">
-    <div class="container">
-      <div class="span-12 last content">
-        <div id="logo">
-          <% if current_user %>
-          <%= link_to_unless_current("my firehoze", my_firehoze_index_path, :id => :home) %>
-          <% else %>
-          <%= link_to_unless_current("Firehoze", root_path) %>
-          <% end %>
-        </div>
-        <div id="top-navigation-container">
-          <%= render :partial => "shared/top_navigation" %>
-        </div><!-- end top-navigation-container-->
-      </div><!-- content -->
-    </div><!-- container -->
-  </div><!-- end header -->
-
-
-  <!-- start main_content -->
-  <div id="cu3er">
-    <div class="container">
-      <div class="span-12 last content">
-        <div id="shadow">
-          <div id="cu3er-container">
-            <a href="http://www.adobe.com/go/getflashplayer">
-              <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
-            </a>
-          </div>
-        </div>
-      </div><!-- content -->
-    </div><!-- container -->
-  </div><!-- end cuber -->
-
-
+<%= render "shared/flash_msg" -%>
+<!-- start header -->
+<div id="header">
   <div class="container">
-    <%= yield -%>
-  </div>
+    <div class="span-12 last content">
+      <div id="logo">
+        <% if current_user %>
+        <%= link_to_unless_current("my firehoze", my_firehoze_index_path, :id => :home) %>
+        <% else %>
+        <%= link_to_unless_current("Firehoze", root_path) %>
+        <% end %>
+      </div>
+      <div id="top-navigation-container">
+        <%= render :partial => "shared/top_navigation" %>
+      </div><!-- end top-navigation-container-->
+    </div><!-- content -->
+  </div><!-- container -->
+</div><!-- end header -->
 
-  <%= render :partial => 'shared/footer' %>
-  <%= javascript_include_tag  'plugins/jquery.tipTip','tipTip', :cache => 'tooltip' %>
 
-  <% # External Service Javascripts %>
-  <%= render "shared/google_analytics" -%>
-  <%= render "shared/get_satifisfaction" -%>
+<!-- start main_content -->
+<div id="cu3er">
+  <div class="container">
+    <div class="span-12 last content">
+      <div id="shadow">
+        <div id="cu3er-container">
+          <a href="http://www.adobe.com/go/getflashplayer">
+            <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+          </a>
+        </div>
+      </div>
+    </div><!-- content -->
+  </div><!-- container -->
+</div><!-- end cuber -->
+
+
+<div class="container">
+  <%= yield -%>
+</div>
+
+<%= render :partial => 'shared/footer' %>
+<%= javascript_include_tag  'plugins/jquery.tipTip','tipTip', :cache => 'tipTips' %>
+
+<% # External Service Javascripts %>
+<%= render "shared/google_analytics" -%>
+<%= render "shared/get_satifisfaction" -%>
 </body>
 </html>
