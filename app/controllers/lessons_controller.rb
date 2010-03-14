@@ -398,7 +398,7 @@ class LessonsController < ApplicationController
     anchor_date = anchor_date + (7 - Time.zone.now.wday) if Time.zone.now.wday > 0
     @@num_weeks.times do |i|
       x = anchor_date - ((@@num_weeks - i - 1) * 7)
-      y = Lesson.ready.count(:conditions => "created_at < '#{x.to_s(:db)}'")
+      y = Lesson.ready.count(:conditions => "created_at < '#{(x + 1).to_s(:db)}'")
       max_count = y if y > max_count
       data1[i] = y
       x_values[i] = x.strftime("%B %d, %Y")
