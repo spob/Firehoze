@@ -352,7 +352,7 @@ class LessonsController < ApplicationController
     @graph2 = open_flash_chart_object(900,500,"/lessons/graph_code?type=lessons_by_category")
   end
 
-  @@num_weeks = 25
+  @@num_weeks = 52
 
   def graph_code
     if params[:type] == "lessons_by_time"
