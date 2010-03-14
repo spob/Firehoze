@@ -25,8 +25,8 @@ class UserLogonsController < ApplicationController
   def graph_code
     data1 = []
 
-	sql = ActiveRecord::Base.connection();
-	now = sql.execute("SELECT CURDATE()").fetch_row.first.to_date;
+	sql = ActiveRecord::Base.connection()
+	now = sql.execute("SELECT CURDATE()").fetch_row.first.to_date
     max_users = 0
     @@num_days.times do |i|
       x = now - i
