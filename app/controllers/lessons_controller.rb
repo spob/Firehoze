@@ -374,7 +374,7 @@ class LessonsController < ApplicationController
     pie.tooltip = '#val# of #total#<br>#percent# of 100%'
     pie.colours = ["#6D98AB", "#00275E", "#FEB729", "#A8B1B8", "#00FF99", "#006699", "#999999", "#FFFF33", "#3366FF", "#36CC00", "#6D98AB", "#CC9999", "#d01f3c", "#356aa0", "#C79810"]
 
-    Category.root.each do |c|
+    Category.root.visible_to_lessons.each do |c|
       values << PieValue.new(Lesson.ready.by_category(c.id).count, c.name)
     end
 
@@ -394,8 +394,10 @@ class LessonsController < ApplicationController
     x_values = []
 
     max_count = 0
+    anchor_date = Time.zone.now.to_date
+    anchor_date = anchor_date + (7 - Time.zone.now.wday) if Time.zone.now.wday > 0
     @@num_weeks.times do |i|
-      x = Time.now.to_date - Time.now.wday - ((@@num_weeks - i - 1) * 7)
+      x = anchor_date - ((@@num_weeks - i - 1) * 7)
       y = Lesson.ready.count(:conditions => "created_at < '#{x.to_s(:db)}'")
       max_count = y if y > max_count
       data1[i] = y
