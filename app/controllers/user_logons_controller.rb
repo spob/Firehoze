@@ -31,7 +31,6 @@ class UserLogonsController < ApplicationController
     @@num_days.times do |i|
       x = now - i
       y = User.unique_logons_by_date(i).count
-      logger.warn("======================== x is #{x.to_s}, #{y}")
       max_users = y if y > max_users
       data1 << ScatterValue.new(date_to_i(x),y)
     end

@@ -81,11 +81,13 @@ class User < ActiveRecord::Base
             id IN
             (SELECT user_id
             FROM user_logons
-            WHERE DATE(created_at) = date_sub(curdate(), INTERVAL ? DAY))
+            WHERE created_at >= ? and created_at < ?)
 END
   named_scope :unique_logons_by_date,
               lambda{ |days_ago| 
-              { :conditions => [logons_sql, days_ago] }}
+              { :conditions => [logons_sql,
+                                Time.mktime(Time.now.year,Time.now.month,Time.now.day) - (days_ago * 86400),
+                                Time.mktime(Time.now.year,Time.now.month,Time.now.day) - ((days_ago - 1) * 86400)] }}
 
   instructors_sql = %Q{
     length(address1) > 0 and
