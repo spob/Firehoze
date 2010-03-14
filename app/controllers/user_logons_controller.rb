@@ -26,13 +26,13 @@ class UserLogonsController < ApplicationController
     data1 = []
 
 	sql = ActiveRecord::Base.connection()
-	now = sql.execute("SELECT CURDATE()").fetch_row.first.to_date
+	now = Time.zone.now
     max_users = 0
     @@num_days.times do |i|
-      x = now - i
+      x = now - (i * 86400)
       y = User.unique_logons_by_date(i).count
       max_users = y if y > max_users
-      data1 << ScatterValue.new(date_to_i(x),y)
+      data1 << ScatterValue.new(x.to_i,y)
     end
 
     dot = HollowDot.new
@@ -45,7 +45,7 @@ class UserLogonsController < ApplicationController
     line.default_dot_style = dot
 
     x = XAxis.new
-    x.set_range(date_to_i(now - @@num_days), date_to_i(now))
+    x.set_range((now - (@@num_days * 86400)).to_i, now.to_i)
     x.steps = 86400
 
     labels = XAxisLabels.new
