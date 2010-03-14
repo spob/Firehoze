@@ -401,7 +401,7 @@ class LessonsController < ApplicationController
       y = Lesson.ready.count(:conditions => "created_at < '#{x.to_s(:db)}'")
       max_count = y if y > max_count
       data1[i] = y
-      x_values[i] = x.strftime("%m-%d")
+      x_values[i] = x.strftime("%B %d, %Y")
     end
 
     title = Title.new("Lessons")
@@ -410,7 +410,10 @@ class LessonsController < ApplicationController
     y = YAxis.new
     y.set_range(0, 5 * (max_count/5 + 1), 5)
     x = XAxis.new
-    x.set_labels x_values
+    labels = XAxisLabels.new
+    labels.set_labels x_values
+    labels.rotate = 90
+    x.set_labels labels
     chart = OpenFlashChart.new
     chart.set_title(title)
     chart.add_element(bar)
