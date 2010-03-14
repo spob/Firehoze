@@ -39,10 +39,7 @@
         <%= image_tag("howto/howto-upload/image001-enter-fields.png", :alt => 'Enter lesson fields') %>
         <li>Provide tags that will help students find your lessons</li>
         <li>Chose at least 5 free downloads so that your lesson will get rated</li>
-        <li>Chose a category that is appropriate to you lesson, select “Everything Else” if you cannot find a good match
-          and use the GetSatisfaction feedback option or send email to info@firehoze.com to request additional
-          categories
-        </li>
+        <li>Chose a category that is appropriate to you lesson, select “Everything Else” if you cannot find a good match and use the <%= link_to "GetSatisfaction", "http://getsatisfaction.com/firehoze/products/firehoze_firehoze_website" %> feedback option to request additional categories.</li>
         <li>Select the “Video” to be uploaded.</li>
         <li>Finally select “Create Lesson”. Ensure you have a high speed connection and your laptop is plugged into a
           power outlet (not running on batteries)
@@ -60,6 +57,17 @@
 
       <p>Note: Once uploaded, processing time ranges from 15 minutes to 2 hours depending on the number lessons that
         need to be processed. Please allow up to 24 hours before reporting an issue.</p>
+    </div>
+
+    <h5>My video file is very large and takes forever to upload. What can I do?</h5>
+
+    <div>
+      <p>Some video formats, for example avi files, can be quite large. There are a number of programs available, many of them free, available to convert your video files into formats which require less space. For example, a 400MB avi file can convert to a 40MB MPEG4 file. Take a look at <%= link_to "Top 10 Free Video Rippers, Encoders, and Converters", "http://lifehacker.com/software/lifehacker-top-10/top-10-free-video-rippers-encoders-and-converters-316478.php" %> for a list of some programs you might try.</p>
+      <p>If you use or have access to a computer that runs Windows, we suggest <%= link_to "Any Video Converter", "http://www.any-video-converter.com/products/for_video_free" %>, a free video conversion tool with which we at Firehoze have had good results. If you do choose to use <%= link_to "Any Video Converter", "http://www.any-video-converter.com/products/for_video_free" %>, we suggest selecting to convert to an MP4 file format and choose a frame size of "640x480" (as shown in the screen shot below).</p>
+
+      <%= image_tag("howto/howto-conversion/any-video-converter.png", :alt => 'Enter lesson fields') %>
+
+      <p>If you have good experiences with out programs &mdash; and particularly a program that we could recommend to our MacOS users &mdash; please provide us feedback at <%= link_to "GetSatisfaction", "http://getsatisfaction.com/firehoze/products/firehoze_firehoze_website" %>.</p>
     </div>
 
     <h5>Why should I offer free downloads?</h5>
