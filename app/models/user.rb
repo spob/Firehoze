@@ -86,8 +86,8 @@ END
   named_scope :unique_logons_by_date,
               lambda{ |days_ago| 
               { :conditions => [logons_sql,
-                                Time.mktime(Time.now.year,Time.now.month,Time.now.day) - (days_ago * 86400),
-                                Time.mktime(Time.now.year,Time.now.month,Time.now.day) - ((days_ago - 1) * 86400)] }}
+                                Time.mktime(Time.zone.now.year,Time.zone.now.month,Time.zone.now.day) - (days_ago * 86400),
+                                Time.mktime(Time.zone.now.year,Time.zone.now.month,Time.zone.now.day) - ((days_ago - 1) * 86400)] }}
 
   instructors_sql = %Q{
     length(address1) > 0 and
