@@ -1,8 +1,16 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
+require 'fast_context'
 
 class PromotionTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+
+  fast_context "given a promotion" do
+    setup do
+      @promotion = Factory.create(:promotion)
+    end
+
+    should_validate_presence_of :code, :promotion_type, :expires_at
+    should_validate_uniqueness_of :code
+    should_ensure_length_in_range :code, (0..15)
+    should_ensure_length_in_range :promotion_type, (0..50)
   end
 end
