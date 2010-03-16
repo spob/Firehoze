@@ -1,6 +1,6 @@
 class PromotionsController < ApplicationController
   before_filter :require_user
-  before_filter :find_promotion, :only => [ :show ]
+  before_filter :find_promotion, :only => [ :edit, :update, :destroy ]
 
   permit ROLE_PAYMENT_MGR
 
@@ -22,7 +22,7 @@ class PromotionsController < ApplicationController
 
   def new
     @promotion = Promotion.new(:expires_at => 30.days.since, :price => 0)
-    
+
     # disable the uniform plugin, otherwise the advanced search form is all @$@!# up
     @no_uniform_js = true
   end
@@ -34,11 +34,30 @@ class PromotionsController < ApplicationController
       redirect_to promotions_path
     else
       render :action => :new
+      @no_uniform_js = true
     end
   end
 
   def edit
-    
+    # disable the uniform plugin, otherwise the advanced search form is all @$@!# up
+    @no_uniform_js = true
+  end
+
+  def update
+    @promotion.attributes = params[:promotion]
+    if @promotion.save
+      flash[:notice] = t 'promotion.update_success'
+      redirect_to promotions_path
+    else
+      @no_uniform_js = true
+      render :action => :edit
+    end
+  end
+
+  def destroy
+    @promotion.destroy
+    flash[:notice] = t 'promotion.destroyed_success'
+    redirect_to promotions_path
   end
 
   private
