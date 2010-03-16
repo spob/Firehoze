@@ -37,6 +37,10 @@ class PromotionsController < ApplicationController
     end
   end
 
+  def edit
+    
+  end
+
   private
 
   def find_promotion

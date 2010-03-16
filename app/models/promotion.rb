@@ -16,6 +16,6 @@ class Promotion < ActiveRecord::Base
   private
 
   def strip_white
-    self.code = code.strip unless code.nil?
+    self.code = code.upcase.strip unless code.nil?
   end
 end

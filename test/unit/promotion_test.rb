@@ -41,7 +41,7 @@ class PromotionTest < ActiveSupport::TestCase
     should "strip white space from code" do
       @promotion.code = "  xxxx  "
       @promotion.save!
-      assert_equal "xxxx", @promotion.code
+      assert_equal "XXXX", @promotion.code
     end
   end
 end
