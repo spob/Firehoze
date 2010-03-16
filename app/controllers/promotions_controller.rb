@@ -20,6 +20,10 @@ class PromotionsController < ApplicationController
     @promotions = Promotion.list params[:page], cookies[:per_page] || ROWS_PER_PAGE
   end
 
+  def new
+    
+  end
+
   private
 
   def find_promotion
