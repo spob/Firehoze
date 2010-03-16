@@ -21,7 +21,7 @@ class PromotionsController < ApplicationController
   end
 
   def new
-    @promotion = Promotion.new(:expires_at => 30.days.since, :price => 0)
+    @promotion = Promotion.new(:expires_at => 30.days.since, :price => 0, :credit_quantity => 1)
 
     # disable the uniform plugin, otherwise the advanced search form is all @$@!# up
     @no_uniform_js = true

@@ -32,11 +32,13 @@ class PromotionsTest < ActionController::IntegrationTest
           click_link 'New Promotion'
           fill_in "promotion[code]", :with => "xxxx"
           fill_in "promotion[price]", :with => "0.25"
+          fill_in "promotion[credit_quantity]", :with => "23"
           fill_in "promotion[description]", :with => "blah blah blah"
           click_button "Create"
-          assert_contain "xxxx"
+          assert_contain "XXXX"
           assert_contain "$0.25"
           assert_contain "blah"
+          assert_contain "23"
         end
       end
     end

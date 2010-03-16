@@ -37,6 +37,13 @@
         </li>
         <li>
         <span>
+          <%= f.label :credit_quantity %>
+          <%= f.text_field :credit_quantity, :min => 1, :class => "required number" %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li>
+        <span>
           <%= f.label :expires_at %>
           <%= f.date_select :expires_at, :class => "required" %>
           <span class="required-field"></span>

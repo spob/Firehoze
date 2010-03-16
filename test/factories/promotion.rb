@@ -8,4 +8,5 @@ Factory.define :promotion, :class => Promotion do |promotion|
   promotion.expires_at { 20.days.since }
   promotion.description "This is my description"
   promotion.price 0.25
+  promotion.credit_quantity 2
 end

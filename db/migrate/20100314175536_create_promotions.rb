@@ -6,6 +6,7 @@ class CreatePromotions < ActiveRecord::Migration
       t.date :expires_at, :null => false
       t.text :description, :null => true
       t.float :price, :null => false
+      t.integer :credit_quantity, :null => false
 
       t.timestamps
     end  
