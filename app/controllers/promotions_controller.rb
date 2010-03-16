@@ -21,7 +21,20 @@ class PromotionsController < ApplicationController
   end
 
   def new
+    @promotion = Promotion.new(:expires_at => 30.days.since)
     
+    # disable the uniform plugin, otherwise the advanced search form is all @$@!# up
+    @no_uniform_js = true
+  end
+
+  def create
+    @promotion =  Promotion.new(params[:promotion])
+    if @promotion.save
+      flash[:notice] = t 'promotion.create_success'
+      redirect_to promotions_path
+    else
+      render :action => :new
+    end
   end
 
   private

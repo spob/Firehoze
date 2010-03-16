@@ -1,8 +1,8 @@
 <tr class="<%= cycle("even", "odd") -%>">
-  <td><%= strike_through(h(promotion.code), promotion.expires_at < Time.now) %></td>
-  <td><%= strike_through(number_to_currency(promotion.price), promotion.expires_at < Time.now) %></td>
-  <td><%= strike_through(h(promotion.promotion_type), promotion.expires_at < Time.now) %></td>
-  <td><%= strike_through(l(promotion.expires_at), promotion.expires_at < Time.now) %></td>
+  <td><%= strike_through(h(promotion.code), promotion.expires_at < Date.current) %></td>
+  <td><%= strike_through(number_to_currency(promotion.price), promotion.expires_at < Date.current) %></td>
+  <td><%= strike_through(h(promotion.promotion_type), promotion.expires_at < Date.current) %></td>
+  <td><%= strike_through(l(promotion.expires_at), promotion.expires_at < Date.current) %></td>
   <td><%= h(promotion.description) %></td>
   <td>
     <%= link_to 'edit', edit_promotion_path(promotion)  %>
