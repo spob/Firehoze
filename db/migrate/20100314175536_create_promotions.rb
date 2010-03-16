@@ -5,6 +5,7 @@ class CreatePromotions < ActiveRecord::Migration
       t.string :promotion_type, :null => false, :limit => 50
       t.datetime :expires_at, :null => false
       t.text :description, :null => true
+      t.float :price, :null => false
 
       t.timestamps
     end  

@@ -13,11 +13,18 @@ class PromotionTest < ActiveSupport::TestCase
 
     context "test attributes" do
       subject { @promotion }
-      
+
       should_validate_presence_of :code, :promotion_type, :expires_at
       should_validate_uniqueness_of :code
       should_ensure_length_in_range :code, (0..15)
       should_ensure_length_in_range :promotion_type, (0..50)
+      should_allow_values_for          :price, 0, 1, 22.23
+
+      # Apparently should not allow values for only works if you pass the error message you expect
+      # to see...though this is not clear in the shoulda documentation.
+      should_not_allow_values_for      :price, "a", :message => I18n.translate('activerecord.errors.messages.not_a_number')
+      should_not_allow_values_for      :price, -1,
+                                       :message => I18n.translate('activerecord.errors.messages.greater_than_or_equal_to', :count => 0)
     end
 
     should "strip white space from code" do

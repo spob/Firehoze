@@ -7,4 +7,5 @@ Factory.define :promotion, :class => Promotion do |promotion|
   promotion.promotion_type "PROMO1"
   promotion.expires_at { 20.days.since }
   promotion.description "This is my description"
+  promotion.price 0.25
 end
