@@ -26,6 +26,17 @@ class PromotionTest < ActiveSupport::TestCase
       should_not_allow_values_for      :price, -1,
                                        :message => I18n.translate('activerecord.errors.messages.greater_than_or_equal_to', :count => 0)
     end
+    
+    fast_context "and a couple more records" do
+      setup do
+        Factory.create(:promotion)
+        Factory.create(:promotion)
+      end
+
+      should "return rows" do
+        assert_equal 3, Promotion.list(1, 10).size
+      end
+    end
 
     should "strip white space from code" do
       @promotion.code = "  xxxx  "

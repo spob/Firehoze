@@ -1,0 +1,12 @@
+<tr class="<%= cycle("even", "odd") -%>">
+  <td><%= strike_through(h(promotion.code), promotion.expired_at < Time.now) %></td>
+  <td><%= strike_through(number_to_currency(promotion.price), promotion.expired_at < Time.now) %></td>
+  <td><%= strike_through(h(promotion.promotion_type), promotion.expired_at < Time.now) %></td>
+  <td><%= strike_through(l(promotion.will_expire_at), promotion.expired_at < Time.now) %></td>
+  <td><%= h(promotion.description) %></td>
+  <td>
+    <%= link_to 'edit', edit_promotion_path(promotion)  %>
+    <%= link_to 'delete', promotion_path(promotion), html_options = {:confirm => 'Are you sure?', :method => :delete} %>
+    <%= link_to "discounts", promotion_discounts_path(promotion) %>
+  </td>
+</tr>

@@ -6,7 +6,12 @@ class Promotion < ActiveRecord::Base
   validates_numericality_of :price, :greater_than_or_equal_to => 0, :allow_nil => true
 
   before_validation :strip_white
-
+               
+  # Basic paginated listing finder
+  def self.list(page, per_page)
+    paginate :page => page, :order => 'expires_at DESC',
+            :per_page => per_page
+  end
 
   private
 
