@@ -28,6 +28,15 @@ class PromotionsTest < ActionController::IntegrationTest
           assert_contain @promo2.code
           assert_contain @promo3.code
           assert_contain @promo4.code
+
+          click_link 'New Promotion'
+          fill_in "promotion[code]", :with => "xxxx"
+          fill_in "promotion[price]", :with => "0.25"
+          fill_in "promotion[description]", :with => "blah blah blah"
+          click_button "Create"
+          assert_contain "xxxx"
+          assert_contain "$0.25"
+          assert_contain "blah"
         end
       end
     end
