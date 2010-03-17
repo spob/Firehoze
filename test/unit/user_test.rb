@@ -58,6 +58,7 @@ class UserTest < ActiveSupport::TestCase
     should_have_many :payments
     should_have_many :activities
     should_belong_to :payment_level
+    should_belong_to :promotion
     should_have_and_belong_to_many :wishes
     should_have_and_belong_to_many :followers
     should_have_and_belong_to_many :followed_instructors

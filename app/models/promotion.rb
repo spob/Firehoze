@@ -1,4 +1,6 @@
 class Promotion < ActiveRecord::Base
+  has_many :users
+  
   validates_presence_of :code, :promotion_type, :expires_at, :price
   validates_uniqueness_of :code, :case_sensitive => false
   validates_length_of :code, :maximum => 15, :allow_nil => true

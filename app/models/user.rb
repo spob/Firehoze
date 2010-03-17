@@ -54,6 +54,7 @@ class User < ActiveRecord::Base
   has_many :reviews, :order => 'score desc, id', :dependent => :destroy
   has_many :helpfuls, :dependent => :destroy
   belongs_to :payment_level
+  belongs_to :promotion, :counter_cache => true
   has_and_belongs_to_many :wishes, :join_table => 'wishes', :class_name => 'Lesson'
   has_and_belongs_to_many :followed_instructors, :join_table => 'instructor_follows',
                           :class_name => 'User', :foreign_key => 'user_id', :association_foreign_key => 'instructor_id',

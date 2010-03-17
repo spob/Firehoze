@@ -19,6 +19,7 @@ class PromotionTest < ActiveSupport::TestCase
       should_ensure_length_in_range :code, (0..15)
       should_ensure_length_in_range :promotion_type, (0..50)
       should_allow_values_for          :price, 0, 1, 22.23
+      should_have_many :users
 
       # Apparently should not allow values for only works if you pass the error message you expect
       # to see...though this is not clear in the shoulda documentation.
