@@ -5,6 +5,7 @@
   <td><%= strike_through(promotion.credit_quantity, promotion.expires_at < Date.current) %></td>
   <td><%= strike_through(l(promotion.expires_at), promotion.expires_at < Date.current) %></td>
   <td><%= h(promotion.description) %></td>
+  <td><%= promotion.users.map { |u| link_to_profile(u) }.join(", ") %></td>
   <td>
     <%= link_to 'edit', edit_promotion_path(promotion)  %>
     <%= link_to 'delete', promotion_path(promotion), html_options = {:confirm => 'Are you sure?', :method => :delete} %>
