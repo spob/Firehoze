@@ -361,6 +361,7 @@ en:
     reviews: Reviews
     reviews_of: Reviews by {{user}}
     wishlist: Wishlist
+    bad_promo_code: The promotion code you entered is not recognized
 
   wish:
     create_success: Lesson added to your wish list

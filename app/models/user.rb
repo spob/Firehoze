@@ -13,8 +13,9 @@ class User < ActiveRecord::Base
   # Authorization plugin
   acts_as_authorized_user
 
-  before_validation :strip_fields
+  before_validation :pre_validate
   after_update :reprocess_avatar, :if => :cropping?
+  validate :additional_validation
 
   acts_as_authentic do |c|
     c.logged_in_timeout = 1.hour # log out after specified time
@@ -65,7 +66,6 @@ class User < ActiveRecord::Base
 
   # Active users
   named_scope :active, :conditions => {:active => true}
-
   named_scope :admins,
               :joins => [:roles],
               :conditions => { :roles => {:name => 'admin'}},
@@ -78,17 +78,17 @@ class User < ActiveRecord::Base
               :joins => [:roles],
               :conditions => { :roles => {:name => 'communitymgr'}},
               :order => :email
-    logons_sql = <<END
+  logons_sql = <<END
             id IN
             (SELECT user_id
             FROM user_logons
             WHERE created_at >= ? and created_at < ?)
 END
   named_scope :unique_logons_by_date,
-              lambda{ |days_ago| 
-              { :conditions => [logons_sql,
-                                Time.mktime(Time.zone.now.year,Time.zone.now.month,Time.zone.now.day) - (days_ago * 86400),
-                                Time.mktime(Time.zone.now.year,Time.zone.now.month,Time.zone.now.day) - ((days_ago - 1) * 86400)] }}
+              lambda{ |days_ago|
+                { :conditions => [logons_sql,
+                                  Time.mktime(Time.zone.now.year, Time.zone.now.month, Time.zone.now.day) - (days_ago * 86400),
+                                  Time.mktime(Time.zone.now.year, Time.zone.now.month, Time.zone.now.day) - ((days_ago - 1) * 86400)] }}
 
   instructors_sql = %Q{
     length(address1) > 0 and
@@ -106,6 +106,8 @@ END
 
   # Used to verify current password during password changes
   attr_accessor :current_password
+
+  attr_accessor :promo_code
 
   # Used for cropping
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
@@ -457,8 +459,13 @@ END
 
   private
 
-  def strip_fields
-    self.login = self.login.strip if self.login
+  def pre_validate
+    self.login = self.login.try(:strip)
+    self.promo_code = self.promo_code.try(:strip)
+    unless self.promo_code.blank?
+      self.promo_code = self.promo_code.upcase
+      self.promotion = Promotion.find_by_code(self.promo_code)
+    end
   end
 
   def round_to_penny amount
@@ -472,5 +479,12 @@ END
 
   def reprocess_avatar
     avatar.reprocess!
+  end
+
+  # Valid promo code?
+  def additional_validation
+    if !self.promo_code.blank? and self.promotion.nil?
+      errors.add_to_base(I18n.t('user.bad_promo_code'))
+    end
   end
 end
