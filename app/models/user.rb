@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
 
   before_validation :pre_validate
   after_update :reprocess_avatar, :if => :cropping?
+  after_create :create_promo_credits
   validate :additional_validation
 
   acts_as_authentic do |c|
@@ -485,6 +486,18 @@ END
   def additional_validation
     if !self.promo_code.blank? and self.promotion.nil?
       errors.add_to_base(I18n.t('user.bad_promo_code'))
+    end
+  end
+
+  def create_promo_credits
+    if self.promotion
+      self.promotion.credit_quantity.times do
+        Credit.create!(:sku => CreditSku.find_by_sku!(PROMO_CREDIT_SKU),
+                       :price => self.promotion.price,
+                       :user => self,
+                       :acquired_at => Time.now,
+                       :line_item => nil)
+      end
     end
   end
 end

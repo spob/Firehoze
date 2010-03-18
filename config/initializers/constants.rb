@@ -21,6 +21,7 @@ ROLE_PAYMENT_MGR = 'paymentmgr'
 # Skus
 CREDIT_SKU = 'CREDIT'
 FREE_CREDIT_SKU = 'FREE_CREDIT'
+PROMO_CREDIT_SKU = 'PROMO_CREDIT'
 GIFT_CERTIFICATE_SKU = 'GIFT_CERTIFICATE_SKU'
 
 # Configuration properties in the environment.yml file
