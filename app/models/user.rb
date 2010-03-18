@@ -464,7 +464,7 @@ END
     self.promo_code = self.promo_code.try(:strip)
     unless self.promo_code.blank?
       self.promo_code = self.promo_code.upcase
-      self.promotion = Promotion.find_by_code(self.promo_code)
+      self.promotion = Promotion.code_equals(self.promo_code).expires_at_greater_than(Date.current)
     end
   end
 
