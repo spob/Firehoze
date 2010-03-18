@@ -59,6 +59,12 @@
       </li>
       <li>
         <span>
+          <%= f.label :promo_code, "Promotion Code" %>
+          <%= f.text_field :promo_code, :maxlength => "40" %>
+        </span>
+      </li>
+      <li>
+        <span>
           <%= f.label :bio %>
           <%= f.text_area :bio %>
           <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>

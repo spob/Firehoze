@@ -7,6 +7,7 @@ navigation << [:lessons, { :name => 'Lessons', :location =>  list_admin_lessons_
 navigation << [:logons, { :name => 'Logons', :location =>  user_logons_path }] if current_user.is_an_admin? or current_user.is_a_communitymgr?
 navigation << [:flags, {:name => 'Flags', :location =>  flags_path }] if current_user.is_a_moderator?
 navigation << [:giftcerts, { :name => 'Gift Certs', :location =>  list_admin_gift_certificates_path('search[order]' => 'ascend_by_id') }] if current_user.is_a_paymentmgr?
+navigation << [:promos, { :name => 'Promos', :location =>  promotions_path }] if current_user.is_a_paymentmgr?
 navigation << [:groups, { :name => 'Groups', :location =>  list_admin_groups_path('search[order]' => 'ascend_by_name') }] if current_user.is_an_admin? or current_user.is_a_moderator?
 navigation << [:jobs, { :name => 'Jobs', :location =>  periodic_jobs_path }] if current_user.is_an_admin?
 navigation << [:orders, { :name => 'Orders', :location =>  orders_path }] if current_user.is_an_admin? or current_user.is_a_paymentmgr?

@@ -263,6 +263,11 @@ en:
   periodic_jobs:
     one_time_job_scheduled: Job has been scheduled to run one time
     run_now: Job scheduled to run now
+
+  promotion:
+    create_success: Successfully created promotion
+    update_success: Successfully updated promotion
+    destroyed_success: Successfully destroyed promotion
   
   account_settings:
     avatar_success: Hey, that's a nice picture!
@@ -356,6 +361,7 @@ en:
     reviews: Reviews
     reviews_of: Reviews by {{user}}
     wishlist: Wishlist
+    bad_promo_code: The promotion code you entered is not recognized
 
   wish:
     create_success: Lesson added to your wish list

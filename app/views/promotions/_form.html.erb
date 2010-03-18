@@ -1,0 +1,68 @@
+<% content_for :footer do -%>
+    <%= javascript_include_tag 'validation/promotions.validate.js' -%>
+<% end -%>
+
+<div class="fh-form">
+  <% form_for(@promotion, :html => {:id => 'promotion'}) do |f| %>
+      <%= f.error_messages %>
+      <ul id="discount-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3><%= heading %></h3>
+          <h4><%= subtext %></h4>
+
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :promotion_type %>
+          <%= f.select :promotion_type, PromotionsController.types, :disabled => !@promotion.new_record? %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :code %>
+          <%= f.text_field :code, :maxlength => "15", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :price %>
+          <%= f.text_field :price, :min => 0, :class => "required number" %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :credit_quantity %>
+          <%= f.text_field :credit_quantity, :min => 1, :class => "required number" %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :expires_at %>
+          <%= f.date_select :expires_at, :class => "required" %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :description %>
+          <%= f.text_area :description %>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+          <%= f.submit @promotion.new_record? ? 'Create' : 'Update' %>
+          <%= link_to 'Cancel', promotions_path %>
+        </span>
+
+          <div class="clear" />
+        </li>
+      </ul>
+  <% end %>
+</div>

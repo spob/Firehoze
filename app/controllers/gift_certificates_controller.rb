@@ -43,7 +43,7 @@ class GiftCertificatesController < ApplicationController
   # Redeem a gift certificate
   def redeem
     redeem_certificate(@gift_certificate)
-      redirect_to account_history_my_firehoze_path(:anchor => 'giftcerts')
+    redirect_to account_history_my_firehoze_path(:anchor => 'giftcerts')
   end
 
   def pregive
@@ -54,7 +54,7 @@ class GiftCertificatesController < ApplicationController
     @gift_certificate.to_user = params[:gift_certificate][:to_user]
     @gift_certificate.to_user_email = params[:gift_certificate][:to_user_email]
     @gift_certificate.give_comments = params[:gift_certificate][:give_comments]
-    
+
     @to_user = User.find_by_login_or_email(@gift_certificate.to_user, @gift_certificate.to_user_email)
     user_str = (@gift_certificate.to_user.blank? ? @gift_certificate.to_user_email : @gift_certificate.to_user)
     if @to_user.nil?

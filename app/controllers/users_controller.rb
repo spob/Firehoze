@@ -50,6 +50,7 @@ class UsersController < ApplicationController
       flash[:notice] = t 'user.account_reg_success'
       redirect_back_or_default my_firehoze_index_path
     else
+      @no_uniform_js = true
       render :action => :new
     end
   end

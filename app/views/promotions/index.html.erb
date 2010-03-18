@@ -1,0 +1,19 @@
+<% title "Promotions" -%>
+
+<h3>Promotions</h3>
+<p><%= link_to(content_tag(:span, 'New Promotion'), new_promotion_path, :class => :minibutton, :id => 'new') %></p>
+<table>
+  <tr>
+    <th>Code</th>
+    <th>Price</th>
+    <th>Type</th>
+    <th>Credits</th>
+    <th>Expires At</th>
+    <th>Description</th>
+    <th>Users</th>
+    <th>Action</th>
+  </tr>
+  <%= render @promotions %>
+</table>
+<%= will_paginate @promotions %>
+<p class="mt-1em">Rows to Display Per Page: <%= per_page_select(promotions_path) %></p>
