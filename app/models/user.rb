@@ -122,6 +122,7 @@ END
   validates_length_of :email, :maximum => 100, :allow_nil => true
   validates_length_of :last_name, :maximum => 40, :allow_nil => true
   validates_length_of :first_name, :maximum => 40, :allow_nil => true
+  validates_length_of :referred_by, :maximum => 40, :allow_nil => true
   validates_length_of :login, :maximum => 25, :allow_nil => true
   validates_format_of :login, :with => /\A\S*\z/, :message => "can only consist of letters, numbers and underscores", :allow_nil => true
 
