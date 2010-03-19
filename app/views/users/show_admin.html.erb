@@ -69,6 +69,16 @@
 </p>
 
 <p>
+    <b>Promotion Code:</b>
+    <%= h @user.promotion.try(:code) %>
+</p>
+
+<p>
+    <b>Referred By:</b>
+    <%= h @user.referred_by %>
+</p>
+
+<p>
     <b>Last login at:</b>
     <%= l @user.last_login_at if  @user.last_login_at %>
 </p>

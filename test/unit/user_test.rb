@@ -34,6 +34,7 @@ class UserTest < ActiveSupport::TestCase
     should_ensure_length_in_range :email, (6..100)
     should_ensure_length_in_range :last_name, (0..40)
     should_ensure_length_in_range :first_name, (0..40)
+    should_ensure_length_in_range :referred_by, (0..40)
     should_ensure_length_in_range :login, (0..25)
     should_have_many :credits
     should_have_many :gift_certificates

@@ -65,6 +65,12 @@
       </li>
       <li>
         <span>
+          <%= f.label :referred_by, "Who Told Your About Firehoze?" %>
+          <%= f.text_field :referred_by, :maxlength => "40" %>
+        </span>
+      </li>
+      <li>
+        <span>
           <%= f.label :bio %>
           <%= f.text_area :bio %>
           <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text)</span>
