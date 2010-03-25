@@ -9,8 +9,9 @@ class MyFirehozeController < ApplicationController
 
   def goto_remembered_tab
     if cookies[:my_firehoze_tab] and params[:clear].nil? and cookies[:my_firehoze_tab] != params[:action]
-      redirect_to :controller => 'my_firehoze', :action => cookies[:my_firehoze_tab]
-      return true
+      returning true do
+        redirect_to :controller => 'my_firehoze', :action => cookies[:my_firehoze_tab]
+      end
     end
     false
   end
