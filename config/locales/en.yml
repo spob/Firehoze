@@ -363,6 +363,10 @@ en:
     wishlist: Wishlist
     bad_promo_code: The promotion code you entered is not recognized
 
+  video:
+    convert: Convert
+    reconvert: Reconvert
+
   wish:
     create_success: Lesson added to your wish list
     delete_success: Lesson has been removed from your wish list
