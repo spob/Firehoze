@@ -46,6 +46,7 @@ class ProcessedVideo < Video
                 :video_height => job.output_media_file.height,
                 :video_file_size => job.output_media_file.size,
                 :video_duration => job.output_media_file.duration,
+                :video_file_name => job.output_media_file.url[/[^\/]*\z/],
                 :video_content_type => 'application/x-flv',
                 :processed_video_cost => zero_nvl(self.processed_video_cost) + job.output_media_file.cost.to_f,
                 :input_video_cost => zero_nvl(self.input_video_cost) + job.input_media_file.cost.to_f,
