@@ -8,7 +8,7 @@
   <%= simple_format h(@msg) %>
 </p>
 <p>
-  Sincerely, <%= h @from_user.full_name %>
+  Sincerely, <%= h @from_user.full_name %> (<%= mail_to(@from_user.email) %>)
 </p>
 <p>
   <%= link_to 'Sign In', @url %>

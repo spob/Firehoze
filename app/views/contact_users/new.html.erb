@@ -12,7 +12,8 @@
           <span></span>
 
           <h3>Contact <%= h @to_user.name_or_username %></h3>
-          <h4>Send a private message to <%= link_to_profile(@to_user) %></h4>
+          <h4>Send a private message to <%= link_to_profile(@to_user) %>.</h4>
+          <h4>Note that this will expose your email address to <%= link_to_profile(@to_user) %>.</h4>
           <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
         </li>
         <li>
