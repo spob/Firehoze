@@ -20,7 +20,7 @@
             <div class="item_container">
               <div class="tn"><%= img_tag_lesson_tn(buy_pair.other_lesson, :small) %></div>
               <div class="title"><%= link_to truncate(h(buy_pair.other_lesson.title), :length => 38), lesson_path(buy_pair.other_lesson) %></div>
-              <div class="instructor"><%= link_to(truncate(h(lesson.instructor.login)), lesson.instructor) %></div>
+              <div class="instructor"><%= link_to(truncate(h(buy_pair.other_lesson.instructor.login)), buy_pair.other_lesson.instructor) %></div>
             </div>
           <% end %>
         </div>
