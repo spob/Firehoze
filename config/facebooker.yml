@@ -12,7 +12,7 @@ development:
   api_key: 419bf494940ae7cff3651182b7871925
   secret_key: 56eac3b8d79aed58c6bbd45e06744c06
   canvas_page_name: facebook_fb
-  callback_url: http://spob.kicks-ass.net:3001
+  callback_url: http://spob.kicks-ass.net:3000
   pretty_errors: true
   set_asset_host_to_callback_url: false
 #  tunnel:
