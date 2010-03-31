@@ -28,7 +28,7 @@ test:
   canvas_page_name: facebook_fb
   callback_url: http://spob.kicks-ass.net:3001
   pretty_errors: true
-  set_asset_host_to_callback_url: true
+  set_asset_host_to_callback_url: false
 #  tunnel:
 #    public_host_username: 
 #    public_host: 
@@ -41,7 +41,7 @@ production:
   secret_key: 
   canvas_page_name: 
   callback_url: 
-  set_asset_host_to_callback_url: true   
+  set_asset_host_to_callback_url: false   
   tunnel:
     public_host_username: 
     public_host: 
