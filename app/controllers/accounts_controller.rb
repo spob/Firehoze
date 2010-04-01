@@ -8,7 +8,7 @@ class AccountsController < ApplicationController
   before_filter :find_user
   before_filter :set_no_uniform_js
 
-  verify :method => :put, :only => [ :update, :update_privacy, :update_instructor, :update_avatar, :update_instructor_wizard ], :redirect_to => :home_path
+  verify :method => :put, :only => [ :update, :update_privacy, :update_facebook, :update_instructor, :update_avatar, :update_instructor_wizard ], :redirect_to => :home_path
   verify :method => :post, :only => [ :clear_avatar, :request_instructor_reg_code ], :redirect_to => :home_path
 
 
@@ -130,6 +130,12 @@ class AccountsController < ApplicationController
   end
 
   def edit_avatar
+  end
+
+  def edit_facebook
+  end
+
+  def update_facebook
   end
 
   def edit_privacy

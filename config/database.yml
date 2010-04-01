@@ -13,7 +13,6 @@ test:
   adapter: mysql
   encoding: utf8
   database: firehoze_test
- # database: firehoze_test<%= ENV['TEST_ENV_NUMBER'] %>
   username: root
 
 production:

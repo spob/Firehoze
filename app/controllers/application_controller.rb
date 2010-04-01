@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_timezone
   before_filter :set_user_language
   before_filter :check_browser
+  before_filter :require_login_for_facebook
 
   protect_from_forgery :only => [:update, :delete, :create]
 
@@ -30,6 +31,17 @@ class ApplicationController < ActionController::Base
   def current_user
     return @current_user if defined?(@current_user)
     @current_user = current_user_session && current_user_session.attempted_record
+  end
+
+  def require_login_for_facebook
+    if params[:format] == 'fbml'
+      ensure_authenticated_to_facebook
+
+      if !session[:facebook_session].nil?
+        # we'll do something with users
+        # here in the next post about fb
+      end
+    end
   end
 
   # Retrieve the current shopping cart, instantiating a new one if one does not already exist
