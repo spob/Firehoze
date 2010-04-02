@@ -9,8 +9,9 @@
           <h4>You can integrate your Facebook account with your Firehoze account. By doing so you can automatically notify your Facebook friends when publish a lesson, create a group, and more.</h4>
 
           <% if current_user.facebook_id %>
+              <h4><%= link_to "Disconnect My Account from Facebook", clear_facebook_account_path(@user.id), :method => :post %></h4>
           <% else %>
-              <h4><%= link_to "Connect My Account to Facebook?", "http://apps.facebook.com/fb_firehoze" %></h4>
+              <h4><%= link_to "Connect My Account to Facebook", "http://apps.facebook.com/fb_firehoze/facebooks/connect/#{@facebook_key}", :popup => true %></h4>
           <% end %>
 
           <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
@@ -20,9 +21,6 @@
         <span class="unlabelled">
           <%= f.submit "Update", :id => "update-avatar" %>
           <%= link_to 'Cancel', home_path %>
-          <% if @user.avatar? %>
-          | <%= link_to('Delete current', clear_avatar_account_path(@user.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) %>
-          <% end %>
         </span>
 
               <div class="clear" />

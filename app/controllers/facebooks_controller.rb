@@ -2,17 +2,21 @@ class FacebooksController < ApplicationController
   ensure_authenticated_to_facebook
   ensure_application_is_installed_by_facebook_user
 
-  before_filter :require_user
+#  before_filter :require_user
 
-  def index
+  def connect
     set_facebook_session
     # if the session isn't secured, we don't have a good user id
     if facebook_session and
             facebook_session.secured? and
             !request_is_facebook_tab?
-      user = User.find(current_user.id)
-      user.update_attribute(:facebook_id, facebook_session.user.uid)
-      flash[:notice] = "Your facebook account has been associated to your Firehoze account"
+      @user = User.facebook_key_equals(params[:id]).first
+      if @user
+        @user.update_attributes(:facebook_id => facebook_session.user.uid, :facebook_key => nil)
+        flash[:notice] = "Your facebook account has been associated to your Firehoze account"
+      else
+        flash[:error] = "Can't find account to associate to"
+      end
     end
   end
 

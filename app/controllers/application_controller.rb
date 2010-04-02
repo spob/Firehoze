@@ -35,6 +35,7 @@ class ApplicationController < ActionController::Base
 
   def require_login_for_facebook
     if params[:format] == 'fbml'
+      @fb_url = my_firehoze_index_url
       ensure_authenticated_to_facebook
 
       if !session[:facebook_session].nil?

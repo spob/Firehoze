@@ -459,6 +459,13 @@ END
     @geometry[style] ||= Paperclip::Geometry.from_file(avatar.url(style))
   end
 
+  def facebook_session
+    @facebook_session ||=
+            returning Facebooker::Session.create do |session|
+              session.secure_with!(session_key, facebook_id, 1.day.from_now)
+            end
+  end
+
   private
 
   def pre_validate
