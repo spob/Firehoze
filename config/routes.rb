@@ -31,7 +31,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :carts, :only => [ :show ]
   map.resources :categories, :collection => { :explode => :post, :list_admin => :get }
   map.resources :contact_users, :only => [ :create, :new ]
-  map.resources :facebooks, :only => [ :index, :connect ], :member => { :connect => :get }
+  map.resources :facebook_invitations, :only => [ :new, :create ]
+  map.resources :facebooks, :only => [ :index, :connect, :new_invitation, :create_invitation ],
+                :member => { :connect => :get, :create_invitation => :post },
+                :collection => { :new_invitation => :get }
 #  map.resources :credits
   map.resources :flags, :only => [ :new, :create, :index, :show, :update, :edit ]
   map.check_gift_code "gift_certificates/check_gift_certificate_code", :controller => "gift_certificates", :action => "check_gift_certificate_code"

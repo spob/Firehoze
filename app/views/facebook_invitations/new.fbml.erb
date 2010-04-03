@@ -1,0 +1,10 @@
+<fb:fbml>
+  <fb:add-section-button section="profile" />
+  <% fb_multi_friend_request("Firehoze",
+                             "Invite your friends to join the Firehoze community.",
+                             facebook_invitations_path) do %>
+      Online learning -- get the help you need now.
+      <%= fb_req_choice("Join!",
+                        new_facebook_invitation_path(:from=>@from_user_id, :canvas=>true)) %>
+  <% end %>
+</fb:fbml>

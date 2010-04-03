@@ -436,7 +436,7 @@ class LessonsController < ApplicationController
       'content_in_tab'
     elsif %w(list_admin graph).include?(params[:action])
       'admin'
-    elsif %w(index).include?(params[:action])
+    elsif %w(index).include?(params[:action]) and params[:format] != 'fbml'
       'unrecognized'
     else
       'application'

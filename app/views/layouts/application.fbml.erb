@@ -2,12 +2,9 @@
   <%= stylesheet_link_tag "firehoze" %>
 
   <%= facebook_messages %>
-
   <br />
   <% fb_dashboard do %>
-      <% if @fb_url %>
-          <%= fb_action "Return to Firehoze", @fb_url %>
-      <% end %>
+      <%= fb_action "Invite your friends", new_facebook_invitation_path %>
   <% end %>
 
   <% fb_tabs do %>
