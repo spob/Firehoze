@@ -10,7 +10,8 @@ class Registration < ActiveUrl::Base
 
   attribute :email, :accessible => true
   attribute :username,  :accessible => true
-  attribute :registration_code, :accessible => true  
+  attribute :registration_code, :accessible => true
+  attribute :facebook_id,  :accessible => true
   attr_accessor :send_email
 
   # Used to verify if a registration is authorized (when restricting registrations)

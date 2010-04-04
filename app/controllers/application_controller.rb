@@ -120,7 +120,6 @@ class ApplicationController < ActionController::Base
 
   # helper method to require that a user is logged on...used within controllers
   def require_user url=nil
-    puts "here!!!!!"
     unless current_user
       if (url)
         store_location url
