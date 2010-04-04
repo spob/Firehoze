@@ -31,7 +31,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :carts, :only => [ :show ]
   map.resources :categories, :collection => { :explode => :post, :list_admin => :get }
   map.resources :contact_users, :only => [ :create, :new ]
-  map.resources :facebook_invitations
+  map.resources :facebook_invitations, :only => [ :create, :new ] 
   map.resources :facebooks, :only => [ :index, :connect, :new_invitation, :create_invitation ],
                 :member => { :connect => :get, :create_invitation => :post },
                 :collection => { :new_invitation => :get }

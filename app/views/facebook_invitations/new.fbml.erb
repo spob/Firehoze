@@ -4,5 +4,5 @@
                            facebook_invitations_path) do %>
     Check out Firehoze!
     <%= fb_req_choice("Join!",
-                      new_facebook_invitation_path(:from => @from_user_id, :canvas => true)) %>
+                      new_facebook_invitation_url(:from => @from_user_id, :canvas => true)) %>
 <% end %>

@@ -2,19 +2,12 @@ class FacebookInvitationsController < ApplicationController
 #  verify :method => :post, :only => [:create ], :redirect_to => :facebooks_path
 
   def new
-    if should_update_profile?
-      update_profile
-    end
+    update_profile if should_update_profile?
     @from_user_id = facebook_session.user.to_s
-#    friend_ids = params[:fb_sig_friends].split(/,/)
-#  	@not_potential_users =
-#  	  current_user.friends_with_senseis(friend_ids).map(&:facebook_id)
   end
 
   def create
-    puts "====================================================here"
     @sent_to_ids = params[:ids]
-    puts "====================================================there"
   end
 
   def should_update_profile?

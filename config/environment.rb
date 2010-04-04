@@ -173,6 +173,9 @@ Rails::Initializer.run do |config|
   s3_path = "#{RAILS_ROOT}/config/s3.yml"
   APP_CONFIG.merge!(YAML.load_file(s3_path)[RAILS_ENV])
 
+  # Facebooker doesn't play nicely with forgery protection, so set this to false.
+  config.action_controller.allow_forgery_protection = false
+  
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
   # (create the session table with "rake db:sessions:create")
