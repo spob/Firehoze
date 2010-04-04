@@ -14,11 +14,13 @@ class RegistrationsController < ApplicationController
     # handled by the users controller).
     @registration = Registration.new(params[:registration])
     @registration.registration_code = params[:registration][:registration_code]
+    @registration.facebook_id = facebook_session.user.to_i if facebook_session
     # The ActiveURL plugin can't differentiate between a creation and an update callback. So, I'm setting this
     # flag to true so that the confirmation will go out in this case, but not on subsequent updates to the
     # registration record
     @registration.send_email = true
-    if verify_recaptcha()
+    # If coming from facebook, we know it's not a robot
+    if verify_recaptcha() or facebook_session
       if @registration.save
         flash[:notice] = t 'registration.check_email_for_registration'
         if APP_CONFIG[CONFIG_ALLOW_UNRECOGNIZED_ACCESS]

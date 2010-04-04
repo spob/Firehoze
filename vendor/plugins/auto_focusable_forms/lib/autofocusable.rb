@@ -40,14 +40,14 @@ private
   end
 
   def tag_id field
-    "#{sanitized_object_name}_#{sanitized_method_name field}"
+    "#{sanitize_object_name}_#{sanitize_method_name field}"
   end
 
-  def sanitized_object_name
+  def sanitize_object_name
     @sanitized_object_name ||= @object_name.to_s.gsub(/[^-a-zA-Z0-9:.]/, "_").sub(/_$/, "")
   end
 
-  def sanitized_method_name field
+  def sanitize_method_name field
     field.to_s.sub(/\?$/,"")
   end
 end

@@ -1,7 +1,7 @@
 <% title "editing #{@user.name_or_username}'s account" %>
 
 <% content_for :footer do -%>
-  <%= javascript_include_tag 'validation/accounts.validate.js', 'validation/profile.count.js', :cache => 'accounts' -%>
+  <%= javascript_include_tag 'validation/accounts.validate.js' -%>
 <% end -%>
 
 <% # ACCOUNT SETTINGS -%>
@@ -10,17 +10,16 @@
 <div class="span-12">
   <div class="tab-container with-blue-panes">
     <ul class="tabs">
-      <li><a href="#tabs-1" class="current"><%= h(t('user.profile')) %></a></li>
+      <li><%= link_to h(t('user.profile')), edit_account_path(current_user) %></li>
       <li><%= link_to h(t('user.password')), edit_password_path(current_user) %></li>
       <li><%= link_to h(t('user.author_info')), edit_instructor_account_path(current_user) %></li>
       <li><%= link_to h(t('user.avatar')), edit_avatar_account_path(current_user) %></li>
       <li><%= link_to h(t('user.privacy')), edit_privacy_account_path(current_user) %></li>
-      <li><%= link_to h('Facebook'), edit_facebook_account_path(current_user) %></li>
+      <li><a href="#tabs-1" class="current"><%= h('Facebook') %></a></li>
     </ul>
-
     <div class="panes">
       <div id="interior-pane" class='clearfix'>
-        <%= render :partial => "accounts/forms/profile" %>
+        <%= render :partial => "accounts/forms/facebook" %>
       </div>
     </div>
   </div>

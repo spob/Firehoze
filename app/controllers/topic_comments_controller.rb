@@ -19,6 +19,7 @@ class TopicCommentsController < ApplicationController
       @topic_comment.user = current_user
       if @topic_comment.save
         flash[:notice] = t 'topic_comment.create_success'
+        FacebookPublisher.create_group_comment(@topic_comment, current_user.facebook_id) if current_user.facebook_id
         redirect_to topic_path(@topic)
       else
         render :action => 'new'

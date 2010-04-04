@@ -241,6 +241,7 @@ class UsersController < ApplicationController
     user = User.new(params[:user])
     user.email = @registration.email
     user.login = @registration.username
+    user.facebook_id = @registration.facebook_id
     user
   end
 end

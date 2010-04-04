@@ -338,6 +338,14 @@ END
     end
   end
 
+  def self.for_facebook_session(facebook_id, facebook_session=nil)
+    returning find_by_facebook_id(facebook_id) do |user|
+#      unless facebook_session.nil?
+#        user.store_session(facebook_session.session_key)
+#      end
+    end
+  end
+
   def username
     login
   end
@@ -457,6 +465,13 @@ END
   def avatar_geometry(style = :original)
     @geometry ||= {}
     @geometry[style] ||= Paperclip::Geometry.from_file(avatar.url(style))
+  end
+
+  def facebook_session
+    @facebook_session ||=
+            returning Facebooker::Session.create do |session|
+              session.secure_with!(session_key, facebook_id, 1.day.from_now)
+            end
   end
 
   private

@@ -1,0 +1,8 @@
+<fb:add-section-button section="profile" />
+<% fb_multi_friend_request("Firehoze",
+                           "Invite your friends to join the Firehoze community.",
+                           facebook_invitations_path) do %>
+    Check out Firehoze!
+    <%= fb_req_choice("Join!",
+                      new_facebook_invitation_url(:from => @from_user_id, :canvas => true)) %>
+<% end %>

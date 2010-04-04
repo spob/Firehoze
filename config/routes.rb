@@ -19,6 +19,9 @@ ActionController::Routing::Routes.draw do |map|
                              :update_privacy => :put,
                              :edit_instructor => :get,
                              :edit_avatar => :get,
+                             :edit_facebook => :get,
+                             :update_facebook => :put,
+                             :clear_facebook => :post,
                              :edit_privacy => :get,
                              :request_instructor_reg_code => :post },
                 :collection => { :instructor_agreement => :get }
@@ -28,6 +31,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :carts, :only => [ :show ]
   map.resources :categories, :collection => { :explode => :post, :list_admin => :get }
   map.resources :contact_users, :only => [ :create, :new ]
+  map.resources :facebook_invitations, :only => [ :create, :new, :index ] 
+  map.resources :facebooks, :only => [ :index, :connect ],
+                :member => { :connect => :get }
 #  map.resources :credits
   map.resources :flags, :only => [ :new, :create, :index, :show, :update, :edit ]
   map.check_gift_code "gift_certificates/check_gift_certificate_code", :controller => "gift_certificates", :action => "check_gift_certificate_code"
@@ -65,7 +71,7 @@ ActionController::Routing::Routes.draw do |map|
                         :convert => :post,
                         :lesson_notes => :get,
                         :rate => :post,
-#                        :recommend => :get,
+                        #                        :recommend => :get,
                         :stats => :get,
                         :show_groups => :get,
                         :watch => :get,

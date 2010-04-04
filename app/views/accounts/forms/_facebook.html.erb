@@ -1,0 +1,31 @@
+<div class="fh-form">
+  <% form_for(:user, :url => update_facebook_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "privacy" }) do |f| %>
+      <%= f.error_messages %>
+      <ul id="avatar-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3>Update Facebook Settings</h3>
+          <h4>You can integrate your Facebook account with your Firehoze account. By doing so you can automatically notify your Facebook friends when publish a lesson, create a group, and more.</h4>
+
+          <% if current_user.facebook_id %>
+              <h4><%= link_to "Disconnect My Account from Facebook", clear_facebook_account_path(@user.id), :method => :post %></h4>
+          <% else %>
+              <h4><%= link_to "Connect My Account to Facebook", "http://apps.facebook.com/fb_firehoze/facebooks/connect/#{@facebook_key}", :popup => true %></h4>
+          <% end %>
+
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
+        </li>
+        <% if current_user.facebook_id %>
+            <li class="bottom">
+        <span class="unlabelled">
+          <%= f.submit "Update", :id => "update-avatar" %>
+          <%= link_to 'Cancel', home_path %>
+        </span>
+
+              <div class="clear" />
+            </li>
+        <% end %>
+      </ul>
+  <% end %>
+</div>

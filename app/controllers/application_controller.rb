@@ -13,12 +13,15 @@ class ApplicationController < ActionController::Base
     redirect_to my_firehoze_index_path
   end
 
+  helper_attr :facebook_session
+  attr_accessor :facebook_session
   helper :all
   helper_method :current_user_session, :current_user
   filter_parameter_logging :password, :password_confirmation, :current_password, :card_number, :card_verification
   before_filter :set_timezone
   before_filter :set_user_language
   before_filter :check_browser
+  before_filter :require_login_for_facebook
 
   protect_from_forgery :only => [:update, :delete, :create]
 
@@ -30,6 +33,20 @@ class ApplicationController < ActionController::Base
   def current_user
     return @current_user if defined?(@current_user)
     @current_user = current_user_session && current_user_session.attempted_record
+  end
+
+  def require_login_for_facebook
+    if params[:format] == 'fbml'
+      ensure_authenticated_to_facebook
+      ensure_application_is_installed_by_facebook_user
+      set_facebook_session
+
+      if !session[:facebook_session].nil?
+        @facebook_session = session[:facebook_session]
+        # we'll do something with users
+        # here in the next post about fb
+      end
+    end
   end
 
   # Retrieve the current shopping cart, instantiating a new one if one does not already exist

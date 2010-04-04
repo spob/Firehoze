@@ -8,8 +8,8 @@ class AccountsController < ApplicationController
   before_filter :find_user
   before_filter :set_no_uniform_js
 
-  verify :method => :put, :only => [ :update, :update_privacy, :update_instructor, :update_avatar, :update_instructor_wizard ], :redirect_to => :home_path
-  verify :method => :post, :only => [ :clear_avatar, :request_instructor_reg_code ], :redirect_to => :home_path
+  verify :method => :put, :only => [ :update, :update_privacy, :update_facebook, :update_instructor, :update_avatar, :update_instructor_wizard ], :redirect_to => :home_path
+  verify :method => :post, :only => [ :clear_avatar, :clear_facebook, :request_instructor_reg_code ], :redirect_to => :home_path
 
 
   def instructor_signup_wizard
@@ -130,6 +130,26 @@ class AccountsController < ApplicationController
   end
 
   def edit_avatar
+  end
+
+  def edit_facebook
+    @facebook_key = ActiveSupport::SecureRandom.hex(10)
+    unless @user.facebook_id
+      User.find(@user.id).update_attribute(:facebook_key, @facebook_key)
+    end
+  end
+
+  def clear_facebook
+    if @user.facebook_id
+      User.find(current_user.id).update_attribute(:facebook_id, nil)
+      flash[:notice] = 'Your Facebook account is no longer associated to your Firehoze account'
+    else
+      flash[:error] = 'No Facebook account is associated to this user'
+    end
+    redirect_to edit_facebook_account_path(@user)
+  end
+
+  def update_facebook
   end
 
   def edit_privacy
