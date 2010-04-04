@@ -18,6 +18,10 @@ class FacebooksController < ApplicationController
     end
   end
 
+  def index
+    
+  end
+
   private
 
   # Scrub sensitive parameters from your log

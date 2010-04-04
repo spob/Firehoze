@@ -20,4 +20,8 @@ class FacebookInvitationsController < ApplicationController
             render_to_string(:partial=>"profile",
                              :locals=>{:from=>params[:from]})
   end
+
+  def index
+    redirect_to facebooks_path
+  end
 end
