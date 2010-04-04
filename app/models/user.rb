@@ -338,6 +338,14 @@ END
     end
   end
 
+  def self.for_facebook_session(facebook_id, facebook_session=nil)
+    returning find_by_facebook_id(facebook_id) do |user|
+#      unless facebook_session.nil?
+#        user.store_session(facebook_session.session_key)
+#      end
+    end
+  end
+
   def username
     login
   end

@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
     redirect_to my_firehoze_index_path
   end
 
+  helper_attr :facebook_session
+  attr_accessor :facebook_session
   helper :all
   helper_method :current_user_session, :current_user
   filter_parameter_logging :password, :password_confirmation, :current_password, :card_number, :card_verification
@@ -37,8 +39,10 @@ class ApplicationController < ActionController::Base
     if params[:format] == 'fbml'
       ensure_authenticated_to_facebook
       ensure_application_is_installed_by_facebook_user
+      set_facebook_session
 
       if !session[:facebook_session].nil?
+        @facebook_session = session[:facebook_session]
         # we'll do something with users
         # here in the next post about fb
       end
