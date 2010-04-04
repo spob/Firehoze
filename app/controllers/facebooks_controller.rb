@@ -3,7 +3,6 @@ class FacebooksController < ApplicationController
 #  before_filter :require_user
 
   def connect
-    set_facebook_session
     # if the session isn't secured, we don't have a good user id
     if facebook_session and
             facebook_session.secured? and
