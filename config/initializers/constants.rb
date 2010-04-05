@@ -57,6 +57,7 @@ CONFIG_CRAWLER_ACCESS  = 'crawler_access'
 CONFIG_FIREHOZE_INSTRUCTOR_GROUP_ID = 'firehoze_instructors_group_id'
 CONFIG_RESTRICT_INSTRUCTOR_SIGNUP = 'restrict_instructor_signup'
 CONFIG_FB_CANVAS = 'fb_canvas'
+CONFIG_FB_AUTH_TOKEN = 'fb_auth_token'
 
 # Configuration properties in the s3.yml file
 CONFIG_AWS_ACCESS_KEY_ID = 'access_key_id'

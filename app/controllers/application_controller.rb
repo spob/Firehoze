@@ -42,8 +42,10 @@ class ApplicationController < ActionController::Base
 
       if !session[:facebook_session].nil?
         @facebook_session = session[:facebook_session]
-        # we'll do something with users
-        # here in the next post about fb
+        user = User.for_facebook_session(@facebook_session.user.to_i, @facebook_session)
+        if user && @facebook_session.infinite? && user.session_key != @facebook_session.session_key
+          user.update_attribute(:session_key, @facebook_session.session_key)
+        end
       end
     end
   end

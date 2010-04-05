@@ -340,9 +340,15 @@ END
 
   def self.for_facebook_session(facebook_id, facebook_session=nil)
     returning find_by_facebook_id(facebook_id) do |user|
-#      unless facebook_session.nil?
+#      unless facebook_session.nil? or user.nil?
 #        user.store_session(facebook_session.session_key)
 #      end
+    end
+  end
+  
+  def store_session(session_key)
+    if self.session_key != session_key
+      update_attribute(:session_key,session_key)
     end
   end
 

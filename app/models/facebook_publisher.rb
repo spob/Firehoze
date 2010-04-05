@@ -4,10 +4,9 @@ class FacebookPublisher < Facebooker::Rails::Publisher
     short_story_template "{*actor*} created the Firehoze comment {*comment*} in group ", "<a href='{*comment_url*}'>{*group*}</a>"
   end
 
-  def group_comment(comment, facebook_user_id)
-    puts "================================================HERE!                                                       "
+  def group_comment(comment)
     send_as :user_action
-    from facebook_user_id
+    from comment.user.facebook_session.user
     data :images=>[image(Group.convert_logo_url_to_cdn(comment.topic.group.logo.url(:medium), :cdn),
                          group_url(comment.topic.group))],
                    :actor => "DogFood", :comment=>comment.body,

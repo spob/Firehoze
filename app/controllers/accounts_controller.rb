@@ -141,7 +141,7 @@ class AccountsController < ApplicationController
 
   def clear_facebook
     if @user.facebook_id
-      User.find(current_user.id).update_attribute(:facebook_id, nil)
+      User.find(current_user.id).update_attributes(:facebook_id => nil, :session_key => nil)
       flash[:notice] = 'Your Facebook account is no longer associated to your Firehoze account'
     else
       flash[:error] = 'No Facebook account is associated to this user'
