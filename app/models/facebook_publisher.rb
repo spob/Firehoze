@@ -8,8 +8,9 @@ class FacebookPublisher < Facebooker::Rails::Publisher
     send_as :publish_stream
     from comment.user.facebook_session.user
     target comment.user.facebook_session.user
-    message "added the comment #{truncate(comment.body, 50)} to the Firehoze group #{comment.topic.group.name}"
+    message "added the comment '#{truncate(comment.body, 50)}' to the topic #{comment.topic.title}"
     action_links [ action_link("View On Firehoze", absolute_path(:controller => 'topics', :action => 'show', :id => comment.topic)) ]
+    attachment :name => "#{comment.topic.group.name}", :href => absolute_path(:controller => 'groups', :action => 'show', :id => comment.topic.group), :description => "Firehoze Groups", :media => [{:type => 'image', :src => comment.topic.group.logo.url(:medium), :href => absolute_path(:controller => 'groups', :action => 'show', :id => comment.topic.group)}]
                                            
 #    send_as :user_action
 #    from comment.user.facebook_session.user
