@@ -1,8 +1,4 @@
 class FacebookPublisher < Facebooker::Rails::Publisher
-  def group_comment_template
-    one_line_story_template "{*actor*} created a Firehoze comment: {*comment*}"
-    short_story_template "{*actor*} created the Firehoze comment {*comment*} in group ", "<a href='{*comment_url*}'>{*group*}</a>"
-  end
 
   def group_comment(comment)
     send_as :publish_stream
@@ -10,14 +6,7 @@ class FacebookPublisher < Facebooker::Rails::Publisher
     target comment.user.facebook_session.user
     message "added the comment '#{truncate(comment.body, 50)}' to the topic #{comment.topic.title}"
     action_links [ action_link("View On Firehoze", absolute_path(:controller => 'topics', :action => 'show', :id => comment.topic)) ]
-    attachment :name => "#{comment.topic.group.name}", :href => absolute_path(:controller => 'groups', :action => 'show', :id => comment.topic.group), :description => "Firehoze Groups", :media => [{:type => 'image', :src => comment.topic.group.logo.url(:medium), :href => absolute_path(:controller => 'groups', :action => 'show', :id => comment.topic.group)}]
-                                           
-#    send_as :user_action
-#    from comment.user.facebook_session.user
-#    story_size SHORT
-#    #:images=>[ image(comment.topic.group.logo.url(:medium), group_url(comment.topic.group))],
-#    data :actor => comment.user.login, :comment=>comment.body,
-#         :comment_url=>topic_url(comment.topic, :canvas => false), :group=>comment.topic.group.name
+    attachment :name => "#{comment.topic.group.name}", :href => absolute_path(:controller => 'groups', :action => 'show', :id => comment.topic.group), :description => "Firehoze Groups", :media => [{:type => 'image', :src => Group.convert_logo_url_to_cdn(comment.topic.group.logo.url(:medium), :cdn), :href => absolute_path(:controller => 'groups', :action => 'show', :id => comment.topic.group)}]  
   end
 
   private
