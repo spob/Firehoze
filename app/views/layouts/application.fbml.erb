@@ -6,6 +6,14 @@
   <% fb_dashboard do %>
   <% end %>
 
+  <div id="grant-permissions">
+    <fb:prompt-permission perms="offline_access" next_fbjs="$('#grant-permissions').hide()">
+      <h2>Click here to allow Firehoze to post to your Facebook page.</h2>
+    </fb:prompt-permission>
+    Note: You can control what content Firehoze posts to your page, and you can turn it off at any time
+  </div>
+  <br />
+
   <% fb_tabs do %>
       <%= fb_tab_item "Home", lessons_path %>
       <%= fb_tab_item "Return to Firehoze.com", my_firehoze_index_url(:canvas => false) %>
