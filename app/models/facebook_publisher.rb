@@ -8,7 +8,7 @@ class FacebookPublisher < Facebooker::Rails::Publisher
     send_as :user_action
     from comment.user.facebook_session.user
     story_size SHORT
-    data :images=>[image(Group.convert_logo_url_to_cdn(comment.topic.group.logo.url(:medium), :cdn),
+    data :images=>[image(comment.topic.group.logo.url(:medium),
                          group_url(comment.topic.group))],
                    :actor => comment.user.login, :comment=>comment.body,
                    :comment_url=>topic_url(comment.topic), :group=>comment.topic.group.name
