@@ -37,7 +37,7 @@ class AccountsController < ApplicationController
     unless @user.instructor_signup_notified_at.present?
       RunOncePeriodicJob.create!(
               :name => 'Notify New Instructor',
-              :job => "User.notify_instructor_signup(#{@user.id})")
+              :job => "User.notify_instructor_signup(#{@user.id}, '#{@user.avatar_url}')")
     end
   end
 

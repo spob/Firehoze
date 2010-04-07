@@ -110,6 +110,10 @@ class Group < ActiveRecord::Base
     end
   end
 
+  def group_logo_url size
+    self.logo.file? ? self.logo.url(size) : Group.default_logo_url(size)
+  end
+
   def self.fetch_tagged_with category_id, tag, per_page, page
     Group.public.active.by_category(category_id).find_tagged_with(tag, :include => [:category]).paginate(:per_page => per_page, :page => page)
   end
