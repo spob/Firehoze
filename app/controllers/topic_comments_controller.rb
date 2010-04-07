@@ -19,7 +19,6 @@ class TopicCommentsController < ApplicationController
       @topic_comment.user = current_user
       if @topic_comment.save
         flash[:notice] = t 'topic_comment.create_success'
-        FacebookPublisher.deliver_group_comment(@topic_comment) if @topic_comment.user.session_key and !@topic.group.private
         redirect_to topic_path(@topic)
       else
         render :action => 'new'
