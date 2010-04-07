@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   helper_attr :facebook_session
   attr_accessor :facebook_session
   helper :all
-  helper_method :current_user_session, :current_user
+  helper_method :current_user_session, :current_user, :facebook_user
   filter_parameter_logging :password, :password_confirmation, :current_password, :card_number, :card_verification
   before_filter :set_timezone
   before_filter :set_user_language
@@ -35,6 +35,10 @@ class ApplicationController < ActionController::Base
     @current_user = current_user_session && current_user_session.attempted_record
   end
 
+  def facebook_user
+    @facebook_user
+  end
+
   def require_login_for_facebook
     if params[:format] == 'fbml'
       ensure_application_is_installed_by_facebook_user
@@ -42,9 +46,9 @@ class ApplicationController < ActionController::Base
 
       if !session[:facebook_session].nil?
         @facebook_session = session[:facebook_session]
-        user = User.for_facebook_session(@facebook_session.user.to_i, @facebook_session)
-        if user && @facebook_session.infinite? && user.session_key != @facebook_session.session_key
-          user.update_attribute(:session_key, @facebook_session.session_key)
+        @facebook_user = User.for_facebook_session(@facebook_session.user.to_i, @facebook_session)
+        if @facebook_user && @facebook_session.infinite? && user.session_key != @facebook_session.session_key
+          @facebook_user.update_attribute(:session_key, @facebook_session.session_key)
         end
       end
     end

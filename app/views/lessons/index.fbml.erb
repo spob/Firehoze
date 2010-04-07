@@ -1,6 +1,5 @@
-<% @user = User.for_facebook_session(facebook_session.user.to_i, facebook_session) %>
-<% if @user %>
-    Hey there <%= @user.try(:email) %>
+<% if @facebook_user %>
+    Hey there <%= @facebook_user.try(:email) %>
 <% else %>
     Welcome to Firehoze. <%= link_to "Sign up for a Firehoze account", new_registration_path %>.
 <% end %>
