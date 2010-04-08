@@ -7,7 +7,9 @@
   <% end %>
 
   <div id="grant-permissions">
-    <b><%= fb_prompt_permissions(['publish_stream','offline_access','status_update'], 'Click here to allow Firehoze to post to your Facebook News Feed') %></b>
+  <dfh
+  iv id="grant-permissions">
+    <b><%= fb_prompt_permissions(['publish_stream', 'offline_access'], 'Click here to allow Firehoze to post to your Facebook News Feed', 'location.reload()') %></b>
   </div>
   <br />
 

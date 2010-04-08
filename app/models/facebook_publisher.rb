@@ -10,6 +10,17 @@ class FacebookPublisher < Facebooker::Rails::Publisher
     attachment :name => comment.topic.group.name, :href => absolute_path(:controller => 'groups', :action => 'show', :id => comment.topic.group), :description => "Firehoze Groups", :media => [{:type => 'image', :src => logo_url, :href => absolute_path(:controller => 'groups', :action => 'show', :id => comment.topic.group)}]  
   end
 
+  def join_group(group_id, user_id, logo_url)
+    group = Group.find(group_id)
+    user = User.find(user_id)
+    send_as :publish_stream
+    from user.facebook_session.user
+    target user.facebook_session.user
+    message "joined the Firehoze group '#{group.name}'"
+    action_links [ action_link("View On Firehoze", absolute_path(:controller => 'groups', :action => 'show', :id => group)) ]
+    attachment :name => group.name, :href => absolute_path(:controller => 'groups', :action => 'show', :id => group), :description => "Firehoze Groups", :media => [{:type => 'image', :src => logo_url, :href => absolute_path(:controller => 'groups', :action => 'show', :id => group)}]
+  end
+
   def user_instructor(user_id, avatar_url)
     user = User.find(user_id)
     send_as :publish_stream
