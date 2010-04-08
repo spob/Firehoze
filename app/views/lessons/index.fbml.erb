@@ -5,7 +5,7 @@
     <% if @facebook_user.facebook_session.user.has_permissions?(['publish_stream', 'offline_access']) %>
         Hey there <%= @facebook_user.try(:email) %>
     <% else %>
-        Do you want to give Firehoze permission to post to your Facebook news feed?
+        You need to grant permissions within Facebook to allow Firehoze to publish to your news feed.
         <br />
         <br />
         <div id="grant-permissions">
