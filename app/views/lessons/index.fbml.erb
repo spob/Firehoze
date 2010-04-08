@@ -2,8 +2,11 @@
 <br />
 <br />
 <% if @facebook_user %>
+        <%= image_tag 'icons/16-check.png' %> Your facebook account is linked to your Firehoze account (<%= @facebook_user.login %>).
+        <br />
+        <br />
     <% if @facebook_user.facebook_session.user.has_permissions?(['publish_stream', 'offline_access']) %>
-        Hey there <%= @facebook_user.try(:email) %>
+        <%= image_tag 'icons/16-check.png' %> You have granted Firehoze permissions to post to your Facebook news feed.
     <% else %>
         You need to grant permissions within Facebook to allow Firehoze to publish to your news feed.
         <br />
