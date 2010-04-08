@@ -1,5 +1,23 @@
+<h2>Welcome to Firehoze.</h2>
+<br />
+<br />
 <% if @facebook_user %>
-    Hey there <%= @facebook_user.try(:email) %>
+    <% if @facebook_user.facebook_session.user.has_permissions?(['publish_stream', 'offline_access']) %>
+        Hey there <%= @facebook_user.try(:email) %>
+    <% else %>
+        Do you want to give Firehoze permission to post to your Facebook news feed?
+        <br />
+        <br />
+        <div id="grant-permissions">
+          <b><%= fb_prompt_permissions(['publish_stream', 'offline_access'], 'Click here to allow Firehoze to post to your Facebook news feed', 'location.reload()') %></b>
+        </div>
+    <% end %>
 <% else %>
-    Welcome to Firehoze. <%= link_to "Sign up for a Firehoze account", new_registration_path %>.
+    You do not have a Firehoze account associated to your Facebook account.
+    <br />
+    <br />
+    Don't have a Firehoze account? <%= link_to "Sign up for a Firehoze account", new_registration_path %>
+    <br />
+    <br />
+    Already have a Firehoze account? <%= link_to "Associate your Firehoze account to your Facebook account", absolute_path(:controller => 'accounts', :action => 'edit_facebook', :id => 1) %>
 <% end %>

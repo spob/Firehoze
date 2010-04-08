@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_timezone
   before_filter :set_user_language
   before_filter :check_browser
-  before_filter :require_login_for_facebook 
+  before_filter :require_login_for_facebook
 
   protect_from_forgery :only => [:update, :delete, :create]
 
@@ -47,9 +47,9 @@ class ApplicationController < ActionController::Base
       if !session[:facebook_session].nil?
         @facebook_session = session[:facebook_session]
         @facebook_user = User.for_facebook_session(@facebook_session.user.to_i, @facebook_session)
-        if @facebook_user && @facebook_session.infinite? && @facebook_session.session_key != @facebook_user.session_key
-          @facebook_user.update_attribute(:session_key, @facebook_session.session_key)
-        end
+        @facebook_user.update_attribute(:session_key, @facebook_session.session_key) if  @facebook_user and @facebook_session.infinite? and @facebook_session.session_key != @facebook_user.session_key
+        permission = @facebook_user.facebook_session.user.has_permissions?(['publish_stream', 'offline_access'])
+        @facebook_user.update_attribute(:has_fb_permissions, permission) unless permission == @facebook_user.has_fb_permissions
       end
     end
   end
