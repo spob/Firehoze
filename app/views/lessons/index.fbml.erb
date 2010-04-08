@@ -8,7 +8,7 @@
     <% if @facebook_user.facebook_session.user.has_permissions?(['publish_stream', 'offline_access']) %>
         <%= image_tag 'icons/16-check.png' %> You have granted Firehoze permissions to post to your Facebook news feed.
     <% else %>
-        You need to grant permissions within Facebook to allow Firehoze to publish to your news feed.
+        <%= image_tag 'icons/delete_16.png' %> You need to grant permissions within Facebook to allow Firehoze to publish to your news feed.
         <br />
         <br />
         <div id="grant-permissions">
@@ -16,7 +16,7 @@
         </div>
     <% end %>
 <% else %>
-    You do not have a Firehoze account associated to your Facebook account.
+    <%= image_tag 'icons/delete_16.png' %> You do not have a Firehoze account associated to your Facebook account.
     <br />
     <br />
     Don't have a Firehoze account? <%= link_to "Sign up for a Firehoze account", new_registration_path %>
