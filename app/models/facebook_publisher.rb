@@ -1,5 +1,5 @@
 class FacebookPublisher < Facebooker::Rails::Publisher
-  extend UrlHelper
+  include UrlHelper
 
   def topic_comment(comment_id, logo_url)
     comment = TopicComment.find(comment_id)
@@ -40,5 +40,15 @@ class FacebookPublisher < Facebooker::Rails::Publisher
     message "became a Firehoze instructor"
     action_links [ action_link("View On Firehoze", absolute_path(:controller => 'users', :action => 'show', :id => user)) ]
     attachment :name => user.login, :href => absolute_path(:controller => 'users', :action => 'show', :id => user), :description => "Firehoze Instructor", :media => [{:type => 'image', :src => avatar_url, :href => absolute_path(:controller => 'users', :action => 'show', :id => user)}]
+  end
+
+  def new_lesson(lesson_id)
+    lesson = Lesson.find(lesson_id)
+    send_as :publish_stream
+    from lesson.instructor.facebook_session.user
+    target lesson.instructor.facebook_session.user
+    message "published a new Firehoze lesson '#{lesson.title}'"
+    action_links [ action_link("View On Firehoze", absolute_path(:controller => 'lessons', :action => 'show', :id => lesson)) ]
+    attachment :name => lesson.title, :href => absolute_path(:controller => 'lessons', :action => 'show', :id => lesson), :description => "Firehoze Lesson", :media => [{:type => 'image', :src => lesson.sized_thumbnail_url(:small), :href => absolute_path(:controller => 'lessons', :action => 'show', :id => lesson)}]
   end
 end
