@@ -22,6 +22,6 @@ class FacebookInvitationsController < ApplicationController
   end
 
   def index
-    redirect_to facebooks_path
+    redirect_to lessons_path
   end
 end
