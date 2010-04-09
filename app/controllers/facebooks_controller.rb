@@ -12,13 +12,14 @@ class FacebooksController < ApplicationController
         @user.update_attributes(:facebook_id => facebook_session.user.uid, :facebook_key => nil)
         flash[:notice] = "Your facebook account has been associated to your Firehoze account"
       else
-        flash[:error] = "Can't find account to associate to"
+        flash[:error] = "Can't find a Firehoze account to which this Facebook account should be linked"
       end
+      redirect_to lessons_path
     end
   end
 
   def index
-    
+    redirect_to lessons_path
   end
 
   private
