@@ -1,0 +1,29 @@
+<tr>
+  <th>Username</th>
+  <th>Email</th>
+  <th>Name</th>
+  <th>Active</th>
+  <th>Instructor?</th>
+  <th>Action</th>
+</tr>
+
+<% users.each do |user| %>
+    <tr class="<%= cycle("even", "odd") -%>">
+      <td>
+        <%= link_to "#{h(user.login)}", show_admin_user_path(user) %>
+      </td>
+      <td><%= mail_to h(user.email) %></td>
+      <td><%= "#{h(user.first_name)} " unless user.first_name.nil? %><%= h(user.last_name) %></td>
+      <td><%= user.active ? "Yes" : "No" %></td>
+      <td><%= user.verified_instructor? ? "Yes" : "No" %></td>
+      <td>
+        <%= user_formatted_address(user, "<br />") if user.address_provided? %>
+      </td>
+      <td>
+        <% if current_user.is_an_admin? %>
+            <%= link_to "Edit", edit_user_path(user) %>&nbsp;
+        <% end %>
+        <%= link_to "Public", user_path(user) %>
+      </td>
+    </tr>
+<% end %>

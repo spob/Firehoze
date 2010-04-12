@@ -21,51 +21,19 @@
         <%= order @search, :by => :created_at %>&nbsp;
         <%= order @search, :by => :current_login_at %>&nbsp;
         <%= f.submit "Search" %>
+
+        &nbsp;&nbsp;&nbsp;
+        <b>View As:</b>
+        <%= link_to_if @view != 'logon', "Logon Info", list_users_path(:page => params[:page], :view => 'logon', :search => { :login_like => @login, :email_like => @email, :order => @order} ) %>
+        <%= link_to_if @view != 'contact', "Contact Info", list_users_path(:page => params[:page], :view => 'contact', :search => { :login_like => @login, :email_like => @email, :order => @order} ) %>
       </div>
   <% end %>
 </div>
 
 <div class="span-12">
   <table>
-    <tr>
-      <th>Username</th>
-      <th>Email</th>
-      <th>Name</th>
-      <th>Active</th>
-      <th>Instructor? (Lessons)</th>
-      <th>Success/Failure<br />Login Count</th>
-      <th>Last Login At</th>
-      <th><%= current_user.is_an_admin? ? "Last Login IP" : "Created At" %></th>
-      <th>Current Login At</th>
-      <th>Current Login IP</th>
-      <th>Action</th>
-    </tr>
-
-    <% @users.each do |user| %>
-        <tr class="<%= cycle("even", "odd") -%>">
-          <td>
-            <%= link_to "#{h(user.login)}", show_admin_user_path(user) %>
-          </td>
-          <td><%= mail_to h(user.email) %></td>
-          <td><%= "#{h(user.first_name)} " unless user.first_name.nil? %><%= h(user.last_name) %></td>
-          <td><%= user.active ? "Yes" : "No" %></td>
-          <td><%= user.verified_instructor? ? "Yes" : "No" %>
-            <%= "(#{user.instructed_lessons.ready.count})" if user.verified_instructor? %>
-          </td>
-          <td align="center"><%= user.login_count %>/<%= user.failed_login_count %></td>
-          <td><%= l user.last_login_at if user.last_login_at %></td>
-          <td><%= ((current_user.is_an_admin?) ? h(user.last_login_ip) : l(user.created_at)) %></td>
-          <td><%= l user.current_login_at if user.current_login_at %></td>
-          <td><%= h user.current_login_ip %></td>
-          <td>
-            <% if current_user.is_an_admin? %>
-                <%= link_to "Edit", edit_user_path(user) %>&nbsp;
-            <% end %>
-            <%= link_to "Public", user_path(user) %>
-          </td>
-        </tr>
-    <% end %>
-
+    <%= render :partial => 'users_list', :locals => { :users => @users } if @view == 'logon' %>
+    <%= render :partial => 'users_contact_list', :locals => { :users => @users } if @view == 'contact' %>
   </table>
 </div>
 <p><%= will_paginate @users %></p>
