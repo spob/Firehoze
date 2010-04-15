@@ -1,0 +1,87 @@
+Forms that support auto formatting provide several options to allow you to format the content of the field:
+
+<table>
+  <tr>
+    <th>Format</th>
+    <th>Raw Text</th>
+    <th>Produces</th>
+  </tr>
+  <tr>
+    <td>Bold</td>
+    <td>*some text*</td>
+    <td><b>some text</b></td>
+  </tr>
+  <tr>
+    <td>Italics</td>
+    <td>_some other text_</td>
+    <td><i>some other text</i></td>
+  </tr>
+  <tr>
+    <td>Bulletized List</td>
+    <td>* Washington<br />* Adams<br />* Jefferson</td>
+    <td>
+      <ul>
+        <li>Washington</li><li>Adams</li><li>Jefferson</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>Numeric List</td>
+    <td># Madison<br /># Monroe<br /># Adams</td>
+    <td>
+      <ol>
+        <li>Madison</li><li>Monroe</li><li>Adams</li>
+      </ol>
+    </td>
+  </tr>
+  <tr>
+    <td>Links</td>
+    <td>This is a link http://www.firehoze.com</td>
+    <td>This is a link <%= link_to "http://www.firehoze.com", "http://www.firehoze.com" %></td>
+  </tr>
+</table>
+<br />
+<p align="center"><b>The following text</b></p>
+For example, *this* text will _produce text_ that looks like the text below.
+<br /><br />
+The formatting capability includes:
+<br />
+* bold<br />
+* italics<br />
+* automatically recognizing links<br />
+* both bulletized and numeric lists<br />
+<br />
+Also, you can have a numeric list such as:
+<br />
+# Sneezy<br />
+# Sleepy<br />
+# Dopey<br />
+# Doc<br />
+# Happy<br />
+# Bashful<br />
+# Grumpy<br />
+<br />
+and last but not least, you can embed url's such as http://www.firehoze.com directly within the text.
+<br /><hr />
+<p align="center"><b>Produces:</b></p>
+For example, <b>this</b> text will <i>produce text</i> that looks like the text below.
+<br /><br />
+The formatting capability includes:
+<br />
+<ul>
+  <li>bold</li>
+  <li>italics</li>
+  <li>automatically recognizing links</li>
+  <li>both bulletized and numeric lists</li>
+</ul>
+Also, you can have a numeric list such as:
+<ol>
+  <li>Sneezy</li>
+  <li>Sleepy</li>
+  <li>Dopey</li>
+  <li>Doc</li>
+  <li>Happy</li>
+  <li>Bashful</li>
+  <li>Grumpy</li>
+</ol>
+and last but not least, you can embed url's such as <%= link_to "http://www.firehoze.com", "http://www.firehoze.com" %> directly within the text.
