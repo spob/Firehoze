@@ -66,6 +66,12 @@
     <%= image_tag("FAQs/facebook/done.png", :alt => 'All set') %>
   </div>
 
+  <h5>How can I stop Firehoze from posting to my Facebook news feed?</h5>
+
+  <div>
+    <p>Navigate to <%= link_to_if current_user, "Account Settings", edit_facebook_account_path(current_user ? current_user : "1") %> and select the <%= link_to_if current_user, "Facebook", edit_facebook_account_path(current_user ? current_user : "1") %> tab. Click the link <%= link_to_if current_user, "Disconnect My Account from Facebook", clear_facebook_account_path(current_user ? current_user.id : 1), :method => :post %>.</p>
+  </div>
+
   <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
 </div>
 
