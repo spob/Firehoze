@@ -54,6 +54,18 @@
       you'd be interested in helping us translate the site into another language, we'd love to know that as well.</p>
   </div>
 
+  <h5>How can I link my Firehoze account to my Facebook account?</h5>
+
+  <div>
+    <p>You can link your Facebook account to your Firehoze account. Doing so will allow Firehoze to post to your Facebook news feed when you perform actions such as publish a lesson, or create or join a Firehoze group.</p>
+    <p>To link your account, navigate to <%= link_to_if current_user, "Account Settings", edit_facebook_account_path(current_user ? current_user : "1") %> and select the <%= link_to_if current_user, "Facebook", edit_facebook_account_path(current_user ? current_user : "1") %> tab, and click on the <%= link_to_if current_user, "Connect My Account to Facebook", "http://apps.facebook.com/#{APP_CONFIG[CONFIG_FB_CANVAS]}/facebooks/connect/#{@facebook_key}", :popup => true %> link as shown below:</p>
+    <%= image_tag("FAQs/facebook/connect.png", :alt => 'Connect your Firehoze Account to Facebook') %>
+    <p>Firehoze will navigate to Facebook, asking you to log on to Facebook if you have not already done so. When prompted, choose to install the Firehoze Facebook application. Your screen should then look as follows:</p>
+    <%= image_tag("FAQs/facebook/grant.png", :alt => 'Grant Firehoze access') %>
+    <p>Lastly, you will need to grant access permission to publish to your news feed. You can do so by click on the link "Click here to allow Firehoze to post to your Facebook news feed". Your screen should now look at follows:</p>
+    <%= image_tag("FAQs/facebook/done.png", :alt => 'All set') %>
+  </div>
+
   <p>&nbsp;&uarr;<a href="#top" class="top anchorLink">return to top</a></p>
 </div>
 
