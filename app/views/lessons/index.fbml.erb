@@ -1,0 +1,30 @@
+<h2>Welcome to Firehoze.</h2>
+<br />
+<br />
+<% if @facebook_user %>
+        <%= image_tag 'icons/16-check.png' %> Your facebook account is linked to your Firehoze account (<%= @facebook_user.login %>).
+        <br />
+        <br />
+    <% if @facebook_user.facebook_session.user.has_permissions?(['publish_stream', 'offline_access']) %>
+        <%= image_tag 'icons/16-check.png' %> You have granted Firehoze permissions to post to your Facebook news feed.
+        <br />
+        <br />
+        <br />
+        <fb:add-section-button section="profile" />
+    <% else %>
+        <%= image_tag 'icons/delete_16.png' %> You need to grant permissions within Facebook to allow Firehoze to publish to your news feed.
+        <br />
+        <br />
+        <div id="grant-permissions">
+          <b><%= fb_prompt_permissions(['publish_stream', 'offline_access'], 'Click here to allow Firehoze to post to your Facebook news feed', 'location.reload()') %></b>
+        </div>
+    <% end %>
+<% else %>
+    <%= image_tag 'icons/delete_16.png' %> You do not have a Firehoze account associated to your Facebook account.
+    <br />
+    <br />
+    Don't have a Firehoze account? <%= link_to "Sign up for a Firehoze account", new_registration_path %>
+    <br />
+    <br />
+    Already have a Firehoze account? <%= link_to "Associate your Firehoze account to your Facebook account", absolute_path(:controller => 'accounts', :action => 'edit_facebook', :id => 1) %>
+<% end %>

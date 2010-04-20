@@ -88,3 +88,12 @@ firehoze_instructors_group_id: -1
 
 # Require a registration code to become an instructor
 restrict_instructor_signup: false
+
+# Require a registration code to become an instructor
+restrict_instructor_signup: false
+
+# Canvas name in facebook
+fb_canvas: fb_firehoze
+
+# Facebook auth token
+fb_auth_token: HZ24SE

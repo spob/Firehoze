@@ -1,0 +1,39 @@
+<div class="fh-form">
+  <% form_for(:user, :url => update_facebook_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "privacy" }) do |f| %>
+      <%= f.error_messages %>
+      <ul id="avatar-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3>Update Facebook Settings</h3>
+          <h4>You can integrate your Facebook account with your Firehoze account. By doing so you can automatically notify your Facebook friends when publish a lesson, create a group, and more.</h4>
+
+          <% if current_user.facebook_id %>
+              <h4><%= link_to "Disconnect My Account from Facebook", clear_facebook_account_path(@user.id), :method => :post %></h4>
+              <% unless current_user.session_key and current_user.has_fb_permissions %>
+                  <h4>You need to grant permissions within Facebook to allow Firehoze to publish to your news feed: <%= link_to "Grant Permissions", "http://apps.facebook.com/#{APP_CONFIG[CONFIG_FB_CANVAS]}/", :popup => true %></h4>
+              <% end %>
+          <% else %>
+              <h4><%= link_to "Connect My Account to Facebook", "http://apps.facebook.com/#{APP_CONFIG[CONFIG_FB_CANVAS]}/facebooks/connect/#{@facebook_key}", :popup => true %></h4>
+          <% end %>
+
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
+        </li>
+        <% if false and current_user.facebook_id and current_user.session_key and current_user.has_fb_permissions %>
+            <li>
+        <span class="unlabelled">
+          <%= f.check_box :publish_to_fb %> Publish Firehoze updates to your Facebook news feed?
+        </span>
+            </li>
+            <li class="bottom">
+        <span class="unlabelled">
+          <%= f.submit "Update", :id => "update-avatar" %>
+          <%= link_to 'Cancel', home_path %>
+        </span>
+
+              <div class="clear" />
+            </li>
+        <% end %>
+      </ul>
+  <% end %>
+</div>

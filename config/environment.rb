@@ -52,7 +52,7 @@ Rails::Initializer.run do |config|
   config.gem "activemerchant", :lib => "active_merchant", :version => "1.4.2"
 
   # browser detection
-  config.gem "spob_browser_detector", :version => '1.0.1', :source => 'http://gemcutter.org'
+  config.gem "spob_browser_detector", :version => '1.0.2', :source => 'http://gemcutter.org'
 
   # tagging
   config.gem 'jviney-acts_as_taggable_on_steroids', :lib => 'acts_as_taggable', :source => 'http://gems.github.com', :version => '~>1.1'
@@ -68,6 +68,9 @@ Rails::Initializer.run do |config|
 
   # For periodic job processing
   config.gem 'daemons'
+
+  # For facebook integration
+  config.gem 'facebooker'
 
   # Notifier for application errors
   config.gem 'hoptoad_notifier'
@@ -170,6 +173,9 @@ Rails::Initializer.run do |config|
   s3_path = "#{RAILS_ROOT}/config/s3.yml"
   APP_CONFIG.merge!(YAML.load_file(s3_path)[RAILS_ENV])
 
+  # Facebooker doesn't play nicely with forgery protection, so set this to false.
+  config.action_controller.allow_forgery_protection = false
+  
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
   # (create the session table with "rake db:sessions:create")

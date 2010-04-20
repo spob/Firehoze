@@ -1,0 +1,19 @@
+<fb:fbml version="1.1">
+  <%= stylesheet_link_tag "firehoze" %>
+
+  <%= facebook_messages %>
+  <br />
+  <% fb_dashboard do %>
+  <% end %>
+
+  <br />
+
+  <% fb_tabs do %>
+      <%= fb_tab_item "Home", lessons_path %>
+      <%= fb_tab_item "Return to Firehoze.com", my_firehoze_index_url(:canvas => false) %>
+      <%= fb_tab_item "Invite your friends", new_facebook_invitation_path %>
+      <%= fb_tab_item "Help &amp; Feedback", fb_about_url, :align => "right" %>
+  <% end %>
+  <br />
+  <%= yield %>
+</fb:fbml>

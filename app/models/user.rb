@@ -338,15 +338,33 @@ END
     end
   end
 
+  def self.for_facebook_session(facebook_id, facebook_session=nil)
+    returning find_by_facebook_id(facebook_id) do |user|
+#      unless facebook_session.nil? or user.nil?
+#        user.store_session(facebook_session.session_key)
+#      end
+    end
+  end
+
+  def store_session(session_key)
+    if self.session_key != session_key
+      update_attribute(:session_key, session_key)
+    end
+  end
+
   def username
     login
   end
 
-  def self.notify_instructor_signup user_id
+  def self.notify_instructor_signup user_id, avatar_url
     user = User.find(user_id)
     unless user.instructor_signup_notified_at.present?
       Notifier.deliver_instructor_sign_up(user)
       user.update_attribute(:instructor_signup_notified_at, Time.now)
+
+      RunOncePeriodicJob.create!(
+              :name => 'Post User Instructor to Facebook',
+              :job => "FacebookPublisher.deliver_user_instructor(#{user.id}, '#{avatar_url}')") if user.session_key
     end
   end
 
@@ -459,7 +477,28 @@ END
     @geometry[style] ||= Paperclip::Geometry.from_file(avatar.url(style))
   end
 
+  def facebook_session
+    @facebook_session ||=
+            returning Facebooker::Session.create do |session|
+              session.secure_with!(session_key, facebook_id, 1.day.from_now)
+            end
+  end
+
+
+  def avatar_url(options = {})
+    url_type = options[:url] || :cdn
+    convert_to_cdn(self.avatar.url(options[:size] || :medium), url_type)
+  end
+
   private
+
+  def convert_to_cdn(url, url_type)
+    if url_type == :cdn and self.avatar.path
+      User.convert_avatar_url_to_cdn(url)
+    else
+      url
+    end
+  end
 
   def pre_validate
     self.login = self.login.try(:strip)

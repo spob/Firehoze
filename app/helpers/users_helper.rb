@@ -37,8 +37,7 @@ module UsersHelper
 
   def avatar_tag(user, options = {})
     if user
-      url_type = options[:url] || :cdn
-      image_tag convert_to_cdn(user, user.avatar.url(options[:size] || :medium), url_type), options.merge({ :alt => h(privacy_sensitive_username(user)), :class => 'avatar' })
+      image_tag user.avatar_url(options), options.merge({ :alt => h(privacy_sensitive_username(user)), :class => 'avatar' })
     end
     # pass a value
     #for :url other than :cdn in order to force the avatar to be rendered from S3 (as opposed to
@@ -58,7 +57,7 @@ module UsersHelper
   end
 
   def avatar_link_to(user, options)
-    link_to avatar_tag(user, options), user_path(user),  :title => h(privacy_sensitive_username(user)) if user
+    link_to avatar_tag(user, options), user_path(user), :title => h(privacy_sensitive_username(user)) if user
   end
 
   def payment_levels_for_select
@@ -70,14 +69,6 @@ module UsersHelper
   end
 
   private
-
-  def convert_to_cdn(user, url, url_type)
-    if url_type == :cdn and user.avatar.path
-      User.convert_avatar_url_to_cdn(url)
-    else
-      url
-    end
-  end
 
   def convert_size_to_pixels size
     case size

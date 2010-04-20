@@ -1,0 +1,9 @@
+<h2>Firehoze Account Sign Up</h2>
+<p>Membership has its privileges. Join Firehoze to watch full lessons, rate and review lessons, follow instructors, create and join groups and participate in online discussions.</p>
+<% facebook_form_for(:registration, @registration, :url => registrations_path) do |f| %>
+    <br />
+    <%= f.error_messages %>
+    <%= f.text_field :username, :label => "Facebook Username" %>
+    <%= f.text_field :email, :label => "Email Address" %>
+    <%= f.buttons "Request Firehoze Account" %>
+<% end %>

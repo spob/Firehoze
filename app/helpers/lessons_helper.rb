@@ -1,6 +1,8 @@
 #require 'markaby'
 
 module LessonsHelper
+  include UrlHelper
+  
   def meta_description(description)
     content_for(:description) { description }
   end

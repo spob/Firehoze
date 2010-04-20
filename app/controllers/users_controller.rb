@@ -20,6 +20,18 @@ class UsersController < ApplicationController
   def list
     @search = User.searchlogic(params[:search])
     @users = @search.paginate(:page => params[:page], :per_page => (cookies[:per_page] || ROWS_PER_PAGE))
+
+    if params[:search]
+      @order = params[:search][:order]
+      @login = params[:search][:login_like]
+      @email = params[:search][:email_like]
+    end
+    if params[:view] == 'logon' or cookies[:users_view_type].nil?
+      cookies[:users_view_type] = 'logon'
+    elsif params[:view] == 'contact'
+      cookies[:users_view_type] = 'contact'
+    end
+    @view = cookies[:users_view_type]
   end
 
   def new
@@ -241,6 +253,7 @@ class UsersController < ApplicationController
     user = User.new(params[:user])
     user.email = @registration.email
     user.login = @registration.username
+    user.facebook_id = @registration.facebook_id
     user
   end
 end
