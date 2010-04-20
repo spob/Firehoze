@@ -52,7 +52,7 @@ Rails::Initializer.run do |config|
   config.gem "activemerchant", :lib => "active_merchant", :version => "1.4.2"
 
   # browser detection
-  config.gem "spob_browser_detector", :version => '1.0.1', :source => 'http://gemcutter.org'
+  config.gem "spob_browser_detector", :version => '1.0.2', :source => 'http://gemcutter.org'
 
   # tagging
   config.gem 'jviney-acts_as_taggable_on_steroids', :lib => 'acts_as_taggable', :source => 'http://gems.github.com', :version => '~>1.1'
