@@ -1,10 +1,17 @@
 <h2>Welcome to Firehoze.</h2>
 <br />
+<p><b>Using the Firehoze Facebook application, you can:</b></p>
+  <ol>
+    <li>Automatically post to your wall when you publish a lesson, create or join a group, or add a comment to a public group discussion thread.</li>
+    <li>Invite your friends to become Firehoze users.</li>
+    <li>Join the Firehoze community on Facebook.</li>
+  </ol>
+<br />
 <br />
 <% if @facebook_user %>
-        <%= image_tag 'icons/16-check.png' %> Your facebook account is linked to your Firehoze account (<%= @facebook_user.login %>).
-        <br />
-        <br />
+    <%= image_tag 'icons/16-check.png' %> Your facebook account is linked to your Firehoze account (<%= @facebook_user.login %>).
+    <br />
+    <br />
     <% if @facebook_user.facebook_session.user.has_permissions?(['publish_stream', 'offline_access']) %>
         <%= image_tag 'icons/16-check.png' %> You have granted Firehoze permissions to post to your Facebook news feed.
         <br />
