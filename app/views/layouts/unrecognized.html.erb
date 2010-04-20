@@ -30,10 +30,12 @@
   <!--[if IE 6]><%= stylesheet_link_tag 'ie/ie6', :media => "screen, projection" %><![endif]-->
 
   <% # Javascript Libraries %>
-  <%= google_jquery(:version => '1.3.2', :local => Rails.env.development?) %>
+  <%#= google_jquery(:version => '1.4.2', :local => Rails.env.development?) %>
+  <%= google_jquery :version => '1.4.2' -%>
   <%= javascript_include_tag  'topNavigation','plugins/cuber.swfobject', 'flash', :cache => 'unrecognized' %>
+  <%= javascript_include_tag  'plugins/jquery.scrollTo-1.4.2-min', 'plugins/jquery.localscroll-1.2.7-min', 'plugins/jquery.serialScroll-1.2.2-min', 'coda-slider.js', :cache => 'coda' %>
 
-  <%= ajaxful_rating_style %>
+  <%#= ajaxful_rating_style %>
 
   <!--[if IE 6]><%= javascript_include_tag 'ie/ie6/DD_belatedPNG_0.0.8a-min' %><![endif]-->
   <!--[if IE ]><%= javascript_include_tag 'ie/ie7/z-index-workaround' %><![endif]-->
@@ -74,7 +76,7 @@
 
 
 <!-- start main_content -->
-<div id="cu3er">
+<div id="coda">
   <div class="container">
     <div class="span-12 last content">
       <div id="shadow">
