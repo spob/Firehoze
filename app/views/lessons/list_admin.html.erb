@@ -37,7 +37,6 @@
       <% end %>
       <th>Category</th>
       <th>Average Rating</th>
-      <th>Owned?</th>
     </tr>
 
     <% @lessons.each do |lesson| %>
@@ -50,7 +49,6 @@
       <% end %>
       <td><%= h lesson.category.name %></td>
       <td><%= lesson.rating_average %></td>
-      <td><%= (current_user ? current_user.owns_lesson?(lesson) : false) %></td>
       </tr>
       <% end %>
 

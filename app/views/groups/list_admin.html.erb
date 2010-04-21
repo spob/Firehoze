@@ -38,9 +38,8 @@
       <td><%= link_to_profile(group.owner) %></td>
       <td><%= h group.category.try(:name) %></td>
       <td><%= h group.group_members.size %></td>
-      <td><%= h group.private %></td>
-      <td><%= h group.active %>
-      </td>
+      <td><%= image_tag("icons/16-lock.png") if group.private %></td>
+      <td><%= image_tag("icons/#{group.active ? '16-check.png' : 'delete_16.png'}") %></td>
     </tr>
     <% end %>
   </table>
