@@ -27,7 +27,7 @@
     <td><%= h category.formatted_name %></td>
     <td><%= h category.parent_category.try(:name) %></td>
     <td><%= category.sort_value %></td>
-    <td><%= category.visible_to_lessons %></td>
+    <td><%= image_tag("icons/#{category.visible_to_lessons ? '16-check.png' : 'delete_16.png'}") %></td>
     <td>
       <%= link_to 'edit', edit_category_path(category) %>
       <%= link_to 'delete', category_path(category), :confirm => 'Are you sure?', :method => :delete if category.can_delete? %>
