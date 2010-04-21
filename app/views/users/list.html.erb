@@ -24,7 +24,7 @@
 
         &nbsp;&nbsp;&nbsp;
         <b>View As:</b>
-        <%= link_to_if @view != 'logon', "Logon Info", list_users_path(:page => params[:page], :view => 'logon', :search => { :login_like => @login, :email_like => @email, :order => @order} ) %>
+        <%= link_to_if @view != 'logon', "Logon Info", list_users_path(:page => params[:page], :view => 'logon', :search => { :login_like => @login, :email_like => @email, :order => @order} ) %> |
         <%= link_to_if @view != 'contact', "Contact Info", list_users_path(:page => params[:page], :view => 'contact', :search => { :login_like => @login, :email_like => @email, :order => @order} ) %>
       </div>
   <% end %>

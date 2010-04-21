@@ -3,6 +3,7 @@
   <th>Email</th>
   <th>Name</th>
   <th>Active</th>
+  <th>FB</th>
   <th>Instructor?</th>
   <th>Address</th>
   <th>Action</th>
@@ -15,8 +16,9 @@
       </td>
       <td><%= mail_to h(user.email) %></td>
       <td><%= "#{h(user.first_name)} " unless user.first_name.nil? %><%= h(user.last_name) %></td>
-      <td><%= user.active ? "Yes" : "No" %></td>
-      <td><%= user.verified_instructor? ? "Yes" : "No" %></td>
+      <td><%= image_tag("icons/#{user.active ? '16-check.png' : 'delete_16.png'}") %></td>
+      <td><%= image_tag 'icons/16-check.png' if user.facebook_id and user.session_key and user.has_fb_permissions %></td>
+      <td><%= image_tag 'icons/16-check.png' if user.verified_instructor? %></td>
       <td>
         <%= user_formatted_address(user, "<br />") if user.address_provided? %>
       </td>
