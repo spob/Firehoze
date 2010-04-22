@@ -85,6 +85,7 @@ class LessonsController < ApplicationController
 
   def new
     @lesson = Lesson.new
+    @lesson.instructor = current_user
     unless current_user.verified_instructor? or current_user.try("is_an_admin?")
       flash[:error] = t 'lesson.must_be_instructor'
       redirect_to instructor_signup_wizard_account_path(current_user)
@@ -97,8 +98,6 @@ class LessonsController < ApplicationController
       video = nil
       @lesson = Lesson.new(params[:lesson])
       @lesson.initial_free_download_count = params[:initial_free_download_count].try('to_i')
-      # the instructor is assumed to be the current user when creating a new lesson
-      @lesson.instructor = current_user
       Lesson.transaction do
         if @lesson.save
           video = OriginalVideo.new({ :lesson => @lesson, :video => video_param})
