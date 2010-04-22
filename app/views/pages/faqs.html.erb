@@ -237,7 +237,14 @@
     <h5>How do I create a group?</h5>
 
     <div>
-      <p>Simply navigate to any Firehoze group. For example, you can browse by cateogry in the Categories tab in the main menu. Once on the group page, simply click the "Join" button (as shown circled below).</p>
+      <p>Any Firehoze user can create a group. To do so, simply navigate to the <%= link_to "Groups", groups_path %> tag at the top of the page and click the <%= link_to "Create a New Group", new_group_path %> button.</p>
+      <%= image_tag("FAQs/create-group/create-group.png", :alt => 'Create Group') %>
+    </div>
+
+    <h5>How do I join a group?</h5>
+
+    <div>
+      <p>Simply navigate to any Firehoze group. For example, you can browse by category in the <%= link_to "Groups", groups_path %> tab in the main menu. Once on the group page, simply click the "Join" button (as shown circled below).</p>
       <%= image_tag("FAQs/join-group/image_join_group.png", :alt => 'Join Group') %>
       <p>If you ever want to leave the group, simply click the "Leave Group" button (which appears where the Join group button was before).</p>
     </div>
