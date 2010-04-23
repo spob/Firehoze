@@ -2,7 +2,7 @@
 <% @current = 'users' %>
 
 <h3>Users</h3>
-
+<%= link_to "Export to CSV", list_users_path(:format => 'csv') %>
 <div class="span-12 search-box-container">
   <% form_for(@search, :html => { :class => "search-box clearfix" }) do |f| %>
       <div class="span-5 right">

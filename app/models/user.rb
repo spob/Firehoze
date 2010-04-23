@@ -128,6 +128,35 @@ END
 
   DEFAULT_AVATAR_URL = "http://#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}/users/avatars/missing/%s/missing.png"
 
+  # ===============
+# = CSV support =
+# ===============
+  comma do
+    login
+    email
+    active
+    created_at
+    time_zone
+    first_name
+    last_name
+    language
+    verified_instructor?
+    payment_level_name
+    verified_address_on
+    user_agreement_accepted_on
+    address1
+    address2
+    city
+    state
+    postal_code
+    country
+    author_agreement_accepted_on
+    withold_taxes
+    promotion_code
+    referred_by
+    has_fb_permissions
+  end
+
   # Paperclip lets you specify custom interpolations for your paths and such. We're going to exploit that!
 
 
@@ -320,8 +349,22 @@ END
     payment
   end
 
+  def payment_level_name
+    payment_level.try(:name)
+  end
+
+  def promotion_code
+    promotion.try(:code)
+  end
+
   def verified_instructor?
-    (address_provided? and verified_address_on and author_agreement_accepted_on and payment_level)
+    # I know the following logic looks unnecessary, but wanted to return a value of true or false for
+    # export reasons
+    if (address_provided? and verified_address_on and author_agreement_accepted_on and payment_level)
+      true
+    else
+      false
+    end
   end
 
   def city_and_state
