@@ -150,6 +150,7 @@ END
     state
     postal_code
     country
+    group_names
     author_agreement_accepted_on
     withold_taxes
     promotion_code
@@ -355,6 +356,10 @@ END
 
   def promotion_code
     promotion.try(:code)
+  end
+
+  def group_names
+    groups.collect(&:name).join(", ")
   end
 
   def verified_instructor?
