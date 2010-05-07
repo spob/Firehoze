@@ -2,8 +2,24 @@
    lesson = object
 %>
 
-
 <% if lesson.ready? %>
+
+<!-- setup container for Flowplayer (must be before following script tag) -->
+<div id="player"></div>
+ 
+<!--
+PROOF OF CONCEPT
+place Flowplayer into container
+-->
+
+<script language="JavaScript">
+var flashvars = {config: "{'clip': 'http://vod01.netdna.com/vod/demo.flowplayer/flowplayer-700.flv' }"};
+var params = {wmode:"transparent"};
+var attributes = {};
+swfobject.embedSWF("http://releases.flowplayer.org/swf/flowplayer.commercial-3.1.5.swf", "player", "<%= PLAYER_WIDTH %>", "<%= PLAYER_HEIGHT %>","9.0.0","expressInstall.swf", flashvars, params, attributes);
+</script>
+
+
     <div style="width:<%= PLAYER_WIDTH %>px;height:<%= PLAYER_HEIGHT %>px;" id="playerbox"></div>
    <%
       image = (lesson.thumbnail_url ? h(lesson.sized_thumbnail_url(:large)) : "url(/videos/video_placeholder.jpg)")
@@ -13,9 +29,10 @@
         $f("playerbox", "http://releases.flowplayer.org/swf/flowplayer.commercial-3.1.5.swf", {
 
             key: '#$2530218aaff22a9be9e',
+            
             canvas: {
-                background: 'url(/images/videos/splash-default-24.png)  no-repeat 0 155'
-//                backgroundImage: '<%= image %> no-repeat 10 10'
+                background: 'url(/images/videos/splash-default-24.png) no-repeat 0 155'
+// backgroundImage: '<%= image %> no-repeat 10 10'
             },
             play: {
                 label: '<%= play_button_text(lesson, current_user) %>',
