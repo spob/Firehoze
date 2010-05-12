@@ -27,6 +27,14 @@
         <%= show_invite_link(@group, current_user) %>
         <%= show_edit_link(@group, current_user) %>
         <%= flag_link @group unless @group.private -%>
+
+        <!-- AddThis Button BEGIN -->
+        <div id="add-this" class="addthis_toolbox addthis_default_style">
+          <a href="http://www.addthis.com/bookmark.php?v=250&amp;username=rsturim" class="addthis_button_compact">Share</a>
+        </div>
+        <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=rsturim"></script>
+        <!-- AddThis Button END -->
+
         <div class="corner-box">
           <ul>
             <% if @group.private? %>
