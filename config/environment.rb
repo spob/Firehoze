@@ -80,7 +80,7 @@ Rails::Initializer.run do |config|
   config.gem 'crafterm-comma', :lib => "comma",  :source => "http://gems.github.com"
 
   # Not sure why this is required...but rake is failing without it. Some gems must require it -- RBS
-  config.gem "hpricot", :source => "http://code.whytheluckystiff.net"
+  config.gem "hpricot", :source => "http://gemcutter.org"
 
   # Using jRails, you can get all of the same default Rails helpers for javascript functionality using the lighter jQuery library.
   config.gem 'jrails', :version => '0.6', :source => 'http://gemcutter.org'
