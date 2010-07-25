@@ -108,7 +108,7 @@ Rails::Initializer.run do |config|
   config.gem 'right_aws'
 
   # For retrieving tweets
-  config.gem 'twitter', :version => '0.7.0'
+  config.gem 'twitter', :version => '>=0.7.0'
 
   # Gravitar integration
   config.gem 'gravtastic', :version => '>= 2.1.0'
