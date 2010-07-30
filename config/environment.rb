@@ -98,7 +98,7 @@ Rails::Initializer.run do |config|
   config.gem 'mislav-will_paginate', :version => '~> 2.3.8', :lib => 'will_paginate', :source => 'http://gems.github.com'
 
   # Gem performance monitoring
-  config.gem 'newrelic_rpm', :version => '~>2.9.5'
+  config.gem 'newrelic_rpm', :version => '~>2.12.3'
 
   # For attaching files
   config.gem 'thoughtbot-paperclip', :lib => 'paperclip', :source => 'http://gems.github.com', :version => '2.3.1'
@@ -119,7 +119,7 @@ Rails::Initializer.run do |config|
   # Query optimization
   #config.gem 'methodmissing-scrooge', :source => "http://gems.github.com"
 
-  config.gem 'thinking-sphinx', :lib => 'thinking_sphinx', :version => '1.3.14', :source => "http://gemcutter.org"
+  config.gem 'thinking-sphinx', :lib => 'thinking_sphinx', :version => '1.3.18', :source => "http://gemcutter.org"
 
 
   # Shoulda
