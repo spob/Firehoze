@@ -73,7 +73,7 @@ Rails::Initializer.run do |config|
   config.gem 'facebooker'
 
   # Notifier for application errors
-  config.gem 'hoptoad_notifier'
+  config.gem 'hoptoad_notifier', :version => '2.3.2'
 
   # Gems requires for exporting to CSV
   config.gem 'fastercsv'
@@ -119,8 +119,6 @@ Rails::Initializer.run do |config|
   # Query optimization
   #config.gem 'methodmissing-scrooge', :source => "http://gems.github.com"
 
-  config.gem 'thinking-sphinx', :lib => 'thinking_sphinx', :version => '1.3.18', :source => "http://gemcutter.org"
-
 
   # Shoulda
   config.gem "thoughtbot-shoulda", :lib => "shoulda", :source => "http://gems.github.com"
@@ -132,6 +130,9 @@ Rails::Initializer.run do |config|
   config.gem 'spob-flix_cloud-gem', :lib => 'flix_cloud', :source => 'http://gems.github.com', :version => '0.5.4'
   config.gem 'sevenwire-http_client', :lib => 'http_client', :source => 'http://gems.github.com'
   config.gem 'crack'
+
+
+  config.gem 'thinking-sphinx', :lib => 'thinking_sphinx', :version => '1.3.18', :source => "http://gemcutter.org"
 
 
   # Only load the plugins named here, in the order given. By default, all plugins 
