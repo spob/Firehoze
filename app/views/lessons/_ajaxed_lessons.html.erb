@@ -5,7 +5,7 @@
 <% lessons = @instructed_lessons if pane == "lessons_instructed_tn_view" %>
 
 <div id="<%= pane %>" class="lessons-container">
-  <% if lessons.empty? %>
+  <% if lessons.try(:empty?) %>
     <% if pane.to_s == "owned" %>
       You have not purchased any lessons yet
     <% elsif pane.to_s == "wishlist" %>
