@@ -1,7 +1,6 @@
-<% if lesson.owned_by?(current_user) or lesson.can_edit?(current_user) or lesson.owned_by?(current_user) %>
+  <% groups = current_user.moderated_groups(:select => [:id, :name]) %>
 
-  <% groups = current_user.member_groups(:select => [:id, :name]) %>
-
+  <% if groups.present? %>
   <div class="box-header">Add/Remove Group</div>
   <div class="box-content">
     <ul class="group-lists">

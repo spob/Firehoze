@@ -6,7 +6,7 @@ class GroupLessonsController < ApplicationController
   verify :method => :delete, :only => [:destroy ], :redirect_to => :home_path
 
   def create
-    if can_update_groups?(@lesson, current_user)
+    if can_update_groups?(@group, current_user)
       @group_lesson = @group.group_lessons.find_by_lesson_id(@lesson)
       if @group_lesson.nil?
         @group_lesson = @group.group_lessons.create!(:user => current_user, :lesson => @lesson)
@@ -22,7 +22,7 @@ class GroupLessonsController < ApplicationController
   end
 
   def destroy
-    if can_update_groups?(@lesson, current_user)
+    if can_update_groups?(@group, current_user)
       @group_lesson = @group.group_lessons.find_by_lesson_id(@lesson.id)
       if @group_lesson.nil? or !@group_lesson.active
         flash[:error] = t('group_lesson.does_not_belong', :group => @group.name)
@@ -36,8 +36,8 @@ class GroupLessonsController < ApplicationController
 
   private
 
-  def can_update_groups?(lesson, user)
-    if lesson.owned_by?(user) or lesson.can_edit?(user) or lesson.owned_by?(user)
+  def can_update_groups?(group, user)
+    if group.owned_by?(user) or group.moderated_by?(user)
       true
     else
       flash[:error] = t('general.no_permissions')

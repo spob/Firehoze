@@ -32,6 +32,18 @@ PERMISSION_DENIED_REDIRECTION = { :controller => '/lessons', :action => 'index' 
 # The method your auth scheme uses to store the location to redirect back to
 STORE_LOCATION_METHOD = :store_location
 
+# Remove bogus deprecation warning (see https://rails.lighthouseapp.com/projects/8994/tickets/4026-rubygems-136-warning-in-rails-235)
+if Gem::VERSION >= "1.3.6"
+    module Rails
+        class GemDependency
+            def requirement
+                r = super
+                (r == Gem::Requirement.default) ? nil : r
+            end
+        end
+    end
+end
+
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
