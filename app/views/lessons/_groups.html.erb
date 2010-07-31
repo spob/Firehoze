@@ -1,5 +1,4 @@
-  <% groups = current_user.moderated_groups(:select => [:id, :name]) %>
-
+  <% groups = current_user.nil? ? [] : current_user.moderated_groups(:select => [:id, :name]) %>
   <% if groups.present? %>
   <div class="box-header">Add/Remove Group</div>
   <div class="box-content">
