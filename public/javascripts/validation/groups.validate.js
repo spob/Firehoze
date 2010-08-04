@@ -37,4 +37,18 @@ $(document).ready(function() {
         safeClass: 'safe',
         overClass: 'over'
     });
+
+    // enable/disable free lessons
+    enable_disable_free_lessons();
+
+    $("#group_private").click(function() {
+        enable_disable_free_lessons();
+    });
 });
+
+function enable_disable_free_lessons() {
+    $('#group_free_lessons_to_members')[0].disabled = !$('#group_private')[0].checked;
+    if (!$('#group_private')[0].checked) {
+        $('#group_free_lessons_to_members')[0].checked = false
+    }
+}

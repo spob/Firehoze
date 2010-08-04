@@ -1,9 +1,9 @@
 <% content_for :footer do -%>
-  <%= javascript_include_tag 'validation/groups.validate.js' -%>
+    <%= javascript_include_tag 'validation/groups.validate.js' -%>
 <% end -%>
 
 <div class="fh-form">
-  <% form_for(@group, :html => { :multipart => true }) do |f| %>
+  <% form_for(@group, :html => {:multipart => true}) do |f| %>
       <%= f.error_messages %>
       <ul id="group-info" class="section">
         <li class="header">
@@ -11,6 +11,7 @@
 
           <h3><%= heading %></h3>
           <h4><%= subtext %></h4>
+
           <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
         </li>
         <li>
@@ -19,12 +20,19 @@
           <%= f.text_field :name, :maxlength => "50" %>
           <span class="required-field"></span>
         </span>
+
           <div class="counter"><span id="group_name_counter"></span> characters left</div>
         </li>
         <li>
         <span>
           <%= f.label :private, "&nbsp;" %>
-          <%= f.check_box :private %> This group is by invitation only
+          <%= f.check_box :private %>This group is by invitation only
+        </span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :free_lessons_to_members, "&nbsp;" %>
+          <%= f.check_box :free_lessons_to_members %>Lessons by group moderators should be free to members
         </span>
         </li>
         <li>
@@ -37,7 +45,7 @@
         <li>
         <span>
           <%= f.label(:category_id, "Category") %>
-          <%= f.collection_select(:category_id, Category.ascend_by_compiled_sort, :id, :formatted_name,  {:include_blank => 'Select...'}, :class => "required") %>
+          <%= f.collection_select(:category_id, Category.ascend_by_compiled_sort, :id, :formatted_name, {:include_blank => 'Select...'}, :class => "required") %>
           <span class="required-field"></span>
         </span>
         </li>
@@ -53,7 +61,7 @@
         <span>
           <label>
             <% if @group.logo? %>
-                <%= link_to('Delete current?', clear_logo_group_path(@group.id), html_options = {:method => :post, :confirm => 'Are you sure?'} ) %>
+                <%= link_to('Delete current?', clear_logo_group_path(@group.id), html_options = {:method => :post, :confirm => 'Are you sure?'}) %>
             <% else %>
                 Current logo
             <% end %>
