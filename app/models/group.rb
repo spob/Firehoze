@@ -3,6 +3,7 @@ class Group < ActiveRecord::Base
   has_friendly_id :name, :use_slug => true
 
   after_update :reprocess_logo, :if => :cropping?
+  after_save :set_free_lessons_for_members
 
   belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"
   belongs_to :category
@@ -180,5 +181,10 @@ class Group < ActiveRecord::Base
 
   def reprocess_logo
     logo.reprocess!
+  end
+
+  def set_free_lessons_for_members
+    # Public groups cannot give free lessons to its members
+    self.free_lessons_to_members = false unless private
   end
 end

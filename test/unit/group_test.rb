@@ -2,6 +2,45 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'fast_context'
 
 class GroupTest < ActiveSupport::TestCase
+
+  fast_context "with no record already defined" do
+    setup { @group = Factory.build(:group, :free_lessons_to_members => true) }
+
+    fast_context "when creating a public groups" do
+      setup do
+        @group.private = false;
+        @group.save!
+      end
+
+      should "not allow free members" do
+        assert !@group.free_lessons_to_members
+      end
+    end
+
+    fast_context "when creating a private groups" do
+      setup do
+        @group.private = true;
+        @group.save!
+      end
+
+      should "allow free members" do
+        assert @group.free_lessons_to_members
+      end
+    end
+
+    fast_context "when creating a private groups without free lessons" do
+      setup do
+        @group.private = true;
+        @group.free_lessons_to_members = false
+        @group.save!
+      end
+
+      should "not allow free members" do
+        assert !@group.free_lessons_to_members
+      end
+    end
+  end
+
   fast_context "given an existing record" do
     setup do
       @group1 = Factory.create(:group)
@@ -34,13 +73,13 @@ class GroupTest < ActiveSupport::TestCase
         @user = Factory.create(:user)
         @group_member = @group1.invite(@user)
       end
-      
+
       should "test invite" do
         assert @group_member
         assert_equal PENDING, @group_member.member_type
       end
     end
-    
+
 
     should "test fetch method(s)" do
       assert 1, Group.fetch_user_groups(@group1.owner, 1, 10)
