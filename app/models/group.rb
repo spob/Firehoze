@@ -16,6 +16,8 @@ class Group < ActiveRecord::Base
   has_many :users, :through => :group_members
   has_many :member_users, :through => :group_members, :source => :user,
            :conditions => { :group_members => { :member_type => [ OWNER, MODERATOR, MEMBER ] } }
+  has_many :moderator_users, :through => :group_members, :source => :user,
+           :conditions => { :group_members => { :member_type => [ OWNER, MODERATOR ] } }
   has_many :activities, :as => :trackable, :dependent => :destroy
   has_many :all_activities, :class_name => 'Activity', :foreign_key => "group_id"
   has_many :flags, :as => :flaggable, :dependent => :destroy
@@ -28,6 +30,7 @@ class Group < ActiveRecord::Base
 
   named_scope :public, :conditions => { :private => false }
   named_scope :private, :conditions => { :private => true }
+  named_scope :free_to_members, :conditions => { :free_lessons_to_members => true }
   named_scope :ascend_by_category_name_and_name, :joins => :category, :order => 'categories.name, groups.name'
   named_scope :ascend_by_name, :order => 'groups.name'
   named_scope :ids, :select => ["groups.id"]

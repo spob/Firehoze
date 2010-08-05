@@ -61,7 +61,7 @@
         <span>
           <label>
             <% if @group.logo? %>
-                <%= link_to('Delete current?', clear_logo_group_path(@group.id), html_options = {:method => :post, :confirm => 'Are you sure?'}) %>
+                <%= link_to('Delete current?', clear_logo_group_path(@group.id), {:method => :post, :confirm => 'Are you sure?'}) %>
             <% else %>
                 Current logo
             <% end %>

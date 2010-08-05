@@ -116,7 +116,7 @@ class LessonTest < ActiveSupport::TestCase
 
       fast_context "who is a payment mgr" do
         setup { @user.has_role 'paymentmgr' }
-                                            
+
         should "allow user to see information having to do with purchases" do
           assert @lesson.can_view_purchases?(@user)
         end
@@ -353,7 +353,7 @@ class LessonTest < ActiveSupport::TestCase
     fast_context "and several groups" do
       setup do
         @user = Factory.create(:user)
-        @group1 = Factory.create(:group)
+        @group1 = Factory.create(:group, :free_lessons_to_members => true)
         @group2 = Factory.create(:group)
         @group3 = Factory.create(:group)
         @group4 = Factory.create(:group)
@@ -431,6 +431,72 @@ class LessonTest < ActiveSupport::TestCase
       end
     end
 
+    fast_context "and no groups allowing free views to that user" do
+      setup do
+        @user = Factory.create(:user)
+
+        @group1 = Factory.create(:group)
+        @group2 = Factory.create(:group, :private => true, :free_lessons_to_members => true)
+        @group3 = Factory.create(:group, :private => true, :free_lessons_to_members => true)
+        @group4 = Factory.create(:group, :private => true, :free_lessons_to_members => true)
+        @group5 = Factory.create(:group, :private => true, :free_lessons_to_members => true)
+        @group6 = Factory.create(:group, :private => true)
+        @group7 = Factory.create(:group, :private => true, :free_lessons_to_members => true)
+        @group8 = Factory.create(:group, :private => true, :free_lessons_to_members => true)
+        
+        @group_lesson1 = GroupLesson.create!(:user => @user, :lesson => @lesson, :group => @group1)
+        @group_lesson2 = GroupLesson.create!(:user => @user, :lesson => @lesson, :group => @group2)
+        @group_lesson3 = GroupLesson.create!(:user => @user, :lesson => @lesson, :group => @group3)
+        @group_lesson4 = GroupLesson.create!(:user => @user, :lesson => @lesson, :group => @group4)
+        @group_lesson6 = GroupLesson.create!(:user => @user, :lesson => @lesson, :group => @group6)
+        @group_lesson7 = GroupLesson.create!(:user => @user, :lesson => @lesson, :group => @group7, :active => false)
+        @group_lesson8 = GroupLesson.create!(:user => @user, :lesson => @lesson, :group => @group8)
+
+        @group_member1 = GroupMember.create!(:user => @user, :group => @group1, :member_type => MEMBER)
+        @group_member2 = GroupMember.create!(:user => @user, :group => @group2, :member_type => MEMBER)
+        @group_member3 = GroupMember.create!(:user => @user, :group => @group3, :member_type => MEMBER)
+        @group_member5 = GroupMember.create!(:user => @user, :group => @group5, :member_type => MEMBER)
+        @group_member6 = GroupMember.create!(:user => @user, :group => @group6, :member_type => MEMBER)
+        @group_member7 = GroupMember.create!(:user => @user, :group => @group7, :member_type => MEMBER)
+        @group_member8 = GroupMember.create!(:user => @user, :group => @group8, :member_type => MEMBER)
+
+        @group_member1 = GroupMember.create!(:user => @lesson.instructor, :group => @group1, :member_type => MODERATOR)
+        # enable below instead
+        # @group_member2 = GroupMember.create!(:user => @lesson.instructor, :group => @group2, :member_type => MODERATOR)
+        @group_member4 = GroupMember.create!(:user => @lesson.instructor, :group => @group4, :member_type => MODERATOR)
+        @group_member5 = GroupMember.create!(:user => @lesson.instructor, :group => @group5, :member_type => MODERATOR)
+        @group_member6 = GroupMember.create!(:user => @lesson.instructor, :group => @group6, :member_type => MODERATOR)
+        @group_member7 = GroupMember.create!(:user => @lesson.instructor, :group => @group7, :member_type => MODERATOR)
+        @group_member8 = GroupMember.create!(:user => @lesson.instructor, :group => @group8, :member_type => MEMBER)
+
+      end
+
+#        group  private   lesson group    user a member    free to members   instructor a moderator   entitled
+#          1       N            Y              Y             N                      Y                    N
+#          2       Y            Y              Y             Y                      Y                    Y
+#          3       Y            Y              Y             Y                      N                    N
+#          4       Y            Y              N             Y                      Y                    N
+#          5       Y            N              Y             Y                      Y                    N
+#          6       Y            Y              Y             N                      Y                    N
+#          7       Y            Y              Y             Y                      Y                    N (lesson group is not active)
+#          8       Y            Y              Y             Y                      N  (but a member)    N
+      should "not be entitled" do
+        assert !@lesson.entitled_by_groups(@user)
+      end
+
+
+      fast_context "and one that allows free viewing" do
+        setup do
+          @group_member2 = GroupMember.create!(:user => @lesson.instructor, :group => @group2, :member_type => MODERATOR)
+
+        end
+        
+        should "be entitled" do
+          assert @lesson.entitled_by_groups(@user)
+        end
+      end
+    end
+
     should_validate_presence_of :title, :instructor, :synopsis, :category, :audience
     should_allow_values_for :title, "blah blah blah"
     should_ensure_length_in_range :title, (0..50)
@@ -481,7 +547,7 @@ class LessonTest < ActiveSupport::TestCase
 
       should "acts as taggable" do
         assert_equal 3, @lesson.tags.size
-        assert_same_elements %w(Foo Bar Baz), @lesson.tag_list
+        assert_same_elements %w( Foo Bar Baz ), @lesson.tag_list
       end
 
       should "find tagged with" do

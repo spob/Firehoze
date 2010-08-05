@@ -71,7 +71,7 @@ class Lesson < ActiveRecord::Base
   has_many :group_lessons
   has_many :groups, :through => :group_lessons
   has_many :active_groups, :source => :group, :through => :group_lessons,
-           :conditions => { :group_lessons => { :active => true }}
+           :conditions => {:group_lessons => {:active => true}}
   has_many :students, :through => :credits, :source => 'user'
   has_one :original_video
   has_one :full_processed_video
@@ -112,20 +112,20 @@ class Lesson < ActiveRecord::Base
   named_scope :most_popular, :order => "credits_count DESC, id DESC"
   named_scope :highest_rated, :order => "rating_average DESC, id DESC"
   named_scope :newest, :order => "id DESC"
-  named_scope :ready, :conditions => {:status => LESSON_STATUS_READY }
-  named_scope :pending, :conditions => {:status => LESSON_STATUS_PENDING }
-  named_scope :failed, :conditions => {:status => LESSON_STATUS_FAILED }
-  named_scope :rejected, :conditions => {:status => LESSON_STATUS_REJECTED }
+  named_scope :ready, :conditions => {:status => LESSON_STATUS_READY}
+  named_scope :pending, :conditions => {:status => LESSON_STATUS_PENDING}
+  named_scope :failed, :conditions => {:status => LESSON_STATUS_FAILED}
+  named_scope :rejected, :conditions => {:status => LESSON_STATUS_REJECTED}
   named_scope :ids, :select => ["lessons.id"]
   named_scope :by_category,
-              lambda{ |category_id| return {} if category_id.nil?;
+              lambda { |category_id| return {} if category_id.nil?;
               {:joins => {:category => :exploded_categories},
-               :conditions => { :exploded_categories => {:base_category_id => category_id}}}}
+               :conditions => {:exploded_categories => {:base_category_id => category_id}}} }
   # Credits which have been warned to be about to expire
   # Note...add -1 to lesson collection to ensure that never that case where it will return NULL 
   named_scope :not_owned_by,
-              lambda{ |user| return {} if user.nil?;
-              { :conditions => ["lessons.id not in (?)", user.lesson_ids.collect(&:id) + [-1]] }
+              lambda { |user| return {} if user.nil?;
+              {:conditions => ["lessons.id not in (?)", user.lesson_ids.collect(& :id) + [-1]]}
               }
 
   @@lesson_statuses = [
@@ -133,7 +133,7 @@ class Lesson < ActiveRecord::Base
           LESSON_STATUS_CONVERTING,
           LESSON_STATUS_FAILED,
           LESSON_STATUS_READY,
-          LESSON_STATUS_REJECTED ]
+          LESSON_STATUS_REJECTED]
 
   @@flag_reasons = [
           FLAG_LEWD,
@@ -141,7 +141,7 @@ class Lesson < ActiveRecord::Base
           FLAG_OFFENSIVE,
           FLAG_DANGEROUS,
           FLAG_IP,
-          FLAG_OTHER ]
+          FLAG_OTHER]
 
   def self.flag_reasons
     @@flag_reasons
@@ -186,7 +186,7 @@ END
     tmp_limit = limit * 2 - lessons1.size
     lessons2 = Lesson.ready.find(:all, :conditions => ["instructor_id <> ? and id not in (?) and id not in (?)",
                                                        (user ? user.id : -1),
-                                                       lessons1.collect(&:id) + [-1],
+                                                       lessons1.collect(& :id) + [-1],
                                                        (user ? user.lesson_ids : []) + [-1]],
                                  :limit => tmp_limit,
                                  :order => "rating_average DESC")
@@ -195,7 +195,7 @@ END
     (1..limit).each do |i|
       lessons << all.delete(all.at(rand(all.size)))
     end
-    lessons.find_all{|l| l}
+    lessons.find_all { |l| l }
   end
 
   # Call it vlast (as in very last) as opposed to last to differentiate it from the dynamic finder
@@ -332,12 +332,17 @@ END
     free_credit
   end
 
+  # Does the user belong to a group which entitles it's members to view lesosns which were instructed by a moderator of that group?
+  def entitled_by_groups user
+    self.active_groups.private.free_to_members.a_member(user).collect{|x| x.moderator_users }.flatten.include? self.instructor
+  end
+
   #def output_url
   #  "http://#{APP_CONFIG[CONFIG_CDN_SERVER]}/#{self.video.path}.flv"
   #end
 
   def total_buy_pattern_counts
-    self.lesson_buy_patterns.inject(0) {|sum, item| sum + item.counter}
+    self.lesson_buy_patterns.inject(0) { |sum, item| sum + item.counter }
   end
 
   def update_status(unreject=false)
@@ -345,7 +350,7 @@ END
       # do nothing...moderator put it in this status for a reason
     elsif any_video_match_by_status(VIDEO_STATUS_FAILED)
       update_status_attribute(LESSON_STATUS_FAILED)
-    elsif videos.find_all{|video| video.class == FullProcessedVideo or video.class == PreviewProcessedVideo }.empty? or
+    elsif videos.find_all { |video| video.class == FullProcessedVideo or video.class == PreviewProcessedVideo }.empty? or
             all_videos_match_by_status(VIDEO_STATUS_PENDING)
       update_status_attribute(LESSON_STATUS_PENDING)
     elsif any_video_match_by_status(LESSON_STATUS_CONVERTING)
@@ -413,14 +418,14 @@ END
   end
 
   def any_video_match_by_status(status)
-    videos.find_all{|video| video.class == FullProcessedVideo or video.class == PreviewProcessedVideo }.each do |video|
+    videos.find_all { |video| video.class == FullProcessedVideo or video.class == PreviewProcessedVideo }.each do |video|
       return true if video.status == status
     end
     false
   end
 
   def all_videos_match_by_status(status)
-    videos.find_all{|video| video.class == FullProcessedVideo or video.class == PreviewProcessedVideo }.each do |video|
+    videos.find_all { |video| video.class == FullProcessedVideo or video.class == PreviewProcessedVideo }.each do |video|
       return false if video.status != status
     end
     true
