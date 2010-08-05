@@ -226,7 +226,7 @@ END
   def self.list(page, user=nil, lessons_per_page=per_page)
     conditions = {}
     conditions = ["status = ? or instructor_id = ?",
-                  LESSON_STATUS_READY, user] unless (user and user.try(:is_admin?))
+                  LESSON_STATUS_READY, user] unless (user && user.try(:is_admin?))
     paginate :page => page,
              :conditions => conditions,
              :order => 'id desc',
@@ -287,23 +287,23 @@ END
 
   # The lesson can be edited by an admin or the instructor who created it
   def can_edit? user
-    user.try("is_admin?") or user.try("is_a_moderator?") or instructed_by?(user)
+    user.try("is_admin?") || user.try("is_a_moderator?") || instructed_by?(user)
   end
 
   def can_view_purchases? user
-    user.try("is_admin?") or user.try("is_paymentmgr?") or instructed_by?(user)
+    user.try("is_admin?") || user.try("is_paymentmgr?") || instructed_by?(user)
   end
 
   def can_view_lesson_stats? user
-    user.try("is_admin?") or instructed_by?(user)
+    user.try("is_admin?") || instructed_by?(user)
   end
 
   def can_comment? user
-    owned_by?(user) or can_edit?(user)
+    owned_by?(user) || can_edit?(user) || entitled_by_groups(user)
   end
 
   def can_review? user
-    (owned_by?(user) and !reviewed_by?(user) and !instructed_by?(user))
+    (owned_by?(user) && !reviewed_by?(user) && !instructed_by?(user))
   end
 
   # Has this user reviewed this lesson already?
@@ -346,11 +346,11 @@ END
   end
 
   def update_status(unreject=false)
-    if self.status == LESSON_STATUS_REJECTED and !unreject
+    if self.status == LESSON_STATUS_REJECTED && !unreject
       # do nothing...moderator put it in this status for a reason
     elsif any_video_match_by_status(VIDEO_STATUS_FAILED)
       update_status_attribute(LESSON_STATUS_FAILED)
-    elsif videos.find_all { |video| video.class == FullProcessedVideo or video.class == PreviewProcessedVideo }.empty? or
+    elsif videos.find_all { |video| video.class == FullProcessedVideo || video.class == PreviewProcessedVideo }.empty? ||
             all_videos_match_by_status(VIDEO_STATUS_PENDING)
       update_status_attribute(LESSON_STATUS_PENDING)
     elsif any_video_match_by_status(LESSON_STATUS_CONVERTING)
@@ -418,14 +418,14 @@ END
   end
 
   def any_video_match_by_status(status)
-    videos.find_all { |video| video.class == FullProcessedVideo or video.class == PreviewProcessedVideo }.each do |video|
+    videos.find_all { |video| video.class == FullProcessedVideo || video.class == PreviewProcessedVideo }.each do |video|
       return true if video.status == status
     end
     false
   end
 
   def all_videos_match_by_status(status)
-    videos.find_all { |video| video.class == FullProcessedVideo or video.class == PreviewProcessedVideo }.each do |video|
+    videos.find_all { |video| video.class == FullProcessedVideo || video.class == PreviewProcessedVideo }.each do |video|
       return false if video.status != status
     end
     true
@@ -444,7 +444,7 @@ END
   end
 
   def create_free_credits
-    if initial_free_download_count and initial_free_download_count > 0
+    if initial_free_download_count && initial_free_download_count > 0
       sku = CreditSku.find_by_sku!(FREE_CREDIT_SKU)
 
       initial_free_download_count.times do
