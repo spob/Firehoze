@@ -85,7 +85,7 @@ namespace :thinking_sphinx do
     run "cd #{current_path}; rake thinking_sphinx:restart RAILS_ENV=#{rails_env}"
   end
   task :rebuild, :roles => [:app] do
-    run "cd #{current_path}; rake thinking_sphinx:rebuild RAILS_ENV=#{rails_env}"
+    run "cd #{current_path}; rake thinking_sphinx:rebuild RAILS_ENV=#{rails_env}; chmod 777 #{current_path}/tmp/pids/sphinx.pid"
   end
 end
 
