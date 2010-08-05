@@ -1,4 +1,5 @@
-<li>
+<p>
+  <%= avatar_link_to(member.user, :size => :tiny) %>
   <%= link_to_profile(member.user) %>
   <%= "(#{t('group.moderator')})" if member.member_type == MODERATOR %>
   <% if member.member_type == PENDING %>
@@ -6,4 +7,4 @@
   <% end %>
   <%= show_remove_link(member, current_user) %>
   <%= show_promote_demote_link(member) %>
-</li>
+</p>
