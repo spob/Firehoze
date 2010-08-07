@@ -11,6 +11,7 @@
       <h3>Group: <%= h @group.name %></h3>
       <ul>
         <li><%= link_to_profile(@group.owner) %>&mdash;Owner</li>
+        <br />
         <li class="description"><%= h @group.description %></li>
         <% @tags = @group.tag_counts %>
         <% if @tags.present? %>
@@ -19,7 +20,7 @@
                   <%= link_to h(tag.name), tagged_with_groups_path(:tag => tag.name) %>
               <% end %></li>
         <% end %>
-      </ul>
+      </ul> 
       <hr />
       <div class="actions clearfix">
         <%= show_join_link(@group, current_user) %>
@@ -45,6 +46,9 @@
             <% content_tag :li do -%>
                 <%= show_membership_text @group, current_user %>
             <% end if current_user -%>
+            <% if @group.free_lessons_to_members %>
+                <li><%= image_tag 'icons/16-check.png' %> This group allows free views for lessons instructed by group moderators</li>
+            <% end %>
           </ul>
         </div>
       </div>
