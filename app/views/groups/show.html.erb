@@ -3,7 +3,7 @@
 
 <%= render :partial => "categories/breadcrumbs", :object => @group.category, :locals => {:mode => "groups", :linkable_leaf => true} %>
 
-<% # group details    -%>
+<% # group details     -%>
 <div class="span-12 append-bottom">
   <div id="group-container" class="blue-box-medium">
     <div id="group-logo"><%= logo_tag @group, :size => :medium %></div>
@@ -20,7 +20,7 @@
                   <%= link_to h(tag.name), tagged_with_groups_path(:tag => tag.name) %>
               <% end %></li>
         <% end %>
-      </ul> 
+      </ul>
       <hr />
       <div class="actions clearfix">
         <%= show_join_link(@group, current_user) %>
@@ -66,13 +66,16 @@
   </div>
 </div>
 
-<% # group content tab    -%>
+<% # group content tab     -%>
 <div class="span-8">
   <div id="group-details-tabs" class="tab-container">
     <ul class="tabs">
       <li><a href="#lessons">Lessons</a></li>
       <li><a href="#discussion">Discussion</a></li>
       <li><a href="#members">Members</a></li>
+      <% if @group.private %>
+          <li><a href="#quizzes">Quizzes</a></li>
+      <% end %>
     </ul>
     <div class="panes clearfix">
       <div id="tabs-lessons">
@@ -91,6 +94,13 @@
             <%= render :partial => 'member', :collection => @group_members %>
         <% else %>
             <%= render :partial => 'users/users_mosaic', :object => @members %>
+        <% end %>
+      </div>
+      <div id="tabs-quizzes">                      
+        <% if @group.quizzes.present? %>
+            <%= render :partial => "lessons/lesson_tns", :object => @lessons, :locals => {:per_row => 3} %>
+        <% else %>
+            <div class="info">No quizzes defined for this group.</div>
         <% end %>
       </div>
     </div>

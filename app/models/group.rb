@@ -7,8 +7,10 @@ class Group < ActiveRecord::Base
 
   belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"
   belongs_to :category
+  has_many :quizzes 
   has_many :group_members
   has_many :group_lessons
+  has_many :quizzes
   has_many :lessons, :through => :group_lessons
   has_many :topics, :order => 'pinned DESC, last_commented_at DESC'
   has_many :active_lessons, :source => :lesson, :through => :group_lessons,
