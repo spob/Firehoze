@@ -84,7 +84,7 @@ module LessonsHelper
 
   def link_to_buy(lesson)
     if lesson.ready?
-      unless lesson.owned_by?(current_user) or lesson.can_edit?(current_user) or lesson.entitled_by_groups(current_user)
+      unless lesson.owned_by?(current_user) || lesson.can_edit?(current_user) || lesson.entitled_by_groups(current_user)
         if lesson.free_credits.available.size > 0
           action_text = t('lesson.watch_for_free')
         else
