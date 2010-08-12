@@ -1,0 +1,14 @@
+<% title "The #{h(@quiz.group.name.titleize)} Group &raquo; #{@quiz.name}" -%>
+<% @current = 'groups' %>
+
+<div id="quiz-comments-container">
+  <div id="actions">
+    <% if current_user %>
+      <%= link_to content_tag(:span, "Add a Comment"), new_topic_topic_comment_path(@quiz), :class => :minibutton %>
+      <%= link_to content_tag(:span, "Edit"), edit_topic_path(@quiz), :class => :minibutton %>
+    <% end %>
+  </div>
+
+  <h3 class="header"><span class="group-name">The <%= link_to h(@quiz.group.name.titleize), group_path(@quiz.group, :anchor => :quiz) %> Group</span> &raquo; <%= h @quiz.name %></h3>
+  <div>&laquo; <%= link_to "Back to Group", group_path(@quiz.group, :anchor => :quiz) %></div>
+</div>

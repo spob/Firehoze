@@ -51,7 +51,7 @@ ActionController::Routing::Routes.draw do |map|
                                  :all_tags => :get,
                                  :tagged_with => :get },
                 :member => { :clear_logo => :post, :activate => :post },
-                :has_many => :topics, :shallow => true
+                :has_many => [:topics, :quizzes], :shallow => true
   map.check_group_invite_user "group_invitations/check_user", :controller => "group_invitations", :action => "check_user"
   map.resources :group_invitations, :only => [ :create, :new ]
   map.resources :group_lessons, :only => [ :create, :destroy ]

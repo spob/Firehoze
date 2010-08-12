@@ -4,9 +4,10 @@ class CreateQuiz < ActiveRecord::Migration
     extend MigrationHelpers
     
   def self.up
-    create_table :quizzes do |t|
+    create_table   :quizzes do |t|
       t.string     :name,          :null => false, :limit => 100
       t.integer    :group_id,      :null => false
+      t.boolean    :published,     :null => false, :default => false
       t.text       :description,   :null => true
       t.datetime   :disabled_at,   :null => true
       t.timestamps

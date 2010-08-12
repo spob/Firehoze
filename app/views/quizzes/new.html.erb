@@ -1,0 +1,46 @@
+<% title "Create a Quiz for &quot;#{h(@group.name)}&quot;" -%>
+
+<%= stylesheet 'validation' %>
+<% content_for :footer do -%>
+  <%= javascript_include_tag 'validation/quizzes.validate' %>
+<% end -%>
+
+<div class="fh-form">
+  <% form_for :quiz, :url => group_quizzes_url(@group), :html => { :id => "new_quiz" } do |f| %>
+      <%= f.error_messages %>
+      <ul id="group-quiz-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3>New Quiz in Group:</h3><h3><%= link_to h(@group.name), group_path(@group) %></h3>
+          <h4>Quizzes allow group members to assess their skills and knowledge, and recommend additional lessons to strengthen subjects
+            areas in which the user's understanding can be strengthened.</h4>
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :name %>
+          <%= f.text_field :name, :maxlength => "100", :title => "You must provide a quiz name", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
+
+          <div class="counter"><span id="quiz_name_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :description %>
+          <%= f.text_area :description %>
+        </span>
+          <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text | <%= link_to "more formatting help", page_path("format-help") %>)</span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+         <%= f.submit "Create Quiz" %>
+          <%= link_to "Cancel", group_path(@group, :anchor => :quizzes) %>
+        </span>
+
+          <div class="clear"/>
+        </li>
+      </ul>
+  <% end %>
+</div>

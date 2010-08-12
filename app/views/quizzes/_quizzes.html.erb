@@ -1,0 +1,12 @@
+<% quizzes = object %>
+<% if quizzes.present? %>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Published</th>
+      </tr>
+      <%= render quizzes %>
+    </table>
+<% else %>
+    <div class="info">No quizzes defined for this group.</div>
+<% end %>

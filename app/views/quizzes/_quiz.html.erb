@@ -1,0 +1,8 @@
+<tr>
+  <td>
+    <b><%= link_to(h(quiz.name), quiz_path(quiz)) %></b>
+  </td>
+  <td>
+    <%= image_tag 'icons/16-check.png' if quiz.published %>
+  </td>
+</tr>

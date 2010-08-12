@@ -9,7 +9,7 @@ class GroupMembersController < ApplicationController
   def create
     @group_member = @group.group_members.create!(:user => current_user, :member_type => MEMBER)
     flash[:notice] = t('group.join', :group => @group.name)
-    redirect_to group_path(@group)
+    redirect_to group_path(@group, :anchor => :members)
   end
 
   def promote
@@ -18,7 +18,7 @@ class GroupMembersController < ApplicationController
     else
       flash[:error] = t('general.no_permissions')
     end
-    redirect_to group_path(@group_member.group)
+    redirect_to group_path(@group_member.group, :anchor => :members)
   end
 
   def demote
@@ -27,7 +27,7 @@ class GroupMembersController < ApplicationController
     else
       flash[:error] = t('general.no_permissions')
     end
-    redirect_to group_path(@group_member.group)
+    redirect_to group_path(@group_member.group, :anchor => :members)
   end
 
   def remove
@@ -38,7 +38,7 @@ class GroupMembersController < ApplicationController
       flash[:notice] = t('group.remove_success', :user => @user.login)
     end
     if @group.can_see? current_user
-      redirect_to group_path(@group)
+      redirect_to group_path(@group, :anchor => :members)
     else
       redirect_to my_stuff_my_firehoze_path
     end
