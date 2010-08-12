@@ -138,7 +138,7 @@ en:
     cannot_remove: You do not have permissions to remove that user from the group
     remove_success: You have removed {{user}} from the group
     promote_success: You have promoted {{user}} to the role of moderator for this group
-    demote_success: The <b>{{user}}</b> is no longer a moderator for this group
+    demote_success: The user {{user}} is no longer a moderator for this group
     welcome: Welcome to the {{group}} group!
     no_thanks: Okay, thanks. You have not joined the group
     logo_cleared: You have successfully removed the group logo

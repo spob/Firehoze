@@ -20,7 +20,7 @@ module LessonsHelper
 
   # must own lesson, but cannot be the instructor
   def lesson_rating_for(lesson, user, *args)
-    if (user == lesson.instructor or !lesson.owned_by?(user))
+    if user == lesson.instructor || !lesson.owned_by?(user) || lesson.entitled_by_groups(current_user)
       ratings_for(lesson, :static)
     else
       ratings_for(lesson)
@@ -84,7 +84,7 @@ module LessonsHelper
 
   def link_to_buy(lesson)
     if lesson.ready?
-      unless lesson.owned_by?(current_user) or lesson.can_edit?(current_user) or lesson.entitled_by_groups(current_user)
+      unless lesson.owned_by?(current_user) || lesson.can_edit?(current_user) || lesson.entitled_by_groups(current_user)
         if lesson.free_credits.available.size > 0
           action_text = t('lesson.watch_for_free')
         else
@@ -124,7 +124,7 @@ module LessonsHelper
   end
 
   def link_to_wish(lesson)
-    unless lesson.instructed_by?(current_user) or lesson.owned_by?(current_user)
+    unless lesson.instructed_by?(current_user) || lesson.owned_by?(current_user) || lesson.entitled_by_groups(current_user)
       if current_user and current_user.on_wish_list?(lesson)
         link_to content_tag(:span, "Remove from Wish List"), wish_list_path(lesson), :method => :delete, :disable_with => translate('general.disable_with'), :class => :minibutton
       else
@@ -150,7 +150,7 @@ module LessonsHelper
   end
 
   def play_button_text(lesson, user)
-    if (lesson.owned_by?(user) or lesson.can_edit?(user))
+    if lesson.owned_by?(user) || lesson.can_edit?(user) || lesson.entitled_by_groups(current_user)
       "Play"
     else
       "Preview"

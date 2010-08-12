@@ -24,7 +24,7 @@
             clip: {
                 autoPlay:false,
                 autoBuffering:false,
-                <% if lesson.owned_by?(current_user) or lesson.can_edit?(current_user) %>
+                <% if lesson.owned_by?(current_user) || lesson.can_edit?(current_user) || lesson.entitled_by_groups(current_user) %>
                 url: 'flv:<%= lesson.full_processed_video.try("output_rtmp_path") %>',
                 <% else %>
                 url: 'flv:<%= lesson.preview_processed_video.try("output_rtmp_path") %>',
