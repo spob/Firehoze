@@ -1,0 +1,52 @@
+<%= stylesheet 'validation' %>
+<% content_for :footer do -%>
+    <%= javascript_include_tag 'validation/quizzes.validate' %>
+<% end -%>
+
+<div class="fh-form">
+  <% form_for(:quiz, :url => (@quiz.new_record? ? group_quizzes_url(@group) : quiz_path(@quiz)), :html => { :method => (@quiz.new_record? ? :post : :put), :id => "quiz" }) do |f| %>
+      <%= f.error_messages %>
+      <ul id="group-quiz-info" class="section">
+        <li class="header">
+          <span></span>
+
+          <h3><%= heading %></h3>
+
+          <h3><%= link_to h(@group.name), group_path(@group) %></h3>
+          <h4><%= subtext %></h4> 
+
+          <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :name %>
+          <%= f.text_field :name, :maxlength => "100", :title => "You must provide a quiz name", :class => "required" %>
+          <span class="required-field"></span>
+        </span>
+
+          <div class="counter"><span id="quiz_name_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label :description %>
+          <%= f.text_area :description %>
+        </span>
+          <span class="help">(Format using *<b>bold</b>* and _<i>italics</i>_ text | <%= link_to "more formatting help", page_path("format-help") %>)</span>
+        </li>
+        <li>
+        <span>
+          <%= f.label :disabled_at %>
+          <%= f.text_field :disabled_at %>
+        </span>
+        </li>
+        <li class="bottom">
+        <span class="unlabelled">
+         <%= f.submit @quiz.new_record? ? "Create Quiz" : "Update Quiz" %>
+          <%= link_to "Cancel", group_path(@group, :anchor => :quizzes) %>
+        </span>
+
+          <div class="clear" />
+        </li>
+      </ul>
+  <% end %>
+</div>

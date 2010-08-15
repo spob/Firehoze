@@ -121,7 +121,6 @@ class Lesson < ActiveRecord::Base
               lambda { |category_id| return {} if category_id.nil?;
               {:joins => {:category => :exploded_categories},
                :conditions => {:exploded_categories => {:base_category_id => category_id}}} }
-  # Credits which have been warned to be about to expire
   # Note...add -1 to lesson collection to ensure that never that case where it will return NULL 
   named_scope :not_owned_by,
               lambda { |user| return {} if user.nil?;

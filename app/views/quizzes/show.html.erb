@@ -3,12 +3,35 @@
 
 <div id="quiz-comments-container">
   <div id="actions">
-    <% if current_user %>
-      <%= link_to content_tag(:span, "Add a Comment"), new_topic_topic_comment_path(@quiz), :class => :minibutton %>
-      <%= link_to content_tag(:span, "Edit"), edit_topic_path(@quiz), :class => :minibutton %>
+    <% if @quiz.group.owned_by? current_user || @quiz.group.moderated_by?(current_user) %>
+        <%= link_to content_tag(:span, "Add a Comment"), new_topic_topic_comment_path(@quiz), :class => :minibutton %>
+        <%= link_to content_tag(:span, "Edit"), edit_quiz_path(@quiz), :class => :minibutton %>
     <% end %>
   </div>
+  <br />
 
-  <h3 class="header"><span class="group-name">The <%= link_to h(@quiz.group.name.titleize), group_path(@quiz.group, :anchor => :quiz) %> Group</span> &raquo; <%= h @quiz.name %></h3>
-  <div>&laquo; <%= link_to "Back to Group", group_path(@quiz.group, :anchor => :quiz) %></div>
+
+  <h3><%= h(@quiz.name.titleize) %></h3>
+  <% if @quiz.group.owned_by? current_user || @quiz.group.moderated_by?(current_user) %>
+      <% if @quiz.disabled_at %>
+          <p>Disabled At: <%= l(@quiz.disabled_at) %></p>
+      <% end %>
+      <% unless @quiz.published %>
+          <p>Not published</p>
+      <% end %>
+  <% end %>
+
+  <div class="rounded-bluebox">
+    <div class="append-bottom">
+      <div class="rounded-shadowbox clearfix">
+        <div class="span">
+          <%= rbs_formatter @quiz.description %>
+        </div>
+      </div>
+    </div>
+
+    This is something
+
+    <div>&laquo; <%= link_to "Back to Group", group_path(@quiz.group, :anchor => :quiz) %></div>
+  </div>
 </div>

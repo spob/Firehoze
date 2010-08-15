@@ -22,14 +22,19 @@ class QuizzesController < ApplicationController
   end
 
   def edit
-
   end
 
   def show
     can_view?(@quiz)
   end
-
+                                  
   def update
+    if @quiz.update_attributes(params[:quiz])
+      flash[:notice] = t 'quiz.update_success'
+      redirect_to quiz_url(@quiz)
+    else
+      render :action => 'edit'
+    end
 
   end
 
@@ -56,7 +61,8 @@ class QuizzesController < ApplicationController
   end
 
   def retrieve_quiz
-    @quiz = Quiz.find(params[:id])
+    @quiz = Quiz.find(params[:id])    
+    @group = @quiz.group
   end
 
   def retrieve_group

@@ -16,4 +16,10 @@ $(document).ready(function() {
         safeClass: 'safe',
         overClass: 'over'
     });
+
+
+    $('#quiz_disabled_at').datepicker({
+        changeMonth: true,
+        changeYear: true
+    });
 });
