@@ -90,14 +90,14 @@
         <%= render :partial => 'topics/topics', :object => @topics %>
       </div>
       <div id="tabs-members">
-        <% if @group.owned_by? current_user || @group.moderated_by?(current_user) %>
+        <% if @group.owned_by?(current_user) || @group.moderated_by?(current_user) %>
             <%= render :partial => 'member', :collection => @group_members %>
         <% else %>
             <%= render :partial => 'users/users_mosaic', :object => @members %>
         <% end %>
       </div>
       <div id="tabs-quizzes">
-        <% if @group.owned_by? current_user || @group.moderated_by?(current_user) %>
+        <% if @group.owned_by?(current_user) || @group.moderated_by?(current_user) %>
             <div id="new-topic-link"><%= link_to content_tag(:span, "Create New Quiz"), new_group_quiz_path(@group), :class => :minibutton %></div>
         <% end %>
         <%= render :partial => "quizzes/quizzes", :object => @group.quizzes.visible_by_user(current_user, @group) %>

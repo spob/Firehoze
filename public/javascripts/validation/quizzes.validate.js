@@ -20,6 +20,6 @@ $(document).ready(function() {
 
     $('#quiz_disabled_at').datepicker({
         changeMonth: true,
-        changeYear: true
+        changeYear: true 
     });
 });

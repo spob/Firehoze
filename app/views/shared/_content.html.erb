@@ -98,7 +98,7 @@
 <%= render :partial => 'shared/footer' unless admin %>
 
 <% # Javascript Plugins %>
-<%= javascript_include_tag 'plugins/jquery.ui.datepicker', 'plugins/jquery.always_at_bottom','plugins/jquery.anchor','plugins/jquery.cornerz','plugins/jquery.simplyCountable','plugins/jquery.truncator','plugins/jquery.validate.min','plugins/jquery.tipTip','plugins/jquery.uniform', :cache => 'firehozePlugins' %>
+<%= javascript_include_tag  'jquery-ui-custom.min','plugins/jquery.ui.datepicker', 'plugins/jquery.always_at_bottom','plugins/jquery.anchor','plugins/jquery.cornerz','plugins/jquery.simplyCountable','plugins/jquery.truncator','plugins/jquery.validate.min','plugins/jquery.tipTip','plugins/jquery.uniform', :cache => 'firehozePlugins' %>
 
 <% # Firehoze Specific Javascript Code %>
 <%= javascript_include_tag 'application','faqs','flash','footer','pagination','rounders','tabs','tipTip','topNavigation','truncator', :cache => 'firehoze' %>

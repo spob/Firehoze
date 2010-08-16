@@ -51,7 +51,7 @@ class QuizzesController < ApplicationController
   end
 
   def can_create? group
-    if group.owned_by? current_user || group.moderated_by?(current_user)
+    if group.owned_by?(current_user) || group.moderated_by?(current_user)
       true
     else
       flash[:error] = t('quiz.must_be_moderator_or_owner', :group => topic.group.name)
