@@ -44,12 +44,15 @@
         <% f.fields_for :questions do |question_form| %>
             <%= render :partial => 'question', :locals => {:f => question_form} %>
         <% end %>
-        <p><%= add_child_link "New Question", :questions %></p>
         <%= new_child_fields_template(f, :questions) %>
+        <span>
+          <%= f.label "" %>
+          <%= add_child_link "Add New Question", :questions %>
+        </span>
 
         <li class="bottom">
         <span class="unlabelled">
-         <%= f.submit @quiz.new_record? ? "Create Quiz" : "Update Quiz" %>
+          <%= f.submit @quiz.new_record? ? "Create Quiz" : "Update Quiz" %>
           <%= link_to "Cancel", group_path(@group, :anchor => :quizzes) %>
         </span>
 

@@ -30,7 +30,7 @@
       </div>
     </div>
 
-    This is something
+    <%= render :partial => "show_question", :collection => @quiz.questions, :as => :question %>
 
     <div>&laquo; <%= link_to "Back to Group", group_path(@quiz.group, :anchor => :quiz) %></div>
   </div>
