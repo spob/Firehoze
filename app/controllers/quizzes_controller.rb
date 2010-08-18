@@ -10,8 +10,11 @@ class QuizzesController < ApplicationController
 
   def create
     if can_create? @group
-      @quiz = @group.quizzes.build(params[:quiz])
+#      @quiz = @group.quizzes.build(params[:quiz])
+#      @quiz.published = false
+      @quiz = Quiz.new(params[:quiz])
       @quiz.published = false
+      @group.quizzes << @quiz
       if @quiz.save
         flash[:notice] = t 'quiz.create_success'
         redirect_to quiz_path(@quiz)

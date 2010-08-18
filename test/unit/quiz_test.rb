@@ -9,6 +9,7 @@ class QuizTest < ActiveSupport::TestCase
     subject { @quiz }
 
     should_belong_to :group
+    should_have_many :questions
     should_validate_presence_of :name, :group
     should_validate_uniqueness_of :name, :scoped_to => :group_id
     should_ensure_length_in_range :name, (0..100)

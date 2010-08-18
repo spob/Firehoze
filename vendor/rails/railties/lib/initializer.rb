@@ -268,7 +268,7 @@ module Rails
       configuration.frameworks.each { |framework| require(framework.to_s) }
     rescue LoadError => e
       # Re-raise as RuntimeError because Mongrel would swallow LoadError.
-      raise e.to_s
+        raise e.to_s
     end
 
     # Preload all frameworks specified by the Configuration#frameworks.

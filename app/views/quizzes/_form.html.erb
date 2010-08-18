@@ -4,7 +4,7 @@
 <% end -%>
 
 <div class="fh-form">
-  <% form_for(:quiz, :url => (@quiz.new_record? ? group_quizzes_url(@group) : quiz_path(@quiz)), :html => { :method => (@quiz.new_record? ? :post : :put), :id => "quiz" }) do |f| %>
+  <% form_for(:quiz, @quiz, :url => (@quiz.new_record? ? group_quizzes_url(@group) : quiz_path(@quiz)), :html => {:method => (@quiz.new_record? ? :post : :put), :id => "quiz"}) do |f| %>
       <%= f.error_messages %>
       <ul id="group-quiz-info" class="section">
         <li class="header">
@@ -13,7 +13,7 @@
           <h3><%= heading %></h3>
 
           <h3><%= link_to h(@group.name), group_path(@group) %></h3>
-          <h4><%= subtext %></h4> 
+          <h4><%= subtext %></h4>
 
           <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
         </li>
@@ -39,6 +39,14 @@
           <%= f.text_field :disabled_at %>
         </span>
         </li>
+
+        <h3>Questions</h3>
+        <% f.fields_for :questions do |question_form| %>
+            <%= render :partial => 'question', :locals => {:f => question_form} %>
+        <% end %>
+        <p><%= add_child_link "New Question", :questions %></p>
+        <%= new_child_fields_template(f, :questions) %>
+
         <li class="bottom">
         <span class="unlabelled">
          <%= f.submit @quiz.new_record? ? "Create Quiz" : "Update Quiz" %>

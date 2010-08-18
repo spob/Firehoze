@@ -1,0 +1,13 @@
+<div class="fields">
+
+  <li>
+        <span>
+          <%= f.label :question %>
+          <%= f.text_field :question %>
+          <%= remove_child_link "remove", f %>
+          <%# Alternatively you can use a check box: %>
+          <%# f.check_box :_delete %>
+          <%# f.label :_delete, "(remove)" %>
+         </span>
+  </li>
+</div>
