@@ -139,9 +139,10 @@ Rails::Initializer.run do |config|
   # The following gems are required for interacting with flix cloud. Yeah, Rich, I know you'd like
   # all the gems to be alphabetically ordered, but at least for now I'd like to keep these grouped
   # together
-  config.gem 'spob-flix_cloud-gem', :lib => 'flix_cloud', :source => 'http://gems.github.com', :version => '0.5.4'
-  config.gem 'sevenwire-http_client', :lib => 'http_client', :source => 'http://gems.github.com'
-  config.gem 'crack'
+#  config.gem 'spob-flix_cloud-gem', :lib => 'flix_cloud', :version => '0.6.2'
+#  config.gem 'sevenwire-http_client', :lib => 'http_client'
+#  config.gem 'crack'
+  config.gem "zencoder", :version => '~> 2.1.15'
 
 
   config.gem 'thinking-sphinx', :lib => 'thinking_sphinx', :version => '1.3.18', :source => "http://gemcutter.org"

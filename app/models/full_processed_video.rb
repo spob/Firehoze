@@ -8,7 +8,7 @@ class FullProcessedVideo < ProcessedVideo
   end
 
   def output_ftp_path
-    "ftp://#{APP_CONFIG[CONFIG_FTP_CDN_PATH]}/#{self.s3_root_dir}/videos/#{self.id.to_s}.flv"
+    "ftp://#{OUTPUT_FTP_USERNAME}:#{OUTPUT_FTP_PASSWORD}@#{APP_CONFIG[CONFIG_FTP_CDN_PATH]}/#{self.s3_root_dir}/videos/#{self.id.to_s}.flv"
   end
 
   def update_lesson_attributes(job)

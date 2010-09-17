@@ -10,8 +10,6 @@ REVIEWS_ON_LESSON_SHOW_PER_PAGE = 5
 COMMENTS_ON_LESSON_SHOW_PER_PAGE = 10
 ACTIVITES_PER_PAGE = 5
 
-
-
 # Roles
 ROLE_ADMIN = 'admin'
 ROLE_MODERATOR = 'moderator'
@@ -64,10 +62,13 @@ CONFIG_AWS_ACCESS_KEY_ID = 'access_key_id'
 CONFIG_AWS_SECRET_ACCESS_KEY = 'secret_access_key'
 
 FLIX_CLOUD_AWS_ID = '99293b905e1e3610f938fccb8405c4d56e913c2f0acf7bf1b74af1fdc107294c'
-FLIX_API_KEY = 'b997:klpibn:0:8x72:gsvz'
+FLIX_API_KEY = '440fcb724023c3244d0499c3e05f53f5'
 FLIX_FULL_RECIPE_ID = 582
 FLIX_PREVIEW_RECIPE_ID = 581
 WATERMARK_URL = 'http://assets.firehoze.com/images/videos/watermark-video-embed-24.png'
+
+OUTPUT_FTP_USERNAME = 'output'
+OUTPUT_FTP_PASSWORD = 'gxdk4v27zmc2th6amguw58'
 
 # Video statuses
 VIDEO_STATUS_PENDING = "Pending"
