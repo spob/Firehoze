@@ -15,18 +15,18 @@ class OriginalVideo < Video
 
   validates_attachment_presence :video
   validates_attachment_size :video, :less_than => APP_CONFIG[CONFIG_MAX_VIDEO_SIZE].megabytes
-  validates_attachment_content_type :video, :content_type => [ 'application/x-avi',
-                                                               'video/x-msvideo',
-                                                               'video/avi',
-                                                               'video/quicktime',
-                                                               'video/3gpp',
-                                                               'video/x-ms-wmv',
-                                                               'video/mp4',
-                                                               'video/x-m4v',
-                                                               'video/mpeg',
-                                                               'video/x-flv',
-                                                               'application/x-flash-video',
-                                                               'application/x-itunes-itlp']
+  validates_attachment_content_type :video, :content_type => ['application/x-avi',
+                                                              'video/x-msvideo',
+                                                              'video/avi',
+                                                              'video/quicktime',
+                                                              'video/3gpp',
+                                                              'video/x-ms-wmv',
+                                                              'video/mp4',
+                                                              'video/x-m4v',
+                                                              'video/mpeg',
+                                                              'video/x-flv',
+                                                              'application/x-flash-video',
+                                                              'application/x-itunes-itlp']
   # 'application/x-swf',
   # 'application/x-shockwave-flash'
 
@@ -39,9 +39,9 @@ class OriginalVideo < Video
   end
 
   # Call out to flixcloud to trigger a conversion process
-  def trigger_convert(clazz, notify_url)
+  def create_processed_video(clazz)
     set_url
-    processed_video = clazz.find(:first, :conditions => { :lesson_id => self.lesson })
+    processed_video = clazz.find(:first, :conditions => {:lesson_id => self.lesson})
     unless processed_video
       processed_video = clazz.create!(:lesson_id => self.lesson.id,
                                       :video_file_name => self.video_file_name,
@@ -58,7 +58,82 @@ class OriginalVideo < Video
       processed_video.change_status(VIDEO_STATUS_FAILED, e.message)
       raise e
     end
-    processed_video.convert(notify_url)
+    processed_video
+  end
+
+
+  # Call out to flixcloud to trigger a conversion process
+  def process_video(full_processed_video, preview_video, notify_path)
+    puts ".....#{notify_path}"
+    full_processed_video.update_processed_video_attributes
+    preview_video.update_processed_video_attributes
+
+    Zencoder.api_key = FLIX_API_KEY
+
+    params =
+            <<-eos
+{
+  "input": "   #{s3_path}   ",
+  "outputs": [
+    {
+      "label": "FullProcessedVideo",
+      "url": "#{full_processed_video.output_ftp_path}",
+      "width": "960",
+      "upscale": "true",
+      "watermark": {
+        "url": "#{WATERMARK_URL}",
+        "x": "-3%",
+        "y": "-3%"
+      },
+      "thumbnails": {
+        "number": 1,
+        "size": "#{PLAYER_WIDTH}x#{PLAYER_HEIGHT}",
+        "base_url": "#{full_processed_video.thumbnail_s3_path}",
+        "prefix": "thumb"
+      },
+      "notifications": [
+        "bob@sturim.org"
+      ]
+    },
+    {
+      "label": "PreviewVideo",
+      "url": "#{preview_video.output_ftp_path}",
+      "width": "960",
+      "upscale": "true",
+      "clip_length": "00:00:30",
+      "watermark": {
+        "url": "#{WATERMARK_URL}",
+        "x": "-3",
+        "y": "-3"
+      },
+      "notifications": [
+        "bob@sturim.org"
+      ]
+    }
+  ]
+}
+    eos
+#        "#{notify_path}",
+    puts params
+    response = Zencoder::Job.create(params)
+
+    if response.code == "201"
+      puts "submitted successfully"
+      full_processed_video.change_status(VIDEO_STATUS_CONVERTING, " (##{response.body['id']})")
+      full_processed_video.update_attributes!(:flixcloud_job_id => response.body['id'],
+                                              :conversion_started_at => Time.now)
+      preview_video.change_status(VIDEO_STATUS_CONVERTING, " (##{response.body['id']})")
+      preview_video.update_attributes!(:flixcloud_job_id => response.body['id'],
+                                       :conversion_started_at => Time.now)
+      RunOncePeriodicJob.create!(:name => 'DetectZombieVideoProcess',
+                                 :job => "ProcessedVideo.detect_zombie_video(#{full_processed_video.id}, #{response.body['id']})",
+                                 :next_run_at => (APP_CONFIG[CONFIG_ZOMBIE_VIDEO_PROCESS_MINUTES].to_i.minutes.from_now))
+    else
+      msg = "conversion failed"
+      full_processed_video.change_status(VIDEO_STATUS_FAILED, msg)
+      preview_video.change_status(VIDEO_STATUS_FAILED, msg)
+      raise msg
+    end
   end
 
   # First call out to Amazon S3 to grant permissions to flixcloud to view the raw video,
@@ -66,13 +141,7 @@ class OriginalVideo < Video
   def self.convert_video video_id, notify_url
     video = OriginalVideo.find(video_id)
 
-    unless video.trigger_convert(FullProcessedVideo, notify_url)
-      raise "Starting flash conversion failed"
-    end
-
-    unless video.trigger_convert(PreviewProcessedVideo, notify_url)
-      raise "Starting flash preview conversion failed"
-    end
+    video.process_video(video.create_processed_video(FullProcessedVideo), video.create_processed_video(PreviewProcessedVideo), notify_url)
 
   rescue Exception => e
     Lesson.transaction do

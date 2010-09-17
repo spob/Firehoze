@@ -7,111 +7,116 @@ class ProcessedVideo < Video
   validates_presence_of :lesson, :status
   validates_numericality_of :video_file_size, :greater_than => 0, :allow_nil => true
 
-  # Call out to flixcloud to trigger a conversion process
-  def convert notify_path
+  def update_processed_video_attributes
     self.update_attributes!(:s3_key => "#{self.s3_root_dir}/videos/#{self.id}/#{self.video_file_name}.flv",
                             :thumbnail_s3_path => thumbnail_s3_path)
-    Zencoder.api_key = FLIX_API_KEY
-
-    params = 
-<<-eos
-{
-  "input": "#{self.converted_from_video.s3_path}",
-  "outputs": [
-    {
-      "label": "full_video",
-      "url": "#{output_ftp_path}",
-      "width": "960",
-      "upscale": "true",
-      "watermark": {
-        "url": "#{WATERMARK_URL}",
-        "x": "-3%",
-        "y": "-3
-      },
-      "thumbnails": {
-        "number": 1,
-        "size": "#{PLAYER_WIDTH}x#{PLAYER_HEIGHT}",
-        "base_url": "#{thumbnail_s3_path}",
-        "prefix": "thumb"
-      },             
-      "notifications": [
-        "bob@sturim.org"
-      ]
-    },
-    {
-      "label": "preview_video",
-      "url": "#{output_ftp_path}",
-      "width": "960",
-      "upscale": "true",
-      "clip_length": "00:00:30",
-      "watermark": {
-        "url": "#{WATERMARK_URL}",
-        "x": "-3",
-        "y": "-3"
-      },
-      "notifications": [
-        "bob@sturim.org"
-      ]
-    }
-  ]
-}
-    eos
-#        "#{notify_path}",
-puts params
-    response = Zencoder::Job.create(params)
-
-    if response.code == "201"
-      puts "submitted successfully"
-      change_status(VIDEO_STATUS_CONVERTING, " (##{response.body['id']})")
-      self.update_attributes!(:flixcloud_job_id => response.body['id'],
-                              :conversion_started_at => Time.now)
-      RunOncePeriodicJob.create!(:name => 'DetectZombieVideoProcess',
-                                 :job => "ProcessedVideo.detect_zombie_video(#{self.id}, #{response.body['id']})",
-                                 :next_run_at => (APP_CONFIG[CONFIG_ZOMBIE_VIDEO_PROCESS_MINUTES].to_i.minutes.from_now))
-    end
-    
-#                             "outputs => [{:label => 'full video',
-#                                           :url => output_ftp_path,
-#                                           :width => 960,
-#                                           :upscale => true,
-#                                           :watermark => {
-#                                                   :url => WATERMARK_URL,
-#                                                   :x => "-10%",
-#                                                   :y => "-10%"
-#                                           },
-#                                           :thumbnails => {
-#                                                   :number => 1,
-#                                                   :size => "#{PLAYER_WIDTH}x#{PLAYER_HEIGHT}",
-#                                                   :base_url => thumbnail_s3_path,
-#                                                   :prefix => "thumb"
-#                                                   },
-#                                          :notifications => [notify_path]
-#                                                  }])
-
-        puts "=========================>#{response.code}  #{response.body['id']}"
-#    job = FlixCloud::Job.new(:api_key => FLIX_API_KEY,
-#                             :recipe_id => flix_recipe_id,
-#                             :notification_url => notify_path,
-#                             :input_url => self.converted_from_video.s3_path,
-#                             :output_url => output_ftp_path,
-#                             :output_user => APP_CONFIG[CONFIG_FTP_CDN_USER],
-#                             :output_password => APP_CONFIG[CONFIG_FTP_CDN_PASSWORD],
-#                             :watermark_url => WATERMARK_URL,
-#                             :thumbnails_url => thumbnail_s3_path)
-#    if job.save
-#      change_status(VIDEO_STATUS_CONVERTING, " (##{job.id})")
-#      self.update_attributes!(:flixcloud_job_id => job.id,
-#                              :conversion_started_at => job.initialized_at)
-#      RunOncePeriodicJob.create!(:name => 'DetectZombieVideoProcess',
-#                                 :job => "ProcessedVideo.detect_zombie_video(#{self.id}, #{job.id})",
-#                                 :next_run_at => (APP_CONFIG[CONFIG_ZOMBIE_VIDEO_PROCESS_MINUTES].to_i.minutes.from_now))
-#    else
-#      msg = ""
-#      job.errors.each { |x| msg = (msg == "" ? "" : ", ") + msg + x }
-#      change_status(VIDEO_STATUS_FAILED, msg)
-#      raise msg
-#    end
   end
+
+  # Call out to flixcloud to trigger a conversion process
+#  def convert notify_path
+#    self.update_attributes!(:s3_key => "#{self.s3_root_dir}/videos/#{self.id}/#{self.video_file_name}.flv",
+#                            :thumbnail_s3_path => thumbnail_s3_path)
+#    Zencoder.api_key = FLIX_API_KEY
+#
+#    params =
+#<<-eos
+#{
+#  "input": "#{self.converted_from_video.s3_path}",
+#  "outputs": [
+#    {
+#      "label": "full_video",
+#      "url": "#{output_ftp_path}",
+#      "width": "960",
+#      "upscale": "true",
+#      "watermark": {
+#        "url": "#{WATERMARK_URL}",
+#        "x": "-3%",
+#        "y": "-3
+#      },
+#      "thumbnails": {
+#        "number": 1,
+#        "size": "#{PLAYER_WIDTH}x#{PLAYER_HEIGHT}",
+#        "base_url": "#{thumbnail_s3_path}",
+#        "prefix": "thumb"
+#      },
+#      "notifications": [
+#        "bob@sturim.org"
+#      ]
+#    },
+#    {
+#      "label": "preview_video",
+#      "url": "#{output_ftp_path}",
+#      "width": "960",
+#      "upscale": "true",
+#      "clip_length": "00:00:30",
+#      "watermark": {
+#        "url": "#{WATERMARK_URL}",
+#        "x": "-3",
+#        "y": "-3"
+#      },
+#      "notifications": [
+#        "bob@sturim.org"
+#      ]
+#    }
+#  ]
+#}
+#    eos
+##        "#{notify_path}",
+#puts params
+#    response = Zencoder::Job.create(params)
+#
+#    if response.code == "201"
+#      puts "submitted successfully"
+#      change_status(VIDEO_STATUS_CONVERTING, " (##{response.body['id']})")
+#      self.update_attributes!(:flixcloud_job_id => response.body['id'],
+#                              :conversion_started_at => Time.now)
+#      RunOncePeriodicJob.create!(:name => 'DetectZombieVideoProcess',
+#                                 :job => "ProcessedVideo.detect_zombie_video(#{self.id}, #{response.body['id']})",
+#                                 :next_run_at => (APP_CONFIG[CONFIG_ZOMBIE_VIDEO_PROCESS_MINUTES].to_i.minutes.from_now))
+#    end
+#
+##                             "outputs => [{:label => 'full video',
+##                                           :url => output_ftp_path,
+##                                           :width => 960,
+##                                           :upscale => true,
+##                                           :watermark => {
+##                                                   :url => WATERMARK_URL,
+##                                                   :x => "-10%",
+##                                                   :y => "-10%"
+##                                           },
+##                                           :thumbnails => {
+##                                                   :number => 1,
+##                                                   :size => "#{PLAYER_WIDTH}x#{PLAYER_HEIGHT}",
+##                                                   :base_url => thumbnail_s3_path,
+##                                                   :prefix => "thumb"
+##                                                   },
+##                                          :notifications => [notify_path]
+##                                                  }])
+#
+#        puts "=========================>#{response.code}  #{response.body['id']}"
+##    job = FlixCloud::Job.new(:api_key => FLIX_API_KEY,
+##                             :recipe_id => flix_recipe_id,
+##                             :notification_url => notify_path,
+##                             :input_url => self.converted_from_video.s3_path,
+##                             :output_url => output_ftp_path,
+##                             :output_user => APP_CONFIG[CONFIG_FTP_CDN_USER],
+##                             :output_password => APP_CONFIG[CONFIG_FTP_CDN_PASSWORD],
+##                             :watermark_url => WATERMARK_URL,
+##                             :thumbnails_url => thumbnail_s3_path)
+##    if job.save
+##      change_status(VIDEO_STATUS_CONVERTING, " (##{job.id})")
+##      self.update_attributes!(:flixcloud_job_id => job.id,
+##                              :conversion_started_at => job.initialized_at)
+##      RunOncePeriodicJob.create!(:name => 'DetectZombieVideoProcess',
+##                                 :job => "ProcessedVideo.detect_zombie_video(#{self.id}, #{job.id})",
+##                                 :next_run_at => (APP_CONFIG[CONFIG_ZOMBIE_VIDEO_PROCESS_MINUTES].to_i.minutes.from_now))
+##    else
+##      msg = ""
+##      job.errors.each { |x| msg = (msg == "" ? "" : ", ") + msg + x }
+##      change_status(VIDEO_STATUS_FAILED, msg)
+##      raise msg
+##    end
+#  end
 
   # This method takes a job record populated from the flixcloud gem, and will update the various attributes
   # on the job accordingly.
@@ -214,6 +219,10 @@ puts params
     thumbnail = "http://#{APP_CONFIG[CONFIG_CDN_THUMBS_SERVER]}/#{self.s3_root_dir}/thumbs/#{lesson.id.to_s}/#{size}/thumb_0001.png"
   end
 
+  def thumbnail_s3_path
+    "s3://#{APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET]}/#{self.s3_root_dir}/thumbs/#{lesson.id.to_s}/#{thumbnail_size}"
+  end
+
   private
 
   def zero_nvl(value)
@@ -222,10 +231,6 @@ puts params
     else
       value
     end
-  end
-
-  def thumbnail_s3_path
-    "s3://#{APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET]}/#{self.s3_root_dir}/thumbs/#{lesson.id.to_s}/#{thumbnail_size}"
   end
 
   def set_video_status
