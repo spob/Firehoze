@@ -12,141 +12,45 @@ class ProcessedVideo < Video
                             :thumbnail_s3_path => thumbnail_s3_path)
   end
 
-  # Call out to flixcloud to trigger a conversion process
-#  def convert notify_path
-#    self.update_attributes!(:s3_key => "#{self.s3_root_dir}/videos/#{self.id}/#{self.video_file_name}.flv",
-#                            :thumbnail_s3_path => thumbnail_s3_path)
-#    Zencoder.api_key = FLIX_API_KEY
-#
-#    params =
-#<<-eos
-#{
-#  "input": "#{self.converted_from_video.s3_path}",
-#  "outputs": [
-#    {
-#      "label": "full_video",
-#      "url": "#{output_ftp_path}",
-#      "width": "960",
-#      "upscale": "true",
-#      "watermark": {
-#        "url": "#{WATERMARK_URL}",
-#        "x": "-3%",
-#        "y": "-3
-#      },
-#      "thumbnails": {
-#        "number": 1,
-#        "size": "#{PLAYER_WIDTH}x#{PLAYER_HEIGHT}",
-#        "base_url": "#{thumbnail_s3_path}",
-#        "prefix": "thumb"
-#      },
-#      "notifications": [
-#        "bob@sturim.org"
-#      ]
-#    },
-#    {
-#      "label": "preview_video",
-#      "url": "#{output_ftp_path}",
-#      "width": "960",
-#      "upscale": "true",
-#      "clip_length": "00:00:30",
-#      "watermark": {
-#        "url": "#{WATERMARK_URL}",
-#        "x": "-3",
-#        "y": "-3"
-#      },
-#      "notifications": [
-#        "bob@sturim.org"
-#      ]
-#    }
-#  ]
-#}
-#    eos
-##        "#{notify_path}",
-#puts params
-#    response = Zencoder::Job.create(params)
-#
-#    if response.code == "201"
-#      puts "submitted successfully"
-#      change_status(VIDEO_STATUS_CONVERTING, " (##{response.body['id']})")
-#      self.update_attributes!(:flixcloud_job_id => response.body['id'],
-#                              :conversion_started_at => Time.now)
-#      RunOncePeriodicJob.create!(:name => 'DetectZombieVideoProcess',
-#                                 :job => "ProcessedVideo.detect_zombie_video(#{self.id}, #{response.body['id']})",
-#                                 :next_run_at => (APP_CONFIG[CONFIG_ZOMBIE_VIDEO_PROCESS_MINUTES].to_i.minutes.from_now))
-#    end
-#
-##                             "outputs => [{:label => 'full video',
-##                                           :url => output_ftp_path,
-##                                           :width => 960,
-##                                           :upscale => true,
-##                                           :watermark => {
-##                                                   :url => WATERMARK_URL,
-##                                                   :x => "-10%",
-##                                                   :y => "-10%"
-##                                           },
-##                                           :thumbnails => {
-##                                                   :number => 1,
-##                                                   :size => "#{PLAYER_WIDTH}x#{PLAYER_HEIGHT}",
-##                                                   :base_url => thumbnail_s3_path,
-##                                                   :prefix => "thumb"
-##                                                   },
-##                                          :notifications => [notify_path]
-##                                                  }])
-#
-#        puts "=========================>#{response.code}  #{response.body['id']}"
-##    job = FlixCloud::Job.new(:api_key => FLIX_API_KEY,
-##                             :recipe_id => flix_recipe_id,
-##                             :notification_url => notify_path,
-##                             :input_url => self.converted_from_video.s3_path,
-##                             :output_url => output_ftp_path,
-##                             :output_user => APP_CONFIG[CONFIG_FTP_CDN_USER],
-##                             :output_password => APP_CONFIG[CONFIG_FTP_CDN_PASSWORD],
-##                             :watermark_url => WATERMARK_URL,
-##                             :thumbnails_url => thumbnail_s3_path)
-##    if job.save
-##      change_status(VIDEO_STATUS_CONVERTING, " (##{job.id})")
-##      self.update_attributes!(:flixcloud_job_id => job.id,
-##                              :conversion_started_at => job.initialized_at)
-##      RunOncePeriodicJob.create!(:name => 'DetectZombieVideoProcess',
-##                                 :job => "ProcessedVideo.detect_zombie_video(#{self.id}, #{job.id})",
-##                                 :next_run_at => (APP_CONFIG[CONFIG_ZOMBIE_VIDEO_PROCESS_MINUTES].to_i.minutes.from_now))
-##    else
-##      msg = ""
-##      job.errors.each { |x| msg = (msg == "" ? "" : ", ") + msg + x }
-##      change_status(VIDEO_STATUS_FAILED, msg)
-##      raise msg
-##    end
-#  end
-
   # This method takes a job record populated from the flixcloud gem, and will update the various attributes
   # on the job accordingly.
   def finish_conversion job
     Video.transaction do
-      if job.successful?
+      output_media_file = nil
+      job['output_media_files'].each do |output|
+        output_media_file = output if output['label'] == self.class.name
+      end
+
+      if output_media_file && output_media_file['state'] == 'finished'
         self.update_attributes(
-                :conversion_ended_at => job.finished_job_at,
-                :video_width => job.output_media_file.width,
-                :video_height => job.output_media_file.height,
-                :video_file_size => job.output_media_file.size,
-                :video_duration => job.output_media_file.duration,
-                :video_file_name => job.output_media_file.url[/[^\/]*\z/],
+                :conversion_ended_at => output_media_file['finished_at'],
+                :video_width => output_media_file['width'],
+                :video_height => output_media_file['height'],
+                :video_file_size => output_media_file['file_size_bytes'],
+                :video_duration => output_media_file['duration_in_ms'],
+                :video_file_name => output_media_file['url'][/[^\/]*\z/],
                 :video_content_type => 'application/x-flv',
                 :processed_video_cost => zero_nvl(self.processed_video_cost) + job.output_media_file.cost.to_f,
-                :input_video_cost => zero_nvl(self.input_video_cost) + job.input_media_file.cost.to_f,
+                :input_video_cost => 0,
                 :video_transcoding_error => nil,
                 :thumbnail_url => (thumbnail_path),
-                :s3_path => job.output_media_file.url,
+                :s3_path => output_media_file['url'],
                 :url => "http://#{APP_CONFIG[CONFIG_CDN_OUTPUT_SERVER]}/#{self.s3_key}")
 
 
-        update_lesson_attributes(job)
+        update_lesson_attributes(output_media_file['duration_in_ms'])
 
         self.change_status(VIDEO_STATUS_READY)
       else
-        self.change_status(VIDEO_STATUS_FAILED, job.error_message)
+        if output_media_file
+          self.change_status(VIDEO_STATUS_FAILED, output_media_file['error_message'])
+        else
+          self.change_status(VIDEO_STATUS_FAILED, "Unable to find output_media_file for #{job['id']} #{self.class.name}")
+        end
         Notifier.deliver_lesson_processing_failed self
       end
     end
+
     job.successful?
   rescue Exception => e
     self.change_status(VIDEO_STATUS_FAILED, ': ' + e.message)
@@ -164,7 +68,7 @@ class ProcessedVideo < Video
     self.lesson.update_status
   end
 
-  # Check if a video was submitted for processing and never returned. If so, send an email alert
+# Check if a video was submitted for processing and never returned. If so, send an email alert
   def self.detect_zombie_video(video_id, job_id)
     video = ProcessedVideo.find(video_id)
     if video.flixcloud_job_id == job_id
@@ -176,7 +80,7 @@ class ProcessedVideo < Video
     end
   end
 
-  # This is a utility method to build a dummy XML response message from flix cloud
+# This is a utility method to build a dummy XML response message from flix cloud
   def build_flix_response
     xml = Builder::XmlMarkup.new(:target => out_string = "",
                                  :indent => 2)
@@ -236,4 +140,5 @@ class ProcessedVideo < Video
   def set_video_status
     self.status = VIDEO_STATUS_PENDING
   end
+
 end

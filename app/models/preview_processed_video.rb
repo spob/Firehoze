@@ -12,8 +12,8 @@ class PreviewProcessedVideo < ProcessedVideo
   end
 
 
-  def update_lesson_attributes(job)
-    self.lesson.update_attributes(:finished_video_duration => job.output_media_file.duration)
+  def update_lesson_attributes(duration)
+    self.lesson.update_attributes(:finished_video_duration => duration)
   end
 
   def output_rtmp_path
