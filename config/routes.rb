@@ -78,7 +78,7 @@ ActionController::Routing::Routes.draw do |map|
                         :unreject => :post
                 },
                 :collection => {
-                        :conversion_notify => :put,
+                        :conversion_notify => :post,
                         :list => :get,
                         :tabbed => :get,
                         :ajaxed => :get,
