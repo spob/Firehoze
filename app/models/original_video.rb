@@ -79,9 +79,14 @@ class OriginalVideo < Video
   "outputs": [
     {
       "label": "FullProcessedVideo",
+      "video_codec": "vp6",
+      "speed": 2,
       "url": "#{full_processed_video.output_ftp_path}",
       "width": "960",
+      "height": "720",
       "upscale": "true",
+      "aspect_mode": "preserve",
+      "quality": 4,
       "watermark": {
         "url": "#{WATERMARK_URL}",
         "x": "-3%",
@@ -99,9 +104,14 @@ class OriginalVideo < Video
     },
     {
       "label": "PreviewProcessedVideo",
+      "video_codec": "vp6",
+      "speed": 2,
       "url": "#{preview_video.output_ftp_path}",
       "width": "960",
+      "height": "720",
       "upscale": "true",
+      "aspect_mode": "preserve",
+      "quality": 4,
       "clip_length": "00:00:30",
       "watermark": {
         "url": "#{WATERMARK_URL}",
@@ -119,7 +129,7 @@ class OriginalVideo < Video
     puts params
     response = Zencoder::Job.create(params)
 
-    if response.code == "201"
+    if response.success?
       puts "submitted successfully"
       full_processed_video.change_status(VIDEO_STATUS_CONVERTING, " (##{response.body['id']})")
       full_processed_video.update_attributes!(:flixcloud_job_id => response.body['id'],
@@ -131,7 +141,7 @@ class OriginalVideo < Video
                                  :job => "ProcessedVideo.detect_zombie_video(#{full_processed_video.id}, #{response.body['id']})",
                                  :next_run_at => (APP_CONFIG[CONFIG_ZOMBIE_VIDEO_PROCESS_MINUTES].to_i.minutes.from_now))
     else
-      msg = "conversion failed"
+      msg = "conversion failed with response code #{response.code} #{response.body}"
       full_processed_video.change_status(VIDEO_STATUS_FAILED, msg)
       preview_video.change_status(VIDEO_STATUS_FAILED, msg)
       raise msg

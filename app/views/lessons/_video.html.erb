@@ -30,15 +30,7 @@
     <!--<td>-->
     <!--<%= video.flixcloud_job_id %>-->
     <!--</td>-->
-    <td>
-      <% if video.is_a? ProcessedVideo then %>
-        <%= number_to_currency(video.input_video_cost/100000.0,
-          :precision => 3) unless video.input_video_cost.blank? %> /
-        <%= number_to_currency(video.processed_video_cost/100000.0,
-          :precision => 3) unless video.input_video_cost.blank? %>
-      <% end %>
-    </td>
     <td><ul><%= render video.video_status_changes %></ul></td>
-    <td><%= convert_button(video) %></td>
+    <td><%= video_action_buttons(video) %></td>
   <% end %>
 </tr>

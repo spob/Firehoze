@@ -157,11 +157,14 @@ module LessonsHelper
     end
   end
 
-  def convert_button(video)
+  def video_action_buttons(video)
     if video.instance_of? OriginalVideo
       label = t('video.convert') if video.lesson.processed_videos.empty?
       label ||= t('video.reconvert')
       link_to label, convert_lesson_path(video.lesson), :method => :post
+    elsif video.kind_of? ProcessedVideo
+      label = t('video.refresh') 
+      link_to label, refresh_video_status_lesson_path(video), :method => :post
     end
   end
 

@@ -6,7 +6,7 @@ class LessonsController < ApplicationController
   else
     before_filter :require_user, :except => [:conversion_notify, :index]
   end
-  permit ROLE_ADMIN, :only => [:convert]
+  permit ROLE_ADMIN, :only => [:convert, :refresh_video_status]
   permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [:list_admin, :graph, :graph_data]
   permit ROLE_MODERATOR, :only => [:unreject]
 
@@ -14,19 +14,19 @@ class LessonsController < ApplicationController
 
   cache_sweeper :tag_cloud_sweeper, :only => [:update, :conversion_notify, :unreject]
 
-  verify :method => :post, :only => [ :create, :convert, :unreject, :conversion_notify ], :redirect_to => :home_path
-  verify :method => :put, :only => [ :update ], :redirect_to => :home_path
-  before_filter :find_lesson, :only => [ :convert, :edit, :lesson_notes, :rate, :stats, :show_lesson_status, :show_groups, :update, :watch, :unreject ]
-  before_filter :set_per_page, :only => [ :ajaxed, :index, :list, :tabbed, :tagged_with ]
-  before_filter :set_collection, :only => [ :ajaxed, :list, :tabbed ]
+  verify :method => :post, :only => [:create, :convert, :refresh_video_status, :unreject, :conversion_notify], :redirect_to => :home_path
+  verify :method => :put, :only => [:update], :redirect_to => :home_path
+  before_filter :find_lesson, :only => [:convert, :edit, :lesson_notes, :rate, :stats, :show_lesson_status, :show_groups, :update, :watch, :unreject]
+  before_filter :set_per_page, :only => [:ajaxed, :index, :list, :tabbed, :tagged_with]
+  before_filter :set_collection, :only => [:ajaxed, :list, :tabbed]
   before_filter :set_no_uniform_js
 
-  LIST_COLLECTIONS = %w(newest most_popular highest_rated tagged_with recently_browsed tagged_with)
+  LIST_COLLECTIONS = %w(  newest most_popular highest_rated tagged_with recently_browsed tagged_with  )
 
   layout :layout_for_action
 
   # The number of free download counts to display on the create lesson page
-  @@free_download_counts = [ 0, 5, 10, 25 ]
+  @@free_download_counts = [0, 5, 10, 25]
 
 
   # Unrecognized user page
@@ -100,7 +100,7 @@ class LessonsController < ApplicationController
       @lesson.initial_free_download_count = params[:initial_free_download_count].try('to_i')
       Lesson.transaction do
         if @lesson.save
-          video = OriginalVideo.new({ :lesson => @lesson, :video => video_param})
+          video = OriginalVideo.new({:lesson => @lesson, :video => video_param})
           video.save!
           @lesson.trigger_conversion(conversion_notify_lessons_url)
           flash[:notice] = t 'lesson.created'
@@ -133,20 +133,20 @@ class LessonsController < ApplicationController
   def perform_advanced_search
     # Dynamically setup the advanced search object so the search criteria will show properly in the screen
     @advanced_search = AdvancedSearch.new
-    params[:advanced_search].delete_if {|key, value| value.blank? }
+    params[:advanced_search].delete_if { |key, value| value.blank? }
     if params[:advanced_search]
-      AdvancedSearch.public_instance_methods(false).find_all{|item| item.ends_with? "="}.each do |a|
+      AdvancedSearch.public_instance_methods(false).find_all { |item| item.ends_with? "=" }.each do |a|
         @advanced_search.send(a, params[:advanced_search][a.gsub(/=/, "")])
       end
     end
-    @advanced_search.categories = Category.find(:all, :conditions => { :id => params[:advanced_search][:category_ids]})
+    @advanced_search.categories = Category.find(:all, :conditions => {:id => params[:advanced_search][:category_ids]})
 
     # now perform the search
     conditions = params[:advanced_search]
     conditions[:status] = 'Ready'
     with = {}
     with[:created_at] = params[:advanced_search][:created_in].to_i.days.ago..1.day.since if params[:advanced_search][:created_in]
-    with[:category_ids] = @advanced_search.categories.collect(&:id) unless @advanced_search.categories.empty?
+    with[:category_ids] = @advanced_search.categories.collect(& :id) unless @advanced_search.categories.empty?
     with[:rating_average] = params[:advanced_search][:rating_average].to_f..5.0 if params[:advanced_search][:rating_average]
     params[:advanced_search].delete(:category_ids)
     params[:advanced_search].delete(:created_in)
@@ -336,6 +336,12 @@ class LessonsController < ApplicationController
     end
   end
 
+  def refresh_video_status
+    video = ProcessedVideo.find(params[:id])
+    video.finish_conversion Zencoder::Job.details(video.flixcloud_job_id, :api_key => FLIX_API_KEY).body['job']
+    redirect_to lesson_path(video.lesson)
+  end
+
   def rate
     raise ArgumentError, 'A lesson can not be rated by the instructor of lesson' if @lesson.instructor == current_user
     @lesson.rate(params[:stars], current_user)
@@ -354,8 +360,8 @@ class LessonsController < ApplicationController
   end
 
   def graph
-    @graph = open_flash_chart_object(900,500,"/lessons/graph_code?type=lessons_by_time")
-    @graph2 = open_flash_chart_object(900,500,"/lessons/graph_code?type=lessons_by_category")
+    @graph = open_flash_chart_object(900, 500, "/lessons/graph_code?type=lessons_by_time")
+    @graph2 = open_flash_chart_object(900, 500, "/lessons/graph_code?type=lessons_by_category")
   end
 
   @@num_weeks = 52
@@ -430,7 +436,7 @@ class LessonsController < ApplicationController
 
 # disable the uniform plugin, otherwise the advanced search form is all @$@!# up
   def set_no_uniform_js
-    if %w(advanced_search list_admin perform_advanced_search new create edit update).include?(params[:action])
+    if %w(  advanced_search list_admin perform_advanced_search new create edit update  ).include?(params[:action])
       @no_uniform_js = true
     end
   end
@@ -438,11 +444,11 @@ class LessonsController < ApplicationController
   def layout_for_action
     if params[:style] == 'tab'
       'content_in_tab'
-    elsif %w(tabbed).include?(params[:action])
+    elsif %w(  tabbed  ).include?(params[:action])
       'content_in_tab'
-    elsif %w(list_admin graph).include?(params[:action])
+    elsif %w(  list_admin graph  ).include?(params[:action])
       'admin'
-    elsif %w(index).include?(params[:action]) and params[:format] != 'fbml'
+    elsif %w(  index  ).include?(params[:action]) and params[:format] != 'fbml'
       'unrecognized'
     else
       'application'
@@ -464,9 +470,9 @@ class LessonsController < ApplicationController
     @per_page =
             if params[:per_page]
               params[:per_page]
-            elsif %w(tabbed).include?(params[:action])
+            elsif %w(  tabbed  ).include?(params[:action])
               3
-            elsif %w(ajaxed).include?(params[:action])
+            elsif %w(  ajaxed  ).include?(params[:action])
               5
             else
               Lesson.per_page

@@ -366,6 +366,7 @@ en:
   video:
     convert: Convert
     reconvert: Reconvert
+    refresh: Refresh
 
   wish:
     create_success: Lesson added to your wish list

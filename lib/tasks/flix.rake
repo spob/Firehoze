@@ -40,8 +40,7 @@ namespace :flix do
     #if key.exists?
     if files.include?("#{video.id.to_s}.flv")
       print "   File exists..."
-      job = FlixCloud::Notification.new(video.build_flix_response)
-      video.finish_conversion(job)
+      video.finish_conversion Zencoder::Job.details(video.flixcloud_job_id, :api_key => FLIX_API_KEY).body['job']
       puts "and updated to ready state"
     else
       puts "   File not converted...skipping"

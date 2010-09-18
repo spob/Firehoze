@@ -75,7 +75,8 @@ ActionController::Routing::Routes.draw do |map|
                         :stats => :get,
                         :show_groups => :get,
                         :watch => :get,
-                        :unreject => :post
+                        :unreject => :post,
+                        :refresh_video_status => :post
                 },
                 :collection => {
                         :conversion_notify => :post,
