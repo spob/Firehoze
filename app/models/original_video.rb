@@ -98,7 +98,7 @@ class OriginalVideo < Video
       ]
     },
     {
-      "label": "PreviewVideo",
+      "label": "PreviewProcessedVideo",
       "url": "#{preview_video.output_ftp_path}",
       "width": "960",
       "upscale": "true",
