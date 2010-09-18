@@ -64,12 +64,14 @@ class OriginalVideo < Video
 
   # Call out to flixcloud to trigger a conversion process
   def process_video(full_processed_video, preview_video, notify_path)
-    puts ".....#{notify_path}"
     full_processed_video.update_processed_video_attributes
     preview_video.update_processed_video_attributes
 
     Zencoder.api_key = FLIX_API_KEY
 
+    notifications = ['admin@firehoze.com']
+    notifications << notify_path if Rails.env.production?
+    notification_str = notifications.collect{|x| "\"#{x}\""}.join(', ')
     params =
             <<-eos
 {
@@ -92,7 +94,7 @@ class OriginalVideo < Video
         "prefix": "thumb"
       },
       "notifications": [
-        "bob@sturim.org"
+        #{notification_str}
       ]
     },
     {
@@ -107,7 +109,7 @@ class OriginalVideo < Video
         "y": "-3"
       },
       "notifications": [
-        "bob@sturim.org"
+        #{notification_str}
       ]
     }
   ]
