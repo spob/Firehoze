@@ -93,7 +93,7 @@ class OriginalVideo < Video
         "y": "-3%"
       },
       "thumbnails": {
-        "number": 1,
+        "times": [10, 30, 60],
         "size": "#{PLAYER_WIDTH}x#{PLAYER_HEIGHT}",
         "base_url": "#{full_processed_video.thumbnail_s3_path}",
         "prefix": "thumb"
