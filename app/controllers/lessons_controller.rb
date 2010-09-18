@@ -320,7 +320,6 @@ class LessonsController < ApplicationController
   def conversion_notify
     p = nil
     params.keys.each do |x|
-      logger.info "========================#{x}"
       p = x if params[x].nil?
     end
     notification = ActiveSupport::JSON.decode(p)

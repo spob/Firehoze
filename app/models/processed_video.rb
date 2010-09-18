@@ -30,7 +30,7 @@ class ProcessedVideo < Video
                 :video_duration => output_media_file['duration_in_ms'],
                 :video_file_name => output_media_file['url'][/[^\/]*\z/],
                 :video_content_type => 'application/x-flv',
-                :processed_video_cost => zero_nvl(self.processed_video_cost) + job.output_media_file.cost.to_f,
+                :processed_video_cost => 0, #zero_nvl(self.processed_video_cost) + job.output_media_file.cost.to_f,
                 :input_video_cost => 0,
                 :video_transcoding_error => nil,
                 :thumbnail_url => (thumbnail_path),
