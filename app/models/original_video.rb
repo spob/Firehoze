@@ -89,8 +89,8 @@ class OriginalVideo < Video
       "quality": 4,
       "watermark": {
         "url": "#{WATERMARK_URL}",
-        "x": "-3%",
-        "y": "-3%"
+        "x": "-2%",
+        "y": "-2%"
       },
       "thumbnails": {
         "times": [10, 30, 60],
@@ -115,8 +115,8 @@ class OriginalVideo < Video
       "clip_length": "00:00:30",
       "watermark": {
         "url": "#{WATERMARK_URL}",
-        "x": "-3",
-        "y": "-3"
+        "x": "-2",
+        "y": "-2"
       },
       "notifications": [
         #{notification_str}
