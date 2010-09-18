@@ -328,7 +328,7 @@ class LessonsController < ApplicationController
     label = notification['output']['label']
     state = notification['output']['state']
     logger.info "Received conversion completion notification for job #{id}:#{label}: #{state}"
-    video =  eval("#{label}.find(#{id})")
+    video =  eval("#{label}.find_by_flixcloud_job_id(#{id})")
     render :text => "OK"
 
     unless video.finish_conversion Zencoder::Job.details(id, :api_key => FLIX_API_KEY).body['job']
