@@ -57,6 +57,14 @@ class ProcessedVideo < Video
     raise e
   end
 
+  def make_thumbnail_public
+    s3_connection = RightAws::S3.new(APP_CONFIG[CONFIG_AWS_ACCESS_KEY_ID],
+                                     APP_CONFIG[CONFIG_AWS_SECRET_ACCESS_KEY])
+    bucket = s3_connection.bucket(APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET])
+    file = bucket.key("#{thumbnail_directory}/thumb_0001.png", true)
+    RightAws::S3::Grantee.new(file, ALL_USERS_AWS_ID, 'READ', :apply)       
+  end
+
   def change_status(new_status, msg=nil)
     self.video_status_changes.create!(:from_status => self.status,
                                       :to_status => new_status,
@@ -85,7 +93,11 @@ class ProcessedVideo < Video
   end
 
   def thumbnail_s3_path
-    "s3://#{APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET]}/#{self.s3_root_dir}/thumbs/#{lesson.id.to_s}/#{thumbnail_size}"
+    "s3://#{APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET]}/#{thumbnail_directory}"
+  end
+
+  def thumbnail_directory
+    "#{self.s3_root_dir}/thumbs/#{lesson.id.to_s}/#{thumbnail_size}"
   end
 
   private

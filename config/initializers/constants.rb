@@ -61,6 +61,7 @@ CONFIG_FB_AUTH_TOKEN = 'fb_auth_token'
 CONFIG_AWS_ACCESS_KEY_ID = 'access_key_id'
 CONFIG_AWS_SECRET_ACCESS_KEY = 'secret_access_key'
 
+ALL_USERS_AWS_ID = 'http://acs.amazonaws.com/groups/global/AllUsers'
 FLIX_CLOUD_AWS_ID = '6c8583d84664a381db0c6af0e79b285ede571885fbe768e7ea50e5d3760597dd'
 FLIX_API_KEY = '440fcb724023c3244d0499c3e05f53f5'
 FLIX_FULL_RECIPE_ID = 582
