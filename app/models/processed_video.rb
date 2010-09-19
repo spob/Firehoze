@@ -39,6 +39,7 @@ class ProcessedVideo < Video
 
 
         update_lesson_attributes(output_media_file['duration_in_ms'])
+        make_thumbnail_public
 
         self.change_status(VIDEO_STATUS_READY)
       else
