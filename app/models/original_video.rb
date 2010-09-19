@@ -93,7 +93,7 @@ class OriginalVideo < Video
         "y": "-2%"
       },
       "thumbnails": {
-        "times": [10, 30, 60],
+        "times": [10, 25],
         "size": "#{PLAYER_WIDTH}x#{PLAYER_HEIGHT}",
         "base_url": "#{full_processed_video.thumbnail_s3_path}",
         "prefix": "thumb"
@@ -117,6 +117,12 @@ class OriginalVideo < Video
         "url": "#{WATERMARK_URL}",
         "x": "-2",
         "y": "-2"
+      },
+      "thumbnails": {
+        "times": [10, 25],
+        "size": "#{PLAYER_WIDTH}x#{PLAYER_HEIGHT}",
+        "base_url": "#{preview_video.thumbnail_s3_path}",
+        "prefix": "thumb"
       },
       "notifications": [
         #{notification_str}
