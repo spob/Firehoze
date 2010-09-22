@@ -25,7 +25,7 @@ config.action_mailer.delivery_method = :test
 config.gem "factory_girl", :version => "1.2.4"
 
 # Should testing gem
-config.gem 'thoughtbot-shoulda', :lib => 'shoulda/rails', :source => "http://gems.github.com"
+config.gem 'shoulda'
 
 # webrate testing gem
 config.gem 'webrat'
