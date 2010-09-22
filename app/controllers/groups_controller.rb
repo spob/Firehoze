@@ -1,19 +1,19 @@
 class GroupsController < ApplicationController
   if APP_CONFIG[CONFIG_ALLOW_UNRECOGNIZED_ACCESS]
-    before_filter :require_user, :except => [ :all_tags, :index, :show, :list_admin, :tagged_with ]
+    before_filter :require_user, :except => [:all_tags, :index, :show, :list_admin, :tagged_with]
   else
     before_filter :require_user
   end
   before_filter :find_group, :except => [:list_admin, :create, :new, :ajaxed, :index, :check_group_by_name, :tagged_with,
                                          :all_tags]
-  before_filter :set_per_page, :only => [ :ajaxed, :list_admin ]
+  before_filter :set_per_page, :only => [:ajaxed, :list_admin]
 
   # Admins only
   permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [:list_admin]
   permit ROLE_MODERATOR, :only => [:activate]
 
   verify :method => :post, :only => [:create, :clear_logo, :activate], :redirect_to => :home_path
-  verify :method => :put, :only => [:update ], :redirect_to => :home_path
+  verify :method => :put, :only => [:update], :redirect_to => :home_path
 
   layout :layout_for_action
 
@@ -34,22 +34,22 @@ class GroupsController < ApplicationController
 
   def tagged_with
     @tag = params[:tag]
-    @groups = Group.fetch_tagged_with  nil, @tag, 10, params[:page]
+    @groups = Group.fetch_tagged_with nil, @tag, 10, params[:page]
   end
 
   def index
     if params[:category]
       @category = Category.find(params[:category])
       @ids = Group.public.active_or_owner_access_all(current_user.try(:is_a_moderator?), current_user ? current_user.id : -1).by_category(@category.id) + [-1]
-      @groups = Group.ascend_by_name.find(:all, :include => [:category], :conditions => { :id => @ids}).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
-      @tags = Group.public.active.tag_counts(:conditions => ["groups.id IN (?)", @ids], :limit => 40, :order => "count DESC").sort{|x, y| x.name <=> y.name}
+      @groups = Group.ascend_by_name.find(:all, :include => [:category], :conditions => {:id => @ids}).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
+      @tags = Group.public.active.tag_counts(:conditions => ["groups.id IN (?)", @ids], :limit => 40, :order => "count DESC").sort { |x, y| x.name <=> y.name }
     else
       @categories = Category.root.ascend_by_sort_value
     end
   end
 
   def show
-    @members = @group.member_users.active.reject{ |u| u == @group.owner }
+    @members = @group.member_users.active.reject { |u| u == @group.owner }
     @group_members = @group.group_members #.reject{ |m| m.member_type == OWNER or m.member_type == PENDING }
     @lessons = @group.active_lessons.ready.paginate(:include => [:instructor], :per_page => LESSONS_PER_PAGE, :page => params[:page])
     if can_view?(@group)
@@ -85,19 +85,26 @@ class GroupsController < ApplicationController
     set_no_uniform_js
     @group = Group.new(params[:group])
     @group.owner = current_user
-    Group.transaction do
-      if @group.save
-        @group_member = GroupMember.create!(:user => current_user, :group => @group, :member_type => OWNER,
-                                            :activity_compiled_at => Time.now)
-        flash[:notice] = t('group.create_success')
-        if params[:group][:logo].blank?
-          redirect_to group_path(@group)
-        else
-          render :action => 'crop'
-        end
+    if save_group @group
+      flash[:notice] = t('group.create_success')
+      if params[:group][:logo].blank?
+        redirect_to group_path(@group)
       else
-        render :action => 'new'
+        render :action => 'crop'
       end
+    else
+      render :action => 'new'
+    end
+  end
+
+  def save_group group
+    Group.transaction do
+      if group.save
+        GroupMember.create!(:user => current_user, :group => group, :member_type => OWNER,
+                                            :activity_compiled_at => Time.now)
+        return true
+      end
+      false
     end
   end
 
@@ -191,7 +198,7 @@ class GroupsController < ApplicationController
   end
 
   def layout_for_action
-    if %w(list_admin).include?(params[:action])
+    if %w(     list_admin     ).include?(params[:action])
       'admin'
     else
       'application'
@@ -202,7 +209,7 @@ class GroupsController < ApplicationController
     @per_page =
             if params[:per_page]
               params[:per_page]
-            elsif %w(list_admin).include?(params[:action])
+            elsif %w(     list_admin     ).include?(params[:action])
               (cookies[:per_page] || ROWS_PER_PAGE)
             else
               5
@@ -210,6 +217,6 @@ class GroupsController < ApplicationController
   end
 
   def set_cookie value
-    cookies[:browse_activities_by] = { :value => value, :expires => 1.hour.from_now }
+    cookies[:browse_activities_by] = {:value => value, :expires => 1.hour.from_now}
   end
 end

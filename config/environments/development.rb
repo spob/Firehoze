@@ -16,7 +16,7 @@ config.action_controller.perform_caching             = false
 # The following gem is required to support gmail as the smtp server. We can comment this
 # out if we don't use gmail
 # See http://www.iterasi.net/openviewer.aspx?sqrlitid=3aldcskoqekerxaw4xbz7g
-config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
+#config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
 
 # bullet for testing memory in development mode
 config.gem 'flyerhzm-bullet', :lib => 'bullet', :source => 'http://gems.github.com'
@@ -36,6 +36,7 @@ config.action_mailer.smtp_settings = {
         :address        => "smtp.gmail.com",
         :port           => 587,
         :domain         => "firehoze.com",
+        :enable_starttls_auto => true,
         :authentication => :plain,
         :user_name      => "mailer@firehoze.com",
         :password       => "F1reh0ze"

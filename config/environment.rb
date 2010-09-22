@@ -113,7 +113,7 @@ Rails::Initializer.run do |config|
   config.gem 'newrelic_rpm', :version => '~>2.12.3'
 
   # For attaching files
-  config.gem 'thoughtbot-paperclip', :lib => 'paperclip', :source => 'http://gems.github.com', :version => '2.3.1'
+  config.gem 'paperclip', :version => '2.3.3'
   config.gem 'aws-s3', :lib => 'aws/s3'
 
   # For interacting with AWS
@@ -145,7 +145,7 @@ Rails::Initializer.run do |config|
   config.gem "zencoder", :version => '~> 2.1.15'
 
 
-  config.gem 'thinking-sphinx', :lib => 'thinking_sphinx', :version => '1.3.18', :source => "http://gemcutter.org"
+  config.gem 'thinking-sphinx', :lib => 'thinking_sphinx', :version => '1.3.20', :source => "http://gemcutter.org"
 
 
   # Only load the plugins named here, in the order given. By default, all plugins 
