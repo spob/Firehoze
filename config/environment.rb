@@ -56,9 +56,14 @@ Rails::Initializer.run do |config|
 
   # Specify gems that this application depends on. 
   # They can then be installed with "rake gems:install" on new installations.
-  # config.gem "bj"
+  # config.gem "bj"ls
+  git atus
+  
 
-  # config.gem "aws-s3", :lib => "aws/s3"
+  # For attaching files and AWS
+  config.gem 'aws-s3', :lib => 'aws/s3'
+  config.gem 'right_aws'
+  config.gem 'paperclip', :version => '2.3.3'
 
   # active merchant used for credit card processing
   config.gem "activemerchant", :lib => "active_merchant", :version => "1.4.2"
@@ -76,7 +81,7 @@ Rails::Initializer.run do |config|
   config.gem 'builder', :version => '~>2.1.2'
 
   # For outputing time duration in human readable form
-  config.gem 'hpoydar-chronic_duration', :lib => 'chronic_duration'
+  config.gem 'chronic_duration'
 
   # For periodic job processing
   config.gem 'daemons'
@@ -111,13 +116,6 @@ Rails::Initializer.run do |config|
 
   # Gem performance monitoring
   config.gem 'newrelic_rpm', :version => '~>2.12.3'
-
-  # For attaching files
-  config.gem 'paperclip', :version => '2.3.3'
-  config.gem 'aws-s3', :lib => 'aws/s3'
-
-  # For interacting with AWS
-  config.gem 'right_aws'
 
   # For retrieving tweets
   config.gem 'twitter', :version => '>=0.7.0'
