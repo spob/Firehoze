@@ -153,7 +153,7 @@ Rails::Initializer.run do |config|
   #config.plugins = [:authlogic]
 
   # Add additional load paths for your own custom dirs
-  config.load_paths += %W( #{RAILS_ROOT}/lib #{RAILS_ROOT}/app/sweepers)
+  config.autoload_paths += %W( #{RAILS_ROOT}/lib #{RAILS_ROOT}/app/sweepers)
 
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)
