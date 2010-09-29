@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.9' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -170,7 +170,7 @@ Rails::Initializer.run do |config|
   #  Make sure the secret is at least 30 characters and all random,
   #  no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
-          :session_key => '_firehoze_session',
+          :key => '_firehoze_session',
           :secret => 'j23jh4lkjhl536h3l45jhfdgh34563h6345h6l345jh63l45jhljkhlgdsfglwjrhl'
 
   }

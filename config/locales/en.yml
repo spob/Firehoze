@@ -4,7 +4,7 @@ en:
   #   vars = "substitution"
   #   flash[:notice] = t(:test_msg, :arg => vars)
   # In the yml file:
-  #   test_msg: Passing args: {{arg}}
+  #   test_msg: Passing args: %{arg}
 
   activerecord:
     models:
@@ -61,7 +61,7 @@ en:
   attachment:
     create_success: Successfully created attachment
     update_success: Successfully updated attachment
-    delete_success: Successfully deleted attachment {{name}}
+    delete_success: Successfully deleted attachment %{name}
     access_message: You do not have access to edit this attachment
 
   contact_user:
@@ -76,9 +76,9 @@ en:
 
   category:
     create_success: Successfully created category
-    create_failed: Category creation failed '{{msg}}'
+    create_failed: Category creation failed '%{msg}'
     update_success: Successfully updated category
-    delete_success: Successfully deleted {{name}}
+    delete_success: Successfully deleted %{name}
     explosion_started: Started exploding categories
 
   flag:
@@ -91,7 +91,7 @@ en:
     already_flagged: You've already flagged this item.
     create_success: Thank you for bringing this to our attention. Your feedback has been recorded and will be reviewed.
     update_success: Flag updated successfully
-    flaggable_rejected: The {{flaggable}} has been rejected
+    flaggable_rejected: The %{flaggable} has been rejected
     flag_lewd: Sexual Content
     flag_spam: Spam
     flag_other: Other
@@ -108,38 +108,38 @@ en:
     rejected: Flagging was rejected
     user_flagging_reject: Your flag on this item was rejected
     user_flagging_pending: You flagged this item.
-    user_flagged_item: You flagged this {{item}}
-    must_logon: Please log on or request an account in order to flag this {{item}}
+    user_flagged_item: You flagged this %{item}
+    must_logon: Please log on or request an account in order to flag this %{item}
 
   gift_certificate:
     create_success: Successfully created gift certificate
-    already_redeemed: The gift certificate '{{code}}' has already been redeemed
-    invalid_gift_certificate: No such gift certificate '{{code}}'
-    redeemed: Gift certificate '{{code}}' redeemed for {{num}} credits
+    already_redeemed: The gift certificate '%{code}' has already been redeemed
+    invalid_gift_certificate: No such gift certificate '%{code}'
+    redeemed: Gift certificate '%{code}' redeemed for %{num} credits
     must_own_to_give: You can only give a certificate that you own
-    given: You have successfully given the certificate '{{code}}' to {{user}}
-    no_such_user: The user you entered ({{user}}) is not recognized
+    given: You have successfully given the certificate '%{code}' to %{user}
+    no_such_user: The user you entered (%{user}) is not recognized
 
   group:
     groups: Groups
     create_success: Successfully created group
     update_success: Successfully updated group
     destroyed_success: Successfully destroyed group
-    join: You have joined the group {{group}}
-    left: You have left the group {{group}}
+    join: You have joined the group %{group}
+    left: You have left the group %{group}
     moderator: moderator
     pending: invitation sent
-    inactive: group {{group}} is inactive
-    activated: group {{group}} is has been reactivated
+    inactive: group %{group} is inactive
+    activated: group %{group} is has been reactivated
     cannot_invite_public_group: You can only extend invitations to private groups
     must_be_owner_or_moderator: You must be either an owner or moderator for this group in order to extend invitations
-    no_such_user: The user you entered ({{user}}) is not recognized
-    invitation_success: You have sent an invitation to {{user}}
+    no_such_user: The user you entered (%{user}) is not recognized
+    invitation_success: You have sent an invitation to %{user}
     cannot_remove: You do not have permissions to remove that user from the group
-    remove_success: You have removed {{user}} from the group
-    promote_success: You have promoted {{user}} to the role of moderator for this group
-    demote_success: The user {{user}} is no longer a moderator for this group
-    welcome: Welcome to the {{group}} group!
+    remove_success: You have removed %{user} from the group
+    promote_success: You have promoted %{user} to the role of moderator for this group
+    demote_success: The user %{user} is no longer a moderator for this group
+    welcome: Welcome to the %{group} group!
     no_thanks: Okay, thanks. You have not joined the group
     logo_cleared: You have successfully removed the group logo
     update_error: Oops, something wasn't quite right with the information you entered
@@ -147,15 +147,15 @@ en:
 
   group_invitation:
     invitation_no_longer_valid: Invitation no longer valid
-    wrong_user: You must be logged in as {{user}} to view this invitation
+    wrong_user: You must be logged in as %{user} to view this invitation
     rescinded: Your invitation is not longer valid
     already_member: You are already a member of this group
 
   group_lesson:
-    lesson_added: Lesson successfully added to the {{group}} group
+    lesson_added: Lesson successfully added to the %{group} group
     already_added: Lesson is already associated to this group
-    lesson_removed: Lesson removed from the {{group}} group
-    does_not_belong: Lesson is not a member of the {{group}} group
+    lesson_removed: Lesson removed from the %{group} group
+    does_not_belong: Lesson is not a member of the %{group} group
 
   group_member:
     owner: Owner
@@ -168,9 +168,9 @@ en:
     create_success: Your feedback has been recorded
 
   instructor_follows:
-    create_success: Instructor {{instructor}} is being followed
-    delete_success: Instructor {{instructor}} is no longer being followed
-    not_an_instructor: The <b>{{user}}</b> is not an instructor
+    create_success: Instructor %{instructor} is being followed
+    delete_success: Instructor %{instructor} is no longer being followed
+    not_an_instructor: The <b>%{user}</b> is not an instructor
 
   lesson:
     access_message: You do not have access to edit this lesson
@@ -230,9 +230,9 @@ en:
   line_item:
     updated_success: Updated line item
     updated_failure: Line update failed
-    remove_sku_success: Item {{sku_desc}} was successfully removed from the cart
-    created_added_sku: Added {{sku_desc}} to cart
-    minimum_credit_purchase: You must buy at least {{min}}
+    remove_sku_success: Item %{sku_desc} was successfully removed from the cart
+    created_added_sku: Added %{sku_desc} to cart
+    minimum_credit_purchase: You must buy at least %{min}
 
   order:
     order_placed: Your order has been placed
@@ -258,7 +258,7 @@ en:
     invalid_password: Invalid password specified
 
   per_page:
-    per_page_updated: Rows to display per page set to {{per_page}}
+    per_page_updated: Rows to display per page set to %{per_page}
   
   periodic_jobs:
     one_time_job_scheduled: Job has been scheduled to run one time
@@ -306,14 +306,14 @@ en:
   sku:
     create_success: SKU created
     update_success: SKU updated
-    delete_success: SKU {{name}} was successfully deleted
+    delete_success: SKU %{name} was successfully deleted
 
   topic:
     create_success: Your topic comment has been recorded
     cannot_edit: You do not have rights to edit this topic
     update_success: Topic updated successfully
-    must_be_member: You must be a member of the group {{group}}
-    must_be_moderator_or_owner:  You must be a moderator or the owner of the {{group}} group in order to edit a topic
+    must_be_member: You must be a member of the group %{group}
+    must_be_moderator_or_owner:  You must be a moderator or the owner of the %{group} group in order to edit a topic
 
   topic_comment:
     create_success: Your topic comment has been recorded
@@ -341,7 +341,7 @@ en:
     done: Completed
     inactive_cannot_show: This user's account has been deactivated and cannot be displayed
     instructor_dashboard: Instructor Dashboard
-    instructor_of: Lessons by {{user}}
+    instructor_of: Lessons by %{user}
     login_required: Username can't be empty
     login_invalid: Username can only contain numbers, letters and underscores
     not_done: Not Completed
@@ -359,7 +359,7 @@ en:
     roles: Roles
     rejected_bio: This user's bio has been flagged for inappropriate content and thus cannot be displayed
     reviews: Reviews
-    reviews_of: Reviews by {{user}}
+    reviews_of: Reviews by %{user}
     wishlist: Wishlist
     bad_promo_code: The promotion code you entered is not recognized
 
