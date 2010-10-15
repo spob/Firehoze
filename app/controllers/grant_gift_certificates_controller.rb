@@ -26,10 +26,11 @@ class GrantGiftCertificatesController < ApplicationController
       @gift_certificate.user = @to_user
       qty = params[:gift_certificate][:quantity_to_grant].to_i
       success = true
+      @gift_certificate.gift_certificate_sku = GiftCertificateSku.find_by_sku(GIFT_CERTIFICATE_SKU)
       GiftCertificate.transaction do
         qty.times do
-          @gift_certificate.gift_certificate_sku = GiftCertificateSku.find_by_sku(GIFT_CERTIFICATE_SKU)
-          if !@gift_certificate.save
+          @new_gift_certificate = @gift_certificate.clone
+          if !@new_gift_certificate.save
             success = false
             break
           end

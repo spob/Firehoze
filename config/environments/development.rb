@@ -20,7 +20,7 @@ config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.gith
 
 # bullet for testing memory in development mode
 config.gem 'flyerhzm-bullet', :lib => 'bullet', :source => 'http://gems.github.com'
-config.gem 'ruby-growl'
+#config.gem 'ruby-growl'
 
 # Mail safe protects us from sending email to real people outside the development team
 config.gem 'mail_safe', :source => 'http://gemcutter.org'
@@ -57,7 +57,7 @@ config.after_initialize do
   Bullet.alert = true
   Bullet.bullet_logger = true
   Bullet.console = true
-  Bullet.growl = true
+#  Bullet.growl = true
   Bullet.rails_logger = true
   Bullet.disable_browser_cache = true
 end
