@@ -189,5 +189,6 @@ class Group < ActiveRecord::Base
   def set_free_lessons_for_members
     # Public groups cannot give free lessons to its members
     self.free_lessons_to_members = false unless private
+    true
   end
 end
