@@ -332,7 +332,7 @@ END
     free_credit
   end
 
-  # Does the user belong to a group which entitles it's members to view lesosns which were instructed by a moderator of that group?
+  # Does the user belong to a group which entitles it's members to view lessons which were instructed by a moderator of that group?
   def entitled_by_groups user
     self.active_groups.private.free_to_members.a_member(user).collect{|x| x.moderator_users }.flatten.include? self.instructor
   end

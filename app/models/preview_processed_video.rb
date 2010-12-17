@@ -8,7 +8,8 @@ class PreviewProcessedVideo < ProcessedVideo
   end
 
   def output_ftp_path
-    "ftp://#{OUTPUT_FTP_USERNAME}:#{OUTPUT_FTP_PASSWORD}@#{APP_CONFIG[CONFIG_FTP_CDN_PATH]}/#{self.s3_root_dir}/previews/#{self.id.to_s}.flv"
+    "s3://videos.firehoze.com/#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/videos/#{self.id}/preview.flv"
+#    "ftp://#{OUTPUT_FTP_USERNAME}:#{OUTPUT_FTP_PASSWORD}@#{APP_CONFIG[CONFIG_FTP_CDN_PATH]}/#{self.s3_root_dir}/previews/#{self.id.to_s}.flv"
   end
 
 
@@ -17,6 +18,6 @@ class PreviewProcessedVideo < ProcessedVideo
   end
 
   def output_rtmp_path
-    "#{APP_CONFIG[CONFIG_CDN_VIDEO_BUCKET]}/#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/previews/#{self.id.to_s}.flv"
+    "flv:#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/previews/#{self.id.to_s}/preview"
   end
 end

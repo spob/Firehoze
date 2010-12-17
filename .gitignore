@@ -36,3 +36,4 @@ public/stylesheets/v2/*/*.css
 certs
 *.cache
 vendor/plugins/parallel_tests
+.rvmrc

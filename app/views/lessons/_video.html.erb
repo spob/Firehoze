@@ -1,4 +1,3 @@
-<% # used in the lesson#show stats tab %>
 <tr class="<%= cycle("even", "odd") -%>">
   <td>
     <%= video.class.to_s %>
@@ -21,15 +20,6 @@
     <td>
       <%= h video.video_content_type %>
     </td>
-    <!--<td>-->
-    <!--<%= l(video.conversion_started_at) if video.conversion_started_at %>-->
-    <!--</td>-->
-    <!--<td>-->
-    <!--<%= l(video.conversion_ended_at) if video.conversion_ended_at %>-->
-    <!--</td>-->
-    <!--<td>-->
-    <!--<%= video.flixcloud_job_id %>-->
-    <!--</td>-->
     <td><ul><%= render video.video_status_changes %></ul></td>
     <td><%= video_action_buttons(video) %></td>
   <% end %>
