@@ -5,11 +5,11 @@ class OriginalVideo < Video
   validates_presence_of :lesson, :status
   validates_numericality_of :video_file_size, :greater_than => 0, :allow_nil => true
   has_attached_file :video,
-                    :storage => :s3,
+                    :storage        => :s3,
                     :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
                     :s3_permissions => 'private',
-                    :path => "#{(ENV['s3_dir'] and Rails.env.development?) ? ENV['s3_dir'] : APP_CONFIG[CONFIG_S3_DIRECTORY]}/:attachment/:id/:basename.:extension",
-                    :bucket => APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]
+                    :path           => "#{(ENV['s3_dir'] and Rails.env.development?) ? ENV['s3_dir'] : APP_CONFIG[CONFIG_S3_DIRECTORY]}/:attachment/:id/:basename.:extension",
+                    :bucket         => APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]
   #:url => "/assets/videos/:id/:basename.:extension",
   #:path => ":rails_root/public/assets/videos/:id/:basename.:extension"
 
@@ -33,9 +33,9 @@ class OriginalVideo < Video
   def set_url
     # The environment.yml files aren't set for task_scheduler, so manually calculate the video path here'
     video_path = "#{self.s3_root_dir}/videos/#{self.id}/#{self.video_file_name}"
-    self.update_attributes!(:s3_key => video_path,
+    self.update_attributes!(:s3_key  => video_path,
                             :s3_path => "s3://#{APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]}/#{video_path}",
-                            :url => "http://#{APP_CONFIG[CONFIG_CDN_OUTPUT_SERVER]}/#{video_path}")
+                            :url     => "http://#{APP_CONFIG[CONFIG_CDN_OUTPUT_SERVER]}/#{video_path}")
   end
 
   # Call out to flixcloud to trigger a conversion process
@@ -43,13 +43,13 @@ class OriginalVideo < Video
     set_url
     processed_video = clazz.find(:first, :conditions => {:lesson_id => self.lesson})
     unless processed_video
-      processed_video = clazz.create!(:lesson_id => self.lesson.id,
-                                      :video_file_name => self.video_file_name,
-                                      :s3_key => self.s3_key,
+      processed_video = clazz.create!(:lesson_id            => self.lesson.id,
+                                      :video_file_name      => self.video_file_name,
+                                      :s3_key               => self.s3_key,
                                       :processed_video_cost => 0,
-                                      :input_video_cost => 0,
+                                      :input_video_cost     => 0,
                                       :converted_from_video => self,
-                                      :s3_root_dir => self.s3_root_dir)
+                                      :s3_root_dir          => self.s3_root_dir)
     end
     begin
       grant_s3_permissions_to_flix
@@ -69,11 +69,11 @@ class OriginalVideo < Video
 
     Zencoder.api_key = FLIX_API_KEY
 
-    notifications = ['admin@firehoze.com']
+    notifications    = ['admin@firehoze.com']
     notifications << notify_path if Rails.env.production?
-    notification_str = notifications.collect{|x| "\"#{x}\""}.join(', ')
-    params =
-            <<-eos
+    notification_str = notifications.collect { |x| "\"#{x}\"" }.join(', ')
+    params           =
+        <<-eos
 {
   "input": "   #{s3_path}   ",
   "outputs": [
@@ -138,13 +138,13 @@ class OriginalVideo < Video
     if response.success?
       puts "submitted successfully"
       full_processed_video.change_status(VIDEO_STATUS_CONVERTING, " (##{response.body['id']})")
-      full_processed_video.update_attributes!(:flixcloud_job_id => response.body['id'],
+      full_processed_video.update_attributes!(:flixcloud_job_id      => response.body['id'],
                                               :conversion_started_at => Time.now)
       preview_video.change_status(VIDEO_STATUS_CONVERTING, " (##{response.body['id']})")
-      preview_video.update_attributes!(:flixcloud_job_id => response.body['id'],
+      preview_video.update_attributes!(:flixcloud_job_id      => response.body['id'],
                                        :conversion_started_at => Time.now)
-      RunOncePeriodicJob.create!(:name => 'DetectZombieVideoProcess',
-                                 :job => "ProcessedVideo.detect_zombie_video(#{full_processed_video.id}, #{response.body['id']})",
+      RunOncePeriodicJob.create!(:name        => 'DetectZombieVideoProcess',
+                                 :job         => "ProcessedVideo.detect_zombie_video(#{full_processed_video.id}, #{response.body['id']})",
                                  :next_run_at => (APP_CONFIG[CONFIG_ZOMBIE_VIDEO_PROCESS_MINUTES].to_i.minutes.from_now))
     else
       msg = "conversion failed with response code #{response.code} #{response.body}"
@@ -172,7 +172,7 @@ class OriginalVideo < Video
   private
 
   def set_status_and_format
-    self.status = VIDEO_STATUS_READY
+    self.status      = VIDEO_STATUS_READY
     self.s3_root_dir = APP_CONFIG[CONFIG_S3_DIRECTORY]
   end
 end

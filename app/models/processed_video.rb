@@ -8,7 +8,7 @@ class ProcessedVideo < Video
   validates_numericality_of :video_file_size, :greater_than => 0, :allow_nil => true
 
   def update_processed_video_attributes
-    self.update_attributes!(:s3_key => "#{self.s3_root_dir}/videos/#{self.id}/#{self.video_file_name}.flv",
+    self.update_attributes!(:s3_key            => "#{self.s3_root_dir}/videos/#{self.id}/#{self.video_file_name}.flv",
                             :thumbnail_s3_path => thumbnail_s3_path)
   end
 
@@ -23,19 +23,20 @@ class ProcessedVideo < Video
 
       if output_media_file && output_media_file['state'] == 'finished'
         self.update_attributes(
-                :conversion_ended_at => output_media_file['finished_at'],
-                :video_width => output_media_file['width'],
-                :video_height => output_media_file['height'],
-                :video_file_size => output_media_file['file_size_bytes'],
-                :video_duration => output_media_file['duration_in_ms'],
-                :video_file_name => output_media_file['url'][/[^\/]*\z/],
-                :video_content_type => 'application/x-flv',
-                :processed_video_cost => 0, #zero_nvl(self.processed_video_cost) + job.output_media_file.cost.to_f,
-                :input_video_cost => 0,
-                :video_transcoding_error => nil,
-                :thumbnail_url => (thumbnail_path),
-                :s3_path => output_media_file['url'],
-                :url => "http://#{APP_CONFIG[CONFIG_CDN_OUTPUT_SERVER]}/#{self.s3_key}")
+            :conversion_ended_at     => output_media_file['finished_at'],
+            :video_width             => output_media_file['width'],
+            :video_height            => output_media_file['height'],
+            :video_file_size         => output_media_file['file_size_bytes'],
+            :video_duration          => output_media_file['duration_in_ms'],
+            :video_file_name         => output_media_file['url'][/[^\/]*\z/],
+            :video_content_type      => 'application/x-flv',
+            :processed_video_cost    => 0, #zero_nvl(self.processed_video_cost) + job.output_media_file.cost.to_f,
+            :input_video_cost        => 0,
+            :video_transcoding_error => nil,
+            :thumbnail_url           => (thumbnail_path),
+            :s3_path                 => output_media_file['url'],
+            :s3_key                  => self.calc_s3_path,
+            :url                     => "http://#{APP_CONFIG[CONFIG_CDN_OUTPUT_SERVER]}/#{self.s3_key}")
 
 
         update_lesson_attributes(output_media_file['duration_in_ms'])
@@ -61,18 +62,18 @@ class ProcessedVideo < Video
   def make_thumbnail_public
     s3_connection = RightAws::S3.new(APP_CONFIG[CONFIG_AWS_ACCESS_KEY_ID],
                                      APP_CONFIG[CONFIG_AWS_SECRET_ACCESS_KEY])
-    bucket = s3_connection.bucket(APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET])
-    file = bucket.key("#{thumbnail_directory}/thumb_0001.png", true)
-    RightAws::S3::Grantee.new(file, ALL_USERS_AWS_ID, 'READ', :apply)       
+    bucket        = s3_connection.bucket(APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET])
+    file          = bucket.key("#{thumbnail_directory}/thumb_0001.png", true)
+    RightAws::S3::Grantee.new(file, ALL_USERS_AWS_ID, 'READ', :apply)
   end
 
   def change_status(new_status, msg=nil)
     self.video_status_changes.create!(:from_status => self.status,
-                                      :to_status => new_status,
-                                      :lesson => self.lesson,
-                                      :message => msg)
+                                      :to_status   => new_status,
+                                      :lesson      => self.lesson,
+                                      :message     => msg)
     self.reload
-    self.update_attributes!(:status => new_status,
+    self.update_attributes!(:status                  => new_status,
                             :video_transcoding_error => (status == VIDEO_STATUS_FAILED ? msg : nil))
     self.lesson.update_status
   end
@@ -101,6 +102,10 @@ class ProcessedVideo < Video
     "#{self.s3_root_dir}/thumbs/#{lesson.id.to_s}/#{thumbnail_size}"
   end
 
+  def calc_s3_key
+    "#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/videos/#{self.id.to_s}/#{self.class.name == "FullProcessedVideo" ? "full" : "preview"}.flv"
+  end
+
   private
 
   def zero_nvl(value)
@@ -114,5 +119,4 @@ class ProcessedVideo < Video
   def set_video_status
     self.status = VIDEO_STATUS_PENDING
   end
-
 end

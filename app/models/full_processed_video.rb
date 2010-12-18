@@ -15,7 +15,7 @@ class FullProcessedVideo < ProcessedVideo
   def update_lesson_attributes(duration)
     self.lesson.reload
     self.lesson.update_attributes(:finished_video_duration => duration,
-                                  :thumbnail_url => thumbnail_path("<size>"))
+                                  :thumbnail_url           => thumbnail_path("<size>"))
   end
 
   def output_rtmp_path
