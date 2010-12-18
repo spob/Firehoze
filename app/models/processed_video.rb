@@ -35,7 +35,7 @@ class ProcessedVideo < Video
             :video_transcoding_error => nil,
             :thumbnail_url           => (thumbnail_path),
             :s3_path                 => output_media_file['url'],
-            :s3_key                  => self.calc_s3_path,
+            :s3_key                  => self.calc_s3_key,
             :url                     => "http://#{APP_CONFIG[CONFIG_CDN_OUTPUT_SERVER]}/#{self.s3_key}")
 
 
