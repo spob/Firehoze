@@ -38,9 +38,9 @@ class ProcessedVideo < Video
             :s3_key                  => self.calc_s3_key,
             :url                     => "http://#{APP_CONFIG[CONFIG_CDN_OUTPUT_SERVER]}/#{self.s3_key}")
 
-
         update_lesson_attributes(output_media_file['duration_in_ms'])
         make_thumbnail_public
+        make_video_public
 
         self.change_status(VIDEO_STATUS_READY)
       else
@@ -65,6 +65,16 @@ class ProcessedVideo < Video
     bucket        = s3_connection.bucket(APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET])
     file          = bucket.key("#{thumbnail_directory}/thumb_0001.png", true)
     RightAws::S3::Grantee.new(file, ALL_USERS_AWS_ID, 'READ', :apply)
+  end
+
+  # Allow flixcloud to view the raw video
+  def make_video_public
+    s3_connection = RightAws::S3.new(APP_CONFIG[CONFIG_AWS_ACCESS_KEY_ID],
+                                     APP_CONFIG[CONFIG_AWS_SECRET_ACCESS_KEY])
+    bucket        = s3_connection.bucket("videos.firehoze.com")
+    file          = bucket.key(self.s3_key, true)
+    grantee       = RightAws::S3::Grantee.new(bucket, ALL_USERS_AWS_ID, 'READ', :apply)
+    grantee       = RightAws::S3::Grantee.new(file, ALL_USERS_AWS_ID, 'READ', :apply)
   end
 
   def change_status(new_status, msg=nil)
