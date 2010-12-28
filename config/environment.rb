@@ -54,7 +54,7 @@ Rails::Initializer.run do |config|
   # you must remove the Active Record framework.
   # config.frameworks -= [ :active_record, :active_resource, :action_mailer ]
 
-  # Specify gems that this application depends on. 
+  # Specify gems that this application depends on.
   # They can then be installed with "rake gems:install" on new installations.
   # config.gem "bj"
 
@@ -64,7 +64,7 @@ Rails::Initializer.run do |config|
   config.gem "activemerchant", :lib => "active_merchant", :version => "1.4.2"
 
   # browser detection
-  config.gem "spob_browser_detector", :version => '1.0.3', :source => 'http://gemcutter.org'
+  config.gem "spob_browser_detector", :version => '1.0.4', :source => 'http://gemcutter.org'
 
   # tagging
   config.gem 'jviney-acts_as_taggable_on_steroids', :lib => 'acts_as_taggable', :source => 'http://gems.github.com', :version => '~>1.1'
@@ -148,7 +148,7 @@ Rails::Initializer.run do |config|
   config.gem 'thinking-sphinx', :lib => 'thinking_sphinx', :version => '1.3.18', :source => "http://gemcutter.org"
 
 
-  # Only load the plugins named here, in the order given. By default, all plugins 
+  # Only load the plugins named here, in the order given. By default, all plugins
   # in vendor/plugins are loaded in alphabetical order.
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -193,7 +193,7 @@ Rails::Initializer.run do |config|
 
   # Facebooker doesn't play nicely with forgery protection, so set this to false.
   config.action_controller.allow_forgery_protection = false
-  
+
   # Use the database for sessions instead of the cookie-based default,
   # which shouldn't be used to store highly confidential information
   # (create the session table with "rake db:sessions:create")
@@ -202,7 +202,7 @@ Rails::Initializer.run do |config|
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper,
   # like if you have constraints or database-specific column types
-  # config.active_record.schema_format = :sql                       
+  # config.active_record.schema_format = :sql
 
   # Activate observers that should always be running
   config.active_record.observers = :payment_observer, :lesson_observer, :review_observer, :comment_observer,

@@ -12,7 +12,7 @@
 #       pending state. A periodic job is kicked off to convert the video.
 #   2. When the periodic job runs, it will invoke a conversion to start. It grants read permissions on the videos to
 #      flix cloud (they need to be able to see the videos in order to pull them and process them). It then uses a web
-#      service call to tell flix cloud to start converting the video. 
+#      service call to tell flix cloud to start converting the video.
 #   3. Flix cloud will then asynchronously process the video. This usually takes between 2 and 5 minutes. FlixCloud
 #      pulls the raw video down from the Amazon S3 location, transcodes it (converts it to flash, applies the
 #      watermark), and uploads the finished result back to an output bucket on Amazon S3. It will also upload a
@@ -122,7 +122,7 @@ class Lesson < ActiveRecord::Base
               {:joins => {:category => :exploded_categories},
                :conditions => {:exploded_categories => {:base_category_id => category_id}}} }
   # Credits which have been warned to be about to expire
-  # Note...add -1 to lesson collection to ensure that never that case where it will return NULL 
+  # Note...add -1 to lesson collection to ensure that never that case where it will return NULL
   named_scope :not_owned_by,
               lambda { |user| return {} if user.nil?;
               {:conditions => ["lessons.id not in (?)", user.lesson_ids.collect(& :id) + [-1]]}
