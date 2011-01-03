@@ -18,6 +18,6 @@ class PreviewProcessedVideo < ProcessedVideo
   end
 
   def output_rtmp_path
-    "flv:#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/previews/#{self.id.to_s}/preview"
+    "flv:#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/videos/#{self.id.to_s}/preview"
   end
 end
