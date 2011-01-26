@@ -9,7 +9,7 @@
 <h4>Firehoze provides short, targeted video lessons designed to complement your classroom learning experience.</h4>
 <p>Face it – sometimes school can be overwhelming. Maybe you overslept and missed a lecture. Or perhaps your teacher or professor didn’t explain a concept with the clarity that you need. Or maybe a topic is hard to grasp the first time around and you need to take another run at it. That’s where Firehoze can help.</p>
 
-<h4>Firehoze makes it easy to find the help you need through its searchable catalog of community-generated lessons.</h4> 
+<h4>Firehoze makes it easy to find the help you need through its searchable catalog of community-generated lessons.</h4>
 <p>Let’s say you are struggling to comprehend an advanced classroom topic. You can search the internet and sift through random hits that may or may not suit your needs. Or browse YouTube hunting for a relevant video amongst the dancing cats and weirdoes defending Brittany. Or you can search the Firehoze community and quickly find a short 5-to-10 minute video lesson focused on your specific topic.</p>
 
 <h4>Firehoze is affordable.</h4>
@@ -18,31 +18,33 @@
 <h4>Firehoze is more than a website – it’s a community.</h4>
 <p>As a Firehoze user, you can engage in online discussion with instructors and other students. Join a group to collaborate with other users who share your interests. Or create your own group.  And if you can’t find a lesson that meets your needs, request a new lesson topic and watch the community respond.</p>
 
-<script language='javascript'>
-    //$f("playerbox", "http://<%= APP_CONFIG[CONFIG_HOST] %>:<%= APP_CONFIG[CONFIG_PORT] %>/swf/flowplayer-3.1.5.swf", {
-    $f("playerbox", "http://releases.flowplayer.org/swf/flowplayer.commercial-3.1.5.swf", {
+    <script language='javascript'>
+//        $f("playerbox", "http://s3.amazonaws.com/videos.firehoze.com/flowplayer-3.1.5.swf", {
+        $f("playerbox", {src: 'http://releases.flowplayer.org/swf/flowplayer.commercial-3.1.5.swf', wmode: 'opaque'}, {
 
-        key: '#$2530218aaff22a9be9e',
-        canvas: {
-            background: 'url(/images/videos/splash-default-24.png)  no-repeat 0 155'
-            //                backgroundImage: 'url(/videos/video_placeholder.jpg) no-repeat 10 10'
-        },
-        play: {
-            label: 'Play',
-            replayLabel: 'Play again'
-        },
-        clip: {
-            autoPlay:true,
-            autoBuffering:false,
-            url: 'flv:output/mkt/FHStudentVideo_2.flv',
-            provider: 'simplecdn',
-            accelerated: true
-        },
-        plugins: {
-            simplecdn: {
-                url: 'flowplayer.rtmp-3.1.3.swf',
-                netConnectionUrl: 'rtmp://e1f1.simplecdn.net/play'
+            key: '#$2530218aaff22a9be9e',
+
+            canvas: {
+                background: 'url(/images/videos/splash-default-24.png)  no-repeat 0 155'
+            },
+            play: {
+                label: 'Play',
+                replayLabel: 'Play again'
+            },
+            clip: {
+                provider: 'rtmp',
+                url: 'flv:marketing/firehoze-for-students',
+                scaling: "fit",
+                autoPlay:true,
+                autoBuffering:false,
+                bufferLength: 10,
+                accelerated: true
+            },
+            plugins: {
+                rtmp: {
+                    url: 'flowplayer.rtmp-3.1.3.swf',
+                    netConnectionUrl: 'rtmp://sbu2wbtu5f5dv.cloudfront.net/cfx/st'
+                }
             }
-        }
-    });
-</script>
+        });
+    </script>
