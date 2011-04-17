@@ -2,6 +2,10 @@ if ENV['DEPLOY'] == 'PRODUCTION'
   puts "*** Deploying to the \033[1;41m  PRODUCTION  \033[0m servers!"
   set :domain, '208.88.124.16'
   set :branch, "master"
+elsif ENV['DEPLOY'] == 'ABLEROAD'
+  puts "*** Deploying to the \033[1;41m  ABLEROAD  \033[0m servers!"
+  set :domain, '50.22.248.77'
+  set :branch, "ableroad"
 else
   puts "*** Deploying to the \033[1;42m  STAGING  \033[0m server!"
   set :domain, '208.88.125.156'
@@ -46,7 +50,7 @@ end
 
 task :before_update, :roles => [:app] do
   # Stop Thinking Sphinx before the update so it finds its configuration file.
-  thinking_sphinx.stop
+#  thinking_sphinx.stop
 end
 
 task :after_update, :roles => [:app] do
@@ -114,7 +118,7 @@ namespace :deploy do
     end
     # run "rm #{current_path}/lib/tasks/populate_fake_data.rake"
     # preserve the assets directory which resides under shared
-    # run "ln -s #{shared_path}/assets #{release_path}/public/assets" 
+    # run "ln -s #{shared_path}/assets #{release_path}/public/assets"
   end
 
   task :restart, :roles => :app do
