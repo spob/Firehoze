@@ -147,7 +147,7 @@ Rails::Initializer.run do |config|
   config.gem "zencoder", :version => '~> 2.1.15'
 
 
-  config.gem 'thinking-sphinx', :lib => 'thinking_sphinx', :version => '1.3.18', :source => "http://gemcutter.org"
+  config.gem 'thinking-sphinx', :lib => 'thinking_sphinx', :version => '1.4.4', :source => "http://gemcutter.org"
 
 
   # Only load the plugins named here, in the order given. By default, all plugins
