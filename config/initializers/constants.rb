@@ -1,4 +1,5 @@
-SECURE_PROTOCOL = (ENV["RAILS_ENV"] =~ /production/ ? "https" : "http")
+#SECURE_PROTOCOL = (ENV["RAILS_ENV"] =~ /production/ ? "https" : "http")
+SECURE_PROTOCOL = "http"
 
 LANGUAGES = [['English', 'en']]
 
@@ -97,7 +98,7 @@ LESSON_LEVELS = [LESSON_LEVEL_MIDDLE_SCHOOL, LESSON_LEVEL_HIGH_SCHOOL, LESSON_LE
 # Actual video size should be 4:3 480 X 360 (standard definition)
 PLAYER_MENU_BAR = 36
 PLAYER_WIDTH = 458
-PLAYER_HEIGHT = 305 + PLAYER_MENU_BAR # Play size is taller due to player controls 480 X 396  ==> 480 X 360 + 36px  
+PLAYER_HEIGHT = 305 + PLAYER_MENU_BAR # Play size is taller due to player controls 480 X 396  ==> 480 X 360 + 36px
 
 # Hash codes
 HASH_PREFIX = "asdfas"
