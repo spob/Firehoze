@@ -2,7 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  include SslRequirement
+#  include SslRequirement
   rescue_from ActionController::InvalidAuthenticityToken do |exception|
     flash[:error] = t('security.invalid_token')
     redirect_to login_path
