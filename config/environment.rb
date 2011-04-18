@@ -125,7 +125,7 @@ Rails::Initializer.run do |config|
   config.gem 'twitter', :version => '>=0.7.0'
 
   # Gravitar integration
-  config.gem 'gravtastic', :version => '>= 2.1.0'
+  config.gem 'gravtastic', :version => '= 2.2.0'
 
   # Search Logic
   config.gem "searchlogic", :version => '~> 2.3.5'
