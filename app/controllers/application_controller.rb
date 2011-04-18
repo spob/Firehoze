@@ -2,7 +2,15 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-#  include SslRequirement
+  include SslRequirement
+
+  alias :original_ssl_required? :ssl_required?
+
+  def ssl_required?
+#    my_custom_condition_met? || original_ssl_required?
+    false
+  end
+
   rescue_from ActionController::InvalidAuthenticityToken do |exception|
     flash[:error] = t('security.invalid_token')
     redirect_to login_path
@@ -97,12 +105,12 @@ class ApplicationController < ActionController::Base
 
   def check_browser
     return true if Rails.env.test?
-    @detector = SpobBrowserDetector::Detector.new( request.env['HTTP_USER_AGENT'] )
+    @detector = SpobBrowserDetector::Detector.new(request.env['HTTP_USER_AGENT'])
     by_pass = (!@detector.browser_is?(:name => 'ie', :major_version => '6') or (params[:controller] == 'pages' or (params[:controller] == 'lessons' and params[:action] == 'index')))
     if (cookies[:browser_ok] == "ok" or by_pass)
       true
     else
-      cookies[:browser_ok] = { :value => "ok", :expires => 1.day.from_now }
+      cookies[:browser_ok] = {:value => "ok", :expires => 1.day.from_now}
       redirect_to page_path("browser_check")
       false
     end
@@ -154,11 +162,11 @@ class ApplicationController < ActionController::Base
   # the login page, we can continue on to this location after the user authenticates
   def store_location uri=request.request_uri
     session[:return_to] =
-            if request.get?
-              uri
-            else
-              request.referer
-            end
+        if request.get?
+          uri
+        else
+          request.referer
+        end
   end
 
   # redirect back to where the user was trying to get to if, for example, we needed to first redirect
