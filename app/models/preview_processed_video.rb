@@ -8,7 +8,7 @@ class PreviewProcessedVideo < ProcessedVideo
   end
 
   def output_ftp_path
-    "s3://videos.firehoze.com/#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/videos/#{self.id}/preview.flv"
+    "s3://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}/#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/videos/#{self.id}/preview.flv"
 #    "ftp://#{OUTPUT_FTP_USERNAME}:#{OUTPUT_FTP_PASSWORD}@#{APP_CONFIG[CONFIG_FTP_CDN_PATH]}/#{self.s3_root_dir}/previews/#{self.id.to_s}.flv"
   end
 

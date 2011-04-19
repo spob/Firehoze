@@ -8,7 +8,7 @@ class FullProcessedVideo < ProcessedVideo
   end
 
   def output_ftp_path
-    "s3://videos.firehoze.com/#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/videos/#{self.id}/full.flv"
+    "s3://#{APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET]}/#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/videos/#{self.id}/full.flv"
 #    "ftp://#{OUTPUT_FTP_USERNAME}:#{OUTPUT_FTP_PASSWORD}@#{APP_CONFIG[CONFIG_FTP_CDN_PATH]}/#{self.s3_root_dir}/videos/#{self.id.to_s}.flv"
   end
 
