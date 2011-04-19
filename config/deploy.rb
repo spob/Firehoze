@@ -42,7 +42,7 @@ set :use_sudo, false
 set :deploy_to, "/var/#{base_dir}/#{application}"
 
 before 'deploy:update', 'deploy:web:disable'
-after 'deploy:update', 'deploy:finishing_touches', 'deploy:migrate', 'task_server:restart', 'deploy:web:enable'
+after 'deploy:update', 'deploy:finishing_touches', 'deploy:migrate', 'task_server:restart', 'deploy:web:enable', 'deploy:restart'
 
 task :after_cold, :roles => [:app, :web, :db] do
   run "chown -R www-data:www-data /var/#{base_dir}/#{application}"
