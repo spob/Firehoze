@@ -1,5 +1,5 @@
 <ul id="top-navigation">
-  <% # RECOGNIZED USER  %>
+  <!-- RECOGNIZED USER  -->
   <% if current_user %>
       <li class="first with-subnav with-avatar">
         <a href="#"><%= avatar_tag(current_user, :size => :tiny) %> <%= current_user.login %></a>
@@ -21,12 +21,12 @@
           <%= content_tag(:li, link_to('Shopping Cart', cart_path(@current_cart))) if show_cart? %>
         </ul>
       </li>
-      <% # UN-RECOGNIZED USER  %>
+      <!-- UN-RECOGNIZED USER  -->
   <% else %>
       <li class="first "><%= link_to "Register", new_registration_path %></li>
       <li><%= link_to "Sign In", login_path %></li>
   <% end %>
-  <% # VISIBLE TO ALL  %>
+  <!-- VISIBLE TO ALL  -->
   <li class="with-subnav">
     <a href="#">Help</a>
     <ul class="subnav">
