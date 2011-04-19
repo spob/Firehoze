@@ -52,7 +52,7 @@ zombie_video_process_minutes: 90
 # The number of days before an unused gift certificate expires
 gift_certificate_expires_days: 365
 
-# The nubmer of buy patterns to display (e.g., how many other lessons to show when telling the
+# The number of buy patterns to display (e.g., how many other lessons to show when telling the
 # user "Users who viewed this lesson ultimately bought that lesson
 number_of_buy_patterns_to_show: 30
 
