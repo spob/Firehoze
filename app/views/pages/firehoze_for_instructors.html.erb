@@ -1,36 +1,6 @@
 <div id="actions" style="text-align:right"><%= link_to(content_tag(:span, "Browse Our Lessons"), categories_path, :class => 'large-button call-to-action') %><%= link_to(content_tag(:span, "Register for Free"), new_registration_path, :class => 'large-button call-to-action') %><%= link_to(content_tag(:span, "Return to Home Page"), lessons_path, :class => 'large-button call-to-action') %></div>
-<h3>Firehoze for Instructors</h3>
-
-<div style="width:<%= PLAYER_WIDTH %>px;height:<%= PLAYER_HEIGHT %>px;" id="playerbox"></div>
-
-    <script language='javascript'>
-//        $f("playerbox", "http://s3.amazonaws.com/videos.firehoze.com/flowplayer-3.1.5.swf", {
-        $f("playerbox", {src: 'http://releases.flowplayer.org/swf/flowplayer.commercial-3.1.5.swf', wmode: 'opaque'}, {
-
-            key: '#$2530218aaff22a9be9e',
-
-            canvas: {
-                background: 'url(/images/videos/splash-default-24.png)  no-repeat 0 155'
-            },
-            play: {
-                label: 'Play',
-                replayLabel: 'Play again'
-            },
-            clip: {
-                provider: 'rtmp',
-                url: 'flv:marketing/firehoze-for-instructors',
-                scaling: "fit",
-                autoPlay:true,
-                autoBuffering:false,
-                bufferLength: 10,
-                accelerated: true
-            },
-            plugins: {
-                rtmp: {
-                    url: 'flowplayer.rtmp-3.1.3.swf',
-                    netConnectionUrl: 'rtmp://sbu2wbtu5f5dv.cloudfront.net/cfx/st'
-                }
-            }
-        });
-    </script>
-
+<h3>AbleRoad for Coaches</h3>
+<p>Srategic partnerships with advocacy groups aimed at establishing AbleRoad as a trusted, premier brand and expanding market reach into the disability community exist.</p>
+<p><%= image_tag("logos/ableroad-endorsements.png") %></p>
+<p>AbleRoad partners with established organizations that are made up of professional providers, caregivers, and transition coaches who spend their entire day helping individuals with day to day mobility challenges.  The revenues generated from each video or session is shared directly with the coach who created the quality content.   What is great for the coaches is that not only do they get revenue that they otherwise might not get, but they additionally get instant feedback.  Individuals who view a video or walk through a session can provide feedback on what works and what does not on specific pieces of content.  What is great for the individual is they get access to people in other cities and locations far from their immediate support structure.</p>
+<p>Potential partnerships structures that exist include mutual referrals and jointly-sponsored events.  We are also exploring revenue-sharing agreements, whereby all members of an association receive access to AbleRoad at a reduced per-user price.</p>
