@@ -10,7 +10,7 @@
     <%= f.text_field :title_like, :style => "width:240px;" %>
   </div>
   <div class="span-4 center">
-    <%= f.label :instructor_login_like, "Instructor" %>:
+    <%= f.label :instructor_login_like, "Coach" %>:
     <%= f.text_field :instructor_login_like, :style => "width:210px;" %>
   </div>
   <div class="last span-4 center">
@@ -30,7 +30,7 @@
   <table>
     <tr>
       <th>Title</th>
-      <th>Instructor</th>
+      <th>Coach</th>
       <th>Created At</th>
       <% if current_user.try("is_an_admin?") %>
       <th>State</th>

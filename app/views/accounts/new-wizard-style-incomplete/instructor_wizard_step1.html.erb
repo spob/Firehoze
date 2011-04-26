@@ -1,4 +1,4 @@
-<% title "Instructor Agreement, Step 1" -%>
+<% title "Coach Agreement, Step 1" -%>
 
 <% content_for :footer do -%>
   <%= javascript_include_tag 'validation/accounts.validate.js' -%>
@@ -13,8 +13,8 @@
     <li class="header">
       <span></span>
 
-      <h3>Instructor Agreement (Step 1 of 5)</h3>
-      <h4>In order to become a Firehoze instructor, please accept the terms of the Firehoze Instructor
+      <h3>Coach Agreement (Step 1 of 5)</h3>
+      <h4>In order to become a Firehoze instructor, please accept the terms of the AbleRoad Coach
         Agreement.</h4>
       </li>
 
@@ -42,7 +42,7 @@
       </li>
       <% end %>
       <% else %>
-      <h4>Instructor Agreement accepted on: <%= l @user.author_agreement_accepted_on %></h4>
+      <h4>Coach Agreement accepted on: <%= l @user.author_agreement_accepted_on %></h4>
       <% end %>
       <li class="bottom">
         <span class="unlabelled">

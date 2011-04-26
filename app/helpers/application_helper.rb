@@ -123,7 +123,7 @@ module ApplicationHelper
 
   def about_link
     unless params[:controller] == 'high_voltage/pages' and params[:action] == 'show' and params[:id] == 'about'
-      link_to "About Firehoze", page_path("about")
+      link_to "About AbleRoad", page_path("about")
     end
   end
 
@@ -168,7 +168,7 @@ module ApplicationHelper
     end
   end
 
-  def random_quote 
+  def random_quote
     [
       "In the competitive world of college admissions, grades and test scores make a difference. A cutting-edge tutoring method will help students of all learning abilities and skill levels. This is exciting and innovative. I am excited to see where Firehoze is going to take our future leaders.&nbsp;&nbsp;&nbsp;<br />&mdash; Cheri Barad, Education Consultant",
       "Getting an education...is like drinking from a fire hose.<br /> &mdash; Jerome Weisner, MIT President (1971-80)",
@@ -176,7 +176,7 @@ module ApplicationHelper
       "Being able to take the tutoring classes at my own pace will be better suited for my learning style.<br /> &mdash; Sarah C, Medfield",
       "I'll be able to choose the tutor I want that appeals to my learning methods.<br /> &mdash; Joe W, Westwood"
     ].rand
-  end                                  
+  end
 
   private
 

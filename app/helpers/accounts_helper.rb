@@ -2,7 +2,7 @@ module AccountsHelper
   include ApplicationHelper
 
   def instructor_wizard_breadcrumbs(step)
-    link_text("Instructor Agreement", 1, step,
+    link_text("Coach's Agreement", 1, step,
       @user.author_agreement_accepted_on, instructor_wizard_step1_account_path(@user)) +
       "\n\t" +
 

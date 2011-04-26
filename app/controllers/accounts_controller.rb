@@ -43,7 +43,7 @@ class AccountsController < ApplicationController
 
   def request_instructor_reg_code
     Notifier.deliver_instructor_reg_code @user
-    flash[:notice] = 'A representative from Firehoze will contact you about becoming a Firehoze instructor. Thank you.'
+    flash[:notice] = 'A representative from AbleRoad will contact you about becoming an AbleRoad coach. Thank you.'
     redirect_to page_path('reg_code_request_received')
   end
 

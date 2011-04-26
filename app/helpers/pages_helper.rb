@@ -3,7 +3,7 @@ module PagesHelper
 
   def instructors_group_link
     group = Group.find_by_id(APP_CONFIG[CONFIG_FIREHOZE_INSTRUCTOR_GROUP_ID])
-    group_name = "Firehoze Instructors Group"
+    group_name = "AbleRoad Coaches Group"
     if group
       link_to group_name, group_path(group)
     else

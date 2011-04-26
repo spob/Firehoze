@@ -9,7 +9,7 @@
             <table class="quick-links">
               <tr>
                 <td class="icon"><%= link_to image_tag('icons/48-new-orange.png', :alt => "Newest Lessons"), list_lessons_path(:collection => 'newest') %></td>
-                <td><%= link_to "Newest Lessons", list_lessons_path(:collection => 'newest') %></td>
+                <td><%= link_to "Newest How Tos", list_lessons_path(:collection => 'newest') %></td>
               </tr>
               <tr>
                 <td class="icon"><%= link_to image_tag('icons/32-star.png', :alt => "Highest Rated Lessons"), list_lessons_path(:collection => 'highest_rated') %></td>
@@ -46,7 +46,7 @@
 
       <div id="lower">
         <div id="inner">
-          <%= link_to_unless_current "About Firehoze", page_path("about") %> |
+          <%= link_to_unless_current "About AbleRoad", page_path("about") %> |
           <%= link_to "Contact Us", page_path('contact-us') %> |
           <%= link_to_unless_current "Help Center", page_path("help_center") %> |
           <%= link_to_unless_current "FAQs", page_path("faqs") %> |

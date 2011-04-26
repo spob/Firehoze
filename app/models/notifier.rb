@@ -2,7 +2,7 @@
 class Notifier < ActionMailer::Base
   extend HashHelper
   include ActiveSupport::CoreExtensions::String::Inflections
-  
+
   #default_url_options.update :protocol => APP_CONFIG[CONFIG_PROTOCOL]
   #default_url_options.update :host => APP_CONFIG[CONFIG_HOST]
   #default_url_options.update :port => APP_CONFIG[CONFIG_PORT]
@@ -140,7 +140,7 @@ class Notifier < ActionMailer::Base
 
   # Notify a user that their video is ready for viewing
   def new_followed_lesson(to_user, lesson)
-    subject    "An instructor you are following just posted a new lesson"
+    subject    "A coach you are following just posted a new how to"
     recipients to_user.email
     from       APP_CONFIG[CONFIG_ADMIN_EMAIL]
 
@@ -176,7 +176,7 @@ class Notifier < ActionMailer::Base
   # Notify a user and admins that a video failed to transcode
   def instructor_sign_up(user)
     user = User.find(user)
-    subject    "#{user.login} became an instructor"
+    subject    "#{user.login} became a coach"
     recipients  User.communitymgrs.collect(&:email)
     from         APP_CONFIG[CONFIG_ADMIN_EMAIL]
 
@@ -207,7 +207,7 @@ class Notifier < ActionMailer::Base
   def instructor_reg_code user
     recipients "all@firehoze.com"
     from        APP_CONFIG[CONFIG_ADMIN_EMAIL]
-    subject "A user has requested a reg code to become an instructor (#{user.email})"
+    subject "A user has requested a reg code to become a coach (#{user.email})"
     sent_on Time.now
     body :login => user.login, :first_name => user.first_name, :last_name => user.last_name, :email => user.email,
          :bio => user.bio, :hash => Notifier.formatted_hash(user.email, HASH_PREFIX, HASH_SUFFIX)

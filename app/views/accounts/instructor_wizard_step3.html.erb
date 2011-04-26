@@ -1,7 +1,7 @@
-<% title "Instructor Agreement, Step 3" -%>
+<% title "Coach Agreement, Step 3" -%>
 <%= render :partial => "shared/infield_head_content" %>
 
-<h3>Instructor Enrollment Wizard</h3>
+<h3>Coach Enrollment Wizard</h3>
 <%= render :partial => 'breadcrumbs', :locals => { :step => 3 } %>
 <% form_for(:user, :url => update_instructor_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
 <%= f.error_messages %>

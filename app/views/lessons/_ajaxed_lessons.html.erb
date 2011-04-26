@@ -7,11 +7,11 @@
 <div id="<%= pane %>" class="lessons-container">
   <% if lessons.try(:empty?) %>
     <% if pane.to_s == "owned" %>
-      You have not purchased any lessons yet
+      You have not purchased any how tos yet
     <% elsif pane.to_s == "wishlist" %>
-      You haven't added any lessons to your wish list yet
+      You haven't added any how tos to your wish list yet
     <% elsif pane.to_s == "latest_browsed" %>
-      You haven't browsed any lessons yet. Why not take this opportunity to do some <%= link_to "window shopping", categories_path %>...
+      You haven't browsed any how tos yet. Why not take this opportunity to do some <%= link_to "window shopping", categories_path %>...
     <% else %>
       No lessons
     <% end %>

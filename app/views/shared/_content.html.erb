@@ -36,7 +36,7 @@
   <%= javascript_include_tag 'plugins/jquery.tools.min' %>
   <%= javascript_include_tag 'plugins/swfobject' %> <% # keep this in head, or else if won't work %>
   <%= javascript_include_tag 'plugins/flowplayer-3.1.4.min' %>
-  
+
   <%= ajaxful_rating_style %>
 
   <!--[if IE 6]><%= javascript_include_tag 'ie/ie6/DD_belatedPNG_0.0.8a-min' %><![endif]-->
@@ -53,9 +53,9 @@
     <div class="span-12 last content">
       <div id="logo">
         <% if current_user %>
-        <%= link_to_unless_current("my firehoze", my_firehoze_index_path, :id => :home) %>
+        <%= link_to_unless_current("my ableroad", my_firehoze_index_path, :id => :home) %>
         <% else %>
-        <%= link_to_unless_current("Firehoze", lessons_path, :id => :home) %>
+        <%= link_to_unless_current("AbleRoad", lessons_path, :id => :home) %>
         <% end %>
       </div>
       <div id="top-navigation-container">

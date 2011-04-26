@@ -7,8 +7,8 @@ class FacebookPublisher < Facebooker::Rails::Publisher
     from comment.user.facebook_session.user
     target comment.user.facebook_session.user
     message "added the comment '#{truncate_text(comment.body, 100)}' to the topic '#{comment.topic.title}'"
-    action_links [ action_link("View On Firehoze", absolute_path(:controller => 'topics', :action => 'show', :id => comment.topic)) ]
-    attachment :name => comment.topic.group.name, :href => absolute_path(:controller => 'groups', :action => 'show', :id => comment.topic.group), :description => "Firehoze Groups", :media => [{:type => 'image', :src => logo_url, :href => absolute_path(:controller => 'groups', :action => 'show', :id => comment.topic.group)}]  
+    action_links [ action_link("View On AbleRoad", absolute_path(:controller => 'topics', :action => 'show', :id => comment.topic)) ]
+    attachment :name => comment.topic.group.name, :href => absolute_path(:controller => 'groups', :action => 'show', :id => comment.topic.group), :description => "AbleRoad Groups", :media => [{:type => 'image', :src => logo_url, :href => absolute_path(:controller => 'groups', :action => 'show', :id => comment.topic.group)}]
   end
 
   def join_group(group_id, user_id, logo_url)
@@ -17,9 +17,9 @@ class FacebookPublisher < Facebooker::Rails::Publisher
     send_as :publish_stream
     from user.facebook_session.user
     target user.facebook_session.user
-    message "joined the Firehoze group '#{group.name}'"
-    action_links [ action_link("View On Firehoze", absolute_path(:controller => 'groups', :action => 'show', :id => group)) ]
-    attachment :name => group.name, :href => absolute_path(:controller => 'groups', :action => 'show', :id => group), :description => "Firehoze Groups", :media => [{:type => 'image', :src => logo_url, :href => absolute_path(:controller => 'groups', :action => 'show', :id => group)}]
+    message "joined the AbleRoad group '#{group.name}'"
+    action_links [ action_link("View On AbleRoad", absolute_path(:controller => 'groups', :action => 'show', :id => group)) ]
+    attachment :name => group.name, :href => absolute_path(:controller => 'groups', :action => 'show', :id => group), :description => "AbleRoad Groups", :media => [{:type => 'image', :src => logo_url, :href => absolute_path(:controller => 'groups', :action => 'show', :id => group)}]
   end
 
   def create_group(group_id, logo_url)
@@ -28,8 +28,8 @@ class FacebookPublisher < Facebooker::Rails::Publisher
     from group.owner.facebook_session.user
     target group.owner.facebook_session.user
     message "created the Firehoze group '#{group.name}'"
-    action_links [ action_link("View On Firehoze", absolute_path(:controller => 'groups', :action => 'show', :id => group)) ]
-    attachment :name => group.name, :href => absolute_path(:controller => 'groups', :action => 'show', :id => group), :description => "Firehoze Groups", :media => [{:type => 'image', :src => logo_url, :href => absolute_path(:controller => 'groups', :action => 'show', :id => group)}]
+    action_links [ action_link("View On AbleRoad", absolute_path(:controller => 'groups', :action => 'show', :id => group)) ]
+    attachment :name => group.name, :href => absolute_path(:controller => 'groups', :action => 'show', :id => group), :description => "AbleRoad Groups", :media => [{:type => 'image', :src => logo_url, :href => absolute_path(:controller => 'groups', :action => 'show', :id => group)}]
   end
 
   def user_instructor(user_id, avatar_url)
@@ -37,9 +37,9 @@ class FacebookPublisher < Facebooker::Rails::Publisher
     send_as :publish_stream
     from user.facebook_session.user
     target user.facebook_session.user
-    message "became a Firehoze instructor"
-    action_links [ action_link("View On Firehoze", absolute_path(:controller => 'users', :action => 'show', :id => user)) ]
-    attachment :name => user.login, :href => absolute_path(:controller => 'users', :action => 'show', :id => user), :description => "Firehoze Instructor", :media => [{:type => 'image', :src => avatar_url, :href => absolute_path(:controller => 'users', :action => 'show', :id => user)}]
+    message "became an AbleRoad coach"
+    action_links [ action_link("View On AbleRoad", absolute_path(:controller => 'users', :action => 'show', :id => user)) ]
+    attachment :name => user.login, :href => absolute_path(:controller => 'users', :action => 'show', :id => user), :description => "AbleRoad Instructor", :media => [{:type => 'image', :src => avatar_url, :href => absolute_path(:controller => 'users', :action => 'show', :id => user)}]
   end
 
   def new_lesson(lesson_id)
@@ -47,8 +47,8 @@ class FacebookPublisher < Facebooker::Rails::Publisher
     send_as :publish_stream
     from lesson.instructor.facebook_session.user
     target lesson.instructor.facebook_session.user
-    message "published a new Firehoze lesson '#{lesson.title}'"
-    action_links [ action_link("View On Firehoze", absolute_path(:controller => 'lessons', :action => 'show', :id => lesson)) ]
-    attachment :name => lesson.title, :href => absolute_path(:controller => 'lessons', :action => 'show', :id => lesson), :description => "Firehoze Lesson", :media => [{:type => 'image', :src => lesson.sized_thumbnail_url(:small), :href => absolute_path(:controller => 'lessons', :action => 'show', :id => lesson)}]
+    message "published a new AbleRoad how to '#{lesson.title}'"
+    action_links [ action_link("View On AbleRoad", absolute_path(:controller => 'lessons', :action => 'show', :id => lesson)) ]
+    attachment :name => lesson.title, :href => absolute_path(:controller => 'lessons', :action => 'show', :id => lesson), :description => "AbleRoad Lesson", :media => [{:type => 'image', :src => lesson.sized_thumbnail_url(:small), :href => absolute_path(:controller => 'lessons', :action => 'show', :id => lesson)}]
   end
 end

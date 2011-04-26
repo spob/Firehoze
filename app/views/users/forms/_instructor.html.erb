@@ -4,19 +4,19 @@
     <ul id="profile-info" class="section">
       <li class="header">
         <span></span>
-        <h3>Edit <%= link_to_profile @user %>'s Instructor Status</h3>
-        <h4>The information below describes whether this user is an instructor and the rate at which he or she will earn commissions for sales of their lessons.</h4>
+        <h3>Edit <%= link_to_profile @user %>'s Coach Status</h3>
+        <h4>The information below describes whether this user is a coach and the rate at which he or she will earn commissions for sales of their how tos.</h4>
       </li>
 
-      <li class="minor-header">Instructor Details</li>
+      <li class="minor-header">How To Details</li>
       <li>
         <div class="unlabelled" style="margin-bottom:1em;">
-          <strong>This user is <%= (@user.verified_instructor? ? "" : "not ") %>an instructor.</strong>
+          <strong>This user is <%= (@user.verified_instructor? ? "" : "not ") %>a coach.</strong>
           <div>
             <% if @user.author_agreement_accepted_on %>
-              Author agreement was accepted on <%= l @user.author_agreement_accepted_on %>
+              Coach agreement was accepted on <%= l @user.author_agreement_accepted_on %>
             <% else %>
-              Author agreement has not been accepted
+              Coach agreement has not been accepted
             <% end %>
           </div>
           <div>
