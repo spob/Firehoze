@@ -19,7 +19,12 @@ config.action_controller.perform_caching             = false
 config.gem "ambethia-smtp-tls", :lib => "smtp-tls", :source => "http://gems.github.com/"
 
 # bullet for testing memory in development mode
+<<<<<<< HEAD:config/environments/development.rb
 config.gem 'bullet'
+=======
+# config.gem 'flyerhzm-bullet', :lib => 'bullet', :source => 'http://gems.github.com'
+config.gem 'bullet', :lib => 'bullet', :source => 'http://gems.github.com'
+>>>>>>> 851d432213eda70540d04ebce0bd82de4525b320:config/environments/development.rb
 #config.gem 'ruby-growl'
 
 # Mail safe protects us from sending email to real people outside the development team
