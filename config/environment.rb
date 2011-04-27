@@ -115,12 +115,9 @@ Rails::Initializer.run do |config|
   config.gem 'newrelic_rpm', :version => '~>2.12.3'
 
   # For attaching files
-<<<<<<< HEAD:config/environment.rb
   config.gem 'paperclip', :version => '2.3.1'
-=======
   # config.gem 'thoughtbot-paperclip', :lib => 'paperclip', :source => 'http://gems.github.com', :version => '2.3.1'
-  config.gem 'paperclip', :lib => 'paperclip', :source => 'http://gems.github.com', :version => '2.3.1'
->>>>>>> 851d432213eda70540d04ebce0bd82de4525b320:config/environment.rb
+  # config.gem 'paperclip', :lib => 'paperclip', :source => 'http://gems.github.com', :version => '2.3.1'
   config.gem 'aws-s3', :lib => 'aws/s3'
 
   # For interacting with AWS
