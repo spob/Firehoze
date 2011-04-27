@@ -135,7 +135,7 @@ Rails::Initializer.run do |config|
   # Query optimization
   #config.gem 'methodmissing-scrooge', :source => "http://gems.github.com"
 
-  config.gem "spob-flix_cloud-gem"
+#  config.gem "spob-flix_cloud-gem"
 
   config.gem "mysql"
 
