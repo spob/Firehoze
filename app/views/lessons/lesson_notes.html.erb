@@ -19,7 +19,7 @@
     </div>
 <div>
   <% if @lesson.attachments.present? or @lesson.can_edit?(current_user) %>
-      <div class="box-header">Lesson Attachments</div>
+      <div class="box-header">How To Attachments</div>
       <div class="box-content">
         <% if @lesson.attachments.empty? %>
             No attachments
