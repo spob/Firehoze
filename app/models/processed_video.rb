@@ -103,7 +103,7 @@ class ProcessedVideo < Video
   def thumbnail_path(size=thumbnail_size)
     # TODO: Undo this to enable CDN
     # thumbnail = "http://#{APP_CONFIG[CONFIG_CDN_THUMBS_SERVER]}/#{self.s3_root_dir}/thumbs/#{lesson.id.to_s}/#{size}/thumb_0001.png"
-    thumbnail = "http://#{APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET]}/#{self.s3_root_dir}/thumbs/#{lesson.id.to_s}/#{size}/thumb_0001.png"
+    thumbnail = "https://s3.amazonaws.com/#{APP_CONFIG[CONFIG_AWS_S3_THUMBS_BUCKET]}/#{self.s3_root_dir}/thumbs/#{lesson.id.to_s}/#{size}/thumb_0001.png"
   end
 
   def thumbnail_s3_path
