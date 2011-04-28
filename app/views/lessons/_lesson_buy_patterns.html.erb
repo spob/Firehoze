@@ -3,14 +3,14 @@
 <% unless lesson.lesson_buy_patterns.ready.empty? -%>
   <div id="what-do-students-ultimately-buy-container"  class="prepend-top">
     <div class="widget-box-content">
-      <h3>What Do Students Ultimately Buy After Browsing This Lesson?</h3>
+      <h3>What Do Individuals Ultimately Buy After Browsing This How To?</h3>
       <ul id="what-do-students-ultimately-buy">
         <% for buy_pattern in lesson.lesson_buy_patterns.ready.all(:include => [:purchased_lesson])[0..APP_CONFIG[CONFIG_NUMBER_OF_BUY_PATTERNS_TO_SHOW]] -%>
           <li class="lesson-container <%= cycle("even", "odd") -%> clearfix">
             <%= img_tag_lesson_tn(buy_pattern.purchased_lesson, :small) -%>
             <div class='lesson-detail'>
               <% if lesson == buy_pattern.purchased_lesson -%>
-                <div style="color:green"><strong><%= number_to_percentage(100 * buy_pattern.counter/lesson.total_buy_pattern_counts, :precision => 0) -%></strong> buy the lesson featured on this page:</div>
+                <div style="color:green"><strong><%= number_to_percentage(100 * buy_pattern.counter/lesson.total_buy_pattern_counts, :precision => 0) -%></strong> buy the how to featured on this page:</div>
                 <%= h(buy_pattern.purchased_lesson.title) -%>
               <% else -%>
                 <div>
