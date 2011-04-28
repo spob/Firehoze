@@ -126,7 +126,8 @@ END
   validates_length_of :login, :maximum => 25, :allow_nil => true
   validates_format_of :login, :with => /\A\S*\z/, :message => "can only consist of letters, numbers and underscores", :allow_nil => true
 
-  DEFAULT_AVATAR_URL = "http://#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}/users/avatars/missing/%s/missing.png"
+#  DEFAULT_AVATAR_URL = "http://#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}/users/avatars/missing/%s/missing.png"
+  DEFAULT_AVATAR_URL = "https://s3.amazonaws.com/images.ableroad.firehoze.com/users/avatars/missing/%s/missing.png"
 
   # ===============
 # = CSV support =
@@ -236,7 +237,7 @@ END
 #    "/images/users/avatars/%s/missing.png" % style.to_s
 #  end
 
-  # convert an amazon url for an avator to a cdn url                       
+  # convert an amazon url for an avator to a cdn url
   def self.convert_avatar_url_to_cdn(url)
     regex = Regexp.new("//.*#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}")
     regex2 = Regexp.new("https")
@@ -250,7 +251,7 @@ END
 
   memoize :is_a_moderator?
 
-  # This method is a decorator and it's sole purpose is to enable memoization 
+  # This method is a decorator and it's sole purpose is to enable memoization
   def is_an_admin?
     self.is_admin?
   end
@@ -534,7 +535,9 @@ END
 
 
   def avatar_url(options = {})
-    url_type = options[:url] || :cdn
+    # TODO: converted for AbleRoad...uncomment to allow cdn
+#    url_type = options[:url] || :cdn
+    url_type = options[:url]
     convert_to_cdn(self.avatar.url(options[:size] || :medium), url_type)
   end
 
