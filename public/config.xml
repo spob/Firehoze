@@ -56,12 +56,11 @@
       <transition num="4" direction="left" shader="flat" />
 
       <!-- slide 2 -->
-
       <slide>
-        <url>images/cuber/ableroad/AR_image_ammie_mullins-2.jpg</url>
+        <url>images/cuber/ableroad/AR_image_catch_wave.jpg</url>
         <description>
-          <heading>Stride</heading>
-          <paragraph>to be noticed ...</paragraph>
+          <heading>Balance</heading>
+          <paragraph>challenges in life ...</paragraph>
         </description>
       </slide>
 
@@ -71,10 +70,10 @@
 
       <!-- slide 3 -->
       <slide>
-        <url>images/cuber/ableroad/AR_image_catch_wave.jpg</url>
+        <url>images/cuber/ableroad/AR_image_mon_skier.jpg</url>
         <description>
-          <heading>Balance</heading>
-          <paragraph>challenges in life ...</paragraph>
+          <heading>Turn</heading>
+          <paragraph>to solutions that work ...</paragraph>
         </description>
       </slide>
 
@@ -95,10 +94,10 @@
 
       <!-- slide 5 -->
       <slide>
-        <url>images/cuber/ableroad/AR_image_mon_skier.jpg</url>
+        <url>images/cuber/ableroad/AR_image_ammie_mullins-2.jpg</url>
         <description>
-          <heading>Turn</heading>
-          <paragraph>to solutions that work ...</paragraph>
+          <heading>Stride</heading>
+          <paragraph>to be noticed ...</paragraph>
         </description>
       </slide>
 
