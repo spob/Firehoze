@@ -104,7 +104,8 @@ class Group < ActiveRecord::Base
   end
 
   # convert an amazon url for a logo to a cdn url
-  def self.convert_logo_url_to_cdn(url, url_type=:cdn)
+  # TODO: change :url to :cdn if  hosting via cdn
+  def self.convert_logo_url_to_cdn(url, url_type=:url)
     if url_type == :cdn
       regex = Regexp.new("//.*#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}")
       regex2 = Regexp.new("https")

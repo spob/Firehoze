@@ -60,6 +60,8 @@ module GroupsHelper
   def logo_tag(group, options = {})
     return unless group
     size = options[:size] || :medium
+    # TODO: turn off cdn
+    url_type = options[:url] #|| :cdn
     url_type = options[:url] || :cdn
     logo_url = group.logo.file? ? group.logo.url(size) : Group.default_logo_url(size)
     cdn_logo_url = Group.convert_logo_url_to_cdn(logo_url, url_type)
