@@ -177,7 +177,7 @@ class Group < ActiveRecord::Base
 
   def logo_geometry(style = :original)
     @geometry ||= {}
-    @geometry[style] ||= Paperclip::Geometry.from_file(logo.url(style))
+    @geometry[style] ||= Paperclip::Geometry.from_file(logo.to_file(style))
   end
 
   private
