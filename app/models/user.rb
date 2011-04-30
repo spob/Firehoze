@@ -523,7 +523,8 @@ END
 
   def avatar_geometry(style = :original)
     @geometry ||= {}
-    @geometry[style] ||= Paperclip::Geometry.from_file(avatar.url(style))
+#    @geometry[style] ||= Paperclip::Geometry.from_file(avatar.url(style))
+    @geometry[style] ||= Paperclip::Geometry.from_file(avatar.to_file(style))
   end
 
   def facebook_session
