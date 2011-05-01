@@ -15,7 +15,7 @@
                   <% end %>
               <% end if sibling.has_children? %>
           <% else %>
-              <li><%= link_to h(sibling.name), (mode == "groups" ? groups_path(:category => sibling) : category_path(sibling)).downcase %></li>
+              <li><%= link_to h(sibling.name), (mode == "groups" ? groups_path(:category => sibling) : category_path(sibling.id)).downcase %></li>
           <% end %>
       <% end %>
   <% end %>
