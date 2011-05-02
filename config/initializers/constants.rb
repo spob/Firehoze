@@ -67,7 +67,7 @@ FLIX_CLOUD_AWS_ID = '6c8583d84664a381db0c6af0e79b285ede571885fbe768e7ea50e5d3760
 FLIX_API_KEY = '495da1d21611e554e5779e08aed30aca'
 FLIX_FULL_RECIPE_ID = 582
 FLIX_PREVIEW_RECIPE_ID = 581
-WATERMARK_URL = 'http://assets.firehoze.com/images/videos/watermark-video-embed-24.png'
+WATERMARK_URL = 'http://ableroad.firehoze.com/images/videos/watermark-video-embed-24.png'
 
 OUTPUT_FTP_USERNAME = 'output'
 OUTPUT_FTP_PASSWORD = 'gxdk4v27zmc2th6amguw58'
