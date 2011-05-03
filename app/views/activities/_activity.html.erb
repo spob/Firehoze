@@ -1,5 +1,5 @@
 <li class="<%= cycle :odd, :even %>">
-  <%= link_to(avatar_tag(activity.actor_user, :size => :medium), user_path(activity.actor_user)) %>
+  <%= link_to(avatar_tag(activity.actor_user, :size => :tiny), user_path(activity.actor_user)) %>
   <%= h(time_ago_in_words(activity.acted_upon_at)) %> ago:<br />
   <% if activity.activity_string == "user.instructor_activity" %>
       <%= render :partial => "activities/user_instructor_activity", :locals => { :activity => activity } %>
