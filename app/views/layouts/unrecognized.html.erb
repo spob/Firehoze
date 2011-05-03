@@ -16,7 +16,7 @@
   <link rel="home" href="/"/>
   <link rel="copyright" href="#copyright"/>
   <link rel="shortcut icon" type="image/ico" href="/favicon.ico"/>
-  <title>AbleRoad - <%= truncate(yield(:title), :length => 75) || "Empowering Individuals" %></title>
+  <title><%= t('general.company') %> - <%= truncate(yield(:title), :length => 75) || "Empowering Individuals" %></title>
   <%= stylesheet_link_tag 'blueprint/screen-min', :media => "screen, projection" %>
   <%= stylesheet_link_tag 'blueprint/print-min', :media => "print" %>
   <%= stylesheet_link_tag 'firehoze', :media => "screen, projection" %>
@@ -60,9 +60,9 @@
     <div class="span-12 last content">
       <div id="logo">
         <% if current_user %>
-        <%= link_to_unless_current("my ableroad", my_firehoze_index_path, :id => :home) %>
+        <%= link_to_unless_current(t('general.my_firehoze'), my_firehoze_index_path, :id => :home) %>
         <% else %>
-        <%= link_to_unless_current("AbleRoad", root_path) %>
+        <%= link_to_unless_current(t('general.company'), root_path) %>
         <% end %>
       </div>
       <div id="top-navigation-container">

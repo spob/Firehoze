@@ -3,11 +3,11 @@
 </p>
 <p>
   You recently purchased the how to "<%= @credit.lesson.title %>" by <%= @credit.lesson.instructor.login %>. Help the
-  AbleRoad community by writing a review for this how to. It's easy--just click the "Write a Review" link below.
+  <%= t('general.company') %> community by writing a review for this how to. It's easy--just click the "Write a Review" link below.
 </p>
 <p>
   <%= link_to 'Write a Review', @url %>
 </p>
 <p>
-  Sincerely, AbleRoad
+  Sincerely, <%= t('general.company') %>
 </p>

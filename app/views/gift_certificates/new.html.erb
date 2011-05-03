@@ -17,7 +17,7 @@
             code, you can enter it below.
             <% if current_user.gift_certificates.active.present? %>
                 Alternatively, you may find it easier to
-                redeem them from your <%= link_to "My AbleRoad", account_history_my_firehoze_path(:anchor => "giftcerts") %> page.
+                redeem them from your <%= link_to t('general.my_firehoze'), account_history_my_firehoze_path(:anchor => "giftcerts") %> page.
             <% end %>
           </h4>
           <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>

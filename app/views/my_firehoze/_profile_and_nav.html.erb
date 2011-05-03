@@ -1,7 +1,7 @@
 <div id="profile-box" class="white-box-medium">
   <%= avatar_link_to user, :size => :smaller %>
   <div id="content">
-    <h3><%= user.full_name %>'s AbleRoad  <%= link_to image_tag("icons/profile-16.png", :alt => "your public profile", :class => "profile"), user_path(user),  :title => "your public profile", :class => "no-border" %></h3>
+    <h3><%= user.full_name %>'s <%= t('general.company') %>  <%= link_to image_tag("icons/profile-16.png", :alt => "your public profile", :class => "profile"), user_path(user),  :title => "your public profile", :class => "no-border" %></h3>
     <%= render :partial => 'my_firehoze/nav' %>
 
     <div class="corner-box">

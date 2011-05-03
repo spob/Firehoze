@@ -48,6 +48,7 @@ en:
     home: Home
     no_permissions: You do not have permissions to perform that action
     my_firehoze: My AbleRoad
+    company: AbleRoad
     lessons: How Tos
     optimistic_lock_error: It looks like another user updated the same record at the same time you were performing your transaction. Can you please try again?
   security:
@@ -173,6 +174,7 @@ en:
     not_an_instructor: The <b>{{user}}</b> is not an instructor
 
   lesson:
+    lesson: lesson
     access_message: You do not have access to edit this how to
     buy: Buy
     unrejected: You have moved this how to out of the rejected state

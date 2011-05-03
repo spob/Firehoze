@@ -36,7 +36,7 @@
 
     <div class="widget-box">
       <div class="widget-box-header">
-        <span class="h4">Explore Firehoze Categories</span>
+        <span class="h4">Explore <%= t('general.company') %> Categories</span>
       </div>
       <div class="tree-view">
         <%= render :partial => "categories/tree_view", :locals => { :category => @category, :mode => "lessons" } %>
@@ -47,10 +47,10 @@
 
     <div class="widget-box">
       <div class="widget-box-header">
-        <span class="h4">Suggest a Lesson</span>
+        <span class="h4">Suggest a <%= t('lesson.lesson') %></span>
       </div>
       <div class="widget-box-content tags">
-        Can't find a lesson that meets your needs?
+        Can't find a <%= t('lesson.lesson') %> that meets your needs?
       </div>
       <div class="widget-box-content tags">
         <%= link_to content_tag(:span, "Suggest a How To Topic"), page_path("help_center", :anchor => "share-an-idea"), :class => 'large-button call-to-action' %>

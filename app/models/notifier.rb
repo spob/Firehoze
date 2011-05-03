@@ -150,7 +150,7 @@ class Notifier < ActionMailer::Base
   end
 
   def contact_user(to_user, from_user, subject, msg)
-    subject    "A message from a Firehoze user: #{subject}"
+    subject    "A message from a #{t('general.company')} user: #{subject}"
     recipients to_user.email
     from       from_user.email
 

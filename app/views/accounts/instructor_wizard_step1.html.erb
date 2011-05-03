@@ -7,7 +7,7 @@
 <% if APP_CONFIG[CONFIG_RESTRICT_INSTRUCTOR_SIGNUP] and @user.author_agreement_accepted_on.nil? %>
     <fieldset>
       <legend>Coach Agreement</legend>
-      <p>To become an AbleRoad coach, you will need a Registration Code. If you do not already have one, click "Request Registration Code".</p>
+      <p>To become an <%= t('general.company') %> coach, you will need a Registration Code. If you do not already have one, click "Request Registration Code".</p>
       <p><%= link_to content_tag(:span, "Request Registration Code"), request_instructor_reg_code_account_path(current_user), :method => :post, :class => :minibutton %></p>
     </fieldset>
 <% end %>
