@@ -27,7 +27,7 @@
         <ul class="bulletless">
           <li>Joined: <%= h(l(@user.created_at.to_date)) %></li>
           <% if @user.verified_instructor? and @user.students.size > 0 %> <% # let's not embarass anyone if they have no students %>
-          <li>Lesson taught: <%= @user.instructed_lessons.ready.size %></li>
+          <li><%= t('lesson.lesson').capitalize %> taught: <%= @user.instructed_lessons.ready.size %></li>
           <li>Students: <%= @user.students.size %></li>
           <% end %>
           <% if @user.followers.active.size > 0 or @user.followed_instructors.active.size %>

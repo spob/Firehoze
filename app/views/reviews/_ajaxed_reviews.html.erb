@@ -3,7 +3,7 @@
 
 <div id="<%= pane %>">
   <% if reviews.empty? %>
-    <div class="info">You haven't reviewed any how tos yet.</div>
+    <div class="info">You haven't reviewed any <%= t('general.lessons').downcase %> yet.</div>
   <% else %>
     <%= will_paginate reviews, :params => { :pane => pane }, :class => "ajax-pagination" %>
     <%= render :partial => "reviews/review", :collection => reviews %>

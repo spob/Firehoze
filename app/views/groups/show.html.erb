@@ -20,7 +20,7 @@
                   <%= link_to h(tag.name), tagged_with_groups_path(:tag => tag.name) %>
               <% end %></li>
         <% end %>
-      </ul> 
+      </ul>
       <hr />
       <div class="actions clearfix">
         <%= show_join_link(@group, current_user) %>
@@ -70,7 +70,7 @@
 <div class="span-8">
   <div id="group-details-tabs" class="tab-container">
     <ul class="tabs">
-      <li><a href="#lessons">Lessons</a></li>
+      <li><a href="#lessons"><%= t('general.lessons').capitalize %></a></li>
       <li><a href="#discussion">Discussion</a></li>
       <li><a href="#members">Members</a></li>
     </ul>

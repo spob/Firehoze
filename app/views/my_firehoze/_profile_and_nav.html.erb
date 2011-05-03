@@ -10,9 +10,9 @@
 
     <div id="action">
       <% if user.verified_instructor? %>
-        <%= link_to content_tag(:span, 'Create How To  &raquo;'), new_lesson_path, :class => "large-button call-to-action" %>
+        <%= link_to content_tag(:span, "Create #{t('lesson.lesson').capitalize} &raquo;"), new_lesson_path, :class => "large-button call-to-action" %>
       <% else %>
-        <%= link_to content_tag(:span, 'Become a Coach  &raquo;'), instructor_signup_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :class => "large-button call-to-action" %>
+        <%= link_to content_tag(:span, "Become a #{t('lesson.instructor').capitalize}  &raquo;"), instructor_signup_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :class => "large-button call-to-action" %>
       <% end %>
     </div>
 

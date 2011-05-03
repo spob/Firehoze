@@ -1,14 +1,14 @@
-<% title "Coach Agreement, Step 5" -%>
+<% title "#{t('lesson.instructor').capitalize}'s Agreement, Step 5" -%>
 <%= render :partial => "shared/infield_head_content" %>
 
-<h3>Coach Enrollment Wizard</h3>
+<h3><%= t('lesson.instructor').capitalize %> Enrollment Wizard</h3>
 <%= render :partial => 'breadcrumbs', :locals => { :step => 5 } %>
 <% form_for(:user, :url => update_instructor_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
   <%= f.error_messages %>
   <%= hidden_field_tag :step, "5" %>
   <fieldset>
     <legend>Tax Withholding</legend>
-    <p>That's it! You are now a <%= t('general.company') %> Coach. Congratulations!</p>
+    <p>That's it! You are now a <%= t('general.company') %> <%= t('lesson.instructor') %>. Congratulations!</p>
 
     <p>One last thing&#0133;Uncle Sam requires that you pay your taxes. You have two choices:</p>
     <ol>

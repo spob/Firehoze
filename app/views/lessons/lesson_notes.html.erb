@@ -1,14 +1,14 @@
-<% title "Lesson notes for &quot;#{h @lesson.title}&quot;" -%>
+<% title "#{t('lesson.lesson').capitalize} notes for &quot;#{h @lesson.title}&quot;" -%>
 <% @current = 'lessons' %>
 
 <div class="lesson-notes clearfix">
   <div>
     <% if @lesson.notes.blank? and @lesson.can_edit?(current_user) %>
         <div class="info with-button">
-          <em>You might consider adding notes and attachments to this how to.</em><br />
+          <em>You might consider adding notes and attachments to this <%= t('lesson.lesson') %>.</em><br />
           Notes and attachments are a great way to provide additional information for your students, such as
           supplemental materials, times within the video when specific topics are addressed, clarifications, or links to
-          other how tos or sites that users might consider visiting for additional information.
+          other <%= t('general.lessons').downcase %> or sites that users might consider visiting for additional information.
           <%= link_to content_tag(:span, 'Edit How To'), edit_lesson_path(@lesson), :class => :minibutton %>
         </div>
         </div>
