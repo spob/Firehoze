@@ -47,7 +47,7 @@
                 <%= show_membership_text @group, current_user %>
             <% end if current_user -%>
             <% if @group.free_lessons_to_members %>
-                <li><%= image_tag 'icons/16-check.png' %> Free views for lessons by group moderators</li>
+                <li><%= image_tag 'icons/16-check.png' %> Free views for <%= t('general.lessons') %> by group moderators</li>
             <% end %>
           </ul>
         </div>
@@ -79,7 +79,7 @@
         <% if @lessons.present? %>
             <%= render :partial => "lessons/lesson_tns", :object => @lessons, :locals => {:per_row => 3} %>
         <% else %>
-            <div class="info">Looks like no one has added lessons to this group yet.</div>
+            <div class="info">Looks like no one has added <%= t('general.lessons') %> to this group yet.</div>
         <% end %>
       </div>
       <div id="tabs-discussion-topics">

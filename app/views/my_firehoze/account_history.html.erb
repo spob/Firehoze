@@ -45,7 +45,7 @@
           <div class="nested-navigation-panes">
             <div>
               <p>
-                <div class="info">Available credits are available to use to purchase lessons.</div>
+                <div class="info">Available credits are available to use to purchase <%= t('general.lessons') %>.</div>
                 <% if @available_credits.empty? %>
                     You have no available credits...but you can easily purchase credits in
                     the <%= link_to "online store", store_path(0) %>.
@@ -56,7 +56,7 @@
             </div>
             <div>
               <p>
-                <div class="info">Used credits are credits that you have redeemed to purchase lessons.</div>
+                <div class="info">Used credits are credits that you have redeemed to purchase <%= t('general.lessons') %>.</div>
                 <% if @used_credits.empty? %>
                     You have not yet redeemed any credits.
                 <% end %>
