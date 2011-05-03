@@ -48,6 +48,7 @@ en:
     home: Home
     no_permissions: You do not have permissions to perform that action
     my_firehoze: My AbleRoad
+    company: AbleRoad
     lessons: How Tos
     optimistic_lock_error: It looks like another user updated the same record at the same time you were performing your transaction. Can you please try again?
   security:
@@ -164,15 +165,20 @@ en:
 
   helpful:
     cant_feedback_own: You cannot provide feedback on a review you have written
-    cant_helpful_as_instructor: As an instructor, you cannot provide feedback on reviews for your how to
+    cant_helpful_as_instructor: As a coach, you cannot provide feedback on reviews for your how to
     create_success: Your feedback has been recorded
 
   instructor_follows:
-    create_success: Instructor {{instructor}} is being followed
-    delete_success: Instructor {{instructor}} is no longer being followed
-    not_an_instructor: The <b>{{user}}</b> is not an instructor
+    create_success: Coach {{instructor}} is being followed
+    delete_success: Coach {{instructor}} is no longer being followed
+    not_an_instructor: The <b>{{user}}</b> is not a coach
 
   lesson:
+    lesson: how to
+    instructor: coach
+    instructors: coaches
+    taught: coached
+    teaching: coaching
     access_message: You do not have access to edit this how to
     buy: Buy
     unrejected: You have moved this how to out of the rejected state
@@ -200,10 +206,10 @@ en:
     reviews: Reviews
     S3_permissions_start: Set S3 permissions
     students: Students
-    tagged_with: Lessons tagged with
+    tagged_with: How Tos tagged with
     trigger_conversion_end: Video transcoding started
     trigger_conversion_start: About to trigger video conversion
-    updated: Lesson updated
+    updated: How to updated
     watch: Watch
     watch_for_free: Watch For Free
     must_logon_to_watch: Please sign in or signup for an account in order to watch this video
@@ -220,7 +226,7 @@ en:
     Pending: How to created and awaiting transcoding
     Ready: Ready
     must_logon_to_comment: Please log on or request an account in order to join the discussion
-    must_be_instructor: Please complete your instructor information before creating a how to
+    must_be_instructor: Please complete your coach information before creating a how to
 
   lesson_comment:
     create_success: Your how to comment has been recorded
@@ -276,10 +282,10 @@ en:
     avatar_cropped: Your avatar was successfully cropped
     update_error: Oops, something wasn't quite right with the information you entered
     update_success: Your account was successfully updated
-    must_accept_agreement: You must accept the instructor agreement before continuing with the enrollment process
+    must_accept_agreement: You must accept the coach's agreement before continuing with the enrollment process
     confirm_address: Please confirm your contact information before continuing
     wizard_jump_ahead: Hey, no fair jumping ahead
-    must_provide_regcode: You must specify a valid registration code in order to become an instructor
+    must_provide_regcode: You must specify a valid registration code in order to become an coach
 
   registration:
     check_email_for_registration: You must confirm your email address. Please check your email to complete your registration.
@@ -291,7 +297,7 @@ en:
     add_your_review: Add Your Review of the How To
     already_reviewed: You can only write a review for a how to once
     cannot_edit: You do not have permissions required to edit this review
-    cannot_review_own_lesson: An instructor can't review their own work
+    cannot_review_own_lesson: A coach can't review their own work
     must_rate: In order to review a how to, please rate it first
     create_success: Review created
     create_failure: There were problems

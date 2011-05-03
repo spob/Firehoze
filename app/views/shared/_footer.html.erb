@@ -8,11 +8,11 @@
             <h4>Quick Links</h4>
             <table class="quick-links">
               <tr>
-                <td class="icon"><%= link_to image_tag('icons/48-new-orange.png', :alt => "Newest Lessons"), list_lessons_path(:collection => 'newest') %></td>
+                <td class="icon"><%= link_to image_tag('icons/48-new-orange.png', :alt => "Newest #{t('general.lessons').capitalize}"), list_lessons_path(:collection => 'newest') %></td>
                 <td><%= link_to "Newest How Tos", list_lessons_path(:collection => 'newest') %></td>
               </tr>
               <tr>
-                <td class="icon"><%= link_to image_tag('icons/32-star.png', :alt => "Highest Rated Lessons"), list_lessons_path(:collection => 'highest_rated') %></td>
+                <td class="icon"><%= link_to image_tag('icons/32-star.png', :alt => "Highest Rated #{t('general.lessons').capitalize}"), list_lessons_path(:collection => 'highest_rated') %></td>
                 <td><%= link_to "Highest Rated", list_lessons_path(:collection => 'highest_rated') %></td>
               </tr>
               <tr>

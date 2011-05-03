@@ -12,7 +12,7 @@ module LessonCommentsHelper
 
   def show_discussion_text(lesson)
     if lesson.comments.empty?
-      "<div class='info with-button'>Discussions allow you to interact with the coach and with other individuals.<br />You can ask a question or comment on this how to.
+      "<div class='info with-button'>Discussions allow you to interact with the #{t('lesson.instructor')} and with other individuals.<br />You can ask a question or comment on this #{t('lesson.lesson')}.
       #{link_to_comment(lesson, 'Start the Discussion')}
       </div>"
     else

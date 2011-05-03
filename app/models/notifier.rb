@@ -140,7 +140,7 @@ class Notifier < ActionMailer::Base
 
   # Notify a user that their video is ready for viewing
   def new_followed_lesson(to_user, lesson)
-    subject    "A coach you are following just posted a new how to"
+    subject    "A #{t('lesson.instructor')} you are following just posted a new #{t('lesson.lesson')}"
     recipients to_user.email
     from       APP_CONFIG[CONFIG_ADMIN_EMAIL]
 
@@ -150,7 +150,7 @@ class Notifier < ActionMailer::Base
   end
 
   def contact_user(to_user, from_user, subject, msg)
-    subject    "A message from a Firehoze user: #{subject}"
+    subject    "A message from a #{t('general.company')} user: #{subject}"
     recipients to_user.email
     from       from_user.email
 
@@ -176,7 +176,7 @@ class Notifier < ActionMailer::Base
   # Notify a user and admins that a video failed to transcode
   def instructor_sign_up(user)
     user = User.find(user)
-    subject    "#{user.login} became a coach"
+    subject    "#{user.login} became a #{t('lesson.instructor')}"
     recipients  User.communitymgrs.collect(&:email)
     from         APP_CONFIG[CONFIG_ADMIN_EMAIL]
 
@@ -207,7 +207,7 @@ class Notifier < ActionMailer::Base
   def instructor_reg_code user
     recipients "all@firehoze.com"
     from        APP_CONFIG[CONFIG_ADMIN_EMAIL]
-    subject "A user has requested a reg code to become a coach (#{user.email})"
+    subject "A user has requested a reg code to become a #{t('lesson.instructor')} (#{user.email})"
     sent_on Time.now
     body :login => user.login, :first_name => user.first_name, :last_name => user.last_name, :email => user.email,
          :bio => user.bio, :hash => Notifier.formatted_hash(user.email, HASH_PREFIX, HASH_SUFFIX)

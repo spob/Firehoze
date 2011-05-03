@@ -2,7 +2,7 @@
 
 <div>
   <% if reviews.empty? %>
-    <div class="info">You haven't reviewed any how tos yet.</div>
+    <div class="info">You haven't reviewed any <%= t('general.lessons').downcase %> yet.</div>
   <% else %>
     <%= render :partial => "reviews/review", :collection => reviews %>
   <% end %>

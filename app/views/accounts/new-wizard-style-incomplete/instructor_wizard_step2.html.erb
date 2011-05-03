@@ -15,10 +15,10 @@
           <span></span>
 
           <h3>Exclusivity (Step 2 of 5)</h3>
-          <h4>Coaches who choose to make their content available exclusively on AbleRoad receive a greater
+          <h4>Coaches who choose to make their content available exclusively on <%= t('general.company') %> receive a greater
             percentage
             of the revenues whenever a user purchases one of their videos. However, in agreeing to make your content
-            available exclusively on AbleRoad, you are agreeing not to distribute your videos by other means.</h4>
+            available exclusively on <%= t('general.company') %>, you are agreeing not to distribute your videos by other means.</h4>
           <h4>
             Exclusive providers earn
             <%= number_to_percentage(100 * PaymentLevel.find_by_default_payment_level(true).rate, :precision => 1) %>
@@ -29,7 +29,7 @@
                 of each sale.
             <% end %></h4>
           <h4>
-            The choice is yours&#0133;but choose carefully. Once you start posting lessons to AbleRoad, you will be
+            The choice is yours&#0133;but choose carefully. Once you start posting lessons to <%= t('general.company') %>, you will be
             limited in your ability to change your mind.</h4>
         </li>
 

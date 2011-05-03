@@ -7,12 +7,12 @@
 <% end %>
 
 <div id="search-results">
-  <%= link_to content_tag(:span, "Advanced Lesson Search&nbsp;&raquo;"), advanced_search_lessons_path, :id => 'advanced-search-link', :class => :minibutton %>
+  <%= link_to content_tag(:span, "Advanced #{t('lesson.lesson').capitalize} Search&nbsp;&raquo;"), advanced_search_lessons_path, :id => 'advanced-search-link', :class => :minibutton %>
   <!-- the tabs -->
   <div class="tab-container">
     <ul class="tabs">
       <% if @lessons.present? %>
-          <li id="lessons-tab"><a href="#lessons">Lessons (<%= @lessons.total_entries %>)</a></li>
+          <li id="lessons-tab"><a href="#lessons"><%= t('general.lessons').capitalize %> (<%= @lessons.total_entries %>)</a></li>
       <% end %>
 
       <% if @groups.present? %>

@@ -1,4 +1,4 @@
-<% title "Add Attachment to the Lesson '#{h @lesson.title}'" -%>
+<% title "Add Attachment to the #{t('lesson.lesson').capitalize} '#{h @lesson.title}'" -%>
 
 <% content_for :footer do -%>
   <%= javascript_include_tag 'validation/lesson_attachments.validate.js' -%>
@@ -10,11 +10,11 @@
       <ul id="attachment-info" class="section">
         <li class="header">
           <span></span>
-          <h3>Add Attachment to the Lesson:</h3><h3>"<%= h @lesson.title %>"</h3>
-          <h4>You can associate lesson notes, presentation files, code samples or other files to your lesson.
+          <h3>Add Attachment to the <%= t('lesson.lesson').capitalize %>:</h3><h3>"<%= h @lesson.title %>"</h3>
+          <h4>You can associate <%= t('lesson.lesson') %> notes, presentation files, code samples or other files to your <%= t('lesson.lesson') %>.
             </h4>
           <h4>
-          Files that you attach to your lesson must be less than <%= number_to_human_size(APP_CONFIG[CONFIG_MAX_ATTACHMENT_SIZE].megabytes) %>.
+          Files that you attach to your <%= t('lesson.lesson') %> must be less than <%= number_to_human_size(APP_CONFIG[CONFIG_MAX_ATTACHMENT_SIZE].megabytes) %>.
           Allowed file types include text files, Microsoft Office files, OpenOffice files, images and PDFs.</h4>
           <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
         </li>

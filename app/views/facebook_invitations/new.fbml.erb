@@ -1,5 +1,5 @@
 <% content_for("invite_message" ) do %>
-   Join the Firehoze community.
+   Join the <%= t('general.company') %> community.
             <%= fb_req_choice("Join!" ,
             new_facebook_invitation_url(:from => @from_user_id, :canvas => true))%>
 <% end %>

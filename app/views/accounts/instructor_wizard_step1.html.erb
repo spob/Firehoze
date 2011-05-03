@@ -1,13 +1,13 @@
-<% title "Coach Agreement, Step 1" -%>
+<% title "#{t('lesson.instructor').capitalize}'s Agreement, Step 1" -%>
 <%= render :partial => "shared/infield_head_content" %>
 
-<h3>Coach Enrollment Wizard</h3>
+<h3><%= t('lesson.instructor').capitalize %> Enrollment Wizard</h3>
 <%= render :partial => 'breadcrumbs', :locals => { :step => 1 } %>
 
 <% if APP_CONFIG[CONFIG_RESTRICT_INSTRUCTOR_SIGNUP] and @user.author_agreement_accepted_on.nil? %>
     <fieldset>
-      <legend>Coach Agreement</legend>
-      <p>To become an AbleRoad coach, you will need a Registration Code. If you do not already have one, click "Request Registration Code".</p>
+      <legend><%= t('lesson.instructor').capitalize %>'s Agreement</legend>
+      <p>To become an <%= t('general.company') %> #{t('lesson.instructor')}, you will need a Registration Code. If you do not already have one, click "Request Registration Code".</p>
       <p><%= link_to content_tag(:span, "Request Registration Code"), request_instructor_reg_code_account_path(current_user), :method => :post, :class => :minibutton %></p>
     </fieldset>
 <% end %>
@@ -15,7 +15,7 @@
 <% form_for(:user, :url => update_instructor_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
     <%= f.error_messages %>
     <fieldset>
-      <legend>Coach Agreement</legend>
+      <legend><%= t('lesson.instructor').capitalize %>'s Agreement</legend>
       <div id="instructor_agreement">
         <%= render :partial => 'pages/policies/instructor_agreement' %>
       </div>

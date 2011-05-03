@@ -1,6 +1,6 @@
 Hi <%= h @to_user.full_name %>,
 
-We thought you'd like to know that an coach you are following, <%= @lesson.instructor.login %>, just released a new lesson.
+We thought you'd like to know that an <%= t('lesson.instructor') %> you are following, <%= @lesson.instructor.login %>, just released a new lesson.
 
 You might want to check out "<%= link_to(h(@lesson.title), @url) %>": <%= h @lesson.synopsis %>
 

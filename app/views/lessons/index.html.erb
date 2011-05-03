@@ -3,7 +3,7 @@
 <div class="span-12 AbleRoad partners with established organizations that are made up of professional providers, caregivers, and transition coaches who spend their entire day helping individuals with day to day mobility challenges.  The revenues generated from each video or session is shared directly with the coach who created the quality content.   What is great for the coaches is that not only do they get revenue that they otherwise might not get, but they additionally get instant feedback.  Individuals who view a video or walk through a session can provide feedback on what works and what does not on specific pieces of content.  What is great for the individual is they get access to people in other cities and locations far from their immediate support structure.
 Potential partnerships structures that exist include mutual referrals and jointly-sponsored events.  We are also exploring revenue-sharing agreements, whereby all members of an association receive access to AbleRoad at a reduced per-user price.prepend-top" id="intro">
   <div class="box">
-    <h3>Welcome to AbleRoad</h3>
+    <h3>Welcome to <%= t('general.company') %></h3>
     <h4>A unique destination for education, insight, support, services, products and community for people with disabilities.</h4>
     <div id="actions" style="text-align:right"><%= link_to(content_tag(:span, "Browse Our Video Content"), categories_path, :class => 'large-button call-to-action') %><%= link_to(content_tag(:span, "Register for Free"), new_registration_path, :class => 'large-button call-to-action') %></div>
   </div>
@@ -14,16 +14,16 @@ Potential partnerships structures that exist include mutual referrals and jointl
     <div class="box">
       <h3>It’s for People with impaired mobility...</h3>
       <%= image_tag("icons/handicap_64.jpg", :class => 'box-image') %>
-      <p>AbleRoad delivers how-to videos focused on daily needs of all types of people with disabilities.</p>
-      <p><%= link_to "AbleRoad for Individuals", page_path('firehoze_for_students') %></p>
+      <p><%= t('general.company') %> delivers how-to videos focused on daily needs of all types of people with disabilities.</p>
+      <p><%= link_to "#{t('general.company')} for Individuals", page_path('firehoze_for_students') %></p>
     </div>
   </div>
   <div class="span-4 middle">
     <div class="box">
       <h3>... and Transition Coaches</h3>
       <%= image_tag("icons/physical_therapy_logo_64.jpg", :class => 'box-image') %>
-      <p>AbleRoad empowers experts to disseminate their unique knowledge on how to overcome the challenges faced by people with disabilities.  This includes information for family members, care givers, home health aides, healthcare professionals, etc.</p>
-      <p><%= link_to "AbleRoad for Coaches", page_path('firehoze_for_instructors') %></p>
+      <p><%= t('general.company') %> empowers experts to disseminate their unique knowledge on <%= t('lesson.lesson') %> overcome the challenges faced by people with disabilities.  This includes information for family members, care givers, home health aides, healthcare professionals, etc.</p>
+      <p><%= link_to "#{t('general.company')} for Coaches", page_path('firehoze_for_instructors') %></p>
     </div>
   </div>
 
@@ -31,8 +31,8 @@ Potential partnerships structures that exist include mutual referrals and jointl
     <div class="box">
       <h3>... and Institutions</h3>
       <%= image_tag("icons/hospital_64.jpg", :class => 'box-image') %>
-      <p>AbleRoad augments available instructional videos and content supplied by hospital discharge departments.  Institutions get quality content and post-operative patients get first hand guidance that speeds up recovery and builds a base for an ongoing active lifestyle.</p>
-      <p><%= link_to "AbleRoad for Institutions", page_path('firehoze_for_schools') %></p>
+      <p><%= t('general.company') %> augments available instructional videos and content supplied by hospital discharge departments.  Institutions get quality content and post-operative patients get first hand guidance that speeds up recovery and builds a base for an ongoing active lifestyle.</p>
+      <p><%= link_to "#{t('general.company')} for Institutions", page_path('firehoze_for_schools') %></p>
     </div>
   </div>
 </div>

@@ -343,7 +343,7 @@ class LessonsController < ApplicationController
   end
 
   def rate
-    raise ArgumentError, 'A how to can not be rated by the coach of the how to' if @lesson.instructor == current_user
+    raise ArgumentError, "A #{t('lesson.lesson')} can not be rated by the #{t('lesson.instructor')} of the #{t('lesson.lesson')}" if @lesson.instructor == current_user
     @lesson.rate(params[:stars], current_user)
     id = "ajaxful-rating-lesson-#{@lesson.id}"
     render :update do |page|

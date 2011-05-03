@@ -1,5 +1,5 @@
-<h2>AbleRoad Account Sign Up</h2>
-<p>Membership has its privileges. Join AbleRoad to watch full lessons, rate and review lessons, follow coaches, create and join groups and participate in online discussions.</p>
+<h2><%= t('general.company') %> Account Sign Up</h2>
+<p>Membership has its privileges. Join <%= t('general.company') %> to watch full lessons, rate and review lessons, follow coaches, create and join groups and participate in online discussions.</p>
 <% facebook_form_for(:registration, @registration, :url => registrations_path) do |f| %>
     <br />
     <%= f.error_messages %>

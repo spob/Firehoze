@@ -6,7 +6,7 @@
       <span></span>
 
       <h3>Invitation to Join Group <%= h @invitation.group.name %></h3>
-      <h4>You have been invited to join the Firehoze Group "<%= h @invitation.group.name %>".</h4>
+      <h4>You have been invited to join the <%= t('general.company') %> Group "<%= h @invitation.group.name %>".</h4>
       <h4><%= h @invitation.group.description %></h4>
       <% if @invitation.message and !@invitation.message.blank? %>
           <h4>

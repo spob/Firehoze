@@ -8,9 +8,9 @@
         <script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#publisher=4c9f1a35-27ec-477c-b9a2-c495092a2fc8&amp;type=website&amp;button=false"></script>
         <script language="javascript" type="text/javascript">
             var object = SHARETHIS.addEntry({
-                title:'Firehoze lesson: <%= h(lesson.title) %>',
-                summary:'I thought you might be interested in this Firehoze lesson' },
-            {button:false, embeds:false, buttonText:'Share Lesson'});
+                title:'<%= t('general.company') %> lesson: <%= h(lesson.title) %>',
+                summary:'I thought you might be interested in this <%= t('general.company') %> lesson' },
+            {button:false, embeds:false, buttonText:'Share <%= t('lesson.lesson').capitalize %>'});
             //Output your customized button
             document.write('<span id="share"><a href="javascript:void(0);" class="minibutton"><span>Share</span></a></span>');
             //Tie customized button to ShareThis button functionality.

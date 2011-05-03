@@ -3,7 +3,7 @@
   <th>Email</th>
   <th>Name</th>
   <th>Active</th>
-  <th>Instructor? (Lessons)</th>
+  <th><%= t('lesson.instructor').capitalize %>? (<%= t('general.lessons').capitalize %>)</th>
   <th>Success/Failure<br />Login Count</th>
   <th>Last Login At</th>
   <th><%= current_user.is_an_admin? ? "Last Login IP" : "Created At" %></th>

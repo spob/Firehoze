@@ -379,7 +379,7 @@ END
 
   def name_or_username
     if username.blank? and username.blank?
-      'Firehoze member'
+      "#{t('general.company')} member"
     elsif self.show_real_name
       full_name.titleize
     else

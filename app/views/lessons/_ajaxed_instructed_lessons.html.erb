@@ -5,7 +5,7 @@
   <%= will_paginate lessons, :params => { :pane => pane }, :class => "ajax-pagination" %>
   <table>
     <tr>
-      <th>Lesson</th>
+      <th><%= t('lesson.lesson').capitalize %></th>
       <th>Category</th>
       <th>Rating</th>
       <th>Created At</th>
@@ -15,7 +15,7 @@
     </tr>
     <% if lessons.empty? %>
       <tr>
-        <td colspan="5">You have not coached any how tos</td>
+        <td colspan="5">You have not <%= t('lesson.taught') %> any <%= t('general.lessons').downcase %></td>
       </tr>
     <% else %>
       <%= render :partial => 'lessons/ajaxed_instructed_lesson', :collection => lessons %>

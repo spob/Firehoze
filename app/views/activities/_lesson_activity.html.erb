@@ -1,2 +1,2 @@
-Coach <b><%=link_to_profile(activity.actor_user) %></b> created the new how to
+<%= t('lesson.instructor').capitalize %> <b><%=link_to_profile(activity.actor_user) %></b> created the new <%= t('lesson.lesson') %>
 <b><%= link_to(h(activity.trackable.title), lesson_path(activity.activity_object_id)) %></b>

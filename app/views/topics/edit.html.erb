@@ -15,7 +15,7 @@
           <h3>Edit Discussion Topic:</h3><h3>"<%= h @topic.title %>"</h3>
           <h4>Discussion topics allow you to communicate with other users in the group
             <%= link_to h(@topic.group.name), group_path(@topic.group) %>.
-            Ask a question for other group members, suggest a how to topic for coaches or
+            Ask a question for other group members, suggest a <%= t('lesson.lesson') %> topic for coaches or
             talk about the weather.</h4>
           <div class="key"><%= image_tag("forms/asterisk.png", :alt => :required) %>: required</div>
         </li>

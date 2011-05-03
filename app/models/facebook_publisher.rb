@@ -27,7 +27,7 @@ class FacebookPublisher < Facebooker::Rails::Publisher
     send_as :publish_stream
     from group.owner.facebook_session.user
     target group.owner.facebook_session.user
-    message "created the Firehoze group '#{group.name}'"
+    message "created the #{t('general.company')} group '#{group.name}'"
     action_links [ action_link("View On AbleRoad", absolute_path(:controller => 'groups', :action => 'show', :id => group)) ]
     attachment :name => group.name, :href => absolute_path(:controller => 'groups', :action => 'show', :id => group), :description => "AbleRoad Groups", :media => [{:type => 'image', :src => logo_url, :href => absolute_path(:controller => 'groups', :action => 'show', :id => group)}]
   end

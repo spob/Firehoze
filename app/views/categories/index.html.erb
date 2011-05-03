@@ -1,4 +1,4 @@
-<% title "Browse Lesson by Category" -%>
+<% title "Browse #{t('general.lessons').capitalize} by Category" -%>
 <% @current = 'lessons' %>
 
 
@@ -9,8 +9,8 @@
         <li class="header">
           <span></span>
 
-          <h3>Browse How Tos by Categories</h3>
-          <h4>Explore categories to find how tos that match your interests.</h4>
+          <h3>Browse <%= t('general.lessons') %> by Categories</h3>
+          <h4>Explore categories to find <%= t('general.lessons').downcase %> that match your interests.</h4>
         </li>
         <li id="categories-roundup" class="clearfix">
           <%= render :partial => 'categories/category', :collection => @categories, :locals => { :mode => "lessons" } %>
@@ -25,7 +25,7 @@
         <span class="h4">Suggest a How To</span>
       </div>
       <div class="widget-box-content tags">
-        <p>Can't find a how to that meets your needs?</p>
+        <p>Can't find a <%= t('lesson.lesson') %> that meets your needs?</p>
         <%= link_to content_tag(:span, "Suggest a How To Topic"), page_path("help_center", :anchor => "share-an-idea"), :class => 'large-button call-to-action' %>
       </div>
     </div>

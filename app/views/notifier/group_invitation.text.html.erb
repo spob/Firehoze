@@ -3,7 +3,7 @@
 </p>
 
 <p>
-  You have been invited to join the Firehoze Group <%= h @invitation.group.name %>
+  You have been invited to join the <%= t('general.company') %> Group <%= h @invitation.group.name %>
   : <%= h @invitation.group.description %>
 </p>
 <% if @invitation.message and !@invitation.message.blank? %>
@@ -12,7 +12,7 @@
     </p>
 <% end %>
 <p>
-  Firehoze Groups are mini communities of users who share a common interest. Group members can share information, engage
+  <%= t('general.company') %> Groups are mini communities of users who share a common interest. Group members can share information, engage
   in online discussion, and suggestion lessons to their peers which would be of interest.
 </p>
 <p>

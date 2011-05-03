@@ -1,5 +1,5 @@
 <p>
-  Lesson #<%= @lesson.id %>, "<%= h @lesson.title %>" has not yet been transcoded and may have hung
+  <%= t('lesson.lesson').capitalize %> #<%= @lesson.id %>, "<%= h @lesson.title %>" has not yet been transcoded and may have hung
 </p>
 <p>
   <%= link_to 'Sign In', @url %>

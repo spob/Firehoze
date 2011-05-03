@@ -10,7 +10,7 @@
             <%= img_tag_lesson_tn(buy_pattern.purchased_lesson, :small) -%>
             <div class='lesson-detail'>
               <% if lesson == buy_pattern.purchased_lesson -%>
-                <div style="color:green"><strong><%= number_to_percentage(100 * buy_pattern.counter/lesson.total_buy_pattern_counts, :precision => 0) -%></strong> buy the how to featured on this page:</div>
+                <div style="color:green"><strong><%= number_to_percentage(100 * buy_pattern.counter/lesson.total_buy_pattern_counts, :precision => 0) -%></strong> buy the <%= t('lesson.lesson') %> featured on this page:</div>
                 <%= h(buy_pattern.purchased_lesson.title) -%>
               <% else -%>
                 <div>

@@ -123,7 +123,7 @@ module ApplicationHelper
 
   def about_link
     unless params[:controller] == 'high_voltage/pages' and params[:action] == 'show' and params[:id] == 'about'
-      link_to "About AbleRoad", page_path("about")
+      link_to "About #{t('general.company')}", page_path("about")
     end
   end
 
