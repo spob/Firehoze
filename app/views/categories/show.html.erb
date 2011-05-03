@@ -20,7 +20,7 @@
               <%= will_paginate @lessons %>
           <% else %>
               <div class="info">
-                Looks like no one has created a lesson for this category yet. Why not be the first to
+                Looks like no one has created a <%= t('lesson.lesson') %> for this category yet. Why not be the first to
                 <%= link_to "create a lesson", new_lesson_path %>?
               </div>
           <% end %>
