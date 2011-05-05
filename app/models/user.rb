@@ -411,9 +411,10 @@ END
       Notifier.deliver_instructor_sign_up(user)
       user.update_attribute(:instructor_signup_notified_at, Time.now)
 
-      RunOncePeriodicJob.create!(
-              :name => 'Post User Instructor to Facebook',
-              :job => "FacebookPublisher.deliver_user_instructor(#{user.id}, '#{avatar_url}')") if user.session_key
+      # TODO: disabled facebook
+#      RunOncePeriodicJob.create!(
+#              :name => 'Post User Instructor to Facebook',
+#              :job => "FacebookPublisher.deliver_user_instructor(#{user.id}, '#{avatar_url}')") if user.session_key
     end
   end
 
@@ -528,10 +529,11 @@ END
   end
 
   def facebook_session
-    @facebook_session ||=
-            returning Facebooker::Session.create do |session|
-              session.secure_with!(session_key, facebook_id, 1.day.from_now)
-            end
+    # TODO: disabled facebook
+#    @facebook_session ||=
+#            returning Facebooker::Session.create do |session|
+#              session.secure_with!(session_key, facebook_id, 1.day.from_now)
+#            end
   end
 
 

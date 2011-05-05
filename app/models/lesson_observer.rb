@@ -4,9 +4,10 @@ class LessonObserver < ActiveRecord::Observer
       Lesson.transaction do
         lesson.compile_activity
       end
-      RunOncePeriodicJob.create!(
-              :name => 'Post New Lesson to Facebook',
-              :job => "FacebookPublisher.deliver_new_lesson(#{lesson.id})") if lesson.instructor.session_key
+      # TODO: disabled facebook
+#      RunOncePeriodicJob.create!(
+#              :name => 'Post New Lesson to Facebook',
+#              :job => "FacebookPublisher.deliver_new_lesson(#{lesson.id})") if lesson.instructor.session_key
     end
   end
 end
