@@ -4,8 +4,8 @@
         <%= link_to h(category.name), groups_path(:category => category).downcase, :id => category.name %>
         <%= link_to image_tag("general/blue-arrow.png", :alt => h(category.name)), groups_path(:category => category).downcase, :class => 'arrow-link' %>
     <% else %>
-        <%= link_to h(category.name), category_path(category.id).downcase %>
-        <%= link_to image_tag("general/blue-arrow.png", :alt => ""), category_path(category.id).downcase, :class => 'arrow-link' %>
+        <%= link_to h(category.name), category_path(category).downcase %>
+        <%= link_to image_tag("general/blue-arrow.png", :alt => ""), category_path(category).downcase, :class => 'arrow-link' %>
     <% end %>
   </h3>
   <%= content_tag(:p, truncate(child_categories_names(category), :length => 85)) if category.has_children? %>

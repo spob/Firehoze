@@ -57,7 +57,7 @@
       </div>
     </div>
 
-    <% cache(Category.tag_cloud_cache_id("lesson", @category.id)) do %>
+    <% cache(Category.tag_cloud_cache_id("lesson", @category)) do %>
         <% if @tags.present? %>
             <div class="widget-box">
               <div class="widget-box-header">

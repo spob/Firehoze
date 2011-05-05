@@ -84,7 +84,7 @@ Rails::Initializer.run do |config|
   config.gem 'daemons'
 
   # For facebook integration
-  config.gem 'facebooker'
+#   config.gem 'facebooker'
 
   # Notifier for application errors
   config.gem 'hoptoad_notifier', :version => '2.3.2'
