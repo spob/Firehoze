@@ -87,7 +87,7 @@ LESSON_STATUS_REJECTED = 'Rejected'
 
 # Lesson levels
 
-LESSON_LEVELS = %w{ Disabled Family Member Caregiver Provider Employer Hospital Other }
+LESSON_LEVELS = %w{ disabled family member caregiver provider employer hospital other }
 
 # Lesson video player
 # Actual video size should be 4:3 480 X 360 (standard definition)
