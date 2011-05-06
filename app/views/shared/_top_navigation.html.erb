@@ -33,7 +33,7 @@
       <li><%= link_to "Contact Us", page_path('contact-us') %></li>
       <li><%= link_to "FAQs", page_path('faqs') %></li>
       <li><%= link_to 'Help Center', page_path("help_center") %></li>
-      <li><%= link_to "Coach How To's", page_path('instructor-how-tos') %></li>
+      <li><%= link_to "#{t('lesson.instructor')} How To's", page_path('instructor-how-tos') %></li>
     </ul>
   </li>
   <% if show_cart? %>

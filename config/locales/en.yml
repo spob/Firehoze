@@ -81,6 +81,7 @@ en:
     update_success: Successfully updated category
     delete_success: Successfully deleted {{name}}
     explosion_started: Started exploding categories
+    cannot_contain_slash: cannot contain a slash
 
   flag:
     review: review
@@ -165,20 +166,20 @@ en:
 
   helpful:
     cant_feedback_own: You cannot provide feedback on a review you have written
-    cant_helpful_as_instructor: As a coach, you cannot provide feedback on reviews for your how to
+    cant_helpful_as_instructor: As an instructor, you cannot provide feedback on reviews for your how to
     create_success: Your feedback has been recorded
 
   instructor_follows:
-    create_success: Coach {{instructor}} is being followed
-    delete_success: Coach {{instructor}} is no longer being followed
-    not_an_instructor: The <b>{{user}}</b> is not a coach
+    create_success: Instructor {{instructor}} is being followed
+    delete_success: Instructor {{instructor}} is no longer being followed
+    not_an_instructor: The <b>{{user}}</b> is not an instuctor
 
   lesson:
     lesson: how to
-    instructor: coach
-    instructors: coaches
-    taught: coached
-    teaching: coaching
+    instructor: instructor
+    instructors: instructors
+    taught: instructed
+    teaching: instructing
     access_message: You do not have access to edit this how to
     buy: Buy
     unrejected: You have moved this how to out of the rejected state
@@ -226,7 +227,7 @@ en:
     Pending: How to created and awaiting transcoding
     Ready: Ready
     must_logon_to_comment: Please log on or request an account in order to join the discussion
-    must_be_instructor: Please complete your coach information before creating a how to
+    must_be_instructor: Please complete your instructor information before creating a how to
 
   lesson_comment:
     create_success: Your how to comment has been recorded
@@ -282,10 +283,10 @@ en:
     avatar_cropped: Your avatar was successfully cropped
     update_error: Oops, something wasn't quite right with the information you entered
     update_success: Your account was successfully updated
-    must_accept_agreement: You must accept the coach's agreement before continuing with the enrollment process
+    must_accept_agreement: You must accept the instructor's agreement before continuing with the enrollment process
     confirm_address: Please confirm your contact information before continuing
     wizard_jump_ahead: Hey, no fair jumping ahead
-    must_provide_regcode: You must specify a valid registration code in order to become an coach
+    must_provide_regcode: You must specify a valid registration code in order to become an instructor
 
   registration:
     check_email_for_registration: You must confirm your email address. Please check your email to complete your registration.
@@ -297,7 +298,7 @@ en:
     add_your_review: Add Your Review of the How To
     already_reviewed: You can only write a review for a how to once
     cannot_edit: You do not have permissions required to edit this review
-    cannot_review_own_lesson: A coach can't review their own work
+    cannot_review_own_lesson: An instructor can't review their own work
     must_rate: In order to review a how to, please rate it first
     create_success: Review created
     create_failure: There were problems
@@ -341,12 +342,12 @@ en:
     address_incomplete: The address you entered appears to be incomplete
     avatar: Avatar
     avatar_cleared: You have successfully removed the avatar
-    author_info: Coach Info
+    author_info: Instructor Info
     bio: Bio
     credit_history: Credit History
     done: Completed
     inactive_cannot_show: This user's account has been deactivated and cannot be displayed
-    instructor_dashboard: Coach Dashboard
+    instructor_dashboard: Instructor Dashboard
     instructor_of: How Tos how toby {{user}}
     login_required: Username can't be empty
     login_invalid: Username can only contain numbers, letters and underscores
@@ -378,7 +379,7 @@ en:
     create_success: How to added to your wish list
     delete_success: How to has been removed from your wish list
     already_owned: You already own that how to and thus do not need to put it on your wish list
-    you_are_author: As the coach of this how to, you do not need to put it on your wish list
+    you_are_author: As the instructor of this how to, you do not need to put it on your wish list
     already_wished: This how to is already on your wish list
     not_on_wishlist: This how to is not on your wishlist
     must_logon: Please log on or request an account in order to add this how to to your wish list

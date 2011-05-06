@@ -86,13 +86,8 @@ LESSON_STATUS_READY = VIDEO_STATUS_READY
 LESSON_STATUS_REJECTED = 'Rejected'
 
 # Lesson levels
-LESSON_LEVEL_MIDDLE_SCHOOL = "middle_school"
-LESSON_LEVEL_HIGH_SCHOOL = "high_school"
-LESSON_LEVEL_COLLEGE = "college"
-LESSON_LEVEL_GRADUATE = "graduate"
-LESSON_LEVEL_OTHER = "other"
 
-LESSON_LEVELS = [LESSON_LEVEL_MIDDLE_SCHOOL, LESSON_LEVEL_HIGH_SCHOOL, LESSON_LEVEL_COLLEGE, LESSON_LEVEL_GRADUATE, LESSON_LEVEL_OTHER]
+LESSON_LEVELS = %w{ Disabled Family Member Caregiver Provider Employer Hospital Other }
 
 # Lesson video player
 # Actual video size should be 4:3 480 X 360 (standard definition)

@@ -39,8 +39,9 @@ class CategoriesController < ApplicationController
       flash[:notice] = t('category.create_success')
       redirect_to list_admin_categories_path
     else
+#        render :action => 'list_admin'
       error_msg = ""
-      flash[:error] = t('category.create_failed', :msg => error_msg)
+      flash[:error] = t('category.create_failed', :msg => @category.errors.first.join(" "))
       index
       redirect_to list_admin_categories_path
     end

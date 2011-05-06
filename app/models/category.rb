@@ -13,6 +13,7 @@ class Category < ActiveRecord::Base
   validates_presence_of :name, :sort_value
   validates_uniqueness_of :name
   validates_numericality_of :sort_value, :level, :allow_nil => true
+  validates_format_of :name, :with => /^[^\/]*\z/i, :message => 'cannot contain a slash'
 
   named_scope :by_parent_sort_value, :include => [:parent_category],
               :order => 'parent_categories_categories.sort_value ASC, categories.sort_value ASC'
@@ -107,4 +108,4 @@ class Category < ActiveRecord::Base
     # Won't work if run during migration - column is added later, so swallow it
     raise unless ActiveRecord::Migrator.current_version.to_i <= 20090927012532
   end
-end                                  
+end
