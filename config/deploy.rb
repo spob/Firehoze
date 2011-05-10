@@ -1,3 +1,4 @@
+
 if ENV['DEPLOY'] == 'PRODUCTION'
   puts "*** Deploying to the \033[1;41m  PRODUCTION  \033[0m servers!"
   set :domain, '208.88.124.16'
@@ -6,6 +7,10 @@ elsif ENV['DEPLOY'] == 'ABLEROAD'
   puts "*** Deploying to the \033[1;41m  ABLEROAD  \033[0m servers!"
   set :domain, '50.22.248.77'
   set :branch, "ableroad"
+elsif ENV['DEPLOY'] == 'VLAUNCH'
+  puts "*** Deploying to the \033[1;41m  VLAUNCH  \033[0m servers!"
+  set :domain, '174.122.137.79'
+  set :branch, "vlaunch"
 else
   puts "*** Deploying to the \033[1;42m  STAGING  \033[0m server!"
   set :domain, '208.88.125.156'
