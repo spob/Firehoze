@@ -80,7 +80,7 @@
             <% # Lesson by This Instructor  -%>
             <% if @instructor.instructed_lessons.ready.size > 1 %>
                 <div id="lessons-by-instructor">
-                  <h4>More lessons by <%= privacy_sensitive_username(@instructor) %></h4>
+                  <h4>More <%= t('general.lessons').downcase %> by <%= privacy_sensitive_username(@instructor) %></h4>
 
                   <div class="widget-box-content lessons">
                     <ul class="lesson_brief">
