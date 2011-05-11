@@ -22,17 +22,17 @@
   <div class="span-4 last">
     <div class="widget-box">
       <div class="widget-box-header">
-        <span class="h4">Suggest a How To</span>
+        <span class="h4">Suggest a <%= t('lesson.Lesson') %></span>
       </div>
       <div class="widget-box-content tags">
         <p>Can't find a <%= t('lesson.lesson') %> that meets your needs?</p>
-        <%= link_to content_tag(:span, "Suggest a How To Topic"), page_path("help_center", :anchor => "share-an-idea"), :class => 'large-button call-to-action' %>
+        <%= link_to content_tag(:span, "Suggest a #{ t('lesson.Lesson')} Topic"), page_path("help_center", :anchor => "share-an-idea"), :class => 'large-button call-to-action' %>
       </div>
     </div>
 
     <div class="widget-box">
       <div class="widget-box-header">
-        <span class="h4">How Tos You May Like</span>
+        <span class="h4"><%= t('general.lessons') %> You May Like</span>
       </div>
       <div class="widget-box-content lessons-you-may-like">
         <ul class="lesson_brief">

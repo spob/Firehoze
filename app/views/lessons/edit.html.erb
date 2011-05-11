@@ -1,3 +1,3 @@
-<% title "Edit How To" -%>
+<% title "Edit #{ t('lesson.Lesson') }" -%>
 
-<%= render :partial => 'form', :locals => { :new_lesson => false, :heading => "Edit How To #{link_to(h(@lesson.title), lesson_path(@lesson))}", :subtext => "<h4>Update attributes for the #{t('lesson.lesson')}</h4>" } %>
+<%= render :partial => 'form', :locals => { :new_lesson => false, :heading => "Edit #{ t('lesson.Lesson') } #{link_to(h(@lesson.title), lesson_path(@lesson))}", :subtext => "<h4>Update attributes for the #{t('lesson.lesson')}</h4>" } %>

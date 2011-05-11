@@ -49,7 +49,7 @@ en:
     no_permissions: You do not have permissions to perform that action
     my_firehoze: My AbleRoad
     company: AbleRoad
-    lessons: How Tos
+    lessons: How-Tos
     optimistic_lock_error: It looks like another user updated the same record at the same time you were performing your transaction. Can you please try again?
   security:
     you_must_be_logged_in: You must be logged in to access that page
@@ -86,7 +86,7 @@ en:
   flag:
     review: review
     user: user
-    lesson: how to
+    lesson: how-to
     group: group
     lessoncomment: comment
     topiccomment: comment
@@ -154,10 +154,10 @@ en:
     already_member: You are already a member of this group
 
   group_lesson:
-    lesson_added: How to successfully added to the {{group}} group
-    already_added: How to is already associated to this group
-    lesson_removed: How to removed from the {{group}} group
-    does_not_belong: How to is not a member of the {{group}} group
+    lesson_added: How-to successfully added to the {{group}} group
+    already_added: How-to is already associated to this group
+    lesson_removed: How-to removed from the {{group}} group
+    does_not_belong: How-to is not a member of the {{group}} group
 
   group_member:
     owner: Owner
@@ -166,7 +166,7 @@ en:
 
   helpful:
     cant_feedback_own: You cannot provide feedback on a review you have written
-    cant_helpful_as_instructor: As an instructor, you cannot provide feedback on reviews for your how to
+    cant_helpful_as_instructor: As an instructor, you cannot provide feedback on reviews for your how-to
     create_success: Your feedback has been recorded
 
   instructor_follows:
@@ -175,30 +175,31 @@ en:
     not_an_instructor: The <b>{{user}}</b> is not an instuctor
 
   lesson:
-    lesson: how to
+    lesson: how-to
+    Lesson: How-To
     instructor: instructor
     instructors: instructors
     taught: instructed
     teaching: instructing
-    access_message: You do not have access to edit this how to
+    access_message: You do not have access to edit this how-to
     buy: Buy
-    unrejected: You have moved this how to out of the rejected state
-    unreject_failed: You cannot  un-reject this how to because it is not currently rejected
+    unrejected: You have moved this how-to out of the rejected state
+    unreject_failed: You cannot  un-reject this how-to because it is not currently rejected
     calc_thumb_url_start: Retrieving thumbnail URL
     conversion_end_success: Video transcoding completed successfully
     conversion_triggered: Video conversion started
-    created: Your how to created and your video has been submitted for processing. You should receive notification when your how to video is ready for viewing.
-    create_lesson: Create How To
+    created: Your how-to created and your video has been submitted for processing. You should receive notification when your how-to video is ready for viewing.
+    create_lesson: Create How-to
     discussion: Discussion
     edit: Edit
     unreject: Un-reject
     Failed: Video failed processing
     highest_rated: Highest Rated
-    lessons_you_own: How Tos you own
-    lessons_you_instructed: How Tos you taught
-    not_ready: The how to you requested is not available for viewing
+    lessons_you_own: How-Tos you own
+    lessons_you_instructed: How-Tos you taught
+    not_ready: The how-to you requested is not available for viewing
     most_popular: Most Popular
-    need_credits: You have no available credits to watch this how to. Would you like to buy more?
+    need_credits: You have no available credits to watch this how-to. Would you like to buy more?
     new_release: New release
     newest: Newest
     notes: Notes
@@ -207,14 +208,14 @@ en:
     reviews: Reviews
     S3_permissions_start: Set S3 permissions
     students: Students
-    tagged_with: How Tos tagged with
+    tagged_with: How-Tos tagged with
     trigger_conversion_end: Video transcoding started
     trigger_conversion_start: About to trigger video conversion
-    updated: How to updated
+    updated: How-to updated
     watch: Watch
     watch_for_free: Watch For Free
     must_logon_to_watch: Please sign in or signup for an account in order to watch this video
-    must_own: You must first purchase this how to in order to join the discussion
+    must_own: You must first purchase this how-to in order to join the discussion
     wishlist: Wishlist
     disabled_level: Disabled
     family_level: Family
@@ -227,15 +228,15 @@ en:
     # Lesson states
     Rejected: Rejected
     Converting: Converting
-    Pending: How to created and awaiting transcoding
+    Pending: How-to created and awaiting transcoding
     Ready: Ready
     must_logon_to_comment: Please log on or request an account in order to join the discussion
-    must_be_instructor: Please complete your instructor information before creating a how to
+    must_be_instructor: Please complete your instructor information before creating a how-to
 
   lesson_comment:
-    create_success: Your how to comment has been recorded
+    create_success: Your how-to comment has been recorded
     cannot_edit: You do not have rights to edit this comment
-    update_success: How to comment updated successfully
+    update_success: How-to comment updated successfully
 
   line_item:
     updated_success: Updated line item
@@ -298,11 +299,11 @@ en:
     human_test_failed: Human test failed. Are you sure you are not a robot?
 
   review:
-    add_your_review: Add Your Review of the How To
-    already_reviewed: You can only write a review for a how to once
+    add_your_review: Add Your Review of the How-to
+    already_reviewed: You can only write a review for a how-to once
     cannot_edit: You do not have permissions required to edit this review
     cannot_review_own_lesson: An instructor can't review their own work
-    must_rate: In order to review a how to, please rate it first
+    must_rate: In order to review a how-to, please rate it first
     create_success: Review created
     create_failure: There were problems
     not_ready: The review you requested is not available for viewing
@@ -310,8 +311,8 @@ en:
     found_unhelpful: You did not find this review helpful
     must_view_to_review: You can only review videos which you own
     update_success: Review updated
-    add_your_review: Add Your Review of the How to
-    must_logon: Please sign in or signup for an account in order to review a how to
+    add_your_review: Add Your Review of the How-to
+    must_logon: Please sign in or signup for an account in order to review a how-to
 
   sku:
     create_success: SKU created
@@ -351,7 +352,7 @@ en:
     done: Completed
     inactive_cannot_show: This user's account has been deactivated and cannot be displayed
     instructor_dashboard: Instructor Dashboard
-    instructor_of: How Tos how toby {{user}}
+    instructor_of: How-Tos by {{user}}
     login_required: Username can't be empty
     login_invalid: Username can only contain numbers, letters and underscores
     not_done: Not Completed
@@ -379,13 +380,13 @@ en:
     refresh: Refresh
 
   wish:
-    create_success: How to added to your wish list
-    delete_success: How to has been removed from your wish list
-    already_owned: You already own that how to and thus do not need to put it on your wish list
-    you_are_author: As the instructor of this how to, you do not need to put it on your wish list
-    already_wished: This how to is already on your wish list
-    not_on_wishlist: This how to is not on your wishlist
-    must_logon: Please log on or request an account in order to add this how to to your wish list
+    create_success: How-to added to your wish list
+    delete_success: How-to has been removed from your wish list
+    already_owned: You already own that how-to and thus do not need to put it on your wish list
+    you_are_author: As the instructor of this how-to, you do not need to put it on your wish list
+    already_wished: This how-to is already on your wish list
+    not_on_wishlist: This how-to is not on your wishlist
+    must_logon: Please log on or request an account in order to add this how-to to your wish list
 
   # Date/Time formatting
   date:
