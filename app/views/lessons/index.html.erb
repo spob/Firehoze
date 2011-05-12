@@ -4,25 +4,34 @@
 Potential partnerships structures that exist include mutual referrals and jointly-sponsored events.  We are also exploring revenue-sharing agreements, whereby all members of an association receive access to AbleRoad at a reduced per-user price.prepend-top" id="intro">
   <div class="box">
     <h3>Welcome to <%= t('general.company') %></h3>
-    <h4>A unique destination for education, insight, support, services, products and community for people with disabilities.</h4>
-    <div id="actions" style="text-align:right"><%= link_to(content_tag(:span, "Browse Our Video Content"), categories_path, :class => 'large-button call-to-action') %><%= link_to(content_tag(:span, "Register for Free"), new_registration_path, :class => 'large-button call-to-action') %></div>
+    <h4>vLaunch where entrepreneurs connect with customers.</h4>
+
+    <p>The willingness of customers to buy a product or service is the only validation that matters for a new business.</p>
+    <ul>
+      <li>Customers generate revenue to fund growth</li>
+      <li>Customers provide critical feedback to shape product development</li>
+      <li>1+2 = real company value</li>
+    </ul>
+    <div id="actions" style="text-align:right"><%= link_to(content_tag(:span, "Browse Our Offerings"), categories_path, :class => 'large-button call-to-action') %><%= link_to(content_tag(:span, "Register for Free"), new_registration_path, :class => 'large-button call-to-action') %></div>
   </div>
 </div>
 
 <div class="span-12 unrecognized-content">
   <div class="span-4">
     <div class="box">
-      <h3>It’s for People with impaired mobility...</h3>
+      <h3>It’s for Startups...</h3>
       <%= image_tag("icons/handicap_64.jpg", :class => 'box-image') %>
-      <p><%= t('general.company') %> delivers how-to videos focused on daily needs of all types of people with disabilities.</p>
+      <p>vLaunch provides you with a focus on Customers as they are the shortest path to business success. There’s nothing more valuable than feedback from customers. They’ll tell you what you need to know to build your business.</p>
+
       <p><%= link_to "#{t('general.company')} for Individuals", page_path('firehoze_for_students') %></p>
     </div>
   </div>
   <div class="span-4 middle">
     <div class="box">
-      <h3>... and Transition Coaches</h3>
+      <h3>...the Influencer who can help</h3>
       <%= image_tag("icons/physical_therapy_logo_64.jpg", :class => 'box-image') %>
-      <p><%= t('general.company') %> empowers experts to disseminate their unique knowledge on <%= t('lesson.lesson') %> overcome the challenges faced by people with disabilities.  This includes information for family members, care givers, home health aides, healthcare professionals, etc.</p>
+      <p>vLaunch empowers experts in disseminating their unique knowledge on how to overcome the marketing & sales challenges faced by startups.  vLaunch empowers Influencers to help entrepreneurs reach a wide audience, supplement traditional mentoring services — and earn additional income.</p>
+
       <p><%= link_to "#{t('general.company')} for Coaches", page_path('firehoze_for_instructors') %></p>
     </div>
   </div>
@@ -31,7 +40,10 @@ Potential partnerships structures that exist include mutual referrals and jointl
     <div class="box">
       <h3>... and Institutions</h3>
       <%= image_tag("icons/hospital_64.jpg", :class => 'box-image') %>
-      <p><%= t('general.company') %> augments available instructional videos and content supplied by hospital discharge departments.  Institutions get quality content and post-operative patients get first hand guidance that speeds up recovery and builds a base for an ongoing active lifestyle.</p>
+      <p><%= t('general.company') %> augments available instructional videos and content supplied by hospital discharge
+        departments. Institutions get quality content and post-operative patients get first hand guidance that speeds up
+        recovery and builds a base for an ongoing active lifestyle.</p>
+
       <p><%= link_to "#{t('general.company')} for Institutions", page_path('firehoze_for_schools') %></p>
     </div>
   </div>
