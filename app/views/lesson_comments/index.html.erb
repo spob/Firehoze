@@ -1,4 +1,4 @@
-<% title "Comments for #{t('lesson.lesson').capitalize}: #{ h(@lesson.title)}" -%>
+<% title "Comments for #{t('lesson.Lesson')}: #{ h(@lesson.title)}" -%>
 <% @current = 'lessons' %>
 
 <div id="lesson-comments-container">
@@ -9,7 +9,7 @@
     <% else %>
       <div class="span-9">
         <% unless @style == 'tab'%>
-          <h3 class="header">Comments for <%= t('lesson.lesson').capitalize %>: <%= link_to h(@lesson.title.titleize), lesson_path(@lesson, :anchor => :lesson_comment) %></h3>
+          <h3 class="header">Comments for <%= t('lesson.Lesson') %>: <%= link_to h(@lesson.title.titleize), lesson_path(@lesson, :anchor => :lesson_comment) %></h3>
         <% end %>
       </div>
       <div class="span-3 last right">
@@ -26,7 +26,7 @@
     <% if @style == 'tab'%>
       <%= show_all_lesson_comments_link(@lesson, current_user) %>
     <% else %>
-      <%= link_to "&laquo; Back to #{t('lesson.lesson').capitalize}", lesson_path(@lesson, :anchor => :lesson_comment) %>
+      <%= link_to "&laquo; Back to #{t('lesson.Lesson')}", lesson_path(@lesson, :anchor => :lesson_comment) %>
     <% end %>
   </div>
 </div>

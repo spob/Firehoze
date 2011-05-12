@@ -1,4 +1,4 @@
-<% title "Add Attachment to the #{t('lesson.lesson').capitalize} '#{h @lesson.title}'" -%>
+<% title "Add Attachment to the #{t('lesson.Lesson')} '#{h @lesson.title}'" -%>
 
 <% content_for :footer do -%>
   <%= javascript_include_tag 'validation/lesson_attachments.validate.js' -%>
@@ -10,7 +10,7 @@
       <ul id="attachment-info" class="section">
         <li class="header">
           <span></span>
-          <h3>Add Attachment to the <%= t('lesson.lesson').capitalize %>:</h3><h3>"<%= h @lesson.title %>"</h3>
+          <h3>Add Attachment to the <%= t('lesson.Lesson') %>:</h3><h3>"<%= h @lesson.title %>"</h3>
           <h4>You can associate <%= t('lesson.lesson') %> notes, presentation files, code samples or other files to your <%= t('lesson.lesson') %>.
             </h4>
           <h4>

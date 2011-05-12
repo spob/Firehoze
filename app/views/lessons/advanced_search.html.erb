@@ -1,4 +1,4 @@
-<% title "Advanced #{t('lesson.lesson').capitalize} Search" -%>
+<% title "Advanced #{t('lesson.Lesson')} Search" -%>
 
 <div class="fh-form advanced clearfix">
   <% form_for(:advanced_search, :url => perform_advanced_search_lessons_path, :html => { :method => :get, :class => "search_box" }) do |f| %>
@@ -6,7 +6,7 @@
         <li class="header">
           <span></span>
 
-          <h3>Advanced <%= t('lesson.lesson').capitalize %> Search</h3>
+          <h3>Advanced <%= t('lesson.Lesson') %> Search</h3>
           <h4>Advanced search gives you greater control over the criteria you use to search for <%= t('general.lessons') %>. You can use the * symbol for wildcard searches.</h4>
         </li>
         <li>
