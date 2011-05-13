@@ -45,10 +45,10 @@
     <slides> 
       <!-- slide 1 -->
       <slide>
-        <url>images/cuber/ableroad/AR_image_aaron_fothering.jpg</url>
+        <url>images/cuber/ableroad-v2/1-AR_image_mon_skier.jpg</url>
         <description>
-          <heading>Reach</heading>
-          <paragraph>for support you can depend on ... </paragraph>
+          <heading>Turn</heading>
+          <paragraph>to solutions that work ... </paragraph>
         </description>
       </slide>
 
@@ -57,10 +57,10 @@
 
       <!-- slide 2 -->
       <slide>
-        <url>images/cuber/ableroad/AR_image_catch_wave.jpg</url>
+        <url>images/cuber/ableroad-v2/2-AR_disabled_lifts_autos.jpg</url>
         <description>
-          <heading>Balance</heading>
-          <paragraph>challenges in life ...</paragraph>
+          <heading>Overcome</heading>
+          <paragraph>barriers in life ...</paragraph>
         </description>
       </slide>
 
@@ -70,10 +70,10 @@
 
       <!-- slide 3 -->
       <slide>
-        <url>images/cuber/ableroad/AR_image_mon_skier.jpg</url>
+        <url>images/cuber/ableroad-v2/3-AR_home_improvements.jpg</url>
         <description>
-          <heading>Turn</heading>
-          <paragraph>to solutions that work ...</paragraph>
+          <heading>Build</heading>
+          <paragraph>a home that fits ...</paragraph>
         </description>
       </slide>
 
@@ -82,10 +82,10 @@
 
       <!-- slide 4 -->
       <slide>
-        <url>images/cuber/ableroad/AR_image_lizzie_simpkin.jpg</url>
+        <url>images/cuber/ableroad-v2/4-AR_living_life_outdoors.jpg</url>
         <description>
-          <heading>Push</heading>
-          <paragraph>for great goals ...</paragraph>
+          <heading>Find</heading>
+          <paragraph>the support you need ...</paragraph>
         </description>
       </slide>		
 
@@ -94,10 +94,10 @@
 
       <!-- slide 5 -->
       <slide>
-        <url>images/cuber/ableroad/AR_image_ammie_mullins-2.jpg</url>
+        <url>images/cuber/ableroad-v2/5-AR_taking_it_in_stride.jpg</url>
         <description>
           <heading>Stride</heading>
-          <paragraph>to be noticed ...</paragraph>
+          <paragraph>with confidence ...</paragraph>
         </description>
       </slide>
 
@@ -106,22 +106,10 @@
 
       <!-- slide 6 -->
       <slide>
-        <url>images/cuber/ableroad/AR_image_wheelchair_rugby.jpg</url>
+        <url>images/cuber/ableroad-v2/6-AR_wheelchair_variations.jpg</url>
         <description>
-          <heading>Find</heading>
-          <paragraph>the support you need ...</paragraph>
-        </description>
-      </slide>
-
-      <!-- transition 6-to-7  -->
-      <transition num="6" slicing="vertical" direction="up" shader="flat" delay="0.05" z_multiplier="4" />
-
-      <!-- slide 7 -->
-      <slide>
-        <url>images/cuber/ableroad/AR_image_tanni_grey.jpg</url>
-        <description>
-          <heading>Coast</heading>
-          <paragraph>towards smooth transitions ...</paragraph>
+          <heading>Roll</heading>
+          <paragraph>to unique places ...</paragraph>
         </description>
       </slide>
 
