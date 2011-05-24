@@ -47,8 +47,8 @@ en:
     _no: 'no'
     home: Home
     no_permissions: You do not have permissions to perform that action
-    my_firehoze: My VLaunch
-    company: VLaunch
+    my_firehoze: My vLaunch
+    company: vLaunch
     lessons: Offerings
     optimistic_lock_error: It looks like another user updated the same record at the same time you were performing your transaction. Can you please try again?
   security:
