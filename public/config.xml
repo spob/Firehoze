@@ -44,10 +44,10 @@
 
 		<slides> 
 
-			<!-- transition 3-to-4  -->
-			<transition num="6" slicing="horizontal" direction="right" duration="0.8" delay="0.05" z_multiplier="5"/>
+			<!-- transition 1-to-2  -->
+			<transition num="1" slicing="horizontal" direction="right" duration="0.8" delay="0.05" z_multiplier="5"/>
 
-			<!-- slide 4 -->
+			<!-- slide 1 -->
 			<slide>
 				<url>images/cuber/vlaunch/4-bridges.jpg</url>
 				<description>
@@ -56,8 +56,10 @@
 				</description>
 			</slide>		
 
+			<!-- transition 2-to-3  -->
+			<transition num="2" direction="left" shader="flat" />
 
-			<!-- slide 1 -->
+			<!-- slide 2 -->
 			<slide>
 				<url>images/cuber/vlaunch/1-pen-and-paper.jpg</url>
 				<description>
@@ -66,10 +68,10 @@
 				</description>
 			</slide>		
 
-			<!-- transition 1-to-2  -->
-			<transition num="4" direction="left" shader="flat" />
+			<!-- transition 3-to-4  -->
+			<transition num="3" direction="left" shader="flat" />
 
-			<!-- slide 2 -->
+			<!-- slide 3-->
 			<slide>
 				<url>images/cuber/vlaunch/2-glasses-and-notebook.jpg</url>
 				<description>
@@ -78,10 +80,10 @@
 				</description>
 			</slide>
 
-			<!-- transition 2-to-3  -->
+			<!-- transition 4-to-5  -->
 			<transition num="4" direction="right" shader="flat" />
 
-			<!-- slide 3 -->
+			<!-- slide 4 -->
 			<slide>
 				<url>images/cuber/vlaunch/3-test-tubes.jpg</url>
 				<description>
@@ -90,78 +92,10 @@
 				</description>
 			</slide>
 
-			<!-- transition 3-to-4  -->
-			<transition num="6" slicing="horizontal" direction="right" duration="0.8" delay="0.05" z_multiplier="5"/>
-
-			<!-- slide 4 -->
-			<slide>
-				<url>images/cuber/vlaunch/4-bridges.jpg</url>
-				<description>
-					<heading>Bridging</heading>
-					<paragraph>customers with entrepreneurs ...</paragraph>
-				</description>
-			</slide>		
-
-			<!-- transition 4-to-5  -->
-			<!-- <transition num="6" slicing="vertical" direction="down" shader="flat" delay="0.05" z_multiplier="4" /> -->
+			<!-- transition 5-to-6  -->
+			<transition num="5" direction="right" shader="flat" />
 
 			<!-- slide 5 -->
-			<!--
-			 <slide>
-				<url>images/cuber/vlaunch/5-lighthouse.jpg</url>
-				<description>
-					<heading>Beacon</heading>
-					<paragraph>to guide your start-up...</paragraph>
-				</description>
-			</slide>
-			 -->
-
-			<!-- transition 5-to-6  -->
-			<!-- <transition num="6" slicing="vertical" direction="down" shader="phong" delay="0.05"/> -->
-
-			<!-- slide 6 -->
-			<!--
- 			<slide>
-				<url>images/cuber/vlaunch/6-maintenace.jpg</url>
-				<description>
-					<heading>Fix</heading>
-					<paragraph>your customer pitch ...</paragraph>
-				</description>
-			</slide>
- 			-->
-			
-			<!-- transition 6-to-7  -->
-			<!-- <transition num="6" slicing="vertical" direction="up" shader="flat" delay="0.05" z_multiplier="4" /> -->
-
-			<!-- slide 7 -->
-			<!-- 	
-			<slide>
-				<url>images/cuber/vlaunch/7-paintcans.jpg</url>
-				<description>
-					<heading>Colors</heading>
-					<paragraph>highlight your offering ...</paragraph>
-				</description>
-			</slide> 
-			-->
-
-			<!-- transition 7-to-8  -->
-			<!-- <transition num="7" slicing="vertical" direction="up" shader="flat" delay="0.05" z_multiplier="4" /> -->
-
-			<!-- slide 8 -->
-			<!--
-			<slide>
-			<url>images/cuber/vlaunch/8-panpacific_usa.jpg</url>
-			<description>
-			<heading>Solutions</heading>
-			<paragraph>provided on a global scale ...</paragraph>
-			</description>
-			</slide> 
-			-->
-
-			<!-- transition 8-to-9  -->
-			<transition num="8" direction="right" shader="flat" />
-
-			<!-- slide 39-->
 			<slide>
 				<url>images/cuber/vlaunch/9-potential_customers.jpg</url>
 				<description>
@@ -170,19 +104,6 @@
 				</description>
 			</slide>
 
-			<!-- transition 9-to-10  -->
-			<!-- <transition num="9" direction="right" shader="flat" /> -->
-
-			<!-- slide 10 -->
-
-<!-- 			<slide>
-				<url>images/cuber/vlaunch/10-tempt.jpg</url>
-				<description>
-					<heading>Products</heading>
-					<paragraph>tempt early adopters ...</paragraph>
-				</description>
-			</slide> 
-			-->
 		</slides>
 </cu3er>
 
