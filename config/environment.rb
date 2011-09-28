@@ -115,7 +115,8 @@ Rails::Initializer.run do |config|
   config.gem 'newrelic_rpm', :version => '~>2.12.3'
 
   # For attaching files
-  config.gem 'paperclip', :version => '2.3.1'
+  config.gem 'thoughtbot-paperclip', :lib => 'paperclip', :source => 'http://gems.github.com', :version => '2.3.1'
+  # config.gem 'paperclip', :version => '2.3.1'
   config.gem 'aws-s3', :lib => 'aws/s3'
 
   # For interacting with AWS
@@ -133,7 +134,7 @@ Rails::Initializer.run do |config|
   # Query optimization
   #config.gem 'methodmissing-scrooge', :source => "http://gems.github.com"
 
-  config.gem "spob-flix_cloud-gem"
+  # config.gem "spob-flix_cloud-gem"
 
   config.gem "mysql"
 
