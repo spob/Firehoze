@@ -71,7 +71,7 @@ class ProcessedVideo < Video
   def make_video_public
     s3_connection = RightAws::S3.new(APP_CONFIG[CONFIG_AWS_ACCESS_KEY_ID],
                                      APP_CONFIG[CONFIG_AWS_SECRET_ACCESS_KEY])
-    bucket        = s3_connection.bucket(APP_CONFIG[CONFIG_AWS_S3_OUTPUT_VIDEO_BUCKET])
+    bucket        = s3_connection.bucket("videos.firehoze.com")
     file          = bucket.key(self.s3_key, true)
     grantee       = RightAws::S3::Grantee.new(bucket, ALL_USERS_AWS_ID, 'READ', :apply)
     grantee       = RightAws::S3::Grantee.new(file, ALL_USERS_AWS_ID, 'READ', :apply)
