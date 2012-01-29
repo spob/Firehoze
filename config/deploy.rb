@@ -1,4 +1,5 @@
 
+set :application, 'Firehoze'
 if ENV['DEPLOY'] == 'PRODUCTION'
   puts "*** Deploying to the \033[1;41m  PRODUCTION  \033[0m servers!"
   set :domain, '208.88.124.16'
@@ -7,6 +8,11 @@ elsif ENV['DEPLOY'] == 'ABLEROAD'
   puts "*** Deploying to the \033[1;41m  ABLEROAD  \033[0m servers!"
   set :domain, '50.22.248.77'
   set :branch, "ableroad"
+elsif ENV['DEPLOY'] == 'NORTHEASTERN'
+  puts "*** Deploying to the \033[1;41m  NORTHEASTERN  \033[0m servers!"
+  set :domain, '173.246.41.242'
+  set :branch, "northeastern"
+  set :application, 'TribalWire'
 elsif ENV['DEPLOY'] == 'VLAUNCH'
   puts "*** Deploying to the \033[1;41m  VLAUNCH  \033[0m servers!"
   set :domain, '174.122.137.79'
@@ -18,7 +24,6 @@ else
 end
 set :user, 'root'
 set :base_dir, 'rails'
-set :application, 'Firehoze'
 set :rails_env, 'production'
 set :server_hostname, domain
 set :keep_releases, 8
