@@ -32,8 +32,10 @@ after "deploy:update", "deploy:cleanup"
 
 set :runner, user
 
-set :git_account, 'spob'
-set :scm_passphrase, Proc.new { Capistrano::CLI.password_prompt('F1reh0ze') }
+# set :git_account, 'spob'
+set :git_account, 'pcordone'
+# set :scm_passphrase, Proc.new { Capistrano::CLI.password_prompt('F1reh0ze') }
+set :scm_passphrase, Proc.new { Capistrano::CLI.password_prompt('stanley1') }
 
 role :web, server_hostname
 role :app, server_hostname
