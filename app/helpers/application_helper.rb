@@ -170,7 +170,7 @@ module ApplicationHelper
 
   def random_quote
     [
-      "AbleRoad is a unique destination for education, insight, support, services, products and community for people with disabilities, their family, friends, and caregivers.”"
+      "RISE:2012 will showcase the breadth and depth of innovative thinking at Northeastern, including topics in Physical & Life Sciences, Engineering, Humanities, Arts & Design, Computer & Information Sciences, Health Sciences, Law, Business and Social Sciences. In addition, our “Faculty Works” scholarly presentation honors faculty who published books or produced major artistic works in 2011.”"
     ].rand
   end
 

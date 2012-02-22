@@ -47,9 +47,9 @@ en:
     _no: 'no'
     home: Home
     no_permissions: You do not have permissions to perform that action
-    my_firehoze: My AbleRoad
-    company: AbleRoad
-    lessons: How-Tos
+    my_firehoze: My RISE
+    company: RISE
+    lessons: Entries
     optimistic_lock_error: It looks like another user updated the same record at the same time you were performing your transaction. Can you please try again?
   security:
     you_must_be_logged_in: You must be logged in to access that page
