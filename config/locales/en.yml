@@ -49,6 +49,7 @@ en:
     no_permissions: You do not have permissions to perform that action
     my_firehoze: My RISE
     company: RISE
+    title: Research, Innovation &amp; Scholarship Expo
     lessons: Entries
     optimistic_lock_error: It looks like another user updated the same record at the same time you were performing your transaction. Can you please try again?
   security:
@@ -175,6 +176,13 @@ en:
     not_an_instructor: The <b>{{user}}</b> is not an instuctor
 
   lesson:
+    index:
+      first_title: It’s for Contestants...
+      first_text: RISE allows contntestants posters and videos to be distributed online.
+      second_title: ... and Judges
+      second_text: RISE allows Judges to view the entries content before the day of teh Expo.
+      third_title: ... and Students
+      third_text: RISE makes the contestants entries accessible to the Northeastern students and faculty.
     lesson: how-to
     Lesson: How-To
     instructor: instructor
@@ -297,6 +305,9 @@ en:
     already_used: is already in use
     invalid_reg_code: is invalid. Contact support for a valid code.
     human_test_failed: Human test failed. Are you sure you are not a robot?
+    request_account: Request RISE Account
+    account_signup: RISE Account Sign Up
+
 
   review:
     add_your_review: Add Your Review of the How-to

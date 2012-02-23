@@ -11,26 +11,26 @@
 <div class="span-12 unrecognized-content">
   <div class="span-4">
     <div class="box">
-      <h3>It’s for People with impaired mobility...</h3>
+      <h3><%=t('lesson.index.first_title')%></h3>
       <%= image_tag("icons/handicap_64.jpg", :class => 'box-image') %>
-      <p><%= t('general.company') %> delivers how-to videos focused on daily needs of all types of people with disabilities.</p>
+      <p><%= t('lesson.index.first_text') %></p>
       <p><%= link_to "#{t('general.company')} for Individuals", page_path('firehoze_for_students') %></p>
     </div>
   </div>
   <div class="span-4 middle">
     <div class="box">
-      <h3>... and Transition Instructors</h3>
+      <h3><%= t('lesson.index.second_title') %></h3>
       <%= image_tag("icons/physical_therapy_logo_64.jpg", :class => 'box-image') %>
-      <p>AbleRoad empowers experts to disseminate their unique knowledge on how to overcome the challenges faced by people with disabilities. This includes information for family members, care givers, home health aides, healthcare professionals, etc.</p>
+      <p><%= t('lesson.index.first_text') %></p>
       <p><%= link_to "#{t('general.company')} for #{t('lesson.instructors').capitalize}", page_path('firehoze_for_instructors') %></p>
     </div>
   </div>
 
   <div class="span-4 last">
     <div class="box">
-      <h3>... and Institutions</h3>
+      <h3><%= t('lesson.index.third_title') %></h3>
       <%= image_tag("icons/hospital_64.jpg", :class => 'box-image') %>
-      <p><%= t('general.company') %> augments available instructional videos and content supplied by hospital discharge departments.  Institutions get quality content and post-operative patients get first hand guidance that speeds up recovery and builds a base for an ongoing active lifestyle.</p>
+      <p><%= t('lesson.index.third_text') %></p>
       <p><%= link_to "#{t('general.company')} for Institutions", page_path('firehoze_for_schools') %></p>
     </div>
   </div>
