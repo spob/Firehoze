@@ -1,0 +1,6 @@
+<div id="enroll_venture">
+  <h3><%= t('venture.enroll_title')%></h3>
+  The next few screens will walk you through creating a venture.
+  We will use the answers to your questions to match you to resources and people who are interested in working with your new venture.
+  <%= button_to t('venture.enroll_button_text'), venture_setup_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :method => :get%>
+</div>

@@ -1,0 +1,50 @@
+<% title "t('venture.setup_wizard.title')" -%>
+<%= render :partial => "shared/infield_head_content" %>
+
+<h3><%= t('venture.setup_wizard.step1_title') %></h3>
+<%= render :partial => 'breadcrumbs', :locals => { :step => 1 } %>
+
+<% if APP_CONFIG[CONFIG_RESTRICT_INSTRUCTOR_SIGNUP] and @user.author_agreement_accepted_on.nil? %>
+    <fieldset>
+      <legend><%= t('lesson.instructor').capitalize %>'s Agreement</legend>
+      <p>To become an <%= t('general.company') %> #{t('lesson.instructor')}, you will need a Registration Code. If you do not already have one, click "Request Registration Code".</p>
+      <p><%= link_to content_tag(:span, "Request Registration Code"), request_instructor_reg_code_account_path(current_user), :method => :post, :class => :minibutton %></p>
+    </fieldset>
+<% end %>
+
+<% form_for(:user, :url => update_instructor_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
+    <%= f.error_messages %>
+    <fieldset>
+      <legend><%= t('lesson.instructor').capitalize %>'s Agreement</legend>
+      <div id="instructor_agreement">
+        <%= render :partial => 'pages/policies/instructor_agreement' %>
+      </div>
+
+      <p><%= link_to "Printer Friendly Version", page_path('instructor_agreement'), :popup => true %></p>
+
+      <% if @user.author_agreement_accepted_on.nil? %>
+          <div>
+            <%= check_box_tag :accept_agreement %>
+            <label>By checking this box I hereby agree to be bound by the terms of this agreement.</label>
+          </div>
+          <% if APP_CONFIG[CONFIG_RESTRICT_INSTRUCTOR_SIGNUP] %>
+              <br />
+              <p>
+                <%= label_tag :registration_code %>
+                <%= text_field_tag :registration_code %>
+              </p>
+          <% end %>
+      <% else %>
+          Accepted on: <%= l @user.author_agreement_accepted_on %>
+      <% end %>
+    </fieldset>
+    <p class="actions">
+      <% if @user.author_agreement_accepted_on %>
+          <%= link_to content_tag(:span, 'Next &raquo;'), instructor_wizard_step2_account_path(current_user), :class => 'minibutton' %>
+      <% else %>
+          <%= f.submit "Next", :disable_with => translate('general.disable_with') %>
+      <% end %>
+      <%= link_to 'Cancel', edit_account_path(current_user), :class => "ml-10" %>
+    </p>
+    <%= hidden_field_tag :step, "1" %>
+<% end %>
