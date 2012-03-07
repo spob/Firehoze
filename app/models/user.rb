@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
     c.logged_in_timeout = 1.hour # log out after specified time
   end
 
+  # TODO I tried putting the venture information in it's own table but couldn't get the controller working right beacuse I don't know rails'
+  # has_one  :venture
+
   has_many :user_logons, :order => "created_at DESC", :dependent => :destroy
   has_many :credits, :order => 'id', :dependent => :destroy
   has_many :group_members, :dependent => :destroy
@@ -594,4 +597,15 @@ END
       end
     end
   end
+
+  def venture_wizard_completed?
+    # I know the following logic looks unnecessary, but wanted to return a value of true or false for
+    # export reasons
+    if (self.wizard_step == 0)
+      true
+    else
+      false
+    end
+  end
+
 end

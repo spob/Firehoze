@@ -143,3 +143,38 @@ PENDING = 'PENDING'
 # Twitter search types
 FIREHOZE_TWEETS = 'FIREHOZE'
 
+# Legal entity types
+# see http://en.wikipedia.org/wiki/Types_of_business_entity#Federally_incorporated
+#
+INCORPORATED = 'INC'
+DOING_BUSINESS_AS = 'DBA'
+GENERAL_PARTNERSHIP = 'GP'
+LIMITED_LIABILITY_CORPORATION = 'LLC'
+LIMITED_LIABLITY_LIMITED_PARTNERSHIP = 'LLLP'
+LIMITED_LIABILITY_PARTNERSHIP = 'LLP'
+LIMITED_PARTNERSHIP = 'LP'
+PROFESSIONAL_LIMITED_LIABILITY_COMPANY = 'PLLC'
+PROFESSIONAL_CORPORATION = 'PC'
+SOLE_PROPRIETORSHIP = 'SP'
+
+# Corporation types.
+# see http://en.wikipedia.org/wiki/501(c)#Types
+# TODO we need to expand the list to include all the different subtypes
+CORP_TYPE_501C = '501C'
+
+# company finance stage
+SEED = 'Seed'
+ROUND_A = 'Round A'
+ROUND_B = 'Round B'
+ROUND_C = 'Round C'
+ROUND_D = 'Round D'
+ROUND_D_PLUS = 'Round D+'
+
+# company development stage
+IDEA = 'Idea'
+PROTOTYPE = 'Prototype'
+ALPHA = 'Alpha'
+BETA = 'Beta'
+PRODUCTION = 'Production'
+
+

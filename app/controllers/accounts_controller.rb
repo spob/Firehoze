@@ -3,14 +3,14 @@ class AccountsController < ApplicationController
   include SslRequirement
 
   ssl_required :update, :update_instructor,
-               :update_instructor_wizard, :update_privacy if Rails.env.production?
+               :update_instructor_wizard, :update_privacy,
+               :update_venture if Rails.env.production?
   before_filter :require_user, :except => [:instructor_agreement]
   before_filter :find_user
   before_filter :set_no_uniform_js
 
-  verify :method => :put, :only => [ :update, :update_privacy, :update_facebook, :update_instructor, :update_avatar, :update_instructor_wizard ], :redirect_to => :home_path
+  verify :method => :put, :only => [ :update, :update_privacy, :update_facebook, :update_instructor, :update_avatar, :update_instructor_wizard, :update_venture ], :redirect_to => :home_path
   verify :method => :post, :only => [ :clear_avatar, :clear_facebook, :request_instructor_reg_code ], :redirect_to => :home_path
-
 
   def instructor_signup_wizard
     redirect_path = "redirect_to instructor_wizard_step#{calc_next_wizard_step(@user)}_account_path"
@@ -273,6 +273,105 @@ class AccountsController < ApplicationController
     else
       @user = @current_user
     end
+  end
+
+  # venture methods
+
+  def venture_setup_wizard
+    # redirect_to calc_venture_wizard_step_path @user.venture.wizard_step
+    Logger.info "hit venture_setup_wizard"
+  end
+
+  def calc_venture_wizard_step_path step
+    "venture_setup_wizard_step#{step}_account_path"
+  end
+
+  def move_venture_wizard_to_next_step
+    @user.wizard_step = calc_next_venture_wizard_step
+    calc_venture_wizard_step_path @user.wizard.step
+  end
+
+  def calc_next_venture_wizard_step
+    @user.wizard_step + 1
+  end
+
+  def venture_setup_wizard_step1
+
+  end
+
+  def venture_setup_wizard_step2
+
+  end
+
+  def venture_setup_wizard_step3
+
+  end
+
+  def update_venture_wizard
+    case params[:step]
+      when "1" then
+      when "2" then
+      when "3" then
+      else
+        raise
+    end
+
+  end
+
+  def show_venture
+    Logger.info "show_venture"
+  end
+
+  def edit_venture
+    Logger.error "edit_venture"
+  end
+
+  def update_venture
+    update_venture_description
+    update_venture_product
+    update_venture_team
+
+    if @user.save
+      flash[:notice] = t 'venture.update_success'
+    else
+      render :action => "edit_venture"
+    end
+  end
+
+  def update_venture_description
+    @user.description = params[:venture][:description]
+    @user.legal_entity = params[:venture][:legal_entity]
+    @user.state_incorporated = params[:venture][:state_incorporated]
+    @user.NASIC = params[:venture][:NASIC]
+    @user.finance_stage = params[:venture][:finance_stage]
+    @user.development_stage = params[:venture][:development_stage]
+    @user.website_URL = params[:venture][:website_URL]
+    @user.has_customer = params[:venture][:has_customer]
+    @user.is_paying_customer = params[:venture][:is_paying_customer]
+  end
+
+  def update_venture_product
+    @user.product_name = params[:venture][:product_name]
+    @user.product_description = params[:venture][:product_description]
+  end
+
+  def update_venture_team
+    @user.president_needed = params[:venture][:president_needed]
+    @user.CTO_needed = params[:venture][:CTO_needed]
+    @user.CFO_needed = params[:venture][:CFO_needed]
+    @user.advisors_needed = params[:venture][:advisors_needed]
+    @user.mentor_needed = params[:venture][:mentor_needed]
+    @user.graphic_designer_needed = params[:venture][:graphic_designer_needed]
+    @user.product_owner_needed = params[:venture][:product_owner_needed]
+    @user.scrum_master_needed = params[:venture][:scrum_master_needed]
+    @user.programmer_needed = params[:venture][:programmer_needed]
+    @user.architects_needed = params[:venture][:architects_needed]
+    @user.sysadmins_needed = params[:venture][:sysadmins_needed]
+    @user.technical_writer_needed = params[:venture][:technical_writer_needed]
+    @user.marketing_needed = params[:venture][:marketing_needed]
+    @user.sales_needed = params[:venture][:sales_needed]
+    @user.equity_compensation = params[:venture][:equity_compensation]
+    @user.cash_compensation = params[:venture][:cash_compensation]
   end
 
 end

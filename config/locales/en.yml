@@ -384,7 +384,7 @@ en:
     reviews_of: Reviews by {{user}}
     wishlist: Wishlist
     bad_promo_code: The promotion code you entered is not recognized
-
+    venture_info: Venture Info
   video:
     convert: Convert
     reconvert: Reconvert
@@ -428,3 +428,16 @@ en:
 
       am: 'am'
       pm: 'pm'
+
+  venture:
+    setup_wizard:
+      title: Venture Setup Wizard
+      step1_title: Name and Address
+      step2_title: Profile
+    dashboard_title: Venture Dashboard
+    update_success: Venture updated successfully
+    enroll_title: Create a Venture
+    enroll_button_text: Venture Setup Wizard
+    revisit_link_text: Revisit Venture Signup Wizard
+
+

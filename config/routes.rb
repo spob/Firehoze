@@ -4,7 +4,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :my_firehoze, :only => [ :index ],
                 :collection => { :instructor => :get,
                                  :my_stuff => :get,
-                                 :account_history => :get }
+                                 :account_history => :get,
+                                 :venture => :get}
   map.resources :accounts, :except => [ :show ],
                 :member => { :instructor_signup_wizard => :get,
                              :instructor_wizard_step1 => :get,
@@ -23,7 +24,9 @@ ActionController::Routing::Routes.draw do |map|
                              :update_facebook => :put,
                              :clear_facebook => :post,
                              :edit_privacy => :get,
-                             :request_instructor_reg_code => :post },
+                             :request_instructor_reg_code => :post,
+                             :edit_venture => :get,
+                             :update_venture =>:put },
                 :collection => { :instructor_agreement => :get }
   map.resources :acquire_lessons, :only => [ :create, :new ],
                 :collection => { :ajaxed => :get }
