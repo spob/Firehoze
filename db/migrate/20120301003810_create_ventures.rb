@@ -2,6 +2,40 @@ class CreateVentures < ActiveRecord::Migration
   extend MigrationHelpers
 
   def self.up
+      add_column :users, :wizard_step, :integer,                 :default => 1
+      # entity
+      add_column :users, :description, :text                     , :limit => 1000
+      add_column :users, :legal_entity, :string                  , :limit => 4
+      add_column :users, :state_incorporated, :string
+      add_column :users, :NASIC, :string
+      add_column :users, :finance_stage, :string                 , :limit => 8
+      add_column :users, :development_stage, :string             , :limit => 10
+      # external site
+      add_column :users, :website_URL, :string                   , :limit => 255
+      add_column :users, :has_customer, :boolean
+      add_column :users, :is_paying_customer, :boolean
+      # product
+      add_column :users, :product_name, :string                 , :limit => 255
+      add_column :users, :product_description, :string           , :limit => 1000
+      # team needed
+      add_column :users, :president_needed, :boolean
+      add_column :users, :CTO_needed, :boolean
+      add_column :users, :CFO_needed, :boolean
+      add_column :users, :advisors_needed, :boolean
+      add_column :users, :mentor_needed, :boolean
+      add_column :users, :graphic_designer_needed, :boolean
+      add_column :users, :product_owner_needed, :boolean
+      add_column :users, :scrum_master_needed, :boolean
+      add_column :users, :programmer_needed, :boolean
+      add_column :users, :architects_needed, :boolean
+      add_column :users, :sysadmins_needed, :boolean
+      add_column :users, :technical_writer_needed, :boolean
+      add_column :users, :marketing_needed, :boolean
+      add_column :users, :sales_needed, :boolean
+      add_column :users, :equity_compensation, :boolean
+      add_column :users, :cash_compensation, :boolean
+
+=begin
     create_table :ventures do |t|
       t.references :user
       t.integer :wizard_step,                                   :default => 1
@@ -48,11 +82,48 @@ class CreateVentures < ActiveRecord::Migration
       t.boolean :cash_compensation
     end
     add_foreign_key(:ventures, :user_id, :users)
+=end
+
   end
 
   def self.down
+=begin
     remove_foreign_key(:ventures, :user_id)
 
     drop_table :ventures
+=end
+
+    remove_column :users, :wizard_step
+    # entity
+    remove_column :users, :description
+    remove_column :users, :legal_entity
+    remove_column :users, :state_incorporated
+    remove_column :users, :NASIC
+    remove_column :users, :finance_stage
+    remove_column :users, :development_stage
+    # external site
+    remove_column :users, :website_URL
+    remove_column :users, :has_customer
+    remove_column :users, :is_paying_customer
+    # product
+    remove_column :users, :product_name
+    remove_column :users, :product_description
+    # team needed
+    remove_column :users, :president_needed
+    remove_column :users, :CTO_needed
+    remove_column :users, :CFO_needed
+    remove_column :users, :advisors_needed
+    remove_column :users, :mentor_needed
+    remove_column :users, :graphic_designer_needed
+    remove_column :users, :product_owner_needed
+    remove_column :users, :scrum_master_needed
+    remove_column :users, :programmer_needed
+    remove_column :users, :architects_needed
+    remove_column :users, :sysadmins_needed
+    remove_column :users, :technical_writer_needed
+    remove_column :users, :marketing_needed
+    remove_column :users, :sales_needed
+    remove_column :users, :equity_compensation
+    remove_column :users, :cash_compensation
   end
 end

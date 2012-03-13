@@ -2,8 +2,6 @@ namespace :db do
   desc "Populate the database with seed data"
   task :seed => [:seed_users, :seed_jobs, :seed_roles, :seed_skus, :seed_payment_levels]
 
-  desc "Populate the database with test data"
-
   desc "Seed the database with users"
   task :seed_users => :environment do
     admin = User.find_by_login('admin')
