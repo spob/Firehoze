@@ -148,6 +148,10 @@ ActionController::Routing::Routes.draw do |map|
   map.current_cart 'cart', :controller => 'carts', :action => 'show', :id => 'current'
   map.root :controller => "lessons", :action => "index"
 
+  map.namespace(:prizetube) do |prizetube|
+    prizetube.resources :home
+  end
+
   map.connect ':controller/:action/:id.:format'
   map.connect ':controller/:action/:id'
 end

@@ -1,0 +1,21 @@
+<ul id="top-navigation-left">
+  <li class="first"><%= link_to "Categories", new_registration_path %></li>
+  <li><%= link_to "Prizes", new_registration_path %></li>
+  <li><%= link_to "Leaderboard", new_registration_path %></li>
+  <li><%= link_to "The Archive", new_registration_path %></li>
+  <li><%= link_to "My Dashboard", new_registration_path %></li>
+  <li id="advanced-search-icon">
+    <%= link_to image_tag('icons/advanced-search-22.png', :alt => ''), advanced_search_lessons_path, :title => 'Advanced Search', :class => 'mini-tip advanced-search' %>
+  </li>
+  <li class="last">
+    <div id="searchwrapper">
+      <% form_tag searches_path, :method => :get, :id => 'search' do %>
+          <%= text_field_tag :search_criteria, (params[:search_criteria].present? ? params[:search_criteria] : "Search"), :class => 'searchbox' %>
+          <%= image_submit_tag('top_navigation/searchbox_button.png', :class => 'searchbox_submit', :id => 'searchbox_submit') %>
+      <% end %>
+    </div>
+  </li>
+</ul><!-- end top-navigation -->
+<div style="display:none"><%= link_to "Advanced Search", advanced_search_lessons_path %></div>
+</ul><!-- end top-navigation -->
+<!-- holding off exposing this here for now -->

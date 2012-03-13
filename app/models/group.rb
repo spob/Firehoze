@@ -22,6 +22,8 @@ class Group < ActiveRecord::Base
   has_many :all_activities, :class_name => 'Activity', :foreign_key => "group_id"
   has_many :flags, :as => :flaggable, :dependent => :destroy
 
+  belongs_to :contest
+
   validates_presence_of :name, :owner, :category
   validates_uniqueness_of :name
   validates_length_of :name, :maximum => 50, :allow_nil => true

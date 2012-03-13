@@ -1,0 +1,121 @@
+#top-navigation-container-left {
+    position: absolute;
+    top: 0;
+    left: -16px;
+    font-size: 11px;
+}
+
+#top-navigation-left {
+    float: left;
+    margin: 8px 0 0 0;
+    font: bold 13px/30px "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    text-transform: lowercase;
+    text-shadow: #fff 0 1px 1px;
+}
+
+#top-navigation-left li {
+    float: left;
+    padding-right: 2px;
+    background: url('../../images/top_navigation/nav-li-dark.png') no-repeat right;
+    list-style-type: none;
+    position: relative;
+}
+
+#top-navigation-left li a {
+    float: left;
+    padding: 1px 20px 5px;
+    background: url('../../images/top_navigation/nav-a.png') repeat-x 0 0;
+    color: #616161;
+    border: 0 none;
+    text-decoration: none;
+}
+
+li#advanced-search-icon {
+    padding: 0;
+    width: 30px;
+}
+
+li#advanced-search-icon a {
+    padding: 0 3px 6px 8px !important;
+    width: 42px;
+}
+
+li#advanced-search-icon img {
+    margin: 7px 0 0 0;
+    padding: 0;
+}
+
+#top-navigation-left li.with-subnav a {
+    padding: 1px 3px 5px 20px;
+}
+
+#top-navigation-left li.selected a {
+    color: #17587f;
+    cursor: default;
+}
+
+#top-navigation-left li.selected a:hover {
+    color: #17587f;
+    cursor: default;
+}
+
+#top-navigation-left li.selected a:focus {
+    color: #17587f;
+}
+
+#top-navigation-left li a:hover {
+    color: #17587f;
+    text-decoration: none;
+}
+
+#top-navigation-left li a:focus {
+    color: #17587f;
+    text-decoration: none;
+}
+
+#top-navigation-left li a:active {
+    padding-top: 2px;
+    padding-bottom: 4px;
+}
+
+#top-navigation-left li.first a {
+    background: url('../../images/top_navigation/nav-a-first.png') no-repeat 0 0;
+    padding-left: 22px;
+}
+
+#top-navigation-left li.with-avatar a {
+    padding-left: 12px;
+}
+
+#top-navigation-left .avatar {
+    margin-top: 3px;
+    margin-right: 8px;
+    float: left;
+    border: solid 2px #ccc;
+    height: 22px;
+    width: 22px;
+}
+
+#top-navigation-left li.last {
+    background: none;
+    padding: 0;
+}
+
+#top-navigation-left li.last a {
+    background: url('../../images/top_navigation/nav-a-last.png') no-repeat right;
+    padding-right: 22px;
+}
+
+.banner {
+    height: 200pt;
+}
+
+p.banner-bottom-right {
+    float: right;
+    position: relative;
+    bottom: -50px;
+}
+
+.page-height {
+    height: 500pt;
+}

@@ -240,6 +240,22 @@ class AccountsController < ApplicationController
     end
   end
 
+  def update_venture
+    update_venture_description
+    update_venture_product
+    update_venture_team
+
+    if @user.save
+      flash[:notice] = t 'venture.update_success'
+    else
+      render :action => "edit_venture"
+    end
+  end
+
+  def edit_venture
+    Logger.error "edit_venture"
+  end
+
   private
 
   def set_no_uniform_js
@@ -322,25 +338,9 @@ class AccountsController < ApplicationController
     Logger.info "show_venture"
   end
 
-  def edit_venture
-    Logger.error "edit_venture"
-  end
-
-  def update_venture
-    update_venture_description
-    update_venture_product
-    update_venture_team
-
-    if @user.save
-      flash[:notice] = t 'venture.update_success'
-    else
-      render :action => "edit_venture"
-    end
-  end
-
   def update_venture_description
-    @user.description = params[:venture][:description]
-    @user.legal_entity = params[:venture][:legal_entity]
+    @user.description = params[:user][:description]
+    @user.legal_entity = params[:user][:legal_entity]
     @user.state_incorporated = params[:venture][:state_incorporated]
     @user.NASIC = params[:venture][:NASIC]
     @user.finance_stage = params[:venture][:finance_stage]
