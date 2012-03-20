@@ -253,37 +253,41 @@ class AccountsController < ApplicationController
 
   def create_venture
     set_venture_model
-    if @user.save
-      # create the groups for the venture
-      public_group = Group.new
-      public_group.owner = current_user
-      public_group.category_id = @user.venture_category_id
-      public_group.name = @user.venture_name + " - Public"
-      public_group.description = "This group is for public content for the " + @user.venture_name + " venture."
-      public_group.tag_list.add("venture")
-      public_group.private = false
-      private_group = Group.new
-      private_group.owner = current_user
-      private_group.category_id = @user.venture_category_id
-      private_group.name = @user.venture_name + " - Private"
-      private_group.description = "This group is for private content for the " + @user.venture_name + " venture."
-      private_group.tag_list.add("venture")
-      private_group.private = true
-      Group.transaction do
-        if public_group.save
-          GroupMember.create!(:user => current_user, :group => public_group, :member_type => OWNER,
-                                              :activity_compiled_at => Time.now)
-        end
-        if private_group.save
-          GroupMember.create!(:user => current_user, :group => private_group, :member_type => OWNER,
-                              :activity_compiled_at => Time.now)
-        end
+    @user.venture_created = true
+    begin
+      User.transaction do
+        @user.save!
+        # create the groups for the venture
+        public_group = Group.new
+        public_group.owner = current_user
+        public_group.category_id = @user.venture_category_id
+        public_group.name = @user.venture_name + " - Public"
+        public_group.description = "This group is for public content for the " + @user.venture_name + " venture."
+        public_group.tag_list.add("venture")
+        public_group.private = false
+        private_group = Group.new
+        private_group.owner = current_user
+        private_group.category_id = @user.venture_category_id
+        private_group.name = @user.venture_name + " - Private"
+        private_group.description = "This group is for private content for the " + @user.venture_name + " venture."
+        private_group.tag_list.add("venture")
+        private_group.private = true
+        public_group.save!
+        GroupMember.create!(:user => current_user, :group => public_group, :member_type => OWNER,
+                                                :activity_compiled_at => Time.now)
+        private_group.save!
+        GroupMember.create!(:user => current_user, :group => private_group, :member_type => OWNER,
+                                :activity_compiled_at => Time.now)
+#        lesson = Lesson.new
+#        lesson.instructor = current_user
+#        lesson.
 
-        flash[:notice] = t 'venture.update_success'
-        redirect_to edit_account_path
       end
-    else
+    rescue
       render :action => "create_venture"
+    else
+      flash[:notice] = t 'venture.update_success'
+      redirect_to my_stuff_my_firehoze_path(:anchor => :groups)
     end
   end
 
