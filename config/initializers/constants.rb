@@ -163,12 +163,10 @@ SOLE_PROPRIETORSHIP = 'SP'
 CORP_TYPE_501C = '501C'
 
 # company finance stage
+PRE_SEED = 'PreSeed'
 SEED = 'Seed'
-ROUND_A = 'Round A'
-ROUND_B = 'Round B'
-ROUND_C = 'Round C'
-ROUND_D = 'Round D'
-ROUND_D_PLUS = 'Round D+'
+ROUND_A = 'RoundA'
+ROUND_A_PLUS = 'RoundA+'
 
 # company development stage
 IDEA = 'Idea'

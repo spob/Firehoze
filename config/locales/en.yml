@@ -47,9 +47,9 @@ en:
     _no: 'no'
     home: Home
     no_permissions: You do not have permissions to perform that action
-    my_firehoze: My RISE
-    company: RISE
-    title: Research, Innovation &amp; Scholarship Expo
+    my_firehoze: My CRI
+    company: Center for Research Innovation
+    title: Fostering innovation and entrepreneurship among students, faculty and alumni at Northeastern University.
     lessons: Entries
     optimistic_lock_error: It looks like another user updated the same record at the same time you were performing your transaction. Can you please try again?
   security:
@@ -87,7 +87,7 @@ en:
   flag:
     review: review
     user: user
-    lesson: how-to
+    lesson: Content
     group: group
     lessoncomment: comment
     topiccomment: comment
@@ -177,14 +177,22 @@ en:
 
   lesson:
     index:
-      first_title: It’s for Contestants...
-      first_text: RISE allows contntestants posters and videos to be distributed online.
-      second_title: ... and Judges
-      second_text: RISE allows Judges to view the entries content before the day of teh Expo.
-      third_title: ... and Students
-      third_text: RISE makes the contestants entries accessible to the Northeastern students and faculty.
-    lesson: how-to
-    Lesson: How-To
+      first_title: What We Do...
+      first_text:
+        <p>The Center for Research Innovation helps accelerate the Northeastern community's entrepreneurial successes by</p><br>
+        <ul>
+          <li>Informing research with corporate context and market needs, increasing entrepreneurial acumen, innovation, visibility;</li>
+          <li>Facilitating connections among Northeastern community around educational, mentoring, funding and commercialization opportunities;</li>
+          <li>Providing a high-service oriented technology transfer operation, with commercialization friendly policies and procedures;</li>
+          <li>Leading funding programs to accelerate translation of innovations to market;</li>
+          <li>Offering business development services for product launch and business growth.</li>
+        </ul>
+      second_title:
+      second_text:
+      third_title:
+      third_text:
+    lesson: content
+    Lesson: Content
     instructor: instructor
     instructors: instructors
     taught: instructed
@@ -305,8 +313,8 @@ en:
     already_used: is already in use
     invalid_reg_code: is invalid. Contact support for a valid code.
     human_test_failed: Human test failed. Are you sure you are not a robot?
-    request_account: Request RISE Account
-    account_signup: RISE Account Sign Up
+    request_account: Request CRI Account
+    account_signup: CRI Account Sign Up
 
 
   review:

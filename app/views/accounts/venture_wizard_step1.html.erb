@@ -1,50 +1,100 @@
-<% title "t('venture.setup_wizard.title')" -%>
-<%= render :partial => "shared/infield_head_content" %>
+<% title "Create Venture" -%>
 
-<h3><%= t('venture.setup_wizard.step1_title') %></h3>
-<%= render :partial => 'breadcrumbs', :locals => { :step => 1 } %>
+<% content_for :footer do -%>
+    <%= javascript_include_tag 'validation/venture.validate.js' -%>
+<% end -%>
 
-<% if APP_CONFIG[CONFIG_RESTRICT_INSTRUCTOR_SIGNUP] and @user.author_agreement_accepted_on.nil? %>
-    <fieldset>
-      <legend><%= t('lesson.instructor').capitalize %>'s Agreement</legend>
-      <p>To become an <%= t('general.company') %> #{t('lesson.instructor')}, you will need a Registration Code. If you do not already have one, click "Request Registration Code".</p>
-      <p><%= link_to content_tag(:span, "Request Registration Code"), request_instructor_reg_code_account_path(current_user), :method => :post, :class => :minibutton %></p>
-    </fieldset>
-<% end %>
+<div class="fh-form">
 
-<% form_for(:user, :url => update_instructor_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
-    <%= f.error_messages %>
-    <fieldset>
-      <legend><%= t('lesson.instructor').capitalize %>'s Agreement</legend>
-      <div id="instructor_agreement">
-        <%= render :partial => 'pages/policies/instructor_agreement' %>
-      </div>
+  <% form_for(:user, :url => create_venture_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
+      <%= f.error_messages %>
+      <ul id="instructor-info" class="section">
+        <li class="header">
+          <span></span>
+          <h3>Description</h3>
+          <h4>Tell us more about your venture and the industry you are in.</h4>
+        </li>
+        <li>
+      <span>
+        <%= f.label :venture_name %>
+        <%= f.text_field :venture_name, :maxlength => "255" %>
+      </span>
+          <div class="counter"><span id="user_venture_name_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+            <%= f.label :description %>
+            <%= f.text_area :description, :maxlength => "1000" %>
+        </span>
+          <div class="counter"><span id="user_description_counter"></span> characters left</div>
+        </li>
+        <li>
+        <span>
+          <%= f.label(:venture_category_id, "Category") %>
+          <%= f.collection_select(:venture_category_id, Category.ascend_by_compiled_sort, :id, :formatted_name, {:include_blank => 'Select...'}, :class => "required") %>
+          <span class="required-field"></span>
+        </span>
+        </li>
+        <li>
+      <span>
+        <%= f.label :development_stage %>
+        <%= f.select(:development_stage,
+                     [
+                             ['Idea', :IDEA],
+                             ['Prototype', :PROTOTYPE],
+                             ['Alpha', :ALPHA],
+                             ['Beta', :BETA],
+                             ['Production', :PRODUCTION]
+                     ]) %>
+      </span>
+        </li>
+        <li>
+      <span>
+        <%= f.label :finance_stage %>
+        <%= f.select(:finance_stage,
+                     [
+                             ['Pre Seed', :PRE_SEED],
+                             ['Seed', :SEED],
+                             ['Round A', :ROUND_A],
+                             ['Past Round A', :ROUND_A_PLUS]
+                     ]) %>
+      </span>
+        </li>
+        <li>
+      <span>
+        <%= f.label :website_URL %>
+        <%= f.text_field :website_URL, :maxlength => "255" %>
+      </span>
+          <div class="counter"><span id="user_website_URL_counter"></span> characters left</div>
+        </li>
+        <li>
+      <span>
+        <%= f.label :need_mentor, "&nbsp;" %>
+        <%= f.check_box :need_mentor %>I am looking for a mentor
+      </span>
+        </li>
+        <li>
+      <span>
+        <%= f.label :has_customer, "&nbsp;" %>
+        <%= f.check_box :has_customer %>I have a customer
+      </span>
+        </li>
+        <li>
+      <span>
+        <%= f.label :is_paying_customer, "&nbsp;" %>
+        <%= f.check_box :is_paying_customer %>Paying customer
+      </span>
+        </li>
 
-      <p><%= link_to "Printer Friendly Version", page_path('instructor_agreement'), :popup => true %></p>
+        <li class="bottom">
+      <span class="unlabelled">
+        <%= f.submit "Update", :id => "create_venture" %>
+        <%= link_to 'Cancel', home_path %> |
+      </span>
 
-      <% if @user.author_agreement_accepted_on.nil? %>
-          <div>
-            <%= check_box_tag :accept_agreement %>
-            <label>By checking this box I hereby agree to be bound by the terms of this agreement.</label>
-          </div>
-          <% if APP_CONFIG[CONFIG_RESTRICT_INSTRUCTOR_SIGNUP] %>
-              <br />
-              <p>
-                <%= label_tag :registration_code %>
-                <%= text_field_tag :registration_code %>
-              </p>
-          <% end %>
-      <% else %>
-          Accepted on: <%= l @user.author_agreement_accepted_on %>
-      <% end %>
-    </fieldset>
-    <p class="actions">
-      <% if @user.author_agreement_accepted_on %>
-          <%= link_to content_tag(:span, 'Next &raquo;'), instructor_wizard_step2_account_path(current_user), :class => 'minibutton' %>
-      <% else %>
-          <%= f.submit "Next", :disable_with => translate('general.disable_with') %>
-      <% end %>
-      <%= link_to 'Cancel', edit_account_path(current_user), :class => "ml-10" %>
-    </p>
-    <%= hidden_field_tag :step, "1" %>
-<% end %>
+          <div class="clear"/>
+        </li>
+      </ul>
+  <% end %>
+</div>
+

@@ -1,3 +1,7 @@
+<% content_for :footer do -%>
+    <%= javascript_include_tag 'validation/venture.validate.js' -%>
+<% end -%>
+
 <div class="fh-form">
 
 <% form_for(:user, :url => update_venture_account_url(@user, :protocol => SECURE_PROTOCOL), :html => { :method => :put, :id => "author" }) do |f| %>
@@ -10,67 +14,17 @@
     </li>
     <li>
       <span>
+        <%= f.label :venture_name %>
+        <%= f.text_field :venture_name, :maxlength => "255" %>
+      </span>
+      <div class="counter"><span id="user_venture_name_counter"></span> characters left</div>
+    </li>
+    <li>
+      <span>
         <%= f.label :description %>
-        <%= f.text_field :description, :maxlength => "1000" %>
+        <%= f.text_area :description, :maxlength => "1000" %>
       </span>
-      <div class="counter"><span id="description_counter"></span> characters left</div>
-    </li>
-    <li>
-      <span>
-        <%= f.label :legal_entity %>
-        <%= f.select(:legal_entity,
-                     [
-                        ['INC', :INCORPORATED],
-                        ['DBA', :DOING_BUSINESS_AS],
-                        ['GP', :GENERAL_PARTNERSHIP],
-                        ['LLC', :LIMITED_LIABILITY_CORPORATION],
-                        ['LLLP', :LIMITED_LIABLITY_LIMITED_PARTNERSHIP],
-                        ['LLP', :LIMITED_LIABILITY_PARTNERSHIP],
-                        ['LP', :LIMITED_PARTNERSHIP],
-                        ['PLLC', :PROFESSIONAL_LIMITED_LIABILITY_COMPANY],
-                        ['PC', :PROFESSIONAL_CORPORATION],
-                        ['SP', :SOLE_PROPRIETORSHIP]
-                     ]) %>
-      </span>
-    </li>
-    <li>
-      <span>
-        <%= f.label :state_incorporated, "State or Region Incorporated In" %>
-        <%= f.text_field :state_incorporated %>
-        <span class="required-field"></span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <%= f.label :NSSIC, "NASIC" %>
-        <%= f.text_field :NASIC %>
-      </span>
-    </li>
-    <li>
-      <span>
-        <%= f.label :finance_stage %>
-        <%= f.select(:finance_stage,
-                     [
-                             ['Seed', :SEED],
-                             ['Round A', :ROUND_A],
-                             ['Round B', :ROUND_B],
-                             ['Round C', :ROUND_C],
-                             ['Past Round D',:ROUND_D_PLUS]
-                     ]) %>
-      </span>
-    </li>
-    <li>
-      <span>
-        <%= f.label :website_URL %>
-        <%= f.text_field :website_URL, :maxlength => "255" %>
-      </span>
-      <div class="counter"><span id="website_URL_counter"></span> characters left</div>
-    </li>
-
-    <li class="header">
-      <span></span>
-      <h3>Product</h3>
-      <h4>...and about the product you're developing.</h4>
+      <div class="counter"><span id="user_description_counter"></span> characters left</div>
     </li>
     <li>
       <span>
@@ -87,123 +41,45 @@
     </li>
     <li>
       <span>
-        <%= f.label :has_customer, "I have a customer." %>
-        <%= f.check_box :has_customer, {}, "true", "false"  %>
+        <%= f.label :finance_stage %>
+        <%= f.select(:finance_stage,
+                     [
+                             ['Pre Seed', :PRE_SEED],
+                             ['Seed', :SEED],
+                             ['Round A', :ROUND_A],
+                             ['Past Round A', :ROUND_A_PLUS]
+                     ]) %>
       </span>
     </li>
     <li>
       <span>
-        <%= f.label :is_paying_customer, "Paying customer." %>
-        <%= f.check_box :is_paying_customer, {}, "true", "false"  %>
+        <%= f.label :website_URL %>
+        <%= f.text_field :website_URL, :maxlength => "255" %>
       </span>
-    </li>
-
-    <li class="header">
-      <span></span>
-      <h3>Team</h3>
-      <h4>...and the team you're looking to assemble and compenstation.  Check the roles you need filled.
-      </h4>
+      <div class="counter"><span id="user_website_URL_counter"></span> characters left</div>
     </li>
     <li>
       <span>
-        <%= f.label :president_needed, "President needed." %>
-        <%= f.check_box :president_needed, {}, "true", "false" %>
+        <%= f.label :need_mentor, "&nbsp;" %>
+        <%= f.check_box :need_mentor %>I am looking for a mentor
       </span>
     </li>
     <li>
       <span>
-        <%= f.label :CTO_needed, "CTO needed."%>
-        <%= f.check_box :CTO_needed, {}, "true", "false" %>
+        <%= f.label :has_customer, "&nbsp;" %>
+        <%= f.check_box :has_customer %>I have a customer
       </span>
     </li>
     <li>
       <span>
-        <%= f.label :CFO_needed, "CFO needed." %>
-        <%= f.check_box :CFO_needed, {}, "true", "false" %>
+        <%= f.label :is_paying_customer, "&nbsp;" %>
+        <%= f.check_box :is_paying_customer %>Paying customer
       </span>
-    </li>
-    <li>
-      <span>
-        <%= f.label :advisors_needed %>
-        <%= f.check_box :advisors_needed, {}, "true", "false" %>
-      </span>
-    </li>
-    <li>
-      <span>
-        <%= f.label :mentor_needed %>
-        <%= f.check_box :mentor_needed, {}, "true", "false" %>
-      </span>
-    </li>
-    <li>
-      <span>
-        <%= f.label :graphic_designer_needed %>
-        <%= f.check_box :graphic_designer_needed, {}, "true", "false" %>
-      </span>
-    </li>
-    <li>
-      <span>
-        <%= f.label :product_owner_needed %>
-        <%= f.check_box :product_owner_needed, {}, "true", "false" %>
-      </span>
-    </li>
-    <li>
-      <span>
-        <%= f.label :scrum_master_needed %>
-        <%= f.check_box :scrum_master_needed, {}, "true", "false" %>
-      </span>
-    </li>
-    <li>
-      <span>
-        <%= f.label :programmer_needed %>
-        <%= f.check_box :programmer_needed, {}, "true", "false" %>
-      </span>
-    </li>
-    <li>
-      <span>
-        <%= f.label :architects_needed %>
-        <%= f.check_box :architects_needed, {}, "true", "false" %>
-      </span>
-    </li>
-    <li>
-      <span>
-        <%= f.label :sysadmins_needed %>
-        <%= f.check_box :sysadmins_needed, {}, "true", "false" %>
-      </span>
-    </li>
-    <li>
-      <span>
-        <%= f.label :technical_writer_needed %>
-        <%= f.check_box :technical_writer_needed, {}, "true", "false" %>
-      </span>
-    </li>
-    <li>
-      <span>
-        <%= f.label :marketing_needed %>
-        <%= f.check_box :marketing_needed, {}, "true", "false" %>
-      </span>
-    </li>
-    <li>
-      <span>
-        <%= f.label :marketing_needed %>
-        <%= f.check_box :sales_needed, {}, "true", "false" %>
-       </span>
-    </li>
-    <li>
-      <span>
-        <%= f.label :compensation, "Equity compensation." %>
-        <%= f.check_box :equity_compensation, {}, "true", "false" %>
-      </span>
-    </li>
-    <li>
-      <span>
-        <%= f.label :compensation, "Cash compensation." %>
-        <%= f.check_box :cash_compensation, {}, "true", "false" %>
-       </span>
     </li>
 
     <li class="bottom">
       <span class="unlabelled">
-        <%= f.submit "Update", :id => "venture_update" %>
+        <%= f.submit "Update", :id => "update_venture" %>
         <%= link_to 'Cancel', home_path %> |
       </span>
 

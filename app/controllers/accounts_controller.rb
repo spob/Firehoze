@@ -240,7 +240,77 @@ class AccountsController < ApplicationController
     end
   end
 
+  def show_venture
+    logger.info "show_venture"
+  end
+
+  def venture_wizard_step1
+  end
+
+  def edit_venture
+    logger.info "edit_venture"
+  end
+
+  def create_venture
+    set_venture_model
+    if @user.save
+      # create the groups for the venture
+      public_group = Group.new
+      public_group.owner = current_user
+      public_group.category_id = @user.venture_category_id
+      public_group.name = @user.venture_name + " - Public"
+      public_group.description = "This group is for public content for the " + @user.venture_name + " venture."
+      public_group.tag_list.add("venture")
+      public_group.private = false
+      private_group = Group.new
+      private_group.owner = current_user
+      private_group.category_id = @user.venture_category_id
+      private_group.name = @user.venture_name + " - Private"
+      private_group.description = "This group is for private content for the " + @user.venture_name + " venture."
+      private_group.tag_list.add("venture")
+      private_group.private = true
+      Group.transaction do
+        if public_group.save
+          GroupMember.create!(:user => current_user, :group => public_group, :member_type => OWNER,
+                                              :activity_compiled_at => Time.now)
+        end
+        if private_group.save
+          GroupMember.create!(:user => current_user, :group => private_group, :member_type => OWNER,
+                              :activity_compiled_at => Time.now)
+        end
+
+        flash[:notice] = t 'venture.update_success'
+        redirect_to edit_account_path
+      end
+    else
+      render :action => "create_venture"
+    end
+  end
+
+  def update_venture
+    set_venture_model
+
+    if @user.save
+      flash[:notice] = t 'venture.update_success'
+      redirect_to edit_account_path
+    else
+      render :action => "edit_venture"
+    end
+  end
+
   private
+
+  def set_venture_model
+    @user.venture_name = params[:user][:venture_name]
+    @user.description = params[:user][:description]
+    @user.venture_category_id = params[:user][:venture_category_id]
+    @user.finance_stage = params[:user][:finance_stage]
+    @user.development_stage = params[:user][:development_stage]
+    @user.website_URL = params[:user][:website_URL]
+    @user.need_mentor = params[:user][:need_mentor]
+    @user.has_customer = params[:user][:has_customer]
+    @user.is_paying_customer = params[:user][:is_paying_customer]
+  end
 
   def set_no_uniform_js
     @no_uniform_js = true
@@ -273,105 +343,6 @@ class AccountsController < ApplicationController
     else
       @user = @current_user
     end
-  end
-
-  # venture methods
-
-  def venture_setup_wizard
-    # redirect_to calc_venture_wizard_step_path @user.venture.wizard_step
-    Logger.info "hit venture_setup_wizard"
-  end
-
-  def calc_venture_wizard_step_path step
-    "venture_setup_wizard_step#{step}_account_path"
-  end
-
-  def move_venture_wizard_to_next_step
-    @user.wizard_step = calc_next_venture_wizard_step
-    calc_venture_wizard_step_path @user.wizard.step
-  end
-
-  def calc_next_venture_wizard_step
-    @user.wizard_step + 1
-  end
-
-  def venture_setup_wizard_step1
-
-  end
-
-  def venture_setup_wizard_step2
-
-  end
-
-  def venture_setup_wizard_step3
-
-  end
-
-  def update_venture_wizard
-    case params[:step]
-      when "1" then
-      when "2" then
-      when "3" then
-      else
-        raise
-    end
-
-  end
-
-  def show_venture
-    Logger.info "show_venture"
-  end
-
-  def edit_venture
-    Logger.error "edit_venture"
-  end
-
-  def update_venture
-    update_venture_description
-    update_venture_product
-    update_venture_team
-
-    if @user.save
-      flash[:notice] = t 'venture.update_success'
-    else
-      render :action => "edit_venture"
-    end
-  end
-
-  def update_venture_description
-    @user.description = params[:venture][:description]
-    @user.legal_entity = params[:venture][:legal_entity]
-    @user.state_incorporated = params[:venture][:state_incorporated]
-    @user.NASIC = params[:venture][:NASIC]
-    @user.finance_stage = params[:venture][:finance_stage]
-    @user.development_stage = params[:venture][:development_stage]
-    @user.website_URL = params[:venture][:website_URL]
-    @user.has_customer = params[:venture][:has_customer]
-    @user.is_paying_customer = params[:venture][:is_paying_customer]
-  end
-
-  def update_venture_product
-    @user.product_name = params[:venture][:product_name]
-    @user.product_description = params[:venture][:product_description]
-  end
-
-  def update_venture_team
-    @user.president_needed = params[:venture][:president_needed]
-    @user.CTO_needed = params[:venture][:CTO_needed]
-    @user.CFO_needed = params[:venture][:CFO_needed]
-    @user.advisors_needed = params[:venture][:advisors_needed]
-    @user.mentor_needed = params[:venture][:mentor_needed]
-    @user.graphic_designer_needed = params[:venture][:graphic_designer_needed]
-    @user.product_owner_needed = params[:venture][:product_owner_needed]
-    @user.scrum_master_needed = params[:venture][:scrum_master_needed]
-    @user.programmer_needed = params[:venture][:programmer_needed]
-    @user.architects_needed = params[:venture][:architects_needed]
-    @user.sysadmins_needed = params[:venture][:sysadmins_needed]
-    @user.technical_writer_needed = params[:venture][:technical_writer_needed]
-    @user.marketing_needed = params[:venture][:marketing_needed]
-    @user.sales_needed = params[:venture][:sales_needed]
-    @user.equity_compensation = params[:venture][:equity_compensation]
-    @user.cash_compensation = params[:venture][:cash_compensation]
   end
 
 end

@@ -1,38 +1,20 @@
 <!-- UNRECOGNIZED USER  -->
 
-<div class="span-12 RISE:2012 will showcase the breadth and depth of innovative thinking at Northeastern, including topics in Physical &amp; Life Sciences, Engineering, Humanities, Arts &amp; Design, Computer &amp; Information Sciences, Health Sciences, Law, Business and Social Sciences. In addition, our “Faculty Works” scholarly presentation honors faculty who published books or produced major artistic works in 2011.prepend-top" id="intro">
+<div class="span-12 prepend-top" id="intro">
   <div class="box">
     <h3>Welcome to <%= t('general.company') %></h3>
-    <h4>RISE:2012 will showcase the breadth and depth of innovative thinking at Northeastern, including topics in Physical &amp; Life Sciences, Engineering, Humanities, Arts &amp; Design, Computer &amp; Information Sciences, Health Sciences, Law, Business and Social Sciences. In addition, our “Faculty Works” scholarly presentation honors faculty who published books or produced major artistic works in 2011.</h4>
+    <h4>The Center for Research Innovation is growing a University-wide ecosystem to support and foster innovation and entrepreneurship among students, faculty and alumni at Northeastern University.
+      &quot;Innovation as a Catalyst, Entrepreneurship as a Mindset,&quot; is the vision that inspires CRI, and drives our mission for ongoing collaboration resulting in venture start-ups and commercialization of research opportunities.</h4>
     <div id="actions" style="text-align:right"><%= link_to(content_tag(:span, "Browse Our Video Content"), categories_path, :class => 'large-button call-to-action') %><%= link_to(content_tag(:span, "Register for Free"), new_registration_path, :class => 'large-button call-to-action') %></div>
   </div>
 </div>
 
 <div class="span-12 unrecognized-content">
-  <div class="span-4">
     <div class="box">
       <h3><%=t('lesson.index.first_title')%></h3>
-      <%= image_tag("icons/handicap_64.jpg", :class => 'box-image') %>
+      <%= image_tag("icons/rise-thumb_50.jpg", :class => 'box-image') %>
       <p><%= t('lesson.index.first_text') %></p>
-      <p><%= link_to "#{t('general.company')} for Individuals", page_path('firehoze_for_students') %></p>
+      <p><%= link_to "#{t('general.company')}",'http://www.northeastern.edu/research/wp/cri/' %></p>
     </div>
-  </div>
-  <div class="span-4 middle">
-    <div class="box">
-      <h3><%= t('lesson.index.second_title') %></h3>
-      <%= image_tag("icons/physical_therapy_logo_64.jpg", :class => 'box-image') %>
-      <p><%= t('lesson.index.first_text') %></p>
-      <p><%= link_to "#{t('general.company')} for #{t('lesson.instructors').capitalize}", page_path('firehoze_for_instructors') %></p>
-    </div>
-  </div>
-
-  <div class="span-4 last">
-    <div class="box">
-      <h3><%= t('lesson.index.third_title') %></h3>
-      <%= image_tag("icons/hospital_64.jpg", :class => 'box-image') %>
-      <p><%= t('lesson.index.third_text') %></p>
-      <p><%= link_to "#{t('general.company')} for Institutions", page_path('firehoze_for_schools') %></p>
-    </div>
-  </div>
 </div>
 

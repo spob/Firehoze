@@ -26,7 +26,9 @@ ActionController::Routing::Routes.draw do |map|
                              :edit_privacy => :get,
                              :request_instructor_reg_code => :post,
                              :edit_venture => :get,
-                             :update_venture =>:put },
+                             :update_venture =>:put,
+                             :create_venture => :put,
+                             :venture_wizard_step1 => :get },
                 :collection => { :instructor_agreement => :get }
   map.resources :acquire_lessons, :only => [ :create, :new ],
                 :collection => { :ajaxed => :get }

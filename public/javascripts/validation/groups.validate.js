@@ -44,6 +44,12 @@ $(document).ready(function() {
     $("#group_private").click(function() {
         enable_disable_free_lessons();
     });
+
+    // enable/disable contest dates
+    enable_disable_contest_dates();
+    $("#group_contest").click(function() {
+        enable_disable_contest_dates();
+    });
 });
 
 function enable_disable_free_lessons() {
@@ -51,4 +57,17 @@ function enable_disable_free_lessons() {
     if (!$('#group_private')[0].checked) {
         $('#group_free_lessons_to_members')[0].checked = false
     }
+}
+
+function enable_disable_contest_dates() {
+    $('#group_starts_at_1i')[0].disabled = !$('#group_contest')[0].checked;
+    $('#group_starts_at_2i')[0].disabled = !$('#group_contest')[0].checked;
+    $('#group_starts_at_3i')[0].disabled = !$('#group_contest')[0].checked;
+    $('#group_starts_at_4i')[0].disabled = !$('#group_contest')[0].checked;
+    $('#group_starts_at_5i')[0].disabled = !$('#group_contest')[0].checked;
+    $('#group_ends_at_1i')[0].disabled = !$('#group_contest')[0].checked;
+    $('#group_ends_at_2i')[0].disabled = !$('#group_contest')[0].checked;
+    $('#group_ends_at_3i')[0].disabled = !$('#group_contest')[0].checked;
+    $('#group_ends_at_4i')[0].disabled = !$('#group_contest')[0].checked;
+    $('#group_ends_at_5i')[0].disabled = !$('#group_contest')[0].checked;
 }

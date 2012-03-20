@@ -5,15 +5,15 @@ class UsersController < ApplicationController
   before_filter :require_no_user, :only => [ :new, :create ]
   before_filter :require_user, :except => [ :new, :create, :show, :user_agreement ]
   before_filter :find_user, :only => [ :clear_avatar, :edit, :show_admin, :private, :reset_password, :update,
-                                       :update_instructor, :update_privacy, :update_avatar, :update_roles ]
+                                       :update_instructor, :update_privacy, :update_avatar, :update_roles, :create_venture ]
 
   permit ROLE_ADMIN, :only => [ :clear_avatar, :private, :reset_password, :update_avatar,
-                                :update_privacy, :update_roles, :update_instructor, :index ]
+                                :update_privacy, :update_roles, :update_instructor, :index, :create_venture ]
   permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR}", :only => [ :edit, :update ]
   permit "#{ROLE_ADMIN} or #{ROLE_MODERATOR} or #{ROLE_COMMUNITY_MGR}", :only => [ :list, :show_admin ]
 
   verify :method => :post, :only => [:create, :clear_avatar, :reset_password ], :redirect_to => :home_path
-  verify :method => :put, :only => [ :update, :update_privacy, :update_avatar, :update_roles, :update_instructor ], :redirect_to => :home_path
+  verify :method => :put, :only => [ :update, :update_privacy, :update_avatar, :update_roles, :update_instructor, :create_venture ], :redirect_to => :home_path
 
   layout :layout_for_action
 
