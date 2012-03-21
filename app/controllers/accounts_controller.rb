@@ -272,19 +272,33 @@ class AccountsController < ApplicationController
         private_group.description = "This group is for private content for the " + @user.venture_name + " venture."
         private_group.tag_list.add("venture")
         private_group.private = true
+
+        # save the groups
         public_group.save!
         GroupMember.create!(:user => current_user, :group => public_group, :member_type => OWNER,
                                                 :activity_compiled_at => Time.now)
         private_group.save!
         GroupMember.create!(:user => current_user, :group => private_group, :member_type => OWNER,
                                 :activity_compiled_at => Time.now)
-#        lesson = Lesson.new
-#        lesson.instructor = current_user
-#        lesson.
 
+        lesson = create_lesson(@user.venture_name + " - The Team", "Meet that team from " + @user.venture_name + ".")
+        lesson.save!
+        public_group.group_lessons.create!(:user => current_user, :lesson => lesson)
+
+        lesson = create_lesson(@user.venture_name + " - Elevator Pitch", @user.venture_name + " in 30 seconds or less.")
+        lesson.save!
+        public_group.group_lessons.create!(:user => current_user, :lesson => lesson)
+
+        lesson = create_lesson(@user.venture_name + " - Vision", @user.venture_name + " vision of the future.")
+        lesson.save!
+        public_group.group_lessons.create!(:user => current_user, :lesson => lesson)
+
+        lesson = create_lesson(@user.venture_name + " - Market", "Get to know " + @user.venture_name + " market strategy.")
+        lesson.save!
+        private_group.group_lessons.create!(:user => current_user, :lesson => lesson)
       end
     rescue
-      render :action => "create_venture"
+      render :action => "venture_wizard_step1"
     else
       flash[:notice] = t 'venture.update_success'
       redirect_to my_stuff_my_firehoze_path(:anchor => :groups)
@@ -303,6 +317,17 @@ class AccountsController < ApplicationController
   end
 
   private
+
+  def create_lesson title, synopsis
+    lesson = Lesson.new
+    lesson.instructor = current_user
+    lesson.initial_free_download_count = 1000
+    lesson.title = title
+    lesson.synopsis = synopsis
+    lesson.category_id = @user.venture_category_id
+    lesson.tag_list.add("venture")
+    lesson
+  end
 
   def set_venture_model
     @user.venture_name = params[:user][:venture_name]

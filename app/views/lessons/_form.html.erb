@@ -58,12 +58,10 @@
       </span>
           <span class="help">(use commas to separate multiple tags)</span>
         </li>
-        <% if new_lesson %>
             <li>
       <span>
         <%= f.label :video %>
-        <%= f.file_field :video, :title => "You must provide a video for your lesson", :class => "required" %>
-        <span class="required-field"></span>
+        <%= f.file_field :video, :title => "Choose the video file"%>
       </span>
             </li>
             <li>
@@ -73,7 +71,6 @@
         <span class="required-field"></span>
       </span>
             </li>
-        <% end %>
         <li>
       <span>
         <%= f.label :category %>
