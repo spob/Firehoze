@@ -19,12 +19,6 @@ instructor_link = [:instructor, {
     :location =>  instructor_my_firehoze_path
   }]
 
-venture_link = [:instructor, {
-        :name => t('venture.dashboard_title'),
-        :location =>  venture_my_firehoze_path
-}]
-
-top_level_navigation << venture_link
 top_level_navigation << instructor_link if current_user.verified_instructor?
 %>
 
