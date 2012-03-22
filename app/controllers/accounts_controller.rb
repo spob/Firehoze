@@ -75,6 +75,8 @@ class AccountsController < ApplicationController
             if @user.instructor_status == AUTHOR_STATUS_NO
               @user.instructor_status = AUTHOR_STATUS_INPROGRESS
             end
+            # we are skipping step 2, exclusivity/non exclusivity step
+            @user.payment_level = PaymentLevel.find(2)
             if @user.save
               instructor_signup_wizard
             else
@@ -356,7 +358,7 @@ class AccountsController < ApplicationController
     if user.author_agreement_accepted_on.nil?
       1
     elsif !user.payment_level
-      2
+      1
     elsif !user.address_provided?
       3
     elsif !user.verified_address_on
