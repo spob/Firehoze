@@ -125,7 +125,7 @@ class AccountsController < ApplicationController
   end
 
   def edit
-    session[:lesson_to_buy] = nil
+      session[:lesson_to_buy] = nil
   end
 
   def edit_instructor
