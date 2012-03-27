@@ -204,7 +204,8 @@ en:
     calc_thumb_url_start: Retrieving thumbnail URL
     conversion_end_success: Video transcoding completed successfully
     conversion_triggered: Video conversion started
-    created: Your how-to created and your video has been submitted for processing. You should receive notification when your how-to video is ready for viewing.
+    created_video: Your lesson has been created and your video has been submitted for processing. You should receive notification when your how-to video is ready for viewing.
+    created_no_video: Your lesson entry has been created.  You must upload a video for it to be viewable by someone.  You can add a video by editing the lesson.
     create_lesson: Create How-to
     discussion: Discussion
     edit: Edit
@@ -227,7 +228,8 @@ en:
     tagged_with: How-Tos tagged with
     trigger_conversion_end: Video transcoding started
     trigger_conversion_start: About to trigger video conversion
-    updated: How-to updated
+    updated_no_video: Your lesson entry has been updated.  You must upload a video for it to be viewable by someone.
+    updated_video: Your lesson has been updated and your video has been submitted for processing. You should receive notification when your how-to video is ready for viewing.
     watch: Watch
     watch_for_free: Watch For Free
     must_logon_to_watch: Please sign in or signup for an account in order to watch this video

@@ -9,6 +9,7 @@ development:
   aws_s3_images_bucket: images.northeastern.tribalwire.com
 
 test:
+  # your access key credentials.  You can get at these from S3 console -> Security Credentials -> Access Key
   access_key_id: xyz
   secret_access_key: 123
   # The name of the Amazon S3 bucket where raw videos you be uploaded
@@ -18,6 +19,7 @@ test:
   aws_s3_images_bucket: images.firehoze.com
 
 production:
+  # your access key credentials.  You can get at these from S3 console -> Security Credentials -> Access Key
   access_key_id: AKIAIIERSIK7DAW3RXFA
   secret_access_key: TG3i7TZHRt6uiw6tjcJn4b7ZsxFs8uOaJwHJ5HCB
   # The name of the Amazon S3 bucket where raw videos you be uploaded
