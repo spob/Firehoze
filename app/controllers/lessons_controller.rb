@@ -100,14 +100,10 @@ class LessonsController < ApplicationController
       @lesson.initial_free_download_count = params[:initial_free_download_count].try('to_i')
       Lesson.transaction do
         if @lesson.save
-          if video_param != nil
-            video = OriginalVideo.new({:lesson => @lesson, :video => video_param})
-            video.save!
-            @lesson.trigger_conversion(conversion_notify_lessons_url)
-            flash[:notice] = t 'lesson.created_video'
-          else
-            flash[:notice] = t 'lesson.created_no_video'
-          end
+          video = OriginalVideo.new({:lesson => @lesson, :video => video_param})
+          video.save!
+          @lesson.trigger_conversion(conversion_notify_lessons_url)
+          flash[:notice] = t 'lesson.created'
           redirect_to lesson_path(@lesson)
         else
           render :action => :new
@@ -218,34 +214,16 @@ class LessonsController < ApplicationController
 
   def update
     if @lesson.can_edit? current_user
-      video_param = params[:lesson].delete("video")
-      video = nil
-      Lesson.transaction do
-        if @lesson.update_attributes(params[:lesson])
-          if video_param != nil
-            video = OriginalVideo.new({:lesson => @lesson, :video => video_param})
-            video.save!
-            @lesson.trigger_conversion(conversion_notify_lessons_url)
-            flash[:notice] = t 'lesson.updated_video'
-          else
-            flash[:notice] = t 'lesson.updated_no_video'
-          end
-          redirect_to lesson_path(@lesson)
-        else
-          render :action => :edit
-        end
+      if @lesson.update_attributes(params[:lesson])
+        flash[:notice] = t 'lesson.updated'
+        redirect_to lesson_path(@lesson)
+      else
+        render :action => :edit
       end
     else
       flash[:error] = t 'lesson.access_message'
       redirect_to lesson_path(@lesson)
     end
-  rescue Exception => e
-    # Creating the original video failed...the lesson should have rolled back. Let's trap the error. This is
-    # often because a wrong content type was attempted to be loaded
-    content_type_str = ""
-    content_type_str = "(content type: #{video.video.content_type})" unless video.nil?
-    flash[:error] = "#{e.message} #{content_type_str}"
-    render :action => :edit
   end
 
 # update lesson status via ajax
