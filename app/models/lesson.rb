@@ -408,6 +408,10 @@ END
     Notifier.deliver_new_followed_lesson(to_user, lesson)
   end
 
+  def originalVideoAssigned?
+    return original_video != nil
+  end
+
   private
 
   Tag.destroy_unused = true

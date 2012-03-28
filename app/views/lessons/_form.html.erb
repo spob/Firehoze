@@ -58,13 +58,15 @@
       </span>
           <span class="help">(use commas to separate multiple tags)</span>
         </li>
-            <li>
+        <% if !@lesson.originalVideoAssigned? %>
+        <li>
       <span>
         <%= f.label :video %>
         <%= f.file_field :video, :title => "Choose the video file"%>
       </span>
-            </li>
-            <li>
+       </li>
+        <% end %>
+       <li>
       <span>
         <%= f.label :initial_free_download_count, 'Free Downloads' %>
         <%= select_tag :initial_free_download_count, options_for_select(LessonsController.free_download_counts), :class => 'required' %>

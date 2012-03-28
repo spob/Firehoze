@@ -15,7 +15,7 @@ $(document).ready(function() {
         submitHandler: function(form) {
             $(form).find(":submit").attr("disabled", true).attr("value", "Please wait ...");
             window.scroll(0,0);
-            if (!$("#lesson_video").empty) {
+            if (form.lesson_video.value != '') {
                 $('.upload_warning').show();
             }
             form.submit();
@@ -32,7 +32,7 @@ $(document).ready(function() {
         success: "valid",
         submitHandler: function(form) {
             $(form).find(":submit").attr("disabled", true).attr("value", "Please wait ...");
-            if (!$("#lesson_video").empty) {
+            if (form.lesson_video.value != '') {
                 $('.upload_warning').show();
             }
             form.submit();
