@@ -13,3 +13,4 @@ class CreatePrizes < ActiveRecord::Migration
     drop_table :prizes
   end
 end
+

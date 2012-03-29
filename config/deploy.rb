@@ -13,6 +13,11 @@ elsif ENV['DEPLOY'] == 'NORTHEASTERN'
   set :domain, '173.246.41.242'
   set :branch, "northeastern"
   set :application, 'TribalWire'
+elsif ENV['DEPLOY'] == 'PRIZETUBE'
+  puts "*** Deploying to the \033[1;41m  PRIZETUBE  \033[0m servers!"
+  set :domain, '173.246.45.25'
+  set :branch, "prizetube"
+  set :application, 'Prizetube'
 elsif ENV['DEPLOY'] == 'VLAUNCH'
   puts "*** Deploying to the \033[1;41m  VLAUNCH  \033[0m servers!"
   set :domain, '174.122.137.79'

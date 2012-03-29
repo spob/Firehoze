@@ -1,5 +1,5 @@
 development:
-  config_file: "/Users/Pete/Documents/Projects/RISE/src/Firehoze/config/development.sphinx.conf"
+  config_file: "/Users/Pete/Documents/Projects/jumpseat/src/Firehoze/config/development.sphinx.conf"
   bin_path: "/usr/local/bin"
   searchd_binary_name: searchd
   indexer_binary_name: indexer

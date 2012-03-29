@@ -3,7 +3,7 @@
 development:  
    adapter: mysql
    encoding: utf8
-   database: firehoze_dev
+   database: prizetube_dev
    username: root
 #development:
 #  adapter: sqlite3
@@ -16,11 +16,11 @@ development:
 test:
   adapter: mysql
   encoding: utf8
-  database: firehoze_test
+  database: prizetube_test
   username: root
 
 production:
   adapter: mysql
   encoding: utf8
-  database: firehoze_production
+  database: prizetube_production
   username: root
