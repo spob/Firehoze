@@ -36,9 +36,11 @@ class Prizetube::HomeController < ApplicationController
   end
 
   def find_most_popular_contests
+
   end
 
   def find_upcoming_contests
+
   end
 
   def find_branded_contests
