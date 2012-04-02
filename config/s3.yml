@@ -4,7 +4,9 @@ development:
   secret_access_key: TG3i7TZHRt6uiw6tjcJn4b7ZsxFs8uOaJwHJ5HCB
   # The name of the Amazon S3 bucket where raw videos you be uploaded
   aws_s3_input_video_bucket: input.northeastern.tribalwire.com
+  # The name of the Amazon S3 bucket where the output video will be put by zencoder
   aws_s3_output_video_bucket: output.northeastern.tribalwire.com
+  # The name of the Amazon S3 bucket where the output thumbnail will be put by zencoder.
   aws_s3_thumbs_bucket: thumbs.northeastern.tribalwire.com
   aws_s3_images_bucket: images.northeastern.tribalwire.com
 

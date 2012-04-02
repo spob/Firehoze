@@ -63,9 +63,11 @@ CONFIG_AWS_ACCESS_KEY_ID = 'access_key_id'
 CONFIG_AWS_SECRET_ACCESS_KEY = 'secret_access_key'
 
 ALL_USERS_AWS_ID = 'http://acs.amazonaws.com/groups/global/AllUsers'
-# this value is from the Amazon S3 console.  S3 console -> Security Credentials -> Account Identifiers -> View canonical user ID
-FLIX_CLOUD_AWS_ID = 'ff3337ce53e518e762bb974d99e0dcc6f4533769cb2e38e6732824e994f6b131'
-FLIX_API_KEY = '495da1d21611e554e5779e08aed30aca'
+# this value is the canonical id of the zencoder user id that zencoder will use to download the source video to encode from the S3 input bucket.
+# you can get it from the zencoder docs that talk about the permissions to set on the S3 input bucket.
+FLIX_CLOUD_AWS_ID = '6c8583d84664a381db0c6af0e79b285ede571885fbe768e7ea50e5d3760597dd'
+# get this value by logging into zencoder then selecting API in the menu option at the top.  This is the value for the full access key.
+FLIX_API_KEY = 'e7a347f1b99adcd268aecd30d3e998a9'
 FLIX_FULL_RECIPE_ID = 582
 FLIX_PREVIEW_RECIPE_ID = 581
 WATERMARK_URL = 'http://ableroad.firehoze.com/images/videos/watermark-video-embed-24.png'
