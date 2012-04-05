@@ -34,6 +34,16 @@ module GroupsHelper
     end
   end
 
+  def show_promote_demote_judge_link(group_member)
+    if group_member.group.owned_by?(current_user)
+      if group_member.member_type == MEMBER
+        link_to "Promote to Judge", promote_to_judge_group_member_path(group_member), :method => :post
+      elsif group_member.member_type == JUDGE
+        link_to "Remove as Judge", demote_from_judge_group_member_path(group_member), :method => :post
+      end
+    end
+  end
+
   def show_edit_link(group, user)
     if group.owned_by?(user)
       link_to content_tag(:span, "Edit"), edit_group_path(group), :class => :minibutton

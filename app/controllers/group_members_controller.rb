@@ -2,8 +2,8 @@ class GroupMembersController < ApplicationController
   before_filter :require_logged_in, :except => [:new_private]
   before_filter :require_user, :only  => [:new_private]
   prepend_before_filter :find_group, :only => [:create, :destroy]
-  prepend_before_filter :find_group_member, :only => [ :remove, :promote, :demote, :create_private ]
-  verify :method => :post, :only => [:create, :promote, :demote, :create_private ], :redirect_to => :home_path
+  prepend_before_filter :find_group_member, :only => [ :remove, :promote, :demote, :create_private, :promote_to_judge, :demote_from_judge ]
+  verify :method => :post, :only => [:create, :promote, :demote, :create_private, :promote_to_judge, :demote_to_judge ], :redirect_to => :home_path
   verify :method => :delete, :only => [:destroy, :remove ], :redirect_to => :home_path
 
   def create
@@ -21,8 +21,26 @@ class GroupMembersController < ApplicationController
     redirect_to group_path(@group_member.group)
   end
 
+  def promote_to_judge
+    if change_member_type(@group_member, current_user, MEMBER, JUDGE)
+      flash[:notice] = t('group.promote_success', :user => @group_member.user_login)
+    else
+      flash[:error] = t('general.no_permissions')
+    end
+    redirect_to group_path(@group_member.group)
+  end
+
   def demote
     if change_member_type(@group_member, current_user, MODERATOR, MEMBER)
+      flash[:notice] = t('group.demote_success', :user => @group_member.user_login)
+    else
+      flash[:error] = t('general.no_permissions')
+    end
+    redirect_to group_path(@group_member.group)
+  end
+
+  def demote_from_judge
+    if change_member_type(@group_member, current_user, JUDGE, MEMBER)
       flash[:notice] = t('group.demote_success', :user => @group_member.user_login)
     else
       flash[:error] = t('general.no_permissions')
