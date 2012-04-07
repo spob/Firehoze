@@ -45,6 +45,13 @@ CONFIG_AWS_S3_IMAGES_BUCKET = 'aws_s3_images_bucket'
 CONFIG_ZOMBIE_VIDEO_PROCESS_MINUTES = 'zombie_video_process_minutes'
 CONFIG_NUMBER_OF_BUY_PATTERNS_TO_SHOW = 'number_of_buy_patterns_to_show'
 
+CONFIG_CDN_OUTPUT_SERVER = 'cdn_output_server'
+CONFIG_CDN_THUMBS_SERVER = 'cdn_thumbs_server'
+CONFIG_FTP_CDN_PATH = 'ftp_cdn_path'
+CONFIG_FTP_CDN_USER = 'ftp_cdn_user'
+CONFIG_FTP_CDN_PASSWORD = 'ftp_cdn_password'
+CONFIG_CDN_VIDEO_BUCKET = 'cdn_video_bucket'
+
 CONFIG_RESTRICT_REGISTRATION = 'restrict_registration'
 CONFIG_ALLOW_UNRECOGNIZED_ACCESS  = 'allow_unrecognized_access'
 CONFIG_CRAWLER_ACCESS  = 'crawler_access'
@@ -58,11 +65,17 @@ CONFIG_AWS_ACCESS_KEY_ID = 'access_key_id'
 CONFIG_AWS_SECRET_ACCESS_KEY = 'secret_access_key'
 
 ALL_USERS_AWS_ID = 'http://acs.amazonaws.com/groups/global/AllUsers'
+# this value is the canonical id of the zencoder user id that zencoder will use to download the source video to encode from the S3 input bucket.
+# you can get it from the zencoder docs that talk about the permissions to set on the S3 input bucket.
 FLIX_CLOUD_AWS_ID = '6c8583d84664a381db0c6af0e79b285ede571885fbe768e7ea50e5d3760597dd'
-FLIX_API_KEY = '495da1d21611e554e5779e08aed30aca'
+# get this value by logging into zencoder then selecting API in the menu option at the top.  This is the value for the full access key.
+FLIX_API_KEY = 'e7a347f1b99adcd268aecd30d3e998a9'
 FLIX_FULL_RECIPE_ID = 582
 FLIX_PREVIEW_RECIPE_ID = 581
 WATERMARK_URL = 'http://ableroad.firehoze.com/images/videos/watermark-video-embed-24.png'
+
+OUTPUT_FTP_USERNAME = 'output'
+OUTPUT_FTP_PASSWORD = 'gxdk4v27zmc2th6amguw58'
 
 # Video statuses
 VIDEO_STATUS_PENDING = "Pending"

@@ -56,9 +56,11 @@ config.after_initialize do
   # Configure the bullet memory checking gem http://github.com/flyerhzm/bullet
   Bullet.enable = false
   Bullet.alert = true
-  Bullet.bullet_logger = true
+  Bullet.bullet_logger = false
   Bullet.console = true
 #  Bullet.growl = true
-  Bullet.rails_logger = true
+  Bullet.rails_logger = false
   Bullet.disable_browser_cache = true
 end
+
+Paperclip.options[:log_command] = true

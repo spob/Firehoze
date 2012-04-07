@@ -20,17 +20,16 @@
   </div>
 </div>
 <div class="span-8 left page-height">
-  <div span-1 first>
-
-  </div>
-  <div span-1 first>
-
-  </div>
-
-  <div span-1 last>
-
-  </div>
-
+  <%= will_paginate @most_popular_contests, :param_name => :most_popular_contests_page %>
+</div>
+<div class="span-8 left page-height">
+  <%= will_paginate @upcoming_contests, :param_name => :upcoming_contests_page %>
+</div>
+<div class="span-8 left page-height">
+  <%= will_paginate @branded_contests, :param_name => :branded_contests_page %>
+</div>
+<div class="span-8 left page-height">
+  <%= will_paginate @ending_soon_contests, :param_name => :ending_soon_contests_page %>
 </div>
 <div class="span-4 last">
   <div class="widget-box">

@@ -41,6 +41,8 @@
 #    * In Step #2 above, when we trigger the conversion to start, I also create a periodic job that fires after a
 #      set amount of time (an hour I think?). when that job wakes up, it checks to see if the video has completed
 #      processing. If it hasn't, it will alert the admin via email that something may have gone wrong.
+#    * PWC - You can run zcnotify to act as a bridge between zcfetcher and your local system.  It polls zencoder and
+#      Does the call to the notify URL that you provide.
 class Lesson < ActiveRecord::Base
   acts_as_taggable
 

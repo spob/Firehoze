@@ -59,6 +59,20 @@ number_of_buy_patterns_to_show: 30
 # s3 directory name provides the name of the top level directory within Amazon buckets for storing videos
 s3_directory: default
 
+# cdn server
+cdn_output_server: cdn.firehoze.com
+cdn_thumbs_server: thumbscdn.firehoze.com
+
+# ftp path where transcoded files should be uploaded
+ftp_cdn_path: upload-ftp.simplecdn.com
+
+ftp_cdn_user: output
+
+ftp_cdn_password: gxdk4v27zmc2th6amguw58
+
+# cdn video bucket
+cdn_video_bucket: output
+
 # If true, then users must enter a security code in order to register. This is used for beta instances
 # which we don't want to open to the general public
 restrict_registration: false

@@ -1,11 +1,14 @@
 development:
-  access_key_id: AKIAJHAN3EBVVY6W7MVA
-  secret_access_key: 0vqwU6PWTsJYWnKu0YZX0buELOL491RAMUGGiW10
+  # your access key credentials.  You can get at these from S3 console -> Security Credentials -> Access Key
+  access_key_id: AKIAIIERSIK7DAW3RXFA
+  secret_access_key: TG3i7TZHRt6uiw6tjcJn4b7ZsxFs8uOaJwHJ5HCB
   # The name of the Amazon S3 bucket where raw videos you be uploaded
   aws_s3_input_video_bucket: input.prizetube.com
+   # The name of the Amazon S3 bucket where the output video will be put by zencoder
   aws_s3_output_video_bucket: output.prizetube.com
+  # The name of the Amazon S3 bucket where the output thumbnail will be put by zencoder.
   aws_s3_thumbs_bucket: thumbs.prizetube.com
-  aws_s3_images_bucket: output.prizetube.com
+  aws_s3_images_bucket: images.prizetube.com
 
 test:
   access_key_id: xyz
