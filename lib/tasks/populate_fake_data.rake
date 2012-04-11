@@ -363,20 +363,21 @@ namespace :db do
   end
 
   def blow_away_lessons
-    ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
+    ActiveRecord::Base.connection.execute("SET FOREIGN_KEY_CHECKS = 0;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE group_lessons;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_attachments;")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE free_credits;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE skus;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE helpfuls;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE video_status_changes;")
-    ActiveRecord::Base.connection.execute("TRUNCATE TABLE free_credits;")
     ActiveRecord::Base.connection.execute("DELETE FROM videos WHERE TYPE = 'ProcessedVideo';")
     ActiveRecord::Base.connection.execute("DELETE FROM videos WHERE converted_from_video_id IS NOT NULL;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE videos;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_visits;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE lessons;")
+    ActiveRecord::Base.connection.execute("SET FOREIGN_KEY_CHECKS = 1;")
   end
 
   def create_category name, parent, sort
