@@ -1,5 +1,6 @@
 class LessonsController < ApplicationController
   include SslRequirement
+#  include Smerf
 
   if APP_CONFIG[CONFIG_ALLOW_UNRECOGNIZED_ACCESS]
     before_filter :require_user, :only => [:new, :create, :edit, :update, :unreject]
@@ -394,6 +395,12 @@ class LessonsController < ApplicationController
     else
       lessons_by_category
     end
+  end
+
+  def score_card
+    logger.debug "score_card"
+    self.smerf_user_id = current_user.id
+    render 'testsmerf'
   end
 
   private

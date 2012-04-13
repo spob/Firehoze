@@ -22,7 +22,7 @@ namespace :db do
       require 'faker'
 
       [RolesUser, UserLogon].each(&:delete_all)
-      params = { :active => true, :language => 'en', :password => "pa$$word", :password_confirmation => "pa$$word", :password_salt => 'as;fdaslkjasdfn', :time_zone =>Time.zone.name }
+      params = { :active => true, :language => 'en', :password => "changeme", :password_confirmation => "changeme", :password_salt => 'as;fdaslkjasdfn', :time_zone =>Time.zone.name }
       developers_personal_info.each do |dev|
         admin = User.new params
         admin.email = dev[0]
@@ -84,7 +84,7 @@ namespace :db do
 
     desc "Generate some lessons"
     task :lessons => :environment do
-      APP_CONFIG[CONFIG_S3_DIRECTORY] = ENV['s3_dir']
+      #APP_CONFIG[CONFIG_S3_DIRECTORY] = ENV['s3_dir']
       puts "=== Generating Lessons ==="
       require 'populator'
       require 'faker'
@@ -240,7 +240,7 @@ namespace :db do
     desc "Generate some credits"
     task :credits => :environment do
       puts "=== Generating Credits ==="
-      ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
+      blow_away_credits
 
       count = ENV['count'] ? ENV['count'] : 10
 
@@ -273,7 +273,7 @@ namespace :db do
       require 'populator'
       require 'faker'
 
-      ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
+      blow_away_reviews
 
       Lesson.all.each do |lesson|
         User.all.each do |user|
@@ -295,8 +295,7 @@ namespace :db do
 
     desc "truncates tables"
     task :truncate => :environment do
-
-
+      ActiveRecord::Base.connection.execute("SET FOREIGN_KEY_CHECKS = 0;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE periodic_jobs;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_attachments;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE activities;")
@@ -334,6 +333,7 @@ namespace :db do
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE groups;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE instructor_follows;")
       ActiveRecord::Base.connection.execute("TRUNCATE TABLE users;")
+      ActiveRecord::Base.connection.execute("SET FOREIGN_KEY_CHECKS = 1;")
     end
 
     desc "reset all passwords"
@@ -345,6 +345,18 @@ namespace :db do
   end
 
   private
+
+  def blow_away_reviews
+    ActiveRecord::Base.connection.execute("SET FOREIGN_KEY_CHECKS = 0;")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
+    ActiveRecord::Base.connection.execute("SET FOREIGN_KEY_CHECKS = 1;")
+  end
+
+  def blow_away_credits
+    ActiveRecord::Base.connection.execute("SET FOREIGN_KEY_CHECKS = 0;")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
+    ActiveRecord::Base.connection.execute("SET FOREIGN_KEY_CHECKS = 1;")
+  end
 
   def developers_personal_info
     [["sys@firehoze.com", "admin", "person"], ["rich@firehoze.com", "Rich", "Sturim"], ["bob@firehoze.com", "Bob", "Sturim"]]
@@ -363,20 +375,21 @@ namespace :db do
   end
 
   def blow_away_lessons
-    ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
+    ActiveRecord::Base.connection.execute("SET FOREIGN_KEY_CHECKS = 0;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE group_lessons;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_attachments;")
+    ActiveRecord::Base.connection.execute("TRUNCATE TABLE free_credits;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE credits;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE skus;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE helpfuls;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE reviews;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE video_status_changes;")
-    ActiveRecord::Base.connection.execute("TRUNCATE TABLE free_credits;")
     ActiveRecord::Base.connection.execute("DELETE FROM videos WHERE TYPE = 'ProcessedVideo';")
     ActiveRecord::Base.connection.execute("DELETE FROM videos WHERE converted_from_video_id IS NOT NULL;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE videos;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE lesson_visits;")
     ActiveRecord::Base.connection.execute("TRUNCATE TABLE lessons;")
+    ActiveRecord::Base.connection.execute("SET FOREIGN_KEY_CHECKS = 1;")
   end
 
   def create_category name, parent, sort

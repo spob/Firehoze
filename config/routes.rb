@@ -1,4 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :smerf_forms
+  map.resources :smerf_test
+
 
   map.home 'home', :controller => 'home', :action => 'show'
   map.resources :my_firehoze, :only => [ :index ],
@@ -86,7 +89,8 @@ ActionController::Routing::Routes.draw do |map|
                         :show_groups => :get,
                         :watch => :get,
                         :unreject => :post,
-                        :refresh_video_status => :post
+                        :refresh_video_status => :post,
+                        :score_card => :get
                 },
                 :collection => {
                         :conversion_notify => :post,

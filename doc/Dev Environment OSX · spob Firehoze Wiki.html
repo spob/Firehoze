@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://github.com/spob/Firehoze/wiki/Dev-Environment-OSX -->
+<html class=" js flexbox flexbox-legacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths webkit"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# githubog: http://ogp.me/ns/fb/githubog#"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Dev Environment OSX · spob/Firehoze Wiki</title>
+    <link rel="search" type="application/opensearchdescription+xml" href="https://github.com/opensearch.xml" title="GitHub">
+    <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
+    <link rel="shortcut icon" href="https://github.com/favicon.ico" type="image/x-icon">
+
+    
+    
+
+    <meta content="authenticity_token" name="csrf-param">
+<meta content="T7QJQMHFUPyCRLuRfwt6A0FYcg0an8bs9tB5vGnv7d4=" name="csrf-token">
+
+    <link href="./Dev Environment OSX · spob Firehoze Wiki_files/github-902420bd589a8b9b76e4124fa37b04d3749da803.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="./Dev Environment OSX · spob Firehoze Wiki_files/github2-d60e8ff9ae61ed2bf441f513d94ebd6d6145dd55.css" media="screen" rel="stylesheet" type="text/css">
+    
+
+    <script type="text/javascript" async="" id="gauges-tracker" data-site-id="4f5634b5613f5d0429000010" src="./Dev Environment OSX · spob Firehoze Wiki_files/track.js"></script><script src="./Dev Environment OSX · spob Firehoze Wiki_files/jquery-225576cef50ef2097c9f9fbcd8953c1572544611.js" type="text/javascript"></script>
+    <script src="./Dev Environment OSX · spob Firehoze Wiki_files/github-e1487cc577109893e913f51eb3eeccc1f6553d67.js" type="text/javascript"></script><script type="text/javascript" async="" src="./Dev Environment OSX · spob Firehoze Wiki_files/ga.js"></script>
+    
+
+      <script src="./Dev Environment OSX · spob Firehoze Wiki_files/wiki-6e0d12292b943f833e925fcae91f7429bc3eebdd.js" type="text/javascript"></script>
+    <meta property="og:title" content="Firehoze">
+    <meta property="og:type" content="githubog:gitrepository">
+    <meta property="og:url" content="https://github.com/spob/Firehoze">
+    <meta property="og:image" content="https://a248.e.akamai.net/assets.github.com/images/gravatars/gravatar-140.png?1329275856">
+    <meta property="og:site_name" content="GitHub">
+    <meta property="og:description" content="Firehoze Repository">
+
+    <meta name="description" content="Firehoze Repository">
+  <link href="https://github.com/spob/Firehoze/commits/master.atom?login=pcordone&token=d00dfc3cc2b8f1b75eee8545ce534c02" rel="alternate" title="Recent Commits to Firehoze:master" type="application/atom+xml">
+
+  </head>
+
+
+  <body class="logged_in   vis-private env-production  webkit" data-blob-contribs-enabled="yes">
+    <div id="wrapper">
+
+    
+    
+    
+
+      <div id="header" class="true clearfix">
+        <div class="container clearfix">
+          <a class="site-logo" href="https://github.com/">
+            <!--[if IE]>
+            <img alt="GitHub" class="github-logo" src="https://a248.e.akamai.net/assets.github.com/images/modules/header/logov7.png?1323882717" />
+            <img alt="GitHub" class="github-logo-hover" src="https://a248.e.akamai.net/assets.github.com/images/modules/header/logov7-hover.png?1324325358" />
+            <![endif]-->
+            <img alt="GitHub" class="github-logo-4x" height="30" src="./Dev Environment OSX · spob Firehoze Wiki_files/logov7@4x.png">
+            <img alt="GitHub" class="github-logo-4x-hover" height="30" src="./Dev Environment OSX · spob Firehoze Wiki_files/logov7@4x-hover.png">
+          </a>
+
+              
+    <div class="topsearch ">
+<form accept-charset="UTF-8" action="https://github.com/search" id="top_search_form" method="get"><input name="utf8" type="hidden" value="✓">        <a href="https://github.com/search" class="advanced-search tooltipped downwards" title="Advanced Search"><span class="mini-icon advanced-search"></span></a>
+        <div class="search placeholder-field js-placeholder-field">
+          <label class="placeholder" for="global-search-field" style="display: block; ">Search…</label>
+          <input type="text" class="search my_repos_autocompleter" id="global-search-field" name="q" results="5" spellcheck="false" autocomplete="off" data-autocomplete="my-repos-autocomplete">
+          <div id="my-repos-autocomplete" class="autocomplete-results">
+            <ul class="js-navigation-container"></ul>
+          </div>
+          <input type="submit" value="Search" class="button">
+          <span class="mini-icon search-input"></span>
+        </div>
+        <input type="hidden" name="type" value="Everything">
+        <input type="hidden" name="repo" value="">
+        <input type="hidden" name="langOverride" value="">
+        <input type="hidden" name="start_value" value="1">
+</form>      <ul class="top-nav">
+          <li class="explore"><a href="https://github.com/explore">Explore</a></li>
+          <li><a href="https://gist.github.com/">Gist</a></li>
+          <li><a href="https://github.com/blog">Blog</a></li>
+        <li><a href="http://help.github.com/">Help</a></li>
+      </ul>
+    </div>
+
+
+            
+
+
+  <div id="userbox">
+    <div id="user">
+      <a href="https://github.com/pcordone"><img height="20" src="./Dev Environment OSX · spob Firehoze Wiki_files/c53f3aba70abf423749974916b6a994e" width="20"></a>
+      <a href="https://github.com/pcordone" class="name">pcordone</a>
+    </div>
+    <ul id="user-links">
+      <li>
+        <a href="https://github.com/inbox/notifications" id="notifications" class="tooltipped downwards" title="Notifications">
+          <span class="mini-icon notifications"></span>
+          <span class="unread_count">3</span>
+        </a>
+      </li>
+      <li><a href="https://github.com/settings/profile" id="settings" class="tooltipped downwards" title="Account Settings"><span class="mini-icon account-settings"></span></a></li>
+      <li>
+          <a href="https://github.com/logout" data-method="post" id="logout" class="tooltipped downwards" title="Log Out"><span class="mini-icon logout"></span></a>
+      </li>
+    </ul>
+  </div>
+
+
+
+          
+        </div>
+      </div>
+
+      
+
+            <div class="site" itemscope="" itemtype="http://schema.org/WebPage">
+      <div class="container">
+        <div class="pagehead repohead instapaper_ignore readability-menu">
+        <div class="title-actions-bar">
+          
+
+
+
+              <ul class="pagehead-actions">
+
+
+          <li class="js-toggler-container watch-button-container ">
+            <a href="https://github.com/spob/Firehoze/toggle_watch" class="minibutton btn-watch watch-button js-toggler-target" data-method="post" data-remote="true" rel="nofollow"><span><span class="icon"></span>Watch</span></a>
+            <a href="https://github.com/spob/Firehoze/toggle_watch" class="minibutton btn-watch unwatch-button js-toggler-target" data-method="post" data-remote="true" rel="nofollow"><span><span class="icon"></span>Unwatch</span></a>
+          </li>
+
+              <li><a href="https://github.com/spob/Firehoze/fork" class="minibutton btn-fork fork-button" data-method="post" rel="nofollow"><span><span class="icon"></span>Fork</span></a></li>
+
+              <li class="nspr">
+                <a href="https://github.com/spob/Firehoze/pull/new/master" class="minibutton btn-pull-request "><span><span class="icon"></span>Pull Request</span></a>
+              </li>
+
+
+      <li class="repostats">
+        <ul class="repo-stats">
+          <li class="watchers ">
+            <a href="https://github.com/spob/Firehoze/watchers" title="Watchers" class="tooltipped downwards">
+              3
+            </a>
+          </li>
+          <li class="forks">
+            <a href="https://github.com/spob/Firehoze/network" title="Forks" class="tooltipped downwards">
+              2
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+          <h1 itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+            <span class="mini-icon private-repo"></span>
+<a href="https://github.com/spob" itemprop="url">            <span itemprop="title">spob</span>
+            </a> /
+            <strong><a href="https://github.com/spob/Firehoze" class="js-current-repository">Firehoze</a></strong>
+          </h1>
+        </div>
+
+          
+
+  <ul class="tabs">
+    <li><a href="https://github.com/spob/Firehoze" highlight="repo_sourcerepo_downloadsrepo_commitsrepo_tagsrepo_branches">Code</a></li>
+    <li><a href="https://github.com/spob/Firehoze/network" highlight="repo_network">Network</a>
+    </li><li><a href="https://github.com/spob/Firehoze/pulls" highlight="repo_pulls">Pull Requests <span class="counter">0</span></a></li>
+
+      <li><a href="https://github.com/spob/Firehoze/issues" highlight="repo_issues">Issues <span class="counter">0</span></a></li>
+
+      <li><a href="https://github.com/spob/Firehoze/wiki" class="selected" highlight="repo_wiki">Wiki <span class="counter">21</span></a></li>
+
+    <li><a href="https://github.com/spob/Firehoze/graphs" highlight="repo_graphsrepo_contributors">Stats &amp; Graphs</a></li>
+
+  </ul>
+
+  
+  
+  
+  <div class="subnav-bar">
+  <ul class="subnav">
+    <li><a href="https://github.com/spob/Firehoze/wiki">Home</a></li>
+    <li><a href="https://github.com/spob/Firehoze/wiki/_pages">Pages</a></li>
+    <li><a href="https://github.com/spob/Firehoze/wiki/_history">Wiki History</a></li>
+    <li><a href="https://github.com/spob/Firehoze/wiki/_access">Git Access</a></li>
+  </ul>
+</div>
+
+
+          
+
+        </div><!-- /.repohead -->
+
+        
+
+
+
+
+<div id="wiki-wrapper" class="page">
+<div id="head">
+  <h1 class="instapaper_title">Dev Environment OSX</h1>
+  <ul class="wiki-actions readability-extra">
+    <li class="gollum-minibutton">
+      <a href="https://github.com/spob/Firehoze/wiki/_new" class="minibutton btn-new-page bigger js-new-wiki-page"><span><span class="icon"></span>New Page</span></a>
+    </li>
+    <li class="gollum-minibutton"><a href="https://github.com/spob/Firehoze/wiki/Dev-Environment-OSX/_edit" class="minibutton bigger action-edit-page">
+       <span>Edit Page</span>
+     </a></li>
+    <li class="gollum-minibutton"><a href="https://github.com/spob/Firehoze/wiki/Dev-Environment-OSX/_history" class="minibutton bigger action-page-history">
+       <span>Page History</span>
+     </a></li>
+  </ul>
+</div>
+<div id="wiki-content">
+  <div class="wrap">
+  <div id="wiki-body" class="gollum-markdown-content instapaper_body">
+    <div class="markdown-body">
+      <p>This page captures a description of how I setup Ruby and Rails on OSX Lion 10.7.3 using XCode .  Keep in mind I was brand new to Ruby and Rails when I created this page.  I had a lot of issues getting Ruby working with rvm and mysql.  It took me about a week of screwing around.  Part of the problem is that when Apple released XCode 4.2 they changed the compiler from gcc-4.2.  These instructions should get you going; there may be variations that work, but I haven't tried them.</p>
+
+<h2>XCode Installation</h2>
+
+<p>XCode is a suite of tools developed by Apple for creating application for OS X and iOS. It includes GCC the Gnu Compiler Collection.</p>
+
+<ol>
+<li> XCode starting with Lion must be downloaded from the Mac App Store</li>
+<li> Follow instructions on this link to install gcc-4.2 compiler.  You can also install XCode 4.1 (you can have more than one copy of XCode installed) which still uses the gcc-4.2 compiler.  There is a way to select which XCode compiler is active at the command line.  I believe it is xcode_select.  I chose the link below:
+http://rocksolidwebdesign.com/notes-and-fixes/ruby-xcode/</li>
+</ol><h2>Homebrew Installation</h2>
+
+<p>Homebrew is a package manager for OS X. For more information here is the website <a href="http://mxcl.github.com/homebrew/">Homebrew Site</a></p>
+
+<ol>
+<li> Install brew by executing the following command in Terminal<code>/usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"</code>
+</li>
+</ol><h2>mySql Installation</h2>
+
+<p>mySql is an open source database application. For more information go to <a href="http://www.mysql.com/">mySql.com</a></p>
+
+<ol>
+<li><p>Install mysql via brew.  I tried installing mysql from the binary builds (.dmg) at the mysql site and was not able to get the mysql gem to build.  I literally lost 5 days screwing with this.  I tried all variations for the ruby environment to find the libraries.   I believe when you install mysql from the binary images, the dev libraries aren't include though it does dump files in include and lib folders, or what's more likely is that because the libraries aren't built on your system it causes issues when they try to load.  I think all of this has to do with Apple changing compilers from gcc to LLVM.  You could also try compiling mysql on your system and not installing via brew.  I suspect that will work, though I haven't tried it, and brew does make it pretty convient to install and compile from the source.
+<code>brew install -v mysql</code></p></li>
+<li><p>Create the mysql database.
+<code>mysql_install_db --verbose --user=</code>whoami<code>--basedir="$(brew --prefix mysql)" --datadir=/usr/local/var/mysql --tmpdir=/tmp</code></p></li>
+<li><p>You can start and stop the server with
+<code>mysql.server start</code>
+<code>mysql.server stop</code></p></li>
+</ol><h2>RVM Installation</h2>
+
+<p>RVM is an application that lets you manage multiple versions of Ruby and Rails on a single system. More information at  <a href="http://beginrescueend.com/">RVM Homepage</a>. You can install RVM at the system level or user level. </p>
+
+<ol>
+<li>I did the installation at the user level.  For system level you type sudo before the command.  You can not install both or you will run the rvm.sh script in /etc/profile and then in your .bash_rc.  Running the script twice screws it up.  I lost days figuring this out.  You can unistall rvm with rvm implode.  RVM will use the gcc-4.2 compiler if it finds it, otherwise it will default to the LLVM that ships with XCode 4.2.  You should see RVM compiling with the gcc-4.2.</li>
+</ol><h2>Ruby Installation</h2>
+
+<ol>
+<li><p>Install ruby version 1.9.3-p0 through rvm.  RVM will compile ruby with the gcc-4.2 compiler.
+<code>rvm install ruby-1.8.7-p358</code></p></li>
+<li><p>Next you will create gem sets to keep your different ruby instances separate.
+<code>rvm gemset create rails235</code></p></li>
+<li><p>Use the new gem set with a version of ruby
+<code>rvm use 1.8.7-p358@rails235</code></p></li>
+</ol><p>If you want rvm to automatically use a gem set for a project then run this to create a .rvmrc file in the project.  When you cd into the directory, the rvm command will run automatically.
+<code>rvm --rvmrc --create use 1.8.7-p357@rails235</code>
+I also put the rvm use command in my .bash_profile so it would select the gemset on a new terminal.</p>
+
+<ol>
+<li>Validate that the gem set is current.  You will see =&gt; indicating the default.<br><code>rvm gemset list</code>
+</li>
+</ol><h2>Setup Ruby and mySql</h2>
+
+<ol>
+<li><p>Install the mysql gem
+<code>gem install mysql</code></p></li>
+<li><p>Validate the connection between ruby and mysql by putting this script in a .rb file and running it.  You should see your version of mysql.  Mine was "Server version: 5.5.19"</p></li>
+</ol><p>Here is a test</p>
+
+<pre><code>require "rubygems"
+require "mysql"
+begin
+# connect to the MySQL server
+dbh = Mysql.real_connect("localhost", "testuser", "testpass", "test")
+# get server version string and display it
+puts "Server version: " + dbh.get_server_info
+rescue Mysql::Error =&gt; e
+puts "Error code: #{e.errno}"
+puts "Error message: #{e.error}"
+puts "Error SQLSTATE: #{e.sqlstate}" if e.respond_to?("sqlstate")
+ensure
+# disconnect from server
+dbh.close if dbh
+end
+</code></pre>
+
+<h2>Rails Installation</h2>
+
+<ol>
+<li>Install the rails version
+<code>gem install rails -v 2.3.5</code>
+</li>
+</ol><h2>Sphinx Installation</h2>
+
+<ol>
+<li>Install sphinx via brew
+<code>brew install sphinx</code>
+Create a data directory under /var (i.e. /var/data needs to exist).
+Follow the instructions under doc/sphinx.html to validate your installation.</li>
+</ol><p>If you go for installing sphinx from source you should configure with:
+<code>./configure --with-mysql=&lt;path to mysql&gt;</code></p>
+
+<ol>
+<li><p>Check what version of gem that you have by running <code>gem -v</code>  If you don't have 1.6.2 then run gem update --system 1.6.2.  I believe it downgrades gem to a previous version.  I tried running rake gems:install with a newer version and got a bunch of deprecated warnings and rake failed.  After downgrading to 1.6.2, you can run <code>rake gems:install</code> to install all dependent gems.  I'm not sure if there needed to be manual installation of the other gems.  You could try downgrading to 1.6.2 with the gem update command first then <code>run rake gems:install</code> and see if it resolves all dependencies without having to install other gems like shoulda, etc.</p></li>
+<li><p>Install shoulda gem (if rake gems:install doesn't).
+<code>gem install shoulda</code></p></li>
+<li><p>Install thinking sphinx gem. (if rake gems:install doesn't)
+<code>gem install thinking-sphinx -v 1.4.4</code></p></li>
+<li><p>Install the gem right_aws.
+<code>gem install right_aws</code> (if <code>rake gems:install</code> doesn't)</p></li>
+<li><p>Install the twitter gem.  I don't know why this needs to be installed manually since it is in the environment.rb.  When I ran rake db:migrate (in the step below) it complained that the twitter gem wasn't installed or it installed a later one.  I uninstalled it and ran:
+<code>gem install twitter -v 0.7.0</code></p></li>
+<li><p>Make sure you have version 1.2.2. of the riddle gem installed or you won't be able to run the spinx configuration task with rake.  I had to uninstall riddle and reinstall v 1.2.2.
+<code>gem install riddle -v 1.2.2</code></p></li>
+<li><p>Create the sphinx configuration file with the command below.  Mine dumped it to Firehoze/config/development.sphinx.conf.<br><code>rake thinking_sphinx:configure</code></p></li>
+</ol><h2>Database Setup</h2>
+
+<ol>
+<li><p>Next create the database by running <code>rake db:create</code>
+Note:  I had issues logging in.  I ended up creating the database with a gui tool making sure to pick UTF-8 and then after completing seeding the database didn't have issues with logging in.  I'm not sure if they are related.</p></li>
+<li><p>Next create the tables by running <code>rake db:migrate</code></p></li>
+<li><p>Create the test database manually through mysql client (or your favorite tool) firehoze_test.</p></li>
+<li><p>Run: <code>rake db:test:prepare</code></p></li>
+<li><p>Run the unit tests with <code>rake test</code>
+It may complain that you don't have the factory_girl version 1.2.4 gem installed.  I had to install it with:
+<code>gem install factory_girl -v 1.2.4</code>
+<code>gem install webrat</code></p></li>
+<li><p>seed the database with:
+<code>rake db:seed</code></p></li>
+</ol><h2>Start the Server</h2>
+
+<ol>
+<li><p>Start the server with <code>script/server</code></p></li>
+<li><p>Start the task_manager (background daemon) by typing:
+<code>ruby script/task_server_control.rb start</code> to run in the background 
+or <code>ruby script/task_server_control.rb run</code> to run it in the foreground.</p></li>
+<li><p>The app is seeded with a first user, login (email) is admin@firehoze.com, password is changeme.  Surf to http://localhost:3000 and login.</p></li>
+</ol><h2>Debugging in IDE</h2>
+
+<ol>
+<li><p>I was able to configure RubyMine (JetBrains) very quickly.  I chose to get the project from github, then switched the branch to northeastern (or whatever branch you are working on) from the right click menu, then went into preferences and set the sdk to be my rvm 1.8.7-p357@rails235.  Then I debugged the application.  It took me about 15 minutes from download to debugging.  If anyone figures out eclipse let me know.  RubyMine is $69 for the personal, but I thought it was worth the time saved.</p></li>
+<li><p>If you want to be able to debug javascript, go into your development debug configuration (Run -&gt; Edit Condigurations).  Select Development: Firehoze.  Click on "Run browser" and then click the checkbox Start JavaScript debugger automatically debugging.</p></li>
+<li><p>Run the Development debug configuration after starting mysql.  RubyMine will launch a browser and now you can set breakpoints in the ruby server code, erb files and javascript files.</p></li>
+<li><p>I installed the following two gems as part of trying to get Aptana Studio 3 running.  I don't know if RubyMine needs them, but I'm guessing if it does, it will let you know when you try to debug.
+<code>gem install ruby-debug-base</code>
+<code>gem install ruby-debug-ide</code></p></li>
+</ol><h2>Amazon S3 and Streaming Video Setup</h2>
+
+<ol>
+<li><p>Create three buckets in Amazon S3.  One for the input to zencoder, one for the output video and one for the output thumbnail.</p></li>
+<li><p>Setup video streaming by: <br>
+Log into Amazon S3 Console and clicking on Cloud Front.<br>
+Click on Create Distribution.<br>
+Pick <code>Streaming</code> and select the output bucket (i.e. output.prizetube.com).  Click Continue.<br>
+Click Continue<br>
+Click Create Distribution
+Make sure to change the the value s3l34fgg5q8sq below in the file lessons/_player.html.erb to match the identifier of your video stream you just setup. This value really needs to be moved into the s3.yml file.
+<code>netConnectionUrl: 'rtmp://s3l34fgg5q8sq.cloudfront.net/cfx/st'</code></p></li>
+<li><p>Make sure the following value is in your constants.rb<br><code>FLIX_CLOUD_AWS_ID = '6c8583d84664a381db0c6af0e79b285ede571885fbe768e7ea50e5d3760597dd'</code><br>
+You can get the value form the zencoder documentation that talks about S3 permissions.  It's the canonical ID that zencoder will use to access the input video.  Firehoze gives this ID read permissions to the source video so that zencoder can download it.</p></li>
+<li><p>Make sure the following values in the S3.yml match your input, output and thumbnails S3 bucket names.  Below shoes the entries for prizetube.<br><code>aws_s3_input_video_bucket: input.prizetube.com</code><br><code>aws_s3_output_video_bucket: output.prizetube.com</code><br><code>aws_s3_thumbs_bucket: thumbs.prizetube.com</code><br></p></li>
+<li><p>Also make sure the following match your amazon user id.  You can get at these from S3 console -&gt; Security Credentials -&gt; Access Key<br><code>access_key_id: &lt;YOUR KEY VALUE&gt;</code><br><code>secret_access_key: &lt;YOUR SECRET KEY VALUE&gt;</code><br></p></li>
+</ol><h2>Encoding Videos From Your Local Environment</h2>
+
+<ol>
+<li><p>Make sure that Amazon S3 is setup correctly for your environment and that you have the correct values in your config files.  See the section above.</p></li>
+<li><p>If you want to encode video's from your local environment, you will have to run two processes from a shell terminal.  The first is part of Firehoze and is called task_server.  It is a batch job that processes jobs that are scheduled to run.  I created an alias called tsstart in my .bashrc file to launch it.<br><code>ruby script/task_server_control.rb run -f -- -e development</code></p></li>
+<li><p>The second process is called zencoder_fetcher (http://rubygems.org/gems/zencoder-fetcher).  You can install the gem with:<br><code>gem install zencoder-fetcher</code></p></li>
+</ol><p>You will run zencoder_fetcher with the following where the last argument is the FLIX_API_KEY value from constants.rb.  You get this by logging into your zendcoder account and selecting the top menu item called API.  You will see the Full Access Key value.  That should be set in your constants.rb and used as the last argument.<br><code>zencoder_fetcher --url http://localhost:3000/lessons/conversion_notify --loop --interval 10 --count 1 &lt;FLIX_API_KEY&gt;</code></p>
+
+<p>or alternately you can choose not to run zencoder_fetcher and run <code>rake flix:repair</code>.  It looks for video files in the Amazon S3 bucket and simulates the notification call to update the video status in the database.</p>
+
+<h2>Deploying to Server</h2>
+
+<ol>
+<li>To deploy new code to a server you will check in your changes to github and then run this command on your development laptop (not the staging server).</li>
+</ol><h2>Software Versions</h2>
+
+<p>Below are versions from the Northeastern staging site that I sat and setup with Bob on 2/19/2012</p>
+
+<table>
+<tbody><tr>
+<th>Software</th>
+<th>Version</th>
+</tr>
+<tr>
+<td>ruby</td>
+<td>1.8.7 (2010-01-10 patchlevel 249) [i486-linux]</td>
+</tr>
+<tr>
+<td>rake</td>
+<td>0.9.2.2</td>
+</tr>
+<tr>
+<td>gems</td>
+<td>1.6.2</td>
+</tr>
+<tr>
+<td>rvm</td>
+<td>no version</td>
+</tr>
+<tr>
+<td>actionmailer</td>
+<td>2.3.5</td>
+</tr>
+<tr>
+<td>actionpack</td>
+<td>2.3.5</td>
+</tr>
+<tr>
+<td>active_url</td>
+<td>3.2.1</td>
+</tr>
+<tr>
+<td>activemodel</td>
+<td>3.2.1</td>
+</tr>
+<tr>
+<td>activerecord</td>
+<td>2.3.14, 2.3.5</td>
+</tr>
+<tr>
+<td>activeresource</td>
+<td>2.3.5</td>
+</tr>
+<tr>
+<td>activesupport</td>
+<td>3.2.1, 2.3.14, 2.3.5</td>
+</tr>
+<tr>
+<td>addressable</td>
+<td>2.2.6</td>
+</tr>
+<tr>
+<td>after_commit</td>
+<td>1.0.10</td>
+</tr>
+<tr>
+<td>arel</td>
+<td>3.0.0</td>
+</tr>
+<tr>
+<td>astrails-safe</td>
+<td>0.2.7</td>
+</tr>
+<tr>
+<td>authlogic</td>
+<td>2.1.6</td>
+</tr>
+<tr>
+<td>aws-s3</td>
+<td>0.6.2</td>
+</tr>
+<tr>
+<td>builder</td>
+<td>3.0.0</td>
+</tr>
+<tr>
+<td>cloudfiles</td>
+<td>1.5.0.1</td>
+</tr>
+<tr>
+<td>commonjs</td>
+<td>0.2.0</td>
+</tr>
+<tr>
+<td>crack</td>
+<td>0.3.1</td>
+</tr>
+<tr>
+<td>crafterm-comma</td>
+<td>0.2.2</td>
+</tr>
+<tr>
+<td>daemon_controller</td>
+<td>0.2.6</td>
+</tr>
+<tr>
+<td>daemons</td>
+<td>1.1.6</td>
+</tr>
+<tr>
+<td>faraday</td>
+<td>0.7.6</td>
+</tr>
+<tr>
+<td>fastercsv</td>
+<td>1.5.4</td>
+</tr>
+<tr>
+<td>fastthread</td>
+<td>1.0.7</td>
+</tr>
+<tr>
+<td>gravtastic</td>
+<td>3.2.6, 2.2.0</td>
+</tr>
+<tr>
+<td>hoe</td>
+<td>2.13.0</td>
+</tr>
+<tr>
+<td>hpricot</td>
+<td>0.8.6</td>
+</tr>
+<tr>
+<td>httparty</td>
+<td>0.4.3</td>
+</tr>
+<tr>
+<td>i18n</td>
+<td>0.6.0</td>
+</tr>
+<tr>
+<td>jrails</td>
+<td>0.6.0</td>
+</tr>
+<tr>
+<td>json</td>
+<td>1.6.5</td>
+</tr>
+<tr>
+<td>jviney-acts_as_taggable_on_steroids</td>
+<td>1.1</td>
+</tr>
+<tr>
+<td>less</td>
+<td>2.0.9</td>
+</tr>
+<tr>
+<td>libv8</td>
+<td>3.3.10.4 x86-linux</td>
+</tr>
+<tr>
+<td>mash</td>
+<td>0.0.3</td>
+</tr>
+<tr>
+<td>mime-types</td>
+<td>1.17.2</td>
+</tr>
+<tr>
+<td>multi_json</td>
+<td>1.0.4</td>
+</tr>
+<tr>
+<td>multipart-post</td>
+<td>1.1.4</td>
+</tr>
+<tr>
+<td>mysql</td>
+<td>2.8.1</td>
+</tr>
+<tr>
+<td>net-sftp</td>
+<td>2.0.5</td>
+</tr>
+<tr>
+<td>net-ssh</td>
+<td>2.3.0</td>
+</tr>
+<tr>
+<td>newrelic_rpm</td>
+<td>2.12.3</td>
+</tr>
+<tr>
+<td>oauth</td>
+<td>0.4.5</td>
+</tr>
+<tr>
+<td>paperclip</td>
+<td>2.3.11</td>
+</tr>
+<tr>
+<td>passenger</td>
+<td>3.0.11</td>
+</tr>
+<tr>
+<td>rack</td>
+<td>1.4.1, 1.0.1</td>
+</tr>
+<tr>
+<td>rails</td>
+<td>2.3.5</td>
+</tr>
+<tr>
+<td>rake</td>
+<td>0.9.2.2</td>
+</tr>
+<tr>
+<td>riddle</td>
+<td>1.2.2</td>
+</tr>
+<tr>
+<td>right_aws</td>
+<td>3.0.0</td>
+</tr>
+<tr>
+<td>right_http_connection</td>
+<td>1.3.0</td>
+</tr>
+<tr>
+<td>rubygems-update</td>
+<td>1.8.15, 1.6.2</td>
+</tr>
+<tr>
+<td>searchlogic</td>
+<td>2.3.16</td>
+</tr>
+<tr>
+<td>shoulda</td>
+<td>2.11.3</td>
+</tr>
+<tr>
+<td>simple_oauth</td>
+<td>0.1.5</td>
+</tr>
+<tr>
+<td>spob_browser_detector</td>
+<td>1.1.1</td>
+</tr>
+<tr>
+<td>therubyracer</td>
+<td>0.9.9</td>
+</tr>
+<tr>
+<td>thinking-sphinx</td>
+<td>1.4.4</td>
+</tr>
+<tr>
+<td>thoughtbot-shoulda</td>
+<td>2.11.1</td>
+</tr>
+<tr>
+<td>twitter</td>
+<td>0.7.0</td>
+</tr>
+<tr>
+<td>tzinfo</td>
+<td>0.3.31</td>
+</tr>
+<tr>
+<td>xml-simple</td>
+<td>1.1.1</td>
+</tr>
+<tr>
+<td>zencoder</td>
+<td>2.1.15</td>
+</tr>
+</tbody></table>
+    </div>
+  </div>
+  </div>
+
+</div>
+<div id="gollum-footer">
+  <p id="last-edit">
+    Last edited by pcordone, <time class="js-relative-date" datetime="2012-04-02T17:55:19-07:00" title="2012-04-02 17:55:19">3 days ago</time>
+  </p>
+  <p id="delete-link">
+    <a href="./Dev Environment OSX · spob Firehoze Wiki_files/Dev Environment OSX · spob Firehoze Wiki.html" data-confirm="Are you sure you want to delete this page?" data-method="delete"><span>Delete this Page</span></a>
+  </p>
+</div>
+</div>
+
+
+      </div>
+      <div class="context-overlay"></div>
+    </div>
+
+      <div id="footer-push"></div><!-- hack for sticky footer -->
+    </div><!-- end of wrapper - hack for sticky footer -->
+
+      <!-- footer -->
+      <div id="footer">
+        
+  <div class="upper_footer">
+     <div class="container clearfix">
+
+       <!--[if IE]><h4 id="blacktocat_ie">GitHub Links</h4><![endif]-->
+       <!--[if !IE]--><h4 id="blacktocat">GitHub Links</h4><!--[endif]-->
+
+       <ul class="footer_nav">
+         <h4>GitHub</h4>
+         <li><a href="https://github.com/about">About</a></li>
+         <li><a href="https://github.com/blog">Blog</a></li>
+         <li><a href="https://github.com/features">Features</a></li>
+         <li><a href="https://github.com/contact">Contact &amp; Support</a></li>
+         <li><a href="https://github.com/training">Training</a></li>
+         <li><a href="http://enterprise.github.com/">GitHub Enterprise</a></li>
+         <li><a href="http://status.github.com/">Site Status</a></li>
+       </ul>
+
+       <ul class="footer_nav">
+         <h4>Tools</h4>
+         <li><a href="http://get.gaug.es/">Gauges: Analyze web traffic</a></li>
+         <li><a href="http://speakerdeck.com/">Speaker Deck: Presentations</a></li>
+         <li><a href="https://gist.github.com/">Gist: Code snippets</a></li>
+         <li><a href="http://mac.github.com/">GitHub for Mac</a></li>
+         <li><a href="http://mobile.github.com/">Issues for iPhone</a></li>
+         <li><a href="http://jobs.github.com/">Job Board</a></li>
+       </ul>
+
+       <ul class="footer_nav">
+         <h4>Extras</h4>
+         <li><a href="http://shop.github.com/">GitHub Shop</a></li>
+         <li><a href="http://octodex.github.com/">The Octodex</a></li>
+       </ul>
+
+       <ul class="footer_nav">
+         <h4>Documentation</h4>
+         <li><a href="http://help.github.com/">GitHub Help</a></li>
+         <li><a href="http://developer.github.com/">Developer API</a></li>
+         <li><a href="http://github.github.com/github-flavored-markdown/">GitHub Flavored Markdown</a></li>
+         <li><a href="http://pages.github.com/">GitHub Pages</a></li>
+       </ul>
+
+     </div><!-- /.site -->
+  </div><!-- /.upper_footer -->
+
+<div class="lower_footer">
+  <div class="container clearfix">
+    <!--[if IE]><div id="legal_ie"><![endif]-->
+    <!--[if !IE]--><div id="legal"><!--[endif]-->
+      <ul>
+          <li><a href="https://github.com/site/terms">Terms of Service</a></li>
+          <li><a href="https://github.com/site/privacy">Privacy</a></li>
+          <li><a href="https://github.com/security">Security</a></li>
+      </ul>
+
+      <p>© 2012 <span title="0.28391s from fe12.rs.github.com">GitHub</span> Inc. All rights reserved.</p>
+    </div><!-- /#legal or /#legal_ie-->
+
+      <div class="sponsor">
+        <a href="http://www.rackspace.com/" class="logo">
+          <img alt="Dedicated Server" height="36" src="./Dev Environment OSX · spob Firehoze Wiki_files/rackspaces_logo.png" width="38">
+        </a>
+        Powered by the <a href="http://www.rackspace.com/">Dedicated
+        Servers</a> and<br> <a href="http://www.rackspacecloud.com/">Cloud
+        Computing</a> of Rackspace Hosting<span>®</span>
+      </div>
+  </div><!-- /.site -->
+</div><!-- /.lower_footer -->
+
+      </div><!-- /#footer -->
+
+    
+
+<div id="keyboard_shortcuts_pane" class="instapaper_ignore readability-extra" style="display:none">
+  <h2>Keyboard Shortcuts <small><a href="https://github.com/spob/Firehoze/wiki/Dev-Environment-OSX#" class="js-see-all-keyboard-shortcuts">(see all)</a></small></h2>
+
+  <div class="columns threecols">
+    <div class="column first">
+      <h3>Site wide shortcuts</h3>
+      <dl class="keyboard-mappings">
+        <dt>s</dt>
+        <dd>Focus site search</dd>
+      </dl>
+      <dl class="keyboard-mappings">
+        <dt>?</dt>
+        <dd>Bring up this help dialog</dd>
+      </dl>
+    </div><!-- /.column.first -->
+
+    <div class="column middle" style="display:none">
+      <h3>Commit list</h3>
+      <dl class="keyboard-mappings">
+        <dt>j</dt>
+        <dd>Move selection down</dd>
+      </dl>
+      <dl class="keyboard-mappings">
+        <dt>k</dt>
+        <dd>Move selection up</dd>
+      </dl>
+      <dl class="keyboard-mappings">
+        <dt>c <em>or</em> o <em>or</em> enter</dt>
+        <dd>Open commit</dd>
+      </dl>
+      <dl class="keyboard-mappings">
+        <dt>y</dt>
+        <dd>Expand URL to its canonical form</dd>
+      </dl>
+    </div><!-- /.column.first -->
+
+    <div class="column last" style="display:none">
+      <h3>Pull request list</h3>
+      <dl class="keyboard-mappings">
+        <dt>j</dt>
+        <dd>Move selection down</dd>
+      </dl>
+      <dl class="keyboard-mappings">
+        <dt>k</dt>
+        <dd>Move selection up</dd>
+      </dl>
+      <dl class="keyboard-mappings">
+        <dt>o <em>or</em> enter</dt>
+        <dd>Open issue</dd>
+      </dl>
+    </div><!-- /.columns.last -->
+
+  </div><!-- /.columns.equacols -->
+
+  <div style="display:none">
+    <div class="rule"></div>
+
+    <h3>Issues</h3>
+
+    <div class="columns threecols">
+      <div class="column first">
+        <dl class="keyboard-mappings">
+          <dt>j</dt>
+          <dd>Move selection down</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt>k</dt>
+          <dd>Move selection up</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt>x</dt>
+          <dd>Toggle selection</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt>o <em>or</em> enter</dt>
+          <dd>Open issue</dd>
+        </dl>
+      </div><!-- /.column.first -->
+      <div class="column middle">
+        <dl class="keyboard-mappings">
+          <dt>I</dt>
+          <dd>Mark selection as read</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt>U</dt>
+          <dd>Mark selection as unread</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt>y</dt>
+          <dd>Remove selection from view</dd>
+        </dl>
+      </div><!-- /.column.middle -->
+      <div class="column last">
+        <dl class="keyboard-mappings">
+          <dt>c</dt>
+          <dd>Create issue</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt>l</dt>
+          <dd>Create label</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt>i</dt>
+          <dd>Back to inbox</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt>u</dt>
+          <dd>Back to issues</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt>/</dt>
+          <dd>Focus issues search</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:none">
+    <div class="rule"></div>
+
+    <h3>Issues Dashboard</h3>
+
+    <div class="columns threecols">
+      <div class="column first">
+        <dl class="keyboard-mappings">
+          <dt>j</dt>
+          <dd>Move selection down</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt>k</dt>
+          <dd>Move selection up</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt>o <em>or</em> enter</dt>
+          <dd>Open issue</dd>
+        </dl>
+      </div><!-- /.column.first -->
+    </div>
+  </div>
+
+  <div style="display:none">
+    <div class="rule"></div>
+
+    <h3>Network Graph</h3>
+    <div class="columns equacols">
+      <div class="column first">
+        <dl class="keyboard-mappings">
+          <dt><span class="badmono">←</span> <em>or</em> h</dt>
+          <dd>Scroll left</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt><span class="badmono">→</span> <em>or</em> l</dt>
+          <dd>Scroll right</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt><span class="badmono">↑</span> <em>or</em> k</dt>
+          <dd>Scroll up</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt><span class="badmono">↓</span> <em>or</em> j</dt>
+          <dd>Scroll down</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt>t</dt>
+          <dd>Toggle visibility of head labels</dd>
+        </dl>
+      </div><!-- /.column.first -->
+      <div class="column last">
+        <dl class="keyboard-mappings">
+          <dt>shift <span class="badmono">←</span> <em>or</em> shift h</dt>
+          <dd>Scroll all the way left</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt>shift <span class="badmono">→</span> <em>or</em> shift l</dt>
+          <dd>Scroll all the way right</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt>shift <span class="badmono">↑</span> <em>or</em> shift k</dt>
+          <dd>Scroll all the way up</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt>shift <span class="badmono">↓</span> <em>or</em> shift j</dt>
+          <dd>Scroll all the way down</dd>
+        </dl>
+      </div><!-- /.column.last -->
+    </div>
+  </div>
+
+  <div style="display:none">
+    <div class="rule"></div>
+    <div class="columns threecols">
+      <div class="column first" style="display:none">
+        <h3>Source Code Browsing</h3>
+        <dl class="keyboard-mappings">
+          <dt>t</dt>
+          <dd>Activates the file finder</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt>l</dt>
+          <dd>Jump to line</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt>w</dt>
+          <dd>Switch branch/tag</dd>
+        </dl>
+        <dl class="keyboard-mappings">
+          <dt>y</dt>
+          <dd>Expand URL to its canonical form</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div id="markdown-help" class="instapaper_ignore readability-extra">
+  <h2>Markdown Cheat Sheet</h2>
+
+  <div class="cheatsheet-content">
+
+  <div class="mod">
+    <div class="col">
+      <h3>Format Text</h3>
+      <p>Headers</p>
+      <pre># This is an &lt;h1&gt; tag
+## This is an &lt;h2&gt; tag
+###### This is an &lt;h6&gt; tag</pre>
+     <p>Text styles</p>
+     <pre>*This text will be italic*
+_This will also be italic_
+**This text will be bold**
+__This will also be bold__
+
+*You **can** combine them*
+</pre>
+    </div>
+    <div class="col">
+      <h3>Lists</h3>
+      <p>Unordered</p>
+      <pre>* Item 1
+* Item 2
+  * Item 2a
+  * Item 2b</pre>
+     <p>Ordered</p>
+     <pre>1. Item 1
+2. Item 2
+3. Item 3
+   * Item 3a
+   * Item 3b</pre>
+    </div>
+    <div class="col">
+      <h3>Miscellaneous</h3>
+      <p>Images</p>
+      <pre>![GitHub Logo](/images/logo.png)
+Format: ![Alt Text](url)
+</pre>
+     <p>Links</p>
+     <pre>http://github.com - automatic!
+[GitHub](http://github.com)</pre>
+<p>Blockquotes</p>
+     <pre>As Kanye West said:
+
+&gt; We're living the future so
+&gt; the present is our past.
+</pre>
+    </div>
+  </div>
+  <div class="rule"></div>
+
+  <h3>Code Examples in Markdown</h3>
+  <div class="col">
+      <p>Syntax highlighting with <a href="http://github.github.com/github-flavored-markdown/" title="GitHub Flavored Markdown" target="_blank">GFM</a></p>
+      <pre>```javascript
+function fancyAlert(arg) {
+  if(arg) {
+    $.facebox({div:'#foo'})
+  }
+}
+```</pre>
+    </div>
+    <div class="col">
+      <p>Or, indent your code 4 spaces</p>
+      <pre>Here is a Python code example
+without syntax highlighting:
+
+    def foo:
+      if not bar:
+        return true</pre>
+    </div>
+    <div class="col">
+      <p>Inline code for comments</p>
+      <pre>I think you should use an
+`&lt;addr&gt;` element here instead.</pre>
+    </div>
+  </div>
+
+  </div>
+
+
+
+    <div class="ajax-error-message">
+      <p><span class="icon"></span> Something went wrong with that request. Please try again. <a href="javascript:;" class="ajax-error-dismiss">Dismiss</a></p>
+    </div>
+
+    <div id="logo-popup">
+      <h2>Looking for the GitHub logo?</h2>
+      <ul>
+        <li>
+          <h4>GitHub Logo</h4>
+          <a href="http://github-media-downloads.s3.amazonaws.com/GitHub_Logos.zip"><img alt="Github_logo" src="./Dev Environment OSX · spob Firehoze Wiki_files/github_logo.png"></a>
+          <a href="http://github-media-downloads.s3.amazonaws.com/GitHub_Logos.zip" class="minibutton btn-download download"><span><span class="icon"></span>Download</span></a>
+        </li>
+        <li>
+          <h4>The Octocat</h4>
+          <a href="http://github-media-downloads.s3.amazonaws.com/Octocats.zip"><img alt="Octocat" src="./Dev Environment OSX · spob Firehoze Wiki_files/octocat.png"></a>
+          <a href="http://github-media-downloads.s3.amazonaws.com/Octocats.zip" class="minibutton btn-download download"><span><span class="icon"></span>Download</span></a>
+        </li>
+      </ul>
+    </div>
+
+    
+    
+    
+    <span id="server_response_time" data-time="0.28874" data-host="fe12"></span>
+  
+
+
+</body></html>
