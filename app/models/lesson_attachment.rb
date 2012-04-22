@@ -7,7 +7,7 @@ class LessonAttachment < ActiveRecord::Base
 
   has_attached_file :attachment,
                     :storage => :s3,
-                    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+                    :s3_credentials => "#{Rails.root.to_s}/config/s3.yml",
                     :s3_permissions => 'public-read',
                     :path => "#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/attachments/:attachment/:id/:style/:basename.:extension",
                     :bucket => APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]

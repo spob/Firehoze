@@ -8,7 +8,7 @@ class ActionControllerCatcherTest < Test::Unit::TestCase
     super
     reset_config
     HoptoadNotifier.sender = CollectingSender.new
-    define_constant('RAILS_ROOT', '/path/to/rails/root')
+    define_constant('Rails.root.to_s', '/path/to/rails/root')
   end
 
   def ignore(exception_class)

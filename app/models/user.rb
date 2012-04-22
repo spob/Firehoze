@@ -69,16 +69,16 @@ class User < ActiveRecord::Base
                           :association_foreign_key => 'user_id', :order => 'login ASC'
 
   # Active users
-  named_scope :active, :conditions => {:active => true}
-  named_scope :admins,
+  scope :active, :conditions => {:active => true}
+  scope :admins,
               :joins => [:roles],
               :conditions => { :roles => {:name => 'admin'}},
               :order => :email
-  named_scope :moderators,
+  scope :moderators,
               :joins => [:roles],
               :conditions => { :roles => {:name => 'moderator'}},
               :order => :email
-  named_scope :communitymgrs,
+  scope :communitymgrs,
               :joins => [:roles],
               :conditions => { :roles => {:name => 'communitymgr'}},
               :order => :email
@@ -88,7 +88,7 @@ class User < ActiveRecord::Base
             FROM user_logons
             WHERE created_at >= ? and created_at < ?)
 END
-  named_scope :unique_logons_by_date,
+  scope :unique_logons_by_date,
               lambda{ |days_ago|
                 { :conditions => [logons_sql,
                                   Time.mktime(Time.zone.now.year, Time.zone.now.month, Time.zone.now.day) - (days_ago * 86400),
@@ -105,7 +105,7 @@ END
     payment_level_id is not null
   }
 
-  named_scope :instructors,
+  scope :instructors,
               :conditions => instructors_sql
 
   # Used to verify current password during password changes
@@ -198,7 +198,7 @@ END
                     :default_url => ":gravatar_url",
                     :processors => [:cropper],
                     :storage => :s3,
-                    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+                    :s3_credentials => "#{Rails.root.to_s}/config/s3.yml",
                     :s3_permissions => 'public-read',
                     :path => "#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/users/:attachment/:id/:style/:basename.:extension",
                     :bucket => APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]

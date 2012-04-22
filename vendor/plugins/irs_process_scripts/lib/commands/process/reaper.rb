@@ -97,9 +97,9 @@ end
 
 OPTIONS = {
   :action     => "restart",
-  :pid_path   => File.expand_path(RAILS_ROOT + '/tmp/pids'),
+  :pid_path   => File.expand_path(Rails.root.to_s + '/tmp/pids'),
   :pattern    => "dispatch.[0-9]*.pid",
-  :dispatcher => File.expand_path("#{RAILS_ROOT}/public/dispatch.fcgi")
+  :dispatcher => File.expand_path("#{Rails.root.to_s}/public/dispatch.fcgi")
 }
 
 ARGV.options do |opts|
@@ -115,7 +115,7 @@ ARGV.options do |opts|
     processes can be updated to use the latest code.
 
     It uses pid files to work on the processes and by default assume them to be located
-    in RAILS_ROOT/tmp/pids. 
+    in RAILS_ROOT/tmp/pids.
 
     The reaper actions are:
 

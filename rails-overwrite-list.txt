@@ -1,0 +1,121 @@
+Petes-MacBook:src Pete$ rails new Firehoze
+       exist  
+      create  README
+    conflict  Rakefile
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/Rakefile? (enter "h" for help) [Ynaqdh] y
+       force  Rakefile
+      create  config.ru
+    conflict  .gitignore
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/.gitignore? (enter "h" for help) [Ynaqdh] n
+        skip  .gitignore
+      create  Gemfile
+       exist  app
+    conflict  app/controllers/application_controller.rb
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/app/controllers/application_controller.rb? (enter "h" for help) [Ynaqdh] y
+       force  app/controllers/application_controller.rb
+    conflict  app/helpers/application_helper.rb
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/app/helpers/application_helper.rb? (enter "h" for help) [Ynaqdh] Y
+       force  app/helpers/application_helper.rb
+      create  app/mailers
+       exist  app/models
+    conflict  app/views/layouts/application.html.erb
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/app/views/layouts/application.html.erb? (enter "h" for help) [Ynaqdh] Y
+       force  app/views/layouts/application.html.erb
+       exist  config
+    conflict  config/routes.rb
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/config/routes.rb? (enter "h" for help) [Ynaqdh] Y
+       force  config/routes.rb
+      create  config/application.rb
+    conflict  config/environment.rb
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/config/environment.rb? (enter "h" for help) [Ynaqdh] Y
+       force  config/environment.rb
+       exist  config/environments
+    conflict  config/environments/development.rb
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/config/environments/development.rb? (enter "h" for help) [Ynaqdh] Y
+       force  config/environments/development.rb
+    conflict  config/environments/production.rb
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/config/environments/production.rb? (enter "h" for help) [Ynaqdh] Y
+       force  config/environments/production.rb
+    conflict  config/environments/test.rb
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/config/environments/test.rb? (enter "h" for help) [Ynaqdh] Y
+       force  config/environments/test.rb
+       exist  config/initializers
+      create  config/initializers/backtrace_silencers.rb
+    conflict  config/initializers/inflections.rb
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/config/initializers/inflections.rb? (enter "h" for help) [Ynaqdh] Y
+       force  config/initializers/inflections.rb
+   identical  config/initializers/mime_types.rb
+      create  config/initializers/secret_token.rb
+      create  config/initializers/session_store.rb
+       exist  config/locales
+    conflict  config/locales/en.yml
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/config/locales/en.yml? (enter "h" for help) [Ynaqdh] Y
+       force  config/locales/en.yml
+    conflict  config/boot.rb
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/config/boot.rb? (enter "h" for help) [Ynaqdh] Y
+       force  config/boot.rb
+    conflict  config/database.yml
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/config/database.yml? (enter "h" for help) [Ynaqdh] Y
+       force  config/database.yml
+       exist  db
+      create  db/seeds.rb
+       exist  doc
+   identical  doc/README_FOR_APP
+       exist  lib
+       exist  lib/tasks
+      create  lib/tasks/.gitkeep
+       exist  log
+      create  log/server.log
+      create  log/production.log
+    conflict  log/development.log
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/log/development.log? (enter "h" for help) [Ynaqdh] Y
+       force  log/development.log
+    conflict  log/test.log
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/log/test.log? (enter "h" for help) [Ynaqdh] Y
+       force  log/test.log
+       exist  public
+    conflict  public/404.html
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/public/404.html? (enter "h" for help) [Ynaqdh] Y
+       force  public/404.html
+    conflict  public/422.html
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/public/422.html? (enter "h" for help) [Ynaqdh] Y
+       force  public/422.html
+    conflict  public/500.html
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/public/500.html? (enter "h" for help) [Ynaqdh] Y
+       force  public/500.html
+    conflict  public/favicon.ico
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/public/favicon.ico? (enter "h" for help) [Ynaqdh] Y
+       force  public/favicon.ico
+      create  public/index.html
+   identical  public/robots.txt
+       exist  public/images
+      create  public/images/rails.png
+       exist  public/stylesheets
+      create  public/stylesheets/.gitkeep
+       exist  public/javascripts
+    conflict  public/javascripts/application.js
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/public/javascripts/application.js? (enter "h" for help) [Ynaqdh] Y
+       force  public/javascripts/application.js
+      create  public/javascripts/controls.js
+      create  public/javascripts/dragdrop.js
+      create  public/javascripts/effects.js
+      create  public/javascripts/prototype.js
+      create  public/javascripts/rails.js
+       exist  script
+      create  script/rails
+       exist  test
+       exist  test/fixtures
+       exist  test/functional
+       exist  test/integration
+      create  test/performance/browsing_test.rb
+    conflict  test/test_helper.rb
+Overwrite /Users/Pete/Documents/Projects/RISE/src/Firehoze/test/test_helper.rb? (enter "h" for help) [Ynaqdh] Y
+       force  test/test_helper.rb
+       exist  test/unit
+       exist  tmp
+       exist  tmp/sessions
+       exist  tmp/sockets
+       exist  tmp/cache
+       exist  tmp/pids
+       exist  vendor/plugins
+      create  vendor/plugins/.gitkeep

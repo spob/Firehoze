@@ -188,7 +188,7 @@ class NoticeTest < Test::Unit::TestCase
                                "nestparentkey" => { "nestkey" => "nestvalue" } },
         :session_data     => { "sessionkey" => "sessionvalue" },
         :cgi_data         => { "cgikey" => "cgivalue" },
-        :project_root     => "RAILS_ROOT",
+        :project_root     => "Rails.root.to_s",
         :environment_name => "RAILS_ENV"
       })
 
@@ -229,7 +229,7 @@ class NoticeTest < Test::Unit::TestCase
       assert_valid_node(@document, "//request/cgi-data/var/@key",   "cgikey")
       assert_valid_node(@document, "//request/cgi-data/var",        "cgivalue")
 
-      assert_valid_node(@document, "//server-environment/project-root",     "RAILS_ROOT")
+      assert_valid_node(@document, "//server-environment/project-root",     "Rails.root.to_s")
       assert_valid_node(@document, "//server-environment/environment-name", "RAILS_ENV")
     end
   end

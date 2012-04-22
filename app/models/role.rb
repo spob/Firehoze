@@ -7,7 +7,7 @@ class Role < ActiveRecord::Base
   has_many :users, :through => :roles_users
   belongs_to :authorizable, :polymorphic => true
 
-  named_scope :by_name,
+  scope :by_name,
      :order => 'name asc'
 
   def self.admins

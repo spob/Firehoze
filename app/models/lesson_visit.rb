@@ -3,26 +3,26 @@ class LessonVisit < ActiveRecord::Base
   belongs_to :lesson
   validates_presence_of :lesson, :session_id
 
-  named_scope :by_lesson,
+  scope :by_lesson,
               lambda{|lesson_id|{:conditions => { :lesson_id => lesson_id }}
               }
 
-  named_scope :by_user,
+  scope :by_user,
               lambda{|user_id|{:conditions => { :user_id => user_id }}
               }
 
-  named_scope :latest, :conditions => { :latest => true }
+  scope :latest, :conditions => { :latest => true }
 
   # Look at visits which results in the purchase of a video but which have not yet been compiled
-  named_scope :uncompiled_lesson_purchases, :conditions => {:purchased_this_visit => true, :rolled_up_at => nil }
+  scope :uncompiled_lesson_purchases, :conditions => {:purchased_this_visit => true, :rolled_up_at => nil }
 
-  named_scope :unowned, :conditions => {:owned => false }
+  scope :unowned, :conditions => {:owned => false }
 
-  named_scope :by_session,
+  scope :by_session,
               lambda{|session_id|{:conditions => { :session_id => session_id }}
               }
 
-  named_scope :by_not_session,
+  scope :by_not_session,
               lambda{|session_id|{:conditions => ["session_id <> ?", session_id ]}
               }
 

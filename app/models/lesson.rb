@@ -41,6 +41,8 @@
 #    * In Step #2 above, when we trigger the conversion to start, I also create a periodic job that fires after a
 #      set amount of time (an hour I think?). when that job wakes up, it checks to see if the video has completed
 #      processing. If it hasn't, it will alert the admin via email that something may have gone wrong.
+require 'Tag'
+
 class Lesson < ActiveRecord::Base
   acts_as_taggable
 
@@ -86,7 +88,7 @@ class Lesson < ActiveRecord::Base
   attr_accessor :initial_free_download_count
   attr_protected :status
 
-  before_validation_on_create :set_status_on_create
+  before_validation(:on => :create) { :set_status_on_create }
   after_create :create_free_credits
 
   # From the thinking sphinx doc: Don’t forget to place this block below your associations,
@@ -109,21 +111,21 @@ class Lesson < ActiveRecord::Base
 
   # I added the id to the sort criteria so that the videos would be sorted in the same order every time, even in the
   # event of a tie in the primary sort criterby_cia RBS
-  named_scope :most_popular, :order => "credits_count DESC, id DESC"
-  named_scope :highest_rated, :order => "rating_average DESC, id DESC"
-  named_scope :newest, :order => "id DESC"
-  named_scope :ready, :conditions => {:status => LESSON_STATUS_READY}
-  named_scope :pending, :conditions => {:status => LESSON_STATUS_PENDING}
-  named_scope :failed, :conditions => {:status => LESSON_STATUS_FAILED}
-  named_scope :rejected, :conditions => {:status => LESSON_STATUS_REJECTED}
-  named_scope :ids, :select => ["lessons.id"]
-  named_scope :by_category,
+  scope :most_popular, :order => "credits_count DESC, id DESC"
+  scope :highest_rated, :order => "rating_average DESC, id DESC"
+  scope :newest, :order => "id DESC"
+  scope :ready, :conditions => {:status => LESSON_STATUS_READY}
+  scope :pending, :conditions => {:status => LESSON_STATUS_PENDING}
+  scope :failed, :conditions => {:status => LESSON_STATUS_FAILED}
+  scope :rejected, :conditions => {:status => LESSON_STATUS_REJECTED}
+  scope :ids, :select => ["lessons.id"]
+  scope :by_category,
               lambda { |category_id| return {} if category_id.nil?;
               {:joins => {:category => :exploded_categories},
                :conditions => {:exploded_categories => {:base_category_id => category_id}}} }
   # Credits which have been warned to be about to expire
   # Note...add -1 to lesson collection to ensure that never that case where it will return NULL
-  named_scope :not_owned_by,
+  scope :not_owned_by,
               lambda { |user| return {} if user.nil?;
               {:conditions => ["lessons.id not in (?)", user.lesson_ids.collect(& :id) + [-1]]}
               }

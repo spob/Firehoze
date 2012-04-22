@@ -33,9 +33,9 @@ class AcquireLessonsController < ApplicationController
               when 'available'
                 current_user.available_credits(:order => "created_at ASC").paginate(:per_page => @per_page, :page => params[:page])
               when 'used'
-                current_user.credits.redeemed_at_not_null.expired_at_null(:include => [:lesson], :order => "created_at ASC").paginate(:per_page => @per_page, :page => params[:page])
+                current_user.credits.where("redeemed_at IS NOT NULL AND expired_at IS NOT NULL").joins(:lesson).order("created_at ASC").paginate(:per_page => @per_page, :page => params[:page])
               when 'expired'
-                current_user.credits.expired_at_not_null(:order => "created_at ASC").paginate(:per_page => @per_page, :page => params[:page])
+                current_user.credits.where("expired_at IS NOT NULL").order("created_at ASC").paginate(:per_page => @per_page, :page => params[:page])
             end
   end
 

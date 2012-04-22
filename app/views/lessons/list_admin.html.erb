@@ -20,9 +20,9 @@
   </div>
   <div class="span-12 center" style="padding-top:8px">
     <b>Order by:</b>
-    <%= order @search, :by => :created_at %>&nbsp;
-    <%= order @search, :by => :instructor_login %>
-    <%= order @search, :by => :title %>&nbsp;
+    <%= sort_link @search, :by => :created_at %>&nbsp;
+    <%= sort_link @search, :by => :instructor_login %>
+    <%= sort_link @search, :by => :title %>&nbsp;
   </div>
   <% end %>
 </div>

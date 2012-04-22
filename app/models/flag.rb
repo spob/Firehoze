@@ -1,5 +1,5 @@
 class Flag < ActiveRecord::Base
-  before_validation_on_create :default_values
+  before_validation(:on => :create) {:default_values}
   belongs_to :flaggable, :polymorphic => true
   belongs_to :user
   belongs_to :moderator_user, :class_name => "User", :foreign_key => "moderator_user_id"
@@ -9,9 +9,9 @@ class Flag < ActiveRecord::Base
 
   attr_protected :status, :response
 
-  named_scope   :pending, :conditions => {:status => FLAG_STATUS_PENDING }
+  scope   :pending, :conditions => {:status => FLAG_STATUS_PENDING }
   # Credits which have been warned to be about to expire
-  named_scope :by_flaggable_type,
+  scope :by_flaggable_type,
               lambda{ |flaggable_type| {:conditions => { :flaggable_type => flaggable_type.to_s } }
               }
 

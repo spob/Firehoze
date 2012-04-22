@@ -1,5 +1,5 @@
 class Review < ActiveRecord::Base
-  before_validation_on_create :default_values
+  before_validation(:on => :create) {:default_values}
 
   belongs_to :user
   belongs_to :lesson, :counter_cache => true
@@ -14,9 +14,9 @@ class Review < ActiveRecord::Base
 
   attr_protected :status, :helpfuls, :flags
 
-  named_scope :helpful, :conditions => "score > 0"
-  named_scope :ready_lesson, :joins => [ :lesson ], :conditions => { :lessons => { :status => LESSON_STATUS_READY }}
-  named_scope :ready, :conditions => {:status => REVIEW_STATUS_ACTIVE }
+  scope :helpful, :conditions => "score > 0"
+  scope :ready_lesson, :joins => [ :lesson ], :conditions => { :lessons => { :status => LESSON_STATUS_READY }}
+  scope :ready, :conditions => {:status => REVIEW_STATUS_ACTIVE }
 
   @@flag_reasons = [
           FLAG_LEWD,

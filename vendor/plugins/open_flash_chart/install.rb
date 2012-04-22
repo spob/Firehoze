@@ -7,7 +7,7 @@ Dir.chdir(Dir.getwd.sub(/vendor.*/, '')) do
   ##
 
   def copy_files(source_path, destination_path, directory)
-    source, destination = File.join(directory, source_path), File.join(RAILS_ROOT, destination_path)
+    source, destination = File.join(directory, source_path), File.join(Rails.root.to_s, destination_path)
     # FileUtils.mkdir(destination) unless File.exist?(destination)
     FileUtils.cp_r(Dir.glob(source+'/*.*'), destination)
   end

@@ -76,7 +76,7 @@ module WillPaginate
       # <tt>proxy_options</tt> method on the proxy itself.
       #
       #   class Shirt < ActiveRecord::Base
-      #     named_scope :colored, lambda { |color|
+      #     scope :colored, lambda { |color|
       #       { :conditions => { :color => color } }
       #     }
       #   end

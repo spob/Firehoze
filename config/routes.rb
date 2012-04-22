@@ -1,8 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :smerf_forms
-  map.resources :smerf_test
-
-
   map.home 'home', :controller => 'home', :action => 'show'
   map.resources :my_firehoze, :only => [ :index ],
                 :collection => { :instructor => :get,
@@ -39,7 +35,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :carts, :only => [ :show ]
   map.resources :categories, :collection => { :explode => :post, :list_admin => :get }
   map.resources :contact_users, :only => [ :create, :new ]
-  map.resources :facebook_invitations, :only => [ :create, :new, :index ] 
+  map.resources :facebook_invitations, :only => [ :create, :new, :index ]
   map.resources :facebooks, :only => [ :index, :connect ],
                 :member => { :connect => :get }
 #  map.resources :credits
@@ -81,40 +77,40 @@ ActionController::Routing::Routes.draw do |map|
   map.check_lesson_by_title "lessons/check_lesson_by_title", :controller => "lessons", :action => "check_lesson_by_title"
   map.resources :lessons, :has_many => :reviews, :shallow => true,
                 :member => {
-                        :convert => :post,
-                        :lesson_notes => :get,
-                        :rate => :post,
-                        #                        :recommend => :get,
-                        :stats => :get,
-                        :show_groups => :get,
-                        :watch => :get,
-                        :unreject => :post,
-                        :refresh_video_status => :post,
-                        :score_card => :get
+                    :convert => :post,
+                    :lesson_notes => :get,
+                    :rate => :post,
+                    #                        :recommend => :get,
+                    :stats => :get,
+                    :show_groups => :get,
+                    :watch => :get,
+                    :unreject => :post,
+                    :refresh_video_status => :post,
+                    :score_card => :get
                 },
                 :collection => {
-                        :conversion_notify => :post,
-                        :list => :get,
-                        :tabbed => :get,
-                        :ajaxed => :get,
-                        :list_admin => :get,
-                        :tagged_with => :get,
-                        :all_tags => :get,
-                        :advanced_search => :get,
-                        :perform_advanced_search => :get,
-                        :graph => :get,
-                        :graph_code => :get
+                    :conversion_notify => :post,
+                    :list => :get,
+                    :tabbed => :get,
+                    :ajaxed => :get,
+                    :list_admin => :get,
+                    :tagged_with => :get,
+                    :all_tags => :get,
+                    :advanced_search => :get,
+                    :perform_advanced_search => :get,
+                    :graph => :get,
+                    :graph_code => :get
                 }
   map.resources :lessons, :has_many => :lesson_comments, :shallow => true,
                 :member => {
-                        :watch => :get,
-                        :convert => :post,
-                        :rate => :post
+                    :watch => :get,
+                    :convert => :post,
+                    :rate => :post
                 },
                 :collection => {
-                        :conversion_notify => :put,
-                        :list => :get,
-                        :search => :get
+                    :conversion_notify => :put,
+                    :list => :get,
+                    :search => :get
                 }
   map.resources :lessons, :has_many => :lesson_attachments, :shallow => true
   map.resources :line_items, :only => [ :create, :destroy, :update ]

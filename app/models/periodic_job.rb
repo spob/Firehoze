@@ -20,14 +20,14 @@ class PeriodicJob < ActiveRecord::Base
   # if the task scheduler crashed during execution of the job. This is looking for jobs that are in the
   # process of running and have been doing so for a long time...a long time being a parameter that
   # can be configured in the parameters file.
-  named_scope :zombies,
+  scope :zombies,
               :conditions => ["last_run_at < :last_run_at and next_run_at is null and last_run_result = 'Running'",
                               { :last_run_at => Time.zone.now -
                                       APP_CONFIG[CONFIG_PERIODIC_JOB_TIMEOUT].to_i.minutes }]
 
   # The task scheduler will look for jobs ready to run...specifically, those jobs for which the next_run_at
   # has already passed but have a nil last_run_result, implying that it's not yet started
-  named_scope :ready_to_run,
+  scope :ready_to_run,
               lambda{|now|{
                       :conditions => ['next_run_at < ? and last_run_result is null',
                                       now],
@@ -112,7 +112,7 @@ class PeriodicJob < ActiveRecord::Base
       self.last_run_at = Time.zone.now
       self.next_run_at = nil
       self.save
-      eval(self.job.gsub(/#JOBID#/, self.id.to_s).gsub(/#RAILS_ROOT#/, RAILS_ROOT))
+      eval(self.job.gsub(/#JOBID#/, self.id.to_s).gsub(/#RAILS_ROOT#/, Rails.root.to_s))
       self.last_run_result = "OK"
       TaskServerLogger.instance.info "Job completed successfully"
     rescue Exception

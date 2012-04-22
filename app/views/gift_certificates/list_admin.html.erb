@@ -11,8 +11,8 @@
   </div>
   <div class="span-5 last left" style="padding:5px 0 0 0;">
     <b>Order by:</b>
-    <%= order @search, :by => :user_login, :as => "Username" %>&nbsp;
-    <%= order @search, :by => :id, :as => "Created At" %>
+    <%= sort_link @search, :by => :user_login, :as => "Username" %>&nbsp;
+    <%= sort_link @search, :by => :id, :as => "Created At" %>
     <%= f.submit "Search" %>
   </div>
   <% end %>

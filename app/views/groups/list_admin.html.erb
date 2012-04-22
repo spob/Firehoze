@@ -13,9 +13,9 @@
     <%= f.label :owner_login_like, "Owner" %>:
     <%= f.text_field :owner_login_like, :style => "width:210px;" %>
     <b>Order by:</b>
-    <%= order @search, :by => :name %>&nbsp;
-    <%= order @search, :by => :owner_login %>&nbsp;
-    <%= order @search, :by => :category_name %>&nbsp;
+    <%= sort_link @search, :by => :name %>&nbsp;
+    <%= sort_link @search, :by => :owner_login %>&nbsp;
+    <%= sort_link @search, :by => :category_name %>&nbsp;
     <%= f.submit "Search" %>
   </div>
   <% end %>

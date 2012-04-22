@@ -8,13 +8,13 @@ class GiftCertificate < ActiveRecord::Base
   validates_numericality_of :credit_quantity, :greater_than => 0, :only_integer => true, :allow_nil => true
   validates_numericality_of :price, :greater_than_or_equal_to => 0, :allow_nil => true
 
-  before_validation_on_create :populate_code
+  before_validation(:on => :create) { :populate_code }
   before_create :populate_expires_at
 
   # Used when gifting a gift certificate
   attr_accessor :to_user, :to_user_email, :give_comments, :quantity_to_grant
 
-  named_scope :active, :conditions => [ "redeemed_at is null and expires_at > ?", Time.now ]
+  scope :active, :conditions => [ "redeemed_at is null and expires_at > ?", Time.now ]
 
   # Basic paginated listing finder
   # If the user is specified and is an admin, then all active gift certificates will be retrieved.

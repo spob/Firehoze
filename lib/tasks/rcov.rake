@@ -12,8 +12,7 @@
 
 require 'rake'
 require 'rake/testtask'
-require 'rake/rdoctask'
-require 'tasks/rails'
+require 'rdoc/task'
 require 'shoulda/tasks'
 namespace :test do
   desc 'Measures test coverage'

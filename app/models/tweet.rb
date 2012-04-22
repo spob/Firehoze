@@ -15,6 +15,6 @@ class Tweet < ActiveRecord::Base
   end
 
   def self.list_tweets(search_code, limit)
-    Tweet.search_code_equals(search_code).descend_by_posted_at.paginate(:page => 1, :per_page => limit)
+    Tweet.where("search_code = ?", search_code).order("posted_at DESC").paginate(:page => 1, :per_page => limit)
   end
 end

@@ -7,5 +7,5 @@ class FreeCredit < ActiveRecord::Base
   belongs_to :credit
   validates_presence_of     :lesson
 
-  named_scope :available, :conditions => {:redeemed_at => nil}
+  scope :available, :conditions => {:redeemed_at => nil}
 end

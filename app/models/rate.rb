@@ -4,8 +4,8 @@ class Rate < ActiveRecord::Base
   
   attr_accessible :rate, :dimension
 
-  named_scope :lesson_rates, :conditions => { :rateable_type => "Lesson" }
-  named_scope :by_rateable_id,
+  scope :lesson_rates, :conditions => { :rateable_type => "Lesson" }
+  scope :by_rateable_id,
               lambda{ |rateable| {:conditions => { :rateable_id => rateable.id } }
               }
 end

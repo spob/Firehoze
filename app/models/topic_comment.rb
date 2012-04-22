@@ -5,7 +5,7 @@ class TopicComment < Comment
   has_many :flags, :as => :flaggable, :dependent => :destroy
   has_many :flags, :as => :flaggable, :dependent => :destroy
 
-  named_scope :include_user, :include => [:user]
+  scope :include_user, :include => [:user]
   after_create :update_topic
   
   @@flag_reasons = [

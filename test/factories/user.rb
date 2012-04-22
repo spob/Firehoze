@@ -28,5 +28,5 @@ Factory.define :user, :default_strategy => :create do |f|
   f.email  { Factory.next(:email) }
   f.rejected_bio false
   f.language 'en'
-  # f.avatar { ActionController::TestUploadedFile.new(File.join(RAILS_ROOT, 'test', 'images', 'test_image.jpg'), 'image/jpg') }
+  # f.avatar { ActionController::TestUploadedFile.new(File.join(Rails.root.to_s, 'test', 'images', 'test_image.jpg'), 'image/jpg') }
 end

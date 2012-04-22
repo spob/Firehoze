@@ -15,10 +15,10 @@ class Category < ActiveRecord::Base
   validates_numericality_of :sort_value, :level, :allow_nil => true
   validates_format_of :name, :with => /^[^\/]*\z/i, :message => 'cannot contain a slash'
 
-  named_scope :by_parent_sort_value, :include => [:parent_category],
+  scope :by_parent_sort_value, :include => [:parent_category],
               :order => 'parent_categories_categories.sort_value ASC, categories.sort_value ASC'
-  named_scope :root, :conditions => { :parent_category_id => nil }, :include => [:child_categories]
-  named_scope :visible_to_lessons, :conditions => { :visible_to_lessons => true }
+  scope :root, :conditions => { :parent_category_id => nil }, :include => [:child_categories]
+  scope :visible_to_lessons, :conditions => { :visible_to_lessons => true }
 
   after_save :set_lesson_delta_flag
 

@@ -13,7 +13,7 @@ class CreditSku < Sku
   # This sku may be associated to discounts which allow users to purchase it at a discount
   has_many :discounts, :class_name => 'DiscountByVolume', :foreign_key => 'sku_id'
 
-  #named_scope :biggest_credits_first, :order => "num_credits desc"
+  #scope :biggest_credits_first, :order => "num_credits desc"
 
   # This lists the discount types that can be associated with this SKU. This is used to populate a select
   # list in the SKU creation screen.

@@ -221,7 +221,7 @@ class FinderTest < ActiveRecordTestCase
     assert_equal 2, entries.total_entries
   end
 
-  ## named_scope ##
+  ## scope ##
   
   def test_paginate_in_named_scope
     entries = Developer.poor.paginate :page => 1, :per_page => 1

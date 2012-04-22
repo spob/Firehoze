@@ -9,8 +9,8 @@ class Helpful < ActiveRecord::Base
   validates_presence_of :user, :review
   validate :not_author
 
-  named_scope :helpful_yes, :conditions => { :helpful => true }
-  named_scope :helpful_no, :conditions => { :helpful => false }
+  scope :helpful_yes, :conditions => { :helpful => true }
+  scope :helpful_no, :conditions => { :helpful => false }
 
   protected
 

@@ -16,10 +16,10 @@
 
       <div class="span-12 center" style="padding-top:8px">
         <b>Order by:</b>
-        <%= order @search, :by => :login, :as => "Username" %>&nbsp;
-        <%= order @search, :by => :email %>&nbsp;
-        <%= order @search, :by => :created_at %>&nbsp;
-        <%= order @search, :by => :current_login_at %>&nbsp;
+        <%= sort_link @search, :by => :login, :as => "Username" %>&nbsp;
+        <%= sort_link @search, :by => :email %>&nbsp;
+        <%= sort_link @search, :by => :created_at %>&nbsp;
+        <%= sort_link @search, :by => :current_login_at %>&nbsp;
         <%= f.submit "Search" %>
 
         &nbsp;&nbsp;&nbsp;

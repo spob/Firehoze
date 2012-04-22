@@ -101,12 +101,12 @@ namespace :db do
         lesson.status = VIDEO_STATUS_PENDING
         lesson.category = Category.first(:order => "RAND()")
         dummy_video_path = "/test/videos/#{rand(5)+1}.avi" #pick a random vid,
-        if !File.exist?(RAILS_ROOT + dummy_video_path)
+        if !File.exist?(Rails.root.to_s + dummy_video_path)
           puts "can not find file"
         else
           lesson.save!
           video = OriginalVideo.create!(:lesson => lesson,
-                                :video => File.open(RAILS_ROOT + dummy_video_path))
+                                :video => File.open(Rails.root.to_s + dummy_video_path))
           lesson.trigger_conversion("http://some/url")
           puts "#{i}: #{lesson.original_video.video_file_name} uploaded [instructor: #{lesson.instructor.full_name} | file size:#{lesson.original_video.video_file_size}] to #{video.video.path}"
         end

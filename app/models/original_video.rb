@@ -1,12 +1,12 @@
 class OriginalVideo < Video
-  before_validation_on_create :set_status_and_format
+  before_validation(:on => :create) {:set_status_and_format}
 
   validates_presence_of :video_file_name
   validates_presence_of :lesson, :status
   validates_numericality_of :video_file_size, :greater_than => 0, :allow_nil => true
   has_attached_file :video,
                     :storage        => :s3,
-                    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+                    :s3_credentials => "#{Rails.root.to_s}/config/s3.yml",
                     :s3_permissions => 'private',
                     :path           => "#{(ENV['s3_dir'] and Rails.env.development?) ? ENV['s3_dir'] : APP_CONFIG[CONFIG_S3_DIRECTORY]}/:attachment/:id/:basename.:extension",
                     :bucket         => APP_CONFIG[CONFIG_AWS_S3_INPUT_VIDEO_BUCKET]

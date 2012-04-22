@@ -19,7 +19,6 @@ class Order < ActiveRecord::Base
                         :city, :state, :country, :zip, :billing_name, :card_type,
                         :card_expires_on
   validates_presence_of :card_number, :card_verification, :on => :create
-  validates_presence_of
   validates_length_of       :first_name, :maximum => 50, :allow_nil => true
   validates_length_of       :last_name, :maximum => 50, :allow_nil => true
   validates_length_of       :billing_name, :maximum => 100, :allow_nil => true
@@ -30,7 +29,7 @@ class Order < ActiveRecord::Base
   validates_length_of       :country, :maximum => 50, :allow_nil => true
   validates_length_of       :zip, :maximum => 25, :allow_nil => true
 
-  validate_on_create :validate_card
+  validate :validate_card, :on => :create
 
   @@card_types = [['Visa', 'visa'],
                   ['Mastercard', 'master'],

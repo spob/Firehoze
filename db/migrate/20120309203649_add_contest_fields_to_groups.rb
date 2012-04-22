@@ -1,4 +1,4 @@
-class CreateContests < ActiveRecord::Migration
+class AddContestFieldsToGroups < ActiveRecord::Migration
   def self.up
     add_column :groups, :contest,             :boolean
     add_column :groups, :starts_at,           :datetime

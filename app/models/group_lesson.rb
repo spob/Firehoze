@@ -5,7 +5,7 @@ class GroupLesson < ActiveRecord::Base
   belongs_to :group
   has_many :activities, :as => :trackable, :dependent => :destroy
 
-  named_scope :active, :conditions => { :active => true}
+  scope :active, :conditions => { :active => true}
 
   def compile_activity
     self.activities.create!(:actor_user => self.user,

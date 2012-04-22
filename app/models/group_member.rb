@@ -6,7 +6,7 @@ class GroupMember < ActiveRecord::Base
 
   validates_presence_of :member_type
 
-  named_scope :active, :conditions => {:member_type => [OWNER, MODERATOR, MEMBER] }
+  scope :active, :conditions => {:member_type => [OWNER, MODERATOR, MEMBER] }
 
   def can_edit?(user)
     self.group.owned_by?(user) or

@@ -31,26 +31,26 @@ class Group < ActiveRecord::Base
 
   attr_protected :active
 
-  named_scope :public, :conditions => { :private => false }
-  named_scope :private, :conditions => { :private => true }
-  named_scope :free_to_members, :conditions => { :free_lessons_to_members => true }
-  named_scope :ascend_by_category_name_and_name, :joins => :category, :order => 'categories.name, groups.name'
-  named_scope :ascend_by_name, :order => 'groups.name'
-  named_scope :ids, :select => ["groups.id"]
-  named_scope :active, :conditions => { :active => true }
-  named_scope :active_or_owner_access_all,
+  scope :public, :conditions => { :private => false }
+  scope :private, :conditions => { :private => true }
+  scope :free_to_members, :conditions => { :free_lessons_to_members => true }
+  scope :ascend_by_category_name_and_name, :joins => :category, :order => 'categories.name, groups.name'
+  scope :ascend_by_name, :order => 'groups.name'
+  scope :ids, :select => ["groups.id"]
+  scope :active, :conditions => { :active => true }
+  scope :active_or_owner_access_all,
               lambda{ |access_all, user_id|
                 { :conditions => ["(groups.active = ? or ? = 1 or groups.owner_id = ?)", true, access_all, user_id] }
               }
-  named_scope :not_a_member,
+  scope :not_a_member,
               lambda{ |user| return {} if user.nil?;
               { :conditions => ["groups.id not in (?)", user.member_groups.collect(&:id) + [-1]] }
               }
-  named_scope :by_category,
+  scope :by_category,
               lambda{ |category_id| return {} if category_id.nil?;
               {:joins => {:category => :exploded_categories},
                :conditions => { :exploded_categories => {:base_category_id => category_id}}}}
-  named_scope :a_member,
+  scope :a_member,
               lambda{ |user| return {} if user.nil?;
               { :conditions => ["groups.id in (?)", user.member_groups.collect(&:id) + [-1]] }
               }
@@ -78,7 +78,7 @@ class Group < ActiveRecord::Base
                     },
                     :processors => [:cropper],
                     :storage => :s3,
-                    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
+                    :s3_credentials => "#{Rails.root.to_s}/config/s3.yml",
                     :s3_permissions => 'public-read',
                     :path => "#{APP_CONFIG[CONFIG_S3_DIRECTORY]}/groups/:attachment/:id/:style/:basename.:extension",
                     :bucket => APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]
@@ -101,7 +101,7 @@ class Group < ActiveRecord::Base
   end
 
   def self.default_logo_url(style)
-    # "http://#{APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}/groups/avatars/missing/%s/missing.png" % style.to_s
+    # "http://#{Rails.application.APP_CONFIG[CONFIG_AWS_S3_IMAGES_BUCKET]}/groups/avatars/missing/%s/missing.png" % style.to_s
     # todo: add a logo for missing logo as well
     "/images/groups/%s/missing.png" % style.to_s
   end

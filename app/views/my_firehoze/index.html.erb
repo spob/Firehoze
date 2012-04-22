@@ -20,7 +20,7 @@
           <span class="h4">Recent Activity</span>
           <%= image_tag("spinners/ajax_spinner_32.gif", :class => "loader") %>
         </div>
-        <%= render :partial => 'activities/activities', :object => @activities %>
+        <%= render :partial => 'activities/activities', :locals => { :object => @activities } %>
       </div>
 
     </div>

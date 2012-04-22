@@ -27,10 +27,10 @@ class Activity < ActiveRecord::Base
       )
 END
 
-  named_scope :to_be_disabled, :conditions => [ rejected_sql, LESSON_STATUS_REJECTED, REVIEW_STATUS_REJECTED,
+  scope :to_be_disabled, :conditions => [ rejected_sql, LESSON_STATUS_REJECTED, REVIEW_STATUS_REJECTED,
                                                COMMENT_STATUS_REJECTED, false, false ]
-  named_scope :include_user, :include => [:actor_user]
-  named_scope :by_followed_instructors,
+  scope :include_user, :include => [:actor_user]
+  scope :by_followed_instructors,
               lambda { |user|
                 {
                         :include => [:group],
@@ -40,8 +40,8 @@ END
                                   user.id, false, (user ? user.group_ids.collect(&:group_id) : [] ) + [-1]]
                 }
               }
-  named_scope :not_rejected, :conditions => { :rejected_at => nil }
-  named_scope :visible_to_user,
+  scope :not_rejected, :conditions => { :rejected_at => nil }
+  scope :visible_to_user,
               lambda{ |user|
                 { :include => [:actor_user, :group],
                   #   :joins => 'LEFT OUTER JOIN groups ON groups.id = activities.group_id',

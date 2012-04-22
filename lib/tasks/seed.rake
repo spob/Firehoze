@@ -52,7 +52,7 @@ namespace :db do
     create_job RunIntervalPeriodicJob, 'CreditExpiration', 'Credit.expire_unused_credits', 3600 * 24  #once a day
     create_job RunIntervalPeriodicJob, 'LessonBuyPattern', 'LessonBuyPattern.rollup_buy_patterns', 3600  #once an hour
     create_job RunIntervalPeriodicJob, 'LessonBuyPair', 'LessonBuyPair.rollup_buy_patterns', 3600  #once an hour
-    create_job RunAtPeriodicJob, 'RebuildIndex', 'system("cd #RAILS_ROOT# && rake thinking_sphinx:index")', nil, 180  # 3AM
+    create_job RunAtPeriodicJob, 'RebuildIndex', 'system("cd #Rails.root.to_s# && rake thinking_sphinx:index")', nil, 180  # 3AM
   end
 end
 

@@ -25,25 +25,25 @@ class Credit < ActiveRecord::Base
   after_create :remember_to_review
 
   # Credits which have not yet been redeemed
-  named_scope :available, :conditions => {:redeemed_at => nil, :expired_at => nil}
+  scope :available, :conditions => {:redeemed_at => nil, :expired_at => nil}
 
   # Credits which have been used to purchase
-  named_scope :used, :conditions => "redeemed_at is not null and expired_at is null"
+  scope :used, :conditions => "redeemed_at is not null and expired_at is null"
 
   # Credits which have not yet been rolled up to lesson_buy_affiliates
-  named_scope :unrolled_up, :conditions => { :rolled_up_at => nil }
+  scope :unrolled_up, :conditions => { :rolled_up_at => nil }
 
   # Credits which have not yet been warned to be about to expire
-  named_scope :unwarned, :conditions => {:expiration_warning_issued_at => nil}
+  scope :unwarned, :conditions => {:expiration_warning_issued_at => nil}
 
   # Credits which have been warned to be about to expire
-  named_scope :warned,
+  scope :warned,
               lambda{ |warned_before| {:conditions => ["expiration_warning_issued_at < ?",
                                                        warned_before] }
               }
 
 
-  named_scope :unpaid_credits,
+  scope :unpaid_credits,
               lambda{ |user| { :conditions => { :lesson_id => user.instructed_lesson_ids.collect(&:id) + [-1],
                                                 :payment_id => nil } }
               }
@@ -51,8 +51,8 @@ class Credit < ActiveRecord::Base
   # Find credits which haven't been used in a long time and are about to expire. Specifically, look for credits
   # for which the associated user hasn't logged in to the system for a long time (e.g., a year) where the credits
   # are at least that old.
-  # This named_scope will likely be chained with the available named scope
-  named_scope :to_expire,
+  # This scope will likely be chained with the available named scope
+  scope :to_expire,
               lambda{ |expire_at| {:conditions => ["credits.will_expire_at < ?", expire_at ]}
               }
 

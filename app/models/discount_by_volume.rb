@@ -8,7 +8,7 @@ class DiscountByVolume < Discount
 
   # Return the first discount greater than or equal to the order quantity in order to calculate the discount
   # to provide
-  named_scope :max_discount_by_volume,
+  scope :max_discount_by_volume,
           lambda{|qty| {:conditions => ["minimum_quantity <= ? and active = ?", qty, true],
                   :order => "minimum_quantity desc", :limit => 1}
           }

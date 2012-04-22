@@ -3,7 +3,7 @@ require 'optparse'
 if RUBY_PLATFORM =~ /(:?mswin|mingw)/ then abort("Inspector is only for Unix") end
 
 OPTIONS = {
-  :pid_path => File.expand_path(RAILS_ROOT + '/tmp/pids'),
+  :pid_path => File.expand_path(Rails.root.to_s + '/tmp/pids'),
   :pattern  => "dispatch.*.pid",
   :ps       => "ps -o pid,state,user,start,time,pcpu,vsz,majflt,command -p %s"
 }
