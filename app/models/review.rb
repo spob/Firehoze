@@ -1,5 +1,7 @@
 class Review < ActiveRecord::Base
-  before_validation(:on => :create) {:default_values}
+  before_validation(:on => :create) do
+    default_values
+  end
 
   belongs_to :user
   belongs_to :lesson, :counter_cache => true

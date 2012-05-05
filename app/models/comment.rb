@@ -1,6 +1,8 @@
 class Comment < ActiveRecord::Base
   belongs_to :user
-  before_validation(:on => :create) {:default_values}
+  before_validation(:on => :create) do
+    default_values
+  end
   validates_presence_of :user, :body, :status
   validates_inclusion_of :status, :in => %w{ active rejected }
 

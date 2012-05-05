@@ -88,7 +88,9 @@ class Lesson < ActiveRecord::Base
   attr_accessor :initial_free_download_count
   attr_protected :status
 
-  before_validation(:on => :create) { :set_status_on_create }
+  before_validation(:on => :create) do
+    set_status_on_create
+  end
   after_create :create_free_credits
 
   # From the thinking sphinx doc: Don’t forget to place this block below your associations,

@@ -1,3 +1,8 @@
+# TODO updating to rails 3.0 resulted in I get “undefined method `paginate’”
+# see https://github.com/mislav/will_paginate/wiki/Troubleshooting
+# need to fix how paginate is used
+require 'will_paginate/array'
+
 class MyFirehozeController < ApplicationController
   include SslRequirement
 
@@ -146,12 +151,12 @@ class MyFirehozeController < ApplicationController
 
   def fetch_credits
     @used_credits = current_user.credits.where ("redeemed_at IS NOT NULL AND expired_at IS NULL").joins(:sku, :line_item, :lesson).order("created_at ASC")
-    @expired_credits = current_user.credits.where ("expired_at NULL").joins(:sku, :line_item).order("created_at ASC")
+    @expired_credits = current_user.credits.where ("expired_at IS NULL").joins(:sku, :line_item).order("created_at ASC")
     @available_credits = current_user.available_credits.joins(:sku, :line_item).order("created_at ASC")
   end
 
   def fetch_orders
-    @orders = current_user.orders.where("cart_purchased_at NOT NULL").order("id DESC").joins(:cart)
+    @orders = current_user.orders.where("purchased_at IS NOT NULL").order("id DESC").joins(:cart)
   end
 
   def fetch_gift_certificates

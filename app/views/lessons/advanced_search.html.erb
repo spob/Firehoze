@@ -55,7 +55,7 @@
         <span>
           <%= f.label :category %>
           <div class="collection clearfix">
-            <% Category.visible_to_lessons_equals(true).ascend_by_compiled_sort.each do |c| %>
+            <% Category.visible_to_lessons_equals(true).order("compiled_sort ASC").each do |c| %>
                 <span class="item"><%= check_box_tag "advanced_search[category_ids][]", c.id, @advanced_search.categories.include?(c), :id => nil %> <%= truncate(h(c.name), :length => 18) %></span>
             <% end %>
           </div>

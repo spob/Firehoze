@@ -8,7 +8,9 @@ class GiftCertificate < ActiveRecord::Base
   validates_numericality_of :credit_quantity, :greater_than => 0, :only_integer => true, :allow_nil => true
   validates_numericality_of :price, :greater_than_or_equal_to => 0, :allow_nil => true
 
-  before_validation(:on => :create) { :populate_code }
+  before_validation(:on => :create) do
+    populate_code
+  end
   before_create :populate_expires_at
 
   # Used when gifting a gift certificate

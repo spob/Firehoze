@@ -63,7 +63,7 @@
         <li>
         <span>
           <%= f.label(:category_id, "Category") %>
-          <%= f.collection_select(:category_id, Category.ascend_by_compiled_sort, :id, :formatted_name, {:include_blank => 'Select...'}, :class => "required") %>
+          <%= f.collection_select(:category_id, Category.order("compiled_sort ASC"), :id, :formatted_name, {:include_blank => 'Select...'}, :class => "required") %>
           <span class="required-field"></span>
         </span>
         </li>

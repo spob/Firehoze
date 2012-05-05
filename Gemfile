@@ -8,6 +8,7 @@ gem 'rails', '3.0.0'
 
 gem 'rdoc'
 
+gem 'surveyor'
 gem 'aws-sdk'
 gem 'activemerchant'
 gem 'spob_browser_detector', '1.1.1'
@@ -57,13 +58,15 @@ gem 'aasm'
 gem 'acts_as_tree_rails3'
 
 # was ajaxful_rating plugin
+#gem 'ajaxful_rating', :git => 'git://github.com/edgarjs/ajaxful-rating.git', :branch => 'rails3'
+#gem 'ajaxful_rating_jquery', :require => 'ajaxful_rating', :git => 'git://github.com/mrbrdo/ajaxful_rating_jquery.git'
 gem 'ajaxful_rating'
 
 # was friendly_id plugin
 gem 'friendly_id', :git => 'git://github.com/norman/friendly_id.git', :branch => '3.x'
 
-# was localized_country_select plugin
-gem 'localized_country_select'
+# tried to use gem instead of plugin, but it didn't work
+# gem 'localized_country_select'
 
 # was rails-dev-boost plugin
 gem 'rails-dev-boost'

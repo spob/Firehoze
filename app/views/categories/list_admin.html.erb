@@ -15,7 +15,7 @@
   <tr>
     <% form_for :category, :url => categories_url(@category) do |f| %>
     <td><%= f.text_field :name %></td>
-    <td><%= f.collection_select(:parent_category_id, Category.ascend_by_compiled_sort, :id, :formatted_name, {:include_blank => true, :selected => nil}) %></td>
+    <td><%= f.collection_select(:parent_category_id, Category.order("compiled_sort ASC"), :id, :formatted_name, {:include_blank => true, :selected => nil}) %></td>
     <td><%= f.text_field :sort_value %></td>
     <td><%= f.check_box :visible_to_lessons %></td>
     <td><%= f.submit "Create", :disable_with => translate('general.disable_with') %></td>

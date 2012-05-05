@@ -174,7 +174,7 @@ class LessonsController < ApplicationController
     @instructor = @lesson.instructor
 
     if @lesson.ready? or @lesson.instructed_by?(current_user) or (current_user and current_user.is_a_moderator?)
-      LessonVisit.touch(@lesson, current_user, request.session.session_id)
+      LessonVisit.touch(@lesson, current_user, request.session_options[:id])
     else
       flash[:error] = t 'lesson.not_ready'
       redirect_to lessons_path

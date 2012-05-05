@@ -1,5 +1,9 @@
 class Flag < ActiveRecord::Base
-  before_validation(:on => :create) {:default_values}
+  validate :check_on_create, :on => :create
+
+  before_validation(:on => :create) do
+    default_values
+  end
   belongs_to :flaggable, :polymorphic => true
   belongs_to :user
   belongs_to :moderator_user, :class_name => "User", :foreign_key => "moderator_user_id"
@@ -46,7 +50,7 @@ class Flag < ActiveRecord::Base
     end
   end
 
-  def validate_on_create
+  def check_on_create
     if Flag.find(:first, :conditions => { :flaggable_type => self.flaggable_type,
                                           :flaggable_id => self.flaggable_id,
                                           :user_id => self.user_id,

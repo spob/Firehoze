@@ -15,7 +15,7 @@ class AcquireLessonsController < ApplicationController
 
   # Consume an available credit to watch this lesson 
   def create
-    @credit = @lesson.acquire(current_user, request.session.session_id)
+    @credit = @lesson.acquire(current_user, request.session_options[:id])
     if @credit
       redirect_to lesson_path(@lesson)
     else

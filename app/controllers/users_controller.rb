@@ -81,11 +81,11 @@ class UsersController < ApplicationController
       redirect_to lessons_path
     end
     if current_user.try("is_a_moderator?") or current_user.try("is_an_admin?")
-      @groups = @user.member_groups.ascend_by_name.public
+      @groups = @user.member_groups.order("name ASC").public
       @lessons = @user.instructed_lessons.all(:include => [:instructor, :tags])
       @reviews = @user.reviews.all(:include => [:user, :lesson])
     else
-      @groups = @user.member_groups.active.ascend_by_name.public
+      @groups = @user.member_groups.active.order("name ASC").public
       @lessons = @user.instructed_lessons.ready.all(:include => [:instructor, :tags])
       @reviews = @user.reviews.ready.ready_lesson(:include => [:user, :lesson])
     end

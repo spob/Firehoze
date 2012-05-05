@@ -59,7 +59,7 @@ class CategoriesController < ApplicationController
   end
 
   def index
-    @categories = Category.root.visible_to_lessons_equals(true).ascend_by_sort_value
+    @categories = Category.root.where("visible_to_lessons=true").order("sort_value ASC")
     @suggested_lessons = Lesson.lesson_recommendations(current_user, 5)
   end
 

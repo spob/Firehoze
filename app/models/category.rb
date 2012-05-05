@@ -29,7 +29,7 @@ class Category < ActiveRecord::Base
   end
 
   def self.list(page, per_page)
-    Category.ascend_by_compiled_sort.paginate(:page => page,
+    Category.order("compiled_sort ASC").paginate(:page => page,
                                               :per_page => per_page)
   end
 
@@ -51,7 +51,7 @@ class Category < ActiveRecord::Base
       ExplodedCategory.delete_all
       AncestorCategory.delete_all
 
-      Category.root.ascend_by_sort_value.each do |category|
+      Category.root.order("sort_value ASC").each do |category|
         category.explode category, 1
       end
     end

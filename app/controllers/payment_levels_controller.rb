@@ -13,7 +13,7 @@ class PaymentLevelsController < ApplicationController
   verify :method => :put, :only => [:update ], :redirect_to => :home_path
 
   def index
-    @payment_levels = PaymentLevel.ascend_by_name.paginate(:page => params[:page],
+    @payment_levels = PaymentLevel.order("name ASC").paginate(:page => params[:page],
                                                            :per_page => cookies[:per_page] || ROWS_PER_PAGE)
   end
 

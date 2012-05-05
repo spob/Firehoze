@@ -61,7 +61,7 @@ module UsersHelper
   end
 
   def payment_levels_for_select
-    PaymentLevel.ascend_by_name.collect { |m| [m.name, m.id] }
+    PaymentLevel.order("name ASC").collect { |m| [m.name, m.id] }
   end
 
   def possessive_helper word

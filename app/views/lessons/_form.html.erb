@@ -18,7 +18,7 @@
             <li>
       <span>
         <%= f.label :instructor %>
-        <%= f.collection_select(:instructor_id, User.instructors.ascend_by_login, :id,
+        <%= f.collection_select(:instructor_id, User.instructors.order("login ASC"), :id,
                                 :login, :class => 'required') %>
         <span class="required-field"></span>
       </span>
@@ -76,7 +76,7 @@
         <li>
       <span>
         <%= f.label :category %>
-        <%= f.collection_select(:category_id, Category.visible_to_lessons_equals(true).ascend_by_compiled_sort, :id,
+        <%= f.collection_select(:category_id, Category.where("visible_to_lessons = true").order("compiled_sort ASC"), :id,
                                 :formatted_name, {:include_blank => 'Select...'}, :class => 'required') %>
         <span class="required-field"></span>
       </span>

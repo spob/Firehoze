@@ -1,5 +1,8 @@
 class OriginalVideo < Video
-  before_validation(:on => :create) {:set_status_and_format}
+  before_validation(:on => :create) do
+    set_status_and_format
+  end
+
 
   validates_presence_of :video_file_name
   validates_presence_of :lesson, :status

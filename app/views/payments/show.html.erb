@@ -16,7 +16,7 @@
     <th>Debit</th>
     <th>Account Balance</th>
   </tr>
-  <%= render :partial => 'credit', :collection => @payment.credits.ascend_by_id, :locals => { :user => nil } %>
+  <%= render :partial => 'credit', :collection => @payment.credits.order("id ASC"), :locals => { :user => nil } %>
   <tr>
     <td><%= l @payment.created_at %></td>
     <td></td>

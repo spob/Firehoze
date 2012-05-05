@@ -42,7 +42,7 @@
         <span>
           <%= f.label :payment_level %>
           <%= f.select :payment_level,
-            options_from_collection_for_select(PaymentLevel.ascend_by_name, 'id', 'name',
+            options_from_collection_for_select(PaymentLevel.order("name ASC"), 'id', 'name',
             @user.payment_level.try('id')),
             { :include_blank => true } %>
         </span>

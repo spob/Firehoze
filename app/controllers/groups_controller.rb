@@ -44,7 +44,7 @@ class GroupsController < ApplicationController
       @groups = Group.ascend_by_name.find(:all, :include => [:category], :conditions => { :id => @ids}).paginate(:per_page => LESSONS_PER_PAGE, :page => params[:page])
       @tags = Group.public.active.tag_counts(:conditions => ["groups.id IN (?)", @ids], :limit => 40, :order => "count DESC").sort{|x, y| x.name <=> y.name}
     else
-      @categories = Category.root.ascend_by_sort_value
+      @categories = Category.root.order("sort_value ASC")
     end
   end
 

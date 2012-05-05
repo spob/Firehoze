@@ -5,14 +5,14 @@
     <%= render :partial => 'my_firehoze/nav' %>
     <div id="action_venture">
       <% if !user.venture_created? %>
-          <%= link_to content_tag(:span, "Create Venture &raquo;"), venture_wizard_step1_account_path (@user, :protocol => SECURE_PROTOCOL), :class => "large-button call-to-action", :method => :get %>
+          <%= link_to content_tag(:span, "Create Venture"), venture_wizard_step1_account_path (@user, :protocol => SECURE_PROTOCOL), :class => "large-button call-to-action", :method => :get %>
       <% end %>
     </div>
     <div id="action">
       <% if user.verified_instructor? %>
-        <%= link_to content_tag(:span, "Create #{t('lesson.Lesson')} &raquo;"), new_lesson_path, :class => "large-button call-to-action" %>
+        <%= link_to content_tag(:span, "Create #{t('lesson.Lesson')}"), new_lesson_path, :class => "large-button call-to-action" %>
       <% else %>
-        <%= link_to content_tag(:span, "Become a #{t('lesson.instructor').capitalize}  &raquo;"), instructor_signup_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :class => "large-button call-to-action" %>
+        <%= link_to content_tag(:span, "Become a #{t('lesson.instructor').capitalize}"), instructor_signup_wizard_account_url(@user, :protocol => SECURE_PROTOCOL), :class => "large-button call-to-action" %>
       <% end %>
     </div>
 

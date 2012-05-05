@@ -57,7 +57,7 @@ gift_certificate_expires_days: 365
 number_of_buy_patterns_to_show: 30
 
 # s3 directory name provides the name of the top level directory within Amazon buckets for storing videos
-s3_directory: default
+s3_directory: dev-rails-30
 
 # cdn server
 cdn_output_server: cdn.firehoze.com
