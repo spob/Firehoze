@@ -1,7 +1,7 @@
 <%# user in the 'details pane of the lessons#show page %>
 
 <%
-lesson = object
+lesson = detail
 instructor = lesson.instructor
 groups = lesson.groups
 %>
@@ -78,9 +78,9 @@ groups = lesson.groups
   <tr>
     <td class="header">Tags:</td>
     <td>
-      <% lesson.tag_counts.each do |tag| %>
-        <%= link_to h(tag.name), tagged_with_lessons_path(:collection => :tagged_with, :tag => tag.name) %>
-      <% end %>
+      <!-- lesson.tag_counts.each do |tag| -->
+        <!-- link_to h(tag.name), tagged_with_lessons_path(:collection => :tagged_with, :tag => tag.name) -->
+      <!-- end -->
     </td>
   </tr>
 </table>

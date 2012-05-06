@@ -16,11 +16,11 @@
     <div class="span-3 last" id="rating-container">
       <div id="rating">
         <div id="stars">
-          <%= lesson_rating_for(@lesson, current_user) -%>
+          <!-- lesson_rating_for(@lesson, current_user) -->
         </div>
         <div id="stats">
           Average Rating:
-          <span id="<%= dom_id(@lesson) -%>_average" class="average"><%= current_average(@lesson) -%></span>
+          <span id="<%= dom_id(@lesson) -%>_average" class="average"><!-- current_average(@lesson) --></span>
           (<span id="<%= dom_id(@lesson) -%>_count"><%= vote_counts_phrase(@lesson) -%></span>)
         </div>
       </div>
@@ -114,8 +114,6 @@
         <li><%= link_to h(t('lesson.discussion')), lesson_lesson_comments_path(@lesson, :style => 'tab', :per_page => COMMENTS_ON_LESSON_SHOW_PER_PAGE) %></li>
         <%= content_tag(:li, "#{ link_to "Stats", stats_lesson_path(@lesson, :style => 'tab') }")  if (@show_purchases or @show_video_stats) %>
         <li><%= link_to "Groups", show_groups_lesson_path(@lesson, :style => 'tab') %></li>
-        <li><%= link_to 'Score Card', smerf_form_url('testsmerf') %></li>
-
       </ul>
 
       <!-- single pane (ajax'd)-->
